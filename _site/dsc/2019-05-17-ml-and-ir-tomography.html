@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2019-05-17">
+
+<title>johnowhitaker.dev - ML and IR Tomography</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">johnowhitaker.dev</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html">
+ <span class="menu-text">Data Science Castnet Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tils.html">
+ <span class="menu-text">TILs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
+  <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection">Model Selection</a></li>
+  <li><a href="#object-classification" id="toc-object-classification" class="nav-link" data-scroll-target="#object-classification">Object Classification</a></li>
+  <li><a href="#position-inference" id="toc-position-inference" class="nav-link" data-scroll-target="#position-inference">Position Inference</a></li>
+  <li><a href="#using-simulation-to-boost-performance" id="toc-using-simulation-to-boost-performance" class="nav-link" data-scroll-target="#using-simulation-to-boost-performance">Using Simulation to boost performance</a></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ML and IR Tomography</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">blogs</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 17, 2019</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>I studied Electrical and Computer Engineering at UCT, and the final year project was my chance to really dive deep into a topic. I chose IR tomography, and explored various questions around that topic. For today’s post, I’ll focus on one small aspect: the use of machine learning. This post will go through some background and then show a couple of ML models in use. For much more detail and my full thesis, see this <a href="https://github.com/johnowhitaker/CIRTS">GitHub repository.</a></p>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>This project arose because I wanted to do some experiments with Computed Tomography, but I didn’t know enough to see what would work and what wouldn’t. How many sensors does one need to achieve a particular goal for resolution or performance? What geometries work best? And what if we can’t keep everything nice and regular?&nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://cdn.hackaday.io/images/3765251542371976038.png"><img src="images/3765251542371976038.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<p>I built some tools that let me simulate these kinds of arrangements, and did some early experiments on image reconstruction and on the use of machine learning (specifically neural networks) to make sense of readings. Even with a weird arrangement like the one on the right, I could make some sense of the data. For more information on the simulation side, see the report in the <a href="https://github.com/johnowhitaker/CIRTS">GitHub repository</a>.</p>
+<p>I tested out these arrangements in the real world by building some fixed arrangements, and by using a 3D printed scanner to position an LED and a phototransistor (PT from now on) in different locations to slowly simulate having many detectors and emitters.&nbsp;Using light as opposed to X-rays means cheap emitters and detectors, and of course much less danger.</p>
+<p><img src="images/ring_of_8_kapton.jpeg" class="img-fluid"></p>
+<p>A ring of 8 LEDs and 8 PTs. Larger rings were also constructed, and the scanner could simulate arrangements of &gt;1000 sensors and emitters.</p>
+<p>By taking a set of readings, we can start to estimate how much light travels along different paths, and thus build up an image of whatever is being scanned. This works well with lots of readings from the scanner:</p>
+<p><img src="images/screenshot-from-2019-05-17-12-17-37.png" class="img-fluid"></p>
+<p>A reconstructed image of some small nails. The scanner could resolve objects less than 1mm in size.</p>
+<p>However, for arrangements with relatively few sensors (such as the static arrangement of 8 shown above), the reconstructed images are an apparently meaningless blur. The goal of this project was to use ML to make sense of these sets of readings, for example by identifying objects placed within the sensor ring or estimating their position.</p>
+</section>
+<section id="model-selection" class="level2">
+<h2 class="anchored" data-anchor-id="model-selection">Model Selection</h2>
+<p>To answer the question “can machine learning be useful”, I needed to pick a good approach to take. Simply throwing the data at a decision tree and then noting the performance wouldn’t cut it - every choice needs to be justified. I wrote a notebook explaining the process <a href="https://github.com/johnowhitaker/CIRTS/blob/master/Model%20Selection/Model%20Selection.ipynb">here</a>, but the basics are as follows:</p>
+<ol type="1">
+<li>Define your problem (for example, classifying objects) and load the data</li>
+<li>Pick a type of model to try (for example, Logistic Regression)</li>
+<li>Train a model, and see how well it performs by splitting your data into training and testing sets. Use cross-validation to get more representative scores.</li>
+<li>Tune the model parameters. For example, try different values on ‘gamma’ (a regularisation parameter) for a Support Vector based classifier.</li>
+<li>Repeat for different types of model, and compare the scores</li>
+</ol>
+<p><img src="images/screenshot-from-2019-05-17-12-28-05.png" class="img-fluid"></p>
+<p>Choosing the optimum number of hidden layers for a Multi-Layer Perceptron model (Neural Network)</p>
+<p>For example, in the case of object classification, a neural network approach worked best (of the models tested):</p>
+<p><img src="images/screenshot-from-2019-05-17-12-27-48.png" class="img-fluid"></p>
+<p>Model scores on a classification task</p>
+</section>
+<section id="object-classification" class="level2">
+<h2 class="anchored" data-anchor-id="object-classification">Object Classification</h2>
+<p>Using the ring with 8 LEDs and 8 PTs, I’d place an object randomly within the ring. The object (one of four used) and location (which of four ‘quadrants’ contained the object) were recorded along with a set of readings from the sensors. This data was stored in a csv file for later analysis.</p>
+<p>Using the model selected according to the method in the previous section, I was able to achieve an accuracy of 85% (multi-class classification) or 97% (binary classification with only two objects) using 750 samples for training. More training data resulted in better accuracy.</p>
+<p><img src="images/screenshot-from-2019-05-17-12-36-52.png" class="img-fluid"></p>
+<p>Model performance with more training samples for multi-class classification (orange)<br>
+and binary classification (blue)</p>
+<p>This was a fun result, and a good ML exercise. The data and a notebook showing the process of loading the data and training models can be found in the <a href="https://github.com/johnowhitaker/CIRTS/tree/master/Model%20Selection">‘Model Selection’ folder of the GitHub repository.</a></p>
+</section>
+<section id="position-inference" class="level2">
+<h2 class="anchored" data-anchor-id="position-inference">Position Inference</h2>
+<p>Here, instead of trying to identify an object we attempt to predict it’s location. This requires knowing the position precisely when collecting training data - a problem I solved by using a 3D printer to move the object about under computer control.</p>
+<p><img src="images/6463721543608288198.gif" class="img-fluid"></p>
+<p>Gathering training data for position inference</p>
+<p>This results in a <a href="https://github.com/johnowhitaker/CIRTS/blob/master/Pos_inf_r14/reads_500.csv">dataset</a> consisting of a set of readings followed by an X and Y position. The goal is to train a model to predict the position based on the readings. For the ring of 8, the model could predict the location with an error of ~10% of the radius of the ring - approximately 7mm. For the ring of 14 (pictured above, and the source of the linked dataset), I was able to get the RMSE down to 1.6mm (despite the ring being larger) using the tricks from the next section. You can read more about this on my <a href="https://hackaday.io/project/162352-cirts-configurable-infra-red-tomography-systems">hackaday.io</a> page.</p>
+<p><img src="images/screenshot-from-2019-05-17-12-51-05.png" class="img-fluid"></p>
+<p>Playing a game with the sensor ring.</p>
+<p>The ring can take readings very fast, and being able to go from these readings to a fairly accurate position opens up some fun possibilities. I hooked it up to a game I had written. A player inserts a finger into the ring and moves it about to control a ‘spaceship’, which must dodge enemies to survive. It was a hit with my digs-mates at the time.</p>
+</section>
+<section id="using-simulation-to-boost-performance" class="level2">
+<h2 class="anchored" data-anchor-id="using-simulation-to-boost-performance">Using Simulation to boost performance</h2>
+<p>One downside of this approach is that it takes many training samples to get a model that performs adequately. It takes time to generate this training data, and in an industrial situation it might be impossible to simulate all possible positions in a reasonable time-frame. Since I already had a simulator I had coded, why not try to use it to generate some fake training data?</p>
+<p>Using purely simulated data resulted in some spectacularly bad results, but if a model was ‘primed’ with even a small real-world training dataset (say, 50 samples) then adding simulated data could improve the model and make it more robust. I’ll let the results speak for themselves:</p>
+<p><img src="images/screenshot-from-2019-05-17-12-55-41.png" class="img-fluid"></p>
+<p>Model performance for position inference with and without simulated data for training</p>
+<p>The simulator didn’t map to real life exactly, and no doubt could be improved to offer even more performance gains. But even as-is, it allows us to use far less training data to achieve the same result. Notice that a model trained on 150 samples does worse than one using only 50 samples but augmented with extra simulated data. A nifty result to keep in mind if you’re ever faced with a dataset that’s just a little too small!</p>
+</section>
+<section id="conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
+<p>I had a ton of fun on this project, and this post only really scratches the surface. If you’re keen to learn more, do take a look at the <a href="https://github.com/johnowhitaker/CIRTS/blob/master/EEE4022S_2018_FINAL_REPORT_WHTJON002_WHITAKER_J_WILKINSON.pdf">full report(PDF)</a> and <a href="https://hackaday.io/project/162352-cirts-configurable-infra-red-tomography-systems">hackaday project</a>. This is a great example of machine learning being used to get meaningful outputs from a set of noisy, complicated data. And it shows the potential for using simulation of complex processes to augment training data for better model performance - a very cool result.</p>
+<p>I’m thinking about moving this website in a different direction as I start on a new project - stay tuned for news!</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

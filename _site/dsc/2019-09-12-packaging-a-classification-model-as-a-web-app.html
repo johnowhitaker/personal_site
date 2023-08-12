@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2019-09-12">
+
+<title>johnowhitaker.dev - Packaging a classification model as a web app</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">johnowhitaker.dev</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html">
+ <span class="menu-text">Data Science Castnet Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tils.html">
+ <span class="menu-text">TILs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#exporting-the-model-for-later-use" id="toc-exporting-the-model-for-later-use" class="nav-link active" data-scroll-target="#exporting-the-model-for-later-use">Exporting the model for later use</a></li>
+  <li><a href="#packaging-as-an-app" id="toc-packaging-as-an-app" class="nav-link" data-scroll-target="#packaging-as-an-app">Packaging as an app</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Packaging a classification model as a web app</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">blogs</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 12, 2019</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://zebra-vs-elephant.onrender.com"><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-12-13-03-18.png?w=1024" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<p>My shiny new web app, available <a href="https://zebra-vs-elephant.onrender.com">here</a></p>
+<p>In my <a href="https://datasciencecastnet.home.blog/2019/09/06/pothole-detection-aka-johno-tries-fastai/">previous post</a> I introduced fastai, and used it to identify images with potholes. Since then, I’ve applied the same basic approach to the <a href="https://zindi.africa/competitions/sbtic-animal-classification">Standard Bank Tech Impact Challenge: Animal classification</a> with pretty decent results. A first, rough model was able to score 97% accuracy thanks to the magic of transfer learning, and by unfreezing the inner layers and re-training with a lower learning rate I was able to up the accuracy to over 99% for this binary classification problem. It still blows my mind how good these networks are at computer vision.</p>
+<p><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-12-11-36-03.png?w=840" class="img-fluid"></p>
+<p>Zebra or Elephant?</p>
+<p>This was exciting and fun. But I wanted to share the result, and my peer group aren’t all that familiar with log-loss scores. How could I get the point across and communicate what this means? Time to deploy this model as a web application :)</p>
+<section id="exporting-the-model-for-later-use" class="level2">
+<h2 class="anchored" data-anchor-id="exporting-the-model-for-later-use">Exporting the model for later use</h2>
+<p><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-12-16-32-31.png?w=399" class="img-fluid"></p>
+<p>Final training step, saving weights and exporting to a file in my Google Drive</p>
+<p>I knew it was possible to save some of the model parameters with model.save(‘name’), but wasn’t sure how easy it would be to get a complete model definition. Turns out, enough people want this that you can simply call model.export(‘model_name’). So I set my model training again (I hadn’t saved last time) and started researching my next step while Google did my computing for me.</p>
+</section>
+<section id="packaging-as-an-app" class="level2">
+<h2 class="anchored" data-anchor-id="packaging-as-an-app">Packaging as an app</h2>
+<p>I expected this step to be rather laborious. I’d need to set up a basic app (planned to use Flask), get an environment with pytorch/fastai set up and deploy to a server or, just maybe, get it going on Heroku. But then I came across an exciting page in the fastai docs: ‘<a href="https://course.fast.ai/deployment_render.html">Deploying on Render</a>’. There are essentially 3 steps:<br>
+- Fork the example repository<br>
+- Edit the file to add a link to your exported model<br>
+- Sign up with Render and point it at your new GitHub repository.<br>
+Then hit deploy! You can read about the full process in the <a href="https://course.fast.ai/deployment_render.html">aforementioned tutorial</a>. Make sure your fastai is a recent version, and that you export the model (not just saving weights).</p>
+<p>The resultant app is available at <a href="https://zebra-vs-elephant.onrender.com">zebra-vs-elephant.onrender.com</a>. I used an earlier model with 97% accuracy (since I’m enjoying that top spot on the leaderboard ;)) but it’s still surprisingly accurate. It even get’s cartoons right!</p>
+<ul>
+<li><p><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-12-12-08-38.png?w=496" class="img-fluid"></p></li>
+<li><p><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-12-12-08-57.png?w=403" class="img-fluid"></p></li>
+<li><p><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-12-13-00-29.png?w=352" class="img-fluid"></p></li>
+<li><p><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-12-13-00-43.png?w=414" class="img-fluid"></p></li>
+<li><p><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/classify2.jpeg?w=270" class="img-fluid"></p></li>
+<li><p><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/classify3.jpeg?w=281" class="img-fluid"></p></li>
+</ul>
+<p>Please try it out and let me know what you think. It makes a best guess - see what it says for non-animals, or flatter your friends by classifying them as pachyderms.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>There seems to be a theme to my last few posts: “Things that sound hard are now easy!”. It’s an amazing world we live in. You can make something like this! It took 20 minutes, with me doing setup while the model trained! Comment here with links to your sandwich-or-not website, your am-I-awake app, your ‘ask-a-computer-if-this-dolphin-looks-happy’ business idea. Who knows, one of us might even make something useful :)</p>
+<p><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-12-16-56-03.png?w=386" class="img-fluid"></p>
+<p>Yes, that is apparently an elephant…</p>
+<p>UPDATE: I’ve suspended the service for now, but can re-start it if you’d like to try it. Reach out if that’s the case :)</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

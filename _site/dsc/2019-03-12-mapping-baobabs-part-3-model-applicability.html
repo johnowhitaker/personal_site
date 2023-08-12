@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2019-03-12">
+
+<title>johnowhitaker.dev - Mapping Baobabs, Part 3 - Model Applicability</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">johnowhitaker.dev</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html">
+ <span class="menu-text">Data Science Castnet Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tils.html">
+ <span class="menu-text">TILs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Mapping Baobabs, Part 3 - Model Applicability</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">blogs</div>
+    <div class="quarto-category">tutorials</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 12, 2019</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In the previous two posts, we built a Species Distribution Model and used it to predict the density of Baobab trees in Zimbabwe. Then we tried some more complex models, trained a decision tree regressor and imported it into Google Earth Engine. We showed various metrics of how well a model does, but ended with an open question: how to we tell how well the model will do when looking at a completely new area? This is the subject we’ll tackle in today’s post.</p>
+<p>The key concept here is distance from the sample space. We sampled at a limited number of geographic locations, but there is no way these locations completely cover all possible combinations of temperature, rainfall, soil type and altitude. For example, all samples were at altitudes between 300 and 1300m above sea level. We might expect a model to make reasonable predictions for a new point at 500m above sea level. But what about a point at 290m elevation? Or 2000m? Or sea level? Fitting a linear model based purely on altitude, we see the problem clearly:</p>
+<p><img src="images/alt_vs_density.png" class="img-fluid"></p>
+<p>Line of best fit: Elevation vs Density</p>
+<p>Negative tree densities at high altitude? Insanely high densities at sea level? Clearly, extrapolating beyond our sample space is risky. Incidentally, if it looks to you like there are two Gaussian distributions there in the data you are not alone - they might correspond to the two types* of baobabs found on mainland Africa. Until recently, conventional wisdom held that there is only one species present, and this is still contested. See a related paper I worked on <a href="https://www.sciencedirect.com/science/article/pii/S0254629915003129">here</a> [1]. A more complex model might help, but that’s besides the point. A model’s predictions are only valid for inputs that are close enough to the training data for extrapolation to make sense.</p>
+<p>So how do we deal with this? A simple approach might be to define upper and lower bounds for all input variables and to avoid making predictions outside of the range covered by our training data. We can do this in GEE using masking:</p>
+<p><img src="images/screenshot-from-2019-03-12-16-45-34.png" class="img-fluid"></p>
+<p>Black areas fall within 80% bounds for all variables</p>
+<p>This is a reasonable approach - it stops us doing much dangerous extrapolating outside our sample space and has the added benefit of clearly conveying the limitations of the model. But we can do better. Imagine an area that is almost identical to some of our training data, but differs in a few attributes. Now further imagine that none of these attributes matter much to baobabs, and in any case they are only <em>just</em> below our thresholds. Surely we can expect a prediction in this area to have some value? We need a way to visualise <strong>how far away</strong> a point is from our sample space, so that we can infer how bad our predictions for that point are likely to be.</p>
+<p>Enter what I call the |Weighted Distance Vector|. We represent each input as a dimension. We consider how far away a point is from our sample space along each dimension, and compute the vector sum of these distances. I say the ‘weighted’ sum since we can scale the distance on each axis to reflect the relative importance of that variable, attaching higher weight to variables with larger effects on the output. Let’s clarify with an example.</p>
+<p>Considering only two variables, elevation and temperature, we can represent all our training data as points (blue) on a grid where the X axis represents elevation and the y axis temperature. We’ll draw out our limits around the training data using bounds covering 90% of our data. A point within the limits has a |WDV| of 0. Now consider a point outside the limits (red). It’s 250m higher than any we’ve seen - 0.25 times the range of elevations observed. It’s 2.5 degrees cooler than any of our sampled locations, which is 0.3 times the upper-lower bounds for temperature. The distance is sqrt(0.25^2 +0.3^2) = 0.39. However, altitude has a large influence on distribution, while temperature does not. Scaling by appropriate weights (see the penultimate paragraph for where these come from) we get |WDV| = sqrt((0.173*0.25)^2 +(0.008*0.3)^2) = 0.043. The key point here is that the |WDV| captures the fact that elevation is important. A point at 750m elevation with a mean temp of 30 °C will have a low |WDV| (0.005), while one with a mean temp of 23 °C but an altitude of 1600m will have a high |WDV| (0.02).</p>
+<p><img src="images/wdv.png" class="img-fluid"></p>
+<p>A point outside our sampled region</p>
+<p>To do this in GEE is fairly simple, since we can map functions over the input images to get the |WDV| at each location. <a href="https://code.earthengine.google.com/c5cabd5c33829e8420694874ba3e35b2">This script</a> shows it in action. And the result gives us much more information than the mask we made earlier. Red areas have a very small |WDV|, and we expect our model to do well there. White areas are out of scope, and I’d take predictions in the yellow regions with a grain of salt. What isn’t included here is geographical distance - extrapolating to different continents, even if conditions match, is not advised.</p>
+<p><img src="images/screenshot-from-2019-03-12-16-47-26.png" class="img-fluid"></p>
+<p>|WDV| over Southern Africa. Red areas are similar to sampled regions, white are not.</p>
+<p>One thing I’ve glossed over so far: how do we get the weights used? I defined the |WDV| as weighted because we “scale the distance on each axis to reflect the relative importance of that variable.” The feature weights can be thumb-sucked by an expert (I’ve seen this done) but the easiest way to get reasonable weights is to look at the model.feature_importances_ variable of a trained random forest regressor. In the process of fitting the model, the relative importance of each input feature is computed, so we get this info for free if we’ve done the modelling as described in Part 2. Another option would be to use the correlation coefficients of each input var with the density. I leave that as an exercise for the reader.</p>
+<p>So there you go - a way to visualise how applicable a model is in different locations, using weighted distance from sample space as a metric. In the next post of this series I’ll share the method I’m using to expand our sample space and get a model that can produce useful predictions over a much wider area. Before then, I’m going to take a break from baobabs and write up some other, smaller experiments I’ve been doing. See you then!</p>
+<p>*I’m using ‘type’ instead of ‘species’ here, because while the genetics are contentious, it is fairly clear that there are at least two kinds of baobabs here.</p>
+<p>[1] - Douie, C., Whitaker, J. and Grundy, I., 2015. Verifying the presence of the newly discovered African baobab, Adansonia kilima, in Zimbabwe through morphological analysis. South African Journal of Botany, 100, pp.164-168.</p>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

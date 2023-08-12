@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2023-07-01">
+
+<title>johnowhitaker.dev - Why and how I’m shifting focus to LLMs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">johnowhitaker.dev</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html">
+ <span class="menu-text">Data Science Castnet Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tils.html">
+ <span class="menu-text">TILs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#part-1-why-llms-are-exciting" id="toc-part-1-why-llms-are-exciting" class="nav-link active" data-scroll-target="#part-1-why-llms-are-exciting">Part 1: Why LLMs are exciting</a></li>
+  <li><a href="#part-2-how-the-heck-would-you-learn-llms" id="toc-part-2-how-the-heck-would-you-learn-llms" class="nav-link" data-scroll-target="#part-2-how-the-heck-would-you-learn-llms">Part 2: How the heck would you ‘learn LLMs’?</a></li>
+  <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts">Final Thoughts</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Why and how I’m shifting focus to LLMs</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 1, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>While I’ve previously consulted on NLP projects, in the past few years my research focus has been chiefly on images. If you had asked me a few months ago about looking at LLMs, my default response would have been “No way, I bet there are far too many people working on that hyped topic”. But then my research buddies (a crew originally put together by Jeremy Howard to look into diffusion models) switched focus to LLMs, a friend started trying to convince me to join him in starting an LLM-focused company, and I began to re-think my hesitancy. In this blog post, I’ll try to unpack why I’m now excited to shift focus to LLMs, despite my initial misgivings about moving into a crowded market. And then I’ll try to outline how I’ve gone about loading up my brain with relevant research so that I can become a useful contributor in this space as quickly as possible. Here goes!</p>
+<section id="part-1-why-llms-are-exciting" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-why-llms-are-exciting">Part 1: Why LLMs are exciting</h2>
+<p>The TL;DR of this section is that it turns out there is a lot of innovation happening in this space, and lots of low-hanging fruit available in terms of improvements to be made, all driven by open-source models and the influx of new ideas. For a while, it felt like you needed to be at a big org with tons of compute to research LLM stuff and that OpenAI was just too far ahead for most things. Here are some specific thoughts I wrote out the other day when someone asked what I found exciting:</p>
+<p>The explosion of interest in LLMs has led to a flurry of innovations around them. In particular, there are some cool techniques around lower-resource training and inference that I’m excited to see:</p>
+<p>- <strong><a href="https://huggingface.co/blog/4bit-transformers-bitsandbytes">Quantization methods</a> to reduce the VRAM required</strong> to train and serve larger models</p>
+<p>- Things like <a href="https://github.com/ggerganov/ggml">GGML</a> for <strong>fast inference without any dependencies</strong>, optimized for things like Apple hardware and consumer GPUs (see Modular for a direction in which inference gets easy and fast on lots of different hardware)</p>
+<p>- <a href="https://huggingface.co/blog/peft"><strong>Parameter-efficient fine-tuning</strong></a> <strong>methods</strong> that allow training with much less compute. It’s tricky to fine-tune the smallest GPT-2 model (125M parameters) on Google Colab when not using any tricks, and yet there are notebooks for SFT on Falcon 7B that can be run happily on the free tier thanks to LoRA and 8-bit Adam.</p>
+<p>The upshot of all this is that it’s now doable to train variants of these fairly powerful open-source models with a single GPU in very little time and to share the resulting models (or the much smaller LoRA weights) through things like HuggingFace so that anyone can play with them.&nbsp;</p>
+<p><strong>I think the next direction where things will rapidly improve is datasets</strong> for fine-tuning. We’ve already seen a big leap in quality over the past few months, with more and more chat / instruct datasets being curated. An obvious next step is using existing LLMs to generate better training data, and/or filter existing data.&nbsp;</p>
+<p><strong>The evaluation is lagging a little IMO</strong>. The <a href="https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard">open LLM leaderboard</a> is a cool initiative, although it highlights how fragile these benchmarks can be. I’m excited about using LLMs to evaluate other LLMs (even though this can be precarious) and also hoping to see other alternatives emerge - perhaps something equivalent to the PickScore model that is a useful tool for evaluating image generators and is based on crowd-sourced ratings. Actual human ratings are still super important and hard to do well.</p>
+<p><strong>Another fun dynamic is just the constant stream of better base models available for fine-tuning</strong> as people compete to make ‘The BEST Truly Open Source Model’. Better base models mean better synthetic data, easier fine-tuning, more use-cases unlocked, more data as a result… it’s a nice flywheel of improvement. And since fine-tuning is getting faster and faster, when a great new base model comes out it won’t take long to apply the same dataset+training strategy as you’ve used on whatever current best model you have.&nbsp;</p>
+<p>It feels like all these things make it easier than ever to do cool stuff with LLMs, but also that there are a lot of improvements still on the table - a good time to dive in!</p>
+<p>PS: Other interesting directions:</p>
+<ul>
+<li><p>Ways to use multiple models of different sizes to speed up inference for ‘easy’ completions without sacrificing accuracy</p></li>
+<li><p>Moving away from RLHF towards something more like Direct Policy Optimization where you still incorporate feedback but without the RL messiness</p></li>
+<li><p>I still think very few people have good recipes for fine-tuning models and getting to know a specific model/task well would likely yield some interesting insights</p></li>
+</ul>
+<p>It’s important to be able to iterate quickly for research to be effective, and when testing an idea meant training an LLM for weeks on tons of GPUs I was not excited. But now that we can potentially tune a good open-source base model on a single machine it seems like we might be close to rapid iterations especially if we just focus on the fine-tuning/alignment/tweaking steps or inference-time innovations. “LLMs are having their Stable Diffusion moment”.</p>
+</section>
+<section id="part-2-how-the-heck-would-you-learn-llms" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-how-the-heck-would-you-learn-llms">Part 2: How the heck would you ‘learn LLMs’?</h2>
+<p>I’ve been vaguely keeping up-to-date with the field for years - reading the big announcements and maybe skimming the odd paper here and there. But it had mostly been in a ‘wow PaLM seems cool’ style outsider mode, rather than taking in any details of architecture or training that might be needed to actually work with the darn things. So, step one: start catching up on all the cool tricks everyone knows, and seeing what gems are hidden in some lesser-known papers.</p>
+<p>The secret sauce for this is our research group. Twice a week we meed at look through papers we find interesting. Often something recent sparks a specific line of inquiry. For example, there was some buzz on Twitter about the “<a href="https://arxiv.org/abs/2306.11644">Textbooks are all you need</a>” paper that used synthetic data alongside heavy LLM-assisted filtering of existing training data to train very good small code models. This leads us to look into some prior work (e.g.&nbsp;the <a href="https://arxiv.org/abs/2305.07759">TinyStories</a> paper by some of the same authors that tested similar ideas at a smaller scale) which in turn cites other papers which… Before you know it we have a <a href="https://www.zotero.org/groups/5004697/llms/library">Zotero library with 300+ papers</a> and some ongoing experiments to start building our own intuition for some of the methods we found interesting.</p>
+<p>Some specific things I find extremely powerful about this group-study approach:</p>
+<ul>
+<li><p>Teaching others about something is an extremely good way to learn it, especially if your audience consists of people who can come up with questions to probe deeper and expand your collective understanding</p></li>
+<li><p>More people =&gt; more chance for ‘aha’ moments where something suddenly clicks, which can then be explained back in a different way. It seems crazy, but we’ve bootstrapped our understanding of some extremely complex topics just by explaining an idea back and forth to each other in different ways until it really makes sense!</p></li>
+<li><p>More people =&gt; more perspectives with different experiences to draw from. Someone shares a paper on document retrieval, which sparks a memory of a cool contrastive method used in images, which reminds someone of a paper aligning code and language from a few years ago, which brings up a nice benchmark we could use to test our new ideas…</p></li>
+<li><p>Practical experiments are great learning tools. Having multiple people tinkering with things or sharing proof-of-concept implementations is another major boost to understanding something.</p></li>
+</ul>
+<p>It’s one thing to load up your brain with tons of papers and techniques, but that on its own isn’t quite enough to make you useful. So, for me, the next step is getting into the weeds with some actual projects. Run some models, try to train a few on some different tasks, dive into some larger projects… A lot of what I’ve done in this phase isn’t particularly new or interesting, but it builds the muscles for later stuff. If you’re bold you could find a way to get paid for this as a consultant, since everyone wants ‘talk to your docs’ bots and such! I have yet to cave in to that particular temptation, but I *AM* writing a book with some chapters devoted to LLMs (with some amazing co-authors to catch any glaring mistakes I make) which I guess is also killing two birds with one stone in terms of learning while (eventually, hypothetically) earning… And soon I may be full-time at the aforementioned LLM-based startup at which point it stops being ‘hacking around in my spare time’ and turns into ‘ML research’ with a proper job title and everything :)</p>
+</section>
+<section id="final-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="final-thoughts">Final Thoughts</h2>
+<p>This is a weird post, mostly me thinking out loud, but I hope you’ve found it interesting! I’ve gone from thinking LLMs are ‘solved and saturated’ to seeing all sorts of opportunities, and tons of ways someone with a novel perspective or a bit of luck can come in and contribute. So, wish me luck ;)</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

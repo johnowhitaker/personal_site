@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2019-03-07">
+
+<title>johnowhitaker.dev - Mapping Baobabs, Part 2 - Qualifying Model Performance and More Complex Models</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">johnowhitaker.dev</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html">
+ <span class="menu-text">Data Science Castnet Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tils.html">
+ <span class="menu-text">TILs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#recap-and-following-along" id="toc-recap-and-following-along" class="nav-link active" data-scroll-target="#recap-and-following-along">Recap and Following Along</a></li>
+  <li><a href="#loading-the-data" id="toc-loading-the-data" class="nav-link" data-scroll-target="#loading-the-data">Loading the data</a></li>
+  <li><a href="#model-performance" id="toc-model-performance" class="nav-link" data-scroll-target="#model-performance">Model Performance</a></li>
+  <li><a href="#adding-polynomial-features" id="toc-adding-polynomial-features" class="nav-link" data-scroll-target="#adding-polynomial-features">Adding Polynomial Features</a></li>
+  <li><a href="#decision-trees" id="toc-decision-trees" class="nav-link" data-scroll-target="#decision-trees">Decision Trees</a></li>
+  <li><a href="#random-forests" id="toc-random-forests" class="nav-link" data-scroll-target="#random-forests">Random Forests</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#exporting-decision-trees-for-use-in-google-earth" id="toc-exporting-decision-trees-for-use-in-google-earth" class="nav-link" data-scroll-target="#exporting-decision-trees-for-use-in-google-earth">Exporting Decision Trees for use in Google Earth</a></li>
+  <li><a href="#where-next" id="toc-where-next" class="nav-link" data-scroll-target="#where-next">Where Next?</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Mapping Baobabs, Part 2 - Qualifying Model Performance and More Complex Models</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">blogs</div>
+    <div class="quarto-category">tutorials</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 7, 2019</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Update, July 2020: GEE now has a good random forest implementation (ee.Classifier.smileRandomForest) that can do regression - I’d suggest using that instead of the approach mentioned in this post.</p>
+<section id="recap-and-following-along" class="level2">
+<h2 class="anchored" data-anchor-id="recap-and-following-along">Recap and Following Along</h2>
+<p><a href="https://datasciencecastnet.home.blog/2019/02/15/mapping-baobabs-part-1-modelling-the-density-of-baobab-trees-in-zimbabwe-with-a-linear-model-in-gee/">The last post</a> looked at creating a simple linear model to predict the density of baobab trees across Zimbabwe. In this post, we’ll try to quantify how accurate the predictions are and then see if we can make them even better. Since we’ll want to try all kinds of models, we’ll take a break from Google Earth Engine and use Python (with scikit-learn) to play with some concepts before taking our final model back into GEE again.</p>
+<p>I’ll be working in a Jupyter notebook. This gives an interactive environment, perfect for trying out ideas and experimenting. If you’d like to follow along, I’ve uploaded the data and a complete notebook <here>. It goes much deeper than I’m able to in blog form - consider this post a summary rather than a comprehensive explanation of the topics involved.</here></p>
+</section>
+<section id="loading-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="loading-the-data">Loading the data</h2>
+<p>I’m using a library called pandas to load the training data (which we made to train the model in GEE) into a data structure called a DataFrame. Think of it as a spreadsheet, with columns representing the input variables (altitude, rainfall etc) and the output variable that we intend to model (in this case, tree density).</p>
+<p><img src="images/screenshot-from-2019-03-06-18-06-45.png" class="img-fluid"></p>
+<p>Loading the data into a pandas DataFrame</p>
+</section>
+<section id="model-performance" class="level2">
+<h2 class="anchored" data-anchor-id="model-performance">Model Performance</h2>
+<p>We need ways of gauging model performance so that we can decide how reliable the predictions are or choose between two models. An easy way to do this is to hold back some of the training data and see how well the model performs with it. We train a model with, say, 80% of our data and then make predictions on the remaining 20%. The closer the predictions are to the true values, the better the model has done. Let’s see an example:</p>
+<p><img src="images/screenshot-from-2019-03-06-18-12-08.png" class="img-fluid"></p>
+<p>The data has been split into training and test sets. X represents the inputs to the model and y the desired outputs. So here, we train the model with X-train and y_train and then see how well it does on the unseen test data. But hang on, what does model.score() even do?</p>
+<p>The score shown is known as the ‘R-Squared Score’. It is a measure of how well the model explains the variance in the output variable. Scores closer to 1 are better. We’ll use this going forward, but it isn’t very easy to understand (read more <a href="http://blog.minitab.com/blog/adventures-in-statistics-2/regression-analysis-how-do-i-interpret-r-squared-and-assess-the-goodness-of-fit">here</a>). A quick way to get a more intuitive understanding of how well a model does, I like to plot the models predictions vs the actual figures. An ideal model would predict the outputs 100% correctly, resulting in a straight line (y=x). The closer to this ideal we get, the better our model is. Here we go:</p>
+<p><img src="images/screenshot-from-2019-03-06-18-21-00.png" class="img-fluid"></p>
+<p>Hmm, that’s not much like a straight line. But there is some relation - an encouraging sign. Also, the X axis (actual densities) seems to be appearing in increments of 25 - what’s up with that? Well, the data is split into very small plots (4ha each). In an area where the baobab density is 50 trees per square km, one plot might have 2 trees (giving a density of 50 trees/km^2), another might have none (density=0) and a third might have 5 (density=125). To smooth things out, we can clump adjacent plots together. This will give us fewer, larger plots, each with a better density figure. The code for this is in the accompanying notebook. Repeating the scoring process with this new input data, we get the following:</p>
+<p><img src="images/screenshot-from-2019-03-06-18-25-18.png" class="img-fluid"></p>
+<p>Better, and the score has improved. But still not great - for example, the model predicts a density of -100 trees/km^2 in some places. However, this gives us a starting point.</p>
+<p>Using a single test/train split gives an idea of performance, but we can get more accurate scores by doing multiple splits (look up cross-validation for more info). It’s also important to think about HOW we split. Splitting randomly might be fine in some cases, but here the data was collected as we drove along roads. Having test points right next to training samples means the model can sometimes make a good guess, but we want to know how well it will perform in new areas, not just along roads we’ve sampled. A better approach is to split the data into sections - each represents a new area with different conditions, and more accurately represents the challenge. Going forward and looking at new models, I’ll record the score for both cases in CV (random) and CV (non-radom) respectively. More info in the notebook and a future post. I’ll also show scores with both the original training data and the resampled data (larger plots) for comparison.</p>
+<p>Final bit in this section: let’s clear our heads by getting another measure of performance. Imaging we’ve driven 80% of the roads, and want to predict how many baobabs we’ll see on the final stretch. We’ll do it for this model (and all the following models) and compare:</p>
+<p><img src="images/screenshot-from-2019-03-07-15-24-39.png" class="img-fluid"></p>
+<p>Quite the error!</p>
+<p>The summary score for the linear model:<br>
+Random split: 0.169 (train), 0.152 (test)<br>
+Sequential Split: 0.172 (train), -0.549 (test)<br>
+And Re-sampled plots<br>
+Random split: 0.257 (train), 0.213 (test)<br>
+Sequential Split: 0.262 (train), -1.119 (test)</p>
+</section>
+<section id="adding-polynomial-features" class="level2">
+<h2 class="anchored" data-anchor-id="adding-polynomial-features">Adding Polynomial Features</h2>
+<p>The linear model essentially fits a set of straight lines to the data. density = a*altitude + b*temperature +… . This doesn’t work when more complicated relationships are at play. To arrive at a model that can fit more complex curves, we can add polynomial features and re-run the line fitting process. This lets us more accurately describe curves (y = 0.3x + 0.2x^2 for example). There is an excellent write-up of polynomial regression on <a href="https://towardsdatascience.com/polynomial-regression-bbe8b9d97491">towardsdatascience.com</a> (which also has excellent resources on linear regression and other types of modelling with scikit-learn).</p>
+<p>Adding quadratic features (altitude^2 etc) gives a better R^2 score for a random split of 0.22, up from ~0.15 for Simple Linear Regression. Adding cubic features gives a further boost to 0.26. However, both models do even worse when the data is split sequentially - in other words, these models don’t generalize as well.</p>
+</section>
+<section id="decision-trees" class="level2">
+<h2 class="anchored" data-anchor-id="decision-trees">Decision Trees</h2>
+<p>We could keep on refining the simple models above, adding regularization parameters to help them generalize better, for example. But let’s move on and try a new kind of model - a decision tree. This post is already getting long, so I’ll leave an <a href="https://towardsdatascience.com/everything-you-need-to-know-about-decision-trees-8fcd68ecaa71">explanation</a> of decision trees to someone else. Suffice to say that decision tree methods give a series of true/false splits that can be followed to get a prediction for a given set of inputs. For example, a simple (depth=2) tree predicting the baobab density looks like the following:</p>
+<p><img src="images/screenshot-from-2019-03-07-14-53-52.png" class="img-fluid"></p>
+<p>We can set how complex we want the decision tree to be by changing the max_depth parameter. Too simple, and we don’t account for the trends in the data. Too complex, and we ‘overfit’, reducing our model’s ability to generalize by fitting noise in our training data. We can make trees of different depth, and see how this affects the score. Observe the following two graphs:</p>
+<p><img src="images/max_depth_score.png" class="img-fluid"></p>
+<p>Model score with varying max_depth parameter</p>
+<p>More complex models do better but are worse at generalizing. Since we don’t see much of an improvement in score for randomly split data above a depth of 10, and beyond that, the score on unseen data (when we split the data sequentially) gets significantly worse, a max depth of ~10 would be a reasonable parameter choice.</p>
+<p>Comparing the prediction for the last 20% of the data (as we did with the first linear model), we see that this gives a much closer estimate:</p>
+<p><img src="images/screenshot-from-2019-03-07-15-24-47.png" class="img-fluid"></p>
+<p>Prediction of the total within 15%.</p>
+</section>
+<section id="random-forests" class="level2">
+<h2 class="anchored" data-anchor-id="random-forests">Random Forests</h2>
+<p>Random forests are a great example of the value of ensemble modelling. By creating a set of different decision trees, each of which does a mediocre job of making predictions, and then averaging the predictions to weed out extreme errors, they arrive at a more probable prediction. There is more to it than that, but let’s just try a couple out and see how they do:</p>
+<p><img src="images/screenshot-from-2019-03-07-15-13-13.png" class="img-fluid"></p>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+</section>
+<section id="exporting-decision-trees-for-use-in-google-earth" class="level2">
+<h2 class="anchored" data-anchor-id="exporting-decision-trees-for-use-in-google-earth">Exporting Decision Trees for use in Google Earth</h2>
+<p>Our best model was used Random Forest Regression (which could be further improved with some extra tweaks), and this is what I’ve used previously for some Species Distribution Modelling tasks. However, Google Earth Engine doesn’t yet have support for doing regression (not classification) with random forests. A reasonable second place is Decision Trees, which have the added bonus of being computationally cheap - important when you’re working with gigabytes of data. We’ll export our best performing decision tree from python and load it using GEE’s <strong>ee.Classifier.decisionTree(),</strong> which takes in a string describing the tree.</p>
+<p>I wrote a function to export a tree from scikit-learn into GEE’s format. Code here <add link=""> and example usage in GEE here <add link="">.</add></add></p>
+<p><img src="images/screenshot-from-2019-03-07-16-10-31.png" class="img-fluid"></p>
+<p>The finished map doesn’t look as good as the smooth output of the linear model, but the predictions are more accurate.</p>
+</section>
+<section id="where-next" class="level2">
+<h2 class="anchored" data-anchor-id="where-next">Where Next?</h2>
+<p>At this point we’ve looked at model accuracy, chosen a better model and applied that model in Google Earth Engine. We know roughly how well it does in areas similar to those we sampled. But is it reliable elsewhere? Would you trust the predicted densities for France? The model says lots of trees, but the French say il n’y a pas de baobabs and we both know who is right. To clear up these questions, we’ll spend the next post exploring the idea of model applicability, coverage of sample space and pitfalls with extrapolation. See you there!</p>
+<p>PS: This is still a draft but I’m hitting publish so that I can move on to the next one. I’ll refine it later. If you’ve hit a missing link or error write to me or wait a few days. Fortunately I don’t have readers yet. I hope I remember to come back to this.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

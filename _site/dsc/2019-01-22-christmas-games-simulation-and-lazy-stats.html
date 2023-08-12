@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2019-01-22">
+
+<title>johnowhitaker.dev - Christmas games - simulation and lazy stats</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">johnowhitaker.dev</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html">
+ <span class="menu-text">Data Science Castnet Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tils.html">
+ <span class="menu-text">TILs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#building-a-simulator" id="toc-building-a-simulator" class="nav-link active" data-scroll-target="#building-a-simulator">Building a simulator</a></li>
+  <li><a href="#refining-the-strategy" id="toc-refining-the-strategy" class="nav-link" data-scroll-target="#refining-the-strategy">Refining the strategy</a></li>
+  <li><a href="#risky-play-as-an-advantage" id="toc-risky-play-as-an-advantage" class="nav-link" data-scroll-target="#risky-play-as-an-advantage">Risky play as an advantage</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Christmas games - simulation and lazy stats</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">blogs</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 22, 2019</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>This Christmas, I was introduced to several new games by my new extended family. Much fun was had making up new games and rediscovering old, but one game annoyed me slightly. A dice game that involved rolling handfuls of dice for different scores and racing to 10000 points - known to the family as ‘Farkle’ but with rules that made it closer to ‘Dice 10000’, also called ‘Zilch’. What bothered me was the fact that, despite much talk of techniques and riskiness, most players tended to follow the same basic strategy, leaving the outcome to chance. As you’ll see, the rules are just complex enough that basic stats thinking / human intuition aren’t always able to give a quick answer as to which choice is best. Anyway, having lost badly on Christmas Day I went home, thought about it for a bit and then spent an hour or two on Boxing Day coding a simulator to test some of my hypotheses. This post documents my experiments.</p>
+<p>Here is a basic description of the rules, adapted from http://zilch.playr.co.uk/rules.php</p>
+<section id="roll-the-dice" class="level4">
+<h4 class="anchored" data-anchor-id="roll-the-dice">1. Roll the dice</h4>
+<p>You start your turn by rolling all six dice.</p>
+</section>
+<section id="scoring-dice-take-some-points" class="level4">
+<h4 class="anchored" data-anchor-id="scoring-dice-take-some-points">2. Scoring dice? Take some points</h4>
+<p>If you rolled some scoring dice then you need to take some of those points before you can roll again. See table for scores.</p>
+</section>
+<section id="no-scoring-dice-turn-ends." class="level4">
+<h4 class="anchored" data-anchor-id="no-scoring-dice-turn-ends.">3. No scoring dice? Turn ends.</h4>
+<p>This means that all the points you took so far are wiped out. You bank no points and it’s the end of your turn. If this is your third zilch in a row then you lose 500 points.</p>
+</section>
+<section id="scored-300-or-more-bank-the-points." class="level4">
+<h4 class="anchored" data-anchor-id="scored-300-or-more-bank-the-points.">4. Scored 300 or more? Bank the points.</h4>
+<p>Once you have taken some points you can choose to bank them or keep on rolling the dice. If you bank the points then they are added to your score and your turn is over. If you decide to carry on rolling (see rule 5) then you could roll more scoring dice (see rule 2) but you could also get no scoring dice and end the turn with nothing (see rule 3).</p>
+</section>
+<section id="re-roll-the-remaining-dice" class="level4">
+<h4 class="anchored" data-anchor-id="re-roll-the-remaining-dice">5. Re-roll the remaining dice</h4>
+<p>You can re-roll any dice that you didn’t score with. Once you have scored points from all six dice you can roll again. In fact, whenever you end up in a situation in which all six are scoring dice, you *must* re-roll.</p>
+</section>
+<section id="scores" class="level4">
+<h4 class="anchored" data-anchor-id="scores">Scores:</h4>
+<ul>
+<li>Two 3-of-a-kinds: 2500</li>
+<li>Three pairs: 2000</li>
+<li>Run of 6 (1, 2, 3, 4, 5, 6) = 1500</li>
+<li>Three of a kind: the number x 100. Three fours = 400. Exception for ones: three ones = 1000. Every additional dice of the same number doubles the score - four fours = 800.</li>
+<li>Ones: 100 each</li>
+<li>Fives: 50 each</li>
+</ul>
+<p>To further explain the scoring strategy, let’s look at some example rolls:</p>
+<p>[1, 2, 3, 2, 4, 2, 5] - Three 2’s = 200. One 1 = 100. One 5 = 50. The player could keep all scoring dice, bank a score of 350 and end their turn there. They could also keep all scoring dice and choose to re-roll the two non-scoring dice (high risk) or keep a subset of the scoring dice (say, just the 1) and re-roll the rest, hoping for a better total.</p>
+<p>[1, 1, 3, 3, 5, 5] - Three pairs, scores 2000 points but the player must roll all six dice again (rule 5). When they do, any prudent player would take any score they can and bank their points, rather than risk the high score by rolling fewer than six dice.</p>
+<p>[5, 6, 3, 6, 3, 2, 2] - Only scoring dice is a 5. Player chooses to re-roll the remaining 5 dice and gets [2, 2, 3, 2, 5, 1]. Keeping all scoring dice for 350 plus the 50 from the first roll’s 5. Banks 400 rather than choosing to roll the last non-scoring dice</p>
+</section>
+<section id="building-a-simulator" class="level3">
+<h3 class="anchored" data-anchor-id="building-a-simulator">Building a simulator</h3>
+<p>Github: https://github.com/johnowhitaker/farkle_sim - follow along in the Jupyter notebook for the code</p>
+<p>My goal here was not a full, rigorous treatment of the game to find an optimal strategy. Instead, I merely wanted to answer simple questions like ‘Playing like most people, at what score should I bank rather than risk another roll?’ or ‘With my current strategy, what is my expected average score?’. If you are interested in a more in-depth analysis, check out http://www.mattbusche.org/blog/article/optimal_farkle/ and http://www.mattbusche.org/blog/article/zilch/ where Matt models Farkle as a Markov Decision Process and uses value iteration to hone in on an optimal strategy.</p>
+<p>To start with, I create the simplest possible player. It must keep track of its current score (self.temp_score, the sum of all scoring dice kept) and banked score (self.score, the total score banked in previous turns) and how many dice have bee kept, which tells us how many are available for re-roll and whether or not the player has ‘zilched’ (rolled without getting any scoring dice).</p>
+<p>class BasicPlayer:<br>
+def <strong>init</strong>(self, name):<br>
+self.name = name<br>
+self.score = 0<br>
+self.temp_score = 0<br>
+self.keeping = []</p>
+<p>To make it easy for me to extend this basic player later, I define a&nbsp;<em>turn()</em>&nbsp;function that rolls the dice, tracks the score and re-rolls if necessary but I offload the actual strategy logic into another function <em>process_roll()</em> which I can override with more complex strategies later. <em>process_roll()</em> takes a list of dice rolled, appends dice to be kept to self.keeping and updates the score. It returns a True/False (Boolean) value for whether or not the player should roll again and another for whether or not the turn failed. In this most basic case, the player simply keeps all ones and fives rolled, re-rolling if there are 3 or more dice left. This is definitely NOT an optimal strategy but will help check that everything else works. See the BasicPlayer class for the <em>turn()</em> code.</p>
+<p>def process_roll(self, roll):<br>
+# Returns: (roll_again (bool), fail (bool)<br>
+self.kept = 0 # How many dice kept (must be at least 1)<br>
+for d in roll:<br>
+if d == 1:<br>
+self.keeping.append(1)<br>
+self.kept += 1<br>
+self.temp_score += 100<br>
+if d == 5:<br>
+self.keeping.append(5)<br>
+self.kept += 1<br>
+self.temp_score += 50<br>
+if (self.kept) == 0:<br>
+return (False, True) # Scored no points this roll<br>
+elif len(self.keeping) &gt; 3:<br>
+return (False, False) # Scored points, 2 or fewer dice remain (so don’t roll again)<br>
+else:<br>
+return (True, False) # Scored points, and there are 3 or more dice to play with - recomment roll again.</p>
+<p>This basic player scores about 214 points in an average turn, but it doesn’t follow all the rules. The next step was to establish a baseline player that followed the rules and had some simple strategy. The <em>process_roll()</em> function now takes all available scoring dice and chooses to re-roll if there are 3 or more dice remaining. This is pretty much what all the players I watched will do, although they will generally bank instead of taking the risk of rolling three dice provided their score is &gt;200 (or &gt;400 if they’re ‘feeling risky’). This baseline player does pretty well despite some obvious flaws, with an average score of ~743. Because of the random nature of the game and the small chance of very high scoring turns (two 2000 point rolls in a row for eg), we need to simulate a lot of turns to get a decent average. 10k turns is enough to show that this baseline player gets 700-750 and well outperforms the BasicPlayer one, but for more subtle improvements I have been running &gt;1 million simulated turns to get reliable results. Luckily, computation is cheap and even my laptop can handle that many number-crunches in seconds.</p>
+</section>
+<section id="refining-the-strategy" class="level3">
+<h3 class="anchored" data-anchor-id="refining-the-strategy">Refining the strategy</h3>
+<p>At this point, we’re ready to start asking the questions I had thought of as we played the day before. First up, when should one bank instead of rolling with three dice left?</p>
+<p>We make a new player, which takes a number as an argument. If the temp score is below this threshold, it rolls again with three dice (as before). If the score is above the threshold, it banks the score instead. AllRulesThreshForThree is born, and averages closer to 790 when it banks scores above 500. Plotting the average score for different thresholds, we see that anywhere between 400 and 600 does best in this case:</p>
+<p><img src="images/allt4t_threshvsscore.png" class="img-fluid"></p>
+<p>Figure 1 - Performance with different thresholds for rolling with three dice left</p>
+<p>Average score is instructive, but I’d like to point out at this point that the point of the game isn’t to get the best average score over one million turns. The point is to be first to 10000. In some cases, especially with lots of players, playing risky will lower your average score but increase the chance of a high score occasionally. Instead of going solely by average score, I’ll also test strategies by pitting them against each other and seeing win percentages. See <em>compare_players(players,&nbsp;n_rounds)</em> in the notebook.</p>
+<p>Pitting the baseline player (AllRules) against one that banks on three with a score of 500 or more (AllRulesThreshForThree), we see confirmation that banking with three dice left pays off, winning 52-53% of the time. One thing I do want to note here: even though this strategy yields an average score of 790 vs 740, it still loses 48% of games. I found that even my best strategies didn’t do much better, cementing this game as one of almost pure chance in my mind. Yup, way to suck the fun out of it. I’m sorry.</p>
+<p>Back to optimising strategies. The next question I wanted to investigate was whether it was worth keeping those low-scoring fives. One quick modification to the <em>process_roll()</em> logic, which now keeps 5s only if the alternative is going out (self.kept=0) or if we’ve already kept enough other dice that we may as well take anything left with a score (self.kept &gt; 2). Up until now, I had suspected how things would go - improvements were obvious. But this was a question I had no idea about - given [1, 5, 2, 3, 2, 3] was it better to keep just the 1 and re-roll five dice for a better chance at 3 of a kind? Or was it worth keeping the 5 as well and re-rolling four? Turns out, better to only keep 5s when you have to - a strategy improvement that brought the average score up to 808 points per turn.</p>
+</section>
+<section id="risky-play-as-an-advantage" class="level2">
+<h2 class="anchored" data-anchor-id="risky-play-as-an-advantage">Risky play as an advantage</h2>
+<p>I tried some other random changes, but at this point, the best average score seemed to be around 808, re-rolling with three dice if score &lt; 500 and only keeping 5s when necessary. But, as mentioned earlier, I had a suspicion that risky play might work out when playing with larger numbers of players.</p>
+<p>Let’s examine just one type of risky play to investigate this. When 5 scoring dice are rolled, a player may choose to roll the single remaining dice. Since the only ways to score with one dice are 1 and 5, there is a 33% chance of success. But success means another roll with all six dice, and potentially even higher scores! So, the player is taking a chance in order to get a higher score 1/3 of the time.</p>
+<p>I coded up a player with this behaviour. It includes a threshold - for scores over this threshold, it won’t risk it (neither would you). Initially, this threshold was set at 500. Since it’s relatively rare to get less than 500 points while using all but one dice, the risky play doesn’t hurt the average score much - it drops to ~806. But this is where things get interesting: with three players (one baseline, one playing the best strategy found so far and one playing with this added risky behaviour), the risky player wins slightly less games then the top ‘best’ player. As one might expect given the slightly lower score. But the difference in win percentage is only 0.5%. And when we add more players, a different result emerges.</p>
+<p>With 6 players playing the ‘best’ strategy and one taking risks (risking a single dice roll with scores &lt; 700), the risky player still has a lower average score (only 803) BUT it wins more than 1/7 of the time. In other words, the risky behaviour pays off in larger groups. Here are the total wins after each player has had 3 million turns:</p>
+<p>wins = {‘dump5s1’: 65559, ‘dump5s2’: 64978, ‘dump5s3’: 65293, ‘dump5s4’: 65080, ‘dump5s5’: 65238, ‘dump5s6’: 65160, ‘risks1’: 66318}</p>
+<p>And the average scores:</p>
+<p>dump5s1 807.679317<br>
+dump5s2 806.118700<br>
+dump5s3 806.327633<br>
+dump5s4 806.029383<br>
+dump5s5 806.765667<br>
+dump5s6 807.170067<br>
+risks1 802.735333</p>
+<p>So, a strategy that wins in two-player mode (dump5s1 beats risks1 50.4% of the time) might not be best in larger groups.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>I hope you’ve enjoyed this little experiment. Game theory is complex, but I hope I’ve shown how with a little bit of programming knowledge and a simple enough game you can start testing ideas and playing around in a very short amount of time.</p>
+<p>I scratched my itch, and the day after boxing day I followed my optimum strategy diligently and lost a string of games, much to the amusement of all. But I’m happy nonetheless. An afternoon of banging out code, testing ideas and relaxing while my computer simulates billions of dice rolls counts as a win in my book :)</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
