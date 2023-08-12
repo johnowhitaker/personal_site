@@ -1,7 +1,0 @@
----
-title: "Jonathan Whitaker"
----
-
-Johno's Personal Website (under construction)
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.

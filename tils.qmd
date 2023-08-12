@@ -1,8 +1,0 @@
----
-title: "TILs"
-listing:
-  contents: tils
-  sort: "date desc"
-  type: default
-  categories: False
----
