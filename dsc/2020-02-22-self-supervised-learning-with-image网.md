@@ -3,7 +3,7 @@ title: "Self-Supervised Learning with Image网"
 date: "2020-02-22"
 categories: 
   - "blogs"
-coverImage: "screenshot-from-2020-02-22-16-29-29.png"
+image: "screenshot-from-2020-02-22-16-29-29.png"
 ---
 
 ## Intro

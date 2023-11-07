@@ -3,7 +3,7 @@ title: "Meta 'Data Glimpse' - Google Dataset Search"
 date: "2020-02-05"
 categories: 
   - "blogs"
-coverImage: "screenshot-from-2020-01-24-13-09-14.png"
+image: "screenshot-from-2020-01-24-13-09-14.png"
 ---
 
 Christmas came in January this year, with Google's release of '[Dataset Search](https://datasetsearch.research.google.com/)'. They've indexed millions of cool datasets and made it easy to search through them. This post isn't about any specific dataset, but rather I just wanted to share this epic new resource with you.

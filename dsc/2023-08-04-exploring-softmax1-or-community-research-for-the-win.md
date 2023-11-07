@@ -18,7 +18,7 @@ Neural Networks like transformers are stored as big piles of numbers (parameters
 
 The problem arises when you try to go from a high-precision 32-bit neural network to an 8-bit one. With 8 bits you can only represent 2^8 (256) different numbers. If most of your numbers are small, then you can use those 256 numbers to represent, say, a range of values from -1 to 1 and map your 32-bit floating point numbers to the nearest 8-bit approximation without too much loss in accuracy. However, if there is an occasional \*outlier\* in your set of numbers then you may need to represent a much larger range (say, -100 to 100) which in turn leaves far fewer options for all those small values close to 0, and results in much lower accuracy.
 
-![](https://lh5.googleusercontent.com/TDrTlopijg4gvi2tTjPsMNLO23wcTJvhnYfc3WHszjtk5nsUgPQUxWOY5vyJysAomfhvbhgjhXP94sKT9v898vP53WW9ptb_itIpQ92xmkdfL7VHdY7cS1ldLpxh3parcz-lIdNgKL3NoxVXikqLfB0)
+![](https://lh5.googleusercontent.com/TDrTlopijg4gvi2tTjPsMNLO23wcTJvhnYfc3WHszjtk5nsUgPQUxWOY5vyJysAomfhvbhgjhXP94sKT9v898vP53WW9ptb_itIpQ92xmkdfL7VHdY7cS1ldLpxh3parcz-lIdNgKL3NoxVXikqLfB00)
 
 Figure from Time Dettmer's blog [post](https://timdettmers.com/2022/08/17/llm-int8-and-emergent-features/) showing the drop in performance with quantization after outliers emerge
 
@@ -36,7 +36,7 @@ Some researchers at Qualcom (who have a keen interest in making LLMs runnable at
 
 - Both of their approaches do dramatically reduce the presence of outliers (which they show by measuring the max magnitude of the activations as well as the 'kurtosis') and the resulting transformers perform almost as well quantized as they do in full precision, unlike the baseline without their proposed fixes.
 
-![](https://datasciencecastnethome.files.wordpress.com/2023/08/image.png?w=631)
+![](images/image.webp)
 
 Table 2 from the paper showing results. The max activation size (inf. norm) and kurtosis are much lower with their fixes, and the performance after quantization (W8A8 column, i.e. weights and activations are both 8-bit) is close to that of the model before quantization, unlike the baseline (vanilla) case.
 

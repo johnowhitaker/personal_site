@@ -14,6 +14,10 @@ website:
       - href: all.qmd
         text: Everything
       - about.qmd
+  
+  twitter-card:
+     creator: "@johnowhitaker"
+     card-style: summary
 
 format:
   html:
