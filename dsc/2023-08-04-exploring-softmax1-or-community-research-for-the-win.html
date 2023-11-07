@@ -69,6 +69,10 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
+<meta name="twitter:title" content="johnowhitaker.dev - Exploring Softmax1, or “Community Research For The Win!”">
+<meta name="twitter:description" content="">
+<meta name="twitter:creator" content="@johnowhitaker">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
@@ -172,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="the-problem">The Problem</h2>
 <p>Neural Networks like transformers are stored as big piles of numbers (parameters) that are applied in different mathematical calculations to process some input. Each parameter is represented inside the computer by some number of 1s and 0s. If you use more of these bits per parameter (say, 32) you can represent the numbers with a lot of precision. But if you use fewer (say, 8) the model takes up less storage space, more parameters can be kept in RAM, and the calculations could potentially be faster. So, using fewer bits per number - quantization - is a hot topic at the moment for anyone concerned with running big models as cheaply as possible.</p>
 <p>The problem arises when you try to go from a high-precision 32-bit neural network to an 8-bit one. With 8 bits you can only represent 2^8 (256) different numbers. If most of your numbers are small, then you can use those 256 numbers to represent, say, a range of values from -1 to 1 and map your 32-bit floating point numbers to the nearest 8-bit approximation without too much loss in accuracy. However, if there is an occasional *outlier* in your set of numbers then you may need to represent a much larger range (say, -100 to 100) which in turn leaves far fewer options for all those small values close to 0, and results in much lower accuracy.</p>
-<p><img src="https://lh5.googleusercontent.com/TDrTlopijg4gvi2tTjPsMNLO23wcTJvhnYfc3WHszjtk5nsUgPQUxWOY5vyJysAomfhvbhgjhXP94sKT9v898vP53WW9ptb_itIpQ92xmkdfL7VHdY7cS1ldLpxh3parcz-lIdNgKL3NoxVXikqLfB0.png" class="img-fluid"></p>
+<p><img src="https://lh5.googleusercontent.com/TDrTlopijg4gvi2tTjPsMNLO23wcTJvhnYfc3WHszjtk5nsUgPQUxWOY5vyJysAomfhvbhgjhXP94sKT9v898vP53WW9ptb_itIpQ92xmkdfL7VHdY7cS1ldLpxh3parcz-lIdNgKL3NoxVXikqLfB00.png" class="img-fluid"></p>
 <p>Figure from Time Dettmer’s blog <a href="https://timdettmers.com/2022/08/17/llm-int8-and-emergent-features/">post</a> showing the drop in performance with quantization after outliers emerge</p>
 <p><a href="https://timdettmers.com/2022/08/17/llm-int8-and-emergent-features/">Tim’s blog post</a> explains this extremely well. And in bad news for quantization fans, it turns out that outliers do indeed occur in these models especially as you scale up, leading to major drops in performance after quantization unless you do lots of extra work to address the issue. For example, you can identify groups of parameters that contain most of the outliers and keep these in higher precision (say, 16-bit) while still quantizing the other 99.9% of the network parameters down to 8 bit or less. Still, this is extra work and imposes a performance penalty. If only there were ways to avoid these outliers from occurring…</p>
 </section>
@@ -185,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Another option is to add some additional parameters for a learnable gating function, which can control whether the attention output is added in or not. This lets the network learn another way to achieve the so-called ‘no-op’. They call this <em>gated attention</em>.</p></li>
 <li><p>Both of their approaches do dramatically reduce the presence of outliers (which they show by measuring the max magnitude of the activations as well as the ‘kurtosis’) and the resulting transformers perform almost as well quantized as they do in full precision, unlike the baseline without their proposed fixes.</p></li>
 </ul>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2023/08/image.png?w=631" class="img-fluid"></p>
+<p><img src="images/image.webp" class="img-fluid"></p>
 <p>Table 2 from the paper showing results. The max activation size (inf. norm) and kurtosis are much lower with their fixes, and the performance after quantization (W8A8 column, i.e.&nbsp;weights and activations are both 8-bit) is close to that of the model before quantization, unlike the baseline (vanilla) case.</p>
 <p>This paper is nice in that it gives a very concrete way to think about the problem and to measure how well a particular solution solves it. If your model has less outliers (measured via inf norm and kurtosis) and still performs well after quantization, you’re on the right track!</p>
 </section>
