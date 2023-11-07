@@ -1,7 +1,7 @@
 ---
 title: "How Predictable: Evaluating Song Lyrics with Language Models"
 date: "2022-10-25"
-coverImage: "787349418_digital_art_oil_painting_impressinist_picture_of_a_microphone_making_music.png"
+image: "images/787349418_digital_art_oil_painting_impressinist_picture_of_a_microphone_making_music.png"
 categories:
   - "blogs"
 

@@ -1,7 +1,7 @@
 ---
 title: "DistilHN: Summarizing News Articles with Transformers"
 date: "2022-12-30"
-coverImage: "1999019566_a_lightbulb_idea_painting__expressive_acrylic_palette_knife.png"
+image: "images/1999019566_a_lightbulb_idea_painting__expressive_acrylic_palette_knife.png"
 categories:
   - "blogs"
 

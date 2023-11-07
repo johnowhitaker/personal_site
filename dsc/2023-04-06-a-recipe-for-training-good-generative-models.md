@@ -1,7 +1,7 @@
 ---
 title: "A Recipe for Training Good Generative Models"
 date: "2023-04-06"
-coverImage: "pixar-render-of-a-robot-reading-books-cinematic-photoreal-golden-hour-library-beautiful-.png"
+image: "images/pixar-render-of-a-robot-reading-books-cinematic-photoreal-golden-hour-library-beautiful-.png"
 categories:
   - "blogs"
 
