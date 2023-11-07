@@ -1,6 +1,9 @@
 ---
 title: "Data Glimpse: Nighttime Lights"
 date: "2019-07-08"
+categories:
+  - "blogs"
+
 ---
 
 This 'Data Glimpse' post will look at the Global Radiance-Calibrated Nighttime Lights [dataset](https://developers.google.com/earth-engine/datasets/catalog/NOAA_DMSP-OLS_CALIBRATED_LIGHTS_V4) \[1\], available through Google Earth Engine. However, the method shown here can be used with any Raster data source. To avoid repetition, I'll refer back to this post any time I aggregate raster data over a shapefile.

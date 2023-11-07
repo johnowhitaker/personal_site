@@ -2,4 +2,24 @@
 title: "About"
 ---
 
-About this site
+Still a WIP. 
+
+TODO linkedin / a CV? Maybe as a separate section
+
+TODO: add more things to "Everything" feed:
+- AIAIART lessons
+- DSC videos
+- Banger tweets
+- W&B Reports
+- Talks?
+- Non-DS writings?
+- Macro photography?
+- Art?
+
+TODO: start to fix pbroken images
+
+TODO: replace twitter embeds with screenshot + link
+
+TODO link to other things I've done
+
+To learn more about Quarto websites visit <https://quarto.org/docs/websites>.

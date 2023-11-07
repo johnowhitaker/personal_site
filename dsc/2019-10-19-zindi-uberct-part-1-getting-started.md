@@ -2,7 +2,7 @@
 title: "Zindi UberCT Part 1: Getting started"
 date: "2019-10-19"
 categories: 
-  - "tutorials"
+  - "blogs"
 ---
 
 ![](images/thumb_972b4b55-8e41-40ee-b6f6-ced046baf385.png)

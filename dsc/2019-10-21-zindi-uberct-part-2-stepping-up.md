@@ -2,7 +2,7 @@
 title: "Zindi UberCT Part 2: Stepping Up"
 date: "2019-10-21"
 categories: 
-  - "tutorials"
+  - "blogs"
 ---
 
 In [part 1](https://datasciencecastnet.home.blog/2019/10/19/zindi-uberct-part-1-getting-started/), we looked at the [SANRAL challenge on Zindi](https://zindi.africa/competitions/uber-movement-sanral-cape-town-challenge) and got a simple first submission up on the leaderboard. In this tutorial I'll show some extra features you can add on the road segments, bring in an external weather dataset, create a more complex model and give some hints on other things to try. Part 3 will hopefully add Uber movement data (waiting on the Oct 29 launch) and run through some GIS trickery to push this even further, but even without that you should be able to get a great score based on the first two tutorials.

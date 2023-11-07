@@ -2,7 +2,7 @@
 title: "Tutorial: Improving Crop Type Predictions"
 date: "2019-06-27"
 categories: 
-  - "tutorials"
+  - "blogs"
 ---
 
 Following on from the last tutorial, this post will look at some ways we can improve our crop identification method. At the end of the last post, we were using a CART classifier to classify crops based on a greenest-pixel composite made from landsat 8 imagery. It didn't do too well compared to other submissions, and the classifier was getting around 65% accuracy on the training data. Let's start fixing some of the more obvious errors.

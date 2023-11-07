@@ -3,7 +3,6 @@ title: "Mapping Baobabs, Part 1 - Modelling the Density of Baobab Trees in Zimba
 date: "2019-02-15"
 categories: 
   - "blogs"
-  - "tutorials"
 tags: 
   - "baobab"
   - "earth-engine"

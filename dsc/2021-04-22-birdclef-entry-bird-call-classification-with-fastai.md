@@ -1,6 +1,9 @@
 ---
 title: "BirdClef Entry: Bird Call Classification with FastAI"
 date: "2021-04-22"
+categories:
+  - "blogs"
+
 ---
 
 The Cornell Lab of Ornithology run an annual competition to identify bird calls in soundscapes. I decided to have a go at [this year's competition](https://www.kaggle.com/c/birdclef-2021#) to get back into audio classification and try out some new approaches. For this first post I will examine the data, choose methods for picking the right clips within larger recordings and for generating a spectrogram from said clip, and train a simple model to use as a baseline for future experiments.

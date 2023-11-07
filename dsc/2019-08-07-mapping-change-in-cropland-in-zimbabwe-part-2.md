@@ -1,6 +1,9 @@
 ---
 title: "Mapping Change in Cropland in Zimbabwe (Part 2)"
 date: "2019-08-07"
+categories:
+  - "blogs"
+
 ---
 
 In [Part 1](https://datasciencecastnet.home.blog/2019/07/14/mapping-change-in-cropland-in-zimbabwe-part-1/), I showed a quick way to get a model that predicts cropland extent, using someone else's model as a starting point. This was a fun exercise, but in today's post I'd like to show a more conventional approach to achieve the same goal, and then use that to track change in land cover over time within a region.

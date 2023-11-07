@@ -1,6 +1,9 @@
 ---
 title: "Update: Why the pause?"
 date: "2020-06-16"
+categories:
+  - "blogs"
+
 ---
 
 It's been nearly four months since my last post on this blog. I'd like to get back into writing things up here, but before putting up another normal post I figured it was worth giving a quick update on why things went quiet. Consider this less of a technical post and more of a personal update, and feel free to skip if you're not interested :)

@@ -1,6 +1,9 @@
 ---
 title: "Language Models for Protein Sequence Classification"
 date: "2020-10-30"
+categories:
+  - "blogs"
+
 ---
 
 ![](https://datasciencecastnethome.files.wordpress.com/2020/10/screenshot-from-2020-10-16-15-50-13.png?w=1024)

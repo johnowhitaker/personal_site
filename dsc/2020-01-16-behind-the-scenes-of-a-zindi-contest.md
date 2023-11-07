@@ -1,6 +1,9 @@
 ---
 title: "Behind the scenes of a Zindi Contest"
 date: "2020-01-16"
+categories:
+  - "blogs"
+
 ---
 
 ![](https://datasciencecastnethome.files.wordpress.com/2020/01/barbet1_sonogram.jpg?w=1024)

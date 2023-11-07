@@ -1,6 +1,9 @@
 ---
 title: "WhistleGen: Generating Traditional Irish music with ML"
 date: "2021-05-13"
+categories:
+  - "blogs"
+
 ---
 
 https://www.youtube.com/watch?v=B7SEP2p4Y1A

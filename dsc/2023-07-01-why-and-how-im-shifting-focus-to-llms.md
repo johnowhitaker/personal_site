@@ -1,6 +1,9 @@
 ---
 title: "Why and how I'm shifting focus to LLMs"
 date: "2023-07-01"
+categories:
+  - "blogs"
+
 ---
 
 While I've previously consulted on NLP projects, in the past few years my research focus has been chiefly on images. If you had asked me a few months ago about looking at LLMs, my default response would have been "No way, I bet there are far too many people working on that hyped topic". But then my research buddies (a crew originally put together by Jeremy Howard to look into diffusion models) switched focus to LLMs, a friend started trying to convince me to join him in starting an LLM-focused company, and I began to re-think my hesitancy. In this blog post, I'll try to unpack why I'm now excited to shift focus to LLMs, despite my initial misgivings about moving into a crowded market. And then I'll try to outline how I've gone about loading up my brain with relevant research so that I can become a useful contributor in this space as quickly as possible. Here goes!

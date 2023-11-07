@@ -1,6 +1,9 @@
 ---
 title: "Personal Metrics"
 date: "2020-08-12"
+categories:
+  - "blogs"
+
 ---
 
 This is just a quick post following on from some recent conversations in this area. tldr: Tracking some data about yourself is a great exercise, and I highly recommend it. In this post I'll share a few of the tools I use, and dig around in my own data to see if there are any interesting insights....

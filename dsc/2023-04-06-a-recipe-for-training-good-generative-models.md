@@ -2,6 +2,9 @@
 title: "A Recipe for Training Good Generative Models"
 date: "2023-04-06"
 coverImage: "pixar-render-of-a-robot-reading-books-cinematic-photoreal-golden-hour-library-beautiful-.png"
+categories:
+  - "blogs"
+
 ---
 
 Generative models are all the rage at the moment, and quality seems to be skyrocketing across the board. In this post, I share what I'm realizing is \*the\* key recipe that is powering the best models at the moment.

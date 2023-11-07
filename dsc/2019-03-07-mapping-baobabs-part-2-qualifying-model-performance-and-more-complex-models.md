@@ -3,7 +3,6 @@ title: "Mapping Baobabs, Part 2 - Qualifying Model Performance and More Complex 
 date: "2019-03-07"
 categories: 
   - "blogs"
-  - "tutorials"
 tags: 
   - "baobab"
   - "earth-engine"

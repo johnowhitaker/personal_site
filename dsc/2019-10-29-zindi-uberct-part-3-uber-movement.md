@@ -1,6 +1,9 @@
 ---
 title: "Zindi UberCT Part 3: Uber Movement"
 date: "2019-10-29"
+categories:
+  - "blogs"
+
 ---
 
 ![](https://datasciencecastnethome.files.wordpress.com/2019/10/screenshot-from-2019-10-29-10-46-36.png?w=1024)

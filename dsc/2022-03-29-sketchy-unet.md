@@ -1,6 +1,9 @@
 ---
 title: "Sketchy Unet"
 date: "2022-03-29"
+categories:
+  - "blogs"
+
 ---
 
 ![](https://datasciencecastnethome.files.wordpress.com/2022/03/screenshot-from-2022-03-29-10-31-48.png?w=946)

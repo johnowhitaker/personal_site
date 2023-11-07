@@ -4,4 +4,11 @@ title: "Jonathan Whitaker"
 
 Johno's Personal Website (under construction)
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Hello there! I'm @johnowhitaker - welcome to my site. If you're looking for more info on me, you may also want:
+
+My DataScienceCastnet [blog](/blog.qmd) and [YouTube channel](https://www.youtube.com/channel/UCP6gT9X2oXYcssfZu05RV2g) where I document some of the projects I've been working on.
+
+[The Generative Landscape](https://johnowhitaker.github.io/tglcourse/), a work-in-progress course on all things generative.
+
+
+Twitter or Sigmoid.social (@johnowhitaker on both, and most other platforms too)

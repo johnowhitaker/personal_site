@@ -1,6 +1,9 @@
 ---
 title: "Fine-tuning a CLOOB-Conditioned Latent Diffusion Model on WikiArt"
 date: "2022-04-12"
+categories:
+  - "blogs"
+
 ---
 
 ![](https://datasciencecastnethome.files.wordpress.com/2022/04/a-sunset-landscape-painting-oil-on-canvas-edited.png?w=780)

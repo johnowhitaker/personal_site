@@ -1,6 +1,9 @@
 ---
 title: "In Brief: Playing with Class Imbalance"
 date: "2021-05-13"
+categories:
+  - "blogs"
+
 ---
 
 We often encounter imbalanced data in the world of machine learning, and have to decide how best to handle this. In 'real life' it is up to us to decide how to evaluate performance, which types of errors we care the most about and so on. But in the example we'll look at today, the situation is slightly different: we have an imbalanced training set, and the test set (we're working with [this competition](https://www.aicrowd.com/challenges/addi-alzheimers-detection-challenge)) has had the class distribution modified to make it more balanced. So, we need to find a way to take this into account when submitting predictions. The following plot shows the difference in distributions:

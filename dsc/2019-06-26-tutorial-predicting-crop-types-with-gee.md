@@ -2,7 +2,7 @@
 title: "Tutorial: Predicting Crop Types with GEE"
 date: "2019-06-26"
 categories: 
-  - "tutorials"
+  - "blogs"
 tags: 
   - "gee"
   - "gis"

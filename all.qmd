@@ -1,0 +1,11 @@
+---
+title: "Everything"
+listing:
+  contents: 
+    - dsc
+    - tils
+    - misc
+  sort: "date desc"
+  type: default
+  categories: True
+---

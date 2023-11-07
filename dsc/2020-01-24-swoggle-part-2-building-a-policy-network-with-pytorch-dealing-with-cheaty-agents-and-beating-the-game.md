@@ -1,6 +1,9 @@
 ---
 title: "Swoggle Part 2 - Building a Policy Network with PyTorch, dealing with Cheaty Agents and 'Beating' the Game"
 date: "2020-01-24"
+categories:
+  - "blogs"
+
 ---
 
 In [part 1](https://datasciencecastnet.home.blog/2020/01/20/swoggle-part-1-rl-environments-and-literate-programming-with-nbdev/), we laid the groundwork for our Reinforcement Learning experiments by creating a simple game (Swoggle) that we'd be trying to teach out AI to play. We also created some simple Agents that followed hard-coded rules for play, to give our AI some opponents. In this post, we'll get to the hard part - using RL to learn to play this game.

@@ -1,6 +1,9 @@
 ---
 title: "Data Glimpse: Visualizing Economic Activity with the G-Econ Project data"
 date: "2019-06-28"
+categories:
+  - "blogs"
+
 ---
 
 This is the first 'data glimpse' - a short exploration of an existing dataset, with code and examples showing some of the ways the data can be used. For today's glimpse, I'll be playing with the 'G-Econ' dataset \[1\], as recommended by <jonasmendes> on Pioneer. This dataset looks at economic activity for different locations, as opposed to breaking it down by country. There is data available from 1990, 2000 and 2005, broken down by 'grid cell' (a square one degree wide and one degree high).

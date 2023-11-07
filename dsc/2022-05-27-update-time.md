@@ -1,6 +1,9 @@
 ---
 title: "Update Time"
 date: "2022-05-27"
+categories:
+  - "blogs"
+
 ---
 
 A few recent projects I've worked on have been documented elsewhere but haven't made it to this blog. The point of this post is to summarize these so that they aren't lost in the internet void.

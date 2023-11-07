@@ -3,7 +3,6 @@ title: "New Database: Forest Change in Different Regions"
 date: "2019-06-19"
 categories: 
   - "blogs"
-  - "tutorials"
 ---
 
 Forest loss is a major problem facing many parts of the world right now. Trees are being cleared to make way for agriculture, or simply cut down for fuel and timber. Tracking this loss is an important goal, and much work has been done in this area.

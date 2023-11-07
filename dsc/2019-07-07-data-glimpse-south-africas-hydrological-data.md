@@ -1,6 +1,9 @@
 ---
 title: "Data Glimpse: South Africa's Hydrological Data"
 date: "2019-07-07"
+categories:
+  - "blogs"
+
 ---
 
 South Africa's Department of Water Affairs (DWA) makes all kinds of data publicly available through their data portal: [http://www.dwa.gov.za/hydrology/](http://www.dwa.gov.za/hydrology/). The download interface is a little clunky, but simple once you get the hang of it. This short post will take a look at some typical data, and list some of the ways this could be used in the future.

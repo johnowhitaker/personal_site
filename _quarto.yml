@@ -11,6 +11,8 @@ website:
         text: Data Science Castnet Blog
       - href: tils.qmd
         text: TILs
+      - href: all.qmd
+        text: Everything
       - about.qmd
 
 format:

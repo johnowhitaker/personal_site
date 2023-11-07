@@ -3,7 +3,6 @@ title: "Mapping Baobabs, Part 3 - Model Applicability"
 date: "2019-03-12"
 categories: 
   - "blogs"
-  - "tutorials"
 tags: 
   - "baobab"
   - "earth-engine"

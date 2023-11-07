@@ -1,6 +1,9 @@
 ---
 title: "AIAIART Course Retrospective"
 date: "2021-11-24"
+categories:
+  - "blogs"
+
 ---
 
 ![](https://datasciencecastnethome.files.wordpress.com/2021/11/download-4.png?w=540)
