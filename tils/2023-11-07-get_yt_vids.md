@@ -47,7 +47,7 @@ for line in lines:
     # Video URL
     video_url = f"https://www.youtube.com/watch?v={video_id}"
 
-    # Download the thumbnail (adds an extra .jpg or sometimes .webp haha oops)
+    # Download the thumbnail
     cmd = f"youtube-dl --write-thumbnail --skip-download {video_url} -o {os.path.join(output_dir, 'thumbnails', video_id)}"
     # os.system(cmd)
 

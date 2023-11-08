@@ -1,14 +1,49 @@
 ---
 title: "Jonathan Whitaker"
+
+listing:
+  date-format: short
+  filter-ui: false
+  type: table
+  sort-ui: false
+  sort: "date desc"
+  categories: false
+  fields: [date, title]
+  id: blog-listings
+  contents: 
+    - dsc
+    - tils
+    - misc
+  page-size: 10
 ---
 
-Johno's Personal Website (under construction)
+Hello there! I'm Johno Whitaker - welcome to my personal website :) 
 
-Hello there! I'm @johnowhitaker - welcome to my site. If you're looking for more info on me, you may also want:
+## What's here?
 
-My DataScienceCastnet [blog](/blog.qmd) and [YouTube channel](https://www.youtube.com/channel/UCP6gT9X2oXYcssfZu05RV2g) where I document some of the projects I've been working on.
+This will hopefully turn into a central place to keep all the things I've worked on. You can already find my blog posts, videos and [TILs](tils.qmd) in the ['Everything' feed](all.qmd).
 
-[The Generative Landscape](https://johnowhitaker.github.io/tglcourse/), a work-in-progress course on all things generative.
+This site is made with Quarto - more info [here](about.qmd) if you want more info on how to make something similar.
 
 
-Twitter or Sigmoid.social (@johnowhitaker on both, and most other platforms too)
+## About Me
+
+I'm a Data Scientist/AI Researcher now based in Portland Oregon. I like teaching and making courses. My current focus is on generative AI, which I was doing before it was cool. 
+
+If you're looking for even more info, you may also want:
+
+- [Twitter](x.com/johnowhitaker) or [Sigmoid.social](https://sigmoid.social/@johnowhitaker) (@johnowhitaker on both, and most other platforms too)
+- My DataScienceCastnet [blog](/blog.qmd) and [YouTube channel](https://www.youtube.com/channel/UCP6gT9X2oXYcssfZu05RV2g) where I document some of the projects I've been working on.
+- [The Generative Landscape](https://johnowhitaker.github.io/tglcourse/), a work-in-progress course on all things generative.
+- My [LinkedIn](https://www.linkedin.com/in/johnowhitaker/) - although fair warning it is rarely checked or updated.
+- My [GitHub](https://github.com/johnowhitaker)
+
+## Consulting
+
+I'm open to freelance/consulting work. You can find out more about my rates, availability and philosophy of work on [this page](work.qmd).
+
+## Some Recent Posts
+
+::: {#blog-listings}
+:::
+

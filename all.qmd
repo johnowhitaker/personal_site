@@ -8,6 +8,7 @@ listing:
   sort: "date desc"
   type: default
   categories: True
-  max-items: 100
+  page-size: 50
   fields: [image, date, title, categories, description]
 ---
+A feed of *all the things* :)

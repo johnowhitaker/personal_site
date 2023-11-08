@@ -4,16 +4,17 @@ project:
 website:
   title: "johnowhitaker.dev"
   navbar:
+    title: false
     left:
       - href: index.qmd
         text: Home
+      - href: all.qmd
+        text: Everything Feed
       - href: blog.qmd
-        text: Data Science Castnet Blog
+        text: DSC Blog
       - href: tils.qmd
         text: TILs
-      - href: all.qmd
-        text: Everything
-      - about.qmd
+      
   
   twitter-card:
      creator: "@johnowhitaker"
