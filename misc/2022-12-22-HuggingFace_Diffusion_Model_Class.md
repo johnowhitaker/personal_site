@@ -4,6 +4,7 @@ date: 2022-12-22
 categories: 
   - "Video"
 image: "thumbnails/09o5cv6u76c.jpg"
+description: "Unit 1 runthrough for the HuggingFace Diffusion Model Class"
 ---
 
 ### HuggingFace Diffusion Model Class

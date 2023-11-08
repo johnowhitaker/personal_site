@@ -3,7 +3,7 @@ title: "Exploring Softmax1, or \"Community Research For The Win!\""
 date: "2023-08-04"
 categories:
   - "blogs"
-
+image: https://datasciencecastnethome.files.wordpress.com/2023/08/image-1.png?w=633
 ---
 
 Last week a guy called Evan Miller tweeted out a blog post claiming to have discovered a flaw in the attention mechanism used by transformers today:

@@ -4,6 +4,7 @@ date: 2021-03-25
 categories: 
   - "Video"
 image: "thumbnails/gyPllP0S7iM.jpg"
+description: "Sharing the first few weeks of my 'days of code' project"
 ---
 
 ### Days of Code - Intro and Recap of the first few weeks
