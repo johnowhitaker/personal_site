@@ -23,6 +23,8 @@ Hello there! I'm Johno Whitaker - welcome to my personal website :)
 
 This will hopefully turn into a central place to keep all the things I've worked on. You can already find my blog posts, videos and [TILs](tils.qmd) in the ['Everything' feed](all.qmd).
 
+I've also got info on [work](work.qmd), [book recommendations](books.qmd), ...
+
 This site is made with Quarto - more info [here](about.qmd) if you want more info on how to make something similar.
 
 
