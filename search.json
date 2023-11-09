@@ -786,9 +786,9 @@
   {
     "objectID": "work.html",
     "href": "work.html",
-    "title": "johnowhitaker.dev",
+    "title": "Work",
     "section": "",
-    "text": "TODO ;)"
+    "text": "TODO…"
   },
   {
     "objectID": "misc/2022-04-05-HugGAN_sprint_-_demo_project.html",
@@ -950,6 +950,27 @@
     "title": "Gaussian Splatting explorations",
     "section": "",
     "text": "Gaussian Splatting explorations\n\nLet’s dive into Gaussian Splatting - what is it, how are scenes represented, and what fun things can we do with itThis is a fairly informal and code-heavy video - let me know if you like this format! GS website (with links to paper) -My lesson on optimizing things with fun losses such as CLIP - https://johnowhitaker.github.io/tglcourse/generators/and/losses.htmlMy Twitter, if you want updates on this as I go - https://twitter.com/johnowhitakerAs mentioned in the video, please do let me know if you have any further questions or suggestions -)"
+  },
+  {
+    "objectID": "books.html",
+    "href": "books.html",
+    "title": "Book Recommendations",
+    "section": "",
+    "text": "I like recommending books to other people, and find that the best way to get good new recommendations is to find someone with overlapping tastes and then look for ones they like that I haven’t read yet. In that spirit, here are some books/authors I’ve enjoyed that I can recommend:\n\n\n\nAnything by Asimov, anything by Douglas Adams (classics)\nAnything by John Scalzi. “Lock In” if you want more gritty detective action, “Do Androids Dream of Electric Sheep” for something more absurd and funny, “old man’s war” for a good series\nThe Three Body Problem (dark forest trilogy) by Cixin Liu is excellent sci-fi from a different perspective, loved it\nSeveneves by Neal Stevenson is great, as is lots of his other work\nThe Martian and its sequels are fun, by Andy Weir\n\n\n\n\n\nI like the Stormlight series from Brandon Sanderson.\nDiscworld series by Pratchett\n\n\n\n\n\nThe Righteous Mind: great book for understanding morality+religion\nI am a strange loop: Fun to see someone tackle an ambitious question for a second time (this is the same author as Godel, Escher, Bach)\nReality + by David Chalmers: philosophy of mind through a modern lens, great overview of lots of philosophy topics and an excellent defence of simulation realism\nAn Immense World by Ed Young, one of my favorite books. Animal senses and how their words differ from ours. Mind expanding. -The Seabird’s Cry. Poignant look at amazing creatures and how we’re changing their world, with a very poetic author."
+  },
+  {
+    "objectID": "books.html#recommendations",
+    "href": "books.html#recommendations",
+    "title": "Book Recommendations",
+    "section": "",
+    "text": "I like recommending books to other people, and find that the best way to get good new recommendations is to find someone with overlapping tastes and then look for ones they like that I haven’t read yet. In that spirit, here are some books/authors I’ve enjoyed that I can recommend:\n\n\n\nAnything by Asimov, anything by Douglas Adams (classics)\nAnything by John Scalzi. “Lock In” if you want more gritty detective action, “Do Androids Dream of Electric Sheep” for something more absurd and funny, “old man’s war” for a good series\nThe Three Body Problem (dark forest trilogy) by Cixin Liu is excellent sci-fi from a different perspective, loved it\nSeveneves by Neal Stevenson is great, as is lots of his other work\nThe Martian and its sequels are fun, by Andy Weir\n\n\n\n\n\nI like the Stormlight series from Brandon Sanderson.\nDiscworld series by Pratchett\n\n\n\n\n\nThe Righteous Mind: great book for understanding morality+religion\nI am a strange loop: Fun to see someone tackle an ambitious question for a second time (this is the same author as Godel, Escher, Bach)\nReality + by David Chalmers: philosophy of mind through a modern lens, great overview of lots of philosophy topics and an excellent defence of simulation realism\nAn Immense World by Ed Young, one of my favorite books. Animal senses and how their words differ from ours. Mind expanding. -The Seabird’s Cry. Poignant look at amazing creatures and how we’re changing their world, with a very poetic author."
+  },
+  {
+    "objectID": "books.html#others",
+    "href": "books.html#others",
+    "title": "Book Recommendations",
+    "section": "Others",
+    "text": "Others\nIn no particular order, here are a bunch of others I’ve read with mini-reviews. TODO add more\n\nEntangled Life (Martin Sheldrake). Great read re: fungi, fun to get a picture of the author as your read through their work.\nStrange Rites - New Religions for a Godless Age (author name). Fascinating dive into some contemporary ‘religions’, providing a useful lens for understanding a lot of things in the world today."
   },
   {
     "objectID": "misc/2022-11-13-TGL_Discussion_Series_-_Hamel_Husain.html",
@@ -1957,7 +1978,7 @@
     "href": "index.html#whats-here",
     "title": "Jonathan Whitaker",
     "section": "What’s here?",
-    "text": "What’s here?\nThis will hopefully turn into a central place to keep all the things I’ve worked on. You can already find my blog posts, videos and TILs in the ‘Everything’ feed.\nThis site is made with Quarto - more info here if you want more info on how to make something similar."
+    "text": "What’s here?\nThis will hopefully turn into a central place to keep all the things I’ve worked on. You can already find my blog posts, videos and TILs in the ‘Everything’ feed.\nI’ve also got info on work, book recommendations, …\nThis site is made with Quarto - more info here if you want more info on how to make something similar."
   },
   {
     "objectID": "index.html#about-me",
