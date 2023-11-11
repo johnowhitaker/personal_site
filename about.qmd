@@ -5,8 +5,6 @@ title: "About this site"
 Still a WIP. 
 
 TODO: add more things to "Everything" feed:
-- AIAIART lessons
-- DSC videos
 - Banger tweets
 - W&B Reports
 - Talks?
@@ -14,10 +12,25 @@ TODO: add more things to "Everything" feed:
 - Macro photography?
 - Art?
 
-TODO: start to fix pbroken images
+TODO: start to fix broken images
 
 TODO: replace twitter embeds with screenshot + link
 
 TODO link to other things I've done
 
+For website:
+
 To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+
+
+For DNS setup:
+
+Follow docs from https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site
+
+In namecheap where I own the domain, I set up: 
+- A Record for @ pointing to 185.199.108.153 (and repeat for 185.199.109.153, 185.199.110.153, 185.199.111.153)
+- CNAME Record for www pointing to johnowhitaker.github.io.
+
+Also clear local cache:
+`chrome://net-internals/#dns` and ' Clear host cache'
+`ipconfig /flushdns` in cmd 

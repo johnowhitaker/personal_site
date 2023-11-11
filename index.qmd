@@ -25,8 +25,7 @@ This will hopefully turn into a central place to keep all the things I've worked
 
 I've also got info on [work](work.qmd), [book recommendations](books.qmd), ...
 
-This site is made with Quarto - more info [here](about.qmd) if you want more info on how to make something similar.
-
+This site is made with Quarto - more info [here](about.qmd) if you'd like to make something similar.
 
 ## About Me
 

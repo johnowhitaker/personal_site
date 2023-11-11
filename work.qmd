@@ -1,5 +1,91 @@
 ---
-title: "Work"
+title: "Work With Me"
 ---
 
-TODO...
+I tend to describe myself as a 'Data Scientist', 'AI Researcher', 'Independent Researcher' or 'Consultant'. On this page, I'm going to try to explain how you might engage my services under one of those umbrellas, and also share my thoughts on work and how I'm trying to make the 'Independent Researcher' one feasible.
+
+## Availability and Rates
+
+Current availability as of November 2023: I'm reluctantly open to part-time work up to ~20 hours/week for the next few months.
+
+Current rate: ~$300/hour depending on project length.
+
+In general, I'll almost always be available for short one-off calls or mini-projects. Due to the nature of consulting and the unpredictability of clients, it's a lot harder to guarantee longer-term availability - please reach out rather than trusting the (possibly stale) info above. 
+
+## Examples
+
+To give you an idea of the kinds of work I like to do and the types of engagement I've found to work well, here is a list of examples that you can reference, from small to big
+
+- You politely email/DM me with a technical question. I respond, possibly getting nerd-sniped by something interesting. Cost: free
+
+- You'd like me to join a one-off call, ~1h, to get my thoughts or input. Cost: $500
+
+- You'd like me to give a talk. I'm a sucker for chances to talk about things I'm interested in, but these also generally take a lot more time than I would anticipate. Cost: ~6-24 hours, less if it sounds fun, less if I can share a recording publically, less if it's a good cause.
+
+- You'd like me to run some training sessions or to provide technical assistance to get your team up to speed on something. Great! This is a format I'm less familiar with and cost would be highly dependent on the project, but likely 10+ hours per 1h contact time. 
+
+- You have a specific problem or project related to my expertise. We meet and it sounds doable. I spend 20 hours over two weeks delivering a demo solution. Cost: 20 hours
+
+- You have a research question and would like me to spend time looking at it. Perhaps you'd like me to explore how some new method applies to your domain, or to try and invent some novel solution to a problem you're facing. R&D is much harder to predict ahead of time, so I tend to work on 'the best I can do in timeframe X' rather than promising deliverables. I'd likely suggest a more flexible staged approach: 20 hours to look into it, then meet and decide to spend another month pushing for some specific outcomes, and then plan further from there. 
+
+- You'd like me to join your team for the next 6 months to work on multiple research questions. Cost 3 days * 8 hours per week, rate negotiable
+
+## Preferences
+
+I like being useful ("delivering value"). I like learning and teaching. I like solving technical problems. I like working on things that feel meaningful. Since I'm not highly motivated by money (see later sections) we're much more likely to end up working together if said work aligns with at least some of these preferences.
+
+## Why Not Full-Time?
+
+While I'm not completely closed to the idea of taking a full-time position somewhere, there are a few reasons I'm reluctant to do so:
+
+- My productivity tends to fluctuate. There are times when I feel extremely productive and times when I can't get much done. Hitting the latter when someone is paying me a salary feels wrong! Perhaps naive, but I just don't have the kind of mindset that can sit back and take a salary I don't feel is deserved. 
+
+- Being able to dial up or down the amount of work I have on my plate is the most effective solution to burnout and depression that I've found. A clear end in sight makes all the difference when facing a slump!
+
+- I've become rather attached to having time to pursue my projects and research ideas. Having 'free time' to create free resources, learn new things, or pursue non-tech passions and interests is fantastic. More on this in the next section...
+
+Of course, there are perks to having a consistent employer too - health insurance, stability and the friends and mentors that would come with a team chief among them. I've toyed with looking for "full-time part-time" work (say, 3 days/week) which might balance the best of both worlds. If you have ideas on this front, let me know! 
+
+## Self-funded Research
+
+I've spoken with several smart people recently who've all said variants of the same things: 
+
+- they feel they do best at ~4h/day of focused creative work (on average)
+- they'd love some time off to pursue their own cool ideas
+- their previous experiences of sabbaticals / "research holidays" have always led to even better opportunities down the road
+
+"Wouldn't it be nice if some rich person would just give us money to do cool s***" we joke. "Yeah, like a patron! Maybe some aristocrat would let me live in their hermitage with a rack of GPUs to play with...". The truth is, for those of us privileged enough to be working in this lucrative field, being that patron for yourself is potentially doable! 
+
+I've been doing something like this my whole career, and it's working out so far. Let's explore why more people aren't doing this (yet) and then I'll share my own experience and tips.
+
+#### Obstacle 1: realizing this is even an option
+
+Should I join/start a start-up or work at a big co? Move to SF and work at FAANG or get a bigger house in cheaper city X and take a remote role with a pay cut? Retire at 50 or 70? These are NOT your only choices! Looking past the traditional paths requires a pretty heavy mindset shift.
+
+#### Obstacle 2: accepting the opportunity cost
+
+People make insane amounts of money working at big tech companies. My mind explodes when I hear the salaries. Giving that up seems crazy! Maybe it is, but consider that many of those people want more $ so they can eventually, one day, maybe, have time to do what they *really* want to do. If you can skip straight to that end goal, then perhaps it's not so crazy...
+
+#### Obstacle 3: what if this means I can't go back?
+
+Your resume might be less typical, but on the other hand, the growth I've seen exploring these alternate paths is a lot higher than I'd have gotten with N years at a single company. Others I've spoken to have had the same experience - finding new opportunities and clients based on their curiosity-driven side projects. As one good friend put it: "That’s the magic of farting [around]".
+
+The larger danger might be that you can't go back because it's too nice! Consider this quote from Simon Willison's recent [talk on 'Financial sustainability for open source projects'](https://simonwillison.net/2023/Nov/10/universe/):
+
+> So I got paid to spend a year working on my open source projects, which, with hindsight, completely ruined me. Because once you’ve got to spend a year just working on the things you want to work on, it’s very difficult to accept somebody else stepping in telling you to work on other things instead.
+>
+> Since that fellowship ended, I’ve been mainly living off savings and occasionally picking up bits of consulting work— and trying to keep that ball rolling, because I’m enjoying myself so much.
+
+Simon is incredibly productive and inspiring - I really hope he can continue to make it work from him, and that more people can try this out!
+
+#### My Experience
+
+Share more about my experience of this TODO
+
+## A note on salaries from the perspective of a Zimbabwean
+
+Zimbabwe background TODO
+
+## Closing Thoughts
+
+Extremely lucky to be in this position, still figuring things out so subject to change, would love thoughts from others, ... TODO
