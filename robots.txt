@@ -1,1 +1,1 @@
-Sitemap: https://johnowhitaker.github.io/personal_site/sitemap.xml
+Sitemap: https://johnowhitaker.dev/sitemap.xml
