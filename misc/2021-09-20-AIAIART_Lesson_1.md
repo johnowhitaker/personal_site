@@ -4,6 +4,7 @@ date: 2021-09-20
 categories: 
   - "Video"
 image: "thumbnails/p814BapRq2U.jpg"
+description: "Video for lesson 1 of the AIAIART course"
 ---
 
 ### AIAIART Lesson 1
