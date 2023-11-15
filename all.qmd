@@ -5,6 +5,7 @@ listing:
     - dsc
     - tils
     - misc
+    - mini-hw-projects
   sort: "date desc"
   type: default
   categories: True
