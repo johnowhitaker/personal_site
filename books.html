@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.489">
+<meta name="generator" content="quarto-1.4.504">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -196,6 +196,93 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>Entangled Life (Martin Sheldrake). Great read re: fungi, fun to get a picture of the author as your read through their work.</li>
 <li>Strange Rites - New Religions for a Godless Age (author name). Fascinating dive into some contemporary ‘religions’, providing a useful lens for understanding a lot of things in the world today.</li>
+<li>Terry Pratchett (N, 3-6)</li>
+<li>Douglas Adams</li>
+<li>Christopher Paolini</li>
+<li>F.W. Dixon</li>
+<li>Willard Price</li>
+<li>Tolkein</li>
+<li>Brian Jaques</li>
+<li>Enid Blighton</li>
+<li>Bill Bryson</li>
+<li>Anthony Horowitz (Alex series)</li>
+<li>Popco</li>
+<li>How the brain works from L6</li>
+<li>The Alchemist</li>
+<li>The end of the world is just the beginning</li>
+<li>Liveship trilogy</li>
+<li>Guns, germs and steel</li>
+<li>A strange loop</li>
+<li>You are not so smart and sequel</li>
+<li>Goosebumps (a handful)</li>
+<li>CUrious incident of the dog in the nighttime</li>
+<li>Joh Wyndham (midwich cuckoos, triffids, a few others)</li>
+<li>White fang and the call of the wild Jack London</li>
+<li>Fun Money (good ideas, lots of waffle)</li>
+<li>Chicken soup for the preteen sould</li>
+<li>The bible (several re-reads, lots of excerpts)</li>
+<li>Freakonomics and sequel</li>
+<li>How to spend X and do Y bjorn lomberg</li>
+<li>Shakespeare (a few) and tales from shakespeare (banger)</li>
+<li>Ignition (great book)</li>
+<li>Bell Labs: Innovation Factory great</li>
+<li>Surely You’re Joking Mr Feynman (3+ reads, impactful)</li>
+<li>6 easy pieces, 6 hard ones, QED by him too</li>
+<li>A brief history of time and even briefer one</li>
+<li>Astrophysics for people in a hurry</li>
+<li>Skimmed thinking fast and slow, blink, think again and similar selg-help books</li>
+<li>That crazy magical realism one about the SA village family</li>
+<li>Tim Keller marriage book</li>
+<li>That other marriage book</li>
+<li>Bird book haha</li>
+<li>The silent knife thing (lame)</li>
+<li>The Hunger Games</li>
+<li>That rip-off hunger games post apocalyptic one Ellie makes fun of</li>
+<li>Make: the annotated build-it yourself</li>
+<li>Making Embedded Systems</li>
+<li>Laws guide to nature drawing and journalling</li>
+<li>Reality +</li>
+<li>P. G. Woodhouse (most if not all, several reads of Jeeves)</li>
+<li>James Herriot (funny vet)</li>
+<li>The doctor equivalent ‘A Doctor Abroad’ maybe?</li>
+<li>Wilderness ways lovely</li>
+<li>Gerrald Durrel problematic</li>
+<li>The 100-year-old man who climbed out of his window and the sequel about the girl who saved the king of Sweden hilarious</li>
+<li>The Rosie Project good laugh</li>
+<li>Dr Seuss</li>
+<li>S&gt;A&gt;S survival guide</li>
+<li>Hatchett or something recd by E, that or my side of the mountain only one of the two</li>
+<li>The Call of the wild (that guy who went into the woods)</li>
+<li>Some Agatha Christie</li>
+<li>Some Nancy drew maybe? Definitely a crossover with Hardy BOys IIRC</li>
+<li>‘MLP: Friendship is optimal’ and some others on a weird list Hotz shared</li>
+<li>That space series with a magical ship AI nanobots and such</li>
+<li>‘Hothouse’ parasitic mind control scifi find author (I read several IIRC)</li>
+<li>Scifi anthology</li>
+<li>Science of the DIscworld</li>
+<li>The Long Earth Series</li>
+<li>The magic compass (trilogy, knife somethig something)</li>
+<li>Ball Lightning and the Three Body trilogy</li>
+<li>Sci-fi/horror theres a deep hole up come <em>wasps</em> or something, biological control for humans?</li>
+<li>Outlive by Peter Attia</li>
+<li>Eat food, not too much, mostly vegetables (Michael Pollen?)</li>
+<li>Lab Girl (boring)</li>
+<li>The Tao of Pooh</li>
+<li>Three Men on a bummel</li>
+<li>Once upo a river magical realism</li>
+<li>Klara and the sun</li>
+<li>Dandelion Wine (Ray Bradbury)</li>
+<li>Farenheight 451</li>
+<li>1984</li>
+<li>A Brave New World</li>
+<li>Trooper Peter Halket?</li>
+<li>Wet Breams and sequel elephant guy</li>
+<li>That one with the SA people who owned a lion?</li>
+<li>Oh that weird AI thinkpiece by Kissenger and co that didn’t say much</li>
+<li>Public Health in mid-VIctorian Britain</li>
+<li>GRades, Sub-grades and Subbases (or subsomethings at least)</li>
+<li>South Africa’s Vanishing Waterways</li>
+<li>Why_’s poignant Guide to Ruby</li>
 </ul>
 
 
@@ -355,8 +442,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
         }
         typesetMath(container);
         return container.innerHTML
