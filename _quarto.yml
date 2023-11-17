@@ -10,14 +10,15 @@ website:
         text: Home
       - href: all.qmd
         text: Everything Feed
-      - href: blog.qmd
-        text: DSC Blog
-      - href: tils.qmd
-        text: TILs
       - text: "More"
         menu:
+          - href: tils.qmd
+            text: TILs
+          - href: blog.qmd
+            text: Blog Archive
+          - resume.md
           - work.qmd
-          - books.qmd 
+          - books.qmd
       
   
   twitter-card:

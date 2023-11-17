@@ -1,0 +1,15 @@
+---
+title: "Fun With Neural Cellular Automata"
+description: "In this article, we take a look at how to make pretty pictures (and videos!) using differentiable self-organizing systems."
+date: 2022-05-22
+categories: 
+  - "Reports"
+image: "nca.jpg"
+---
+
+Report link: https://wandb.ai/johnowhitaker/nca/reports/Fun-With-Neural-Cellular-Automata--VmlldzoyMDQ5Mjg0
+
+Embed:
+```{=html}
+<iframe src="https://wandb.ai/johnowhitaker/nca/reports/Fun-With-Neural-Cellular-Automata--VmlldzoyMDQ5Mjg0" style="border:none;height:1024px;width:100%">
+```
