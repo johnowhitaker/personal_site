@@ -80,12 +80,26 @@ Simon is incredibly productive and inspiring - I really hope he can continue to 
 
 #### My Experience
 
-Share more about my experience of this TODO
+In 2014, fresh out of high school, I did some work on several ecology-related projects as the 'computer guy' - modeling species distributions, doing the mapping/GIS, trying some ML stuff on satellite data, lots of stats and data viz. A consequence of this was that throughout my time at University I had occasional parcels of work coming my way, providing a trickle of pocket money and a portfolio that helped me land a contract with a Data Science consulting company sometime in my third year. That went well enough that by the time I finished my studies a year later, I had some decent savings and a good (if small) network of contacts. I got married and moved back to Zimbabwe, where our plan was to extend the honeymoon until the money ran out. It didn't! I kept getting chunks of work that more than covered our minimal (~$600/month) COL. 
+
+Towards the end of 2020 I was working one half-time job and juggling a few other contracts - I'd said yes to too much, and ended up burning out. Shout out to Zindi for being the most epic and understanding employer ever. I quit all the things and took a few months completely off, spending a lot of time outdoors. It was phenomenal being able to take that time to recover, and then to sloooowly ease back into coding over the next year or two beginning with things that seemed fun. My wife's local income plus our savings removed a lot of pressure. And amusingly the dabbles with (at that time) nice and 'silly' topics like AI-generated images and such ended up giving me a few years head-start on the generative AI craze, which has been rather convenient!
+
+This year has been pretty atypical, with a move to the US and lots of family-related travel, but I'm slowly settling into a routine: a chunk of consulting comes through, then I take a break, then I dabble with personal projects, then someone reaches out with more work... rinse and repeat. Projects range from a one-week implementation of some specific idea all the way up to my 5-month stint as a part-time 'Builder In Residence' with PlaygoundAI working on a whole bunch of projects. On the side, I've been 'researching with friends' (a nice change from the solo stuff) in a collaboration that started late last year when I teamed up with some fellow nerds to make part 2 of the fast.ai course, diving into diffusion models. 
+
+The majority of my time is spent on non-income-generating activities - making courses/videos, trying out projects based on research questions or idle curiosity, spending lots of time with family, and trying to stay current with the firehose of research coming out each week in this field.
+
+It feels a little precarious (and extremely privileged) to rely on usually having a queue of potential clients hanging around, but for now there seems to be enough demand to keep me as busy as I want to be. I don't have enough data to tell yet how sustainable this will be long-term with the higher costs associated with living here in the US, but I've met enough friends in similar situations making it work that I'm hopeful! Stay tuned for updates :)
 
 ## A note on salaries from the perspective of a Zimbabwean
 
-Zimbabwe background TODO
+Any discussion of salaries and rates in this industry blows my mind. To give you an idea of some of my reference points:
+
+- A rural farm laborer in Zimbabwe might earn $60 a month
+- A teacher at the fanciest private school maybe $1,200 per month, which is enough to live a comparatively lavish life in the capital city
+- My first 'Data Science' gig in SA was something like $500/week (extreme riches to a student) and later work probably peaked more like $500/day (call it $60/hour). It felt (and still feels) almost obscene to get more for a days coding than many in the country make in a year. 
+
+So, as you can imagine, salaries in the AI space (where TC at big players can run to 7 figures) actually melt my brain. To date, my strategy is to reluctantly up my rates when I have to, to think about it as little as possible, and to send lots of money back home to spread it around more in places where the dollars go a lot further :)
 
 ## Closing Thoughts
 
-Extremely lucky to be in this position, still figuring things out so subject to change, would love thoughts from others, ... TODO
+I feel extremely fortunate to have had the space to explore this virtuous "fart around with something cool <-> get more cool work <-> fund more time" cycle. Long term I may decide I need to focus on something more specific for a longer period to have a larger impact, but for the current fast-moving and fast-changing landscape this seems to have been a pretty optimal choice. I should mention that I'm still thinking through a lot of this (this post was one way to do that) and may revise these ideas soon. If you have thoughts or ideas on this I'd love to hear them! In the meantime, he experiment continues...

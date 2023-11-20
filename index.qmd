@@ -23,7 +23,7 @@ Hello there! I'm Johno Whitaker - welcome to my personal website :)
 
 I'm a Data Scientist/AI Researcher now based in Portland Oregon. I like teaching and making courses. My current focus is on generative AI, flitting between several modalities. 
 
-This website will hopefully become a central repository for everything I'm working on. You can already find my blog posts, videos and [TILs](tils.qmd) in the ['Everything' feed](all.qmd). If you're looking for even more info, you may also want:
+This website will hopefully become a central repository for everything I'm working on. You can already find my blog posts, videos and TILs in the ['Everything' feed](all.qmd). If you're looking for even more info, you may also want:
 
 - [Twitter](x.com/johnowhitaker) or [Sigmoid.social](https://sigmoid.social/@johnowhitaker) (@johnowhitaker on both, and most other platforms too)
 - [The Generative Landscape](https://johnowhitaker.github.io/tglcourse/), a work-in-progress course on all things generative.
