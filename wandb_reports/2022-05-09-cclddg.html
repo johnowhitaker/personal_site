@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2022-05-09">
+<meta name="description" content="In this article, we’ll look at Image Generation with CLOOB Conditioned Latent Denoising Diffusion Generative Adversarial Networks (GANs), or CCLDDG, for short.">
 
-<title>johnowhitaker.dev - Resume: Jonathan Whitaker</title>
+<title>johnowhitaker.dev - CLOOB Conditioned Latent Denoising Diffusion Generative Adversarial Networks (GANs)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +25,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,10 +69,14 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
-<meta name="twitter:title" content="johnowhitaker.dev - Resume: Jonathan Whitaker">
+<link rel="stylesheet" href="../styles.css">
+<meta name="twitter:title" content="johnowhitaker.dev - CLOOB Conditioned Latent Denoising Diffusion Generative Adversarial Networks (GANs)">
+<meta name="twitter:description" content="In this article, we’ll look at Image Generation with CLOOB Conditioned Latent Denoising Diffusion Generative Adversarial Networks (GANs), or CCLDDG, for short.">
+<meta name="twitter:image" content="https://johnowhitaker.dev/wandb_reports/cclddg.png">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="512">
+<meta name="twitter:image-width" content="768">
 </head>
 
 <body class="nav-fixed">
@@ -86,11 +92,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./all.html"> 
+    <a class="nav-link" href="../all.html"> 
 <span class="menu-text">Everything Feed</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -99,23 +105,23 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-more">    
         <li>
-    <a class="dropdown-item" href="./tils.html">
+    <a class="dropdown-item" href="../tils.html">
  <span class="dropdown-text">TILs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./blog.html">
+    <a class="dropdown-item" href="../blog.html">
  <span class="dropdown-text">Blog Archive</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./resume.html">
+    <a class="dropdown-item" href="../resume.html">
  <span class="dropdown-text">Resume: Jonathan Whitaker</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./work.html">
+    <a class="dropdown-item" href="../work.html">
  <span class="dropdown-text">Work With Me</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./books.html">
+    <a class="dropdown-item" href="../books.html">
  <span class="dropdown-text">Book Recommendations</span></a>
   </li>  
     </ul>
@@ -132,31 +138,35 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#jonathan-whitaker" id="toc-jonathan-whitaker" class="nav-link active" data-scroll-target="#jonathan-whitaker">Jonathan Whitaker</a>
-  <ul class="collapse">
-  <li><a href="#ai-researcher" id="toc-ai-researcher" class="nav-link" data-scroll-target="#ai-researcher">AI Researcher</a></li>
-  <li><a href="#experience" id="toc-experience" class="nav-link" data-scroll-target="#experience">EXPERIENCE</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Resume: Jonathan Whitaker</h1>
-</div>
+<h1 class="title">CLOOB Conditioned Latent Denoising Diffusion Generative Adversarial Networks (GANs)</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Reports</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    In this article, we’ll look at Image Generation with CLOOB Conditioned Latent Denoising Diffusion Generative Adversarial Networks (GANs), or CCLDDG, for short.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 9, 2022</p>
+    </div>
+  </div>
   
     
   </div>
@@ -166,50 +176,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="jonathan-whitaker" class="level1">
-<h1>Jonathan Whitaker</h1>
-<section id="ai-researcher" class="level2">
-<h2 class="anchored" data-anchor-id="ai-researcher">AI Researcher</h2>
-<p>I love working on new challenges, and tend to gravitate to any role that lets me exercise my key skills:</p>
-<ul>
-<li>Breaking down and understanding deep technical concepts. (research)</li>
-<li>Figuring out how to practically apply these to real-world problems. (consulting)</li>
-<li>Communicating these concepts with others. (teaching)</li>
-</ul>
-<p>I also have an unusual grab-bag of extra skills or interest areas, which come in useful from time to time :)</p>
-</section>
-<section id="experience" class="level2">
-<h2 class="anchored" data-anchor-id="experience">EXPERIENCE</h2>
-<section id="ai-education-and-research" class="level4">
-<h4 class="anchored" data-anchor-id="ai-education-and-research">AI Education and Research</h4>
-<p><strong>SEPTEMBER 2022 - PRESENT</strong></p>
-<ul>
-<li>Joined forces with Jeremy Howard and friends to build Part 2 of the Fast.ai course. We still meet twice a week to discuss the latest research and work on our own experiments, with the focus gradually shifting to LLMs</li>
-<li>Created the Hugging Face Diffusion Models Class, and currently co-authoring a book with some collaborators building on that work</li>
-<li>Sharing learning material through my Data Science Castnet blog and YouTube channel</li>
-</ul>
-</section>
-<section id="consulting---generative-ai" class="level4">
-<h4 class="anchored" data-anchor-id="consulting---generative-ai">Consulting - Generative AI</h4>
-<p><strong>2022 - PRESENT</strong></p>
-<ul>
-<li>Builder-in-residence at PlaygroundAI, where I helped train their first in-house Stable Diffusion variant and worked on numerous guidance, instruction-following, and sampling improvements</li>
-<li>Smaller clients, working on image classification + generation, text, and most recently 3D-related R&amp;D</li>
-</ul>
-</section>
-<section id="consulting---data-science" class="level4">
-<h4 class="anchored" data-anchor-id="consulting---data-science">Consulting - Data Science</h4>
-<p><strong>2017 - 2021</strong></p>
-<ul>
-<li>Senior Data Scientist at Zindi (a data science competitions platform) where I was responsible for preparing data for competitions, creating baselines etc… an excellent way to get better across NLP, CV, and tabular domains!</li>
-<li>Various analytics and deep learning projects, with a specialty of mine being GIS and remote sensing work.</li>
-<li>Helped create and deliver various online courses around data science, machine learning, and ‘big data’ in collaboration with Ixio Analytics (a consulting firm I was part of) and the African Leadership University. I was also a lead instructor for iXperience’s “Data Science” summer class.</li>
-</ul>
+<p>Report link: https://wandb.ai/johnowhitaker/cclddg_report/reports/New-Techniques-for-Generating-Images-With-Text–VmlldzoxOTc1NDU3</p>
 
 
-</section>
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
