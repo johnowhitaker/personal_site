@@ -1,0 +1,12 @@
+---
+title: "A Deep Dive Into OpenCLIP from OpenAI"
+description: "Can you tell how wealthy a place is from space? It turns out that this is a very important question - an answer of 'yes' would mean that we can figure out how wealth is distributed within a country without needing to run expensive national surveys. For this project, I'll be attempting to do exactly this, recreating some recent research to map poverty across Africa using existing household surveys and remote sensing data."
+date: 2022-07-19
+categories: 
+  - "Reports"
+image: "map.png"
+---
+
+Report link: https://wandb.ai/johnowhitaker/dhs/reports/Mapping-Economic-Well-being--VmlldzoyMjY4NTI1
+
+TODO port content over

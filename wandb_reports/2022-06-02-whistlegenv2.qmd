@@ -1,0 +1,9 @@
+---
+title: "WhistleGen V2: Making Music With Transformers"
+description: "This article will dive into how the second version of WhistleGen works and explores how it enables you to generate folk music in ABC notation using minGPT."
+date: 2022-06-02
+categories: 
+  - "Reports"
+---
+
+Report link: https://wandb.ai/johnowhitaker/whistlegen_v2/reports/WhistleGen-V2-Making-Music-With-Transformers--VmlldzoyMTAwNjAz

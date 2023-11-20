@@ -6,7 +6,13 @@ title: "Resume: Jonathan Whitaker"
 
 ## AI Researcher
 
-TODO skills, summary
+I love working on new challenges, and tend to gravitate to any role that lets me exercise my key skills:
+
+- Breaking down and understanding deep technical concepts. (research)
+- Figuring out how to practically apply these to real-world problems. (consulting)
+- Communicating these concepts with others. (teaching)
+
+I also have an unusual grab-bag of extra skills or interest areas, which come in useful from time to time :)
 
 ## EXPERIENCE
 #### AI Education and Research

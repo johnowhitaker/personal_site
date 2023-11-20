@@ -1,0 +1,12 @@
+---
+title: "A Deep Dive Into OpenCLIP from OpenAI"
+description: "This article explores an open re-implementation of OpenAI's CLIP model for zero-shot classification and covers its additional uses and its potential issues."
+date: 2023-02-13
+categories: 
+  - "Reports"
+image: "openclip.png"
+---
+
+Report link: https://wandb.ai/johnowhitaker/openclip-benchmarking/reports/A-Deep-Dive-Into-OpenCLIP-from-OpenAI--VmlldzoyOTIzNzIz
+
+TODO port content over

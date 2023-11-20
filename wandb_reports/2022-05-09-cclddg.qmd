@@ -1,0 +1,10 @@
+---
+title: "CLOOB Conditioned Latent Denoising Diffusion Generative Adversarial Networks (GANs)"
+description: "In this article, we'll look at Image Generation with CLOOB Conditioned Latent Denoising Diffusion Generative Adversarial Networks (GANs), or CCLDDG, for short."
+date: 2022-05-09
+categories: 
+  - "Reports"
+image: "cclddg.png"
+---
+
+Report link: https://wandb.ai/johnowhitaker/cclddg_report/reports/New-Techniques-for-Generating-Images-With-Text--VmlldzoxOTc1NDU3

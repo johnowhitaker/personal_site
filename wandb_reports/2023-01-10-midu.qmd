@@ -1,0 +1,12 @@
+---
+title: "Mid-U Guidance: Fast Classifier Guidance for Latent Diffusion Models"
+description: "Introducing a new method for diffusion model guidance with various advantages over existing methods, demonstrated by adding aesthetic guidance to Stable Diffusion."
+date: 2023-01-10
+categories: 
+  - "Reports"
+image: "midu.png"
+---
+
+Report link: https://wandb.ai/johnowhitaker/midu-guidance/reports/Mid-U-Guidance-Fast-Classifier-Guidance-for-Latent-Diffusion-Models--VmlldzozMjg0NzA1
+
+TODO port content over
