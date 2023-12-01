@@ -57,6 +57,8 @@
   {
     "listing": "/all.html",
     "items": [
+      "/misc/2023-11-29-paperathon.html",
+      "/misc/2023-11-26-Ziplora.html",
       "/tils/2023-11-07-get_yt_vids.html",
       "/misc/2023-10-23-Evaluating_Diffusion_Models_with_PickScore.html",
       "/misc/2023-10-18-How_I_monetized_an_AI_demo.html",
@@ -171,6 +173,8 @@
   {
     "listing": "/index.html",
     "items": [
+      "/misc/2023-11-29-paperathon.html",
+      "/misc/2023-11-26-Ziplora.html",
       "/tils/2023-11-07-get_yt_vids.html",
       "/misc/2023-10-23-Evaluating_Diffusion_Models_with_PickScore.html",
       "/misc/2023-10-18-How_I_monetized_an_AI_demo.html",
