@@ -6,11 +6,11 @@ categories:
 image: "thumbnails/paperathon.jpg"
 ---
 
-### Paperathon #1
+### Paperathon - 4 hours of paper reading live on Twitch
 
 {{< video https://www.youtube.com/embed/YNOIyvUCpAs >}}
 
-An experimental livestream reading through papers. A tidy version of the notes from the stream can be found [here](https://docs.google.com/document/d/1weSVlVfVUufOesEmMB2_TlmM_I250ug-WIEZu9xEpVw/edit?usp=sharing).
+An experimental livestream reading through papers. A tidy version of the notes from the stream can be found [here](https://docs.google.com/document/d/1weSVlVfVUufOesEmMB2_TlmM_I250ug-WIEZu9xEpVw/edit?usp=sharing). Thanks to those who joined the live stream and helped out with the discussion!
 
 Topics + papers:
 01:00 - Intro + Plan
