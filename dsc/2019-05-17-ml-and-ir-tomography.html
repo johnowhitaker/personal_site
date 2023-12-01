@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.510">
+<meta name="generator" content="quarto-1.4.515">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -178,7 +178,11 @@ ul.task-list li input[type="checkbox"] {
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
 <p>This project arose because I wanted to do some experiments with Computed Tomography, but I didn’t know enough to see what would work and what wouldn’t. How many sensors does one need to achieve a particular goal for resolution or performance? What geometries work best? And what if we can’t keep everything nice and regular?&nbsp;</p>
-<p><a href="https://cdn.hackaday.io/images/3765251542371976038.png"><img src="images/3765251542371976038.png" class="img-fluid"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://cdn.hackaday.io/images/3765251542371976038.png"><img src="images/3765251542371976038.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
 <p>I built some tools that let me simulate these kinds of arrangements, and did some early experiments on image reconstruction and on the use of machine learning (specifically neural networks) to make sense of readings. Even with a weird arrangement like the one on the right, I could make some sense of the data. For more information on the simulation side, see the report in the <a href="https://github.com/johnowhitaker/CIRTS">GitHub repository</a>.</p>
 <p>I tested out these arrangements in the real world by building some fixed arrangements, and by using a 3D printed scanner to position an LED and a phototransistor (PT from now on) in different locations to slowly simulate having many detectors and emitters.&nbsp;Using light as opposed to X-rays means cheap emitters and detectors, and of course much less danger.</p>
 <p><img src="images/ring_of_8_kapton.jpeg" class="img-fluid"></p>
