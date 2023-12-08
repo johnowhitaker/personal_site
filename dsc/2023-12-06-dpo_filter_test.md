@@ -1,5 +1,5 @@
 ---
-title: "Filtering Preference Data for Better DPO"
+title: "Quick Experiment: Filtering Preference Data for Better DPO"
 date: 2023-12-06
 categories: 
   - "blogs"
@@ -33,4 +33,6 @@ Anyway, keeping those examples where the model agreed with the original label, I
 
 ![](images/dpo_lb.jpg)
 
-This is just a quick initial test, but it aligns with my feeling that data quality is pretty important and that the existing datasets for fine-tuning and preference stuff might need a bit of cleanup!
+Scoring was done with alpaca_eval, using the 'chatgpt_fn' evaluator to save costs.This is just a quick initial test, but it aligns with my feeling that data quality is pretty important and that the existing datasets for fine-tuning and preference stuff might need a bit of cleanup!
+
+Related Tweet: https://x.com/johnowhitaker/status/1732489803340673053?s=20
