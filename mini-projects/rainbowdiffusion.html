@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2010-01-01">
+<meta name="dcterms.date" content="2023-04-04">
 
-<title>johnowhitaker.dev - Title</title>
+<title>johnowhitaker.dev - Reward Hacking with RainbowDiffusion</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,7 +70,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta name="twitter:title" content="johnowhitaker.dev - Title">
+<meta name="twitter:title" content="johnowhitaker.dev - Reward Hacking with RainbowDiffusion">
+<meta name="twitter:description" content="">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
 </head>
@@ -134,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#title" id="toc-title" class="nav-link active" data-scroll-target="#title">Title</a></li>
+  <li><a href="#reward-hacking-with-rainbowdiffusion" id="toc-reward-hacking-with-rainbowdiffusion" class="nav-link active" data-scroll-target="#reward-hacking-with-rainbowdiffusion">Reward Hacking with RainbowDiffusion</a></li>
   </ul>
 </nav>
     </div>
@@ -143,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Title</h1>
+<h1 class="title">Reward Hacking with RainbowDiffusion</h1>
   <div class="quarto-categories">
     <div class="quarto-category">mini-projects</div>
   </div>
@@ -157,7 +158,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 1, 2010</p>
+      <p class="date">April 4, 2023</p>
     </div>
   </div>
   
@@ -169,8 +170,15 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="title" class="level1">
-<h1>Title</h1>
+<section id="reward-hacking-with-rainbowdiffusion" class="level1">
+<h1>Reward Hacking with RainbowDiffusion</h1>
+<p>An experiment incorpoarting an aesthetic model as part of the training loss went wring in all the right ways! And my boss let me release the result on <a href="https://huggingface.co/johnowhitaker/rainbowdiffusion">huggingface</a> :)</p>
+<p><img src="rdf1.jpg" class="img-fluid"></p>
+<p><img src="rdf2.jpg" class="img-fluid"></p>
+<p>I figured out that weighting the loss by aesthetics was probably better, then realized filtering tha data was equialent to that with binary weights, which led to Playground V1. Nice pics from it:</p>
+<p>https://twitter.com/johnowhitaker/status/1641154136447041545</p>
+<p>https://twitter.com/johnowhitaker/status/1641463396473225216</p>
+<p>Similar tricks (including pyramid noise) made for a better fine-tune of DeepFloyd IF which sadly never got improved or released: https://twitter.com/johnowhitaker/status/1654130007948824580</p>
 
 
 </section>
