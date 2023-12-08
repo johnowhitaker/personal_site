@@ -1,9 +1,9 @@
 ---
 title: "MLOps Community Mini Summit #3 Talk: What The Kaggle LLM Science Exam Competition Can Teach Us About LLMs"
-date: 2023-11-26
+date: 2023-11-16
 categories: 
   - "Video"
-image: "thumbnails\mlops_webinar_slide.jpg"
+image: "thumbnails/mlops_webinar_slide.jpg"
 ---
 
 ### What The Kaggle LLM Science Exam Competition Can Teach Us About LLMs
@@ -19,5 +19,5 @@ I enjoyed how the same key things came up in multiple talks:
 
 My talk went into some themes that crop up in many different LLM projects, and how the Kaggle competition was a great way to explore them.
 
-![](thumbnails\mlops_webinar_slide.jpg)
+![](thumbnails/mlops_webinar_slide.jpg)
 
