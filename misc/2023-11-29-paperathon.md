@@ -1,6 +1,6 @@
 ---
 title: "Paperathon #1"
-date: 2023-11-26
+date: 2023-11-29
 categories: 
   - "Video"
 image: "thumbnails/paperathon.jpg"
