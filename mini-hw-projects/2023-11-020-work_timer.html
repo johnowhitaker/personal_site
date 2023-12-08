@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2020-09-16">
+<meta name="dcterms.date" content="2023-11-20">
 
-<title>johnowhitaker.dev - Data Glimpse: Predicted Historical Air Quality for African Cities</title>
+<title>johnowhitaker.dev - Mini Work Timer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta name="twitter:title" content="johnowhitaker.dev - Data Glimpse: Predicted Historical Air Quality for African Cities">
+<meta name="twitter:title" content="johnowhitaker.dev - Mini Work Timer">
 <meta name="twitter:description" content="">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
@@ -131,16 +131,22 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#mini-work-timer" id="toc-mini-work-timer" class="nav-link active" data-scroll-target="#mini-work-timer">Mini Work Timer</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Glimpse: Predicted Historical Air Quality for African Cities</h1>
+<h1 class="title">Mini Work Timer</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">blogs</div>
+    <div class="quarto-category">mini-hw-projects</div>
   </div>
   </div>
 
@@ -152,7 +158,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 16, 2020</p>
+      <p class="date">November 20, 2023</p>
     </div>
   </div>
   
@@ -164,17 +170,16 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Air quality has been in the news a lot recently. Smoke from fires has had thousands of Californians searching for info around the health hazards of particulate matter pollution. Lockdown-induced changes have shown how a reduction in transport use can bring a breath of fresh air to cities. And a respiratory virus sweeping the globe has brought forward discussions around lung health and pollution, and the health burden associated with exposure to unhealthy levels of pollutants. There are thousands of air quality sensors around the world, but if you view a map of these sensors, it’s painfully obvious that some areas are underserved, with a marked lack of data:</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2020/09/screenshot-from-2020-09-16-14-39-39.png?w=1024" class="img-fluid"></p>
-<p>Air Quality from sensors around the world. Source: https://waqi.info/</p>
-<p>The ‘gap in the map’ was the motivation for a weekend hackathon hosted through Zindi, which challenged participants to build a model capable of predicting air quality (specifically PM25 concentration) based on available satellite and weather data.</p>
-<p>The hackathon was a success, and was enough of a proof-of-concept that we decided to put a little more work into taking the results and turning them into something useful. Myself and Yasin Ayami spent a bit of time re-creating the initial data preparation phase (pulling the data from the Sentinel 5P satellite data collections in Google Earth Engine, creating a larger training set of known air quality readings etc) and then we trained a model inspired by the winning solutions that is able to predict historical air quality with a mean absolute error of less than 20.</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2020/09/screenshot-from-2020-09-16-14-42-27.png?w=1024" class="img-fluid"></p>
-<p>Dashboard for exploring air quality across Africa (<a href="http://www.datasciencecastnet.com/airq/">http://www.datasciencecastnet.com/airq/</a>)</p>
-<p>A full report along with notebooks and explanation can be found in <a href="https://github.com/johnowhitaker/air_quality_prediction">this GitHub repository</a>. But the good news is that you don’t need to re-create the whole process if you’d just like a look at the model outputs - those predictions are available in the repository as well. For example, to get the predictions for major cities across Africa you can download and explore <a href="https://github.com/johnowhitaker/air_quality_prediction/blob/master/Data/results/af_cities_predictions.csv">this CSV file</a>. And if you don’t want to download anything, I’ve also made <a href="http://www.datasciencecastnet.com/airq/">a quick dashboard</a> to show the data, both as a time-series for whatever city you want to view and as a map showing the average for all the locations.</p>
-<p>I’ve tagged this post as a ‘Data Glimpse’ since the details are already written up elsewhere :) I hope it’s of interest, and as always let me know if you have any questions around this. J.</p>
+<section id="mini-work-timer" class="level1">
+<h1>Mini Work Timer</h1>
+<p>I lose track of time easily, so I’m trialling a little timer widget on my desk. Good for regulating Twitter breaks.</p>
+<p><img src="images/work_timer_1.jpg" class="img-fluid"></p>
+<p>The electronics are fairly simple: a Raspeberry Pi microcontroller reads a rotary encoder and servo that acts like a clock hand. A button (integrated into the quadrature encoder) switches from seconds to minutes mode, since I expect this to come in handy for board games too. I printed an enclosure, which is waiting for a paint job :)</p>
+<p><img src="images/work_timer_2.jpg" class="img-fluid"></p>
+<p>The code is written in Micropython, and the development experience was a pleasant suprise - just edit a .py file and drag onto the storage device that shows up. My previous embedded development experiences usually involved proprietary debuggers, arcane toolchains and pain…</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
