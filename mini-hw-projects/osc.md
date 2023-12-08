@@ -2,7 +2,7 @@
 title: "Cell Phone Oscilloscope"
 date: 2015-06-29
 categories: 
-  - "mini-projects"
+  - "mini-hw-projects"
 ---
 
 # Cell Phone Oscilloscope

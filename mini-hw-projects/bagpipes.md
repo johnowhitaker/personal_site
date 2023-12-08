@@ -2,7 +2,7 @@
 title: "Electronic Bagpipes"
 date: 2014-03-20
 categories: 
-  - "mini-projects"
+  - "mini-hw-projects"
 ---
 
 # Electronic Bagpipes

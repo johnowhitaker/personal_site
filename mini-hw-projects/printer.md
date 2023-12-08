@@ -2,7 +2,7 @@
 title: "Owning a 3D printer"
 date: 2018-07-01
 categories: 
-  - "mini-projects"
+  - "mini-hw-projects"
 ---
 
 # Owning a 3D printer

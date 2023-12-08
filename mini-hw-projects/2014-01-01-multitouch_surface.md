@@ -3,7 +3,7 @@
 title: "Multitouch Surface"
 date: 2014-01-01
 categories: 
-  - "mini-projects"
+  - "mini-hw-projects"
 image: "images/multitouch7.png"
 description: "Whipped up a quick DIY multitouch thingee - really cool to play with and cost $0 (not bad considering Microsofts commercial alternative costs $12000!).
 		 Uses an open source program called CCV to process the video feed 

@@ -2,7 +2,7 @@
 title: "Studying automation with an octopus overlord!"
 date: 2016-07-24
 categories: 
-  - "mini-projects"
+  - "mini-hw-projects"
 ---
 
 # Studying automation with an octopus overlord!

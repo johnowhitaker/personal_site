@@ -2,7 +2,7 @@
 title: "Mini PCB printer"
 date: 2016-06-04
 categories: 
-  - "mini-projects"
+  - "mini-hw-projects"
 ---
 
 # Mini PCB printer

@@ -3,7 +3,7 @@
 title: "Easy 3D Scanner"
 date: 2013-08-03
 categories: 
-  - "mini-projects"
+  - "mini-hw-projects"
 image: "images/3dscan_1.jpg"
 description: "How cool would it be to be able to scan objects in 3D? Turns out its not hard, and can be done with stuff you probably have lying around the house.
 		I made mine using a cheap laser pointer, a broken wine glass stem (sorry mum :) and some cool software -makerscanner. This is

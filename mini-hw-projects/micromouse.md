@@ -2,7 +2,7 @@
 title: "Micromouse attempt"
 date: 2014-07-03
 categories: 
-  - "mini-projects"
+  - "mini-hw-projects"
 ---
 
 # Micromouse attempt

@@ -2,7 +2,7 @@
 title: "Scanning EIT Imaging System (SEITIS) Attempt"
 date: 2016-04-09
 categories: 
-  - "mini-projects"
+  - "mini-hw-projects"
 ---
 
 # Scanning EIT Imaging System (SEITIS) Attempt

@@ -2,7 +2,7 @@
 title: "Kwese - musical instrument"
 date: 2014-06-17
 categories: 
-  - "mini-projects"
+  - "mini-hw-projects"
 ---
 
 # Kwese - musical instrument

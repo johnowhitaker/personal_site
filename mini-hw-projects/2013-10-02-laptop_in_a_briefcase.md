@@ -3,7 +3,7 @@
 title: "Laptop in a briefcase"
 date: 2013-10-02
 categories: 
-  - "mini-projects"
+  - "mini-hw-projects"
 image: "images/lb_finished_laptop_small.jpg"
 description: "After I managed to get my hands on an old laptop, I wanted to try my hand at making it into a “picture-frame” display, as seen all over the web.
 		 However, with the power of a (n admittadly derelict) laptop at your disposal it seems a bit of a waste if all you want is a slide-show. 

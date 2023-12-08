@@ -2,7 +2,7 @@
 title: "Mini Laser Cutter"
 date: 2014-03-20
 categories: 
-  - "mini-projects"
+  - "mini-hw-projects"
 ---
 
 # Mini Laser Cutter

@@ -3,7 +3,7 @@
 title: "DIY Cellphone Macro Lens"
 date: 2013-12-01
 categories: 
-  - "mini-projects"
+  - "mini-hw-projects"
 image: "images/macro_lens_flower.png"
 description: "Found an easy and free way to take amazing macro shots with your cellphone using the lense from inside a DVD player. 
 		Pics and long explanation in 'more details' (warning, large ~2MB images)"

@@ -2,7 +2,7 @@
 title: "Pimp my dormroom"
 date: 2016-01-28
 categories: 
-  - "mini-projects"
+  - "mini-hw-projects"
 ---
 
 # Pimp my dormroom

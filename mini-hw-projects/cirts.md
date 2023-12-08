@@ -2,7 +2,7 @@
 title: "CIRTS - Configurable Infra-Red Tomography systems"
 date: 2018-11-16
 categories: 
-  - "mini-projects"
+  - "mini-hw-projects"
 ---
 
 # CIRTS - Configurable Infra-Red Tomography systems

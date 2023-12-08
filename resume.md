@@ -25,7 +25,7 @@ I also have an unusual grab-bag of extra skills or interest areas, which come in
 #### Consulting - Generative AI
 **2022 - PRESENT**
 
-- Builder-in-residence at PlaygroundAI, where I helped train their first in-house Stable Diffusion variant and worked on numerous guidance, instruction-following, and sampling improvements
+- Builder-in-residence at PlaygroundAI, where I helped train their first in-house Stable Diffusion variant and worked on numerous guidance, instruction-following, and sampling improvements (Jan - June 2023)
 - Smaller clients, working on image classification + generation, text, and most recently 3D-related R&D 
 
 
