@@ -179,6 +179,8 @@
       "/tils/2023-11-07-get_yt_vids.html",
       "/misc/2023-10-23-Evaluating_Diffusion_Models_with_PickScore.html",
       "/misc/2023-10-18-How_I_monetized_an_AI_demo.html",
+      "/mini-projects/dola_cfg.html",
+      "/mini-projects/easteregg.html",
       "/misc/2023-09-05-Gaussian_Splatting_explorations.html",
       "/misc/2023-09-01-LLM_basics_#4_with_the_LLM_Science_Exam_Kaggle_Competition_-_Retrieval.html",
       "/misc/2023-09-01-What_is_Speculative_Sampling.html",
@@ -187,12 +189,16 @@
       "/misc/2023-08-09-LLM_basics_#2_with_the_LLM_Science_Exam_Kaggle_Competition_-_Generating_Synthetic_Data.html",
       "/misc/2023-08-07-LLM_basics_#1_with_the_LLM_Science_Exam_Kaggle_Competition_-_Zero-Shot_approaches.html",
       "/dsc/2023-08-04-exploring-softmax1-or-community-research-for-the-win.html",
+      "/mini-projects/bark.html",
       "/dsc/2023-07-01-why-and-how-im-shifting-focus-to-llms.html",
       "/dsc/2023-04-06-a-recipe-for-training-good-generative-models.html",
+      "/mini-projects/rainbowdiffusion.html",
+      "/mini-projects/style_tf_report.html",
       "/misc/2023-02-15-Stylizing_Video_with_Diffusion_Models.html",
       "/wandb_reports/2023-02-13-openclip.html",
       "/misc/2023-02-03-InstructPix2Pix_Explained_-_Edit_Images_with_Words!.html",
       "/misc/2023-01-30-Stable_Diffusion_Deep_Dive_Notebook_Run-through.html",
+      "/mini-projects/genuary.html",
       "/misc/2023-01-10-Podcast_E6_-_Wasim_Lorgat.html",
       "/wandb_reports/2023-01-10-midu.html",
       "/dsc/2022-12-30-distilhn-summarizing-news-articles-with-transformers.html",
@@ -295,7 +301,8 @@
       "/mini-hw-projects/2013-10-02-laptop_in_a_briefcase.html",
       "/mini-hw-projects/2013-09-02-junk_vdg.html",
       "/mini-hw-projects/2013-08-03-easy_3d_scanner.html",
-      "/mini-hw-projects/2013-07-04-ir_webcam.html"
+      "/mini-hw-projects/2013-07-04-ir_webcam.html",
+      "/mini-projects/template.html"
     ]
   }
 ]
