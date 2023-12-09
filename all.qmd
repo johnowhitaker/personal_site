@@ -6,6 +6,7 @@ listing:
     - tils
     - misc
     - mini-hw-projects
+    - mini-projects
     - wandb_reports
   sort: "date desc"
   type: default
