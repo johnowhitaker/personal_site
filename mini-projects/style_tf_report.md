@@ -8,7 +8,7 @@ categories:
 
 # Style Loss Showdown
 
-![](style_transfer.jpg)
+![](images/style_transfer.jpg)
 
 Remember Style Transfer? Turns out we can make it a lot better by moving away from Gram matrices! In this report, I dig into some alternative style losses including a little-known gem by Vincent Marron that snuck under the radar 5 years ago. 
 
