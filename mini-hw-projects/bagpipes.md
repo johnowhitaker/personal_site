@@ -9,5 +9,5 @@ categories:
 
 I made an OpenChanter-based electronic bagpipe, with capacitive touch on screws where the holes would typically be.
 
-![](https://cdn.hackaday.io/images/8687291395323505224.png)
+![](images/8687291395323505224.png)
 

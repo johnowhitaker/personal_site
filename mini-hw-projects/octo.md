@@ -9,4 +9,4 @@ categories:
 
 It's easy to automate machines, harder to automate myself. So I made this - a glorified countdown timer keeping me focused on studying :)
 
-![](https://cdn.hackaday.io/images/3117991469372678464.JPG)
+![](images/3117991469372678464.JPG)
