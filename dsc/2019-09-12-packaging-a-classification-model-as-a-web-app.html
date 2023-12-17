@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.523">
+<meta name="generator" content="quarto-1.4.528">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -172,11 +172,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://zebra-vs-elephant.onrender.com"><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-12-13-03-18.png?w=1024" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="https://zebra-vs-elephant.onrender.com"><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-12-13-03-18.png?w=1024" class="img-fluid"></a></p>
 <p>My shiny new web app, available <a href="https://zebra-vs-elephant.onrender.com">here</a></p>
 <p>In my <a href="https://datasciencecastnet.home.blog/2019/09/06/pothole-detection-aka-johno-tries-fastai/">previous post</a> I introduced fastai, and used it to identify images with potholes. Since then, I’ve applied the same basic approach to the <a href="https://zindi.africa/competitions/sbtic-animal-classification">Standard Bank Tech Impact Challenge: Animal classification</a> with pretty decent results. A first, rough model was able to score 97% accuracy thanks to the magic of transfer learning, and by unfreezing the inner layers and re-training with a lower learning rate I was able to up the accuracy to over 99% for this binary classification problem. It still blows my mind how good these networks are at computer vision.</p>
 <p><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-12-11-36-03.png?w=840" class="img-fluid"></p>
@@ -345,27 +341,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
@@ -380,10 +355,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             break;
           }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -392,7 +371,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
       return note.innerHTML;
     }
   }

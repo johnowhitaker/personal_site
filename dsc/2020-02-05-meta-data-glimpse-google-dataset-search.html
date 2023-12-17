@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.523">
+<meta name="generator" content="quarto-1.4.528">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -166,11 +166,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Christmas came in January this year, with Google’s release of ‘<a href="https://datasetsearch.research.google.com/">Dataset Search</a>’. They’ve indexed millions of cool datasets and made it easy to search through them. This post isn’t about any specific dataset, but rather I just wanted to share this epic new resource with you.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://datasetsearch.research.google.com/"><img src="https://datasciencecastnethome.files.wordpress.com/2020/02/screenshot-from-2020-02-05-07-33-59.png?w=922" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="https://datasetsearch.research.google.com/"><img src="https://datasciencecastnethome.files.wordpress.com/2020/02/screenshot-from-2020-02-05-07-33-59.png?w=922" class="img-fluid"></a></p>
 <p>Google’s <a href="https://datasetsearch.research.google.com/">Dataset Search</a></p>
 <p>I saw the news as it came out, which meant I had the pleasure of sharing it with my colleagues - all of whom got <a href="https://xkcd.com/356/">nerd sniped</a> to some degree, likely resulting a much loss of revenue and a ton of fun had by all :) A few minutes after clicking the link I was clustering dolphin vocalizations and smiling to myself. If you’re ever looking for an experiment to write up, have a trawl through the datasets on there and pick one that hasn’t got much ML baggage attached - you’ll have a nice novel project to brag about.</p>
 <p><img src="https://datasciencecastnethome.files.wordpress.com/2020/02/screenshot-from-2020-01-24-13-09-14.png?w=441" class="img-fluid"></p>
@@ -308,27 +304,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
@@ -343,10 +318,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             break;
           }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -355,7 +334,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
       return note.innerHTML;
     }
   }

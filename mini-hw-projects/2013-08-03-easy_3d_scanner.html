@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.523">
+<meta name="generator" content="quarto-1.4.528">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -179,7 +179,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="easy-3d-scanner" class="level1">
 <h1>Easy 3D Scanner</h1>
-<div class="quarto-figure quarto-figure-center">
+<div class="img-fluid quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/3dscan_1.jpg" class="img-fluid figure-img"></p>
 <figcaption>Image</figcaption>
@@ -188,14 +188,14 @@ ul.task-list li input[type="checkbox"] {
 <p>3D printers are pretty cool things, and with more and more people getting access to these lovely little machines, <a href="http://www.makerbot.org">Makerbot</a> decided that people needed an easier way to make 3d models without having to learn a bunch of new software. So they came up with a piece of software called makerscanner and released designs for a 3d scanner. However, their designs required 3D printed parts, a PS2 camera and a specific model of line laser. I didn’t have any of these things, but giving up is for quitters so I set out to see what I could do.</p>
 <p>The first thing to do was to figure out the distance between the laser and the camera. I found it on a forum somewhere - 19.8cm. Fortunately, this was almost exactly the distance from my laptop’s webcam to the edge of the laptop, but if you want to change it you can edit ScanThread.cpp and adjust the line <code>#define DISPARITY_DISTANCE 19.8</code> before re-compiling.</p>
 <p>Now I needed a line laser. This can probably be ordered online, but I am broke and impatient so instead I made my own lense to make a line laser with a nice strong laser pointer:</p>
-<div class="quarto-figure quarto-figure-center">
+<div class="img-fluid quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/3dscan_laser.jpg" class="img-fluid figure-img"></p>
 <figcaption>Image</figcaption>
 </figure>
 </div>
 <p>Considering that this was done with a paperclip and a bit of broken wine glass, it actually works suprisingly well!</p>
-<div class="quarto-figure quarto-figure-center">
+<div class="img-fluid quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/3dscan_laser_line.jpg" class="img-fluid figure-img"></p>
 <figcaption>Image</figcaption>
@@ -203,7 +203,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>The procedure is simple - fire up makerscanner, input the distance to your backdrop and then sweep your laser back and fourth over the object to be scanned. It needs to be in some sort of pivot. For the top image I used a retort stand in our school lab to scan a teachers cup, but I have also taped the laser to an arrow, basically whatever is on hand should work fine. The resulting point cloud can be viewed in meshlab immediately, but will need some adjustment to get a 3D model. If you (like me) live in a country whose locale specifies the comma as a decimal point, the point cloud will not open in anything, but don’t despair! I managed to fix the problem by opening makerscanner with the following command (this will probably be different if you are not on linux): ‘LC_ALL=C makerscanner’.</p>
 <p>Post-processing is relatively painless, but there is a tutorial on the makerscanner site so I won’t go into detail. The idea is to take several scans and then combine them into one model, but depending on what you are scanning you can get a very rough model from just one scan:</p>
-<div class="quarto-figure quarto-figure-center">
+<div class="img-fluid quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/3dscan_blender.jpg" class="img-fluid figure-img"></p>
 <figcaption>Image</figcaption>
@@ -343,27 +343,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
@@ -378,10 +357,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             break;
           }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -390,7 +373,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
       return note.innerHTML;
     }
   }
