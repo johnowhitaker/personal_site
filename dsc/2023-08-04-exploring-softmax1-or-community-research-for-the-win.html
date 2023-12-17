@@ -72,9 +72,11 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../styles.css">
 <meta name="twitter:title" content="johnowhitaker.dev - Exploring Softmax1, or “Community Research For The Win!”">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://datasciencecastnethome.files.wordpress.com/2023/08/image-1.png?w=633">
+<meta name="twitter:image" content="https://johnowhitaker.dev/dsc/images/image-1.png">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="290">
+<meta name="twitter:image-width" content="633">
 </head>
 
 <body class="nav-fixed">
@@ -184,7 +186,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="the-problem">The Problem</h2>
 <p>Neural Networks like transformers are stored as big piles of numbers (parameters) that are applied in different mathematical calculations to process some input. Each parameter is represented inside the computer by some number of 1s and 0s. If you use more of these bits per parameter (say, 32) you can represent the numbers with a lot of precision. But if you use fewer (say, 8) the model takes up less storage space, more parameters can be kept in RAM, and the calculations could potentially be faster. So, using fewer bits per number - quantization - is a hot topic at the moment for anyone concerned with running big models as cheaply as possible.</p>
 <p>The problem arises when you try to go from a high-precision 32-bit neural network to an 8-bit one. With 8 bits you can only represent 2^8 (256) different numbers. If most of your numbers are small, then you can use those 256 numbers to represent, say, a range of values from -1 to 1 and map your 32-bit floating point numbers to the nearest 8-bit approximation without too much loss in accuracy. However, if there is an occasional *outlier* in your set of numbers then you may need to represent a much larger range (say, -100 to 100) which in turn leaves far fewer options for all those small values close to 0, and results in much lower accuracy.</p>
-<p><img src="https://lh5.googleusercontent.com/TDrTlopijg4gvi2tTjPsMNLO23wcTJvhnYfc3WHszjtk5nsUgPQUxWOY5vyJysAomfhvbhgjhXP94sKT9v898vP53WW9ptb_itIpQ92xmkdfL7VHdY7cS1ldLpxh3parcz-lIdNgKL3NoxVXikqLfB00.png" class="img-fluid"></p>
+<p><img src="images/TDrTlopijg4gvi2tTjPsMNLO23wcTJvhnYfc3WHszjtk5nsUgPQUxWOY5vyJysAomfhvbhgjhXP94sKT9v898vP53WW9ptb_itIpQ92xmkdfL7VHdY7cS1ldLpxh3parcz-lIdNgKL3NoxVXikqLfB00.png" class="img-fluid"></p>
 <p>Figure from Time Dettmer’s blog <a href="https://timdettmers.com/2022/08/17/llm-int8-and-emergent-features/">post</a> showing the drop in performance with quantization after outliers emerge</p>
 <p><a href="https://timdettmers.com/2022/08/17/llm-int8-and-emergent-features/">Tim’s blog post</a> explains this extremely well. And in bad news for quantization fans, it turns out that outliers do indeed occur in these models especially as you scale up, leading to major drops in performance after quantization unless you do lots of extra work to address the issue. For example, you can identify groups of parameters that contain most of the outliers and keep these in higher precision (say, 16-bit) while still quantizing the other 99.9% of the network parameters down to 8 bit or less. Still, this is extra work and imposes a performance penalty. If only there were ways to avoid these outliers from occurring…</p>
 </section>
@@ -204,14 +206,14 @@ ul.task-list li input[type="checkbox"] {
 <section id="evans-suggestion" class="level2">
 <h2 class="anchored" data-anchor-id="evans-suggestion">Evan’s suggestion</h2>
 <p>Both of the methods above have potential downsides. Clipping can mess with gradients, and gating requires additional parameters. Evan, with his Physics and Economics background, believes there is a simpler fix: modify the softmax operation itself. Softmax is often used in a ‘choose between options’ scenario, and gets thrown in a lot whenever ML people want a convenient function whose outputs sum to 1 (great when you want probabilities). In the case of attention, this is not necessarily a desirable property!</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2023/08/image-1.png?w=633" class="img-fluid"></p>
+<p><img src="images/image-1.png" class="img-fluid"></p>
 <p>Evan’s proposed ‘Softmax1’ formula</p>
 <p>Evan’s suggestion is to effectively add an extra logit that is always set to 0, which means that if the rest go negative the final outputs can all approach zero without the sum needing to be 1. In most cases this function will behave very close to vanilla softmax, but it gives the network an out for when it doesn’t want to have any high outputs. In practice this is implemented by adding 1 to the denominator in the softmax formula. See <a href="https://www.evanmiller.org/attention-is-off-by-one.html">his post</a> for more details.</p>
 </section>
 <section id="testing-it-out" class="level2">
 <h2 class="anchored" data-anchor-id="testing-it-out">Testing it out</h2>
 <p>Since the change is so small, I cast about for a transformer implementation I could quickly adapt to try this. Karpathy’s <a href="https://github.com/karpathy/nanoGPT">nanoGPT</a> is perfect for this kind of thing. Written to facilitate easy learning, a single model.py file to mess with, it was the perfect starting point for experimentation. It turns out I was not the only one to think this, and soon I was in touch with Thomas Capelle (who was using the llama2.c repository that tweaks the nanoGPT code to implement the more recent LlaMa architecture) and with ‘HypnoPump17’ on Discord who trained two gpt2-small sized models using nanoGPT which were larger than the mini ones I’d been messing with and formed a good starting point for trying to measure the effects of interest.</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2023/08/image-2.png?w=1024" class="img-fluid"></p>
+<p><img src="images/image-2.png" class="img-fluid"></p>
 <p>Visualizing the activations from an attention layer (<a href="https://colab.research.google.com/drive/1DExSfbVVxP34RfSlSiNt25eexpmq4Vrc?usp=sharing">notebook</a>). You can see that some dimensions (the 768 dims are spread along the x axis) have outliers present.</p>
 <p>My first experiments were on very small models (15M parameters). It’s usually good to start small so you can iterate quickly, but in this case this backfired and my results were inconclusive. As noted in Tim’s blog and subsequent work, outliers only start to emerge above 100M parameters and reach some sort of critical threshold only in even larger models (5b+). Luckily, swapping in the 125M parameter models from HypnoPump was and easy change and my quick exploratory <a href="https://colab.research.google.com/drive/1DExSfbVVxP34RfSlSiNt25eexpmq4Vrc?usp=sharing">notebook</a> showed a marked improvement in inf. norm and kurtosis for the modified softmax, in line with what the Qualcomm authors had observed with their fixes.</p>
 </section>

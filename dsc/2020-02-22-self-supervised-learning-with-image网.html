@@ -178,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="intro" class="level2">
 <h2 class="anchored" data-anchor-id="intro">Intro</h2>
 <p>Until fairly recently, deep learning models needed a LOT of data to get decent performance. Then came an innovation called transfer learning, which we’ve covered in some previous posts. We train a network once on a huge dataset (such as ImageNet, or the entire text of Wikipedia), and it learns all kinds of useful features. We can then retrain or ‘fine-tune’ this pretrained model on a new task (say, elephant vs zebra), and get incredible accuracy with fairly small training sets. But what do we do when there isn’t a pretrained model available?</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2020/02/ssl.png?w=1024" class="img-fluid"></p>
+<p><img src="images/ssl.png" class="img-fluid"></p>
 <p>Pretext tasks (left) vs downstream task (right). I think I need to develop this style of illustration - how else will readers know that this blog is just a random dude writing on weekends? :)</p>
 <p>Enter Self-Supervised Learning (SSL). The idea here is that in some domains, there may not be vast amounts of labeled data, but there may be an abundance of unlabeled data. Can we take advantage of this by using it somehow to train a model that, as with transfer learning, can then be re-trained for a new task on a small dataset? It turns out the answer is yes - and it’s shaking things up in a big way. <a href="https://www.fast.ai/2020/01/13/self_supervised/">This fastai blog post</a> gives a nice breakdown of SSL, and shows some examples of ‘pretext tasks’ - tasks we can use to train a network on unlabeled data. In this post, we’ll try it for ourselves!</p>
 <p>Follow along in <a href="https://colab.research.google.com/drive/1nyFixKKTC5LOAyFWm-RgpVdIMkY9f1Dc">the companion notebook</a>.</p>
@@ -199,14 +199,14 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>For fun, I came up with a variant of the image in-painting task that combines it with colorization. Several sections of the input image are blurred and turned greyscale. The network tries to replace these regions with sensible values, with the goal being to have the output match the original image as closely as possible. One reason I like the idea of this as a pretext task is that we humans get something similar. Each time we move our eyes, things that were in our blurry, greyscale peripheral vision are brought into sharp focus in our central vision - another input for the part of our brain that’s been pretending they were full HD color the whole time :)</p>
 <p>Here are some examples of the grey-blurred images and the desired outputs:</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2020/02/screenshot-from-2020-02-22-16-29-29.png?w=746" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2020-02-22-16-29-29.png" class="img-fluid"></p>
 <p>Input/Output pairs for our pretext task, using the RandomGreyBlur transform</p>
 <p>We train our network on this task for 15 epochs, and then save its parameters for later use in the downstream task. See the notebook for implementation details.</p>
 </section>
 <section id="downstream-task-image-classification" class="level2">
 <h2 class="anchored" data-anchor-id="downstream-task-image-classification">Downstream Task: Image Classification</h2>
 <p>Now comes the fun part: seeing if our pretext task is of any use! We’ll follow the structure of the <a href="https://github.com/fastai/imagenette#image%E7%BD%91">Image网 leaderboard here</a>, looking at models for different image sizes trained with 5, 20, 80 or 200 epochs. The theory here is that we’d hope that out pretext task has given us a decent network, so we should get some results after 5 epochs, and keep getting better and better results with more training.</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2020/02/screenshot-from-2020-02-22-21-35-51.png?w=814" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2020-02-22-21-35-51.png" class="img-fluid"></p>
 <p>Results from early testing</p>
 <p>The notebook goes through the process, training models on the labeled data provided with Image网 and scoring them on the validation set. This step can be quite tedious, but the 5-epoch models are enough to show that we’ve made an improvement on the baseline, which is pretty exciting. For training runs 20 epochs and greater, we still beat a baseline with no pre-training, but fall behind the current leaderboard entry based on simple inpainting. There is much tweaking to be done, and the runs take ~1 minute per epoch, so I’ll update this when I have more results.</p>
 </section>

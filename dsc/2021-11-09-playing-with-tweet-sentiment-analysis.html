@@ -173,12 +173,12 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2021/11/screenshot-from-2021-11-09-08-30-28.png?w=1024" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2021-11-09-08-30-28.png" class="img-fluid"></p>
 <p>The average sentiment of the most recent 200 tweets from each country’s capital city.</p>
 <p>A mentee of mine has been working on web scraping for NLP projects and her most recent target was Twitter. She’s working on something cool (<a href="https://twitter.com/johnowhitaker">stay tuned</a>) but in the meantime, I thought I’d share a few of my own experiments. You can follow along and see full code examples in <a href="https://colab.research.google.com/drive/14yUDV7vYFNe3pINAFL-Y_rjfJvXxZH3_?usp=sharing">this colab notebook</a>.</p>
 <section id="scraping-tweets-with-twint" class="level2">
 <h2 class="anchored" data-anchor-id="scraping-tweets-with-twint">Scraping Tweets with Twint</h2>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2021/11/screenshot-from-2021-11-09-04-48-00.png?w=999" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2021-11-09-04-48-00.png" class="img-fluid"></p>
 <p>Scraping tweets from a specific user</p>
 <p>I used <a href="https://github.com/twintproject/twint">twint</a> - a scraper written in Python which gives a lot of functionality while avoiding the need for API keys, authentication etc. You can target specific users, locations, topics and dates (see <a href="https://github.com/twintproject/twint/wiki/">their wiki</a> for details) which makes this a powerful tool for finding and downloading tweets. For my tests today, I chose a few well-known Twitter personalities from my feed. I also scraped tweets from capital cities around the world, using the ‘Lang’ configuration option to focus on English tweets to make comparison easier (yes, I know, this is not ideal).</p>
 </section>
@@ -186,10 +186,10 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="sentiment-score-with-roberta">Sentiment Score with roBERTa</h2>
 <p>NLTK’s SIA can give a quick and easy sentiment score for a piece of text, but many tweets use more obscure language and styles that aren’t well-captured by the default lexicon or the approach as a whole. Luckily, tweet sentiment analysis is a popular task and there are pre-trained deep learning models available that do a pretty good job out-of-the-box. I used a roBERTa model fine-tuned on the <a href="https://arxiv.org/pdf/2010.12421.pdf">TweetEval task</a>. The <a href="https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment">model card on huggingface</a> had all the code needed to classify a piece of text, making it very simple to get started. I’m so glad this trend of making models accessible with key info is catching on!</p>
 <ul>
-<li><p><img src="https://datasciencecastnethome.files.wordpress.com/2021/11/bjornlomborg.png?w=432" class="img-fluid"></p></li>
-<li><p><img src="https://datasciencecastnethome.files.wordpress.com/2021/11/johnowhitaker.png?w=432" class="img-fluid"></p></li>
-<li><p><img src="https://datasciencecastnethome.files.wordpress.com/2021/11/elonmusk.png?w=432" class="img-fluid"></p></li>
-<li><p><img src="https://datasciencecastnethome.files.wordpress.com/2021/11/billgates.png?w=432" class="img-fluid"></p></li>
+<li><p><img src="images/bjornlomborg.png" class="img-fluid"></p></li>
+<li><p><img src="images/johnowhitaker.png" class="img-fluid"></p></li>
+<li><p><img src="images/elonmusk.png" class="img-fluid"></p></li>
+<li><p><img src="images/billgates.png" class="img-fluid"></p></li>
 </ul>
 <p>The model outputs three scores corresponding to the labels ‘negative’, ‘neutral’ and ‘positive’. We can combine the positive and negative scores to get a combined sentiment score running from -1 (very negative) to +1 (very positive). From this, we can get stats like ‘average sentiment’, but I wanted a better way to see at a glance what a user’s tweets look like. Hexbin plots to the rescue :) These show the distribution of tweets in both sentiment and tweet length. You can see that Musk tends to tweet shorter, more neutral tweets while Gates favours mid-length positive ones and Lomborg tends heavily towards grumpy full-length rants 😂</p>
 </section>

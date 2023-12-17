@@ -187,33 +187,33 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="the-data" class="level2">
 <h2 class="anchored" data-anchor-id="the-data">The data</h2>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2019/10/screenshot-from-2019-10-19-14-26-48.png?w=1024" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2019-10-19-14-26-48.png" class="img-fluid"></p>
 <p>The different road segments</p>
 <p>The roads along which events have been recorded have been divined into segments, each roughly 500m long (lengths vary). The events themselves each have a latitude and longitude associated with them, and have been tagged with the segment id of the nearest road segment. Due to map inaccuracies, the events don’t always line up exactly with the road network.</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2019/10/screenshot-from-2019-10-19-14-26-21.png?w=1024" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2019-10-19-14-26-21.png" class="img-fluid"></p>
 <p>Events (blue) not quite aligned with road segments.</p>
 <p>The main input file is ‘train.csv’, which contains the individual events. The submission requires grouping these into segments and making hourly predictions, so some re-shaping is required (see <a href="https://colab.research.google.com/drive/1HjJhghj2b5JJnOFNTcojLfAicDf5QWWK">the notebook</a>).</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2019/10/screenshot-from-2019-10-19-13-26-27.png?w=1024" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2019-10-19-13-26-27.png" class="img-fluid"></p>
 <p>train.csv - the base on which we’ll build</p>
 <p>Extra data includes a shapefile of the road segments themselves. This shows the segments but also includes extra info like the umber of lanes, road name etc. There is also Uber Movenet data with travel times between different zones withing the city. In part 3 we’ll look more at this.</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2019/10/screenshot-from-2019-10-19-14-33-44.png?w=1024" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2019-10-19-14-33-44.png" class="img-fluid"></p>
 <p>Uber movement zones (red) with those along the road segments selected (green).</p>
 <p>Finally, there is the data from SANRAL and the option to add weather data. Initially, the SANRAL data was only provided for the training period (since the worry was that it would give too much away). It has since been updated to include all dates covered - making it much more useful.</p>
 </section>
 <section id="adding-some-features" class="level2">
 <h2 class="anchored" data-anchor-id="adding-some-features">Adding some features</h2>
 <p>We’re looking at each segment, for each hour. What kinds of features can we add that could help us create a model? The other data sources contain some useful info (as we’ll see in the following posts) but even with just train.csv we can start building up some info to work with. For example, we can derive day of the week, time, month etc from the datetime - all of which likely influence the incident rate.</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2019/10/screenshot-from-2019-10-19-13-46-56.png?w=663" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2019-10-19-13-46-56.png" class="img-fluid"></p>
 <p>Adding some date-related variables</p>
 <p>We can also get the rough locations of the segments by looking at the locations of the incidents within them:</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2019/10/screenshot-from-2019-10-19-13-47-08.png?w=852" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2019-10-19-13-47-08.png" class="img-fluid"></p>
 <p>Adding location columns</p>
 <p>There’s plenty more, but for now let’s fit a model and make some predictions.</p>
 </section>
 <section id="modelling" class="level2">
 <h2 class="anchored" data-anchor-id="modelling">Modelling</h2>
 <p>I went with CatBoost as a starting model. Good performance, reasonable handling of imbalanced data and it saves us having to fiddle with categorical columns. We specify the input and output columns, create a CatBoostClassifier and throw our data at it:</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2019/10/screenshot-from-2019-10-19-13-50-03.png?w=673" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2019-10-19-13-50-03.png" class="img-fluid"></p>
 <p>First model</p>
 <p>In the notebook, you’ll see me scoring the model with log-loss to see if it’s better than random predictions or predicting the mean. Even though it isn’t the metric Zindi is using, it’ll help us pick the best out of several models. Then I try F1 score, and we see our first little hitch: the model scores 0 (bad) on the test set. What’s up? It’s predicting all 0s, as any good model would.</p>
 </section>
@@ -222,13 +222,13 @@ ul.task-list li input[type="checkbox"] {
 <p>Looking at the model’s predicted probabilities, we see the issue - values range from ~0 to ~0.2. If we were gunning for classification accuracy, we’d go with 0 if the probability is this low. BUT, here we’re not going for absolute classifications, we’re aiming for predictions of which segments are most likely. A good article on the difference <a href="https://www.fharrell.com/post/classification/">here</a>. So how do we fix this?</p>
 <p>One approach is by picking a threshold and predicting 1s where it is exceeded. In the notebook, I show that predicting 1s if the probability is &gt;0.05 gets a better f1 score. Of course, there are experimental or theoretical ways to get this threshold correct (see <a href="https://arxiv.org/abs/1402.1892">this paper</a> for eg) but trying a few different values and guessing was my lazy approach :)</p>
 <p>Another option is to mess about with the class_weights parameter. I followed the advice in the docs, and got roughly the same score as I had with the threshold method.</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2019/10/screenshot-from-2019-10-19-14-03-38.png?w=423" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2019-10-19-14-03-38.png" class="img-fluid"></p>
 <p>Tip from the CatBoost documentation</p>
 </section>
 <section id="making-a-submission" class="level2">
 <h2 class="anchored" data-anchor-id="making-a-submission">Making a submission</h2>
 <p>So, we have a model that predicts probabilities, and a threshold above which we’ll predict a one. All that’s left is to transform our sample submission dataframe the same way we did with train - adding time and location columns. Then we feed it through our model, save and submit!</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2019/10/screenshot-from-2019-10-19-14-05-49.png?w=994" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2019-10-19-14-05-49.png" class="img-fluid"></p>
 <p>Making predictions</p>
 <p>This model scores around 0.036 on the leader-board (10’th place since the contest is still new). At this stage, you could go into Zindi competition mode and start tweaking every possible model parameter to up your score slightly, but the real value will be in getting more than just some date-related columns to work with. We’’l get to that - for now, take a look <a href="https://colab.research.google.com/drive/1HjJhghj2b5JJnOFNTcojLfAicDf5QWWK">my starting notebook</a>, play around, get on that leaderboard and stay tuned!</p>
 

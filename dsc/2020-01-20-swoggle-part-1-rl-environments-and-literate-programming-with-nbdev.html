@@ -186,7 +186,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="what-on-earth-is-swoggle" class="level2">
 <h2 class="anchored" data-anchor-id="what-on-earth-is-swoggle">What on Earth is Swoggle?</h2>
 <p>Christmas, 2019. Our wedding has brought a higher-than-normal influx of relatives to Cape Town, and when this extended family gets together, there are some things that are inevitable. One of these, it turns out, is the invention of new games to keep the cousins entertained. And thus, Swoggle was born :)</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2020/01/screenshot-from-2020-01-20-05-45-04.png?w=546" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2020-01-20-05-45-04.png" class="img-fluid"></p>
 <p>A Swoggle game in progress - 2 players are left.</p>
 <p>The game is played on an 8x8 board. There are usually 4 players, each with a base in one of the corners. Players can move (a dice determines how far), “spoggle” other players (capturing them and placing them in “swoggle spa” - none of this violent termnology) or ‘swoggle’ a base (gently retiring the bases owner from the game - no killing here). To make things interesting, there are four ‘drones’ that can be used as shields or to take an occupied base. Moving with a drone halves the distance you can travel, to make up for the advantages. A player with a drone can’t be spoggled by another player unless they too have a drone, or they ‘powerjump’ from their base (a half-distance move) onto the droned player. Maybe I’ll make a video one day and explain the rules properly :)</p>
 <p>So, that’s the game. Each round is fairly quick, so we usually play multiple rounds, awarding points for different achievements. Spoggling (capturing) a player: 1 point. Swoggling (taking out a base): 3 points. Last one standing: 5 points. The dice rolls add lots of randomness, but there is still plenty of room for tactics, sibling rivalry and comedic mistakes.</p>
@@ -194,10 +194,10 @@ ul.task-list li input[type="checkbox"] {
 <section id="game-representation" class="level2">
 <h2 class="anchored" data-anchor-id="game-representation">Game Representation</h2>
 <p>If we’re going to teach a computer to play this, we need a way to represent the game state, check if moves are valid, keep track of who’s in the swoggle spa and which bases are still standing, etc. I settled on something like this:</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2020/01/screenshot-from-2020-01-20-05-57-13.png?w=332" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2020-01-20-05-57-13.png" class="img-fluid"></p>
 <p>Game state representation</p>
 <p>There is a <code>Cell</code> in each x, y location, with attributes for player, drone and base. These cells are grouped in a <code>Board</code>, which represents the game grid and tracks the spa. The <code>Board</code> class also contains some useful methods like <code>is_valid_move()</code> and ways to move a particular player around. At the highest level, I have a <code>Swoggle</code> class that wraps a board, handles setting up the initial layout, provides a few extra convenience functions and can be used to run a game manually or with some combination of agents (which we’ll cover in the next section). Since I’m working in NBDev, I have some docs with almost no effort, so check out <a href="https://johnowhitaker.github.io/swoggle/">https://johnowhitaker.github.io/swoggle/</a> for details on this implementation. Here’s what the documentation system turned my notebooks into:</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2020/01/screenshot-from-2020-01-20-05-34-12-1.png?w=1024" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2020-01-20-05-34-12-1.png" class="img-fluid"></p>
 <p>Part of the generated documentation</p>
 <p>The ability to write code and comments in a notebook, and have that turn into a swanky docs page, is borderline magical. Mine is a little messy since this is a quick hobby project. To see what this looks like in a real project, check out the <a href="https://dev.fast.ai/">docs for NBDev itself</a> or <a href="https://dev.fast.ai/">Fastai v2</a>.</p>
 </section>

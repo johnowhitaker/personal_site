@@ -178,22 +178,22 @@ ul.task-list li input[type="checkbox"] {
 <section id="finding-the-calls" class="level2">
 <h2 class="anchored" data-anchor-id="finding-the-calls">Finding the Calls</h2>
 <p>In many recordings, the bird in question is not calling continuously. The final task involves predicting which birds are calling at 5-second intervals, so that is my chosen input length. If we just sample a random 5-second clip from a full recording, we might end up with a clip in which the bird is not calling - not ideal! To get around this, we compute a sort of signal-to-noise measure (in this case, <a href="https://github.com/BirdVox/PCEN-SNR">PCEN-based SNR as used by the BirdVox project</a>). With this, we can choose ‘peaks’ where the calls are most prominent.</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2021/04/screenshot-from-2021-04-19-10-26-53.png?w=719" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2021-04-19-10-26-53.png" class="img-fluid"></p>
 <p>Identifying ‘peaks’ with a high PCEN-based SNR</p>
 <p>The code for this is in <a href="https://www.kaggle.com/johnowhitaker/peak-identification">my first notebook</a>. For each train file, we store the location of 20 peaks in a csv file which we will than use during training to select the appropriate clips.</p>
 </section>
 <section id="preparing-the-data-for-modelling" class="level2">
 <h2 class="anchored" data-anchor-id="preparing-the-data-for-modelling">Preparing the data for modelling</h2>
 <p>We could try feeding the raw audio data into a model, but 5 seconds of audio represents quite a lot of data. Some models can handle this, but in most cases a better approach is to find a more compressed representation of the sound. In this case I chose a fairly standard approach: the mel spectrogram. A spectrogram looks like a 2D image, with time on the X axis, frequency on the y axis and intensity represented by colour.</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2021/04/screenshot-from-2021-04-19-10-45-37.png?w=382" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2021-04-19-10-45-37.png" class="img-fluid"></p>
 <p>An example spectrogram</p>
 <p>The model training notebook shows how we set up the dataloaders to read in a specified clip and turn it into a spectrogram that can be fed to the model. This is quite CPU-heavy, which does slow the training down. But I still chose this approach over pre-computing the spectrograms once at the start because it allows for data augmentation such as shifting the window, adding noise etc on the raw audio before it gets converted to a spectrogram.</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2021/04/screenshot-from-2021-04-19-13-47-42.png?w=1024" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2021-04-19-13-47-42.png" class="img-fluid"></p>
 <p>You can see all the code in the <a href="https://www.kaggle.com/johnowhitaker/baseline-model">baseline model notebook</a>. Taking inspiration from the <a href="https://docs.fast.ai/tutorial.pets.html">pets tutorial</a>, we create our own custom Transform that handles ‘encoding’ a given clip/label pair, which in turn is used to create our DataLoaders. By adding a ‘decodes’ method we also enable functionality such as ‘show_batch()’.</p>
 </section>
 <section id="training" class="level2">
 <h2 class="anchored" data-anchor-id="training">Training</h2>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2021/04/loss_plot_baseline_3e.png?w=432" class="img-fluid"></p>
+<p><img src="images/loss_plot_baseline_3e.png" class="img-fluid"></p>
 <p>Loss plot over 3 epochs of training</p>
 <p>I’m not doing anything fancy for training - our goal here is a simple model to use as a baseline for future tests. A few things I did learn however:</p>
 <ul>

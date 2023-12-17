@@ -172,15 +172,15 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><a href="https://zebra-vs-elephant.onrender.com"><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-12-13-03-18.png?w=1024" class="img-fluid"></a></p>
+<p><a href="https://zebra-vs-elephant.onrender.com"><img src="images/screenshot-from-2019-09-12-13-03-18.png" class="img-fluid"></a></p>
 <p>My shiny new web app, available <a href="https://zebra-vs-elephant.onrender.com">here</a></p>
 <p>In my <a href="https://datasciencecastnet.home.blog/2019/09/06/pothole-detection-aka-johno-tries-fastai/">previous post</a> I introduced fastai, and used it to identify images with potholes. Since then, I’ve applied the same basic approach to the <a href="https://zindi.africa/competitions/sbtic-animal-classification">Standard Bank Tech Impact Challenge: Animal classification</a> with pretty decent results. A first, rough model was able to score 97% accuracy thanks to the magic of transfer learning, and by unfreezing the inner layers and re-training with a lower learning rate I was able to up the accuracy to over 99% for this binary classification problem. It still blows my mind how good these networks are at computer vision.</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-12-11-36-03.png?w=840" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2019-09-12-11-36-03.png" class="img-fluid"></p>
 <p>Zebra or Elephant?</p>
 <p>This was exciting and fun. But I wanted to share the result, and my peer group aren’t all that familiar with log-loss scores. How could I get the point across and communicate what this means? Time to deploy this model as a web application :)</p>
 <section id="exporting-the-model-for-later-use" class="level2">
 <h2 class="anchored" data-anchor-id="exporting-the-model-for-later-use">Exporting the model for later use</h2>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-12-16-32-31.png?w=399" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2019-09-12-16-32-31.png" class="img-fluid"></p>
 <p>Final training step, saving weights and exporting to a file in my Google Drive</p>
 <p>I knew it was possible to save some of the model parameters with model.save(‘name’), but wasn’t sure how easy it would be to get a complete model definition. Turns out, enough people want this that you can simply call model.export(‘model_name’). So I set my model training again (I hadn’t saved last time) and started researching my next step while Google did my computing for me.</p>
 </section>
@@ -193,19 +193,19 @@ ul.task-list li input[type="checkbox"] {
 Then hit deploy! You can read about the full process in the <a href="https://course.fast.ai/deployment_render.html">aforementioned tutorial</a>. Make sure your fastai is a recent version, and that you export the model (not just saving weights).</p>
 <p>The resultant app is available at <a href="https://zebra-vs-elephant.onrender.com">zebra-vs-elephant.onrender.com</a>. I used an earlier model with 97% accuracy (since I’m enjoying that top spot on the leaderboard ;)) but it’s still surprisingly accurate. It even get’s cartoons right!</p>
 <ul>
-<li><p><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-12-12-08-38.png?w=496" class="img-fluid"></p></li>
-<li><p><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-12-12-08-57.png?w=403" class="img-fluid"></p></li>
-<li><p><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-12-13-00-29.png?w=352" class="img-fluid"></p></li>
-<li><p><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-12-13-00-43.png?w=414" class="img-fluid"></p></li>
-<li><p><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/classify2.jpeg?w=270" class="img-fluid"></p></li>
-<li><p><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/classify3.jpeg?w=281" class="img-fluid"></p></li>
+<li><p><img src="images/screenshot-from-2019-09-12-12-08-38.png" class="img-fluid"></p></li>
+<li><p><img src="images/screenshot-from-2019-09-12-12-08-57.png" class="img-fluid"></p></li>
+<li><p><img src="images/screenshot-from-2019-09-12-13-00-29.png" class="img-fluid"></p></li>
+<li><p><img src="images/screenshot-from-2019-09-12-13-00-43.png" class="img-fluid"></p></li>
+<li><p><img src="images/classify2.jpeg" class="img-fluid"></p></li>
+<li><p><img src="images/classify3.jpeg" class="img-fluid"></p></li>
 </ul>
 <p>Please try it out and let me know what you think. It makes a best guess - see what it says for non-animals, or flatter your friends by classifying them as pachyderms.</p>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>There seems to be a theme to my last few posts: “Things that sound hard are now easy!”. It’s an amazing world we live in. You can make something like this! It took 20 minutes, with me doing setup while the model trained! Comment here with links to your sandwich-or-not website, your am-I-awake app, your ‘ask-a-computer-if-this-dolphin-looks-happy’ business idea. Who knows, one of us might even make something useful :)</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-12-16-56-03.png?w=386" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2019-09-12-16-56-03.png" class="img-fluid"></p>
 <p>Yes, that is apparently an elephant…</p>
 <p>UPDATE: I’ve suspended the service for now, but can re-start it if you’d like to try it. Reach out if that’s the case :)</p>
 

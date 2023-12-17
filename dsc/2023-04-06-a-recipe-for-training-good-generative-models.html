@@ -181,24 +181,24 @@ ul.task-list li input[type="checkbox"] {
 <p>Generative models are all the rage at the moment, and quality seems to be skyrocketing across the board. In this post, I share what I’m realizing is *the* key recipe that is powering the best models at the moment.</p>
 <section id="pre-train-on-lots-of-data" class="level2">
 <h2 class="anchored" data-anchor-id="pre-train-on-lots-of-data">1) Pre-train on LOTS of data</h2>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2023/04/pixar-render-of-a-robot-reading-books-cinematic-photoreal-golden-hour-library-beautiful-.png?w=768" class="img-fluid"></p>
+<p><img src="images/pixar-render-of-a-robot-reading-books-cinematic-photoreal-golden-hour-library-beautiful-.png" class="img-fluid"></p>
 <p>A robot working hard to read every book possible</p>
 <p>This makes sense - more data = better, right? And so we see language models training on every scrap of text they can find - books, video transcripts, the entire internet. In the text-to-image domain, datasets like LAION contain <strong>billions</strong> of images, scraped from the web. This stage is necessary if you want your model to have an ‘understanding’ of as many topics as possible.</p>
 </section>
 <section id="fine-tune-with-high-quality-data" class="level2">
 <h2 class="anchored" data-anchor-id="fine-tune-with-high-quality-data">2) Fine-Tune with HIGH-QUALITY data</h2>
 <p>After (1), your model can hopefully produce anything. The downside is that it can produce, well, anything! Including badly spelled Reddit rants (for text models), or low-quality PowerPoint screenshots (for image models). For text-to-image models, another aspect of ‘high-quality’ data is image-caption alignment. If captions don’t match images very well, the model will learn to rely less on the prompt when generating. The fix is to continue training on ‘better’ data, to bias the model toward generating the good stuff. You’re not necessarily teaching it much new in this stage - just pushing it towards a subset of the possibilities it could already generate.</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2023/04/screenshot-from-2023-04-06-09-16-42.png?w=851" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2023-04-06-09-16-42.png" class="img-fluid"></p>
 <p>SD 1.5 trained on ~1B samples - “A professional photo of an astronaut riding a horse on the moon”</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2023/04/screenshot-from-2023-04-06-09-15-38.png?w=851" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2023-04-06-09-15-38.png" class="img-fluid"></p>
 <p>SD1.5 fine-tuned on ~1M ‘good’ samples</p>
 <p>For a model like ChatGPT, this step involves manually finding or creating high-quality examples of chat dialogs. For something like Midjourney, it presumably involves collecting a dataset of stunning-looking images and making sure they have good captions (either by filtering out existing captions or by using auto-generated captions). Next time you read about a cool new generative model, keep an eye out for mention of this ‘high-quality fine tune’ step. For example, in <a href="https://habr.com/ru/companies/sberbank/articles/725282/">this post on the new Kandinsky 2.1 text-to-image model</a>, they note that after training on a large dataset “<em>Further, at the stage of fine-tuning, a dataset of 2M very high-quality high-resolution images with descriptions … was used separately collected from open sources.”</em></p>
 </section>
 <section id="incorporate-human-feedback" class="level2">
 <h2 class="anchored" data-anchor-id="incorporate-human-feedback">3) Incorporate HUMAN FEEDBACK</h2>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2023/04/screenshot-from-2023-04-06-09-30-56.png?w=779" class="img-fluid"></p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2023/04/screenshot-from-2023-04-06-09-26-48.png?w=408" class="img-fluid"></p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2023/04/screenshot-from-2023-04-06-09-25-39.png?w=418" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2023-04-06-09-30-56.png" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2023-04-06-09-26-48.png" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2023-04-06-09-25-39.png" class="img-fluid"></p>
 <p>Most apps have a way for users to provide feedback on generations or to explicitly rank images/texts</p>
 <p>(1), or maybe (1) + (2), will get you great results on automatic evaluations and benchmarks, and may be enough for getting a publication with a SOTA result. However, successful products require pleasing users, so making sure the model creates things that users like is a big deal. Midjourney is a great example - they’ve been collecting user feedback since day 1, and presumably using said feedback to improve their models. Apart from explicit ratings, there are also other ways to get user feedback - for example, when a user selects one of four possible images to download or upscale they provide a signal that can be used to estimate their preference:</p>
 <p>https://twitter.com/johnowhitaker/status/1640608207730081792?s=20</p>
@@ -214,7 +214,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="ps-whos-feedback" class="level2">
 <h2 class="anchored" data-anchor-id="ps-whos-feedback">PS: Who’s Feedback?</h2>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2023/04/grid_0.png?w=1024" class="img-fluid"></p>
+<p><img src="images/grid_0.png" class="img-fluid"></p>
 <p>Images generated with the generic prompt “lol” in Midjourney</p>
 <p>Something worth mentioning (thanks <span class="citation" data-cites="LuciaCKun">@LuciaCKun</span> for highlighting this) is that using human feedback has some ethical considerations. It could be that a small set of people (employees of a company, or early testers) get to spend time telling a model “This is good, that is bad”, and their biases end up defining the behavior of the model for everyone. You see this with images - anything trained on early user preferences for text-to-image models is likely to skew toward fantasy women and art-station aesthetics. Finding ways to align with different people’s values rather than locking in a specific behavior is an active area of research, in which there is plenty of work left to do.</p>
 

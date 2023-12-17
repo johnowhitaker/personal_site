@@ -177,14 +177,14 @@ ul.task-list li input[type="checkbox"] {
 <p>In <a href="https://datasciencecastnet.home.blog/2020/01/20/swoggle-part-1-rl-environments-and-literate-programming-with-nbdev/">part 1</a>, we laid the groundwork for our Reinforcement Learning experiments by creating a simple game (Swoggle) that we’d be trying to teach out AI to play. We also created some simple Agents that followed hard-coded rules for play, to give our AI some opponents. In this post, we’ll get to the hard part - using RL to learn to play this game.</p>
 <section id="the-task" class="level2">
 <h2 class="anchored" data-anchor-id="the-task">The Task</h2>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2020/01/rl.png?w=1024" class="img-fluid"></p>
+<p><img src="images/rl.png" class="img-fluid"></p>
 <p>Reinforcement Learning (Artist’s Depiction)</p>
 <p>We want to create some sort of Agent capable of looking at the state of the game and deciding on the best move. It should be able to learn the rules and how to win by playing many games. Concretely, our agent should take in an array encoding the dice roll, the positions of the players and bases etc, and it should output one of 192 possible moves (64 squares, with two special kinds of move to give 64*3 possible actions). This agent shouldn’t just be a passive actor - it must also be able to learn from past games.</p>
 </section>
 <section id="policy-networks" class="level2">
 <h2 class="anchored" data-anchor-id="policy-networks">Policy Networks</h2>
 <p>In RL, a ‘policy’ is a map from game state to action. So when we talk about ‘Policy Learners’, ‘Policy Gradients’ or ‘Policy Networks’, we’re referring to something that is able to learn a good policy over time.</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2020/01/screenshot-from-2020-01-24-08-44-08.png?w=322" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2020-01-24-08-44-08.png" class="img-fluid"></p>
 <p>The network we’ll be training</p>
 <p>So how would we ‘learn’ a policy? If we had a vast archive of past games, we could treat this as a supervised learning task - feed in the game state, chosen action and eventual reward for each action in the game history to a neural network or other learning algorithm and hope that it learns what ‘good’ actions look like. Sadly, we don’t have such an archive! So, we take the following approach:</p>
 <ul>
@@ -215,20 +215,20 @@ ul.task-list li input[type="checkbox"] {
 <li>If it’s valid, make the move. If not, stay put (not always a valid action but I gave the agent control of the board!)</li>
 </ol>
 <p>That’s it - that’s the ‘CheatyAgent’ algorithm :) Fortunately, I’m not the first to have flaws in my game engine exploited by RL agents - check out the clip from OpenAI above!</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2020/01/screenshot-from-2020-01-24-07-33-56.png?w=644" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2020-01-24-07-33-56.png" class="img-fluid"></p>
 <p>Another bug: See where I wrote <code>sr.dice()</code> instead of <code>dice_roll</code>? This let the network re-roll if it proposed an invalid move, which could lead to artificially high performance.</p>
 <p>After a few more sneaky attempts by the AI to get around my rules, I finally got a setup that forced the AI to play by the rules, make valid moves and generally behave like a good and proper Swoggler should.</p>
 </section>
 <section id="winning-for-real" class="level2">
 <h2 class="anchored" data-anchor-id="winning-for-real">Winning for real</h2>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2020/01/screenshot-from-2020-01-23-17-57-47.png?w=626" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2020-01-23-17-57-47.png" class="img-fluid"></p>
 <p>Learning to win!!!</p>
 <p>With the bugs ironed out, I could start tweaking rewards and training the network! It took a few goes, but I was able to find a setup that let the agent learn to play in a remarkably short time. After a few thousand games, we end up with a network that can win against three BasicAgents about 40-45% of the time! I used the trained network to pick moves in 4000 games, and it won 1856 of them, confirming it’s superiority to the BasicAgents, who hung their heads in shame.</p>
 </section>
 <section id="so-much-more-to-try" class="level2">
 <h2 class="anchored" data-anchor-id="so-much-more-to-try">So much more to try</h2>
 <p>I’ve still got plenty to play around with. The network still tries to propose lots of invalid moves. Tweaking the rewards can change this (note the orange curve below that tracks ratio of valid:invalid moves) but at the cost of diverting the network from the true goal: winning games!</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2020/01/screenshot-from-2020-01-20-08-45-03.png?w=567" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2020-01-20-08-45-03.png" class="img-fluid"></p>
 <p>Learning to make valid moves, but at the cost of winning.</p>
 <p>That said, I’m happy enough with the current state of things to share this blog. <a href="https://colab.research.google.com/drive/1dQLLTet5hrpQa22lk5z3fPx7SOrVZt-c">Give it a go yourself!</a> I’ll probably keep playing with this, but unless I find something super interesting, there probably won’t be a part 3 in this series. Thanks for coming along on my RL journey :)</p>
 

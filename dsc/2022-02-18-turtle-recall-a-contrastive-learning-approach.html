@@ -174,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><img src="https://images.pexels.com/photos/1618606/pexels-photo-1618606.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="img-fluid"></p>
+<p><img src="images/pexels-photo-1618606.jpeg" class="img-fluid"></p>
 <p>NB: A scoring glitch caused this approach to look very good on the leaderboard, but local validation and a fix from Zindi later confirmed that it isn’t as magical as it first seemed. Still interesting from an educational point of view but if you’re looking to compete I’d suggest investigating alternate strategies.</p>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
@@ -187,12 +187,12 @@ ul.task-list li input[type="checkbox"] {
 <section id="contrastive-learning" class="level2">
 <h2 class="anchored" data-anchor-id="contrastive-learning">Contrastive Learning</h2>
 <p>The goal of contrastive learning is to learn these useful representations in an unsupervised or loosely-supervised fashion (aka self-supervised learning). A typical approach is to take some images, create augmented versions of those images and then embed both the originals and the augmented versions with some encoder network. The objective is to maximise the similarity between an image and its augmented version while minimising the similarity between that image and all the rest of the images in the batch. The trick here is that augmentation is used to create two ‘versions’ of an image. In our turtle case, we also have pictures of the same individual from different angles which can be used in place of (or in addition to) image augmentations to get multiple versions depicting one individual.</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2022/02/screenshot-from-2022-02-18-08-31-18.png?w=1024" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2022-02-18-08-31-18.png" class="img-fluid"></p>
 <p>Top two rows: 16 turtles. Bottom 2 rows: augmented versions of different views of those same 16 turtles.</p>
 <p>In my implementation, we generate a batch by picking batch_size turtles and then creating two sets of images with different pictures of those turtles. A resnet50 backbone acts like the encoder and is used to create embeddings of all of these images. We use a contrastive loss function to calculate a loss and update the network weights.</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2022/02/screenshot-from-2022-02-18-08-58-29-2.png?w=1024" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2022-02-18-08-58-29-2.png" class="img-fluid"></p>
 <p>This is my first time using jax so there are probably more elegant ways to do this!</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2022/02/formula-1.jpeg?w=1024" class="img-fluid"></p>
+<p><img src="images/formula-1.jpeg" class="img-fluid"></p>
 <p>My post-it note with the formula</p>
 <p>My attempt at a contrastive loss function</p>
 <p>You can check the notebook or the video for more details on the implementation here. Once all the bugs were ironed out, the training loop runs and the loss shrinks nicely over time. But the question arises: how do we tell if the representations being learnt are actually useful?</p>
@@ -201,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="representational-similarity-matrices" class="level2">
 <h2 class="anchored" data-anchor-id="representational-similarity-matrices">Representational Similarity Matrices</h2>
 <p>Remember, our end goal is to be able to tell which individual turtle is in a new image. If things are working well, we’ll feed the new image through our encoder model to get a representation and then compare that to the encoded representations of the known turtles. All pictures of a given individual should be ‘similar’ in this space, but should not be similar to images of other individuals. A neat way to visualize this is through something called a Representational Similarity matrix. We take, say, 16 images of 5 different turtles. We embed them all and compute all possible pair-wise similarities and then plot them as a heatmap:</p>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2022/02/rsm_diag.png?w=1024" class="img-fluid"></p>
+<p><img src="images/rsm_diag.png" class="img-fluid"></p>
 <p>A Representation Similarity Matrix (RSM) comparing embeddings of 16 images from each of 5 turtles.</p>
 <p>The images are obviously identical to themselves - hence the thin bright diagonal. But here you can also see that images of a given turtle seem to be similar to others of that same turtle - for instance, the bottom right 16x16 square shows that all images of the red turtle are quite similar to each other. This also shows us which turtles might be regularly confused (pink and yellow for eg) and which are relatively easy to disambiguate (pink and green).</p>
 <p>RSMs are a useful tool for quickly getting a feel for the kind of representations being learnt, and I think more people should use them to add visual feedback when working on this kind of model. Looking at RSMs for images in the training set vs a validation set, or for different views, can shed more light on how everything is working. Of course, they don’t tell the whole story and we should still do some other evaluations on a validation set.</p>

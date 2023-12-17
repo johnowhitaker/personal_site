@@ -173,13 +173,13 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2020/10/screenshot-from-2020-10-16-15-50-13.png?w=1024" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2020-10-16-15-50-13.png" class="img-fluid"></p>
 <p>A 3D model of a protein kinase</p>
 <p>We recently hosted a <a href="https://zindi.africa/hackathons/umojahack-tunisia">Zindi hackathon</a> in partnership with Instadeep that challenged participants to predict the functional class of protein kinases (enzymes with some very specific functions in the cell) based on nothing but their amino acid sequences. This kind of sequence classification task has lots of potential applications - there is a lot of un-labelled data lying around on every computational biologist’s computer, and a tool that could guess a given protein’s function would be mighty handy.</p>
 <p>Just one problem - it’s not exactly a simple task! There are 20-something amino acids which we represent as letters. Given a sequence like ‘AGASGSUFOFBEASASSSSSASBBBDGDBA’ (frantically monkey-types for emphasis) we need to find a way to a) encode this as something a model can make sense of and b) do the making-sense-of-ing! Fortunately, there’s another field where we need to go from a string of letters to something meaningful: Natural Language Processing. Since I’d just been watching the NLP lesson in the latest amazing <a href="https://course.fast.ai/">fastai course</a> I felt obliged to try out the techniques Jeremy was talking about on this sequence classification task.</p>
 <section id="the-basic-approach" class="level2">
 <h2 class="anchored" data-anchor-id="the-basic-approach">The Basic Approach</h2>
-<p><img src="https://datasciencecastnethome.files.wordpress.com/2020/10/screenshot-from-2020-10-30-21-46-46.png?w=1024" class="img-fluid"></p>
+<p><img src="images/screenshot-from-2020-10-30-21-46-46.png" class="img-fluid"></p>
 <p>Tokenized input (left) and class (right)</p>
 <p>Treating this as a language task and drawing inspiration from ULMFiT[1], this was my basic approach:</p>
 <ul>
