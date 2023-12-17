@@ -6,7 +6,7 @@ categories:
 
 ---
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/04/a-sunset-landscape-painting-oil-on-canvas-edited.png?w=780)
+![](images/a-sunset-landscape-painting-oil-on-canvas-edited.png)
 
 Prompt: 'A sunset landscape painting, oil on canvas' (fine-tuned Wikiart model)
 
@@ -16,13 +16,13 @@ As part of the Huggingface '#huggan' event, I thought it would be interesting to
 
 Diffusion models are getting a lot of fame at the moment thanks to GLIDE and DALL-E 2 which have recently rocked the internet with their astounding text-to-image capabilities. They are trained by gradually adding noise to an input image over a series of steps, and having the network predict how to 'undo' this process. If we start from pure noise and have the network progressively try to 'fix' the image we eventually end up with a nice looking output (if all is working well).
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/04/screenshot-from-2022-04-12-14-55-09.png?w=1024)
+![](images/screenshot-from-2022-04-12-14-55-09.png)
 
 An illustration of this kind of model from [the website](https://hojonathanho.github.io/diffusion/) related to [one of the key papers that first outlined this idea](https://arxiv.org/abs/2006.11239).
 
 To add text-to-image capacity to these models, they are often 'conditioned' on some representation of the captions that go along with the images. That is, in addition to seeing a noisy image, they also get an encoding of the text describing the image to help in the de-noising step. Starting from noise again but this time giving a description of the desired output image as the text conditioning ideally steers the network towards generating an image that matches the description.
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/04/cloob_cropped.png?w=1024)
+![](images/cloob_cropped.png)
 
 CLOOB architecture diagram (from [the project page](https://ml-jku.github.io/cloob/) - which is worth a read!)
 
@@ -40,11 +40,11 @@ After a few false starts figuring out model loading and other little quirks, we 
 
 WikiArt is not a huge dataset relative to the model (which has over a billion parameters). One of the main things we were curious about was how the resulting model would be different from the one we started with, which was trained on a much larger and more diverse set of images. Has it 'overfit' to the point of being unuseable? How much more 'arty' do the results look when passing descriptions that don't necessarily suggest fine art? And has fine-tuning on a relatively 'clean' dataset lowered the ability of the model to produce disturbing outputs? To answer these questions, we generated hundreds of images with both models.
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/04/download-10.png?w=768)
+![](images/download-10.png)
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/04/download-9.png?w=768)
+![](images/download-9.png)
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/04/spring.png?w=768)
+![](images/spring.png)
 
 Generated images from the prompts 'winter landscape', 'autumn landscape' and 'spring landscape' (WikiArt model). Note: all results are 'painterly' despite no allusion to paintings or art in the prompts. Seeds kept consistent for each set - note the slight similarity in overall structure for corresponding images.
 
@@ -59,7 +59,7 @@ I've moved the side-by-side comparisons to a gallery at the end of this post. Th
 
 Approaches like CLOOB-Conditioned Latent Diffusion are bringing down the barrier to entry and making it possible for individuals or small organisations to have a crack at training diffusion models without $$$ of compute.
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/04/screenshot-from-2022-04-06-20-27-39.png?w=1024)
+![](images/screenshot-from-2022-04-06-20-27-39.png)
 
 Our model during training (left) vs OpenAI's DALL-E 2 (right) which was unveiled during our project and inspired various memes :)
 
@@ -67,51 +67,51 @@ This little experiment of ours has shown that it is possible to train one of the
 
 ## Comparison images
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/04/a-watercolor-painting-of-a-rose-1.png?w=761)
+![](images/a-watercolor-painting-of-a-rose-1.png)
 
 A watercolor painting of a rose
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/04/autumn-watercolor-1.png?w=761)
+![](images/autumn-watercolor-1.png)
 
 Autumn watercolor
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/04/autumn-landscape-1.png?w=761)
+![](images/autumn-landscape-1.png)
 
 Autumn landscape
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/04/a-monet-pond-1.png?w=761)
+![](images/a-monet-pond-1.png)
 
 A Monet Pond
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/04/a-pink-lilly-1.png?w=761)
+![](images/a-pink-lilly-1.png)
 
 A pink lilly
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/04/tarsila-do-amaral-1.png?w=761)
+![](images/tarsila-do-amaral-1.png)
 
 Tarsila do Amaral
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/04/blue-and-pink-hydrangeas-impressionistic-oils-1.png?w=761)
+![](images/blue-and-pink-hydrangeas-impressionistic-oils-1.png)
 
 Blue and pink hydrangeas, impressionistic oils
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/04/ney-york-skyline-in-winter.png?w=761)
+![](images/ney-york-skyline-in-winter.png)
 
 New York skyline in winter
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/04/a-face-portrait-in-oils-1.png?w=761)
+![](images/a-face-portrait-in-oils-1.png)
 
 A face, portrait in oils
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/04/a-female-figure-charcoal-1.png?w=761)
+![](images/a-female-figure-charcoal-1.png)
 
 A female figure, charcoal
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/04/the-moon-over-a-landscape-1.png?w=761)
+![](images/the-moon-over-a-landscape-1.png)
 
 The moon over a landscape
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/04/peaceful-blue-1.png?w=761)
+![](images/peaceful-blue-1.png)
 
 Peaceful Blue
 

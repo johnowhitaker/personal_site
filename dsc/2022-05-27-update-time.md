@@ -23,13 +23,13 @@ Part 2 of AIAIART launched last month. You can see all lessons and a link to the
 
 ## Image Generation with CLOOB Conditioned Latent Denoising Diffusion GANs
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/05/screenshot-from-2022-05-27-08-19-26.png?w=1018)
+![](images/screenshot-from-2022-05-27-08-19-26.png)
 
 I had fun trying out a new(ish) approach for text-to-image tasks. The neat thing with conditioning on CLOOB embeddings is that you can train without text captions and still get some text guidance ability at inference time (see image above). This got written up as [a nice report on Weights and Biases](https://wandb.ai/johnowhitaker/cclddg_report/reports/New-Techniques-for-Generating-Images-with-Text--VmlldzoxOTc1NDU3).
 
 ## Getting Started with the Microsoft Rice Disease Classification Challenge
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/05/screenshot-from-2022-05-17-11-25-23.png?w=766)
+![](images/screenshot-from-2022-05-17-11-25-23.png)
 
 Images from the training data
 
@@ -43,7 +43,7 @@ Building on lesson 8 of the course, this project involved training various neura
 
 ## Huggan Projects
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/05/0004.png?w=1024)
+![](images/0004.png)
 
 So many butterflies
 

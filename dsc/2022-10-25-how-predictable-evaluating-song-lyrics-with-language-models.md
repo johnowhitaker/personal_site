@@ -70,7 +70,7 @@ There is a caveat worth making which is that anything written before 2019 might 
 
 EDIT: Someone (me) didn't preview their data well enough, the lyrics I used for this were either badly scraped or very processed, so these scores won't compare well to the previous section and I need to re-do this with a proper dataset before we can say anything concrete about trends!
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/10/download-2.png?w=826)
+![](images/download-2.png)
 
 Plotting the median estimated predictability per decade for a random sample of ~6k songs
 

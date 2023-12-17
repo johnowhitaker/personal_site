@@ -12,7 +12,7 @@ The Cornell Lab of Ornithology run an annual competition to identify bird calls 
 
 In many recordings, the bird in question is not calling continuously. The final task involves predicting which birds are calling at 5-second intervals, so that is my chosen input length. If we just sample a random 5-second clip from a full recording, we might end up with a clip in which the bird is not calling - not ideal! To get around this, we compute a sort of signal-to-noise measure (in this case, [PCEN-based SNR as used by the BirdVox project](https://github.com/BirdVox/PCEN-SNR)). With this, we can choose 'peaks' where the calls are most prominent.
 
-![](https://datasciencecastnethome.files.wordpress.com/2021/04/screenshot-from-2021-04-19-10-26-53.png?w=719)
+![](images/screenshot-from-2021-04-19-10-26-53.png)
 
 Identifying 'peaks' with a high PCEN-based SNR
 
@@ -22,19 +22,19 @@ The code for this is in [my first notebook](https://www.kaggle.com/johnowhitaker
 
 We could try feeding the raw audio data into a model, but 5 seconds of audio represents quite a lot of data. Some models can handle this, but in most cases a better approach is to find a more compressed representation of the sound. In this case I chose a fairly standard approach: the mel spectrogram. A spectrogram looks like a 2D image, with time on the X axis, frequency on the y axis and intensity represented by colour.
 
-![](https://datasciencecastnethome.files.wordpress.com/2021/04/screenshot-from-2021-04-19-10-45-37.png?w=382)
+![](images/screenshot-from-2021-04-19-10-45-37.png)
 
 An example spectrogram
 
 The model training notebook shows how we set up the dataloaders to read in a specified clip and turn it into a spectrogram that can be fed to the model. This is quite CPU-heavy, which does slow the training down. But I still chose this approach over pre-computing the spectrograms once at the start because it allows for data augmentation such as shifting the window, adding noise etc on the raw audio before it gets converted to a spectrogram.
 
-![](https://datasciencecastnethome.files.wordpress.com/2021/04/screenshot-from-2021-04-19-13-47-42.png?w=1024)
+![](images/screenshot-from-2021-04-19-13-47-42.png)
 
 You can see all the code in the [baseline model notebook](https://www.kaggle.com/johnowhitaker/baseline-model). Taking inspiration from the [pets tutorial](https://docs.fast.ai/tutorial.pets.html), we create our own custom Transform that handles 'encoding' a given clip/label pair, which in turn is used to create our DataLoaders. By adding a 'decodes' method we also enable functionality such as 'show\_batch()'.
 
 ## Training
 
-![](https://datasciencecastnethome.files.wordpress.com/2021/04/loss_plot_baseline_3e.png?w=432)
+![](images/loss_plot_baseline_3e.png)
 
 Loss plot over 3 epochs of training
 

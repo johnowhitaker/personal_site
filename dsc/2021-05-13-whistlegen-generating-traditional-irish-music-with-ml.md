@@ -16,7 +16,7 @@ Earlier this year I did an experiment where I tried to write some code on a smal
 
 To train a model we will need some data. Previous attempts at music generation have worked on midi, or raw audio. However, a lot of Irish music is shared in a simplified form called 'ABC Notation' using letters and a limited set of symbols to encode the essential melody and leaving embellishments, harmonies and accents largely up to the interpretation of the player. thesession.org is one large central repository of these tunes, but I couldn't find an easy way to download them in bulk. Web Scraping to the rescue!
 
-![](https://datasciencecastnethome.files.wordpress.com/2021/05/screenshot-from-2021-05-13-16-09-35.png?w=737)
+![](images/screenshot-from-2021-05-13-16-09-35.png)
 
 A neat(ish) dataset of tunes in ABC notation
 
@@ -28,13 +28,13 @@ We're going to train a 'language mode' - a concept from the field of NLP, where 
 
 The text needs to be tokenized. We can simply split into individual characters, but since the notation includes 'note modifiers' such as '=' which are sometimes placed before a note to sharpen or flatten it and some other 2-character symbols (like '|:' for the start of a bar with a repeat), I chose to build a custom tokenizer. [The notebook](https://colab.research.google.com/drive/1-MWn5BbYXAz_rA9JO6Z53tAb7JHm49_Z#scrollTo=YLgOZjavz2Yj) shows how to construct fastai dataloaders that package everything up neatly ready for training.
 
-![](https://datasciencecastnethome.files.wordpress.com/2021/05/lr_plot_whistle.png?w=397)
+![](images/lr_plot_whistle.png)
 
 Once the dataloaders are ready, we can simply train this like any other language model. I used the learning rate finder (output shown above) to pick an initial learning rate and then, following the example in the fastai docs, gradually unfroze the model and continued to train it. After a few minutes the model is predicting the next token with ~38% accuracy!
 
 ## Getting Some Output
 
-![](https://datasciencecastnethome.files.wordpress.com/2021/05/screenshot-from-2021-03-25-14-10-32.png?w=1024)
+![](images/screenshot-from-2021-03-25-14-10-32.png)
 
 Some early WhistleGen output
 

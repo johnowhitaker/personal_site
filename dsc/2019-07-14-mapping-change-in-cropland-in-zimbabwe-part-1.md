@@ -27,7 +27,7 @@ What does this accuracy figure mean? How is it so high? It's less astonishing wh
 
 The model takes landsat 8 image data as it's inputs. It was trained on 2015 data, but there is no reason why we can't make predictions based on other years, and see where these predictions differ from the 2015 ones. Subtracting two years' predictions gives a difference image, shown below for 2015 - 2018. Red indicated areas where cropland is predicted in 2018 and not 2015 (new cropland). Black and green are areas where the model predicts no change or less cropland in 2018.
 
-![](https://datasciencecastnethome.files.wordpress.com/2019/07/screenshot-from-2019-07-13-08-21-44-2.png?w=1024)
+![](images/screenshot-from-2019-07-13-08-21-44-2.png)
 
 Difference Image (2018). Potential new cropland shown in red.
 

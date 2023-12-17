@@ -6,7 +6,7 @@ categories:
 
 ---
 
-![](https://datasciencecastnethome.files.wordpress.com/2020/01/barbet1_sonogram.jpg?w=1024)
+![](images/barbet1_sonogram.jpg)
 
 User comments
 
@@ -29,7 +29,7 @@ To run a competition, you need some data (unless you're going to ask the partici
 - Be manageable. Some datasets are HUGE! It's possible to organize contests around big datasets, but it's worth thinking about how you expect participants to interact with the data. Remember - not everyone has fast internet or free storage.
 - Be useful. This isn't always easy to judge, which is why doing data exploration and building a baseline model early on is important. But ideally, the data has some predictive power for the thing you're trying to model!
 
-![](https://datasciencecastnethome.files.wordpress.com/2020/01/screenshot-from-2020-01-15-14-49-59.png?w=1024)
+![](images/screenshot-from-2020-01-15-14-49-59.png)
 
 Visualizing birdsongs
 
@@ -51,14 +51,14 @@ Aside from getting the data ready, there are all sorts of extra little steps req
 - Social media. This isn't part of my job, but I gather that there is all sorts of planning for how to let people know about the cool new thing we're putting out into the world :)
 - Tutorials. Not essential, but I feel that giving participants a way to get started lowers the barriers to entry and helps to get more novices into the field. Which is why, as is becoming my habit, I put together a starter notebook to share as soon as the contest launches.
 
-![](https://datasciencecastnethome.files.wordpress.com/2020/01/screenshot-from-2020-01-16-14-08-14.png?w=879)
+![](images/screenshot-from-2020-01-16-14-08-14.png)
 
 A confusion matrix - one way to quickly see how well a classification algorithm is working. (from the starter notebook)
 
 - Baseline/benchmark. This is something I like to do as early as possible in the process. I'll grab the data, do the minimal cleaning required, run it through some of my favorite models and see how things go. This is nice in that it gives us an idea of what a 'good' score is, and whether the challenge is even doable. When a client is involved, this is especially useful for convincing them that a competition is a good idea - if I can get something that's almost good enough, imagine what hundreds of people working for prize money will come up with! If there's interest in my approach for a quick baseline, let me know and I may do a post about it.
 - Names, cover images, did you check the data???, looking at cool birds, teaser posts on twitter, frantic scrambles to upload files on bad internet, overlaying a sonogram on one of my bird photos... All sorts of fun :)
 
-![](https://datasciencecastnethome.files.wordpress.com/2020/01/screenshot-from-2020-01-16-11-26-21-1.png?w=635)
+![](images/screenshot-from-2020-01-16-11-26-21-1.png)
 
 Fine-tuning the benchmark model
 

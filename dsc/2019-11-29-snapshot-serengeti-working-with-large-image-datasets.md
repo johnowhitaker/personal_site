@@ -11,7 +11,7 @@ Driven Data launched a [competition around the Snapshot Serengeti database](http
 
 The goal of the competition is to create a model that can correctly label the animal(s) in an image sequence from one of many camera traps scattered around the Serengeti plains, which are teeming with wildlife. You can read more about the data and the history of the project on their [website](https://www.zooniverse.org/projects/zooniverse/snapshot-serengeti). There can be more than one type of animal in an image, making this a multi-label classification problem.
 
-![](https://datasciencecastnethome.files.wordpress.com/2019/11/screenshot-from-2019-11-29-09-59-08.png?w=797)
+![](images/screenshot-from-2019-11-29-09-59-08.png)
 
 Some not-so-clear images from the dataset
 
@@ -25,7 +25,7 @@ The approach I took to modelling is very similar to the other fastai projects I'
 
 I'm a big fan of making data science and ML more accessible. For anyone intimidated by the scale of this contest, and not too keen on following the path I took in the rest of this post, I've created a [Google Colab Notebook to get you started](https://colab.research.google.com/drive/1pOjQXXCCa6fTzw4w5V3DI8ey28ul_9yz). It shows how to get some of the data, label it, create and train a model, score your model like they do in the competition and create a submission. This should help you get started, and will give a good score without modification. The notebook also has some obvious improvements waiting to be made - using more data, training the model further.....
 
-![](https://datasciencecastnethome.files.wordpress.com/2019/11/screenshot-from-2019-11-29-10-45-06.png?w=696)
+![](images/screenshot-from-2019-11-29-10-45-06.png)
 
 Training a quick model in the starter notebook
 
@@ -41,7 +41,7 @@ OK, so there definitely isn't 5TB of storage on Google Colab, and even though we
 - Train the full model overnight, tracking progress.
 - Submit!
 
-![](https://datasciencecastnethome.files.wordpress.com/2019/11/screenshot-from-2019-11-22-18-01-13.png?w=1024)
+![](images/screenshot-from-2019-11-22-18-01-13.png)
 
 Mounting a scarily large disk!
 
@@ -51,13 +51,13 @@ I won't go into the cloud setup here, but in the next section let's look at how 
 
 I'd set the experiments running on my cloud machine, but due to lack of electricity and occasional loss of connection I couldn't simply leave my laptop running and connected to the VM to show how the model training was progressing. With so many images, each epoch of training took ages, and I had a couple of models crash early in the process. This was frustrating - I would try to leave it going overnight but if the model failed in the evening it meant that I had wasted some of my few remaining cloud credits on a machine sitting idle. Luckily, I had recently seen how to monitor progress remotely, meaning I could check my phone while I was out and see if the model was working and how good it was getting.
 
-![](https://datasciencecastnethome.files.wordpress.com/2019/11/screenshot-from-2019-11-25-09-19-18.png?w=1024)
+![](images/screenshot-from-2019-11-25-09-19-18.png)
 
 Tracking loss and metrics over time with neptune.ml
 
 The process is pretty simple, and well documented [here](https://medium.com/neptune-ml/track-and-organize-fastai-experimentation-process-in-neptune-78ec8d6b18b0). You sign up for an account, get an API key and add a callback to your model. This will then let you log in to neptune.ml from any device, and track your loss, any metrics you've added and the output of the code you're running. I could give more reasons why this is useful, but honestly the main motivation is that it's cool! I had great fun surreptitiously checking my loss from my phone every half hour while I was out and about.
 
-![](https://datasciencecastnethome.files.wordpress.com/2019/11/screenshot-from-2019-11-29-11-54-25.png?w=796)
+![](images/screenshot-from-2019-11-29-11-54-25.png)
 
 Tracking model training with neptune
 

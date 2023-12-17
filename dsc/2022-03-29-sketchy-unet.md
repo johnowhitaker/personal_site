@@ -6,7 +6,7 @@ categories:
 
 ---
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/03/screenshot-from-2022-03-29-10-31-48.png?w=946)
+![](images/screenshot-from-2022-03-29-10-31-48.png)
 
 The [model demo running on Huggingface Spaces](https://huggingface.co/spaces/johnowhitaker/sketchy_unet_demo)
 
@@ -20,7 +20,7 @@ I found a small dataset that seemed like a good starting point (originally creat
 
 I chose to model this as an image-to-image task, and used fastai's `unet_learner` function to create a [U-net style](https://arxiv.org/abs/1505.04597) network based on a Resnet34 backbone. Starting with 128px images and then moving up to 224px, the model is trained to minimise the MSE between the output and the reference sketch. In about 3 minutes (!!) we end up with a model that is doing pretty much exactly what I want:
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/03/screenshot-from-2022-03-28-19-06-20.png?w=648)
+![](images/screenshot-from-2022-03-28-19-06-20.png)
 
 Images (left), artist's sketch (center), model outputs (right)
 
@@ -32,7 +32,7 @@ It's neat that I can so easily share everything related to a mini-project like t
 
 ## Update: What's this for?
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/04/screenshot-from-2022-03-31-14-19-42.png?w=978)
+![](images/screenshot-from-2022-03-31-14-19-42.png)
 
 Waterface demo: https://huggingface.co/spaces/johnowhitaker/waterface
 

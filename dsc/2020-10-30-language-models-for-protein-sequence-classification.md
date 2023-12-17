@@ -6,7 +6,7 @@ categories:
 
 ---
 
-![](https://datasciencecastnethome.files.wordpress.com/2020/10/screenshot-from-2020-10-16-15-50-13.png?w=1024)
+![](images/screenshot-from-2020-10-16-15-50-13.png)
 
 A 3D model of a protein kinase
 
@@ -16,7 +16,7 @@ Just one problem - it's not exactly a simple task! There are 20-something amino 
 
 ## The Basic Approach
 
-![](https://datasciencecastnethome.files.wordpress.com/2020/10/screenshot-from-2020-10-30-21-46-46.png?w=1024)
+![](images/screenshot-from-2020-10-30-21-46-46.png)
 
 Tokenized input (left) and class (right)
 

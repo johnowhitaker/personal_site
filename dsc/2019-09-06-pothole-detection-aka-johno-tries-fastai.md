@@ -11,15 +11,15 @@ This week saw folks from all over the AI space converge in Cape Town for the AI 
 
 The dataset consists of images taken from behind the dashboard of a car. Some images contain potholes, some don't - the goal is to correctly discern between the two classes. Some example pictures:
 
-- ![](https://datasciencecastnethome.files.wordpress.com/2019/09/afgodmvdulkmncm.jpg?w=800)
+- ![](images/afgodmvdulkmncm.jpg)
     
-- ![](https://datasciencecastnethome.files.wordpress.com/2019/09/afihpmcypxahscw.jpg?w=800)
+- ![](images/afihpmcypxahscw.jpg)
     
-- ![](https://datasciencecastnethome.files.wordpress.com/2019/09/afwgvfetkbovxyw.jpg?w=800)
+- ![](images/afwgvfetkbovxyw.jpg)
     
-- ![](https://datasciencecastnethome.files.wordpress.com/2019/09/agagvuntihgxtfg.jpg?w=800)
+- ![](images/agagvuntihgxtfg.jpg)
     
-- ![](https://datasciencecastnethome.files.wordpress.com/2019/09/aggttmhdaqmxmii.jpg?w=800)
+- ![](images/aggttmhdaqmxmii.jpg)
     
 
 Train and test data were collected on different days, and at first glance it looks like this will be a tough challenge! It looks like the camera is sometimes at different angles (maybe to get a better view of potholes) and the lighting changes from pic to pic.
@@ -30,14 +30,14 @@ Jan won a previous iteration of this hackathon, and was kind enough to share a s
 
 - Load the data into a 'databunch', containing both the labeled training data and the unlabeled test data. Using 15% of the training data as a validation set. The images are scaled to 224px squares and grouped into batches.
 
-![](https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-06-09-49-31.png?w=934)
+![](images/screenshot-from-2019-09-06-09-49-31.png)
 
 The images are automatically warped randomly each time (to make the model more robust). This can be configured, but the default is pretty good.
 
 - Create a model: `learn = cnn_learner(data, resnet18, metrics=accuracy)`. This single line does a lot! It downloads a pre-trained network (resnet18) that has already been optimised for image classification. It reconfigures the output of that network to match the number of classes in our problem. It links the model to the data, freezes the weights of the internal layers, and gives us a model ready for re-training on our own classes.
 - Pick a learning rate, by calling `learn.lr_find()` followed by `learn.recorder.plot()` and picking one just before the graph bottoms out (OK, it's more complicated than that but you can learn the arcane art of lr optimization elsewhere)
 
-![](https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-06-09-55-21.png?w=417)
+![](images/screenshot-from-2019-09-06-09-55-21.png)
 
 \*sucks thumb\* A learning rate of 0.05 looks fine to me Bob.
 
@@ -49,7 +49,7 @@ There is some extra glue code to format things correctly, find the data and so o
 
 As the day kicked off, I dropped a few hints about taking a look at the images themselves and seeing how one could get rid of unnecessary information. An obvious answer would be to crop the images a little - there aren't potholes in the dashboard or the sky! I don't think anyone tried it, so let's give it a go now and see where we get. One [StackOverflow page](https://stackoverflow.com/questions/14177744/how-does-perspective-transformation-work-in-pil/14178717) later, I had code to crop and warp an image:
 
-![](https://datasciencecastnethome.files.wordpress.com/2019/09/warped.png?w=1024)
+![](images/warped.png)
 
 Before and after warping. Now the road is the focus, and we're not wasting effort on the periphery.
 
@@ -57,7 +57,7 @@ I ran my code to warp all the images and store them in a new folder. Then I basi
 
 ## Conclusions
 
-![](https://datasciencecastnethome.files.wordpress.com/2019/09/screenshot-from-2019-09-06-10-25-22.png?w=1024)
+![](images/screenshot-from-2019-09-06-10-25-22.png)
 
 My time in the sun
 

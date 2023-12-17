@@ -23,7 +23,7 @@ The upshot of all this is that you can effortlessly create good, clean code and 
 
 Christmas, 2019. Our wedding has brought a higher-than-normal influx of relatives to Cape Town, and when this extended family gets together, there are some things that are inevitable. One of these, it turns out, is the invention of new games to keep the cousins entertained. And thus, Swoggle was born :)
 
-![](https://datasciencecastnethome.files.wordpress.com/2020/01/screenshot-from-2020-01-20-05-45-04.png?w=546)
+![](images/screenshot-from-2020-01-20-05-45-04.png)
 
 A Swoggle game in progress - 2 players are left.
 
@@ -35,13 +35,13 @@ So, that's the game. Each round is fairly quick, so we usually play multiple rou
 
 If we're going to teach a computer to play this, we need a way to represent the game state, check if moves are valid, keep track of who's in the swoggle spa and which bases are still standing, etc. I settled on something like this:
 
-![](https://datasciencecastnethome.files.wordpress.com/2020/01/screenshot-from-2020-01-20-05-57-13.png?w=332)
+![](images/screenshot-from-2020-01-20-05-57-13.png)
 
 Game state representation
 
 There is a `Cell` in each x, y location, with attributes for player, drone and base. These cells are grouped in a `Board`, which represents the game grid and tracks the spa. The `Board` class also contains some useful methods like `is_valid_move()` and ways to move a particular player around. At the highest level, I have a `Swoggle` class that wraps a board, handles setting up the initial layout, provides a few extra convenience functions and can be used to run a game manually or with some combination of agents (which we'll cover in the next section). Since I'm working in NBDev, I have some docs with almost no effort, so check out [https://johnowhitaker.github.io/swoggle/](https://johnowhitaker.github.io/swoggle/) for details on this implementation. Here's what the documentation system turned my notebooks into:
 
-![](https://datasciencecastnethome.files.wordpress.com/2020/01/screenshot-from-2020-01-20-05-34-12-1.png?w=1024)
+![](images/screenshot-from-2020-01-20-05-34-12-1.png)
 
 Part of the generated documentation
 

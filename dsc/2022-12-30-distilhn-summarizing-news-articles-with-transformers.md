@@ -11,13 +11,13 @@ https://youtu.be/TBqzMfWpQrs
 
 In this series, I'd like to explore how to take an idea within machine learning from proof of concept to production. This first post is going to get things going with a little mini-project that I did in the downtime between Christmas activities, creating a website called [DistilHN.com](https://www.distilhn.com/) using a bit of machine learning magic and some basic web scraping. Let's get started.
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/12/screenshot-from-2022-12-30-13-29-10.png?w=931)
+![](images/screenshot-from-2022-12-30-13-29-10.png)
 
 The DistilHN page
 
 ## The Idea
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/12/1999019566_a_lightbulb_idea_painting__expressive_acrylic_palette_knife.png?w=768)
+![](images/1999019566_a_lightbulb_idea_painting__expressive_acrylic_palette_knife.png)
 
 I've been thinking about how to make a better news feed. When confronted with a clickbait headline, I often want a little more info, but don't feel like clicking through to the article (and dismissing the cookie popup, and scrolling past the ads, and declining their invite to sign up for the newsletter, and ...) just to see what it's about. So, this is the idea: use AI to generate a short summary that you can read before deciding whether you're going to commit to the full article or just skip straight to the comments section on Hacker News.
 
@@ -25,7 +25,7 @@ I've been thinking about how to make a better news feed. When confronted with a 
 
 I started working on a way to get the main text from an arbitrary website using Beautiful Soup, writing heuristics for which elements were worth including or ignoring. It turns out this is a very hard problem! After a while I had something that sort of worked for some sites, but in desperation I decided to take another look around online to see if someone else had already done the hard work.
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/12/screenshot-from-2022-12-30-13-30-20.png?w=1024)
+![](images/screenshot-from-2022-12-30-13-30-20.png)
 
 Extracting text from a website using Trafiltura
 
@@ -35,7 +35,7 @@ Enter the [Trafilatura](https://trafilatura.readthedocs.io/en/latest/index.html)
 
 For the actual summarization step, I choose to use [this model from Facebook](https://huggingface.co/facebook/bart-large-cnn) which was fine-tuned for news article summarization. You can run it locally with a huggingface pipeline, but I chose to use the free inference API since we're not going to need to run this thousands of times an hour and we may as well do as little work as possible ourselves! We set up a query, specify the text we want to summarize and the min and max length for the summary, post the request and wait for the summary back.
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/12/screenshot-from-2022-12-30-13-34-50.png?w=1024)
+![](images/screenshot-from-2022-12-30-13-34-50.png)
 
 Summarizing the text with the HuggingFace Inference API
 
@@ -53,7 +53,7 @@ It's one thing to run something like this once in a notebook. To make this a per
 
 I decided to start by wrapping up the scraping and summarization code into a script and having it write the results to an RSS feed (using the [feedgenerator](https://pypi.org/project/feedgenerator/) Python library). This way I'd have the content in a known format and a useable output before I start hacking on the front end.
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/12/screenshot-from-2022-12-30-13-52-09.png?w=1024)
+![](images/screenshot-from-2022-12-30-13-52-09.png)
 
 My PythonAnywhere Dashboard - the script has only used ~20 seconds of CPU time so far today!
 

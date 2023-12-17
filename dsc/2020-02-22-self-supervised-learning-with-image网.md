@@ -10,7 +10,7 @@ image: "screenshot-from-2020-02-22-16-29-29.png"
 
 Until fairly recently, deep learning models needed a LOT of data to get decent performance. Then came an innovation called transfer learning, which we've covered in some previous posts. We train a network once on a huge dataset (such as ImageNet, or the entire text of Wikipedia), and it learns all kinds of useful features. We can then retrain or 'fine-tune' this pretrained model on a new task (say, elephant vs zebra), and get incredible accuracy with fairly small training sets. But what do we do when there isn't a pretrained model available?
 
-![](https://datasciencecastnethome.files.wordpress.com/2020/02/ssl.png?w=1024)
+![](images/ssl.png)
 
 Pretext tasks (left) vs downstream task (right). I think I need to develop this style of illustration - how else will readers know that this blog is just a random dude writing on weekends? :)
 
@@ -37,7 +37,7 @@ For fun, I came up with a variant of the image in-painting task that combines it
   
 Here are some examples of the grey-blurred images and the desired outputs:
 
-![](https://datasciencecastnethome.files.wordpress.com/2020/02/screenshot-from-2020-02-22-16-29-29.png?w=746)
+![](images/screenshot-from-2020-02-22-16-29-29.png)
 
 Input/Output pairs for our pretext task, using the RandomGreyBlur transform
 
@@ -47,7 +47,7 @@ We train our network on this task for 15 epochs, and then save its parameters fo
 
 Now comes the fun part: seeing if our pretext task is of any use! We'll follow the structure of the [Image网 leaderboard here](https://github.com/fastai/imagenette#image%E7%BD%91), looking at models for different image sizes trained with 5, 20, 80 or 200 epochs. The theory here is that we'd hope that out pretext task has given us a decent network, so we should get some results after 5 epochs, and keep getting better and better results with more training.
 
-![](https://datasciencecastnethome.files.wordpress.com/2020/02/screenshot-from-2020-02-22-21-35-51.png?w=814)
+![](images/screenshot-from-2020-02-22-21-35-51.png)
 
 Results from early testing
 

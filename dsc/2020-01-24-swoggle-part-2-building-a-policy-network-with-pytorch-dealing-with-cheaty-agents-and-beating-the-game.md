@@ -10,7 +10,7 @@ In [part 1](https://datasciencecastnet.home.blog/2020/01/20/swoggle-part-1-rl-en
 
 ## The Task
 
-![](https://datasciencecastnethome.files.wordpress.com/2020/01/rl.png?w=1024)
+![](images/rl.png)
 
 Reinforcement Learning (Artist's Depiction)
 
@@ -20,7 +20,7 @@ We want to create some sort of Agent capable of looking at the state of the game
 
 In RL, a 'policy' is a map from game state to action. So when we talk about 'Policy Learners', 'Policy Gradients' or 'Policy Networks', we're referring to something that is able to learn a good policy over time.
 
-![](https://datasciencecastnethome.files.wordpress.com/2020/01/screenshot-from-2020-01-24-08-44-08.png?w=322)
+![](images/screenshot-from-2020-01-24-08-44-08.png)
 
 The network we'll be training
 
@@ -56,7 +56,7 @@ Early on, I seemed to have hit upon an excellent strategy. Within a few games, m
 
 That's it - that's the 'CheatyAgent' algorithm :) Fortunately, I'm not the first to have flaws in my game engine exploited by RL agents - check out the clip from OpenAI above!
 
-![](https://datasciencecastnethome.files.wordpress.com/2020/01/screenshot-from-2020-01-24-07-33-56.png?w=644)
+![](images/screenshot-from-2020-01-24-07-33-56.png)
 
 Another bug: See where I wrote `sr.dice()` instead of `dice_roll`? This let the network re-roll if it proposed an invalid move, which could lead to artificially high performance.
 
@@ -64,7 +64,7 @@ After a few more sneaky attempts by the AI to get around my rules, I finally got
 
 ## Winning for real
 
-![](https://datasciencecastnethome.files.wordpress.com/2020/01/screenshot-from-2020-01-23-17-57-47.png?w=626)
+![](images/screenshot-from-2020-01-23-17-57-47.png)
 
 Learning to win!!!
 
@@ -74,7 +74,7 @@ With the bugs ironed out, I could start tweaking rewards and training the networ
 
 I've still got plenty to play around with. The network still tries to propose lots of invalid moves. Tweaking the rewards can change this (note the orange curve below that tracks ratio of valid:invalid moves) but at the cost of diverting the network from the true goal: winning games!
 
-![](https://datasciencecastnethome.files.wordpress.com/2020/01/screenshot-from-2020-01-20-08-45-03.png?w=567)
+![](images/screenshot-from-2020-01-20-08-45-03.png)
 
 Learning to make valid moves, but at the cost of winning.
 

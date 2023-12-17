@@ -18,7 +18,7 @@ In today's post, I'll be trying out [Google's AutoML tool](https://cloud.google.
 
 AutoML (and other similar tools) aims to automate one step of the ML pipeline - that of model selection and tuning. You give it a dataset to work on, specify column types, choose an output column and specify how long you'd like it to train for (you pay per hour). Then sit back and wait. Behind the scenes, AutoML tries many different models and slowly optimizes network architecture, parameters, weights... essentially everything one could possibly tweak to improve performance gets tweaked. At the end of it, you get a (very complicated) model that you can then deploy with their services or use to make batch predictions.
 
-![](https://datasciencecastnethome.files.wordpress.com/2019/08/screenshot-from-2019-08-27-11-03-25.png?w=615)
+![](images/screenshot-from-2019-08-27-11-03-25.png)
 
 The first step with AutoML tables - Importing the data.
 
@@ -30,7 +30,7 @@ Fortunately, there are other ways to achieve broadly the same result. For exampl
 
 This competition involves a classification problem, with the goal being to predict which crop is present in a given field. The training data is provided as field outlines and satellite images - not something that can effortlessly slot into AutoML tables. This meant that the first step was to sample the image bands for the different fields, and export the values to a CSV files for later analysis (as described in [this post](https://datasciencecastnet.home.blog/2019/06/27/tutorial-improving-crop-type-predictions/)). This done, I uploaded the resultant training file to cloud storage, selected the table, chose my input and output columns and hit go.
 
-![](https://datasciencecastnethome.files.wordpress.com/2019/08/screenshot-from-2019-08-27-08-58-33.png?w=1024)
+![](images/screenshot-from-2019-08-27-08-58-33.png)
 
 AutoML 'Evaluate' tab showing model performance.
 
@@ -42,7 +42,7 @@ I was quite pleased with this result. I enjoy the feature engineering side of th
 
 Spurred on by the first success, I turned to the Traffic Jam competition since I still had the dataset on my laptop. This was a regression problem, with the goal being to predict the number of tickets sold for a given trip into Nairobi. The training data was fairly sparse, with only ~2000 rows to work from. Still, I figured it was worth a shot and threw a few node hours worth of Google-managed ML magic at the problem.
 
-![](https://datasciencecastnethome.files.wordpress.com/2019/08/screenshot-from-2019-08-27-09-08-28.png?w=940)
+![](images/screenshot-from-2019-08-27-09-08-28.png)
 
 An MAE of 3.4, hypothetically equivalent to ~3rd place!
 

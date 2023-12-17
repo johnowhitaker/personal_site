@@ -5,7 +5,7 @@ categories:
   - "blogs"
 ---
 
-![](https://datasciencecastnethome.files.wordpress.com/2021/11/screenshot-from-2021-11-09-08-30-28.png?w=1024)
+![](images/screenshot-from-2021-11-09-08-30-28.png)
 
 The average sentiment of the most recent 200 tweets from each country's capital city.
 
@@ -13,7 +13,7 @@ A mentee of mine has been working on web scraping for NLP projects and her most 
 
 ## Scraping Tweets with Twint
 
-![](https://datasciencecastnethome.files.wordpress.com/2021/11/screenshot-from-2021-11-09-04-48-00.png?w=999)
+![](images/screenshot-from-2021-11-09-04-48-00.png)
 
 Scraping tweets from a specific user
 
@@ -23,13 +23,13 @@ I used [twint](https://github.com/twintproject/twint) - a scraper written in Pyt
 
 NLTK's SIA can give a quick and easy sentiment score for a piece of text, but many tweets use more obscure language and styles that aren't well-captured by the default lexicon or the approach as a whole. Luckily, tweet sentiment analysis is a popular task and there are pre-trained deep learning models available that do a pretty good job out-of-the-box. I used a roBERTa model fine-tuned on the [TweetEval task](https://arxiv.org/pdf/2010.12421.pdf). The [model card on huggingface](https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment) had all the code needed to classify a piece of text, making it very simple to get started. I'm so glad this trend of making models accessible with key info is catching on!
 
-- ![](https://datasciencecastnethome.files.wordpress.com/2021/11/bjornlomborg.png?w=432)
+- ![](images/bjornlomborg.png)
     
-- ![](https://datasciencecastnethome.files.wordpress.com/2021/11/johnowhitaker.png?w=432)
+- ![](images/johnowhitaker.png)
     
-- ![](https://datasciencecastnethome.files.wordpress.com/2021/11/elonmusk.png?w=432)
+- ![](images/elonmusk.png)
     
-- ![](https://datasciencecastnethome.files.wordpress.com/2021/11/billgates.png?w=432)
+- ![](images/billgates.png)
     
 
 The model outputs three scores corresponding to the labels 'negative', 'neutral' and 'positive'. We can combine the positive and negative scores to get a combined sentiment score running from -1 (very negative) to +1 (very positive). From this, we can get stats like 'average sentiment', but I wanted a better way to see at a glance what a user's tweets look like. Hexbin plots to the rescue :) These show the distribution of tweets in both sentiment and tweet length. You can see that Musk tends to tweet shorter, more neutral tweets while Gates favours mid-length positive ones and Lomborg tends heavily towards grumpy full-length rants 😂

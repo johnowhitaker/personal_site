@@ -11,7 +11,7 @@ You can follow along in the accompanying notebook, [available here](https://cola
 
 ## Reading a shapefile with GeoPandas
 
-![](https://datasciencecastnethome.files.wordpress.com/2019/10/screenshot-from-2019-10-21-09-02-17.png?w=1024)
+![](images/screenshot-from-2019-10-21-09-02-17.png)
 
 Reading the data from the road\_segments shapefile
 
@@ -19,11 +19,11 @@ If you unzip the road\_segments.zip file downloaded from Zindi (`!unzip road_se
 
 ## Finding weather data
 
-![](https://datasciencecastnethome.files.wordpress.com/2019/10/screenshot-from-2019-10-21-09-10-15.png?w=1014)
+![](images/screenshot-from-2019-10-21-09-10-15.png)
 
 Zindi included a sentence on the data page: "You may use weather in your model. Please suggest weather datasets...". I googled around and found rp5.ru - an excellent site that lets you download some historical weather data for locations around the globe. You're welcome to check out the site, enter a date range, download, rename, etc. Or you can use my csv file, [available here on github.](https://github.com/johnowhitaker/datasciencecastnet/blob/master/weather.csv)
 
-![](https://datasciencecastnethome.files.wordpress.com/2019/10/screenshot-from-2019-10-21-09-13-21.png?w=1024)
+![](images/screenshot-from-2019-10-21-09-13-21.png)
 
 We can read the data from the CSV file and then link it to our training data with another simple merge command. The details are in [the notebook](https://colab.research.google.com/drive/1UlkF_wkDIUor7-5WGxXsoGejTtChAjVL). You can read about what the columns mean on the rp5.ru site. I the example I only use the numeric columns, but you could add extra features like wind direction, clouds\_present etc based on the text components of this dataset.
 
@@ -31,7 +31,7 @@ We can read the data from the CSV file and then link it to our training data wit
 
 I've recently been playing around a lot with the incredible fastai library. The course (fast.ai) will get you going quickly, and I highly recommend running through some of the examples there. In one of the lessons, Jeremy shows the use of a neural network on tabular data. This was traditionally fairly hard, and you had to deal with embeddings, normalization, overfitting..... Recently however, I'm seeing more and more use of these models for tabular data, thanks in no small part to fastai's implementation that handles a lot of the complexity for you.
 
-![](https://datasciencecastnethome.files.wordpress.com/2019/10/screenshot-from-2019-10-21-09-19-52.png?w=1024)
+![](images/screenshot-from-2019-10-21-09-19-52.png)
 
 Using fastai's tabular learner.
 

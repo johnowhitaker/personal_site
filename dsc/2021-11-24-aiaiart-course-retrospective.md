@@ -6,11 +6,11 @@ categories:
 
 ---
 
-![](https://datasciencecastnethome.files.wordpress.com/2021/11/download-4.png?w=540)
+![](images/download-4.png)
 
-![](https://datasciencecastnethome.files.wordpress.com/2021/11/cat_progress2.png?w=257)
+![](images/cat_progress2.png)
 
-![](https://datasciencecastnethome.files.wordpress.com/2021/11/step0299.png?w=300)
+![](images/step0299.png)
 
 A small selection of images generated during the course
 

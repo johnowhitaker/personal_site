@@ -3,7 +3,7 @@ title: "Exploring Softmax1, or \"Community Research For The Win!\""
 date: "2023-08-04"
 categories:
   - "blogs"
-image: https://datasciencecastnethome.files.wordpress.com/2023/08/image-1.png?w=633
+image: images/image-1.png
 ---
 
 Last week a guy called Evan Miller tweeted out a blog post claiming to have discovered a flaw in the attention mechanism used by transformers today:
@@ -18,7 +18,7 @@ Neural Networks like transformers are stored as big piles of numbers (parameters
 
 The problem arises when you try to go from a high-precision 32-bit neural network to an 8-bit one. With 8 bits you can only represent 2^8 (256) different numbers. If most of your numbers are small, then you can use those 256 numbers to represent, say, a range of values from -1 to 1 and map your 32-bit floating point numbers to the nearest 8-bit approximation without too much loss in accuracy. However, if there is an occasional \*outlier\* in your set of numbers then you may need to represent a much larger range (say, -100 to 100) which in turn leaves far fewer options for all those small values close to 0, and results in much lower accuracy.
 
-![](https://lh5.googleusercontent.com/TDrTlopijg4gvi2tTjPsMNLO23wcTJvhnYfc3WHszjtk5nsUgPQUxWOY5vyJysAomfhvbhgjhXP94sKT9v898vP53WW9ptb_itIpQ92xmkdfL7VHdY7cS1ldLpxh3parcz-lIdNgKL3NoxVXikqLfB00)
+![](images/TDrTlopijg4gvi2tTjPsMNLO23wcTJvhnYfc3WHszjtk5nsUgPQUxWOY5vyJysAomfhvbhgjhXP94sKT9v898vP53WW9ptb_itIpQ92xmkdfL7VHdY7cS1ldLpxh3parcz-lIdNgKL3NoxVXikqLfB00)
 
 Figure from Time Dettmer's blog [post](https://timdettmers.com/2022/08/17/llm-int8-and-emergent-features/) showing the drop in performance with quantization after outliers emerge
 
@@ -46,7 +46,7 @@ This paper is nice in that it gives a very concrete way to think about the probl
 
 Both of the methods above have potential downsides. Clipping can mess with gradients, and gating requires additional parameters. Evan, with his Physics and Economics background, believes there is a simpler fix: modify the softmax operation itself. Softmax is often used in a 'choose between options' scenario, and gets thrown in a lot whenever ML people want a convenient function whose outputs sum to 1 (great when you want probabilities). In the case of attention, this is not necessarily a desirable property!
 
-![](https://datasciencecastnethome.files.wordpress.com/2023/08/image-1.png?w=633)
+![](images/image-1.png)
 
 Evan's proposed 'Softmax1' formula
 
@@ -56,7 +56,7 @@ Evan's suggestion is to effectively add an extra logit that is always set to 0, 
 
 Since the change is so small, I cast about for a transformer implementation I could quickly adapt to try this. Karpathy's [nanoGPT](https://github.com/karpathy/nanoGPT) is perfect for this kind of thing. Written to facilitate easy learning, a single model.py file to mess with, it was the perfect starting point for experimentation. It turns out I was not the only one to think this, and soon I was in touch with Thomas Capelle (who was using the llama2.c repository that tweaks the nanoGPT code to implement the more recent LlaMa architecture) and with 'HypnoPump17' on Discord who trained two gpt2-small sized models using nanoGPT which were larger than the mini ones I'd been messing with and formed a good starting point for trying to measure the effects of interest.
 
-![](https://datasciencecastnethome.files.wordpress.com/2023/08/image-2.png?w=1024)
+![](images/image-2.png)
 
 Visualizing the activations from an attention layer ([notebook](https://colab.research.google.com/drive/1DExSfbVVxP34RfSlSiNt25eexpmq4Vrc?usp=sharing)). You can see that some dimensions (the 768 dims are spread along the x axis) have outliers present.
 

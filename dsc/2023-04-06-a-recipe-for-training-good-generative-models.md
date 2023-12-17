@@ -11,7 +11,7 @@ Generative models are all the rage at the moment, and quality seems to be skyroc
 
 ## 1) Pre-train on LOTS of data
 
-![](https://datasciencecastnethome.files.wordpress.com/2023/04/pixar-render-of-a-robot-reading-books-cinematic-photoreal-golden-hour-library-beautiful-.png?w=768)
+![](images/pixar-render-of-a-robot-reading-books-cinematic-photoreal-golden-hour-library-beautiful-.png)
 
 A robot working hard to read every book possible
 
@@ -21,11 +21,11 @@ This makes sense - more data = better, right? And so we see language models trai
 
 After (1), your model can hopefully produce anything. The downside is that it can produce, well, anything! Including badly spelled Reddit rants (for text models), or low-quality PowerPoint screenshots (for image models). For text-to-image models, another aspect of 'high-quality' data is image-caption alignment. If captions don't match images very well, the model will learn to rely less on the prompt when generating. The fix is to continue training on 'better' data, to bias the model toward generating the good stuff. You're not necessarily teaching it much new in this stage - just pushing it towards a subset of the possibilities it could already generate.
 
-![](https://datasciencecastnethome.files.wordpress.com/2023/04/screenshot-from-2023-04-06-09-16-42.png?w=851)
+![](images/screenshot-from-2023-04-06-09-16-42.png)
 
 SD 1.5 trained on ~1B samples - "A professional photo of an astronaut riding a horse on the moon"
 
-![](https://datasciencecastnethome.files.wordpress.com/2023/04/screenshot-from-2023-04-06-09-15-38.png?w=851)
+![](images/screenshot-from-2023-04-06-09-15-38.png)
 
 SD1.5 fine-tuned on ~1M 'good' samples
 
@@ -33,11 +33,11 @@ For a model like ChatGPT, this step involves manually finding or creating high-q
 
 ## 3) Incorporate HUMAN FEEDBACK
 
-![](https://datasciencecastnethome.files.wordpress.com/2023/04/screenshot-from-2023-04-06-09-30-56.png?w=779)
+![](images/screenshot-from-2023-04-06-09-30-56.png)
 
-![](https://datasciencecastnethome.files.wordpress.com/2023/04/screenshot-from-2023-04-06-09-26-48.png?w=408)
+![](images/screenshot-from-2023-04-06-09-26-48.png)
 
-![](https://datasciencecastnethome.files.wordpress.com/2023/04/screenshot-from-2023-04-06-09-25-39.png?w=418)
+![](images/screenshot-from-2023-04-06-09-25-39.png)
 
 Most apps have a way for users to provide feedback on generations or to explicitly rank images/texts
 
@@ -57,7 +57,7 @@ This recipe isn't necessarily new. The [ULMFiT paper](https://arxiv.org/abs/1801
 
 ## PS: Who's Feedback?
 
-![](https://datasciencecastnethome.files.wordpress.com/2023/04/grid_0.png?w=1024)
+![](images/grid_0.png)
 
 Images generated with the generic prompt "lol" in Midjourney
 

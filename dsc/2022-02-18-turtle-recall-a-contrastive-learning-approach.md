@@ -5,7 +5,7 @@ categories:
   - "blogs"
 ---
 
-![](https://images.pexels.com/photos/1618606/pexels-photo-1618606.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)
+![](images/pexels-photo-1618606.jpeg)
 
 NB: A scoring glitch caused this approach to look very good on the leaderboard, but local validation and a fix from Zindi later confirmed that it isn't as magical as it first seemed. Still interesting from an educational point of view but if you're looking to compete I'd suggest investigating alternate strategies.  
 
@@ -23,17 +23,17 @@ To keep this post light on code, I have more info and a working example in [this
 
 The goal of contrastive learning is to learn these useful representations in an unsupervised or loosely-supervised fashion (aka self-supervised learning). A typical approach is to take some images, create augmented versions of those images and then embed both the originals and the augmented versions with some encoder network. The objective is to maximise the similarity between an image and its augmented version while minimising the similarity between that image and all the rest of the images in the batch. The trick here is that augmentation is used to create two 'versions' of an image. In our turtle case, we also have pictures of the same individual from different angles which can be used in place of (or in addition to) image augmentations to get multiple versions depicting one individual.
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/02/screenshot-from-2022-02-18-08-31-18.png?w=1024)
+![](images/screenshot-from-2022-02-18-08-31-18.png)
 
 Top two rows: 16 turtles. Bottom 2 rows: augmented versions of different views of those same 16 turtles.
 
 In my implementation, we generate a batch by picking batch\_size turtles and then creating two sets of images with different pictures of those turtles. A resnet50 backbone acts like the encoder and is used to create embeddings of all of these images. We use a contrastive loss function to calculate a loss and update the network weights.
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/02/screenshot-from-2022-02-18-08-58-29-2.png?w=1024)
+![](images/screenshot-from-2022-02-18-08-58-29-2.png)
 
 This is my first time using jax so there are probably more elegant ways to do this!
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/02/formula-1.jpeg?w=1024)
+![](images/formula-1.jpeg)
 
 My post-it note with the formula
 
@@ -47,7 +47,7 @@ Key reference for going deeper: [SimCLR - A Simple Framework for Contrastive Lea
 
 Remember, our end goal is to be able to tell which individual turtle is in a new image. If things are working well, we'll feed the new image through our encoder model to get a representation and then compare that to the encoded representations of the known turtles. All pictures of a given individual should be 'similar' in this space, but should not be similar to images of other individuals. A neat way to visualize this is through something called a Representational Similarity matrix. We take, say, 16 images of 5 different turtles. We embed them all and compute all possible pair-wise similarities and then plot them as a heatmap:
 
-![](https://datasciencecastnethome.files.wordpress.com/2022/02/rsm_diag.png?w=1024)
+![](images/rsm_diag.png)
 
 A Representation Similarity Matrix (RSM) comparing embeddings of 16 images from each of 5 turtles.
 
