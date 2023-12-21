@@ -17,19 +17,32 @@ I like recommending books to other people, and find that the best way to get goo
 - Discworld series by Pratchett 
 
 #### Non-fiction:
-- The Righteous Mind: great book for understanding morality+religion
-- I am a strange loop: Fun to see someone tackle an ambitious question for a second time (this is the same author as Godel, Escher, Bach)
+- The Righteous Mind: a fantastic book for understanding morality+religion. Can't recommend this highly enough. If you skip the book at least read his paper "The Emotional Dog and its Rational Tail".
 - Reality + by David Chalmers: philosophy of mind through a modern lens, great overview of lots of philosophy topics and an excellent defence of simulation realism
 - An Immense World by Ed Young, one of my favorite books. Animal senses and how their words differ from ours. Mind expanding. 
--The Seabird's Cry. Poignant look at amazing creatures and how we're changing their world, with a very poetic author.
+-The Seabird's Cry. Poignant look at amazing creatures and how we're changing their world, with a very poetic author. 
+- I am a strange loop: Fun to see someone tackle an ambitious question for a second time (this is the same author as Godel, Escher, Bach). Be prepared for many long diversions and analogies as he tries to make his meaning unambiguous.
 
 ## Others (WIP)
 
-In no particular order, here are a bunch of others I've read with mini-reviews. TODO add more
+In no particular order, here are a bunch of others I've read. As I read more I'm adding them to the top of this list, with mini-reviews. The bulk of the list is still just me trying to remember as many as possible, and should grow + become more orderly over time.
 
+- The Tao of Pooh. Great fun, wirth a skim. The author has a very scathing view of scientists! 
+- Determined (Robert Sapolsky). I enjoyed his course. The book is his ultimate debunk of the idea of free will, followed by an exploration of what that means in practice for how we should live. I enjoyed it but it's snarkily written to the point of being off-putting for anyone not already on board with the idea - I don't think this would be very useful for convincing someone to change their mind.
+- The Kaiju Preservation society (Scalzi). A great read, very much in his style. Made me laugh out loud, which few authors manage. Also completely ridiculous but then this is Scalzi...
+- The Interdependency Trilogy (Scalzi). Future space civilizations, my least favourite of his. A few neat ideas, lots of inner thoughts of non-so-nice people. 
+- I Contain Multitudes (Ed Young). He writes really well. I was skeptical because 'microbiome' is so trendy, turns out this book started the craze and is a lot more measured and realistic than some subsequent hype. Hard not to get excited about bacteria after reading this :)
+- Klara and the Sun. Interesting book. Had me thinking a fair amount about how willing humans are to ascribe human-like intelligence and other qualities to very foreign things. See also: thinking jumping spiders are cute, pair-bonding with anything that has googley eyes. My family tried to turn this into a book club but stretched the discussion out too far. I did like his attempt to show Klara's strange way of perceiving the world - how some things are, to her, obviously evil - much like my dog hates lawnmowers. Scary as we imagine future more competent yet foreign intelligences.
 - Entangled Life (Martin Sheldrake). Great read re: fungi, fun to get a picture of the author as your read through their work.
 - Strange Rites - New Religions for a Godless Age (author name). Fascinating dive into some contemporary 'religions', providing a useful lens for understanding a lot of things in the world today. 
-- How To Be A Stoic
+- The Mistborn Trilogy (Brandon Sanderson). Not as good as his Stormlight series but I persevered. Worth a go if you're fantasy-starved and like Sanderson. 
+- How To Be A Stoic (Massimo Pugliochi???).
+Mindful Eating (Jan Chozen Bays). A reminder to slow down and savor things. A little weird and 'extra' but it's their book, fair game. 
+- Into the Wild (Jon Krakauer). A fascinating account of an interesting individual and his conflict with society. I'm always interested in anyone who refuses to walk the default path. 
+- The Alchemist (Paulo Coelho). An interesting read, I fondly remember a teacher read this to us in junior school. Manifest destiny and all that - interesting to think about, and seemingly fairly popular, but easy to take too far.
+- "Happy Money: The Science of Smarter Spending" (Elizabeth Dunn, Michael Norton). Fun in a Freakonomics-wannabe sort of way. Take the book's own recommendation to buy time by skipping reading it and instead just ask ChatGPT to summarize the key actionable ideas.
+- "All That the Rain Promises and More" (David Arora). A highly entertaining field guide for mushrooms, sprinkled with fantastic anecdotes and tasting notes. Mandatory for trips around here :)
+- DUNE (Frank Herbert) and sequels. Interesting and genre-defining in some ways. The sequels got a little too weird for me. 
 - Terry Pratchett (N, 3-6)
 - Douglas Adams
 - Christopher Paolini
@@ -42,11 +55,9 @@ In no particular order, here are a bunch of others I've read with mini-reviews. 
 - Anthony Horowitz (Alex series)
 - Popco
 - How the brain works from L6
-- The Alchemist
 - The end of the world is just the beginning
 - Liveship trilogy
 - Guns, germs and steel
-- A strange loop
 - You are not so smart and sequel
 - Goosebumps (a handful)
 - CUrious incident of the dog in the nighttime
@@ -101,10 +112,8 @@ In no particular order, here are a bunch of others I've read with mini-reviews. 
 - Outlive by Peter Attia
 - Eat food, not too much, mostly vegetables (Michael Pollen?)
 - Lab Girl (boring)
-- The Tao of Pooh
 - Three Men on a bummel
 - Once upo a river magical realism
-- Klara and the sun
 - Dandelion Wine (Ray Bradbury)
 - Farenheight 451
 - 1984
@@ -114,16 +123,16 @@ In no particular order, here are a bunch of others I've read with mini-reviews. 
 - That one with the SA people who owned a lion? 
 - Oh that weird AI thinkpiece by Kissenger and co that didn't say much
 - Public Health in mid-VIctorian Britain
-- GRades, Sub-grades and Subbases (or subsomethings at least)
+- Grades, Sub-grades and Subbases (or subsomethings at least)
 - South Africa's Vanishing Waterways
 - Why_'s poignant Guide to Ruby
 - Pride and Prejudice
 - The Idea Factory, Bell Labs 
 - Make: The Annotated DIY Science Laboratory (hilarious safety warnings)
 - Make: Tips and Tales from the workshop
-- Roberts Field Guide to BIrds of Southern Africa
+- Roberts Field Guide to Birds of Southern Africa
 - Windmills (Jaap's book)
 - You are Not So Smart + You Are Now Less Dumb (also enjoyed the podcast)
-- Determined (Robert Sapolsky)
-- I Contain Multitudes by Ed Young
-- 
+- Tales from Shakespeare
+- 1984 
+- The fun money one 
