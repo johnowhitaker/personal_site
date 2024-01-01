@@ -1,7 +1,7 @@
 ---
 date: "2024-01-01"
 categories: 
-  - "TIL"
+  - "TILs"
 ---
 
 # TIL: GPT4-V Doesn't Support Function Calling, but We Can Hack Around That

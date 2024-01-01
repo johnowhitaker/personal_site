@@ -1,7 +1,7 @@
 ---
 date: "2023-11-07"
 categories: 
-  - "TIL"
+  - "TILs"
 ---
 
 # Getting My YouTube Videos as MarkDown pages for this Quarto blog
