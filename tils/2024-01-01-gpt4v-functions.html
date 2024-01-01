@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2024-01-01">
 
-<title>johnowhitaker.dev - TILs</title>
+<title>johnowhitaker.dev</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +21,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,68 +101,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
-<meta name="twitter:title" content="johnowhitaker.dev - TILs">
+<link rel="stylesheet" href="../styles.css">
+<meta name="twitter:title" content="johnowhitaker.dev">
 <meta name="twitter:description" content="">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
@@ -148,11 +123,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./all.html"> 
+    <a class="nav-link" href="../all.html"> 
 <span class="menu-text">Everything Feed</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -161,19 +136,19 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-more">    
         <li>
-    <a class="dropdown-item" href="./tils.html">
+    <a class="dropdown-item" href="../tils.html">
  <span class="dropdown-text">TILs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./blog.html">
+    <a class="dropdown-item" href="../blog.html">
  <span class="dropdown-text">Blog Archive</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./resume.html">
+    <a class="dropdown-item" href="../resume.html">
  <span class="dropdown-text">Resume: Jonathan Whitaker</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./books.html">
+    <a class="dropdown-item" href="../books.html">
  <span class="dropdown-text">Book Recommendations</span></a>
   </li>  
     </ul>
@@ -190,21 +165,35 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#til-gpt4-v-doesnt-support-function-calling-but-we-can-hack-around-that" id="toc-til-gpt4-v-doesnt-support-function-calling-but-we-can-hack-around-that" class="nav-link active" data-scroll-target="#til-gpt4-v-doesnt-support-function-calling-but-we-can-hack-around-that">TIL: GPT4-V Doesn’t Support Function Calling, but We Can Hack Around That</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TILs</h1>
-</div>
+  <div class="quarto-categories">
+    <div class="quarto-category">TIL</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 1, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -214,93 +203,87 @@ window.Quarto = {
 </header>
 
 
-<p>A new section I hope to build out over time.</p>
+<section id="til-gpt4-v-doesnt-support-function-calling-but-we-can-hack-around-that" class="level1">
+<h1>TIL: GPT4-V Doesn’t Support Function Calling, but We Can Hack Around That</h1>
+<p>I want to use GPT4-V to evaluate images generated by a diffusion model and optionally modify the prompt based on the result. The problem is that GPT4-V doesn’t support function calling. This is a common problem - many models don’t support producing structured output directly. You could beg and plead for it to follow a set format for responses, but an easier solution is just to use GPT3.5-Turbo to re-format a free-form response into a function call. So, for example, step one might be:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>s1_prompt <span class="op">=</span> <span class="ss">f"""Your task is to evaluate whether the following image accurately follows the prompt.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ss">Prompt: </span><span class="sc">{</span>image_prompt<span class="sc">}</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ss">If the image follows the prompt well, respond with 'yes'. If not, respond with 'no', give reasons, and then create a new prompt</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ss">that might better elicit an image in the spirit of the original prompt. For example, if an object is missing, repeated references in the</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ss">prompt may help.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>s1_response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"gpt-4-vision-preview"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    messages<span class="op">=</span>[</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">"role"</span>: <span class="st">"user"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">"content"</span>: [</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                {</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"type"</span>: <span class="st">"text"</span>, </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"text"</span>: s1_prompt,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                },</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                {</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"type"</span>: <span class="st">"image_url"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"image_url"</span>: {</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"url"</span>: <span class="st">"https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                    },</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                },</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            ],</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    max_tokens<span class="op">=</span><span class="dv">300</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And then we can take the output of that and turn it into structured data with:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>messages <span class="op">=</span> [</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"role"</span>: <span class="st">"user"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"content"</span>: [</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>            {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                <span class="st">"type"</span>: <span class="st">"text"</span>, </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                <span class="st">"text"</span>: <span class="st">"Call the rate_image function with correct values based on the following text from a user:</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> s1_response.choices[<span class="dv">0</span>].message.content,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            },</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>tools <span class="op">=</span> [</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">"type"</span>: <span class="st">"function"</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">"function"</span>: {</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">"name"</span>: <span class="st">"rate_image"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">"description"</span>: <span class="st">"Rate the image as acceptable or not, with reasoning as to why and a modified prompt if necessary (optional)."</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">"parameters"</span>: {</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                <span class="st">"type"</span>: <span class="st">"object"</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                <span class="st">"properties"</span>: {</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"classification"</span>: {</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"type"</span>: <span class="st">"string"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"description"</span>: <span class="st">"The classification of the image, either 'yes' or 'no'"</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                    },</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"reasoning"</span>: ...</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"modified_prompt"</span>: ...</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>                },</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>                <span class="st">"required"</span>: [<span class="st">"classification"</span>, <span class="st">"reasoning"</span>, <span class="st">"modified_prompt"</span>],</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>            },</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"gpt-3.5-turbo-1106"</span>,</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    messages<span class="op">=</span>messages,</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    max_tokens<span class="op">=</span><span class="dv">300</span>,</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    tools<span class="op">=</span>tools,</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The result is a structured response that we can use to evaluate the image and modify the prompt:</p>
+<div class="img-fluid quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="image.png" class="img-fluid figure-img"></p>
+<figcaption>A screenshot of the result</figcaption>
+</figure>
+</div>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="TIL" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1704141591275" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="892">
-<div class="thumbnail">
-<p><a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external"></a></p><a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">
-<p class="card-img-top"><img src="tils/image.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">TIL: GPT4-V Doesn’t Support Function Calling, but We Can Hack Around That</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">I want to use GPT4-V to evaluate images generated by a diffusion model and optionally modify the prompt based on the result. The problem is that GPT4-V doesn’t support…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">
-<div class="listing-date">
-Jan 1, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="TIL" data-listing-date-sort="1699315200000" data-listing-file-modified-sort="1704141591275" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="384">
-<div class="thumbnail">
-<p><a href="./tils/2023-11-07-get_yt_vids.html" class="no-external"></a></p><a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./tils/2023-11-07-get_yt_vids.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">Getting My YouTube Videos as MarkDown pages for this Quarto blog</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">Step 1 was getting the video info:</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">
-<div class="listing-date">
-Nov 7, 2023
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="TIL" data-listing-date-sort="1691712000000" data-listing-file-modified-sort="1704141591275" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="255">
-<div class="thumbnail">
-<p><a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external"></a></p><a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">Exporting from Wordpress into a Quarto Blog</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">I have been blogging for years on a free Wordpress account, but figured I should finally migrate to a custom setup. I’m using Quarto, and in this TIL I document how to…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">
-<div class="listing-date">
-Aug 11, 2023
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
