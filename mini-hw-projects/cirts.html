@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.533">
+<meta name="generator" content="quarto-1.5.4">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2018-11-16">
 
-<title>johnowhitaker.dev - CIRTS - Configurable Infra-Red Tomography systems</title>
+<title>johnowhitaker.dev – CIRTS - Configurable Infra-Red Tomography systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -178,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="images/3765251542371976038.png" class="img-fluid"></p>
 <p>I built some tools that let me simulate these kinds of arrangements, and did some early experiments on image reconstruction and on the use of machine learning (specifically neural networks) to make sense of readings. Even with a weird arrangement like the on on the right, I could make some sense of the data. I’m not going to write up the simulation stuff here, but there is code and info in the GitHub repository. It will get tidied up and updated once the marking process ends.</p>
 <p>I tested out these arrangements in the real world by building some fixed arrangements, and by using a 3D printed scanner to position an LED and a phototransistor (PT from now on) in different locations to slowly simulate having many detectors and emitters.</p>
-<div class="img-fluid quarto-figure quarto-figure-center">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://cdn.hackaday.io/images/4773091542372340534.jpeg" class="img-fluid figure-img"></p>
 <figcaption>The Rotating Scanner</figcaption>
@@ -192,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
 <p>A view of the underside/internals</p>
 <p><img src="images/1990041542372484783.png" class="img-fluid"></p>
 <p>I’ll post more on this if I get it out and do more scans, but that covers the basics. I can take a high-res scan and store that. Then later, if I’m looking building a ring of sensors with, for eg, 16 elements, I can see what the output would be by taking a subset of the higher res scan and working with that. So it let’s me try out new arrangements quite quickly, in the real world. A useful tool!</p>
-<div class="img-fluid quarto-figure quarto-figure-center">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://cdn.hackaday.io/images/4373801542372972137.jpeg" class="img-fluid figure-img"></p>
 <figcaption>Fixed arrays of sensors</figcaption>
@@ -371,7 +371,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      return note.innerHTML;
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {

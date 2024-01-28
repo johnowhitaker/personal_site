@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.533">
+<meta name="generator" content="quarto-1.5.4">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2013-07-04">
 <meta name="description" content="When I found out this was possible I couldn’t resist having a go. Sadly, I didn’t document the build process but there are many tutorials out there already explaining all the details. A short explanation and some more pics in ‘more details’.">
 
-<title>johnowhitaker.dev - IR Webcam</title>
+<title>johnowhitaker.dev – IR Webcam</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -181,35 +181,35 @@ ul.task-list li input[type="checkbox"] {
 <h1>IR Webcam</h1>
 <p>I modified my brother’s webcam to see in near infra-red (NIR) rather than the visible spectrum, giving an interesting insight into the world of colours that we simply can’t see. Coke looks like water, bills reveal secret patterns and your TV remote becomes a torch!</p>
 <p>The method really depends on your camera, but basically what you are doing is locating the CCD chip (which records the images) and removing the tiny, fragile piece of IR-blocking glass, then replacing it with a piece of something that blocks visible light but lets through infra-red. This works because most CCD chips can pick up NIR - they usually just block it before it reaches the chip. I experimented with a couple of different filters - both old floppy disk and overexposed camera film work well. They have to be cut to squares about 5mm a side, and getting these to fit over the chip was the hardest part of this project. I recently set this up as a security camera using my raspberry pi to detect motion and stream the video over the network, but I will write that up in another post. Here is a gallery of some pictures taken with the webcam. My common room at school (the couch is black to our eyes):</p>
-<div class="img-fluid quarto-figure quarto-figure-center">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/ir_webcam_com.jpg" class="img-fluid figure-img"></p>
 <figcaption>Image</figcaption>
 </figure>
 </div>
 <p>A match:</p>
-<div class="img-fluid quarto-figure quarto-figure-center">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/ir_match.jpg" class="img-fluid figure-img"></p>
 <figcaption>Image</figcaption>
 </figure>
 </div>
 <p>An LED torch (very bright, but almost no IR):</p>
-<div class="img-fluid quarto-figure quarto-figure-center">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/ir_torch.jpg" class="img-fluid figure-img"></p>
 <figcaption>Image</figcaption>
 </figure>
 </div>
 <p>A remote:</p>
-<div class="img-fluid quarto-figure quarto-figure-center">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/ir_remote.jpg" class="img-fluid figure-img"></p>
 <figcaption>Image</figcaption>
 </figure>
 </div>
 <p>Some of my parents new $100 notes :) :</p>
-<div class="img-fluid quarto-figure quarto-figure-center">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/ir_money.jpg" class="img-fluid figure-img"></p>
 <figcaption>Image</figcaption>
@@ -381,7 +381,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      return note.innerHTML;
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
