@@ -27,7 +27,7 @@ This website will hopefully become a central repository for everything I'm worki
 
 - [Twitter](x.com/johnowhitaker) or [Sigmoid.social](https://sigmoid.social/@johnowhitaker) (@johnowhitaker on both, and most other platforms too)
 - My DataScienceCastnet [YouTube channel](https://www.youtube.com/channel/UCP6gT9X2oXYcssfZu05RV2g) where I document some of the projects I've been working on.
-- [The Generative Landscape](https://johnowhitaker.github.io/tglcourse/), a work-in-progress course on all things generative.
+- [The Generative Landscape](https://johnowhitaker.github.io/tglcourse/), an older (now mostly abandoned) course on all things generative.
 - My [LinkedIn](https://www.linkedin.com/in/johnowhitaker/) - although fair warning it is rarely checked or updated.
 - My [GitHub](https://github.com/johnowhitaker)
 
