@@ -9,12 +9,18 @@ title: "Resume: Jonathan Whitaker"
 I love working on new challenges, and tend to gravitate to any role that lets me exercise my key skills:
 
 - Breaking down and understanding deep technical concepts. (research)
-- Figuring out how to practically apply these to real-world problems. (consulting)
+- Figuring out how to practically apply these to real-world problems. (development)
 - Communicating these concepts with others. (teaching)
 
 I also have an unusual grab-bag of extra skills or interest areas, which come in useful from time to time :)
 
 ## EXPERIENCE
+
+#### R&D at Answer.AI
+**2024 - PRESENT**
+
+- A new and exciting project to figure out what this AI stuff is actually useful for, with a fantastic team of researchers.
+
 #### AI Education and Research
 **SEPTEMBER 2022 - PRESENT**
 
@@ -23,7 +29,7 @@ I also have an unusual grab-bag of extra skills or interest areas, which come in
 - Sharing learning material through my Data Science Castnet blog and YouTube channel
 
 #### Consulting - Generative AI
-**2022 - PRESENT**
+**2022 - 2023**
 
 - Builder-in-residence at PlaygroundAI, where I helped train their first in-house Stable Diffusion variant and worked on numerous guidance, instruction-following, and sampling improvements (Jan - June 2023)
 - Smaller clients, working on image classification + generation, text, and most recently 3D-related R&D 
