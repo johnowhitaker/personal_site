@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2024-02-20">
 
-<title>johnowhitaker.dev – TILs</title>
+<title>johnowhitaker.dev – Can LLMs estimate the length of a sequence?</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +21,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,68 +101,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
-<meta name="twitter:title" content="johnowhitaker.dev - TILs">
+<link rel="stylesheet" href="../styles.css">
+<meta name="twitter:title" content="johnowhitaker.dev - Can LLMs estimate the length of a sequence?">
 <meta name="twitter:description" content="">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
@@ -148,11 +123,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./all.html"> 
+    <a class="nav-link" href="../all.html"> 
 <span class="menu-text">Everything Feed</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -161,19 +136,19 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-more">    
         <li>
-    <a class="dropdown-item" href="./tils.html">
+    <a class="dropdown-item" href="../tils.html">
  <span class="dropdown-text">TILs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./blog.html">
+    <a class="dropdown-item" href="../blog.html">
  <span class="dropdown-text">Blog Archive</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./resume.html">
+    <a class="dropdown-item" href="../resume.html">
  <span class="dropdown-text">Resume: Jonathan Whitaker</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./books.html">
+    <a class="dropdown-item" href="../books.html">
  <span class="dropdown-text">Book Recommendations</span></a>
   </li>  
     </ul>
@@ -189,22 +164,37 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#how-well-can-llms-estimate-length" id="toc-how-well-can-llms-estimate-length" class="nav-link active" data-scroll-target="#how-well-can-llms-estimate-length">How well can LLMs estimate length?</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TILs</h1>
-</div>
+<h1 class="title">Can LLMs estimate the length of a sequence?</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">mini-projects</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 20, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -214,93 +204,37 @@ window.Quarto = {
 </header>
 
 
-<p>A new section I hope to build out over time.</p>
+<section id="how-well-can-llms-estimate-length" class="level1">
+<h1>How well can LLMs estimate length?</h1>
+<p>While discussing another paper based around ‘LLM-as-a-judge’ style evaluation, the topic of length bias (longer responses tend to be rated higher) came up. This prompted Jeremy to ask ‘Can LLMs even estimate the length of a sequence? How well?’. So I did a few quick tests to find out, and spotted a few interesting things along the way.</p>
+<p>First experiment: throwing some sequences through gpt-3.5-Turbo and gpt-4, using function calling to get a formatted response with a prompt like</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>messages.append({<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"Estimate the length (in words) of the passage provided by the user."</span>})</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>messages.append({<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="ss">f"Passage:</span><span class="ch">\n</span><span class="ss"> </span><span class="sc">{</span><span class="st">'hi'</span><span class="op">*</span><span class="dv">30</span><span class="sc">}</span><span class="ss">"</span>})</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>chat_response <span class="op">=</span> chat_completion_request(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    messages, tools<span class="op">=</span>tools, tool_choice<span class="op">=</span>{<span class="st">"type"</span>: <span class="st">"function"</span>, <span class="st">"function"</span>: {<span class="st">"name"</span>: <span class="st">"return_length_estimate"</span>}}</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For ever-longer snippets of a Wikipedia article, here’s GPT 3.5 Turbo’s estimates:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/3.5.png" class="img-fluid figure-img"></p>
+<figcaption>image</figcaption>
+</figure>
+</div>
+<p>It’s fairly accurate at lower sequence lengths, but diverges and starts to estimate that anything long is ~1000 words. GPT-4 also got worse above ~800 words, but with less of an obvious trend. More pics in my original Twitter <a href="https://x.com/johnowhitaker/status/1760094827147079897?s=20">thread</a>.</p>
+<p>Thinking through how these models might infer the length, one possibility is that the positional embeddings can be used to estimate the length of the sequence. If the model is able to compare the positional embeddings of the first and last token, it could estimate the length of the sequence. To see how clearly positional info comes through in the latent representations of the model, fed some sequences of various lengths through the recently-released gemma-7B model and stored the final layer outputs (<code>outputs.last_hidden_state</code>). Then I fit a linear regression model on these to predict the token position from the latent representation. The R^2 was 0.99, so the positional information is very clear in the latent representations. As you can see, there’s enough information in the latent representations to estimate the length of the sequence fairly well:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/gemma.png" class="img-fluid figure-img"></p>
+<figcaption>image</figcaption>
+</figure>
+</div>
+<p>One interesting thought: many models are trained at some lower context length (1024 or 2048 for example) the briefly fine-tuned on longer sequences at the end of training. A popular recent strategy is to do some kind of dynamic scaling (see dynamic RoPE scaling for e.g.) where the positional embeddings for linger sequences are scaled such that they map to the same range as the positional embeddings for the shorter sequences the model was trained with. If this is the case, you’d expect length estimates for sequences above the training context length to be less accurate, and specifically to be underestimates since the positional embeddings of token, say, 4217 would be rescaled back to look like the positional embeddings of token 1024. The pattern for GPT-3.5 Turbo’s estimates seems to fit this hypothesis, but of course we don’t have a way to know for sure.</p>
+<p>This was a fun little experiment, and it’s unlikely I’ll take it further, but I hope it’s given you some food for thought and perhaps a few ideas for your own experiments.</p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="TILs" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1710197484502" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="892">
-<div class="thumbnail">
-<p><a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external"></a></p><a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">
-<p class="card-img-top"><img src="tils/image.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">TIL: GPT4-V Doesn’t Support Function Calling, but We Can Hack Around That</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">I want to use GPT4-V to evaluate images generated by a diffusion model and optionally modify the prompt based on the result. The problem is that GPT4-V doesn’t support…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">
-<div class="listing-date">
-Jan 1, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="TILs" data-listing-date-sort="1699315200000" data-listing-file-modified-sort="1710197484502" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="384">
-<div class="thumbnail">
-<p><a href="./tils/2023-11-07-get_yt_vids.html" class="no-external"></a></p><a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./tils/2023-11-07-get_yt_vids.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">Getting My YouTube Videos as MarkDown pages for this Quarto blog</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">Step 1 was getting the video info:</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">
-<div class="listing-date">
-Nov 7, 2023
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="TILs" data-listing-date-sort="1691712000000" data-listing-file-modified-sort="1710197484502" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="255">
-<div class="thumbnail">
-<p><a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external"></a></p><a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">Exporting from Wordpress into a Quarto Blog</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">I have been blogging for years on a free Wordpress account, but figured I should finally migrate to a custom setup. I’m using Quarto, and in this TIL I document how to…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">
-<div class="listing-date">
-Aug 11, 2023
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
