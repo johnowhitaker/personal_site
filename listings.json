@@ -56,16 +56,9 @@
     ]
   },
   {
-    "listing": "/tils.html",
-    "items": [
-      "/tils/2024-01-01-gpt4v-functions.html",
-      "/tils/2023-11-07-get_yt_vids.html",
-      "/tils/2023-08-11-convert_wordpress_to_quarto.html"
-    ]
-  },
-  {
     "listing": "/all.html",
     "items": [
+      "/mini-projects/broken_telephone.html",
       "/mini-projects/length_est.html",
       "/mini-hw-projects/2024-02-02-3dp_instruments.html",
       "/mini-hw-projects/2024-01-27-desk.html",
@@ -203,6 +196,14 @@
       "/mini-hw-projects/2013-08-03-easy_3d_scanner.html",
       "/mini-hw-projects/2013-07-04-ir_webcam.html",
       "/mini-projects/template.html"
+    ]
+  },
+  {
+    "listing": "/tils.html",
+    "items": [
+      "/tils/2024-01-01-gpt4v-functions.html",
+      "/tils/2023-11-07-get_yt_vids.html",
+      "/tils/2023-08-11-convert_wordpress_to_quarto.html"
     ]
   },
   {
