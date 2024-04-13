@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-02-03">
+<meta name="author" content="Johno Whitaker">
+<meta name="dcterms.date" content="2024-01-23">
 
-<title>johnowhitaker.dev – InstructPix2Pix Explained - Edit Images with Words!</title>
+<title>johnowhitaker.dev – A few tips for working on high-surface-area problems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -70,9 +105,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta name="twitter:title" content="johnowhitaker.dev - InstructPix2Pix Explained - Edit Images with Words!">
-<meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://johnowhitaker.dev/misc/thumbnails/-I9-2XK3kOs.jpg">
+<meta name="twitter:title" content="johnowhitaker.dev - A few tips for working on high-surface-area problems">
+<meta name="twitter:description" content="What do you do when there are too many pieces to fit in your head?">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
 </head>
@@ -136,7 +170,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#instructpix2pix-explained---edit-images-with-words" id="toc-instructpix2pix-explained---edit-images-with-words" class="nav-link active" data-scroll-target="#instructpix2pix-explained---edit-images-with-words">InstructPix2Pix Explained - Edit Images with Words!</a></li>
+  <li><a href="#tip-1-start-with-a-minimal-example-and-build-up" id="toc-tip-1-start-with-a-minimal-example-and-build-up" class="nav-link active" data-scroll-target="#tip-1-start-with-a-minimal-example-and-build-up">Tip 1: Start with a minimal example and build up</a></li>
+  <li><a href="#tip-2-loginstrument-everything" id="toc-tip-2-loginstrument-everything" class="nav-link" data-scroll-target="#tip-2-loginstrument-everything">Tip 2: Log/instrument everything</a></li>
+  <li><a href="#tip-3-teamwork-ftw" id="toc-tip-3-teamwork-ftw" class="nav-link" data-scroll-target="#tip-3-teamwork-ftw">Tip 3: Teamwork FTW</a></li>
+  <li><a href="#tip-4-refactor-repeatedly-to-surface-eliminate-complexity-where-possible" id="toc-tip-4-refactor-repeatedly-to-surface-eliminate-complexity-where-possible" class="nav-link" data-scroll-target="#tip-4-refactor-repeatedly-to-surface-eliminate-complexity-where-possible">Tip 4: Refactor repeatedly to surface + eliminate complexity where possible</a></li>
+  <li><a href="#final-remarks" id="toc-final-remarks" class="nav-link" data-scroll-target="#final-remarks">Final Remarks</a></li>
   </ul>
 </nav>
     </div>
@@ -145,21 +183,25 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">InstructPix2Pix Explained - Edit Images with Words!</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">Video</div>
-  </div>
-  </div>
+<h1 class="title">A few tips for working on high-surface-area problems</h1>
+<p class="subtitle lead">What do you do when there are too many pieces to fit in your head?</p>
+</div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Johno Whitaker </p>
+          </div>
+  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 3, 2023</p>
+      <p class="date">January 23, 2024</p>
     </div>
   </div>
   
@@ -171,10 +213,80 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="instructpix2pix-explained---edit-images-with-words" class="level3">
-<h3 class="anchored" data-anchor-id="instructpix2pix-explained---edit-images-with-words">InstructPix2Pix Explained - Edit Images with Words!</h3>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/-I9-2XK3kOs" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p>Join me as I explain the core idea behind ‘InstructPix2Pix’ which let’s you edit images using natural language instructions!The thumbnail was generated with ‘Add sunglasses’, ‘make it in a city at night’ and ‘give him a leather jacket’ - far better than messing about with photoshop -)My previous video on ‘Editing Images with Diffusion Models’ - https://www.youtube.com/watchv=zcG7tG3xS3sInstructPix2Pix paper - https://arxiv.org/abs/2211.09800GitHub - https://github.com/timothybrooks/instruct-pix2pixModel - https://huggingface.co/timbrooks/instruct-pix2pixDemo Space - https://huggingface.co/spaces/timbrooks/instruct-pix2pixPlaygroundAI - playgroundai.com</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Cross-Posting to Answer.AI
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Some of my posts will now be duplicated to <a href="answer.ai">Answer.ai</a>’s blog since I work there now. This one has just gone up (12 April) but since it has sat as a draft since January I’m back-dating it here on my site since I’m allowed to do that :)</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="A few tips for working on high-surface-area proble 2e02b0d4b400448781bc68402cb5a67d/example_map.png" class="img-fluid figure-img"></p>
+<figcaption>Some of the many questions/directions we faced when trying to get QLoRA working with FSDP - an example of a high-surface-area problem!</figcaption>
+</figure>
+</div>
+<p>Some problems are fairly well-defined and narrow in scope: ‘translate this maths into code’, or ‘try a different embedding dimension on this task’. But as AI researchers we often work on things that involve a lot of moving pieces, and when something doesn’t work it can be hard to find out <strong>where</strong> the issue(s) may be, let alone what we need to do to fix them. I think of these tasks as having a high “surface area”, and in this post I’ll share a few tips for dealing with these inspired by a recent experience with one such problem.</p>
+<section id="tip-1-start-with-a-minimal-example-and-build-up" class="level2">
+<h2 class="anchored" data-anchor-id="tip-1-start-with-a-minimal-example-and-build-up">Tip 1: Start with a minimal example and build up</h2>
+<p>Rather than beginning with the full, complicated task, see if there’s a smaller version you can create that still lets you meaningfully probe the problem. For example, rather than using Llama-2-7B with LoRA adapters, I did some early tests with a network made of blocks like this:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Block(torch.nn.Module):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, size<span class="op">=</span><span class="dv">512</span>):</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Trainable layer</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.l1 <span class="op">=</span> torch.nn.Linear(size, size)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Frozen layer</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.l2 <span class="op">=</span> torch.nn.Linear(size, size)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> param <span class="kw">in</span> <span class="va">self</span>.l2.parameters():</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            param.requires_grad <span class="op">=</span> <span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Starting small lets you add bits of complexity one at a time, gradually revealing different aspects of the problem. With this small example I could experiment with and isolate specific aspects of the larger challenge - for example, swapping out one linear layer with a quantized version. The goal here is to reduce the surface area that is in focus at a given time, and incrementally add more as we figure things out.</p>
+</section>
+<section id="tip-2-loginstrument-everything" class="level2">
+<h2 class="anchored" data-anchor-id="tip-2-loginstrument-everything">Tip 2: Log/instrument everything</h2>
+<p>Debugging something opaque is a pain, so anything that provides more visibility into what is happening is useful. Printing out tensor shapes, logging losses, gradients and resource usage, and generally instrumenting everything that you possibly can are gifts to your future self here. For example, consider the following two memory profiles captured with <a href="https://pytorch.org/docs/stable/torch_cuda_memory.html">this excellent pytorch tool</a>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="A few tips for working on high-surface-area proble 2e02b0d4b400448781bc68402cb5a67d/mem_profile.png" class="img-fluid figure-img"></p>
+<figcaption>Saving a snapshot of memory use over two successive batches of training data reveals an unexpected spike in memory (left) until a fix is put in place (right)</figcaption>
+</figure>
+</div>
+<p>In this case, a somewhat sneaky bug had crept in, causing memory usage to spike in the second batch of training. Printing the memory use at different stages helped show that something funky was going on, but it was only through a combination of memory profiling and a minimal example that I was able to spot the issue. I hadn’t used this memory visualization tool before - it’s only a few months old, and I hadn’t heard of it until a colleague suggested it. Imagine all of the pain that could be saved if more AI researchers used tools like this!</p>
+<p>Whether you’re on team “inspect it manually in a debugger”, team “print all the things” or team “log to W&amp;B and call that good”, make sure you have <em>some</em> way to see more of what is actually going on wherever possible :)</p>
+</section>
+<section id="tip-3-teamwork-ftw" class="level2">
+<h2 class="anchored" data-anchor-id="tip-3-teamwork-ftw">Tip 3: Teamwork FTW</h2>
+<p>Explaining a problem is an excellent debugging tool, even if the explainee doesn’t actually contribute any new knowledge - hence the excellent <a href="https://en.wikipedia.org/wiki/Rubber_duck_debugging">“rubber duck debugging” technique</a>. However, team members with deep complimentary knowledge are even better than a mute duck, and talking through things rather than suffering in silence almost always pays off and leads to a quick solution. If you don’t have formal work colleagues, sharing in public forums or pestering your technical friends is often just as good.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="A few tips for working on high-surface-area proble 2e02b0d4b400448781bc68402cb5a67d/Untitled.png" class="img-fluid figure-img"></p>
+<figcaption>A missed opportunity for some instructive pair programming with a friend.</figcaption>
+</figure>
+</div>
+<p>Another benefit of working with a team is the ability to divide and conquer when one ‘problem’ turns out to be many sub-problems in a trench coat. This one plays nicely with Tips 1 and 2 - if you’ve got well-instrumented minimal examples it’s a lot easier to identify specific issues, and have others work on them without needing to front-load the full complexity of the task.</p>
+</section>
+<section id="tip-4-refactor-repeatedly-to-surface-eliminate-complexity-where-possible" class="level2">
+<h2 class="anchored" data-anchor-id="tip-4-refactor-repeatedly-to-surface-eliminate-complexity-where-possible">Tip 4: Refactor repeatedly to surface + eliminate complexity where possible</h2>
+<p>Software complexity tends to grow over time. Features get added, chunks of code get split into different files and made more modular, options proliferate as more and more configurations are supported… All of this may be perfectly reasonable, but can make it difficult to understand a specific circumstance. Focusing on one task and bringing as much of the code as possible into a single notebook or python file can be a great tool for debugging, forcing you to read the important bits as they get refactored out of their silos and into your new version.</p>
+<p>You may worry that the state-of-the-art deep learning techniques are beyond you. Worry not! Beneath all the layers there are almost always fairly simple pieces. For example, consider the case of applying LoRA adapters to a model. I had to do this for a <a href="https://www.youtube.com/watch?v=gJ4bvOX-1CE">video</a> I was making on diffusion models. The diffusers library implementation spans multiple layers of abstractions and is stuffed with conditions to handle different formats and approaches. It was only when I extracted out and re-wrote the key step that I could properly understand it and begin to experiment.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="A few tips for working on high-surface-area proble 2e02b0d4b400448781bc68402cb5a67d/Untitled 1.png" class="img-fluid figure-img"></p>
+<figcaption>Merging in LoRA weights in a diffusion model pipeline: minimal implementation compared to the <a href="https://github.com/huggingface/diffusers/blob/357855f8fca8d27beb0a3fde333f46db22f29391/src/diffusers/loaders/unet.py#L67">&gt;300LOC diffusers version</a>. Theirs supports far more options, but for experimenting + debugging a minimal re-implementation was far easier to work with and understand. Once things are working, we can always switch back to the more complicated ‘official’ version.</figcaption>
+</figure>
+</div>
+<p>Ideally, start from some minimal example and build up from there. Your final result doesn’t need to be a permanent artefact, but having everything in one place when working on especially thorny problems is extremely useful. This is a skill that is hard to learn from examining others’ code, since we typically only get a look at the final result. Notebooks can be a great way to share the progression as you verify things a few lines at a time before combining them into larger blocks, but even here we usually see just the final (working) version rather than all the intermediate pieces.</p>
+</section>
+<section id="final-remarks" class="level2">
+<h2 class="anchored" data-anchor-id="final-remarks">Final Remarks</h2>
+<p>These high-surface-area problems are tough. It’s hard to get into flow when there are so many questions that need answers, and debugging them is often a slog rather than a flash of inspiration. The final results can sometimes feel underwhelming compared to coming up with some flashy new algorithm. And yet by pushing through and persevering you can have a big impact… Hopefully this post has inspired you to do so, and given you a few tips to keep in mind when you do.</p>
 
 
 </section>
