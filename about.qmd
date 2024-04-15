@@ -2,21 +2,7 @@
 title: "About this site"
 ---
 
-Still a WIP. 
-
-TODO: add more things to "Everything" feed:
-- Banger tweets
-- W&B Reports
-- Talks?
-- Non-DS writings?
-- Macro photography?
-- Art?
-
-TODO: start to fix broken images
-
-TODO: replace twitter embeds with screenshot + link
-
-TODO link to other things I've done
+TODO more info on Quarto
 
 For website:
 
