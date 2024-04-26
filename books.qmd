@@ -1,5 +1,5 @@
 ---
-title: "Book Recommendations"
+title: "Books"
 ---
 
 ## Recommendations
@@ -27,7 +27,9 @@ I like recommending books to other people, and find that the best way to get goo
 
 In no particular order, here are a bunch of others I've read. As I read more I'm adding them to the top of this list, with mini-reviews. The bulk of the list is still just me trying to remember as many as possible, and should grow + become more orderly over time.
 
-- Winds Twelve Quarters (Ursula K. Le Guin) - fantasticx short stories, I really enjoy her work. 
+- Deep Utopia (Bostrom). He "writes engagingly but not concisely" as someone put it. An understatement! This book has some interesting ideas, but rather than reading the result of someone else thinking at length about this I recommend looking up 
+a summary then sitting somewhere nice for a few hours and musing about the questions for yourself. I did not finish. Enjoyed the mini-stories though :)
+- Winds Twelve Quarters (Ursula K. Le Guin) - fantastic short stories, I really enjoy her work. 
 - Fractal Noise - A 'short story' that is maybe longer than it needs to be, although in his defence he'd just written the Eragon series. 
 - Lock In (John Scalzi) - Thrilling detective story in a fun world, both it and the sequel were fun to re-visit amid the online speculation re: Neuralink and the general AI discourse even though the main plot isn't much focused on the tech.
 - What We Owe The Future. I finally read this after being a little frustrated with some longtermist takes. Annoyingly, Will is more reasonable than the loonies and the book was fairly interesting and well-written. I think I would have enjoyed it more if I hadn't already been over the ideas a ton - if you're less familiar with the ground it might be a good intro to this patch of philosophy and population ethics. 
