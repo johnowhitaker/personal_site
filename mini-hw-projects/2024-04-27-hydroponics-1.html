@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2019-01-11">
+<meta name="dcterms.date" content="2024-04-27">
 
-<title>johnowhitaker.dev – init(self): What is this blog</title>
+<title>johnowhitaker.dev – Basement Hydroponics: Part 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta name="twitter:title" content="johnowhitaker.dev - init(self): What is this blog">
+<meta name="twitter:title" content="johnowhitaker.dev - Basement Hydroponics: Part 1">
 <meta name="twitter:description" content="">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
@@ -130,17 +130,23 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#basement-hydroponics-part-1" id="toc-basement-hydroponics-part-1" class="nav-link active" data-scroll-target="#basement-hydroponics-part-1">Basement Hydroponics: Part 1</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><strong>init</strong>(self): What is this blog</h1>
+<h1 class="title">Basement Hydroponics: Part 1</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">blogs</div>
+    <div class="quarto-category">mini-hw-projects</div>
   </div>
   </div>
 
@@ -152,7 +158,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 11, 2019</p>
+      <p class="date">April 27, 2024</p>
     </div>
   </div>
   
@@ -164,13 +170,27 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Welcome!</p>
-<p>In this first post, I figured I’d lay out the goals of this blog and explain a bit of background. As soon as I’m done writing this I’m planning on following up with the first proper post. With luck, this intro will be the only post ‘fluff’ post you’ll see here.</p>
-<p>Let’s start with me. My name is Jonathan Whitaker. I’m an Electrical Engineer with a Data Science background, currently pursuing some personal research projects while my wife and I take a working vacation around Zimbabwe. For the last 5 years I’ve been writing code to solve problems. Big, important problems for work. Small, interesting projects for fun. Obscure, not-quite-problems because something bugged me and I thought “I can do that better”. I’m hoping that this blog will become a place for me to share these solutions and associated musings.</p>
-<p>I’ve called the blog ’The Data Science Cast-net”. This is because I have developed a fairly chronic case of something I call the data science mindset - something I try to instil in my students when I teach this stuff. In essence, this is a mental practice of looking at pretty much everything as a data science problem. Looking for somewhere to live? I can map travel times, house prices, crime rates etc to efficiently narrow down the search. Idly wondering how a romantic relationship is affecting your health? Google Fit makes all sorts of data available - we can compare different years and do some fun statistics to see if you’re walking more or less now that you’re hitched. And so on, down a slippery slope that ends with you tracking all aspects of your life and thinking in terms of variables and models far too often. Now, armed with the tools to make sense of data, I am throwing my cast-net out into the world and seeing what interesting information-fish I can pull in.</p>
-<p>I look forward to sharing this experiment with you.</p>
+<section id="basement-hydroponics-part-1" class="level1">
+<h1>Basement Hydroponics: Part 1</h1>
+<p>I’ve been dabbling with hydroponics in my basement since discovering some unused grow lights from someone else’s abandoned attempt. It’s fun to see things grow! The system has also doubled as a way to start seeds indoors before transplanting them outside, and gave various flowers and herbs a head start. Now that all the seedlings are planted out, this is what the system looks like in its current state:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/hydro_1.jpg" class="img-fluid figure-img"></p>
+<figcaption>The setup</figcaption>
+</figure>
+</div>
+<p>There’s a gazillion youtube videos and desicated kits for hydroponics, but the simple fact is that plants do OK if you dunk them in water filled with nutrients and the rest is mostly fluff to get you to buy someone’s over-priced pump or whatever. I’m using some nurtrients from the same abandoned project that left me the lights, and the rest is just stuff I had lying around. I opted for a Kratky-style system, which is a set-and-forget style of hydroponics where the plants wick up nutrient from a tank that starts mostly full and slowly empties as the plants grow. I started seeds in ‘Jiffy Peat Pellets’ which can be suspended in holes in the containers by shoving some screws or skewers through them. For some smaller experiments I’ve had success using smaller bottles with a cap I 3d-printed:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/hydro_2.jpg" class="img-fluid figure-img"></p>
+<figcaption>A basil plant in a small bottle, showing air roots and root system</figcaption>
+</figure>
+</div>
+<p>This is inspired by the excellent Falcoponics system invented by Sebastian S. Cocioba (<span class="citation" data-cites="ATinyGreenCell">@ATinyGreenCell</span>) for small-scale hydroponics. With these smaller containers you need to top up the water more often, but it’s a fantastic approach for testing out ideas without needing to wrangle hoses or worrying about contaminating some big central reservoir.</p>
+<p>We’ve been consistently harvesting basil and chard, and there are flowers on the engineered purple tomato plant so stay tuned for a part 2 if that works out :) The only downside to this nice efficient system that I’ve set up is that it actually doesn’t require any input from me, which makes it not much of a hobby! I may have to start experimenting with some fast-growing plants and try to do more experiments in the small bottle system I’ve developed, just for an excuse to go smell the good green smells and tinker more frequently…</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
