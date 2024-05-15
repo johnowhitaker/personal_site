@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2021-11-09">
+<meta name="dcterms.date" content="2024-05-08">
 
-<title>johnowhitaker.dev – Playing with Tweet Sentiment Analysis</title>
+<title>johnowhitaker.dev – More=Better?</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,10 +70,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta name="twitter:title" content="johnowhitaker.dev - Playing with Tweet Sentiment Analysis">
+<meta name="twitter:title" content="johnowhitaker.dev - More=Better?">
 <meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://johnowhitaker.dev/dsc/images/x_of_thought.png">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="904">
+<meta name="twitter:image-width" content="2816">
 </head>
 
 <body class="nav-fixed">
@@ -135,10 +138,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#scraping-tweets-with-twint" id="toc-scraping-tweets-with-twint" class="nav-link active" data-scroll-target="#scraping-tweets-with-twint">Scraping Tweets with Twint</a></li>
-  <li><a href="#sentiment-score-with-roberta" id="toc-sentiment-score-with-roberta" class="nav-link" data-scroll-target="#sentiment-score-with-roberta">Sentiment Score with roBERTa</a></li>
-  <li><a href="#scoring-countries" id="toc-scoring-countries" class="nav-link" data-scroll-target="#scoring-countries">Scoring Countries</a></li>
-  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
+  <li><a href="#pic-the-best" id="toc-pic-the-best" class="nav-link active" data-scroll-target="#pic-the-best">Pic The Best</a></li>
+  <li><a href="#text" id="toc-text" class="nav-link" data-scroll-target="#text">Text</a></li>
   </ul>
 </nav>
     </div>
@@ -147,9 +148,9 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Playing with Tweet Sentiment Analysis</h1>
+<h1 class="title">More=Better?</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">blogs</div>
+    <div class="quarto-category">Blog</div>
   </div>
   </div>
 
@@ -161,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 9, 2021</p>
+      <p class="date">May 8, 2024</p>
     </div>
   </div>
   
@@ -173,34 +174,158 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><img src="images/screenshot-from-2021-11-09-08-30-28.png" class="img-fluid"></p>
-<p>The average sentiment of the most recent 200 tweets from each country’s capital city.</p>
-<p>A mentee of mine has been working on web scraping for NLP projects and her most recent target was Twitter. She’s working on something cool (<a href="https://twitter.com/johnowhitaker">stay tuned</a>) but in the meantime, I thought I’d share a few of my own experiments. You can follow along and see full code examples in <a href="https://colab.research.google.com/drive/14yUDV7vYFNe3pINAFL-Y_rjfJvXxZH3_?usp=sharing">this colab notebook</a>.</p>
-<section id="scraping-tweets-with-twint" class="level2">
-<h2 class="anchored" data-anchor-id="scraping-tweets-with-twint">Scraping Tweets with Twint</h2>
-<p><img src="images/screenshot-from-2021-11-09-04-48-00.png" class="img-fluid"></p>
-<p>Scraping tweets from a specific user</p>
-<p>I used <a href="https://github.com/twintproject/twint">twint</a> - a scraper written in Python which gives a lot of functionality while avoiding the need for API keys, authentication etc. You can target specific users, locations, topics and dates (see <a href="https://github.com/twintproject/twint/wiki/">their wiki</a> for details) which makes this a powerful tool for finding and downloading tweets. For my tests today, I chose a few well-known Twitter personalities from my feed. I also scraped tweets from capital cities around the world, using the ‘Lang’ configuration option to focus on English tweets to make comparison easier (yes, I know, this is not ideal).</p>
+<p>In this post I want to share a few quick experiments to show something that is both obvious and also perhaps underappreciated: you can get a sizeable quality boost from a generative model by generating MORE. For example, generating more samples and picking the best ones (with a few caveats). In this post I’ll show this in action and talk about some of the implications.</p>
+<section id="pic-the-best" class="level2">
+<h2 class="anchored" data-anchor-id="pic-the-best">Pic The Best</h2>
+<p>Let’s start on images. Imagine you have two competing text-to-image systems. Both use an identical model, but when A generates an image it only shows you one sample, while B generates 4 and picks the best one. What percentage of the time will you prefer the image from B? 80% of the time! Newer models are lucky if they can brag about a 5% improvement in win-rate over the competition (see below) so an 80% win rate is huge. Now do the maths for a case where we generate 100 images and pick the best…</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://images.squarespace-cdn.com/content/v1/6213c340453c3f502425776e/19acc961-3e42-413f-b495-450803aba582/baseline_comp.jpg?format=2500w" class="img-fluid figure-img"></p>
+<figcaption>Image model win rates from the Stable Diffusion 3 launch post, where a win-rate of a few percent is a big deal…</figcaption>
+</figure>
+</div>
+<p>Of course, there’s a catch. “The best one” in the previous paragraph assumed we have a way of picking in advance which of the four you’ll prefer. Imagine instead that B generates 4 images and returns one of the four at random. Now the win-rate is back to 50%. And worse, it takes 4x as long! So the only way our scheme has any legs is if we can somehow pick images in a way that at least roughly aligns with what humans (you’re a human right?) will prefer.</p>
+<p>One useful measure is the CLIP similarity score between the image and the prompt, which tends to track well with how accurately the image represents the prompt. Another option is to use a model trained to predict human ratings or preferences - I’m a fan of <a href="https://github.com/yuvalkirstain/PickScore">PickScore</a> which correlates well with aesthetics in my experience.</p>
+<p>To play with these ideas, I wrote some code that ships off a prompt to ~5 different image generation APIs and generates a bunch of candidate images which are then scored with CLIP and PickScore to rank them. Here’s the best and worst image from my first test, for the prompt “An astronaut riding a horse on mars:</p>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/ahgood.png" class="img-fluid figure-img"></p>
+<figcaption>The image with the highest CLIP score</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/ahbad.png" class="img-fluid figure-img"></p>
+<figcaption>And the one with the lowest</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Now, how can we spend even more inference time compute to get this system to deliver even better results? We have big LLMs now that can do things like re-write the prompt, and since some are ‘multimodal’ we can also show them the results and use that to modify the prompt to fix any potential flaws. With this we’re moving from ‘generate N pick one’ to something more like the ‘flow engineering’ the cool kids like to talk about, creating multi-step processes that refine the result. Think about something like this:</p>
+<pre><code>Your task is to evaluate whether the following image accurately follows the prompt.
+Prompt: {image_prompt}
+If the image follows the prompt well, respond with 'yes'. 
+If not, suggest a better prompt...</code></pre>
+<p>I added this to my pipeline, along with a pre-processing step that re-writes the prompt to get more variations and a final ranking step using model X to pick the final one. The results take a while but are pretty darn good! I ran it on 50 prompts from my ‘that should be a band-name’ list, you can see the results here TODO link. TODO random boting to get a win rate?</p>
 </section>
-<section id="sentiment-score-with-roberta" class="level2">
-<h2 class="anchored" data-anchor-id="sentiment-score-with-roberta">Sentiment Score with roBERTa</h2>
-<p>NLTK’s SIA can give a quick and easy sentiment score for a piece of text, but many tweets use more obscure language and styles that aren’t well-captured by the default lexicon or the approach as a whole. Luckily, tweet sentiment analysis is a popular task and there are pre-trained deep learning models available that do a pretty good job out-of-the-box. I used a roBERTa model fine-tuned on the <a href="https://arxiv.org/pdf/2010.12421.pdf">TweetEval task</a>. The <a href="https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment">model card on huggingface</a> had all the code needed to classify a piece of text, making it very simple to get started. I’m so glad this trend of making models accessible with key info is catching on!</p>
-<ul>
-<li><p><img src="images/bjornlomborg.png" class="img-fluid"></p></li>
-<li><p><img src="images/johnowhitaker.png" class="img-fluid"></p></li>
-<li><p><img src="images/elonmusk.png" class="img-fluid"></p></li>
-<li><p><img src="images/billgates.png" class="img-fluid"></p></li>
-</ul>
-<p>The model outputs three scores corresponding to the labels ‘negative’, ‘neutral’ and ‘positive’. We can combine the positive and negative scores to get a combined sentiment score running from -1 (very negative) to +1 (very positive). From this, we can get stats like ‘average sentiment’, but I wanted a better way to see at a glance what a user’s tweets look like. Hexbin plots to the rescue :) These show the distribution of tweets in both sentiment and tweet length. You can see that Musk tends to tweet shorter, more neutral tweets while Gates favours mid-length positive ones and Lomborg tends heavily towards grumpy full-length rants 😂</p>
-</section>
-<section id="scoring-countries" class="level2">
-<h2 class="anchored" data-anchor-id="scoring-countries">Scoring Countries</h2>
-<p>I was curious: what would we see if we grabbed some tweets from the capital city of each country and found the average sentiment score? Where do the positive tweeters live? Ideally, we’d account for different languages, grab a wide selection of tweets covering a longer timeline and do all sorts of other careful analyses. But since this entire project is the result of one night’s insomnia I just grabbed the latest 200 English tweets from each country’s capital (using the countryinfo library to get the coordinates) and went with those. Plotting the average sentiment as a choropleth map using Plotly gives us the title image of this post. Don’t read too much into this - it’s just a demo to show what might be possible with a bit more work.</p>
-</section>
-<section id="conclusions" class="level2">
-<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
-<p>Data Science gives us the tools to ask questions about the world around us. And thanks to the kind folks who put so much effort into the libraries and tools we can access for free, it doesn’t have to be hard! I hope this post inspires you to ask your own questions. Feel free to modify and share <a href="https://colab.research.google.com/drive/14yUDV7vYFNe3pINAFL-Y_rjfJvXxZH3_?usp=sharing">the code</a>, and PLEASE tag me on Twitter <span class="citation" data-cites="johnowhitaker">@johnowhitaker</span> with your own visualizations and extensions. Happy scraping :)</p>
-<p>EDIT: I made a Huggingface space where you can try this for yourself: https://huggingface.co/spaces/johnowhitaker/twitter_viz</p>
+<section id="text" class="level2">
+<h2 class="anchored" data-anchor-id="text">Text</h2>
+<p>How can we map similar ideas to text? As a first test I was curious how well best-of-N would work for text generation. With AlpacaEval-2 as the metric, let’s see how much we can boost Llama 3 8B. I used <a href="https://huggingface.co/sfairXC/FsfairX-LLaMA3-RM-v0.1">this</a> reward model (which itself is also a fine-tune of Llama 3 8B, making this something we could reasonably imigine being a lightweigt adapter) to score the candidate completions. Best-of-10 vs the baseline boost the win rate from 20.5% to 29.0%. Not bad!</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>win_rate</th>
+<th>avg_length</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>gpt4_turbo</td>
+<td>50.0</td>
+<td>2049</td>
+</tr>
+<tr class="even">
+<td>Yi-34B-Chat</td>
+<td>29.7</td>
+<td>2123</td>
+</tr>
+<tr class="odd">
+<td><strong>Llama 3 8B (Best of 10)</strong></td>
+<td>29.0</td>
+<td>1895</td>
+</tr>
+<tr class="even">
+<td>gpt4</td>
+<td>23.6</td>
+<td>1365</td>
+</tr>
+<tr class="odd">
+<td>mistral-medium</td>
+<td>21.9</td>
+<td>1500</td>
+</tr>
+<tr class="even">
+<td><strong>Llama 3 8B (Default)</strong></td>
+<td>20.5</td>
+<td>1795</td>
+</tr>
+<tr class="odd">
+<td>Mixtral-8x7B-Instruct-v0.1</td>
+<td>18.3</td>
+<td>1465</td>
+</tr>
+<tr class="even">
+<td>claude-2</td>
+<td>17.2</td>
+<td>1069</td>
+</tr>
+<tr class="odd">
+<td>gemini-pro</td>
+<td>16.8</td>
+<td>1315</td>
+</tr>
+<tr class="even">
+<td>tulu-2-dpo-70b</td>
+<td>16.0</td>
+<td>1418</td>
+</tr>
+<tr class="odd">
+<td>claude-2.1</td>
+<td>15.7</td>
+<td>1096</td>
+</tr>
+<tr class="even">
+<td>Mistral-7B-Instruct-v0.2</td>
+<td>14.7</td>
+<td>1676</td>
+</tr>
+<tr class="odd">
+<td>llama-2-70b-chat-hf</td>
+<td>13.9</td>
+<td>1790</td>
+</tr>
+<tr class="even">
+<td>llama-2-13b-chat-hf</td>
+<td>7.7</td>
+<td>1513</td>
+</tr>
+<tr class="odd">
+<td>llama-2-7b-chat-hf</td>
+<td>5.0</td>
+<td>1479</td>
+</tr>
+<tr class="even">
+<td>text_davinci_001</td>
+<td>2.8</td>
+<td>296</td>
+</tr>
+</tbody>
+</table>
+<p>I’m not the first to think of this approach - looking at the full <a href="https://tatsu-lab.github.io/alpaca_eval/">leaderboard</a> reveals a number of entries with names like <code>Snorkel (Mistral-PairRM-DPO+best-of-16)</code> which have obviously taken a similar approach. With LLM-judged leaderboards like this we must always be cautions translating scores to true performance… Which brings up a good, more general question: how should we rank/score outputs if we want to bring this same approach to bear on other text generation tasks? And how can we improve on the simple ‘best of N’ approach?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/x_of_thought.png" class="img-fluid figure-img"></p>
+<figcaption>‘X’ of thought: different approaches to using more inference compute before commiting to a final answer</figcaption>
+</figure>
+</div>
+<p>The literature around this topic is filling up with approaches, some of which are illustrated in the figure above. There’s ‘Chain of Thought’ where we ask the model to produce some intermediate reasoning steps before its final answer, ‘Tree of Thought’ which constructs a tree of possible completions, along with tons of variations that cajole different models into debates with eachother, introduce ‘backtracking’ to try and correct mistakes partway through, and so on. A good example of a complex flow tuned to a specific system was this one I found recently looking at ways to boost performance on coding tasks:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/alphacodium.png" class="img-fluid figure-img"></p>
+<figcaption>Alphacodium’s proposed flow</figcaption>
+</figure>
+</div>
+<p>These flow-based approaches might not make sense just yet, when it feels like a bigger model might come along and do the tasks better without any tricks or that latency matters… But anyone who has tried the 800 tokens/second Grok demos or the real-time image generation demos kows, we’re getting better at making things go fast! And as anyone who’s spent time with even the best models knows, there is still a lot that these things can’t reliably do. So I suspect we will see more and more cases where it makes sense to spend a bit more inference compute to get a better result. I hope this blog post has you thinking of some ways you might be able to do that :)</p>
 
 
 </section>
