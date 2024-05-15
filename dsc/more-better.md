@@ -3,12 +3,10 @@ title: "More=Better?"
 date: 2024-05-08
 categories: 
   - "Blog"
-image: "thumbnails/todo_get_image.jpg"
+image: "images/x_of_thought.png"
 ---
 
-# More=Better?
-
-A few experiments to show something that is both obvious and also perhaps underappreciated: you can get a sizeable quality boost from a generative model by generating MORE. For example, generating more samples and picking the best ones (with a few caveats). In this post I'll show this in action and talk about some of the implications.
+In this post I want to share a few quick experiments to show something that is both obvious and also perhaps underappreciated: you can get a sizeable quality boost from a generative model by generating MORE. For example, generating more samples and picking the best ones (with a few caveats). In this post I'll show this in action and talk about some of the implications.
 
 ## Pic The Best
 
@@ -71,3 +69,4 @@ The literature around this topic is filling up with approaches, some of which ar
 
 ![Alphacodium's proposed flow](images/alphacodium.png)
 
+These flow-based approaches might not make sense just yet, when it feels like a bigger model might come along and do the tasks better without any tricks or that latency matters... But anyone who has tried the 800 tokens/second Grok demos or the real-time image generation demos kows, we're getting better at making things go fast! And as anyone who's spent time with even the best models knows, there is still a lot that these things can't reliably do. So I suspect we will see more and more cases where it makes sense to spend a bit more inference compute to get a better result. I hope this blog post has you thinking of some ways you might be able to do that :)
