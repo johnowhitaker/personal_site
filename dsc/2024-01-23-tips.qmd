@@ -2,6 +2,8 @@
 title: A few tips for working on high-surface-area problems
 subtitle: What do you do when there are too many pieces to fit in your head?
 date: "2024-01-23"
+categories: 
+  - "Blog"
 author:
   - name: Johno Whitaker
 ---
