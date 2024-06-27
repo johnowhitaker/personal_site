@@ -1,0 +1,11 @@
+---
+title: "Appearances"
+---
+
+Places I've shown up in other people's content.
+
+- [LLM and GenAI Accessibility with Johno Whitaker](https://www.youtube.com/watch?v=hxZX6fBi-W8) (Vanishing Gradients Podcast) - why 'm excited about LLMs (hint: they make it easier for people to do cool stuff!)
+- [Exploring the Hacker Mindset (AKA How to Learn FAST) | Radek Osmulski Podcast #3](https://www.youtube.com/watch?v=Rdn0Qg58LUY) - casual chat on all osrts of topics with my good friend Radek
+- [FastAI part 2](https://course.fast.ai/Lessons/part2.html) which I helped teach. E.G. [Lesson 9A 2022 - Stable Diffusion deep dive](https://www.youtube.com/watch?v=0_BBRNYInx8)
+- Answer.AI Dev chats. Spectator on [#1](https://www.youtube.com/watch?v=p_8Zk6HUCV8) and [#2](https://www.youtube.com/watch?v=CN-o_9EMOFk), more to come
+- Various posts on [answer.ai](https://www.answer.ai/)
