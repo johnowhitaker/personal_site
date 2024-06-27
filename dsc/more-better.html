@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.37">
+<meta name="generator" content="quarto-1.5.50">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2024-05-08">
 
-<title>johnowhitaker.dev – More=Better?</title>
+<title>More=Better? – johnowhitaker.dev</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta name="twitter:title" content="johnowhitaker.dev - More=Better?">
+<meta name="twitter:title" content="More=Better? – johnowhitaker.dev">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://johnowhitaker.dev/dsc/images/x_of_thought.png">
 <meta name="twitter:creator" content="@johnowhitaker">
@@ -119,6 +119,10 @@ ul.task-list li input[type="checkbox"] {
         <li>
     <a class="dropdown-item" href="../books.html">
  <span class="dropdown-text">Books</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../appearances.html">
+ <span class="dropdown-text">Appearances</span></a>
   </li>  
     </ul>
   </li>
@@ -220,7 +224,7 @@ If not, suggest a better prompt...</code></pre>
 <section id="text" class="level2">
 <h2 class="anchored" data-anchor-id="text">Text</h2>
 <p>How can we map similar ideas to text? As a first test I was curious how well best-of-N would work for text generation. With AlpacaEval-2 as the metric, let’s see how much we can boost Llama 3 8B. I used <a href="https://huggingface.co/sfairXC/FsfairX-LLaMA3-RM-v0.1">this</a> reward model (which itself is also a fine-tune of Llama 3 8B, making this something we could reasonably imigine being a lightweigt adapter) to score the candidate completions. Best-of-10 vs the baseline boost the win rate from 20.5% to 29.0%. Not bad!</p>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Model</th>
