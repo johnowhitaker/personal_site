@@ -21,6 +21,7 @@ website:
           - books.qmd
           - appearances.qmd
           - icon: rss
+            text: RSS Feed
             href: "https://johnowhitaker.dev/index.xml"
       
   
