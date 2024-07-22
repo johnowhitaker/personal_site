@@ -18,6 +18,7 @@ website:
             text: Blog Archive
           - resume.md
           - books.qmd
+          - appearances.qmd
       
   
   twitter-card:
