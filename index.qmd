@@ -4,6 +4,7 @@ title: "Jonathan Whitaker"
 listing:
   date-format: short
   filter-ui: false
+  feed: true
   type: table
   sort-ui: false
   sort: "date desc"
