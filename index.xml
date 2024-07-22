@@ -10,7 +10,30 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.6.3</generator>
-<lastBuildDate>Wed, 08 May 2024 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 20 Jun 2024 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Paperathon #1</title>
+  <link>https://johnowhitaker.dev/misc/2024-06-20-steg.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="llm-steganography-hiding-messages-in-text" class="level3">
+<h3 class="anchored" data-anchor-id="llm-steganography-hiding-messages-in-text">LLM Steganography: Hiding Messages in Text</h3>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/1vpe34Bilj8" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>Using LLMs to hide secret messages in generated text.</p>
+<p>Notebook <a href="https://github.com/johnowhitaker/llm_steganography/blob/main/llm_steganography.ipynb">link</a>.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Video</category>
+  <guid>https://johnowhitaker.dev/misc/2024-06-20-steg.html</guid>
+  <pubDate>Thu, 20 Jun 2024 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/misc/thumbnails/stego.png" medium="image" type="image/png" height="70" width="144"/>
+</item>
 <item>
   <title>More=Better?</title>
   <link>https://johnowhitaker.dev/dsc/more-better.html</link>
@@ -1895,31 +1918,6 @@ font-style: inherit;">'</span>)</span></code></pre></div>
  ]]></description>
   <category>mini-hw-projects</category>
   <guid>https://johnowhitaker.dev/mini-hw-projects/2023-09-30-text_to_print.html</guid>
-  <pubDate>Wed, 13 Sep 2023 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Mini Experiment: DoLa w/ a guidance scale</title>
-  <link>https://johnowhitaker.dev/mini-projects/dola_cfg.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="mini-experiment-dola-w-a-guidance-scale" class="level1">
-<h1>Mini Experiment: DoLa w/ a guidance scale</h1>
-<p><img src="https://johnowhitaker.dev/mini-projects/images/dola.jpg" class="img-fluid"></p>
-<p>DoLa contrasts early and late layers of a transformer to elicit more ‘factual’ responses by looking at the contrast between the two. The theory is that earlier layers focus on grammar and syntax, while later layers focus on semantics. Instead of taking the difference only, you can borrow from the diffusion model playbook and do something like classifier-free guidance where you lerp between [the final logits] and [the difference thing they use in DoLa] with a scale like 0.5 or 3. Seems to work!</p>
-<p>Trying it on two different styles of 0-shot classification with Llama-7. Early tests so don’t read too much into it, but it seems choosing the scale and layer gives some control for us to find what’s best:</p>
-<p><img src="https://johnowhitaker.dev/mini-projects/images/dola2.jpg" class="img-fluid"></p>
-<p>Twitter thread: https://twitter.com/johnowhitaker/status/1702175876769817040</p>
-<p>I also suggested contrasting small w/ large, which got mentioned in a paper that came out a few days later: Contrastive Decoding Improves Reasoning in Large Language Models :)</p>
-
-
-</section>
-
- ]]></description>
-  <category>mini-projects</category>
-  <guid>https://johnowhitaker.dev/mini-projects/dola_cfg.html</guid>
   <pubDate>Wed, 13 Sep 2023 00:00:00 GMT</pubDate>
 </item>
 </channel>
