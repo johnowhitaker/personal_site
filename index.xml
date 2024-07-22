@@ -1,0 +1,1926 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>johnowhitaker.dev</title>
+<link>https://johnowhitaker.dev/</link>
+<atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.6.3</generator>
+<lastBuildDate>Wed, 08 May 2024 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>More=Better?</title>
+  <link>https://johnowhitaker.dev/dsc/more-better.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>In this post I want to share a few quick experiments to show something that is both obvious and also perhaps underappreciated: you can get a sizeable quality boost from a generative model by generating MORE. For example, generating more samples and picking the best ones (with a few caveats). In this post I’ll show this in action and talk about some of the implications.</p>
+<section id="pic-the-best" class="level2">
+<h2 class="anchored" data-anchor-id="pic-the-best">Pic The Best</h2>
+<p>Let’s start on images. Imagine you have two competing text-to-image systems. Both use an identical model, but when A generates an image it only shows you one sample, while B generates 4 and picks the best one. What percentage of the time will you prefer the image from B? 80% of the time! Newer models are lucky if they can brag about a 5% improvement in win-rate over the competition (see below) so an 80% win rate is huge. Now do the maths for a case where we generate 100 images and pick the best…</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://images.squarespace-cdn.com/content/v1/6213c340453c3f502425776e/19acc961-3e42-413f-b495-450803aba582/baseline_comp.jpg?format=2500w" class="img-fluid figure-img"></p>
+<figcaption>Image model win rates from the Stable Diffusion 3 launch post, where a win-rate of a few percent is a big deal…</figcaption>
+</figure>
+</div>
+<p>Of course, there’s a catch. “The best one” in the previous paragraph assumed we have a way of picking in advance which of the four you’ll prefer. Imagine instead that B generates 4 images and returns one of the four at random. Now the win-rate is back to 50%. And worse, it takes 4x as long! So the only way our scheme has any legs is if we can somehow pick images in a way that at least roughly aligns with what humans (you’re a human right?) will prefer.</p>
+<p>One useful measure is the CLIP similarity score between the image and the prompt, which tends to track well with how accurately the image represents the prompt. Another option is to use a model trained to predict human ratings or preferences - I’m a fan of <a href="https://github.com/yuvalkirstain/PickScore">PickScore</a> which correlates well with aesthetics in my experience.</p>
+<p>To play with these ideas, I wrote some code that ships off a prompt to ~5 different image generation APIs and generates a bunch of candidate images which are then scored with CLIP and PickScore to rank them. Here’s the best and worst image from my first test, for the prompt “An astronaut riding a horse on mars:</p>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/dsc/images/ahgood.png" class="img-fluid figure-img"></p>
+<figcaption>The image with the highest CLIP score</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/dsc/images/ahbad.png" class="img-fluid figure-img"></p>
+<figcaption>And the one with the lowest</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Now, how can we spend even more inference time compute to get this system to deliver even better results? We have big LLMs now that can do things like re-write the prompt, and since some are ‘multimodal’ we can also show them the results and use that to modify the prompt to fix any potential flaws. With this we’re moving from ‘generate N pick one’ to something more like the ‘flow engineering’ the cool kids like to talk about, creating multi-step processes that refine the result. Think about something like this:</p>
+<pre><code>Your task is to evaluate whether the following image accurately follows the prompt.
+Prompt: {image_prompt}
+If the image follows the prompt well, respond with 'yes'. 
+If not, suggest a better prompt...</code></pre>
+<p>I added this to my pipeline, along with a pre-processing step that re-writes the prompt to get more variations and a final ranking step using model X to pick the final one. The results take a while but are pretty darn good! I ran it on 50 prompts from my ‘that should be a band-name’ list, you can see the results here TODO link. TODO random boting to get a win rate?</p>
+</section>
+<section id="text" class="level2">
+<h2 class="anchored" data-anchor-id="text">Text</h2>
+<p>How can we map similar ideas to text? As a first test I was curious how well best-of-N would work for text generation. With AlpacaEval-2 as the metric, let’s see how much we can boost Llama 3 8B. I used <a href="https://huggingface.co/sfairXC/FsfairX-LLaMA3-RM-v0.1">this</a> reward model (which itself is also a fine-tune of Llama 3 8B, making this something we could reasonably imigine being a lightweigt adapter) to score the candidate completions. Best-of-10 vs the baseline boost the win rate from 20.5% to 29.0%. Not bad!</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>win_rate</th>
+<th>avg_length</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>gpt4_turbo</td>
+<td>50.0</td>
+<td>2049</td>
+</tr>
+<tr class="even">
+<td>Yi-34B-Chat</td>
+<td>29.7</td>
+<td>2123</td>
+</tr>
+<tr class="odd">
+<td><strong>Llama 3 8B (Best of 10)</strong></td>
+<td>29.0</td>
+<td>1895</td>
+</tr>
+<tr class="even">
+<td>gpt4</td>
+<td>23.6</td>
+<td>1365</td>
+</tr>
+<tr class="odd">
+<td>mistral-medium</td>
+<td>21.9</td>
+<td>1500</td>
+</tr>
+<tr class="even">
+<td><strong>Llama 3 8B (Default)</strong></td>
+<td>20.5</td>
+<td>1795</td>
+</tr>
+<tr class="odd">
+<td>Mixtral-8x7B-Instruct-v0.1</td>
+<td>18.3</td>
+<td>1465</td>
+</tr>
+<tr class="even">
+<td>claude-2</td>
+<td>17.2</td>
+<td>1069</td>
+</tr>
+<tr class="odd">
+<td>gemini-pro</td>
+<td>16.8</td>
+<td>1315</td>
+</tr>
+<tr class="even">
+<td>tulu-2-dpo-70b</td>
+<td>16.0</td>
+<td>1418</td>
+</tr>
+<tr class="odd">
+<td>claude-2.1</td>
+<td>15.7</td>
+<td>1096</td>
+</tr>
+<tr class="even">
+<td>Mistral-7B-Instruct-v0.2</td>
+<td>14.7</td>
+<td>1676</td>
+</tr>
+<tr class="odd">
+<td>llama-2-70b-chat-hf</td>
+<td>13.9</td>
+<td>1790</td>
+</tr>
+<tr class="even">
+<td>llama-2-13b-chat-hf</td>
+<td>7.7</td>
+<td>1513</td>
+</tr>
+<tr class="odd">
+<td>llama-2-7b-chat-hf</td>
+<td>5.0</td>
+<td>1479</td>
+</tr>
+<tr class="even">
+<td>text_davinci_001</td>
+<td>2.8</td>
+<td>296</td>
+</tr>
+</tbody>
+</table>
+<p>I’m not the first to think of this approach - looking at the full <a href="https://tatsu-lab.github.io/alpaca_eval/">leaderboard</a> reveals a number of entries with names like <code>Snorkel (Mistral-PairRM-DPO+best-of-16)</code> which have obviously taken a similar approach. With LLM-judged leaderboards like this we must always be cautions translating scores to true performance… Which brings up a good, more general question: how should we rank/score outputs if we want to bring this same approach to bear on other text generation tasks? And how can we improve on the simple ‘best of N’ approach?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/dsc/images/x_of_thought.png" class="img-fluid figure-img"></p>
+<figcaption>‘X’ of thought: different approaches to using more inference compute before commiting to a final answer</figcaption>
+</figure>
+</div>
+<p>The literature around this topic is filling up with approaches, some of which are illustrated in the figure above. There’s ‘Chain of Thought’ where we ask the model to produce some intermediate reasoning steps before its final answer, ‘Tree of Thought’ which constructs a tree of possible completions, along with tons of variations that cajole different models into debates with eachother, introduce ‘backtracking’ to try and correct mistakes partway through, and so on. A good example of a complex flow tuned to a specific system was this one I found recently looking at ways to boost performance on coding tasks:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/dsc/images/alphacodium.png" class="img-fluid figure-img"></p>
+<figcaption>Alphacodium’s proposed flow</figcaption>
+</figure>
+</div>
+<p>These flow-based approaches might not make sense just yet, when it feels like a bigger model might come along and do the tasks better without any tricks or that latency matters… But anyone who has tried the 800 tokens/second Grok demos or the real-time image generation demos kows, we’re getting better at making things go fast! And as anyone who’s spent time with even the best models knows, there is still a lot that these things can’t reliably do. So I suspect we will see more and more cases where it makes sense to spend a bit more inference compute to get a better result. I hope this blog post has you thinking of some ways you might be able to do that :)</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Blog</category>
+  <guid>https://johnowhitaker.dev/dsc/more-better.html</guid>
+  <pubDate>Wed, 08 May 2024 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/dsc/images/x_of_thought.png" medium="image" type="image/png" height="46" width="144"/>
+</item>
+<item>
+  <title>Basement Hydroponics: Part 1</title>
+  <link>https://johnowhitaker.dev/mini-hw-projects/2024-04-27-hydroponics-1.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="basement-hydroponics-part-1" class="level1">
+<h1>Basement Hydroponics: Part 1</h1>
+<p>I’ve been dabbling with hydroponics in my basement since discovering some unused grow lights from someone else’s abandoned attempt. It’s fun to see things grow! The system has also doubled as a way to start seeds indoors before transplanting them outside, and gave various flowers and herbs a head start. Now that all the seedlings are planted out, this is what the system looks like in its current state:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/hydro_1.jpg" class="img-fluid figure-img"></p>
+<figcaption>The setup</figcaption>
+</figure>
+</div>
+<p>There’s a gazillion youtube videos and dedicated kits for hydroponics, but the simple fact is that plants do OK if you dunk them in water filled with nutrients and the rest is mostly fluff to get you to buy someone’s over-priced pump or whatever. I’m using some nurtrients from the same abandoned project that left me the lights, and the rest is just stuff I had lying around. I opted for a Kratky-style system, which is a set-and-forget style of hydroponics where the plants wick up nutrient from a tank that starts mostly full and slowly empties as the plants grow. I started seeds in ‘Jiffy Peat Pellets’ which can be suspended in holes in the containers by shoving some screws or skewers through them. For some smaller experiments I’ve had success using smaller bottles with a cap I 3d-printed:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/hydro_2.jpg" class="img-fluid figure-img"></p>
+<figcaption>A basil plant in a small bottle, showing air roots and root system</figcaption>
+</figure>
+</div>
+<p>This is inspired by the excellent Falcoponics system invented by Sebastian S. Cocioba (<span class="citation" data-cites="ATinyGreenCell">@ATinyGreenCell</span>) for small-scale hydroponics. With these smaller containers you need to top up the water more often, but it’s a fantastic approach for testing out ideas without needing to wrangle hoses or worrying about contaminating some big central reservoir.</p>
+<p>We’ve been consistently harvesting basil and chard, and there are flowers on the engineered purple tomato plant so stay tuned for a part 2 if that works out :) The only downside to this nice efficient system that I’ve set up is that it actually doesn’t require any input from me, which makes it not much of a hobby! I may have to start experimenting with some fast-growing plants and try to do more experiments in the small bottle system I’ve developed, just for an excuse to go smell the good green smells and tinker more frequently…</p>
+<p>PS: I must confess that amid the low-SNR youtube I ended up watching on this topic I did get a little addicted to the cheerful Australian enthusiasm of “Hoocho’s Hydroponics” - if you’re looking to learn all things hydroponics I can recommend his channel!</p>
+
+
+</section>
+
+ ]]></description>
+  <category>mini-hw-projects</category>
+  <guid>https://johnowhitaker.dev/mini-hw-projects/2024-04-27-hydroponics-1.html</guid>
+  <pubDate>Sat, 27 Apr 2024 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title></title>
+  <link>https://johnowhitaker.dev/tils/2024-04-19-intercept-github-copilot.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="til-intercepting-github-copilot-with-mitmproxy" class="level1">
+<h1>TIL: Intercepting Github Copilot with MITMProxy</h1>
+<p>We’ve been messing with integrating AI into notebook coding, and got curious about how Github Copilot structures the context it uses to generate code when called from a notebook.</p>
+<p>To see what it’s sending, I set up mitmproxy (https://docs.mitmproxy.org/stable/overview-getting-started/) and had to set the proxy and uncheck Proxy Strict SSL in VSC to start capturing things:</p>
+<p><img src="https://johnowhitaker.dev/tils/proxy_vscode.png" class="img-fluid"></p>
+<p>Now any time you trigger Copilot, you can see the request in mitmproxy. There’s a few ways Copilot can be triggered. One is the ‘completions’ mode that provides inline suggestions as you type. The requests for this have the immediate context: the prefix and the suffix (in this case the suffix is empty). Here’s an example:</p>
+<pre><code>{"prompt":"#!/usr/bin/env python3\n# generated with chatgpt\n\nimport googlemaps\nimport math\nfrom random import uniform\n\ndef generate_random_coordinates(lat, lon, max_distance_km):\n    \"\"\"Generate a random point within a circular area defined by max_distance_km.\"\"\"\n    # Random angle\n    theta = uniform(0, 2 * math.pi)\n    # Random radius, weighted by area\n    r = max_distance_km * math.sqrt(uniform(0, 1))\n    # Convert polar to cartesian\n    dx = r * math.cos(theta)\n    dy = r * math.sin(theta)\n\n    # Earth's radius in kilometers\n    earth_radius = 6371\n    # New latitude in degrees\n    new_lat = lat + (dy / earth_radius) * (180 / math.pi)\n    # New longitude in degrees, taking into account the latitude compression\n    new_lon = lon + (dx / earth_radius) * (180 / math.pi) / math.cos(lat * math.pi/180)\n    return new_lat, new_lon\n\ndef create_route_link(start_location, distance_km, api_key):\n    gmaps = googlemaps.Client(key=api_key)\n    initial_location = gmaps.geocode(start_location)[0]['geometry']['location']\n    lat, lon = initial_location['lat'], initial_location['lng']\n\n    # Determine the number of segments; aiming to use about 10 waypoints\n    num_segments = 10\n    segment_length = (distance_km / 2) / num_segments  # Half the route outwards\n    waypoints = []\n    current_lat, current_lon = lat, lon\n\n    # Generate waypoints\n    for _ in range(num_segments):\n        new_lat, new_lon = generate_random_coordinates(current_lat, current_lon, segment_length)\n        waypoints.append((new_lat, new_lon))\n        current_lat, current_lon = new_lat, new_lon\n\n    # Generate the return route directly without additional waypoints to avoid the limit\n    directions_result = gmaps.directions((lat, lon),\n                                         (lat, lon),\n                                         mode=\"walking\",\n                                         waypoints=[(lat, lon) for lat, lon in waypoints],\n                                         optimize_waypoints=True)\n\n    # Construct Google Maps link for the route\n    start = f\"{lat},{lon}\"\n    waypoints_param = '|'.join(f\"{lat},{lon}\" for lat, lon in waypoints)\n    return f\"https://www.google.com/maps/dir/?api=1&amp;origin={start}&amp;destination={start}&amp;waypoints={waypoints_param}&amp;travelmode=walking\"\n\n### Solara code - not AI generated\nimport os\nimport solara\nimport solara.lab\n\nGOOGLE_MAPS_API_KEY = os.environ.get(\"GOOGLE_MAPS_API_KEY\", \"AIzaSyBC-xxx\")\nassert GOOGLE_MAPS_API_KEY, \"Please set a key\"\n\nstart_location = solara.reactive(\"Groningen, Netherlands\")\ndesired_distance_km = solara.reactive(10.0)\n\n\n@solara.lab.task\ndef generate_route():\n    return create_route_link(start_location.value, desired_distance_km.value, GOOGLE_MAPS_API_KEY)\n\n\n@solara.component\ndef TrailGeneratorApp():\n    solara.InputText(\"Start location\", start_location)\n    solara.InputFloat(\"Desired distance (km)\", desired_distance_km)\n    solara.Button(\"Generate route\", on_click=generate_route, icon_name=\"mdi-google-maps\", color=\"primary\")\n    solara.ProgressLinear(generate_route.pending)\n    if generate_route.error:\n        solara.Error(repr(generate_route.exception))\n    if generate_route.value:\n        solara.Button(label=\"View route\", href=generate_route.value, target=\"_blank\", icon_name=\"mdi-walk\",\n                      outlined=True, color=\"primary\")\nTrailGeneratorApp()        \n\n# COmment triggering a completion","suffix":"","max_tokens":500,"temperature":0,"top_p":1,"n":1,"stop":["\n"],"nwo":"AnswerDotAI/johno_research","stream":true,"extra":{"language":"python","next_indent":0,"trim_by_indentation":true,"prompt_tokens":782,"suffix_tokens":0}}</code></pre>
+<p>You can also explicitly invoke the assistant with Ctrl-I, which opens up a dedicated prompt UI. This sends a much larger request. Here’s an example:</p>
+<pre><code>{"messages":[{"role":"system","content":"You are an AI programming assistant.\nWhen asked for your name, you must respond with \"GitHub Copilot\".\nFollow the user's requirements carefully &amp; to the letter.\nThe user has a python file opened in a code editor.\nThe user includes some code snippets from the file.\nEach code block starts with ``` and # FILEPATH.\nAnswer with a single python code block.\nIf you modify existing code, you will use the # BEGIN: and # END: markers.\nWhen dealing with Jupyter Notebook, if a module is already imported in a cell, it can be used in other cells directly without importing it again. For the same reason, if a variable is defined in a cell, it can be used in other cells as well\nWhen dealing with Jupyter Notebook, cells below the current cell can be executed before the current cell, you must use the variables defined in the cells below, unless you want to overwrite them.\nWhen dealing with Jupyter Notebook, do not generate CELL INDEX in the code blocks in your answer, it is only used to help you understand the context.\nIf the Jupyter Notebook already contains variables, you should respect the name and value of the variables, and use them in your code when necessary.\nYour expertise is strictly limited to software development topics.\nFollow Microsoft content policies.\nAvoid content that violates copyrights.\nFor questions not related to software development, simply give a reminder that you are an AI programming assistant.\nKeep your answers short and impersonal."},{"role":"user","content":"I am working on a Jupyter notebook.\nThis Jupyter Notebook already contains multiple cells.\nThe content of cells are listed below, each cell starts with CELL INDEX and a code block started with ```python\nEach cell is a block of code that can be executed independently.\nSince it is Jupyter Notebook, if a module is already imported in a cell, it can be used in other cells as well.\nFor the same reason, if a variable is defined in a cell, it can be used in other cells as well.\nWe should not repeat the same import or variable definition in multiple cells, unless we want to overwrite the previous definition.\nDo not generate CELL INDEX in your answer, it is only used to help you understand the context.\n\nBelow you will find a set of examples of what you should respond with. Please follow the exmaples on how to avoid repeating code.\n## Examples starts here\nHere are the cells in this Jupyter Notebook:\n`CELL INDEX: 0\n```python\nimport pandas as pd\n\n# create a dataframe with sample data\ndf = pd.DataFrame({'Name': ['Alice', 'Bob', 'Charlie'], 'Age': [25, 30, 35], 'Gender': ['F', 'M', 'M']})\nprint(df)\n```\n---------------------------------\nUSER:\nNow I create a new cell in this Jupyter Notebook document at index 1.\nIn this new cell, I am working with the following code:\n```python\n```\n---------------------------------\nUSER:\nplot the data frame\n\n---------------------------------\nChatGPT Answer\n---------------------------------\nTo plot the dataframe, we can use the `plot()` method of pandas dataframe. Here's the code:\n\n```python\ndf.plot(x='Name', y='Age', kind='bar')\n```\n## Example ends here\nHere are the cells in this Jupyter Notebook:\n\nCELL INDEX: 0\n```python\n# generated with chatgpt\n\nimport googlemaps\nimport math\nfrom random import uniform\n\ndef generate_random_coordinates(lat, lon, max_distance_km):\n    \"\"\"Generate a random point within a circular area defined by max_distance_km.\"\"\"\n    # Random angle\n    theta = uniform(0, 2 * math.pi)\n    # Random radius, weighted by area\n    r = max_distance_km * math.sqrt(uniform(0, 1))\n    # Convert polar to cartesian\n    dx = r * math.cos(theta)\n    dy = r * math.sin(theta)\n\n    # Earth's radius in kilometers\n    earth_radius = 6371\n    # New latitude in degrees\n    new_lat = lat + (dy / earth_radius) * (180 / math.pi)\n    # New longitude in degrees, taking into account the latitude compression\n    new_lon = lon + (dx / earth_radius) * (180 / math.pi) / math.cos(lat * math.pi/180)\n    return new_lat, new_lon\n\ndef create_route_link(start_location, distance_km, api_key):\n    gmaps = googlemaps.Client(key=api_key)\n    initial_location = gmaps.geocode(start_location)[0]['geometry']['location']\n    lat, lon = initial_location['lat'], initial_location['lng']\n\n    # Determine the number of segments; aiming to use about 10 waypoints\n    num_segments = 10\n    segment_length = (distance_km / 2) / num_segments  # Half the route outwards\n    waypoints = []\n    current_lat, current_lon = lat, lon\n\n    # Generate waypoints\n    for _ in range(num_segments):\n        new_lat, new_lon = generate_random_coordinates(current_lat, current_lon, segment_length)\n        waypoints.append((new_lat, new_lon))\n        current_lat, current_lon = new_lat, new_lon\n\n    # Generate the return route directly without additional waypoints to avoid the limit\n    directions_result = gmaps.directions((lat, lon),\n                                         (lat, lon),\n                                         mode=\"walking\",\n                                         waypoints=[(lat, lon) for lat, lon in waypoints],\n                                         optimize_waypoints=True)\n\n    # Construct Google Maps link for the route\n    start = f\"{lat},{lon}\"\n    waypoints_param = '|'.join(f\"{lat},{lon}\" for lat, lon in waypoints)\n    return f\"https://www.google.com/maps/dir/?api=1&amp;origin={start}&amp;destination={start}&amp;waypoints={waypoints_param}&amp;travelmode=walking\"\n```\nCELL INDEX: 1\n```python\n### Solara code - not AI generated\nimport os\nimport solara\nimport solara.lab\n\nGOOGLE_MAPS_API_KEY = os.environ.get(\"GOOGLE_MAPS_API_KEY\", \"AIzaSyBC-xxx\")\nassert GOOGLE_MAPS_API_KEY, \"Please set a key\"\n\nstart_location = solara.reactive(\"Groningen, Netherlands\")\ndesired_distance_km = solara.reactive(10.0)\n\n\n@solara.lab.task\ndef generate_route():\n    return create_route_link(start_location.value, desired_distance_km.value, GOOGLE_MAPS_API_KEY)\n\n\n@solara.component\ndef TrailGeneratorApp():\n    solara.InputText(\"Start location\", start_location)\n    solara.InputFloat(\"Desired distance (km)\", desired_distance_km)\n    solara.Button(\"Generate route\", on_click=generate_route, icon_name=\"mdi-google-maps\", color=\"primary\")\n    solara.ProgressLinear(generate_route.pending)\n    if generate_route.error:\n        solara.Error(repr(generate_route.exception))\n    if generate_route.value:\n        solara.Button(label=\"View route\", href=generate_route.value, target=\"_blank\", icon_name=\"mdi-walk\",\n                      outlined=True, color=\"primary\")\nTrailGeneratorApp()        \n```"},{"role":"user","content":"Now I create a new cell in this Jupyter Notebook document at index 2.\nIn this new cell, I am working with the following code:\n```python\n```"},{"role":"user","content":"The following pip packages are available in this Jupyter Notebook:\nPackage Name: aiofiles, Version: 23.2.1\nPackage Name: aiohttp, Version: 3.9.3\nPackage Name: aioprocessing, Version: 2.0.1\nPackage Name: aiosignal, Version: 1.3.1\nPackage Name: alabaster, Version: 0.7.16\nPackage Name: alembic, Version: 1.13.1\nPackage Name: analytics-python, Version: 1.2.9\nPackage Name: annotated-types, Version: 0.6.0\nPackage Name: anthropic, Version: 0.25.1\nPackage Name: anyio, Version: 4.2.0\nPackage Name: appdirs, Version: 1.4.4\nPackage Name: argon2-cffi, Version: 23.1.0\nPackage Name: argon2-cffi-bindings, Version: 21.2.0\nPackage Name: arrow, Version: 1.3.0\nPackage Name: asttokens, Version: 2.4.1\nPackage Name: async-lru, Version: 2.0.4\nPackage Name: attrs, Version: 23.2.0\nPackage Name: Authlib,  [lots ommited for brevity] Version: 1.16.0\nPackage Name: wsproto, Version: 1.2.0\nPackage Name: xxhash, Version: 3.4.1\nPackage Name: yarl, Version: 1.9.4\nPackage Name: youtube-dl, Version: 2021.12.17\n"},{"role":"user","content":"Generate another UI that let's the user add their google maps API key"}],"model":"gpt-3.5-turbo","max_tokens":3949,"temperature":0.1,"top_p":1,"n":1,"stream":true,"intent":true}</code></pre>
+<p>It’s including all the packages I have installed! Quite a mess. I noticed that this only happens when there isn’t much code in the current file - in a more complex notebook the package list isn’t included, so they’re probably using various heuristics to decide what to include. There’s another writeup on this <a href="https://thakkarparth007.github.io/copilot-explorer/posts/copilot-internals">here</a> with more info.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/tils/proxy_cursor.png" class="img-fluid figure-img"></p>
+<figcaption>cursor flows captured with mitmproxy</figcaption>
+</figure>
+</div>
+<p>I tried this same approach using Cursor. Unlike copilot it doesn’t send a single request with all the context, instead sending frequent updates, re-ranking available bits of context, and letting you explicitly tag in files, functions, docs (which can be added as retrieval sources). Very fancy, a lot harder to make sense of from the requests alone, and opaque in terms of what the final prompt etc looks like.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>TILs</category>
+  <guid>https://johnowhitaker.dev/tils/2024-04-19-intercept-github-copilot.html</guid>
+  <pubDate>Fri, 19 Apr 2024 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>DIY Bio: A Cool Hobby, Not Quite For Me</title>
+  <link>https://johnowhitaker.dev/mini-hw-projects/2024-03-30-bio.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="dipping-my-toes-into-diy-bio" class="level1">
+<h1>Dipping My Toes into DIY Bio</h1>
+<p>I’ve been dabbling with DIY biology, trying to modify some genes in ecoli and generally just messing about. Doing something like “making bacteria/yeast that glow under UV” is suprisingly common and looks easy at first glance - just mix the right things together with suitable wait times and temperatures between steps… There are even companies that will ship you kits with all the bits you need - I got a kit from <a href="https://www.the-odin.com/">The ODIN</a> who are trying to make all of this more accessible.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/bio1.jpeg" class="img-fluid figure-img"></p>
+<figcaption>Laying out the bits needed for my first experiment</figcaption>
+</figure>
+</div>
+<p>It’s my firm belief when cooking that most recipes are needlessly over-complicated and rife with superstition. If you understand what’s actually going on, you can simplify and substitute and often end up with a better result. I have to confess I had a feeling the same might be true for bio stuff - these people seem so obsessed with their exact measurements and protocols, and the focus on sterility seems completely overkill… Spoiler alert: I now see where they’re coming from! There are a few things that contribute to this being more difficult that it seems at first. Let’s dig in.</p>
+<section id="what-do-you-mean-it-takes-a-week" class="level2">
+<h2 class="anchored" data-anchor-id="what-do-you-mean-it-takes-a-week">What do you mean ‘it takes a week’?</h2>
+<p>A key issue is iteration time. If you miss a line of code, your program usually errors out right away. If you get a step wrong trying to edit DNA, you only know about it a few days later when you see another petri dish full of normal-looking bacteria refusing to do what you want them to. This makes it a lot harder to hack around and try different things quickly. If you think ahead you can try multiple things in parallel, but it’s still a pain to have so little immediate feedback on what’s going on. I bet experienced people have more intuition - this smells like the right strain, that looks too cloudy, the water bath feels just right.</p>
+<p>One example that tripped me up: after adding the plasmid to my bacteria transformation mix, the protocol said something like “incubate at 37 degrees for… then <em>mix</em> and then spread on the plate…”. I forgot to shake up the tube, and had spread a few drops on one plate before I noticed that (of course) things had settled to the bottom of the tube. I mixed it up and then spread a few drops on another plate - sure enough I got growth on only the second plate. If you missed that one key phrase, you wouldn’t even know where you went wrong and 48 hours later you’d be scratching your head wondering what went wrong.</p>
+</section>
+<section id="squishy-not-very-deterministic" class="level2">
+<h2 class="anchored" data-anchor-id="squishy-not-very-deterministic">“Squishy” = “Not Very Deterministic”</h2>
+<p>Doing the same thing twice and (hopefully) getting the same result twice is a luxury I’m used to from software. In biology, it’s very easy for this to break. Your starting culture is different, things get contaminated very easily, and the real world interfears and makes it easy for things like ambient temperature to change between runs. This made me understand more the focus on controlling everything. Room temp <em>probably</em> didn’t mess that try up, but it’s one more thing I have to worry about - easier to just keep things incubated at a constant temp and eliminate that variable.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/bio2.jpeg" class="img-fluid figure-img"></p>
+<figcaption>A plate gone wrong</figcaption>
+</figure>
+</div>
+<p>Same goes for sterility. You learn to do the dance of using gloves, sanitising evreything, using stuff once and disposing of it (<strong>I hate this part, it feels so wasteful</strong>). The alternative is cutting 10 corners, 9 of which might have made sense but the 10th one is the one that ruins your experiment. First try I was very blasé about this, keeping my plates at room temp, working on a dirty desk, etc. My most recent run I did a lot more ‘properly’ and got much better results. And I’d still probably need to work a lot harder to get to a point where I can be confident <strong>every time</strong> that I’m not contaminating things accidentally.</p>
+</section>
+<section id="harder-to-go-off-the-beaten-track" class="level2">
+<h2 class="anchored" data-anchor-id="harder-to-go-off-the-beaten-track">Harder to go off the beaten track</h2>
+<p>It’s one thing to follow someone’s protocol with their kit. But you’re very dependent on this third party. Part of this means there are things you can’t control (my first kit was from a batch that might have had some issues their side, thankfully they shipped a replacement). It also makes it harder to break out on your own. I can use the existing glowy plasmids, but if I want to design my own there’s a steep learning curve and a big price-tag ($$$$) involved for getting them made. Doable for a passionate few, but pretty intimidating fomr someone just wanting to dabble.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Anyway, those are just some rough thoughts. I’ve sterilized my plates and packed away my pipettes for now. This hobby seems super interesting but not quite suited to my personal temperment. Luckily for me I don’t have to abandon it completely though - I have friend deeper in the rabbit hole than myself and I think I can be content helping out with smaller things that I can be more confident of - making lab equipment, brainstorming together and that sort of thing. If we come up with something fun you may see more squishy science content here! For now, I’m off to dabble with the next potential hobby :)</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>mini-hw-projects</category>
+  <guid>https://johnowhitaker.dev/mini-hw-projects/2024-03-30-bio.html</guid>
+  <pubDate>Sat, 30 Mar 2024 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Mini Experiment: Broken Multimodal Telephone</title>
+  <link>https://johnowhitaker.dev/mini-projects/broken_telephone.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="mini-experiment-broken-multimodal-telephone" class="level1">
+<h1>Mini Experiment: Broken Multimodal Telephone</h1>
+<p>At a birthday party recently we played a game where a pad of paper is passed around a circle, with each person writing a sentence to describe a picture. The next person then draws a picture to match the sentence, and so on. The results are often hilarious, with the original sentence and the final picture often being completely different. Of course, the next day I had to replicate this with an image generation model and a multimodal model ping-ponging back and forth.</p>
+<p><img src="https://johnowhitaker.dev/mini-projects/images/broken_telephone3.gif" class="img-fluid"></p>
+<p>To generate the images, I went with Dalle-3 via the OpenAI API:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> openai <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> OpenAI</span>
+<span id="cb1-2">openai_client <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> OpenAI(api_key<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"your_key"</span>)</span>
+<span id="cb1-3">response <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> openai_client.images.generate(</span>
+<span id="cb1-4">  model<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"dall-e-3"</span>,</span>
+<span id="cb1-5">  prompt<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"The dolphins have taken over the world. The dolphin king celebrates."</span>,</span>
+<span id="cb1-6">  size<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"1024x1024"</span>,</span>
+<span id="cb1-7">  quality<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"standard"</span>,</span>
+<span id="cb1-8">  n<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,</span>
+<span id="cb1-9">)</span>
+<span id="cb1-10">image_url <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> response.data[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>].url</span></code></pre></div>
+<p>This image URL can then be passed to Antropic’s Haiku model, which is fantastically cheap and capable of taking both images and text as inputs:</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">message <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> anthropic_client.messages.create(</span>
+<span id="cb2-2">    model<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"claude-3-haiku-20240307"</span>,</span>
+<span id="cb2-3">    max_tokens<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>,</span>
+<span id="cb2-4">    temperature<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>,</span>
+<span id="cb2-5">    messages<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>[</span>
+<span id="cb2-6">        {</span>
+<span id="cb2-7">            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"role"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"user"</span>,</span>
+<span id="cb2-8">            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"content"</span>: [</span>
+<span id="cb2-9">                {</span>
+<span id="cb2-10">                    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"type"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"image"</span>,</span>
+<span id="cb2-11">                    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"source"</span>: {</span>
+<span id="cb2-12">                        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"type"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"base64"</span>,</span>
+<span id="cb2-13">                        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"media_type"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"image/png"</span>,</span>
+<span id="cb2-14">                        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data"</span>: base64.b64encode(httpx.get(image_url).content).decode(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"utf-8"</span>),</span>
+<span id="cb2-15">                    },</span>
+<span id="cb2-16">                },</span>
+<span id="cb2-17">                {</span>
+<span id="cb2-18">                    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"type"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"text"</span>,</span>
+<span id="cb2-19">                    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"text"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Provide a short description of the image."</span></span>
+<span id="cb2-20">                }</span>
+<span id="cb2-21">            ],</span>
+<span id="cb2-22">        }</span>
+<span id="cb2-23">    ],</span>
+<span id="cb2-24">)</span>
+<span id="cb2-25">prompt <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> message.content[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>].text</span></code></pre></div>
+<p>Then prompt can be passed back to Dalle-3 to generate a new image, and so on. Here are a few GIFs with some results:</p>
+<p><img src="https://johnowhitaker.dev/mini-projects/images/broken_telephone5.gif" class="img-fluid"></p>
+<p><img src="https://johnowhitaker.dev/mini-projects/images/broken_telephone1.gif" class="img-fluid"></p>
+<p><img src="https://johnowhitaker.dev/mini-projects/images/broken_telephone2.gif" class="img-fluid"></p>
+<p>It’s interesting to see how long these stay coherent. Previous times I’ve tried this things have gone abstract fairly quickly, here the theme diverges but does get stuck in attractors that still often make sense. I look forward to repeating this as models improve :) If you try this and make anything fun let me know! Here’s how I make the GIFs:</p>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> save_results_as_gif(results, filename, time_per_frame<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>):</span>
+<span id="cb3-2">    images <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []</span>
+<span id="cb3-3">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> prompt, image <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> results:</span>
+<span id="cb3-4">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create a black image with the same size as the original image</span></span>
+<span id="cb3-5">        black_image <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> PILImage.new(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"RGB"</span>, image.size, (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>))</span>
+<span id="cb3-6">        draw <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ImageDraw.Draw(black_image)</span>
+<span id="cb3-7">        font <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ImageFont.truetype(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"arial_narrow_7.ttf"</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>)</span>
+<span id="cb3-8">        text <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Prompt: "</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> prompt</span>
+<span id="cb3-9"></span>
+<span id="cb3-10">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add newlines to the text to roughly keep it within the image</span></span>
+<span id="cb3-11">        text_lines <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []</span>
+<span id="cb3-12">        max_width <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">80</span></span>
+<span id="cb3-13">        line <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">''</span></span>
+<span id="cb3-14">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> word <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> text.split():</span>
+<span id="cb3-15">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(line <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> word) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;=</span> max_width:</span>
+<span id="cb3-16">                line <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> word <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">' '</span></span>
+<span id="cb3-17">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span>:</span>
+<span id="cb3-18">                text_lines.append(line)</span>
+<span id="cb3-19">                line <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> word <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">' '</span></span>
+<span id="cb3-20">        text_lines.append(line)</span>
+<span id="cb3-21">        text <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>.join(text_lines)</span>
+<span id="cb3-22"></span>
+<span id="cb3-23">        text_width, text_height <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">800</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span></span>
+<span id="cb3-24">        text_position <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ((image.width <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> text_width) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">//</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, (image.height <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> text_height) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">//</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span>
+<span id="cb3-25">        draw.text(text_position, text, font<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>font, fill<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">255</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">255</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">255</span>))</span>
+<span id="cb3-26"></span>
+<span id="cb3-27">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Append the black image and the original image to the list of frames</span></span>
+<span id="cb3-28">        images.append(black_image)</span>
+<span id="cb3-29">        images.append(image)</span>
+<span id="cb3-30"></span>
+<span id="cb3-31">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Save the frames as a GIF</span></span>
+<span id="cb3-32">    imageio.mimsave(filename, images, duration<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>time_per_frame)</span>
+<span id="cb3-33"></span>
+<span id="cb3-34"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Example usage (results is a list of tuples of prompts and images)</span></span>
+<span id="cb3-35">save_results_as_gif(results, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"broken_telephone1.gif"</span>, time_per_frame<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1500</span>)</span></code></pre></div>
+
+
+</section>
+
+ ]]></description>
+  <category>mini-projects</category>
+  <guid>https://johnowhitaker.dev/mini-projects/broken_telephone.html</guid>
+  <pubDate>Thu, 14 Mar 2024 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Can LLMs estimate the length of a sequence?</title>
+  <link>https://johnowhitaker.dev/mini-projects/length_est.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="how-well-can-llms-estimate-length" class="level1">
+<h1>How well can LLMs estimate length?</h1>
+<p>While discussing another paper based around ‘LLM-as-a-judge’ style evaluation, the topic of length bias (longer responses tend to be rated higher) came up. This prompted Jeremy to ask ‘Can LLMs even estimate the length of a sequence? How well?’. So I did a few quick tests to find out, and spotted a few interesting things along the way.</p>
+<p>First experiment: throwing some sequences through gpt-3.5-Turbo and gpt-4, using function calling to get a formatted response with a prompt like</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1">messages.append({<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"role"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"system"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"content"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Estimate the length (in words) of the passage provided by the user."</span>})</span>
+<span id="cb1-2">messages.append({<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"role"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"user"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"content"</span>: <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Passage:</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'hi'</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>})</span>
+<span id="cb1-3">chat_response <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> chat_completion_request(</span>
+<span id="cb1-4">    messages, tools<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>tools, tool_choice<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>{<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"type"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"function"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"function"</span>: {<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"name"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"return_length_estimate"</span>}}</span>
+<span id="cb1-5">)</span></code></pre></div>
+<p>For ever-longer snippets of a Wikipedia article, here’s GPT 3.5 Turbo’s estimates:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-projects/images/3.5.png" class="img-fluid figure-img"></p>
+<figcaption>image</figcaption>
+</figure>
+</div>
+<p>It’s fairly accurate at lower sequence lengths, but diverges and starts to estimate that anything long is ~1000 words. GPT-4 also got worse above ~800 words, but with less of an obvious trend. More pics in my original Twitter <a href="https://x.com/johnowhitaker/status/1760094827147079897?s=20">thread</a>.</p>
+<p>Thinking through how these models might infer the length, one possibility is that the positional embeddings can be used to estimate the length of the sequence. If the model is able to compare the positional embeddings of the first and last token, it could estimate the length of the sequence. To see how clearly positional info comes through in the latent representations of the model, fed some sequences of various lengths through the recently-released gemma-7B model and stored the final layer outputs (<code>outputs.last_hidden_state</code>). Then I fit a linear regression model on these to predict the token position from the latent representation. The R^2 was 0.99, so the positional information is very clear in the latent representations. As you can see, there’s enough information in the latent representations to estimate the length of the sequence fairly well:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-projects/images/gemma.png" class="img-fluid figure-img"></p>
+<figcaption>image</figcaption>
+</figure>
+</div>
+<p>One interesting thought: many models are trained at some lower context length (1024 or 2048 for example) the briefly fine-tuned on longer sequences at the end of training. A popular recent strategy is to do some kind of dynamic scaling (see dynamic RoPE scaling for e.g.) where the positional embeddings for linger sequences are scaled such that they map to the same range as the positional embeddings for the shorter sequences the model was trained with. If this is the case, you’d expect length estimates for sequences above the training context length to be less accurate, and specifically to be underestimates since the positional embeddings of token, say, 4217 would be rescaled back to look like the positional embeddings of token 1024. The pattern for GPT-3.5 Turbo’s estimates seems to fit this hypothesis, but of course we don’t have a way to know for sure.</p>
+<p>This was a fun little experiment, and it’s unlikely I’ll take it further, but I hope it’s given you some food for thought and perhaps a few ideas for your own experiments.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>mini-projects</category>
+  <guid>https://johnowhitaker.dev/mini-projects/length_est.html</guid>
+  <pubDate>Tue, 20 Feb 2024 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Exploring 3D-Printed Instruments</title>
+  <link>https://johnowhitaker.dev/mini-hw-projects/2024-02-02-3dp_instruments.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="exploring-3d-printed-instruments" class="level1">
+<h1>Exploring 3D-Printed Instruments</h1>
+<p>I’ve built up a bit of a collection of 3D-printed instruments:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/3d_instruments.jpg" class="img-fluid figure-img"></p>
+<figcaption>3D-Printed Instruments</figcaption>
+</figure>
+</div>
+<p>This post is mostly to keep a list of models I’ve found and enjoyed so far - future ones will dive into some designs I make myself.</p>
+<section id="models" class="level2">
+<h2 class="anchored" data-anchor-id="models">Models</h2>
+<ul>
+<li>Kazoo: https://www.printables.com/model/65397-kazoo - fantastic, try different materials for the membrane</li>
+<li>Ocarina: https://www.printables.com/model/728330-updated-12-hole-ocarina - amazingly high-quality sound</li>
+<li>Xaphoon: https://www.thingiverse.com/thing:3290629/comments (mine is heavily modified to take an existing alto sax mouthpiece). I don’t think this is the final form for Xaphoon-style instruments, more experimentation needed.</li>
+<li>Tin whistle fippe: something lke https://www.thingiverse.com/thing:5358806 I think, which I then scaled to fit different sizes of PVC.</li>
+<li>Jaw harp (Dan Moi): https://www.thingiverse.com/thing:3213075 - lovely, I print loads and give them away.</li>
+<li>Nose flute: I can’t recommend either of the ones I’ve tried, I like the whistle part of the infamous “double penetrator” pictured above but for obvious reasons it’s not a very appealing instrument to play and not one you can share with other people either!</li>
+</ul>
+<p>So, that’s the first post - these have mostly been sitting around since last year, but I’m getting back into more non-screen hobbies now that I’m working full-time so the collection will likely grow soon.</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>mini-hw-projects</category>
+  <guid>https://johnowhitaker.dev/mini-hw-projects/2024-02-02-3dp_instruments.html</guid>
+  <pubDate>Fri, 02 Feb 2024 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Door Desk</title>
+  <link>https://johnowhitaker.dev/mini-hw-projects/2024-01-27-desk.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="quick-and-dirty-workbench" class="level1">
+<h1>Quick and Dirty Workbench</h1>
+<p>I’m slowly getting the basement organised into a nice workspace. In addition to my primary desk I wanted a standing workbench for soldering and other messy work. A scrap door and some lumber that was lying around made for a quick and easy solution:</p>
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/door_desk.jpg" class="img-fluid"></p>
+<p>I love how a bit of cross-bracing turns a rickety structure into something solid. This still needs a bit of finishing, but it’s already sturdy enough to work on which makes me think any further work will may procrastinated indefinitely :)</p>
+<p>A curious side-note: I keep an air quality monitor down here, and the CO2 levels usually stay &lt;600ppm even after a few hours of work. But today, between moving things around and assembling the desk with my wife’s help, the CO2 levels shot up to 1200ppm. I would have expected a small bump, but not that much - which makes me wonder if there wasn’t something else (ozone from brushed motors in the drill and vacuum?) that was causing the spike. I’ll keep an eye on it next time I do a longer workout down here and see if I cause a similar spike.</p>
+<p>PS: main desk setup: <img src="https://johnowhitaker.dev/mini-hw-projects/images/pc_desk.jpg" class="img-fluid"></p>
+<p>Slowly but surely this is turning into a great space to work!</p>
+
+
+</section>
+
+ ]]></description>
+  <category>mini-hw-projects</category>
+  <guid>https://johnowhitaker.dev/mini-hw-projects/2024-01-27-desk.html</guid>
+  <pubDate>Sat, 27 Jan 2024 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>A few tips for working on high-surface-area problems</title>
+  <dc:creator>Johno Whitaker</dc:creator>
+  <link>https://johnowhitaker.dev/dsc/2024-01-23-tips.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Cross-Posting to Answer.AI
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Some of my posts will now be duplicated to <a href="answer.ai">Answer.ai</a>’s blog since I work there now. This one has just gone up (12 April) but since it has sat as a draft since January I’m back-dating it here on my site since I’m allowed to do that :)</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/dsc/A few tips for working on high-surface-area proble 2e02b0d4b400448781bc68402cb5a67d/example_map.png" class="img-fluid figure-img"></p>
+<figcaption>Some of the many questions/directions we faced when trying to get QLoRA working with FSDP - an example of a high-surface-area problem!</figcaption>
+</figure>
+</div>
+<p>Some problems are fairly well-defined and narrow in scope: ‘translate this maths into code’, or ‘try a different embedding dimension on this task’. But as AI researchers we often work on things that involve a lot of moving pieces, and when something doesn’t work it can be hard to find out <strong>where</strong> the issue(s) may be, let alone what we need to do to fix them. I think of these tasks as having a high “surface area”, and in this post I’ll share a few tips for dealing with these inspired by a recent experience with one such problem.</p>
+<section id="tip-1-start-with-a-minimal-example-and-build-up" class="level2">
+<h2 class="anchored" data-anchor-id="tip-1-start-with-a-minimal-example-and-build-up">Tip 1: Start with a minimal example and build up</h2>
+<p>Rather than beginning with the full, complicated task, see if there’s a smaller version you can create that still lets you meaningfully probe the problem. For example, rather than using Llama-2-7B with LoRA adapters, I did some early tests with a network made of blocks like this:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">class</span> Block(torch.nn.Module):</span>
+<span id="cb1-2">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">__init__</span>(<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>, size<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">512</span>):</span>
+<span id="cb1-3">        <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">super</span>().<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">__init__</span>()</span>
+<span id="cb1-4"></span>
+<span id="cb1-5">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Trainable layer</span></span>
+<span id="cb1-6">        <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.l1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> torch.nn.Linear(size, size)</span>
+<span id="cb1-7"></span>
+<span id="cb1-8">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Frozen layer</span></span>
+<span id="cb1-9">        <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.l2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> torch.nn.Linear(size, size)</span>
+<span id="cb1-10">                <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> param <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.l2.parameters():</span>
+<span id="cb1-11">            param.requires_grad <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span></span></code></pre></div>
+<p>Starting small lets you add bits of complexity one at a time, gradually revealing different aspects of the problem. With this small example I could experiment with and isolate specific aspects of the larger challenge - for example, swapping out one linear layer with a quantized version. The goal here is to reduce the surface area that is in focus at a given time, and incrementally add more as we figure things out.</p>
+</section>
+<section id="tip-2-loginstrument-everything" class="level2">
+<h2 class="anchored" data-anchor-id="tip-2-loginstrument-everything">Tip 2: Log/instrument everything</h2>
+<p>Debugging something opaque is a pain, so anything that provides more visibility into what is happening is useful. Printing out tensor shapes, logging losses, gradients and resource usage, and generally instrumenting everything that you possibly can are gifts to your future self here. For example, consider the following two memory profiles captured with <a href="https://pytorch.org/docs/stable/torch_cuda_memory.html">this excellent pytorch tool</a>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/dsc/A few tips for working on high-surface-area proble 2e02b0d4b400448781bc68402cb5a67d/mem_profile.png" class="img-fluid figure-img"></p>
+<figcaption>Saving a snapshot of memory use over two successive batches of training data reveals an unexpected spike in memory (left) until a fix is put in place (right)</figcaption>
+</figure>
+</div>
+<p>In this case, a somewhat sneaky bug had crept in, causing memory usage to spike in the second batch of training. Printing the memory use at different stages helped show that something funky was going on, but it was only through a combination of memory profiling and a minimal example that I was able to spot the issue. I hadn’t used this memory visualization tool before - it’s only a few months old, and I hadn’t heard of it until a colleague suggested it. Imagine all of the pain that could be saved if more AI researchers used tools like this!</p>
+<p>Whether you’re on team “inspect it manually in a debugger”, team “print all the things” or team “log to W&amp;B and call that good”, make sure you have <em>some</em> way to see more of what is actually going on wherever possible :)</p>
+</section>
+<section id="tip-3-teamwork-ftw" class="level2">
+<h2 class="anchored" data-anchor-id="tip-3-teamwork-ftw">Tip 3: Teamwork FTW</h2>
+<p>Explaining a problem is an excellent debugging tool, even if the explainee doesn’t actually contribute any new knowledge - hence the excellent <a href="https://en.wikipedia.org/wiki/Rubber_duck_debugging">“rubber duck debugging” technique</a>. However, team members with deep complimentary knowledge are even better than a mute duck, and talking through things rather than suffering in silence almost always pays off and leads to a quick solution. If you don’t have formal work colleagues, sharing in public forums or pestering your technical friends is often just as good.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/dsc/A few tips for working on high-surface-area proble 2e02b0d4b400448781bc68402cb5a67d/Untitled.png" class="img-fluid figure-img"></p>
+<figcaption>A missed opportunity for some instructive pair programming with a friend.</figcaption>
+</figure>
+</div>
+<p>Another benefit of working with a team is the ability to divide and conquer when one ‘problem’ turns out to be many sub-problems in a trench coat. This one plays nicely with Tips 1 and 2 - if you’ve got well-instrumented minimal examples it’s a lot easier to identify specific issues, and have others work on them without needing to front-load the full complexity of the task.</p>
+</section>
+<section id="tip-4-refactor-repeatedly-to-surface-eliminate-complexity-where-possible" class="level2">
+<h2 class="anchored" data-anchor-id="tip-4-refactor-repeatedly-to-surface-eliminate-complexity-where-possible">Tip 4: Refactor repeatedly to surface + eliminate complexity where possible</h2>
+<p>Software complexity tends to grow over time. Features get added, chunks of code get split into different files and made more modular, options proliferate as more and more configurations are supported… All of this may be perfectly reasonable, but can make it difficult to understand a specific circumstance. Focusing on one task and bringing as much of the code as possible into a single notebook or python file can be a great tool for debugging, forcing you to read the important bits as they get refactored out of their silos and into your new version.</p>
+<p>You may worry that the state-of-the-art deep learning techniques are beyond you. Worry not! Beneath all the layers there are almost always fairly simple pieces. For example, consider the case of applying LoRA adapters to a model. I had to do this for a <a href="https://www.youtube.com/watch?v=gJ4bvOX-1CE">video</a> I was making on diffusion models. The diffusers library implementation spans multiple layers of abstractions and is stuffed with conditions to handle different formats and approaches. It was only when I extracted out and re-wrote the key step that I could properly understand it and begin to experiment.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/dsc/A few tips for working on high-surface-area proble 2e02b0d4b400448781bc68402cb5a67d/Untitled 1.png" class="img-fluid figure-img"></p>
+<figcaption>Merging in LoRA weights in a diffusion model pipeline: minimal implementation compared to the <a href="https://github.com/huggingface/diffusers/blob/357855f8fca8d27beb0a3fde333f46db22f29391/src/diffusers/loaders/unet.py#L67">&gt;300LOC diffusers version</a>. Theirs supports far more options, but for experimenting + debugging a minimal re-implementation was far easier to work with and understand. Once things are working, we can always switch back to the more complicated ‘official’ version.</figcaption>
+</figure>
+</div>
+<p>Ideally, start from some minimal example and build up from there. Your final result doesn’t need to be a permanent artefact, but having everything in one place when working on especially thorny problems is extremely useful. This is a skill that is hard to learn from examining others’ code, since we typically only get a look at the final result. Notebooks can be a great way to share the progression as you verify things a few lines at a time before combining them into larger blocks, but even here we usually see just the final (working) version rather than all the intermediate pieces.</p>
+</section>
+<section id="final-remarks" class="level2">
+<h2 class="anchored" data-anchor-id="final-remarks">Final Remarks</h2>
+<p>These high-surface-area problems are tough. It’s hard to get into flow when there are so many questions that need answers, and debugging them is often a slog rather than a flash of inspiration. The final results can sometimes feel underwhelming compared to coming up with some flashy new algorithm. And yet by pushing through and persevering you can have a big impact… Hopefully this post has inspired you to do so, and given you a few tips to keep in mind when you do.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Blog</category>
+  <guid>https://johnowhitaker.dev/dsc/2024-01-23-tips.html</guid>
+  <pubDate>Tue, 23 Jan 2024 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title></title>
+  <link>https://johnowhitaker.dev/tils/2024-01-01-gpt4v-functions.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="til-gpt4-v-doesnt-support-function-calling-but-we-can-hack-around-that" class="level1">
+<h1>TIL: GPT4-V Doesn’t Support Function Calling, but We Can Hack Around That</h1>
+<p>I want to use GPT4-V to evaluate images generated by a diffusion model and optionally modify the prompt based on the result. The problem is that GPT4-V doesn’t support function calling. This is a common problem - many models don’t support producing structured output directly. You could beg and plead for it to follow a set format for responses, but an easier solution is just to use GPT3.5-Turbo to re-format a free-form response into a function call. So, for example, step one might be:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1">s1_prompt <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"""Your task is to evaluate whether the following image accurately follows the prompt.</span></span>
+<span id="cb1-2"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Prompt: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>image_prompt<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb1-3"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">If the image follows the prompt well, respond with 'yes'. If not, respond with 'no', give reasons, and then create a new prompt</span></span>
+<span id="cb1-4"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">that might better elicit an image in the spirit of the original prompt. For example, if an object is missing, repeated references in the</span></span>
+<span id="cb1-5"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">prompt may help.</span></span>
+<span id="cb1-6"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"""</span></span>
+<span id="cb1-7">s1_response <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> client.chat.completions.create(</span>
+<span id="cb1-8">    model<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"gpt-4-vision-preview"</span>,</span>
+<span id="cb1-9">    messages<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>[</span>
+<span id="cb1-10">        {</span>
+<span id="cb1-11">            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"role"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"user"</span>,</span>
+<span id="cb1-12">            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"content"</span>: [</span>
+<span id="cb1-13">                {</span>
+<span id="cb1-14">                    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"type"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"text"</span>, </span>
+<span id="cb1-15">                    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"text"</span>: s1_prompt,</span>
+<span id="cb1-16">                },</span>
+<span id="cb1-17">                {</span>
+<span id="cb1-18">                    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"type"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"image_url"</span>,</span>
+<span id="cb1-19">                    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"image_url"</span>: {</span>
+<span id="cb1-20">                        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"url"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg"</span>,</span>
+<span id="cb1-21">                    },</span>
+<span id="cb1-22">                },</span>
+<span id="cb1-23">            ],</span>
+<span id="cb1-24">        }</span>
+<span id="cb1-25">    ],</span>
+<span id="cb1-26">    max_tokens<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span>,</span>
+<span id="cb1-27">)</span></code></pre></div>
+<p>And then we can take the output of that and turn it into structured data with:</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">messages <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [</span>
+<span id="cb2-2">    {</span>
+<span id="cb2-3">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"role"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"user"</span>,</span>
+<span id="cb2-4">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"content"</span>: [</span>
+<span id="cb2-5">            {</span>
+<span id="cb2-6">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"type"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"text"</span>, </span>
+<span id="cb2-7">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"text"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Call the rate_image function with correct values based on the following text from a user:</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> s1_response.choices[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>].message.content,</span>
+<span id="cb2-8">            },</span>
+<span id="cb2-9">        ],</span>
+<span id="cb2-10">    }</span>
+<span id="cb2-11">]</span>
+<span id="cb2-12">tools <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [</span>
+<span id="cb2-13">    {</span>
+<span id="cb2-14">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"type"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"function"</span>,</span>
+<span id="cb2-15">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"function"</span>: {</span>
+<span id="cb2-16">            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"name"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"rate_image"</span>,</span>
+<span id="cb2-17">            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"description"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Rate the image as acceptable or not, with reasoning as to why and a modified prompt if necessary (optional)."</span>,</span>
+<span id="cb2-18">            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"parameters"</span>: {</span>
+<span id="cb2-19">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"type"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"object"</span>,</span>
+<span id="cb2-20">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"properties"</span>: {</span>
+<span id="cb2-21">                    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"classification"</span>: {</span>
+<span id="cb2-22">                        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"type"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"string"</span>,</span>
+<span id="cb2-23">                        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"description"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"The classification of the image, either 'yes' or 'no'"</span>,</span>
+<span id="cb2-24">                    },</span>
+<span id="cb2-25">                    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"reasoning"</span>: ...</span>
+<span id="cb2-26">                    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"modified_prompt"</span>: ...</span>
+<span id="cb2-27">                },</span>
+<span id="cb2-28">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"required"</span>: [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"classification"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"reasoning"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"modified_prompt"</span>],</span>
+<span id="cb2-29">            },</span>
+<span id="cb2-30">        },</span>
+<span id="cb2-31">    }</span>
+<span id="cb2-32">]</span>
+<span id="cb2-33">response <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> client.chat.completions.create(</span>
+<span id="cb2-34">    model<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"gpt-3.5-turbo-1106"</span>,</span>
+<span id="cb2-35">    messages<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>messages,</span>
+<span id="cb2-36">    max_tokens<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span>,</span>
+<span id="cb2-37">    tools<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>tools,</span>
+<span id="cb2-38">)</span></code></pre></div>
+<p>The result is a structured response that we can use to evaluate the image and modify the prompt:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/tils/image.png" class="img-fluid figure-img"></p>
+<figcaption>A screenshot of the result</figcaption>
+</figure>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>TILs</category>
+  <guid>https://johnowhitaker.dev/tils/2024-01-01-gpt4v-functions.html</guid>
+  <pubDate>Mon, 01 Jan 2024 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Quick Experiment: Filtering Preference Data for Better DPO</title>
+  <link>https://johnowhitaker.dev/dsc/2023-12-06-dpo_filter_test.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="filtering-preference-data-for-better-dpo" class="level1">
+<h1>Filtering Preference Data for Better DPO</h1>
+<p>With recent discussion around DPO (and proposed alternatives cDPO and IPO) I figured it was time we ran some experiments to see what works and what doesn’t. As a good warmup, I thought I’d test the effect of data quality by doing two runs, identical except that one would use a popular preference dataset, and the other would use a filtered version of the same dataset.</p>
+<p>I started with <a href="https://colab.research.google.com/drive/15iFBr1xWgztXvhrj5I9fBv20c7CFOPBE?usp=sharing">this example code</a> by <a href="https://twitter.com/maximelabonne/status/1729936838318543243">Maxime Labonne</a> which uses a dataset from Intel (“Intel/orca_dpo_pairs”).</p>
+<p>My ‘filtering’ was comically simple: using a model I had handy, I used the following prompt and then looked at the logits for ‘Yes’ and ‘No’ to decide whether to keep the example or not:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> item_to_prompt(item):</span>
+<span id="cb1-2">    prompt <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"&lt;|im_start|&gt;system</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">You are a helpful assistant who evaluates chat responses.</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">&lt;|im_end|&gt;</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb1-3">    prompt <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"&lt;|im_start|&gt;user</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Consider the following hypothetical chat and evaluate whether the first response (Option 1) is better than the second."</span></span>
+<span id="cb1-4">    prompt <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"A good answer follows the system prompt and question/instruction well. Answer 'Yes' or 'No' only.</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb1-5">    prompt <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Hypothetical system prompt:</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>item[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'system'</span>]<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb1-6">    prompt <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Hypothetical question:</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>item[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'question'</span>]<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb1-7">    prompt <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Hypothetical option 1:</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>item[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'chosen'</span>][:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1600</span>]<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># &lt;&lt; NB setting a max length</span></span>
+<span id="cb1-8">    prompt <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Hypothetical option 2:</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>item[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'rejected'</span>][:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1600</span>]<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb1-9">    prompt <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Is Option 1 better than Option 2? Yes or No."</span></span>
+<span id="cb1-10">    prompt <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"&lt;|im_end|&gt;</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"&lt;|im_start|&gt;assistant</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb1-11">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> prompt</span></code></pre></div>
+<p>Side note: <code>tokenizer.encode("Yes")</code> won’t give you the right token in this case, since “Yes” at the start of text or with a preceeding space != “Yes” following another character like the newline. Always check the topk probabilities from the model or decode some tokens to make sure you use the right one!</p>
+<p>Anyway, keeping those examples where the model agreed with the original label, I ended up with a smaller dataset I could use for the ‘filtered’ version. Training for the same number of steps on each, we see the score boost from 57.9 to 62.2 thanks to the filtering:</p>
+<p><img src="https://johnowhitaker.dev/dsc/images/dpo_lb.jpg" class="img-fluid"></p>
+<p>Scoring was done with alpaca_eval, using the ‘chatgpt_fn’ evaluator to save costs.This is just a quick initial test, but it aligns with my feeling that data quality is pretty important and that the existing datasets for fine-tuning and preference stuff might need a bit of cleanup!</p>
+<p>Related Tweet: https://x.com/johnowhitaker/status/1732489803340673053?s=20</p>
+
+
+</section>
+
+ ]]></description>
+  <category>blogs</category>
+  <guid>https://johnowhitaker.dev/dsc/2023-12-06-dpo_filter_test.html</guid>
+  <pubDate>Wed, 06 Dec 2023 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Paperathon #1</title>
+  <link>https://johnowhitaker.dev/misc/2023-11-29-paperathon.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="paperathon---4-hours-of-paper-reading-live-on-twitch" class="level3">
+<h3 class="anchored" data-anchor-id="paperathon---4-hours-of-paper-reading-live-on-twitch">Paperathon - 4 hours of paper reading live on Twitch</h3>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/YNOIyvUCpAs" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>An experimental livestream reading through papers. A tidy version of the notes from the stream can be found <a href="https://docs.google.com/document/d/1weSVlVfVUufOesEmMB2_TlmM_I250ug-WIEZu9xEpVw/edit?usp=sharing">here</a>. Thanks to those who joined the live stream and helped out with the discussion!</p>
+<p>Topics w/ timestamps: - 01:00 - Intro + Plan - 06:00 - Orca 2 (and Orca 1) - 20:00 - Emu EDIT - 32:20 - TULU V2 - 49:00 - QLoRA - 1:01:00 - Finding papers - 1:07:10 - System 2 Attention - 1:18:00 - Zephyr - 1:29:20 - DPO - 1:44:30 - cDPO and IPO - 2:00:00 - I-JEPA - 2:33:30 - Luciddreamer (+ dreamfusion, SDS chat, gaussian splitting) - 2:54:40 - MeshGPT - 3:08:20 - Diffusion model roundup - EMU, Dalle-3, Wurstchen, Matryoshka, Pixart, Commoncanvas - 4:00:40 - Recap</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Video</category>
+  <guid>https://johnowhitaker.dev/misc/2023-11-29-paperathon.html</guid>
+  <pubDate>Wed, 29 Nov 2023 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/misc/thumbnails/paperathon.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>ZipLoRA: Any Subject in Any Style (deep dive and paper explanation)</title>
+  <link>https://johnowhitaker.dev/misc/2023-11-26-Ziplora.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="ziplora-any-subject-in-any-style-deep-dive-and-paper-explanation" class="level3">
+<h3 class="anchored" data-anchor-id="ziplora-any-subject-in-any-style-deep-dive-and-paper-explanation">ZipLoRA: Any Subject in Any Style (deep dive and paper explanation)</h3>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/gJ4bvOX-1CE" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>In this video we talk about merging LoRAs - the difficulties with a naive approach and the benefits of the new “ZipLoRA” technique. Paper: https://arxiv.org/abs/2311.13600</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Video</category>
+  <guid>https://johnowhitaker.dev/misc/2023-11-26-Ziplora.html</guid>
+  <pubDate>Sun, 26 Nov 2023 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/misc/thumbnails/ziplora.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Mini Work Timer</title>
+  <link>https://johnowhitaker.dev/mini-hw-projects/2023-11-020-work_timer.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="mini-work-timer" class="level1">
+<h1>Mini Work Timer</h1>
+<p>I lose track of time easily, so I’m trialling a little timer widget on my desk. Good for regulating Twitter breaks.</p>
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/work_timer_1.jpg" class="img-fluid"></p>
+<p>The electronics are fairly simple: a Raspeberry Pi microcontroller reads a rotary encoder and servo that acts like a clock hand. A button (integrated into the quadrature encoder) switches from seconds to minutes mode, since I expect this to come in handy for board games too. I printed an enclosure, which is waiting for a paint job :)</p>
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/work_timer_2.jpg" class="img-fluid"></p>
+<p>The code is written in Micropython, and the development experience was a pleasant suprise - just edit a .py file and drag onto the storage device that shows up. My previous embedded development experiences usually involved proprietary debuggers, arcane toolchains and pain…</p>
+
+
+</section>
+
+ ]]></description>
+  <category>mini-hw-projects</category>
+  <guid>https://johnowhitaker.dev/mini-hw-projects/2023-11-020-work_timer.html</guid>
+  <pubDate>Mon, 20 Nov 2023 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>MLOps Community Mini Summit #3 Talk: What The Kaggle LLM Science Exam Competition Can Teach Us About LLMs</title>
+  <link>https://johnowhitaker.dev/misc/2023-11-16-mlops-talk.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="what-the-kaggle-llm-science-exam-competition-can-teach-us-about-llms" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-kaggle-llm-science-exam-competition-can-teach-us-about-llms">What The Kaggle LLM Science Exam Competition Can Teach Us About LLMs</h3>
+<p>Come for the LLM insights, and stay for the Llama-filled slides :)</p>
+<p>I enjoyed how the same key things came up in multiple talks: - Inspect your data! - Build good evals - Keep feedback loops short</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/79FOajKg0xI" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>My talk went into some themes that crop up in many different LLM projects, and how the Kaggle competition was a great way to explore them.</p>
+<p><img src="https://johnowhitaker.dev/misc/thumbnails/mlops_webinar_slide.jpg" class="img-fluid"></p>
+
+
+</section>
+
+ ]]></description>
+  <category>Video</category>
+  <guid>https://johnowhitaker.dev/misc/2023-11-16-mlops-talk.html</guid>
+  <pubDate>Thu, 16 Nov 2023 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/misc/thumbnails/mlops_webinar_slide.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title></title>
+  <link>https://johnowhitaker.dev/tils/2023-11-07-get_yt_vids.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="getting-my-youtube-videos-as-markdown-pages-for-this-quarto-blog" class="level1">
+<h1>Getting My YouTube Videos as MarkDown pages for this Quarto blog</h1>
+<p>Step 1 was getting the video info:</p>
+<pre><code> youtube-dl --get-filename -o "%(upload_date)s,%(id)s,%(duration)s,%(title)s,%(description)s" https://www.youtube.com/@datasciencecastnet &gt; yt_vids.txt</code></pre>
+<p>Then I processed the resulting file with</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> os, glob</span>
+<span id="cb2-2"></span>
+<span id="cb2-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Define a function to fix the URLs in the description</span></span>
+<span id="cb2-4"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> fix_urls(description):</span>
+<span id="cb2-5">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> description.replace(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" -_"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"://"</span>).replace(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"_"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/"</span>).replace(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https -"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://"</span>)</span>
+<span id="cb2-6"></span>
+<span id="cb2-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Read the input file</span></span>
+<span id="cb2-8"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">with</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">open</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'yt_vids.txt'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'r'</span>, encoding<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'utf-8'</span>) <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">file</span>:</span>
+<span id="cb2-9">    lines <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">file</span>.readlines()</span>
+<span id="cb2-10"></span>
+<span id="cb2-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Directory to store markdown files</span></span>
+<span id="cb2-12">output_dir <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'misc'</span></span>
+<span id="cb2-13">os.makedirs(output_dir, exist_ok<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>)</span>
+<span id="cb2-14">os.makedirs(os.path.join(output_dir, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'thumbnails'</span>), exist_ok<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>)</span>
+<span id="cb2-15"></span>
+<span id="cb2-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Process each line in the file</span></span>
+<span id="cb2-17"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> line <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> lines:</span>
+<span id="cb2-18">    date, video_id, duration, title, description <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> line.strip().split(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">','</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>)</span>
+<span id="cb2-19"></span>
+<span id="cb2-20">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Reformat date</span></span>
+<span id="cb2-21">    date <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> date[:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'-'</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> date[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'-'</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> date[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>:]</span>
+<span id="cb2-22">    </span>
+<span id="cb2-23">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create a markdown file for each line</span></span>
+<span id="cb2-24">    filename <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>date<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">-</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>title<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>replace(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'/'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'_'</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>replace(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">' '</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'_'</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">.md"</span></span>
+<span id="cb2-25">    filepath <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> os.path.join(output_dir, filename)</span>
+<span id="cb2-26">    </span>
+<span id="cb2-27">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Fix the URLs in the description</span></span>
+<span id="cb2-28">    description <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> fix_urls(description)</span>
+<span id="cb2-29">    </span>
+<span id="cb2-30">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Video URL</span></span>
+<span id="cb2-31">    video_url <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"https://www.youtube.com/watch?v=</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>video_id<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb2-32"></span>
+<span id="cb2-33">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Download the thumbnail</span></span>
+<span id="cb2-34">    cmd <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"youtube-dl --write-thumbnail --skip-download </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>video_url<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> -o </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>os<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>path<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>join(output_dir, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'thumbnails'</span>, video_id)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb2-35">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># os.system(cmd)</span></span>
+<span id="cb2-36"></span>
+<span id="cb2-37">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Get extension of thumbnail</span></span>
+<span id="cb2-38">    thumbnail <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> glob.glob(os.path.join(output_dir, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'thumbnails'</span>, video_id <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'.*'</span>))[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]</span>
+<span id="cb2-39">    thumbnail_ext <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> thumbnail.split(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'.'</span>)[<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]</span>
+<span id="cb2-40"></span>
+<span id="cb2-41"></span>
+<span id="cb2-42">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Write the markdown content</span></span>
+<span id="cb2-43">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">with</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">open</span>(filepath, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'w'</span>, encoding<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'utf-8'</span>) <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> md_file:</span>
+<span id="cb2-44">        md_file.write(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'---</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>)</span>
+<span id="cb2-45">        md_file.write(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f'title: "</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>title<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>)</span>
+<span id="cb2-46">        md_file.write(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f'date: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>date<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>)</span>
+<span id="cb2-47">        md_file.write(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'categories: </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>)</span>
+<span id="cb2-48">        md_file.write(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'  - "Video"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>)</span>
+<span id="cb2-49">        md_file.write(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f'image: "thumbnails/</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>video_id<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">.</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>thumbnail_ext<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>)</span>
+<span id="cb2-50">        md_file.write(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'---</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>)</span>
+<span id="cb2-51"></span>
+<span id="cb2-52">        md_file.write(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f'### </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>title<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>)</span>
+<span id="cb2-53">        </span>
+<span id="cb2-54">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Video link/preview (depending on your markdown processor, you might need a different embedding code)</span></span>
+<span id="cb2-55">        md_file.write(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"[video []{.quarto-shortcode__-param data-is-shortcode="</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" data-value="</span>https:<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">//</span>www.youtube.com<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>embed<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"+video_id+"" data-raw="</span>https:<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">//</span>www.youtube.com<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>embed<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>\<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"+video_id+</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\"</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>} ]{.quarto<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>shortcode__ data<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">is</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>shortcode<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"1"</span> data<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>raw<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>}\n\n<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">")</span></span>
+<span id="cb2-56"><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">        </span></span>
+<span id="cb2-57">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Write the video description</span></span>
+<span id="cb2-58">        md_file.write(description <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>)</span></code></pre></div>
+
+
+</section>
+
+ ]]></description>
+  <category>TILs</category>
+  <guid>https://johnowhitaker.dev/tils/2023-11-07-get_yt_vids.html</guid>
+  <pubDate>Tue, 07 Nov 2023 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Evaluating Diffusion Models with PickScore</title>
+  <link>https://johnowhitaker.dev/misc/2023-10-23-Evaluating_Diffusion_Models_with_PickScore.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="evaluating-diffusion-models-with-pickscore" class="level3">
+<h3 class="anchored" data-anchor-id="evaluating-diffusion-models-with-pickscore">Evaluating Diffusion Models with PickScore</h3>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/tNUCUPtbo_o" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>Setting the scene for some future videos where I’ll explore ways to improve diffusion models through various tricks. Here we learn why evaluating diffusion models is hard, that user preference is the gold standard, and that preference models like PickScore give us an approximation we can work with.Code on github - https://github.com/johnowhitaker/dm/funPickScore on GitHub - https://github.com/yuvalkirstain/PickScore and paper - https://arxiv.org/pdf/2305.01569.pdfDall-e-3 announcement (https://openai.com/dall-e-3) and paper (https://cdn.openai.com/papers/dall-e-3.pdf)EMU paper - https://scontent.fhio2-1.fna.fbcdn.net/v/t39.2365-6/10000000/210375442059452/321995130515097708/n.pdf/nc/cat=105&amp;ccb=1-7&amp;/nc/sid=3c67a6&amp;/nc/ohc=i-w75ldGqcgAX-dER4g&amp;/nc/ht=scontent.fhio2-1.fna&amp;oh=00/AfBip5IVsto1QTZ1O7JFVUcR51I9a/XXuiU3hY9OdKOlJA&amp;oe=653C28CDWurstchen - https://arxiv.org/pdf/2306.00637.pdfSDXL paper - https://arxiv.org/pdf/2307.01952.pdf</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Video</category>
+  <guid>https://johnowhitaker.dev/misc/2023-10-23-Evaluating_Diffusion_Models_with_PickScore.html</guid>
+  <pubDate>Mon, 23 Oct 2023 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/misc/thumbnails/tNUCUPtbo_o.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>How I ‘monetized’ an AI demo</title>
+  <link>https://johnowhitaker.dev/misc/2023-10-18-How_I_monetized_an_AI_demo.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="how-i-monetized-an-ai-demo" class="level3">
+<h3 class="anchored" data-anchor-id="how-i-monetized-an-ai-demo">How I ‘monetized’ an AI demo</h3>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/rUDwAEV3JH0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>See the finished product at https://hallowhatnow.johnowhitaker.repl.co/Template for those wanting to try something like this - https://replit.com/<span class="citation" data-cites="johnowhitaker/AIAppTemplatev">@johnowhitaker/AIAppTemplatev</span>=1In this video, I take you through the process I followed to take a generative AI workflow and turn it into a ‘product’, where users upload a picture and pay to have it transformed into a gallery of themed Halloween costume ideas. It’s pretty cool that anyone with a bit of time and patience can make and share something like this! I hope you’re inspired to build something -)Chapters -00/00 - Introduction and flask app - the frontend01/00 - Stripe checkout03/14 - Replicate for ML model hosting and inference06/12 - Keeping track of what works09/09 - Sending our requests from python11/12 - Testing it out12/30 - Final tips</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Video</category>
+  <guid>https://johnowhitaker.dev/misc/2023-10-18-How_I_monetized_an_AI_demo.html</guid>
+  <pubDate>Wed, 18 Oct 2023 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/misc/thumbnails/rUDwAEV3JH0.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Text-to-3D-Print</title>
+  <link>https://johnowhitaker.dev/mini-hw-projects/2023-09-30-text_to_print.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="text-to-3d-print" class="level1">
+<h1>Text-to-3D-Print</h1>
+<p>Describe -&gt; choose picture -&gt; splats -&gt; mesh -&gt; sculpt -&gt; slice -&gt; print -&gt; paint 😸</p>
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/txttoprint.jpg" class="img-fluid"></p>
+
+
+</section>
+
+ ]]></description>
+  <category>mini-hw-projects</category>
+  <guid>https://johnowhitaker.dev/mini-hw-projects/2023-09-30-text_to_print.html</guid>
+  <pubDate>Wed, 13 Sep 2023 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Mini Experiment: DoLa w/ a guidance scale</title>
+  <link>https://johnowhitaker.dev/mini-projects/dola_cfg.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="mini-experiment-dola-w-a-guidance-scale" class="level1">
+<h1>Mini Experiment: DoLa w/ a guidance scale</h1>
+<p><img src="https://johnowhitaker.dev/mini-projects/images/dola.jpg" class="img-fluid"></p>
+<p>DoLa contrasts early and late layers of a transformer to elicit more ‘factual’ responses by looking at the contrast between the two. The theory is that earlier layers focus on grammar and syntax, while later layers focus on semantics. Instead of taking the difference only, you can borrow from the diffusion model playbook and do something like classifier-free guidance where you lerp between [the final logits] and [the difference thing they use in DoLa] with a scale like 0.5 or 3. Seems to work!</p>
+<p>Trying it on two different styles of 0-shot classification with Llama-7. Early tests so don’t read too much into it, but it seems choosing the scale and layer gives some control for us to find what’s best:</p>
+<p><img src="https://johnowhitaker.dev/mini-projects/images/dola2.jpg" class="img-fluid"></p>
+<p>Twitter thread: https://twitter.com/johnowhitaker/status/1702175876769817040</p>
+<p>I also suggested contrasting small w/ large, which got mentioned in a paper that came out a few days later: Contrastive Decoding Improves Reasoning in Large Language Models :)</p>
+
+
+</section>
+
+ ]]></description>
+  <category>mini-projects</category>
+  <guid>https://johnowhitaker.dev/mini-projects/dola_cfg.html</guid>
+  <pubDate>Wed, 13 Sep 2023 00:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>
