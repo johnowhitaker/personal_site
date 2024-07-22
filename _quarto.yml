@@ -3,6 +3,7 @@ project:
 
 website:
   title: "johnowhitaker.dev"
+  site-url: "https://johnowhitaker.dev"
   navbar:
     title: false
     left:
@@ -19,6 +20,8 @@ website:
           - resume.md
           - books.qmd
           - appearances.qmd
+          - icon: rss
+            href: "https://johnowhitaker.dev/index.xml"
       
   
   twitter-card:

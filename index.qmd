@@ -38,6 +38,8 @@ This website is a central repository for everything I'm working on. You can find
 
 ## Some Recent Posts
 
+You can also subscribe to these via the [RSS feed](https://johnowhitaker.dev/index.xml).
+
 ::: {#blog-listings}
 :::
 
