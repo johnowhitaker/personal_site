@@ -10,7 +10,34 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.6.4</generator>
-<lastBuildDate>Thu, 27 Jun 2024 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 06 Aug 2024 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Robot Arm Shenanigans (Draft Post)</title>
+  <link>https://johnowhitaker.dev/mini-hw-projects/2024-08-06-robot-arm.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="having-fun-with-a-diy-robot-arm" class="level1">
+<h1>Having fun with a DIY Robot Arm</h1>
+<p>I built a fun little robot arm based on designs from <a href="https://github.com/AlexanderKoch-Koch/low_cost_robot">here</a>. It’s fun to play with. My favourite workflow is teaching movements by first pupeteering motions then playing those back.</p>
+<p>Here’s a video of it singing a song: TODO</p>
+<p>I should find a way to embed media from tweets. For now, the story so far as a series of links:</p>
+<p>Fun at Open Sauce, meeting lots of other robots (June 15): https://x.com/johnowhitaker/status/1802129219432091994</p>
+<p>The meme spreads to Radek (May 25): https://x.com/radekosmulski/status/1794614361581134074</p>
+<p>The inevitable butter passing gag (teamwork with another little robot arm I made) (May 8): https://x.com/johnowhitaker/status/1788415382426103839</p>
+<p>First movement (April 13): https://x.com/johnowhitaker/status/1779205355043799373 and field trip to hackerspace https://x.com/johnowhitaker/status/1779301429041336655</p>
+<p>Printing parts (March 30): https://x.com/johnowhitaker/status/1774176545378328643</p>
+
+
+</section>
+
+ ]]></description>
+  <category>mini-hw-projects</category>
+  <guid>https://johnowhitaker.dev/mini-hw-projects/2024-08-06-robot-arm.html</guid>
+  <pubDate>Tue, 06 Aug 2024 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Tab Clearing</title>
   <link>https://johnowhitaker.dev/misc/tab-clearing.html</link>
@@ -1918,28 +1945,6 @@ font-style: inherit;">'</span>)</span></code></pre></div>
   <guid>https://johnowhitaker.dev/misc/2023-10-23-Evaluating_Diffusion_Models_with_PickScore.html</guid>
   <pubDate>Mon, 23 Oct 2023 00:00:00 GMT</pubDate>
   <media:content url="https://johnowhitaker.dev/misc/thumbnails/tNUCUPtbo_o.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>How I ‘monetized’ an AI demo</title>
-  <link>https://johnowhitaker.dev/misc/2023-10-18-How_I_monetized_an_AI_demo.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="how-i-monetized-an-ai-demo" class="level3">
-<h3 class="anchored" data-anchor-id="how-i-monetized-an-ai-demo">How I ‘monetized’ an AI demo</h3>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/rUDwAEV3JH0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p>See the finished product at https://hallowhatnow.johnowhitaker.repl.co/Template for those wanting to try something like this - https://replit.com/<span class="citation" data-cites="johnowhitaker/AIAppTemplatev">@johnowhitaker/AIAppTemplatev</span>=1In this video, I take you through the process I followed to take a generative AI workflow and turn it into a ‘product’, where users upload a picture and pay to have it transformed into a gallery of themed Halloween costume ideas. It’s pretty cool that anyone with a bit of time and patience can make and share something like this! I hope you’re inspired to build something -)Chapters -00/00 - Introduction and flask app - the frontend01/00 - Stripe checkout03/14 - Replicate for ML model hosting and inference06/12 - Keeping track of what works09/09 - Sending our requests from python11/12 - Testing it out12/30 - Final tips</p>
-
-
-</section>
-
- ]]></description>
-  <category>Video</category>
-  <guid>https://johnowhitaker.dev/misc/2023-10-18-How_I_monetized_an_AI_demo.html</guid>
-  <pubDate>Wed, 18 Oct 2023 00:00:00 GMT</pubDate>
-  <media:content url="https://johnowhitaker.dev/misc/thumbnails/rUDwAEV3JH0.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
