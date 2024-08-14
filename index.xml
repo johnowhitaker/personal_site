@@ -10,7 +10,124 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.6.4</generator>
-<lastBuildDate>Tue, 06 Aug 2024 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 14 Aug 2024 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>What You Should Read (AI Edition)</title>
+  <link>https://johnowhitaker.dev/misc/what_you_should_read.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="what-you-should-read-ai-edition" class="level1">
+<h1>What You Should Read (AI Edition)</h1>
+<p>There have been hundreds of thousands of films made. But if you reveal that you haven’t seen Star Wars, you’re regarded with a mixture of sympathy and scorn. In this listicle, I’m going to attempt to give you a short list of essentials to spare you the same fate in the field of AI research. This is off the top of my head, so I’ll definitely miss things and get some timelines wrong. Let me know if there are things you think I absolutely must add. I’ve split things up into a few different categories to keep the story flowing.</p>
+<p>See also: supposedly the list Ilya sent to Carmack: https://arc.net/folder/D0472A20-9C20-4D3F-B145-D2865C0A9FEE</p>
+<p>Most of this list was written ~6 months ago to send to a friend, sharing in case I get asked for it again.</p>
+<section id="vision" class="level2">
+<h2 class="anchored" data-anchor-id="vision">Vision</h2>
+<p>Let’s start with how computers see. Back in the old days, computer vision was a hard task dominated by carefully hand-crafted features in controlled conditions. A forward-thinking Fei-Fei Li set a near-impossible-seeming task: learn to classify ~1M images into ~1000 classes. Some nerds figured out how to build convolutional neural networks in a way that let them use GPUs for training and got a much better score than any prior approach. Soon deep learning was a hot topic and more and more researchers fought for the top spot on the imagenet accuracy leaderboards.</p>
+<p>You don’t need to read every paper that claimed a 0.1% improvement. I’d recommend picking any ‘intro to convolutional nns’ tutorial to get the basics then following the main improvements: - The original ResNet paper (https://arxiv.org/abs/1512.03385) showed how using residual connections makes it possible to train much deeper networks</p>
+<ul>
+<li><p>MobileNets (https://arxiv.org/abs/1704.04861) introduced “depth-wise separable convolutions to build light weight deep neural networks.” which made them popular for deployment on lower-power devices.</p></li>
+<li><p>EfficientNet (https://arxiv.org/abs/1905.11946) took this further and was a fan favourite for a while in terms of performance and efficiency</p></li>
+<li><p>When transformer models started to get popular (see the LLM section), the VIT paper (https://arxiv.org/abs/2010.11929) fed patches of an image into a transformer and got extremely good results, kicking off a war between the convolutionists and the transformacons that continues to this day.</p></li>
+<li><p>ConvNeXt (https://arxiv.org/abs/2201.03545) said ‘hey let’s take some good ideas from ViTs and elsewhere and see if we can make a better convnet for the 2020s.’</p></li>
+<li><p>MLP-Mixer (a personal fave, less pivotal) said ’who needs attention or convolutions? Just make sure there’s some way to mix across channels (like the MLPs in a ViT) and some way to mix across space (like the attention in a ViT or the conv kernels in a convnet). I love that it works - hooray scaling and the bitter lesson :)</p></li>
+</ul>
+<p>ViTs are probably the go-to these days, although there are attempts to fix some of their flaws (fixed size, need lots of compute especially for high-res images, less priors baked in so well-suited to data-rich regimes) - but most of the modifications proposed sort of make sense and also don’t make <em>that</em> big of a difference compared to scaling. If you want more on them maybe read “Scaling Vision Transformers” (https://arxiv.org/abs/2106.04560) and something like the Hierarchical ViT paper (https://arxiv.org/abs/2205.14949).</p>
+<p>While people were duking it out for the classification crown, there were a few other things happening - A medical segmentation paper proposed the UNet architecture that turned out to be pretty good for anything that needs an image-shaped output (like segmentation) - https://arxiv.org/abs/1505.04597</p>
+<ul>
+<li><p>People figured out how to do object detection, although there ended up being tons of different ways to finagle the data and at least 8 papers with different architectures using the name YOLO. If you care about object detection probably just check what the most recent one is that everyone seems to use.</p></li>
+<li><p>People found that a model trained on imagenet could then be fine-tuned for some new task using very few images, in a process called “transfer learning”. See the first lesson of fast.ai to get excited about this and to see how easy it can be. You should check out this 2017 work exploring what these models learn: https://distill.pub/2017/feature-visualization/</p></li>
+</ul>
+<p>There’s also the big question of labels. Imagenet is all well and good, but if we want to scale up more can we find ways to learn without class labels?</p>
+<ul>
+<li><p>Contrastive learning: two images of the same thing (or, pragmatically, two transforms of the same image) should map to similar features. Unrelated images should map to less-similar features. SimCLR “A Simple Framework for Contrastive Learning of Visual Representations” (https://arxiv.org/abs/2002.05709) is a goodie.</p></li>
+<li><p>MAEs “Masked Autoencoders Are Scalable Vision Learners” (https://arxiv.org/abs/2111.06377) - what if we instead learn to predict a masked-out region of an image? Turns out at scale this is enough to learn useful features. Lots of fun overlap between MAEs and generative models too…</p></li>
+<li><p>iJEPA “Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture” (https://arxiv.org/abs/2301.08243) Yann thinks there’s a better way, we predict the <em>embedding</em> of the target not the target itself. JEPA is an interesting line of research.</p></li>
+<li><p>CLIP (https://arxiv.org/abs/2103.00020) - a contrastive approach that maps images and text to the same space (ish). Let’s you learn from billions of captioned images on the web. Gives an incredibly useful way to get features from images and text that you can use for 0-shot classification, search, conditioning generative models… one of the most impactful vision papers IMO. Lots of derivatives, SigLIP etc improving on the core idea, OpenCLIP project with tons of models… Datacomp is an interesting one, asking ‘what data should you use for a clip-like thing if the model + compute is fixed?’</p></li>
+</ul>
+<p>Finally, there’s the question of how we generate images. Can we just run a convnet backwards? Not quite, but:</p>
+<ul>
+<li><p>VAEs: papers can be very math-heavy. https://arxiv.org/abs/1906.02691 is a 2019 paper by D. Kingma and Max Welling who also did an important 2013 paper https://arxiv.org/abs/1312.6114. I think maybe skip both, maybe go for a more accessible intro like https://deeplearning.neuromatch.io/tutorials/W2D4_GenerativeModels</p></li>
+<li><p>Generative Adversarial Networks (https://arxiv.org/abs/1406.2661) introduce a great idea: use a second network trying to tell the diff between the output of the first network and real data. GAN literature got full of fiddly tricks and a mythical feeling that these beasts are hard to train.</p></li>
+<li><p>BigGAN (https://arxiv.org/abs/1809.11096) scaled up and showed class conditioning. StyleGAN (https://arxiv.org/abs/1812.04948) learned ‘disentangled’ features and gave amazing control and trippy interpolations. light-weight GAN (https://arxiv.org/abs/2101.04775) is my go-to for something you can train on a relatively small dataset with all the modern tricks. And more recently GigaGAN (https://arxiv.org/abs/2303.05511) flexed fast text-to-image (meh) and super-resolution (incredible).</p></li>
+<li><p>A Neural Algorithm of Artistic Style (https://arxiv.org/abs/1508.06576) came up with the cool idea of style transfer. My course has some more modern approaches https://johnowhitaker.github.io/tglcourse/representations.html</p></li>
+<li><p>Taming Transformers for High-Resolution Image Synthesis (https://arxiv.org/abs/2012.09841) aka the VQGAN paper showed how to tokenize images and also set us up for latent diffusion and the fun we had optimizing VQGAN latents with CLIP (https://johnowhitaker.github.io/tglcourse/generators_and_losses.html)</p></li>
+<li><p>Dalle (https://arxiv.org/abs/2102.12092) modelled images and text as sequences - just learn to predict the next token in a sequence that looks like [text caption… image patch tokens]. Parti (https://sites.research.google/parti/) scaled it up and how weird that worked!</p></li>
+</ul>
+<p>Diffusion models stole the show though</p>
+<ul>
+<li><p>Imagen and Dalle 2 showed off high-quality (closed)</p></li>
+<li><p>Stable Diffusion (https://arxiv.org/abs/2112.10752) gave us open-source stuff, newer versions track trends in what seems to work</p></li>
+<li><p>InstructPix2Pix (https://arxiv.org/abs/2211.09800) used synthetic data to get a model that can do image + text -&gt; edited image. Emu Edit did more data.</p></li>
+<li><p>Personalization happened (Dreambooth (https://arxiv.org/abs/2208.12242), Textual Inversion (https://arxiv.org/abs/2208.01618), ZipLoRA(https://arxiv.org/abs/2311.13600) are some standouts)</p></li>
+<li><p>Controlnet (https://arxiv.org/abs/2302.05543) and IPAdapter (https://arxiv.org/abs/2308.06721) added extra ways to control the generation, as did many others</p></li>
+<li><p>Making them fast w/ distillation, score matching, flow, …. It gets crowded and complicated here. Progressive Distillation (https://arxiv.org/abs/2202.00512) was an early big one.</p></li>
+</ul>
+<p>BTW diffusion models learn useful features for other tasks, there’s a whole bunch of stuff too much to cover here.</p>
+</section>
+<section id="language-wip" class="level2">
+<h2 class="anchored" data-anchor-id="language-wip">Language (WIP)</h2>
+<p>TODO: Synthetic data Textbooks are all you need (tinystories) Orca, evol-instruct, restructured Pretraining Optimizers, training dynamics etc Place for adam, layernorm, grad clipping, LR scheduling, EMA, …</p>
+<section id="the-early-days" class="level3">
+<h3 class="anchored" data-anchor-id="the-early-days">The Early Days</h3>
+<ol type="1">
+<li><p><a href="https://karpathy.github.io/2015/05/21/rnn-effectiveness/">The Unreasonable Effectiveness of Recurrent Neural Networks</a> (2015) - Karpathy’s great blog post on character-level RNNs.</p></li>
+<li><p><a href="https://arxiv.org/abs/1801.06146">ULMFiT: Universal Language Model Fine-tuning for Text Classification</a> (2018) - Demonstrated transfer learning for text. “Pretraining” becomes a thing.</p></li>
+</ol>
+</section>
+<section id="the-rise-of-transformer-based-models" class="level3">
+<h3 class="anchored" data-anchor-id="the-rise-of-transformer-based-models">The Rise of Transformer-based Models</h3>
+<ol start="3" type="1">
+<li><p><a href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a> (2017) - Introduced the Transformer architecture for translation.</p></li>
+<li><p><a href="https://arxiv.org/abs/1810.04805">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a> (2018) - Bidirectional training of Transformers.</p></li>
+<li><p><a href="https://arxiv.org/abs/1910.10683">T5: Exploring the Limits of Transfer Learning</a> (2020) - Unified text-to-text framework.</p></li>
+<li><p><a href="https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf">Improving Language Understanding by Generative Pre-Training</a> (2018) - Introduced GPT. “We demonstrate that large gains on these tasks can be realized by generative pre-training of a language model on a diverse corpus of unlabeled text, followed by discriminative fine-tuning on each specific task”</p></li>
+<li><p><a href="https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf">Language Models are Unsupervised Multitask Learners</a> (2019) - Introduced GPT-2. “We demonstrate that language models begin to learn these tasks without any explicit supervision when trained on a new dataset of millions of webpages called WebText.”</p></li>
+<li><p><a href="https://arxiv.org/abs/2005.14165">Language Models are Few-Shot Learners</a> (2020) - Introduced GPT-3. “Here we show that scaling up language models greatly improves task-agnostic, few-shot performance”</p></li>
+<li><p><a href="https://arxiv.org/abs/2001.08361">Scaling Laws for Neural Language Models</a> (2020) - Empirical analysis of scaling relationships.</p></li>
+<li><p><a href="https://arxiv.org/abs/2203.15556">Training Compute-Optimal Large Language Models</a> (2022) - Chinchilla gave better scaling laws for how to get best performance at different scales (without considering inference costs).</p></li>
+</ol>
+<p>I like how the GPT series of papers show the progression from unsupervised pretraining to few-shot learning, as we realize how much this paradigm can do.</p>
+</section>
+<section id="efficient-fine-tuning-and-adaptation" class="level3">
+<h3 class="anchored" data-anchor-id="efficient-fine-tuning-and-adaptation">Efficient Fine-tuning and Adaptation</h3>
+<ol start="11" type="1">
+<li><p><a href="https://arxiv.org/abs/2106.09685">LoRA: Low-Rank Adaptation of Large Language Models</a> (2021) - Efficient fine-tuning method. After this there was a flurry of LoRA variants since it is something people can research on an academic budget. Most can safely be ignored. I like ‘DoRA’ as a better-performing version and LoftQ for quantization-aware LoRA stuff (see also FA-LoRA I think it’s called).</p></li>
+<li><p><a href="https://arxiv.org/abs/2305.14314">QLoRA: Efficient Finetuning of Quantized LLMs</a> - Efficient fine-tuning with quantization. By the kegend Tim Dettmers, made fine-tuning with quantization practical for so many more people. Check out the answerai posts on this topic for more on scaling and quantization.</p></li>
+</ol>
+</section>
+<section id="instruction-tuning-and-alignment" class="level3">
+<h3 class="anchored" data-anchor-id="instruction-tuning-and-alignment">Instruction Tuning and Alignment</h3>
+<ol start="13" type="1">
+<li><p><a href="https://arxiv.org/abs/2203.02155">InstructGPT: Training language models to follow instructions</a> (2022) - Instruction-following using human feedback.</p></li>
+<li><p><a href="https://arxiv.org/abs/2212.08073">Constitutional AI: Harmlessness from AI Feedback</a> (2022) - AI-assisted approach to alignment.</p></li>
+<li><p><a href="https://arxiv.org/abs/2305.18290">Direct Preference Optimization: Your Language Model is Secretly a Reward Model</a> (2023) - Simplified approach to RLHF.</p></li>
+<li><p><a href="https://arxiv.org/abs/2310.16944">Zephyr: Direct Distillation of LM Alignment</a> (2023) - A good recipe for making ‘aligned’ models based on synthetic data from big models.</p></li>
+<li><p>Tulu and <a href="https://arxiv.org/abs/2311.10702">Tulu 2</a> applying this recipe and exploring what data works well. Decent emperical papers, lots of insights about things like length skewing LLM-judged scores.</p></li>
+</ol>
+<p>As with LoRA, there was a flurry of DPO variants. See <a href="https://www.youtube.com/watch?v=YNOIyvUCpAs&amp;t=14290s">this video of mine</a> for a chat about some of the modifications and why some at leat are useful.</p>
+</section>
+<section id="multi-modal" class="level3">
+<h3 class="anchored" data-anchor-id="multi-modal">Multi-Modal</h3>
+<ol start="18" type="1">
+<li><p><a href="https://arxiv.org/abs/2204.14198">Flamingo: a Visual Language Model for Few-Shot Learning</a> - early good VLM. Idefics is open source version.</p></li>
+<li><p><a href="https://arxiv.org/abs/2407.07726">PaliGemma</a> - shows the approach of glueing a pretrained vision encoder (siglip in this case) to an existing language model (gemma in this case) to get a multi-modal model. Not the first to do it but a nice decent recent paper.</p></li>
+<li><p><a href="https://arxiv.org/abs/2405.09818">Chameleon</a> (and <a href="https://arxiv.org/abs/2407.21770">MoMa</a> - the efficiency upgrade with MoE of Chameleon). From Meta, good look at how early fusion models might end up looking.</p></li>
+</ol>
+
+
+</section>
+</section>
+</section>
+
+ ]]></description>
+  <category>Blog</category>
+  <guid>https://johnowhitaker.dev/misc/what_you_should_read.html</guid>
+  <pubDate>Wed, 14 Aug 2024 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Robot Arm Shenanigans (Draft Post)</title>
   <link>https://johnowhitaker.dev/mini-hw-projects/2024-08-06-robot-arm.html</link>
@@ -1923,28 +2040,6 @@ font-style: inherit;">'</span>)</span></code></pre></div>
   <category>TILs</category>
   <guid>https://johnowhitaker.dev/tils/2023-11-07-get_yt_vids.html</guid>
   <pubDate>Tue, 07 Nov 2023 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Evaluating Diffusion Models with PickScore</title>
-  <link>https://johnowhitaker.dev/misc/2023-10-23-Evaluating_Diffusion_Models_with_PickScore.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="evaluating-diffusion-models-with-pickscore" class="level3">
-<h3 class="anchored" data-anchor-id="evaluating-diffusion-models-with-pickscore">Evaluating Diffusion Models with PickScore</h3>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/tNUCUPtbo_o" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p>Setting the scene for some future videos where I’ll explore ways to improve diffusion models through various tricks. Here we learn why evaluating diffusion models is hard, that user preference is the gold standard, and that preference models like PickScore give us an approximation we can work with.Code on github - https://github.com/johnowhitaker/dm/funPickScore on GitHub - https://github.com/yuvalkirstain/PickScore and paper - https://arxiv.org/pdf/2305.01569.pdfDall-e-3 announcement (https://openai.com/dall-e-3) and paper (https://cdn.openai.com/papers/dall-e-3.pdf)EMU paper - https://scontent.fhio2-1.fna.fbcdn.net/v/t39.2365-6/10000000/210375442059452/321995130515097708/n.pdf/nc/cat=105&amp;ccb=1-7&amp;/nc/sid=3c67a6&amp;/nc/ohc=i-w75ldGqcgAX-dER4g&amp;/nc/ht=scontent.fhio2-1.fna&amp;oh=00/AfBip5IVsto1QTZ1O7JFVUcR51I9a/XXuiU3hY9OdKOlJA&amp;oe=653C28CDWurstchen - https://arxiv.org/pdf/2306.00637.pdfSDXL paper - https://arxiv.org/pdf/2307.01952.pdf</p>
-
-
-</section>
-
- ]]></description>
-  <category>Video</category>
-  <guid>https://johnowhitaker.dev/misc/2023-10-23-Evaluating_Diffusion_Models_with_PickScore.html</guid>
-  <pubDate>Mon, 23 Oct 2023 00:00:00 GMT</pubDate>
-  <media:content url="https://johnowhitaker.dev/misc/thumbnails/tNUCUPtbo_o.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
