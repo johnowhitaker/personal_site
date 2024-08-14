@@ -1,9 +1,17 @@
-
+---
+title: "What You Should Read (AI Edition)"
+date: 2024-08-14
+categories:
+  - Blog
+---
 
 # What You Should Read (AI Edition)
 
 There have been hundreds of thousands of films made. But if you reveal that you haven’t seen Star Wars, you’re regarded with a mixture of sympathy and scorn. In this listicle, I’m going to attempt to give you a short list of essentials to spare you the same fate in the field of AI research. This is off the top of my head, so I’ll definitely miss things and get some timelines wrong. Let me know if there are things you think I absolutely must add. I’ve split things up into a few different categories to keep the story flowing.
 
+See also: supposedly the list Ilya sent to Carmack: https://arc.net/folder/D0472A20-9C20-4D3F-B145-D2865C0A9FEE
+
+Most of this list was written ~6 months ago to send to a friend, sharing in case I get asked for it again.
 
 ## Vision
 
