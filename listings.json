@@ -13,6 +13,7 @@
     "items": [
       "/mini-hw-projects/single-pixel-camera.html",
       "/mini-projects/silly-projects-fasthtml.html",
+      "/dsc/computational-linguistics.html",
       "/misc/what_you_should_read.html",
       "/mini-hw-projects/2024-08-06-robot-arm.html",
       "/misc/tab-clearing.html",
@@ -165,6 +166,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/dsc/computational-linguistics.html",
       "/dsc/more-better.html",
       "/dsc/2024-01-23-tips.html",
       "/dsc/2023-12-06-dpo_filter_test.html",
@@ -225,6 +227,7 @@
     "items": [
       "/mini-hw-projects/single-pixel-camera.html",
       "/mini-projects/silly-projects-fasthtml.html",
+      "/dsc/computational-linguistics.html",
       "/misc/what_you_should_read.html",
       "/mini-hw-projects/2024-08-06-robot-arm.html",
       "/misc/tab-clearing.html",

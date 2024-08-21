@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2024-08-19">
 
-<title>TILs – johnowhitaker.dev</title>
+<title>Computational Linguistics – johnowhitaker.dev</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +21,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,71 +101,16 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
-<meta name="twitter:title" content="TILs – johnowhitaker.dev">
+<link rel="stylesheet" href="../styles.css">
+<meta name="twitter:title" content="Computational Linguistics – johnowhitaker.dev">
 <meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://johnowhitaker.dev/dsc/images/meal_times.png">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="1453">
+<meta name="twitter:image-width" content="2559">
 </head>
 
 <body class="nav-fixed">
@@ -148,11 +126,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./all.html"> 
+    <a class="nav-link" href="../all.html"> 
 <span class="menu-text">Everything Feed</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -161,23 +139,23 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-more">    
         <li>
-    <a class="dropdown-item" href="./tils.html">
+    <a class="dropdown-item" href="../tils.html">
  <span class="dropdown-text">TILs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./blog.html">
+    <a class="dropdown-item" href="../blog.html">
  <span class="dropdown-text">Blog Archive</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./resume.html">
+    <a class="dropdown-item" href="../resume.html">
  <span class="dropdown-text">Resume: Jonathan Whitaker</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./books.html">
+    <a class="dropdown-item" href="../books.html">
  <span class="dropdown-text">Books</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./appearances.html">
+    <a class="dropdown-item" href="../appearances.html">
  <span class="dropdown-text">Appearances</span></a>
   </li>  
         <li>
@@ -198,22 +176,40 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-time-is-afternoon" id="toc-what-time-is-afternoon" class="nav-link active" data-scroll-target="#what-time-is-afternoon">What time is ‘Afternoon’?</a></li>
+  <li><a href="#dinner-time" id="toc-dinner-time" class="nav-link" data-scroll-target="#dinner-time">Dinner Time:</a></li>
+  <li><a href="#probing-deeper" id="toc-probing-deeper" class="nav-link" data-scroll-target="#probing-deeper">Probing deeper</a></li>
+  <li><a href="#ps-exploring-this-yourself" id="toc-ps-exploring-this-yourself" class="nav-link" data-scroll-target="#ps-exploring-this-yourself">PS: Exploring this yourself</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TILs</h1>
-</div>
+<h1 class="title">Computational Linguistics</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Blog</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 19, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -223,118 +219,100 @@ window.Quarto = {
 </header>
 
 
-<p>A new section I hope to build out over time.</p>
+<p>LLMs are cool - we can make them do all sorts of tricks. But beyond the generative applications there’s a whole bunch of interesting linguistic analysis we can do, especially with base models that are essentially this very compressed representation of the world of text. In this post I wanted to show a few quick experiments I did, in the hope that they might inspire you to try something similar.</p>
+<section id="what-time-is-afternoon" class="level2">
+<h2 class="anchored" data-anchor-id="what-time-is-afternoon">What time is ‘Afternoon’?</h2>
+<p>It occurred to me the other day that I could use LLMs to disambiguate the meaning of ‘afternoon’, and other phrases (‘a dozen’, ‘soon’ etc). For example, we can think up some sentences that both specify that something is happening in the afternoon and then formalize the time. By plotting the likelihood of different times, we can see how the model interprets the word:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/afternoon.png" class="img-fluid figure-img"></p>
+<figcaption>what time is afternoon</figcaption>
+</figure>
+</div>
+<p>Pretty neat! It turns out ‘afternoon’ is most likely to be around 3pm.</p>
+</section>
+<section id="dinner-time" class="level2">
+<h2 class="anchored" data-anchor-id="dinner-time">Dinner Time:</h2>
+<p>We can do this same thing for meal times:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/meal_times.png" class="img-fluid figure-img"></p>
+<figcaption>plot for different meal times</figcaption>
+</figure>
+</div>
+<p>Notice I chose the ranges for the charts carefully. It turns out this method of looking at liklihood gets messed up a little when things tokenize into multiple tokens. For example, for ‘breakfast’ 10am might be unlikely BUT after a 1 is generated the options for the token after that are 0, 1 or 2, with 0 being very likely. So the average liklihood of “10am” is high, even though it’s not a likely time for breakfast. Not to mention the variants like ‘noon’, 13:00, etc. So, take this with a grain of salt!</p>
+</section>
+<section id="probing-deeper" class="level2">
+<h2 class="anchored" data-anchor-id="probing-deeper">Probing deeper</h2>
+<p>One alternative is to probe some (fixed) token as our measure, and change other parts of the context. For example, let’s see which accompaniment to “tea” is best by looking at the likelihood of “lovely” at the end of this prompt: “Shall we have some tea and {X}? That would be lovely”.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/tea_and_x.png" class="img-fluid figure-img"></p>
+<figcaption>plot for different accompaniments to tea</figcaption>
+</figure>
+</div>
+<p>Biscuits are the clear winner! Speaking of, I’m off to make a cuppa and grab a biscuit. Until next time!</p>
+</section>
+<section id="ps-exploring-this-yourself" class="level2">
+<h2 class="anchored" data-anchor-id="ps-exploring-this-yourself">PS: Exploring this yourself</h2>
+<p>Here’s some code to get you started:</p>
+<p>Load the model:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoModelForCausalLM, AutoTokenizer</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datasets <span class="im">import</span> load_dataset</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.nn.functional <span class="im">import</span> softmax</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm.auto <span class="im">import</span> tqdm</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> <span class="st">"cuda"</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>model_id <span class="op">=</span> <span class="st">"meta-llama/Meta-Llama-3-8B"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(model_id)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>tokenizer.pad_token <span class="op">=</span> tokenizer.eos_token</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AutoModelForCausalLM.from_pretrained(</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    model_id,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    torch_dtype <span class="op">=</span> torch.bfloat16</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>model.to(device)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sample:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"""Shall we meet this afternoon?</span><span class="ch">\n</span><span class="st">Sure - I'll see you at"""</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>candidates <span class="op">=</span> [<span class="st">" 1pm"</span>, <span class="st">" 2pm"</span>, <span class="st">" 3pm"</span>, <span class="st">" 4pm"</span>, <span class="st">" 5pm"</span>]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>text_inputs <span class="op">=</span> tokenizer(text, return_tensors<span class="op">=</span><span class="st">"pt"</span>, padding<span class="op">=</span><span class="va">True</span>, truncation<span class="op">=</span><span class="va">True</span>).input_ids.to(device)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>candidate_inputs <span class="op">=</span> tokenizer([text <span class="op">+</span> c <span class="cf">for</span> c <span class="kw">in</span> candidates], return_tensors<span class="op">=</span><span class="st">"pt"</span>, padding<span class="op">=</span><span class="va">True</span>, truncation<span class="op">=</span><span class="va">True</span>).input_ids.to(device)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(text_inputs.shape, candidate_inputs.shape)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>model_outputs <span class="op">=</span> model(candidate_inputs)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>logits <span class="op">=</span> model_outputs.logits</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> []</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, c <span class="kw">in</span> <span class="bu">enumerate</span>(candidates):</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate perplexity of the completion</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    completion_ids <span class="op">=</span> candidate_inputs[i].unsqueeze(<span class="dv">0</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    completion_logits <span class="op">=</span> logits[i].unsqueeze(<span class="dv">0</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Start is start of completion</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    start <span class="op">=</span> text_inputs.shape[<span class="dv">1</span>]</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># End is where padding starts</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    end <span class="op">=</span> completion_ids.shape[<span class="dv">1</span>]</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(start, end):</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> completion_ids[<span class="dv">0</span>, i] <span class="op">==</span> tokenizer.pad_token_id:</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>            end <span class="op">=</span> i</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    token_indices <span class="op">=</span> completion_ids[<span class="dv">0</span>, start:end]</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    token_logits <span class="op">=</span> completion_logits[<span class="dv">0</span>, start:end]</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate perplexity</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    perplexity <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, t <span class="kw">in</span> <span class="bu">enumerate</span>(token_indices):</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        perplexity <span class="op">-=</span> token_logits[i, t]</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    perplexity <span class="op">=</span> perplexity <span class="op">/</span> <span class="bu">len</span>(token_indices)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    perplexity <span class="op">=</span> torch.exp(perplexity)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    scores.append(perplexity.item())</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>plt.bar(candidates, scores)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>plt.title(text <span class="op">+</span> <span class="st">" ..."</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Completion"</span>)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Score"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="TILs" data-listing-date-sort="1713484800000" data-listing-file-modified-sort="1724280485489" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2119">
-<div class="thumbnail">
-<p><a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external"></a></p><a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external">
-<p class="card-img-top"><img src="tils/proxy_vscode.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external">TIL: Intercepting Github Copilot with MITMProxy</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external">We’ve been messing with integrating AI into notebook coding, and got curious about how Github Copilot structures the context it uses to generate code when called from a…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external">
-<div class="listing-date">
-Apr 19, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="TILs" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1724280485489" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="892">
-<div class="thumbnail">
-<p><a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external"></a></p><a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">
-<p class="card-img-top"><img src="tils/image.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">TIL: GPT4-V Doesn’t Support Function Calling, but We Can Hack Around That</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">I want to use GPT4-V to evaluate images generated by a diffusion model and optionally modify the prompt based on the result. The problem is that GPT4-V doesn’t support…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">
-<div class="listing-date">
-Jan 1, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="TILs" data-listing-date-sort="1699315200000" data-listing-file-modified-sort="1724280485489" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="384">
-<div class="thumbnail">
-<p><a href="./tils/2023-11-07-get_yt_vids.html" class="no-external"></a></p><a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./tils/2023-11-07-get_yt_vids.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">Getting My YouTube Videos as MarkDown pages for this Quarto blog</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">Step 1 was getting the video info:</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">
-<div class="listing-date">
-Nov 7, 2023
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="TILs" data-listing-date-sort="1691712000000" data-listing-file-modified-sort="1724280485489" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="255">
-<div class="thumbnail">
-<p><a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external"></a></p><a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">Exporting from Wordpress into a Quarto Blog</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">I have been blogging for years on a free Wordpress account, but figured I should finally migrate to a custom setup. I’m using Quarto, and in this TIL I document how to…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">
-<div class="listing-date">
-Aug 11, 2023
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

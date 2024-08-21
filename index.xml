@@ -19,7 +19,7 @@
 
 
 
-<p>Taking photos one pixel at a time is a funny idea. It’s been done a few tmes () but I wanted to make my own, partly to see if I could use AI to imagine better pictures based on the data. A recent paper (https://arxiv.org/abs/2408.07541) finally pushed me over the edge in terms of motivation, and so yesterday when I needed a quick win after a slow low-motivation day I whipped this up.</p>
+<p>Taking photos one pixel at a time is a funny idea. It’s been done a few tmes (e.g.&nbsp;https://hackaday.com/2024/07/23/photoresistor-based-single-pixel-camera/, love the construction techniques!) but I wanted to make my own, partly to see if I could use AI to imagine better pictures based on the data. A recent paper (https://arxiv.org/abs/2408.07541) finally pushed me over the edge in terms of motivation, and so yesterday when I needed a quick win after a slow low-motivation day I whipped this up.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://johnowhitaker.dev/mini-hw-projects/images/single-pixel-camera.jpg" class="img-fluid figure-img"></p>
@@ -420,6 +420,309 @@ font-style: inherit;">'container'</span>)</span></code></pre></div>
   <category>Blog</category>
   <guid>https://johnowhitaker.dev/mini-projects/silly-projects-fasthtml.html</guid>
   <pubDate>Wed, 21 Aug 2024 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Computational Linguistics</title>
+  <link>https://johnowhitaker.dev/dsc/computational-linguistics.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>LLMs are cool - we can make them do all sorts of tricks. But beyond the generative applications there’s a whole bunch of interesting linguistic analysis we can do, especially with base models that are essentially this very compressed representation of the world of text. In this post I wanted to show a few quick experiments I did, in the hope that they might inspire you to try something similar.</p>
+<section id="what-time-is-afternoon" class="level2">
+<h2 class="anchored" data-anchor-id="what-time-is-afternoon">What time is ‘Afternoon’?</h2>
+<p>It occurred to me the other day that I could use LLMs to disambiguate the meaning of ‘afternoon’, and other phrases (‘a dozen’, ‘soon’ etc). For example, we can think up some sentences that both specify that something is happening in the afternoon and then formalize the time. By plotting the likelihood of different times, we can see how the model interprets the word:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/dsc/images/afternoon.png" class="img-fluid figure-img"></p>
+<figcaption>what time is afternoon</figcaption>
+</figure>
+</div>
+<p>Pretty neat! It turns out ‘afternoon’ is most likely to be around 3pm.</p>
+</section>
+<section id="dinner-time" class="level2">
+<h2 class="anchored" data-anchor-id="dinner-time">Dinner Time:</h2>
+<p>We can do this same thing for meal times:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/dsc/images/meal_times.png" class="img-fluid figure-img"></p>
+<figcaption>plot for different meal times</figcaption>
+</figure>
+</div>
+<p>Notice I chose the ranges for the charts carefully. It turns out this method of looking at liklihood gets messed up a little when things tokenize into multiple tokens. For example, for ‘breakfast’ 10am might be unlikely BUT after a 1 is generated the options for the token after that are 0, 1 or 2, with 0 being very likely. So the average liklihood of “10am” is high, even though it’s not a likely time for breakfast. Not to mention the variants like ‘noon’, 13:00, etc. So, take this with a grain of salt!</p>
+</section>
+<section id="probing-deeper" class="level2">
+<h2 class="anchored" data-anchor-id="probing-deeper">Probing deeper</h2>
+<p>One alternative is to probe some (fixed) token as our measure, and change other parts of the context. For example, let’s see which accompaniment to “tea” is best by looking at the likelihood of “lovely” at the end of this prompt: “Shall we have some tea and {X}? That would be lovely”.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/dsc/images/tea_and_x.png" class="img-fluid figure-img"></p>
+<figcaption>plot for different accompaniments to tea</figcaption>
+</figure>
+</div>
+<p>Biscuits are the clear winner! Speaking of, I’m off to make a cuppa and grab a biscuit. Until next time!</p>
+</section>
+<section id="ps-exploring-this-yourself" class="level2">
+<h2 class="anchored" data-anchor-id="ps-exploring-this-yourself">PS: Exploring this yourself</h2>
+<p>Here’s some code to get you started:</p>
+<p>Load the model:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> torch</span>
+<span id="cb1-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> transformers <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> AutoModelForCausalLM, AutoTokenizer</span>
+<span id="cb1-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> datasets <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> load_dataset</span>
+<span id="cb1-4"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> torch.nn.functional <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> softmax</span>
+<span id="cb1-5"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> tqdm.auto <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> tqdm</span>
+<span id="cb1-6"></span>
+<span id="cb1-7">device <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cuda"</span></span>
+<span id="cb1-8">model_id <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"meta-llama/Meta-Llama-3-8B"</span></span>
+<span id="cb1-9">tokenizer <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> AutoTokenizer.from_pretrained(model_id)</span>
+<span id="cb1-10">tokenizer.pad_token <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> tokenizer.eos_token</span>
+<span id="cb1-11">model <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> AutoModelForCausalLM.from_pretrained(</span>
+<span id="cb1-12">    model_id,</span>
+<span id="cb1-13">    torch_dtype <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> torch.bfloat16</span>
+<span id="cb1-14">)</span>
+<span id="cb1-15">model.to(device)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span></code></pre></div>
+<p>Sample:</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">text <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"""Shall we meet this afternoon?</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Sure - I'll see you at"""</span></span>
+<span id="cb2-2">candidates <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" 1pm"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" 2pm"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" 3pm"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" 4pm"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" 5pm"</span>]</span>
+<span id="cb2-3">text_inputs <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> tokenizer(text, return_tensors<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pt"</span>, padding<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>, truncation<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>).input_ids.to(device)</span>
+<span id="cb2-4">candidate_inputs <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> tokenizer([text <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> c <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> c <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> candidates], return_tensors<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pt"</span>, padding<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>, truncation<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>).input_ids.to(device)</span>
+<span id="cb2-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(text_inputs.shape, candidate_inputs.shape)</span>
+<span id="cb2-6">model_outputs <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> model(candidate_inputs)</span>
+<span id="cb2-7">logits <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> model_outputs.logits</span>
+<span id="cb2-8">scores <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []</span>
+<span id="cb2-9"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i, c <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">enumerate</span>(candidates):</span>
+<span id="cb2-10">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calculate perplexity of the completion</span></span>
+<span id="cb2-11">    completion_ids <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> candidate_inputs[i].unsqueeze(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb2-12">    completion_logits <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> logits[i].unsqueeze(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb2-13">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Start is start of completion</span></span>
+<span id="cb2-14">    start <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> text_inputs.shape[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]</span>
+<span id="cb2-15">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># End is where padding starts</span></span>
+<span id="cb2-16">    end <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> completion_ids.shape[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]</span>
+<span id="cb2-17">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(start, end):</span>
+<span id="cb2-18">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> completion_ids[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, i] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> tokenizer.pad_token_id:</span>
+<span id="cb2-19">            end <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> i</span>
+<span id="cb2-20">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">break</span></span>
+<span id="cb2-21">    token_indices <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> completion_ids[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, start:end]</span>
+<span id="cb2-22">    token_logits <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> completion_logits[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, start:end]</span>
+<span id="cb2-23">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calculate perplexity</span></span>
+<span id="cb2-24">    perplexity <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span></span>
+<span id="cb2-25">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i, t <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">enumerate</span>(token_indices):</span>
+<span id="cb2-26">        perplexity <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-=</span> token_logits[i, t]</span>
+<span id="cb2-27">    perplexity <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> perplexity <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(token_indices)</span>
+<span id="cb2-28">    perplexity <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> torch.exp(perplexity)</span>
+<span id="cb2-29">    scores.append(perplexity.item())</span>
+<span id="cb2-30"></span>
+<span id="cb2-31"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> matplotlib <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt</span>
+<span id="cb2-32">plt.bar(candidates, scores)</span>
+<span id="cb2-33">plt.title(text <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" ..."</span>)</span>
+<span id="cb2-34">plt.xlabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Completion"</span>)</span>
+<span id="cb2-35">plt.ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Score"</span>)</span></code></pre></div>
+
+
+</section>
+
+ ]]></description>
+  <category>Blog</category>
+  <guid>https://johnowhitaker.dev/dsc/computational-linguistics.html</guid>
+  <pubDate>Mon, 19 Aug 2024 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/dsc/images/meal_times.png" medium="image" type="image/png" height="82" width="144"/>
 </item>
 <item>
   <title>What You Should Read (AI Edition)</title>
@@ -1984,30 +2287,6 @@ font-style: inherit;">return</span> prompt</span></code></pre></div>
   <guid>https://johnowhitaker.dev/misc/2023-11-26-Ziplora.html</guid>
   <pubDate>Sun, 26 Nov 2023 00:00:00 GMT</pubDate>
   <media:content url="https://johnowhitaker.dev/misc/thumbnails/ziplora.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Mini Work Timer</title>
-  <link>https://johnowhitaker.dev/mini-hw-projects/2023-11-020-work_timer.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="mini-work-timer" class="level1">
-<h1>Mini Work Timer</h1>
-<p>I lose track of time easily, so I’m trialling a little timer widget on my desk. Good for regulating Twitter breaks.</p>
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/work_timer_1.jpg" class="img-fluid"></p>
-<p>The electronics are fairly simple: a Raspeberry Pi microcontroller reads a rotary encoder and servo that acts like a clock hand. A button (integrated into the quadrature encoder) switches from seconds to minutes mode, since I expect this to come in handy for board games too. I printed an enclosure, which is waiting for a paint job :)</p>
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/work_timer_2.jpg" class="img-fluid"></p>
-<p>The code is written in Micropython, and the development experience was a pleasant suprise - just edit a .py file and drag onto the storage device that shows up. My previous embedded development experiences usually involved proprietary debuggers, arcane toolchains and pain…</p>
-
-
-</section>
-
- ]]></description>
-  <category>mini-hw-projects</category>
-  <guid>https://johnowhitaker.dev/mini-hw-projects/2023-11-020-work_timer.html</guid>
-  <pubDate>Mon, 20 Nov 2023 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
