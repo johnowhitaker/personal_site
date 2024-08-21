@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2016-07-24">
+<meta name="author" content="Jonathan Whitaker">
+<meta name="dcterms.date" content="2024-08-21">
 
-<title>Studying automation with an octopus overlord! – johnowhitaker.dev</title>
+<title>Building Silly Projects with FastHTML – johnowhitaker.dev</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -70,7 +105,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta name="twitter:title" content="Studying automation with an octopus overlord! – johnowhitaker.dev">
+<meta name="twitter:title" content="Building Silly Projects with FastHTML – johnowhitaker.dev">
 <meta name="twitter:description" content="">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
@@ -144,7 +179,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#studying-automation-with-an-octopus-overlord" id="toc-studying-automation-with-an-octopus-overlord" class="nav-link active" data-scroll-target="#studying-automation-with-an-octopus-overlord">Studying automation with an octopus overlord!</a></li>
+  <li><a href="#notfriend" id="toc-notfriend" class="nav-link active" data-scroll-target="#notfriend">NotFriend</a></li>
+  <li><a href="#distilhn" id="toc-distilhn" class="nav-link" data-scroll-target="#distilhn">DistilHN</a></li>
+  <li><a href="#moodle---the-benefit-of-progressive-extension" id="toc-moodle---the-benefit-of-progressive-extension" class="nav-link" data-scroll-target="#moodle---the-benefit-of-progressive-extension">Moodle - the benefit of progressive extension</a></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
   </ul>
 </nav>
     </div>
@@ -153,9 +191,9 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Studying automation with an octopus overlord!</h1>
+<h1 class="title">Building Silly Projects with FastHTML</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">mini-hw-projects</div>
+    <div class="quarto-category">Blog</div>
   </div>
   </div>
 
@@ -163,11 +201,17 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jonathan Whitaker </p>
+          </div>
+  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 24, 2016</p>
+      <p class="date">August 21, 2024</p>
     </div>
   </div>
   
@@ -179,10 +223,120 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="studying-automation-with-an-octopus-overlord" class="level1">
-<h1>Studying automation with an octopus overlord!</h1>
-<p>It’s easy to automate machines, harder to automate myself. So I made this - a glorified countdown timer keeping me focused on studying :)</p>
-<p><img src="images/3117991469372678464.JPG" class="img-fluid"></p>
+<p>We’ve been working on FastHTML, a web app framework that makes it easy to build web apps with Python. In the process, I personally have learnt a lot about how the web works, and spent a fair amount of time figuring out ‘good’ ways to do things for the examples and documentation we’ve been putting out. But one side-effect of having an easy-to-use web app framework is that I’ve also been reaching for it in my personal projects, and I thought in this post I’d share some notes from a few of these experiments. None of these projects are particularly exemplary, but that’s sort of the point - if they were good, they’d cout as work! So, take these as inspiration (you can do thigns) but not as examples (you should probably do things slightly differently).</p>
+<section id="notfriend" class="level2">
+<h2 class="anchored" data-anchor-id="notfriend">NotFriend</h2>
+<p>Project URL: <a href="https://notfriend.org/">notfriend.org</a> Code: https://github.com/johnowhitaker/notfriend</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/s_notfriend.png" class="img-fluid figure-img"></p>
+<figcaption>NotFriend landing page</figcaption>
+</figure>
+</div>
+<p>In one of our answerai ‘watercooler’ calls, the topic of the ‘Friend’ pendant came up. I jokingly onted that notfriend.org was available, and that we should do some sort of parody. I did my more serious work for the day then knocked out the site (now visible at <a href="notfriend-production.up.railway.app">notfriend-production.up.railway.app</a> - more on that shortly) that evening, sharing it the next morning once I’d tested the payments and tweaked a few minor UI things to my satisfaction.</p>
+<p>It seems like the standard approach to designing a visually appealing site these days is to hire a designer to sketch out the ‘look’ of a site in figma and then spend ages trying to match that in code. I got a taste of how tedious this can be helping to do exactly this for an internal project, and Jeremy had a similar experience working with the design team on the FastHTML homepage. We both came away with the same conclusion: how do people live like this? Alternative apporaches that feel more reasonable are:</p>
+<ul>
+<li>Start from a template</li>
+<li>Use a set library of components. We’re starting to explore this with fh-bootstrap, and there are community attempts to port things like shadcn to FastHTML.</li>
+<li>Get an AI to do all the hard work! Spoiler, this is what I went with for NotFriend :)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/s_v0.png" class="img-fluid figure-img"></p>
+<figcaption>V0 screenshot</figcaption>
+</figure>
+</div>
+<p>The tool I tried is called Vercel V0, although <a href="https://github.com/wandb/openui">OpenUI</a> from Chris Van Pelt seems like a great open-source alternative that lets you control the model, system prompt etc. V0 spits out code, and has a mechanism for requesting design changes (“make the header larger, change the color palette to greens…”). I copied the generated HTML into our <a href="https://h2f.answer.ai/">‘h2f’ converter</a> and voila - a decent-looking starting point to tinker with.</p>
+<p>Another pleasingly simple part of the process was letting people actually buy the thing! Taking payments via stripe is as simple as setting a few secrets and then sending the user to a checkout page created by stripe:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># They submit a form with their email, physical address and type of product</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">@app.get</span>(<span class="st">"/buy/"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> buy_credits(product:<span class="bu">str</span>, email:<span class="bu">str</span>, address:<span class="bu">str</span>):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> stripe.checkout.Session.create(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        payment_method_types<span class="op">=</span>[<span class="st">'card'</span>],</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        metadata <span class="op">=</span> {<span class="st">"product"</span>: product,<span class="st">"email"</span>:email,<span class="st">"address"</span>:address},</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        line_items<span class="op">=</span>[{</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">'price_data'</span>: {</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                <span class="st">'currency'</span>: <span class="st">'usd'</span>, <span class="st">'unit_amount'</span>: <span class="dv">2496</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">'product_data'</span>: {<span class="st">'name'</span>: <span class="ss">f'You are buying a NotFriend (</span><span class="sc">{</span>product<span class="sc">}</span><span class="ss"> version) - thank you for being a part of this!'</span>},</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            }, <span class="st">'quantity'</span>: <span class="dv">1</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        }],</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        mode<span class="op">=</span><span class="st">'payment'</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        success_url<span class="op">=</span>DOMAIN <span class="op">+</span> <span class="st">'/success?session_id=</span><span class="sc">{CHECKOUT_SESSION_ID}</span><span class="st">'</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        cancel_url<span class="op">=</span>DOMAIN <span class="op">+</span> <span class="st">'/cancel'</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> RedirectResponse(s[<span class="st">'url'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can add a webhook to listen for successful payments and then update the user’s account in your database, but for this project I just manually checked the stripe dashboard and then sent orders to the addresses myself - passing the metadata along with the order made this easy. I had two sales - digging around the stripe dashboard to find the info was a perfectly reasonable approach. When you have thousands of sales you can set up automations, but that’s a good problem to have! I don’t want to make out that this is completely trivial, but wow the ability to set this up, and the ease with which I could pop a few notfriends in the mail and send them off, really highlights how doable it is to set up a small business online these days (if you’re lucky enough to live in the right place).</p>
+</section>
+<section id="distilhn" class="level2">
+<h2 class="anchored" data-anchor-id="distilhn">DistilHN</h2>
+<p>Project url: <a href="https://distilhn.com/">https://distilhn.com/</a> Code: https://github.com/AnswerDotAI/fasthtml-example/tree/main/hacker_news_reskin</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/s_distilhn.png" class="img-fluid figure-img"></p>
+<figcaption>DistilHN screenshot</figcaption>
+</figure>
+</div>
+<p>This one was a re-do of a project I first made in ~2021/22. It takes the front-page articles on Hacker News, summarizes them and presents them in a nice UI with links to both the articles and the HN comments. The original version used a BART model for summarization, and Flask for the backend. It took remarkably little fiddling to get a FastHTML version out of Claude (<a href="https://claude.ai/share/86b73f06-af42-4e85-96ce-f6f74a224ca8">conversation link</a> for answerai people).</p>
+<p>It’s amazing how anyone can now drop in code like this:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sp <span class="op">=</span> <span class="st">"""You are a helpful assistant that summarizes articles. Given an article text, possibly including unrelated scraping artefacts, return a summary of the article. If the text is just something like 'enable javascript' or 'turn off your ad blocker', just respond with "Could not summarize article." Otherwise, respond with just the summary (no preamble). Favour extremely conciseness and brevity. Start directly with the contents. Aim for &lt;100 words."""</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> summarize_text(text):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    chat_completion <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[{</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">"role"</span>: <span class="st">"system"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"content"</span>: sp</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        }, {</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">"role"</span>: <span class="st">"user"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"content"</span>: <span class="ss">f"Please summarize the following text: </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        }],</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"gpt-4o-mini"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    summary <span class="op">=</span> chat_completion.choices[<span class="dv">0</span>].message.content.strip()</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is page I actually visit, since unlike regular HN I can actually get a sense of the article without having to read the whole thing, and it helps me avoid ending up with tons of tabs and comments sections opened. It’s really special that anyone with a bit of coding knowledge can make something like this, and then share it with the world, in hours rather than weeks. Bespoke software for the win :)</p>
+</section>
+<section id="moodle---the-benefit-of-progressive-extension" class="level2">
+<h2 class="anchored" data-anchor-id="moodle---the-benefit-of-progressive-extension">Moodle - the benefit of progressive extension</h2>
+<p>Project URL: <a href="https://moodle-game.com/">moodle-game.com</a> Code: https://github.com/AnswerDotAI/fasthtml-example/tree/main/03_pictionary/moodle_demo</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://github.com/AnswerDotAI/fasthtml-example/raw/main/03_pictionary/in_action.gif" class="img-fluid figure-img"></p>
+<figcaption>Moodle screen capture</figcaption>
+</figure>
+</div>
+<p>FastHTML lends itself to tacking on features as you go. Start with a homepage. Add an about route. Add a navbar. Add a countdown. Add a high-scores list. You can end up with something a little chaotic (see the source code) but ‘locality of behaviour’ means it’s generally super easy to see how one specific thing works. This is how I ended up with Moodle!</p>
+<p>To illistrate what I mean by locality of behaviour: if you want to know how the leaderboard works, you only have to look at one place main.py:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">@app.get</span>(<span class="st">'/leaderboard'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> leaderboard():</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Top 10 in last 24 hours and approved games only</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    fastest_games <span class="op">=</span> games(where<span class="op">=</span><span class="st">"end_time IS NOT NULL AND end_time &gt; strftime('</span><span class="sc">%s</span><span class="st">', 'now', '-1 day') AND approved"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                        order_by<span class="op">=</span><span class="st">"(end_time - start_time) ASC"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                        limit<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    rows <span class="op">=</span> []</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, game <span class="kw">in</span> <span class="bu">enumerate</span>(fastest_games, <span class="dv">1</span>):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        duration <span class="op">=</span> game.end_time <span class="op">-</span> game.start_time</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        player_name <span class="op">=</span> game.player_name <span class="cf">if</span> game.player_name <span class="cf">else</span> <span class="st">"Anonymous"</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        rows.append(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>            Tr(Td(<span class="bu">str</span>(i)), Td(player_name), Td(game.word),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            Td(<span class="ss">f"</span><span class="sc">{</span>duration<span class="sc">:.2f}</span><span class="ss"> seconds"</span>),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>            Td(A(<span class="st">"View"</span>, href<span class="op">=</span><span class="ss">f"/game-summary?game_id=</span><span class="sc">{</span>game<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">"</span>))))</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    table <span class="op">=</span> Table(Thead(</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        Tr(Th(<span class="st">"Rank"</span>), Th(<span class="st">"Player"</span>), Th(<span class="st">"Word"</span>), Th(<span class="st">"Duration"</span>),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>            Th(<span class="st">"Details"</span>))),</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>                    Tbody(<span class="op">*</span>rows),</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                    cls<span class="op">=</span><span class="st">"table table-striped table-hover"</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Title(<span class="st">"Leaderboard - Fastest Games"</span>),  Navbar(<span class="st">"leaderboard"</span>),  Main(</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>            H1(<span class="st">"Top 10 Fastest Games (past 24 hours):"</span>, style<span class="op">=</span><span class="st">"text-align: left;"</span>),</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>            table,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>            A(<span class="st">"Back to Home"</span>, href<span class="op">=</span><span class="st">"/"</span>),</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>            cls<span class="op">=</span><span class="st">'container'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We’re at ~8,500 games played, and I’m going to write up another post on the model performance and such soonish, so I won’t go into that here. Key takeaway: FastHTML mostly got out the way so I could focus on thinking about what I wanted to add, and even though this app has sort of crossed the point where one might consider restructuring/refactoring it, it’s still very manageable. And the AI models that make it all work have cost us next to nothing so far. Magic!</p>
+</section>
+<section id="conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
+<p>I feel like there’s a very large space of ideas that I know I can do now. This makes me happy. Hooray for FastHTML :)</p>
 
 
 </section>

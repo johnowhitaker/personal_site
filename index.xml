@@ -9,8 +9,387 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.6.4</generator>
-<lastBuildDate>Wed, 14 Aug 2024 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.6.5</generator>
+<lastBuildDate>Wed, 21 Aug 2024 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Building Silly Projects with FastHTML</title>
+  <dc:creator>Jonathan Whitaker</dc:creator>
+  <link>https://johnowhitaker.dev/mini-projects/silly-projects-fasthtml.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>We’ve been working on FastHTML, a web app framework that makes it easy to build web apps with Python. In the process, I personally have learnt a lot about how the web works, and spent a fair amount of time figuring out ‘good’ ways to do things for the examples and documentation we’ve been putting out. But one side-effect of having an easy-to-use web app framework is that I’ve also been reaching for it in my personal projects, and I thought in this post I’d share some notes from a few of these experiments. None of these projects are particularly exemplary, but that’s sort of the point - if they were good, they’d cout as work! So, take these as inspiration (you can do thigns) but not as examples (you should probably do things slightly differently).</p>
+<section id="notfriend" class="level2">
+<h2 class="anchored" data-anchor-id="notfriend">NotFriend</h2>
+<p>Project URL: <a href="https://notfriend.org/">notfriend.org</a> Code: https://github.com/johnowhitaker/notfriend</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-projects/images/s_notfriend.png" class="img-fluid figure-img"></p>
+<figcaption>NotFriend landing page</figcaption>
+</figure>
+</div>
+<p>In one of our answerai ‘watercooler’ calls, the topic of the ‘Friend’ pendant came up. I jokingly onted that notfriend.org was available, and that we should do some sort of parody. I did my more serious work for the day then knocked out the site (now visible at <a href="notfriend-production.up.railway.app">notfriend-production.up.railway.app</a> - more on that shortly) that evening, sharing it the next morning once I’d tested the payments and tweaked a few minor UI things to my satisfaction.</p>
+<p>It seems like the standard approach to designing a visually appealing site these days is to hire a designer to sketch out the ‘look’ of a site in figma and then spend ages trying to match that in code. I got a taste of how tedious this can be helping to do exactly this for an internal project, and Jeremy had a similar experience working with the design team on the FastHTML homepage. We both came away with the same conclusion: how do people live like this? Alternative apporaches that feel more reasonable are:</p>
+<ul>
+<li>Start from a template</li>
+<li>Use a set library of components. We’re starting to explore this with fh-bootstrap, and there are community attempts to port things like shadcn to FastHTML.</li>
+<li>Get an AI to do all the hard work! Spoiler, this is what I went with for NotFriend :)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-projects/images/s_v0.png" class="img-fluid figure-img"></p>
+<figcaption>V0 screenshot</figcaption>
+</figure>
+</div>
+<p>The tool I tried is called Vercel V0, although <a href="https://github.com/wandb/openui">OpenUI</a> from Chris Van Pelt seems like a great open-source alternative that lets you control the model, system prompt etc. V0 spits out code, and has a mechanism for requesting design changes (“make the header larger, change the color palette to greens…”). I copied the generated HTML into our <a href="https://h2f.answer.ai/">‘h2f’ converter</a> and voila - a decent-looking starting point to tinker with.</p>
+<p>Another pleasingly simple part of the process was letting people actually buy the thing! Taking payments via stripe is as simple as setting a few secrets and then sending the user to a checkout page created by stripe:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># They submit a form with their email, physical address and type of product</span></span>
+<span id="cb1-2"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">@app.get</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/buy/"</span>)</span>
+<span id="cb1-3"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> buy_credits(product:<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">str</span>, email:<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">str</span>, address:<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">str</span>):</span>
+<span id="cb1-4">    s <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> stripe.checkout.Session.create(</span>
+<span id="cb1-5">        payment_method_types<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'card'</span>],</span>
+<span id="cb1-6">        metadata <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"product"</span>: product,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"email"</span>:email,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"address"</span>:address},</span>
+<span id="cb1-7">        line_items<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>[{</span>
+<span id="cb1-8">            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'price_data'</span>: {</span>
+<span id="cb1-9">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'currency'</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'usd'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'unit_amount'</span>: <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2496</span>,</span>
+<span id="cb1-10">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'product_data'</span>: {<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'name'</span>: <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f'You are buying a NotFriend (</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>product<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> version) - thank you for being a part of this!'</span>},</span>
+<span id="cb1-11">            }, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'quantity'</span>: <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,</span>
+<span id="cb1-12">        }],</span>
+<span id="cb1-13">        mode<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'payment'</span>,</span>
+<span id="cb1-14">        success_url<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>DOMAIN <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'/success?session_id=</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{CHECKOUT_SESSION_ID}</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>,</span>
+<span id="cb1-15">        cancel_url<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>DOMAIN <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'/cancel'</span>,</span>
+<span id="cb1-16">    )</span>
+<span id="cb1-17">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> RedirectResponse(s[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'url'</span>])</span></code></pre></div>
+<p>You can add a webhook to listen for successful payments and then update the user’s account in your database, but for this project I just manually checked the stripe dashboard and then sent orders to the addresses myself - passing the metadata along with the order made this easy. I had two sales - digging around the stripe dashboard to find the info was a perfectly reasonable approach. When you have thousands of sales you can set up automations, but that’s a good problem to have! I don’t want to make out that this is completely trivial, but wow the ability to set this up, and the ease with which I could pop a few notfriends in the mail and send them off, really highlights how doable it is to set up a small business online these days (if you’re lucky enough to live in the right place).</p>
+</section>
+<section id="distilhn" class="level2">
+<h2 class="anchored" data-anchor-id="distilhn">DistilHN</h2>
+<p>Project url: <a href="https://distilhn.com/">https://distilhn.com/</a> Code: https://github.com/AnswerDotAI/fasthtml-example/tree/main/hacker_news_reskin</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-projects/images/s_distilhn.png" class="img-fluid figure-img"></p>
+<figcaption>DistilHN screenshot</figcaption>
+</figure>
+</div>
+<p>This one was a re-do of a project I first made in ~2021/22. It takes the front-page articles on Hacker News, summarizes them and presents them in a nice UI with links to both the articles and the HN comments. The original version used a BART model for summarization, and Flask for the backend. It took remarkably little fiddling to get a FastHTML version out of Claude (<a href="https://claude.ai/share/86b73f06-af42-4e85-96ce-f6f74a224ca8">conversation link</a> for answerai people).</p>
+<p>It’s amazing how anyone can now drop in code like this:</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">sp <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"""You are a helpful assistant that summarizes articles. Given an article text, possibly including unrelated scraping artefacts, return a summary of the article. If the text is just something like 'enable javascript' or 'turn off your ad blocker', just respond with "Could not summarize article." Otherwise, respond with just the summary (no preamble). Favour extremely conciseness and brevity. Start directly with the contents. Aim for &lt;100 words."""</span></span>
+<span id="cb2-2"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">async</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> summarize_text(text):</span>
+<span id="cb2-3">    chat_completion <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> client.chat.completions.create(</span>
+<span id="cb2-4">        messages<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>[{</span>
+<span id="cb2-5">            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"role"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"system"</span>,</span>
+<span id="cb2-6">            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"content"</span>: sp</span>
+<span id="cb2-7">        }, {</span>
+<span id="cb2-8">            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"role"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"user"</span>,</span>
+<span id="cb2-9">            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"content"</span>: <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Please summarize the following text: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>text<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb2-10">        }],</span>
+<span id="cb2-11">        model<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"gpt-4o-mini"</span>,</span>
+<span id="cb2-12">    )</span>
+<span id="cb2-13"></span>
+<span id="cb2-14">    summary <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> chat_completion.choices[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>].message.content.strip()</span>
+<span id="cb2-15">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> summary</span></code></pre></div>
+<p>This is page I actually visit, since unlike regular HN I can actually get a sense of the article without having to read the whole thing, and it helps me avoid ending up with tons of tabs and comments sections opened. It’s really special that anyone with a bit of coding knowledge can make something like this, and then share it with the world, in hours rather than weeks. Bespoke software for the win :)</p>
+</section>
+<section id="moodle---the-benefit-of-progressive-extension" class="level2">
+<h2 class="anchored" data-anchor-id="moodle---the-benefit-of-progressive-extension">Moodle - the benefit of progressive extension</h2>
+<p>Project URL: <a href="https://moodle-game.com/">moodle-game.com</a> Code: https://github.com/AnswerDotAI/fasthtml-example/tree/main/03_pictionary/moodle_demo</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://github.com/AnswerDotAI/fasthtml-example/raw/main/03_pictionary/in_action.gif" class="img-fluid figure-img"></p>
+<figcaption>Moodle screen capture</figcaption>
+</figure>
+</div>
+<p>FastHTML lends itself to tacking on features as you go. Start with a homepage. Add an about route. Add a navbar. Add a countdown. Add a high-scores list. You can end up with something a little chaotic (see the source code) but ‘locality of behaviour’ means it’s generally super easy to see how one specific thing works. This is how I ended up with Moodle!</p>
+<p>To illistrate what I mean by locality of behaviour: if you want to know how the leaderboard works, you only have to look at one place main.py:</p>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">@app.get</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'/leaderboard'</span>)</span>
+<span id="cb3-2"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> leaderboard():</span>
+<span id="cb3-3">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Top 10 in last 24 hours and approved games only</span></span>
+<span id="cb3-4">    fastest_games <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> games(where<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"end_time IS NOT NULL AND end_time &gt; strftime('</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%s</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">', 'now', '-1 day') AND approved"</span>,</span>
+<span id="cb3-5">                        order_by<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"(end_time - start_time) ASC"</span>,</span>
+<span id="cb3-6">                        limit<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>)</span>
+<span id="cb3-7">    rows <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []</span>
+<span id="cb3-8">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i, game <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">enumerate</span>(fastest_games, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>):</span>
+<span id="cb3-9">        duration <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> game.end_time <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> game.start_time</span>
+<span id="cb3-10">        player_name <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> game.player_name <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> game.player_name <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Anonymous"</span></span>
+<span id="cb3-11">        rows.append(</span>
+<span id="cb3-12">            Tr(Td(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">str</span>(i)), Td(player_name), Td(game.word),</span>
+<span id="cb3-13">            Td(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>duration<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> seconds"</span>),</span>
+<span id="cb3-14">            Td(A(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"View"</span>, href<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"/game-summary?game_id=</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>game<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">id</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>))))</span>
+<span id="cb3-15"></span>
+<span id="cb3-16">    table <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> Table(Thead(</span>
+<span id="cb3-17">        Tr(Th(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Rank"</span>), Th(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Player"</span>), Th(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Word"</span>), Th(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Duration"</span>),</span>
+<span id="cb3-18">            Th(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Details"</span>))),</span>
+<span id="cb3-19">                    Tbody(<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>rows),</span>
+<span id="cb3-20">                    cls<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"table table-striped table-hover"</span>)</span>
+<span id="cb3-21"></span>
+<span id="cb3-22">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> Title(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Leaderboard - Fastest Games"</span>),  Navbar(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"leaderboard"</span>),  Main(</span>
+<span id="cb3-23">            H1(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Top 10 Fastest Games (past 24 hours):"</span>, style<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"text-align: left;"</span>),</span>
+<span id="cb3-24">            table,</span>
+<span id="cb3-25">            A(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Back to Home"</span>, href<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/"</span>),</span>
+<span id="cb3-26">            cls<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'container'</span>)</span></code></pre></div>
+<p>We’re at ~8,500 games played, and I’m going to write up another post on the model performance and such soonish, so I won’t go into that here. Key takeaway: FastHTML mostly got out the way so I could focus on thinking about what I wanted to add, and even though this app has sort of crossed the point where one might consider restructuring/refactoring it, it’s still very manageable. And the AI models that make it all work have cost us next to nothing so far. Magic!</p>
+</section>
+<section id="conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
+<p>I feel like there’s a very large space of ideas that I know I can do now. This makes me happy. Hooray for FastHTML :)</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Blog</category>
+  <guid>https://johnowhitaker.dev/mini-projects/silly-projects-fasthtml.html</guid>
+  <pubDate>Wed, 21 Aug 2024 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>What You Should Read (AI Edition)</title>
   <link>https://johnowhitaker.dev/misc/what_you_should_read.html</link>
@@ -1617,429 +1996,6 @@ font-style: inherit;">return</span> prompt</span></code></pre></div>
   <guid>https://johnowhitaker.dev/misc/2023-11-16-mlops-talk.html</guid>
   <pubDate>Thu, 16 Nov 2023 00:00:00 GMT</pubDate>
   <media:content url="https://johnowhitaker.dev/misc/thumbnails/mlops_webinar_slide.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title></title>
-  <link>https://johnowhitaker.dev/tils/2023-11-07-get_yt_vids.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="getting-my-youtube-videos-as-markdown-pages-for-this-quarto-blog" class="level1">
-<h1>Getting My YouTube Videos as MarkDown pages for this Quarto blog</h1>
-<p>Step 1 was getting the video info:</p>
-<pre><code> youtube-dl --get-filename -o "%(upload_date)s,%(id)s,%(duration)s,%(title)s,%(description)s" https://www.youtube.com/@datasciencecastnet &gt; yt_vids.txt</code></pre>
-<p>Then I processed the resulting file with</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> os, glob</span>
-<span id="cb2-2"></span>
-<span id="cb2-3"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Define a function to fix the URLs in the description</span></span>
-<span id="cb2-4"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">def</span> fix_urls(description):</span>
-<span id="cb2-5">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">return</span> description.replace(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">" -_"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"://"</span>).replace(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"_"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"/"</span>).replace(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"https -"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"https://"</span>)</span>
-<span id="cb2-6"></span>
-<span id="cb2-7"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Read the input file</span></span>
-<span id="cb2-8"><span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">with</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">open</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'yt_vids.txt'</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'r'</span>, encoding<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'utf-8'</span>) <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">as</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">file</span>:</span>
-<span id="cb2-9">    lines <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">file</span>.readlines()</span>
-<span id="cb2-10"></span>
-<span id="cb2-11"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Directory to store markdown files</span></span>
-<span id="cb2-12">output_dir <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'misc'</span></span>
-<span id="cb2-13">os.makedirs(output_dir, exist_ok<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">True</span>)</span>
-<span id="cb2-14">os.makedirs(os.path.join(output_dir, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'thumbnails'</span>), exist_ok<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">True</span>)</span>
-<span id="cb2-15"></span>
-<span id="cb2-16"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Process each line in the file</span></span>
-<span id="cb2-17"><span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> line <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> lines:</span>
-<span id="cb2-18">    date, video_id, duration, title, description <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> line.strip().split(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">','</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">4</span>)</span>
-<span id="cb2-19"></span>
-<span id="cb2-20">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Reformat date</span></span>
-<span id="cb2-21">    date <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> date[:<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">4</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'-'</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> date[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">4</span>:<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">6</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'-'</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> date[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">6</span>:]</span>
-<span id="cb2-22">    </span>
-<span id="cb2-23">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Create a markdown file for each line</span></span>
-<span id="cb2-24">    filename <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>date<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">-</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>title<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>replace(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'/'</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'_'</span>)<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>replace(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">' '</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'_'</span>)<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">.md"</span></span>
-<span id="cb2-25">    filepath <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> os.path.join(output_dir, filename)</span>
-<span id="cb2-26">    </span>
-<span id="cb2-27">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Fix the URLs in the description</span></span>
-<span id="cb2-28">    description <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> fix_urls(description)</span>
-<span id="cb2-29">    </span>
-<span id="cb2-30">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Video URL</span></span>
-<span id="cb2-31">    video_url <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"https://www.youtube.com/watch?v=</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>video_id<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span></span>
-<span id="cb2-32"></span>
-<span id="cb2-33">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Download the thumbnail</span></span>
-<span id="cb2-34">    cmd <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"youtube-dl --write-thumbnail --skip-download </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>video_url<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;"> -o </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>os<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>path<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>join(output_dir, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'thumbnails'</span>, video_id)<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span></span>
-<span id="cb2-35">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># os.system(cmd)</span></span>
-<span id="cb2-36"></span>
-<span id="cb2-37">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Get extension of thumbnail</span></span>
-<span id="cb2-38">    thumbnail <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> glob.glob(os.path.join(output_dir, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'thumbnails'</span>, video_id <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'.*'</span>))[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>]</span>
-<span id="cb2-39">    thumbnail_ext <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> thumbnail.split(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'.'</span>)[<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>]</span>
-<span id="cb2-40"></span>
-<span id="cb2-41"></span>
-<span id="cb2-42">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Write the markdown content</span></span>
-<span id="cb2-43">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">with</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">open</span>(filepath, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'w'</span>, encoding<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'utf-8'</span>) <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">as</span> md_file:</span>
-<span id="cb2-44">        md_file.write(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'---</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'</span>)</span>
-<span id="cb2-45">        md_file.write(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f'title: "</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>title<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'</span>)</span>
-<span id="cb2-46">        md_file.write(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f'date: </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>date<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'</span>)</span>
-<span id="cb2-47">        md_file.write(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'categories: </span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'</span>)</span>
-<span id="cb2-48">        md_file.write(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'  - "Video"</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'</span>)</span>
-<span id="cb2-49">        md_file.write(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f'image: "thumbnails/</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>video_id<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">.</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>thumbnail_ext<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'</span>)</span>
-<span id="cb2-50">        md_file.write(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'---</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n\n</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'</span>)</span>
-<span id="cb2-51"></span>
-<span id="cb2-52">        md_file.write(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f'### </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>title<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n\n</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'</span>)</span>
-<span id="cb2-53">        </span>
-<span id="cb2-54">        <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Video link/preview (depending on your markdown processor, you might need a different embedding code)</span></span>
-<span id="cb2-55">        md_file.write(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"[video []{.quarto-shortcode__-param data-is-shortcode="</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">" data-value="</span>https:<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">//</span>www.youtube.com<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span>embed<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"+video_id+"" data-raw="</span>https:<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">//</span>www.youtube.com<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span>embed<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span>\<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"+video_id+</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\"</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>} ]{.quarto<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span>shortcode__ data<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">is</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span>shortcode<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"1"</span> data<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span>raw<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">""</span>}\n\n<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">")</span></span>
-<span id="cb2-56"><span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">        </span></span>
-<span id="cb2-57">        <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Write the video description</span></span>
-<span id="cb2-58">        md_file.write(description <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'</span>)</span></code></pre></div>
-
-
-</section>
-
- ]]></description>
-  <category>TILs</category>
-  <guid>https://johnowhitaker.dev/tils/2023-11-07-get_yt_vids.html</guid>
-  <pubDate>Tue, 07 Nov 2023 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
