@@ -548,8 +548,14 @@ font-style: inherit;">'container'</span>)</span></code></pre></div>
 
 <section id="having-fun-with-a-diy-robot-arm" class="level1">
 <h1>Having fun with a DIY Robot Arm</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/arm_butter.png" class="img-fluid figure-img"></p>
+<figcaption>Robot arm early on, making an obligatory butter passing joke</figcaption>
+</figure>
+</div>
 <p>I built a fun little robot arm based on designs from <a href="https://github.com/AlexanderKoch-Koch/low_cost_robot">here</a>. It’s fun to play with. My favourite workflow is teaching movements by first pupeteering motions then playing those back.</p>
-<p>Here’s a video of it singing a song: TODO</p>
+<p>Here’s a video of it singing a song: https://youtu.be/TMR00uVwGpU</p>
 <p>I should find a way to embed media from tweets. For now, the story so far as a series of links:</p>
 <p>Fun at Open Sauce, meeting lots of other robots (June 15): https://x.com/johnowhitaker/status/1802129219432091994</p>
 <p>The meme spreads to Radek (May 25): https://x.com/radekosmulski/status/1794614361581134074</p>
