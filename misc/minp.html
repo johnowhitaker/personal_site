@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2024-08-13">
+<meta name="description" content="exploring min-p sampling">
 
-<title>TILs – johnowhitaker.dev</title>
+<title>Min P Sampling: Balancing Creativity and Coherence (paper explanation + code) – johnowhitaker.dev</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +25,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-37bb72f48501692975d9c066fdeb097b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-826d6855e113c2b72dbc707e8b9028ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-37bb72f48501692975d9c066fdeb097b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-826d6855e113c2b72dbc707e8b9028ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,71 +68,16 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
-<meta name="twitter:title" content="TILs – johnowhitaker.dev">
-<meta name="twitter:description" content="">
+<link rel="stylesheet" href="../styles.css">
+<meta name="twitter:title" content="Min P Sampling: Balancing Creativity and Coherence (paper explanation + code) – johnowhitaker.dev">
+<meta name="twitter:description" content="exploring min-p sampling">
+<meta name="twitter:image" content="https://johnowhitaker.dev/misc/thumbnails/minp.png">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="1140">
+<meta name="twitter:image-width" content="1933">
 </head>
 
 <body class="nav-fixed">
@@ -148,11 +93,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./all.html"> 
+    <a class="nav-link" href="../all.html"> 
 <span class="menu-text">Everything Feed</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -161,23 +106,23 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-more">    
         <li>
-    <a class="dropdown-item" href="./tils.html">
+    <a class="dropdown-item" href="../tils.html">
  <span class="dropdown-text">TILs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./blog.html">
+    <a class="dropdown-item" href="../blog.html">
  <span class="dropdown-text">Blog Archive</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./resume.html">
+    <a class="dropdown-item" href="../resume.html">
  <span class="dropdown-text">Resume: Jonathan Whitaker</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./books.html">
+    <a class="dropdown-item" href="../books.html">
  <span class="dropdown-text">Books</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./appearances.html">
+    <a class="dropdown-item" href="../appearances.html">
  <span class="dropdown-text">Appearances</span></a>
   </li>  
         <li>
@@ -206,14 +151,28 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TILs</h1>
-</div>
+<h1 class="title">Min P Sampling: Balancing Creativity and Coherence (paper explanation + code)</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Video</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    exploring min-p sampling
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 13, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -223,118 +182,13 @@ window.Quarto = {
 </header>
 
 
-<p>A new section I hope to build out over time.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/LTf_SJOQH4s" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>Paper: https://arxiv.org/abs/2407.01082</p>
+<p>Code: https://gist.github.com/johnowhitaker/2d14cfed0d54c20e3299ce94d52857c4</p>
 
 
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="TILs" data-listing-date-sort="1713484800000" data-listing-file-modified-sort="1727028640885" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2119">
-<div class="thumbnail">
-<p><a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external"></a></p><a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external">
-<p class="card-img-top"><img src="tils/proxy_vscode.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external">TIL: Intercepting Github Copilot with MITMProxy</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external">We’ve been messing with integrating AI into notebook coding, and got curious about how Github Copilot structures the context it uses to generate code when called from a…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external">
-<div class="listing-date">
-Apr 19, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="TILs" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1727028640885" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="892">
-<div class="thumbnail">
-<p><a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external"></a></p><a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">
-<p class="card-img-top"><img src="tils/image.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">TIL: GPT4-V Doesn’t Support Function Calling, but We Can Hack Around That</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">I want to use GPT4-V to evaluate images generated by a diffusion model and optionally modify the prompt based on the result. The problem is that GPT4-V doesn’t support…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">
-<div class="listing-date">
-Jan 1, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="TILs" data-listing-date-sort="1699315200000" data-listing-file-modified-sort="1727028640885" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="384">
-<div class="thumbnail">
-<p><a href="./tils/2023-11-07-get_yt_vids.html" class="no-external"></a></p><a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./tils/2023-11-07-get_yt_vids.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">Getting My YouTube Videos as MarkDown pages for this Quarto blog</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">Step 1 was getting the video info:</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">
-<div class="listing-date">
-Nov 7, 2023
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="TILs" data-listing-date-sort="1691712000000" data-listing-file-modified-sort="1727028640885" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="255">
-<div class="thumbnail">
-<p><a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external"></a></p><a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">Exporting from Wordpress into a Quarto Blog</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">I have been blogging for years on a free Wordpress account, but figured I should finally migrate to a custom setup. I’m using Quarto, and in this TIL I document how to…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">
-<div class="listing-date">
-Aug 11, 2023
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
