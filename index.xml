@@ -3357,6 +3357,26 @@ font-style: inherit;">"Acceleration (estimated)"</span>)</span>
   <pubDate>Sun, 08 Sep 2024 00:00:00 GMT</pubDate>
 </item>
 <item>
+  <title>Min P Sampling: Balancing Creativity and Coherence (paper explanation + code)</title>
+  <link>https://johnowhitaker.dev/misc/minp.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/LTf_SJOQH4s" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>Paper: https://arxiv.org/abs/2407.01082</p>
+<p>Code: https://gist.github.com/johnowhitaker/2d14cfed0d54c20e3299ce94d52857c4</p>
+
+
+
+ ]]></description>
+  <category>Video</category>
+  <guid>https://johnowhitaker.dev/misc/minp.html</guid>
+  <pubDate>Fri, 30 Aug 2024 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/misc/thumbnails/minp.png" medium="image" type="image/png" height="85" width="144"/>
+</item>
+<item>
   <title>Single-Pixel Camera (Hardware)</title>
   <link>https://johnowhitaker.dev/mini-hw-projects/single-pixel-camera.html</link>
   <description><![CDATA[ 
@@ -4204,26 +4224,6 @@ font-style: inherit;">"Score"</span>)</span></code></pre></div>
   <guid>https://johnowhitaker.dev/misc/moma_video.html</guid>
   <pubDate>Tue, 13 Aug 2024 00:00:00 GMT</pubDate>
   <media:content url="https://johnowhitaker.dev/misc/thumbnails/momathumb.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Min P Sampling: Balancing Creativity and Coherence (paper explanation + code)</title>
-  <link>https://johnowhitaker.dev/misc/minp.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/LTf_SJOQH4s" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p>Paper: https://arxiv.org/abs/2407.01082</p>
-<p>Code: https://gist.github.com/johnowhitaker/2d14cfed0d54c20e3299ce94d52857c4</p>
-
-
-
- ]]></description>
-  <category>Video</category>
-  <guid>https://johnowhitaker.dev/misc/minp.html</guid>
-  <pubDate>Tue, 13 Aug 2024 00:00:00 GMT</pubDate>
-  <media:content url="https://johnowhitaker.dev/misc/thumbnails/minp.png" medium="image" type="image/png" height="85" width="144"/>
 </item>
 <item>
   <title>Robot Arm Shenanigans (Draft Post)</title>
