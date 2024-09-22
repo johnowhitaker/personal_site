@@ -1,6 +1,6 @@
 ---
 title: "Min P Sampling: Balancing Creativity and Coherence (paper explanation + code)"
-date: 2024-08-13
+date: 2024-08-30
 categories: 
   - "Video"
 image: "thumbnails/minp.png"
