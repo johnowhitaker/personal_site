@@ -17,6 +17,8 @@ website:
             text: TILs
           - href: blog.qmd
             text: Blog Archive
+          - href: tsbabn.qmd
+            text: TSBABN
           - resume.md
           - books.qmd
           - appearances.qmd
