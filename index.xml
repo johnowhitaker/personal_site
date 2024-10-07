@@ -9,8 +9,101 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.6.21</generator>
-<lastBuildDate>Sat, 14 Sep 2024 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.6.22</generator>
+<lastBuildDate>Mon, 07 Oct 2024 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Tab Clearning (October 7 2024)</title>
+  <link>https://johnowhitaker.dev/misc/tab_clear_oct_7.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="tab-clearing-october-7-2024" class="level1">
+<h1>Tab Clearing October 7 2024</h1>
+<p><a href="https://www.reka.ai/news/reka-flash-updates">New Reka Flash model</a> - I’m excited to see them ticking along, doing what looks like good work making evals then improving on them (e.g.&nbsp;longer context, instruction chaining). Also, seems like they’ll soon have audio in -&gt; audio out functionality, it’s already in beta.</p>
+<p><a href="https://x.com/nsaphra/status/1834260761792639363?t=_Bain24QnR9Y5GC1fq4iXA&amp;s=08">Fast Forwarding Low Rank Training</a> - A funny technique: you do and SGD step then re-apply that same update again and again until the model stops improving on some tiny val set. Suprisingly they say this reduces total flops… I sort of feel if you’re doing DoRA/LoRA on a small dataset you don’t really care about flops and I’d rather show 10x the samples but who knows maybe useful.</p>
+<p><a href="https://kyutai.org/Moshi.pdf">The Moshi paper (PDF)</a> - They wrap an audio model around a pre-trained text backbone, and have it produce text along with audio (‘inner monolog’). Haven’t read properly yet.</p>
+<p><a href="https://llamacoder.together.ai/">https://llamacoder.together.ai/</a> - together + meta make a claude artifacts alternative. My first test it was impressively close to correct (got some functionality, and to be fair claude also didn’t get this one-shot). I like that it’s a single click to publish app (<a href="https://llamacoder.together.ai/share/RXjC4">here’s mine</a>) and to open in code sandbox. Very neat implementation! <a href="https://ai.meta.com/blog/together-ai-llamacoder/?utm_source=twitter&amp;utm_medium=organic_social&amp;utm_content=video&amp;utm_campaign=builtwithllama">Meta’s blog on the subject</a>.</p>
+<p><a href="https://github.com/apirrone/Open_Duck_Mini?tab=readme-ov-file">Open Duck Mini</a>. This robot won’t get out of my head. OG DIsney paper with their design: <a href="https://la.disneyresearch.com/publication/design-and-control-of-a-bipedal-robotic-character/">here</a>. My fan art from when I saw one in person at Neurips included at the end of this post.</p>
+<p><a href="https://bauble.studio/">Bauble studio</a> - FUn little SDF coding tool.</p>
+<p><a href="https://www.liquid.ai/liquid-foundation-models">Liquid AI</a> have… something? Not too sure what their ‘Language LFMs’ are of how suspicious I should be, awaiting more detail before I waste time trying to read the tea leaves.</p>
+<p>https://www.interconnects.ai/p/riley-goodside-on-science-of-prompting a podcast I haven’t listened to yet.</p>
+<p>https://walzr.com/bop-spotter Love this project! “I installed a box high up on a pole somewhere in the Mission of San Francisco. Inside is a crappy Android phone, set to Shazam constantly, 24 hours a day, 7 days a week. It’s solar powered, and the mic is pointed down at the street below.”</p>
+<p>https://simonwillison.net/2024/Oct/1/openai-devday-2024-live-blog/ Simon making the most useful live feed I’ve seen for an event like this. His follow-on post https://simonwillison.net/2024/Oct/2/not-digital-god/ is also great.</p>
+<p>https://soumith.ch/blog/2024-10-02-training-10k-scale.md.html Soumith jots down some good notes on training at scale.</p>
+<p>https://ai.meta.com/research/movie-gen/ Meta’s amazing new video model. Impressive results, especially (imo) useful is the editing capability which they get by jointly training to generate video and to edit images, getting video edits ‘for free’. I need to look into the <a href="https://ai.meta.com/static-resource/movie-gen-research-paper">very detailed paper (PDF)</a>.</p>
+<p>https://blogs.microsoft.com/blog/2024/10/01/an-ai-companion-for-everyone/ Microsoft are rolling out a new iteration of copilot for everything, a way for lots of people to try something like advanced voice mode I guess. It’s frustrating though - the version I have on my windows desktop can’t browse, call functions, see the screen or really do anything besides yap. I’m realizing voice + functions is amazing, voice alone is useless for many applications (but still nice for some).</p>
+<p>https://lunar-joke-35b.notion.site/SigLIP-Paper-hola-sigmoid-7ed58a7108a04ddb99571cded0922386 is a nice promer on SigLIP and why it’s a better training approach than the softmax-based CLIP version.</p>
+<p>https://jake.fun/ Love finding great blogs/personal sites like this, where people joyfully play. Definitely adding this to my list of faves.</p>
+<p>https://codepen.io/fand/pen/Vwojwqm - I’ve been playing with coding up some different webcam effects (inspired by posy’s mostion extraction video to start with) and this datamosh effect is trippy and great!</p>
+<p><a href="https://arxiv.org/abs/2410.02651">CAX: Cellular Automata Accelerated in JAX</a> Cool CA paper with a bunch of fun experiments, I should try this library next time I get the NCA itch.</p>
+<p><a href="https://arxiv.org/abs/2410.01679">VinePPO: Unlocking RL Potential For LLM Reasoning Through Refined Credit Assignment</a> Monte Carlo-based estimates instead of large value networks. I like this idea, need to read the paper carefully at some point this week.</p>
+<p><a href="https://arxiv.org/abs/2410.01257">HelpSteer2-Preference: Complementing Ratings with Preferences</a> Alignment: should you use ratings or preferences? This paper: Why not both :) On the reading list it goes.</p>
+<p><a href="https://arxiv.org/abs/2409.20370">The Perfect Blend: Redefining RLHF with Mixture of Judges</a> Meta show off fancy post-training, looks promising, on the reading list too.</p>
+<p>I just want to make an app based on <a href="https://x.com/poetengineer__/status/1841164333952483581?t=gF22BOXEuVaUIKmRGUPeBA&amp;s=08">this tweet</a> for fun. (Cool 2-D visualization of rubiks cube)</p>
+<p><a href="https://x.com/marksaroufim/status/1841277387834830876?t=t5_ghEZ2Qo5kZoAaWfp0ng&amp;s=08">CUDA mode talks are out</a></p>
+<p><a href="https://x.com/pcastr/status/1841178222828142977?t=wc0BdNUTQl7Nbukk0tqy2Q&amp;s=08">Cool-looking RL conf talk</a> I need to watch, <span class="citation" data-cites="pcastr">@pcastr</span> gives me the feeling smart people are working on RL and it is getting more sensible by the year.</p>
+<p><a href="https://arxiv.org/abs/2409.18486">Evaluation of OpenAI o1: Opportunities and Challenges of AGI</a> Bunch of evals on o1 (preview). To read, maybe.</p>
+<p><a href="https://x.com/hannah_kerner/status/1840805250552201439?t=L5Rj2PRAlGsH79AgylybzA&amp;s=08">Fields Of The World</a> a giant dataset of labelled fields, open source, man I worked on something like this task back in the day this is so good to see!</p>
+<p><a href="https://github.com/genforce/ctrl-x">Ctrl-X: Controlling Structure and Appearance for Text-To-Image Generation Without Guidance</a> - A “simple training-free and guidance-free framework for text-to-image (T2I) generation with structure and appearance control” Very cool! Training free controlnet. I should make a demo for this if there isn’t one already.</p>
+<p><a href="https://arxiv.org/abs/2409.13373">LLMs Still Can’t Plan; Can LRMs? A Preliminary Evaluation of OpenAI’s o1 on PlanBench</a> some sort of eval for planning, might be interesting, not reading for now.</p>
+<p>https://www.danielcorin.com/posts/2024/claude-3.5-sonnet-connections-evals/ Someone else playing with connections, good stuff.</p>
+<p>https://www.anthropic.com/news/contextual-retrieval - Common sense, great results, love to see it! Anthropic doing good work.</p>
+<p>I should look at <a href="https://x.com/jfischoff/status/1842032020698038286?t=eom1vT-ZWTNqyu_XBjGaUA&amp;s=08">this paper</a> that claims to get rid of the over-saturation from CFG. And <a href="https://x.com/jfischoff/status/1836802397227655341?t=lB1_fM6Ziv0dGcJCYkv5Mg&amp;s=08">this one</a> (<a href="https://arxiv.org/abs/2409.11355">Fine-Tuning Image-Conditional Diffusion Models is Easier than You Think</a> on arxiv) that shows a better way to turn e.g.&nbsp;stable diffusion into a depth or normal (or …) prediction model. <span class="citation" data-cites="jfischoff">@jfischoff</span> is good at finding these gems. Alas I don’t keep up with diffusion as much these days. But e.g.&nbsp;this may be relevant for audio diffusion models for audio quality fixing e.g.</p>
+<p><a href="https://arxiv.org/abs/2410.01792">When a language model is optimized for reasoning, does it still show embers of autoregression? An analysis of OpenAI o1</a> A follow-up to “Embers of Autoregression” with o1, looks worth digging into both at some point. From a skim o1 does seem like it’s starting to overcome some AR-based issues but a ways to go yet.</p>
+<p>Videos I still might watch: <a href="https://player.vimeo.com/video/997528474?h=f3d5c44766">def con talk on ai from head of security at openai</a>, <a href="https://www.youtube.com/watch?v=-cq3O4t0qQc">fireside chat with sam</a>, <a href="https://www.latent.space/p/devday-2024">dev day latent space podcast</a></p>
+<p>3D printing related videos I want to replicate: <a href="https://www.youtube.com/watch?v=SP5CHSLomKo">fractal vise</a>, <a href="https://www.youtube.com/watch?v=Kpb_krtCMN4">filament bearings</a> (very neat idea).</p>
+<p>And now as promised, robot fan art.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/misc/tab_clear_oct_7_files/figure-html/5bbbaf35-1-image.png" class="img-fluid figure-img"></p>
+<figcaption>image.png</figcaption>
+</figure>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>misc</category>
+  <guid>https://johnowhitaker.dev/misc/tab_clear_oct_7.html</guid>
+  <pubDate>Mon, 07 Oct 2024 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Tab CLearning (September 23 2024)</title>
+  <link>https://johnowhitaker.dev/misc/tab_clearing_sept_23.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="tab-clearing-sept-23" class="level1">
+<h1>Tab Clearing Sept 23</h1>
+<p>https://openai.com/global-affairs/openai-academy/: “Investing in the development of local AI talent can fuel economic growth and innovation across sectors like healthcare, agriculture, education, and finance.”. Thought: Educating people how to leverage AI is a high-impact thing to do today</p>
+<p>https://ia.samaltman.com/ “The Intelligence Age” tl;dr sam thinks the future is going to be cool</p>
+<p>https://team.doubao.com/en/special/seed-music - people working on audio models, I like to see it! This Chinese team have a decent-looking one with various ways to control it.</p>
+<p>https://github.blog/news-insights/product-news/openai-o1-in-github-copilot/ - o1 is, predictably, cool for slightly more complex tasks.</p>
+<p>https://blog.adobe.com/en/publish/2024/09/11/bringing-gen-ai-to-video-adobe-firefly-video-model-coming-soon - Firefly video is looking cool, great for B-roll I guess, or realistically pre-viz.&nbsp;Generative extend seems like the most useful bit. They make a big deal of commercially safe, not trained on user data vibes</p>
+<p>https://www.hume.ai/blog/introducing-evi2 Guys bossing around vitual assistants for demos, making them sing etc feels icky. But voice is interesting to me, I wish OpenAI’s voice mode was available. I might try hume evi2, will see how it does.</p>
+<p>https://rachel.fast.ai/posts/2024-09-10-gaps-risks-science/ Always appreciate Rachel’s posts</p>
+<p>https://blog.mariusvach.com/posts/passwordless-auth-fasthtml So glad people are writing up things like this, the FastHTML ecosystem is growing</p>
+<p>https://kingbird.myphotos.cc/packing/squares_in_squares.html - I want to know how big to make the box for printing the 17-square packing problem.s=4.67553…</p>
+<p>https://gist.github.com/simonw/d8cc934ad76b3bba82127937d45dc719 - The System prompt for val.town/townie - a good reference for any similar systems.</p>
+<p>https://github.com/btsmart/splatt3r - directly predicts 3D gaussians from a couple of uncalibrated images, very cool</p>
+<p>https://github.com/hudgeon/fasthtml_supabase_auth_example - glad it exists, haven’t looked yet</p>
+<p>https://transformer-circuits.pub/2024/august-update/index.html - glad someone is tinkering with this stuff</p>
+<p>https://blog.eleuther.ai/mutransfer/ - This post is pretty good. It goes into the details of mutransfer as the title suggests. They have a really nice nano GPT implementation that shows the changes in action. I think this is something that should hopefully be picked up by everyone going forward.</p>
+<p>https://osf.io/preprints/osf/mtgn7 - “Why Is Anything Conscious?” - Fun to skim, I liked the ’From Rocks To Einstein” section but skipped a lot of the formalisms and silliness. <img src="https://johnowhitaker.dev/misc/tab_clearing_sept_23_files/figure-html/74f3db3f-1-image.png" class="img-fluid" alt="image.png"></p>
+
+
+</section>
+
+ ]]></description>
+  <category>misc</category>
+  <guid>https://johnowhitaker.dev/misc/tab_clearing_sept_23.html</guid>
+  <pubDate>Mon, 23 Sep 2024 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Doodling In Hardware</title>
   <link>https://johnowhitaker.dev/mini-hw-projects/doodle.html</link>
@@ -5064,165 +5157,6 @@ font-style: inherit;">"return_length_estimate"</span>}}</span>
   <category>mini-hw-projects</category>
   <guid>https://johnowhitaker.dev/mini-hw-projects/2024-02-02-3dp_instruments.html</guid>
   <pubDate>Fri, 02 Feb 2024 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Door Desk</title>
-  <link>https://johnowhitaker.dev/mini-hw-projects/2024-01-27-desk.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="quick-and-dirty-workbench" class="level1">
-<h1>Quick and Dirty Workbench</h1>
-<p>I’m slowly getting the basement organised into a nice workspace. In addition to my primary desk I wanted a standing workbench for soldering and other messy work. A scrap door and some lumber that was lying around made for a quick and easy solution:</p>
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/door_desk.jpg" class="img-fluid"></p>
-<p>I love how a bit of cross-bracing turns a rickety structure into something solid. This still needs a bit of finishing, but it’s already sturdy enough to work on which makes me think any further work will may procrastinated indefinitely :)</p>
-<p>A curious side-note: I keep an air quality monitor down here, and the CO2 levels usually stay &lt;600ppm even after a few hours of work. But today, between moving things around and assembling the desk with my wife’s help, the CO2 levels shot up to 1200ppm. I would have expected a small bump, but not that much - which makes me wonder if there wasn’t something else (ozone from brushed motors in the drill and vacuum?) that was causing the spike. I’ll keep an eye on it next time I do a longer workout down here and see if I cause a similar spike.</p>
-<p>PS: main desk setup: <img src="https://johnowhitaker.dev/mini-hw-projects/images/pc_desk.jpg" class="img-fluid"></p>
-<p>Slowly but surely this is turning into a great space to work!</p>
-
-
-</section>
-
- ]]></description>
-  <category>mini-hw-projects</category>
-  <guid>https://johnowhitaker.dev/mini-hw-projects/2024-01-27-desk.html</guid>
-  <pubDate>Sat, 27 Jan 2024 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>A few tips for working on high-surface-area problems</title>
-  <dc:creator>Johno Whitaker</dc:creator>
-  <link>https://johnowhitaker.dev/dsc/2024-01-23-tips.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Cross-Posting to Answer.AI
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Some of my posts will now be duplicated to <a href="answer.ai">Answer.ai</a>’s blog since I work there now. This one has just gone up (12 April) but since it has sat as a draft since January I’m back-dating it here on my site since I’m allowed to do that :)</p>
-</div>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/dsc/A few tips for working on high-surface-area proble 2e02b0d4b400448781bc68402cb5a67d/example_map.png" class="img-fluid figure-img"></p>
-<figcaption>Some of the many questions/directions we faced when trying to get QLoRA working with FSDP - an example of a high-surface-area problem!</figcaption>
-</figure>
-</div>
-<p>Some problems are fairly well-defined and narrow in scope: ‘translate this maths into code’, or ‘try a different embedding dimension on this task’. But as AI researchers we often work on things that involve a lot of moving pieces, and when something doesn’t work it can be hard to find out <strong>where</strong> the issue(s) may be, let alone what we need to do to fix them. I think of these tasks as having a high “surface area”, and in this post I’ll share a few tips for dealing with these inspired by a recent experience with one such problem.</p>
-<section id="tip-1-start-with-a-minimal-example-and-build-up" class="level2">
-<h2 class="anchored" data-anchor-id="tip-1-start-with-a-minimal-example-and-build-up">Tip 1: Start with a minimal example and build up</h2>
-<p>Rather than beginning with the full, complicated task, see if there’s a smaller version you can create that still lets you meaningfully probe the problem. For example, rather than using Llama-2-7B with LoRA adapters, I did some early tests with a network made of blocks like this:</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">class</span> Block(torch.nn.Module):</span>
-<span id="cb1-2">    <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">def</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">__init__</span>(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>, size<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">512</span>):</span>
-<span id="cb1-3">        <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">super</span>().<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">__init__</span>()</span>
-<span id="cb1-4"></span>
-<span id="cb1-5">        <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Trainable layer</span></span>
-<span id="cb1-6">        <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.l1 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> torch.nn.Linear(size, size)</span>
-<span id="cb1-7"></span>
-<span id="cb1-8">        <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Frozen layer</span></span>
-<span id="cb1-9">        <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.l2 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> torch.nn.Linear(size, size)</span>
-<span id="cb1-10">                <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> param <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.l2.parameters():</span>
-<span id="cb1-11">            param.requires_grad <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">False</span></span></code></pre></div>
-<p>Starting small lets you add bits of complexity one at a time, gradually revealing different aspects of the problem. With this small example I could experiment with and isolate specific aspects of the larger challenge - for example, swapping out one linear layer with a quantized version. The goal here is to reduce the surface area that is in focus at a given time, and incrementally add more as we figure things out.</p>
-</section>
-<section id="tip-2-loginstrument-everything" class="level2">
-<h2 class="anchored" data-anchor-id="tip-2-loginstrument-everything">Tip 2: Log/instrument everything</h2>
-<p>Debugging something opaque is a pain, so anything that provides more visibility into what is happening is useful. Printing out tensor shapes, logging losses, gradients and resource usage, and generally instrumenting everything that you possibly can are gifts to your future self here. For example, consider the following two memory profiles captured with <a href="https://pytorch.org/docs/stable/torch_cuda_memory.html">this excellent pytorch tool</a>:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/dsc/A few tips for working on high-surface-area proble 2e02b0d4b400448781bc68402cb5a67d/mem_profile.png" class="img-fluid figure-img"></p>
-<figcaption>Saving a snapshot of memory use over two successive batches of training data reveals an unexpected spike in memory (left) until a fix is put in place (right)</figcaption>
-</figure>
-</div>
-<p>In this case, a somewhat sneaky bug had crept in, causing memory usage to spike in the second batch of training. Printing the memory use at different stages helped show that something funky was going on, but it was only through a combination of memory profiling and a minimal example that I was able to spot the issue. I hadn’t used this memory visualization tool before - it’s only a few months old, and I hadn’t heard of it until a colleague suggested it. Imagine all of the pain that could be saved if more AI researchers used tools like this!</p>
-<p>Whether you’re on team “inspect it manually in a debugger”, team “print all the things” or team “log to W&amp;B and call that good”, make sure you have <em>some</em> way to see more of what is actually going on wherever possible :)</p>
-</section>
-<section id="tip-3-teamwork-ftw" class="level2">
-<h2 class="anchored" data-anchor-id="tip-3-teamwork-ftw">Tip 3: Teamwork FTW</h2>
-<p>Explaining a problem is an excellent debugging tool, even if the explainee doesn’t actually contribute any new knowledge - hence the excellent <a href="https://en.wikipedia.org/wiki/Rubber_duck_debugging">“rubber duck debugging” technique</a>. However, team members with deep complimentary knowledge are even better than a mute duck, and talking through things rather than suffering in silence almost always pays off and leads to a quick solution. If you don’t have formal work colleagues, sharing in public forums or pestering your technical friends is often just as good.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/dsc/A few tips for working on high-surface-area proble 2e02b0d4b400448781bc68402cb5a67d/Untitled.png" class="img-fluid figure-img"></p>
-<figcaption>A missed opportunity for some instructive pair programming with a friend.</figcaption>
-</figure>
-</div>
-<p>Another benefit of working with a team is the ability to divide and conquer when one ‘problem’ turns out to be many sub-problems in a trench coat. This one plays nicely with Tips 1 and 2 - if you’ve got well-instrumented minimal examples it’s a lot easier to identify specific issues, and have others work on them without needing to front-load the full complexity of the task.</p>
-</section>
-<section id="tip-4-refactor-repeatedly-to-surface-eliminate-complexity-where-possible" class="level2">
-<h2 class="anchored" data-anchor-id="tip-4-refactor-repeatedly-to-surface-eliminate-complexity-where-possible">Tip 4: Refactor repeatedly to surface + eliminate complexity where possible</h2>
-<p>Software complexity tends to grow over time. Features get added, chunks of code get split into different files and made more modular, options proliferate as more and more configurations are supported… All of this may be perfectly reasonable, but can make it difficult to understand a specific circumstance. Focusing on one task and bringing as much of the code as possible into a single notebook or python file can be a great tool for debugging, forcing you to read the important bits as they get refactored out of their silos and into your new version.</p>
-<p>You may worry that the state-of-the-art deep learning techniques are beyond you. Worry not! Beneath all the layers there are almost always fairly simple pieces. For example, consider the case of applying LoRA adapters to a model. I had to do this for a <a href="https://www.youtube.com/watch?v=gJ4bvOX-1CE">video</a> I was making on diffusion models. The diffusers library implementation spans multiple layers of abstractions and is stuffed with conditions to handle different formats and approaches. It was only when I extracted out and re-wrote the key step that I could properly understand it and begin to experiment.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/dsc/A few tips for working on high-surface-area proble 2e02b0d4b400448781bc68402cb5a67d/Untitled 1.png" class="img-fluid figure-img"></p>
-<figcaption>Merging in LoRA weights in a diffusion model pipeline: minimal implementation compared to the <a href="https://github.com/huggingface/diffusers/blob/357855f8fca8d27beb0a3fde333f46db22f29391/src/diffusers/loaders/unet.py#L67">&gt;300LOC diffusers version</a>. Theirs supports far more options, but for experimenting + debugging a minimal re-implementation was far easier to work with and understand. Once things are working, we can always switch back to the more complicated ‘official’ version.</figcaption>
-</figure>
-</div>
-<p>Ideally, start from some minimal example and build up from there. Your final result doesn’t need to be a permanent artefact, but having everything in one place when working on especially thorny problems is extremely useful. This is a skill that is hard to learn from examining others’ code, since we typically only get a look at the final result. Notebooks can be a great way to share the progression as you verify things a few lines at a time before combining them into larger blocks, but even here we usually see just the final (working) version rather than all the intermediate pieces.</p>
-</section>
-<section id="final-remarks" class="level2">
-<h2 class="anchored" data-anchor-id="final-remarks">Final Remarks</h2>
-<p>These high-surface-area problems are tough. It’s hard to get into flow when there are so many questions that need answers, and debugging them is often a slog rather than a flash of inspiration. The final results can sometimes feel underwhelming compared to coming up with some flashy new algorithm. And yet by pushing through and persevering you can have a big impact… Hopefully this post has inspired you to do so, and given you a few tips to keep in mind when you do.</p>
-
-
-</section>
-
- ]]></description>
-  <category>Blog</category>
-  <guid>https://johnowhitaker.dev/dsc/2024-01-23-tips.html</guid>
-  <pubDate>Tue, 23 Jan 2024 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
