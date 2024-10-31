@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2016-07-24">
+<meta name="dcterms.date" content="2024-10-30">
 
-<title>Studying automation with an octopus overlord! – johnowhitaker.dev</title>
+<title>Mini Synth and Audio Visualization – johnowhitaker.dev</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta name="twitter:title" content="Studying automation with an octopus overlord! – johnowhitaker.dev">
+<meta name="twitter:title" content="Mini Synth and Audio Visualization – johnowhitaker.dev">
 <meta name="twitter:description" content="">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
@@ -143,23 +143,17 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#studying-automation-with-an-octopus-overlord" id="toc-studying-automation-with-an-octopus-overlord" class="nav-link active" data-scroll-target="#studying-automation-with-an-octopus-overlord">Studying automation with an octopus overlord!</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Studying automation with an octopus overlord!</h1>
+<h1 class="title">Mini Synth and Audio Visualization</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">mini-hw-projects</div>
+    <div class="quarto-category">mini-projects</div>
   </div>
   </div>
 
@@ -171,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 24, 2016</p>
+      <p class="date">October 30, 2024</p>
     </div>
   </div>
   
@@ -183,13 +177,36 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="studying-automation-with-an-octopus-overlord" class="level1">
-<h1>Studying automation with an octopus overlord!</h1>
-<p>It’s easy to automate machines, harder to automate myself. So I made this - a glorified countdown timer keeping me focused on studying :)</p>
-<p><img src="images/3117991469372678464.JPG" class="img-fluid"></p>
+<p>I’ve been enjoying creating lots of little projects with Claude artifacts and other tools (post on that soon). Two especially fun ones were both audio related: a mini synth and an audio visualization widget.</p>
+<p>The synth came up while I was messing with <a href="https://aitestkitchen.withgoogle.com/tools/music-fx-dj">Google’s MusicFX DJ</a> - a fantastic tool in it’s own right. I wanted a way to jam along, and while I have a few midi controllers I thought I’d instead whip up an in-browser synth using the computer keyboard to minimize time-to-jamming. This is the result:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/synth.png" class="img-fluid figure-img"></p>
+<figcaption>synth</figcaption>
+</figure>
+</div>
+<p>It’s very simple, but I do like being able to set different scales. Google’s MusicFX DJ let’s you set key too, so you can match them up and have things sound nice together. <a href="https://x.com/johnowhitaker/status/1849263436209016995">Here’s a clip of me testing this out for the first time</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/synth+musicfx.png" class="img-fluid figure-img"></p>
+<figcaption>Noodling with the synth and Google’s MusicFX DJ</figcaption>
+</figure>
+</div>
+<p>Links:</p>
+<ul>
+<li>Synth hosted with github pages: https://johnowhitaker.github.io/minisynth/ (code: https://github.com/johnowhitaker/minisynth)</li>
+<li>And on my tools site: https://tools.johnowhitaker.com/synth</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/audio_viz.png" class="img-fluid figure-img"></p>
+<figcaption>audio viz</figcaption>
+</figure>
+</div>
+<p>The second project comes from my nostalgia for the old windows media player visualizations. Impressively, Claude turns out to write OK shaders! There are a few to choose from, none mind-blowing but for something visible to watch while I jam with the previous setup this was a fun way to go. Link: https://tools.johnowhitaker.com/audio_viz</p>
+<p>Both these tools came together in under an hour, between 4pm and 5pm which is usually the dead zone where I’d done being productive work-wise and waiting for my beloved wife to get home. Each took a bit of back-and-forth to get right, but also didn’t need me to write much if any code. There’s a joy in crafting perfect software, but there’s also a joy in spontaneously bringing little things like this to life with just a bit of chatting with AI. What a time to be alive!</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

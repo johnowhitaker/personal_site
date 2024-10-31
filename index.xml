@@ -9,8 +9,52 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.6.28</generator>
-<lastBuildDate>Mon, 07 Oct 2024 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.6.32</generator>
+<lastBuildDate>Wed, 30 Oct 2024 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Mini Synth and Audio Visualization</title>
+  <link>https://johnowhitaker.dev/mini-projects/Mini Synth and Audio VIz.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I’ve been enjoying creating lots of little projects with Claude artifacts and other tools (post on that soon). Two especially fun ones were both audio related: a mini synth and an audio visualization widget.</p>
+<p>The synth came up while I was messing with <a href="https://aitestkitchen.withgoogle.com/tools/music-fx-dj">Google’s MusicFX DJ</a> - a fantastic tool in it’s own right. I wanted a way to jam along, and while I have a few midi controllers I thought I’d instead whip up an in-browser synth using the computer keyboard to minimize time-to-jamming. This is the result:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-projects/images/synth.png" class="img-fluid figure-img"></p>
+<figcaption>synth</figcaption>
+</figure>
+</div>
+<p>It’s very simple, but I do like being able to set different scales. Google’s MusicFX DJ let’s you set key too, so you can match them up and have things sound nice together. <a href="https://x.com/johnowhitaker/status/1849263436209016995">Here’s a clip of me testing this out for the first time</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-projects/images/synth+musicfx.png" class="img-fluid figure-img"></p>
+<figcaption>Noodling with the synth and Google’s MusicFX DJ</figcaption>
+</figure>
+</div>
+<p>Links:</p>
+<ul>
+<li>Synth hosted with github pages: https://johnowhitaker.github.io/minisynth/ (code: https://github.com/johnowhitaker/minisynth)</li>
+<li>And on my tools site: https://tools.johnowhitaker.com/synth</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-projects/images/audio_viz.png" class="img-fluid figure-img"></p>
+<figcaption>audio viz</figcaption>
+</figure>
+</div>
+<p>The second project comes from my nostalgia for the old windows media player visualizations. Impressively, Claude turns out to write OK shaders! There are a few to choose from, none mind-blowing but for something visible to watch while I jam with the previous setup this was a fun way to go. Link: https://tools.johnowhitaker.com/audio_viz</p>
+<p>Both these tools came together in under an hour, between 4pm and 5pm which is usually the dead zone where I’d done being productive work-wise and waiting for my beloved wife to get home. Each took a bit of back-and-forth to get right, but also didn’t need me to write much if any code. There’s a joy in crafting perfect software, but there’s also a joy in spontaneously bringing little things like this to life with just a bit of chatting with AI. What a time to be alive!</p>
+
+
+
+ ]]></description>
+  <category>mini-projects</category>
+  <guid>https://johnowhitaker.dev/mini-projects/Mini Synth and Audio VIz.html</guid>
+  <pubDate>Wed, 30 Oct 2024 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Tab Clearning (October 7 2024)</title>
   <link>https://johnowhitaker.dev/misc/tab_clear_oct_7.html</link>
@@ -5118,45 +5162,6 @@ font-style: inherit;">"return_length_estimate"</span>}}</span>
   <category>mini-projects</category>
   <guid>https://johnowhitaker.dev/mini-projects/length_est.html</guid>
   <pubDate>Tue, 20 Feb 2024 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Exploring 3D-Printed Instruments</title>
-  <link>https://johnowhitaker.dev/mini-hw-projects/2024-02-02-3dp_instruments.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="exploring-3d-printed-instruments" class="level1">
-<h1>Exploring 3D-Printed Instruments</h1>
-<p>I’ve built up a bit of a collection of 3D-printed instruments:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/3d_instruments.jpg" class="img-fluid figure-img"></p>
-<figcaption>3D-Printed Instruments</figcaption>
-</figure>
-</div>
-<p>This post is mostly to keep a list of models I’ve found and enjoyed so far - future ones will dive into some designs I make myself.</p>
-<section id="models" class="level2">
-<h2 class="anchored" data-anchor-id="models">Models</h2>
-<ul>
-<li>Kazoo: https://www.printables.com/model/65397-kazoo - fantastic, try different materials for the membrane</li>
-<li>Ocarina: https://www.printables.com/model/728330-updated-12-hole-ocarina - amazingly high-quality sound</li>
-<li>Xaphoon: https://www.thingiverse.com/thing:3290629/comments (mine is heavily modified to take an existing alto sax mouthpiece). I don’t think this is the final form for Xaphoon-style instruments, more experimentation needed.</li>
-<li>Tin whistle fippe: something lke https://www.thingiverse.com/thing:5358806 I think, which I then scaled to fit different sizes of PVC.</li>
-<li>Jaw harp (Dan Moi): https://www.thingiverse.com/thing:3213075 - lovely, I print loads and give them away.</li>
-<li>Nose flute: I can’t recommend either of the ones I’ve tried, I like the whistle part of the infamous “double penetrator” pictured above but for obvious reasons it’s not a very appealing instrument to play and not one you can share with other people either!</li>
-</ul>
-<p>So, that’s the first post - these have mostly been sitting around since last year, but I’m getting back into more non-screen hobbies now that I’m working full-time so the collection will likely grow soon.</p>
-
-
-</section>
-</section>
-
- ]]></description>
-  <category>mini-hw-projects</category>
-  <guid>https://johnowhitaker.dev/mini-hw-projects/2024-02-02-3dp_instruments.html</guid>
-  <pubDate>Fri, 02 Feb 2024 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
