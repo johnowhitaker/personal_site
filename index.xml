@@ -9,8 +9,36 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.6.32</generator>
-<lastBuildDate>Wed, 30 Oct 2024 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.6.33</generator>
+<lastBuildDate>Thu, 07 Nov 2024 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Deploy Your Artifacts!</title>
+  <link>https://johnowhitaker.dev/tils/deploy_your_artifacts.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I’m a big fan of the idea of <a href="https://www.todepond.com/sky/sharing-scrappy-fiddles-is-hard/">Sharing Scrappy Fiddles</a>.</p>
+<p>I’m always trying to do this more - sharing WIPs on X, writing up TILs on our internal blog for my colleagues, keeping up this blog…</p>
+<p>One new category of things I haven’t know how/where to share are bits of ephemeral software I make with LLMs. Specifically Claude’s artifacts tool - it makes it easy to whip up a fun little web app for all sorts of things, but has no easy ‘share’ button to spread that around. It’s strange since I feel less ownership of these tools, but they do often involve a fair amount of back and forth. And I’ve noticed that if I DO deploy them (this post will show you how) I often end up tweaking them more and feeling like they’re really mine, as opposed to playing with the v1 for a sec and disguarding it.</p>
+<p>Anthropic has some specific libraries and a build process that I hadn’t seen documented for Artifacts, so for any that weren’t plain HTML+vanilla JS, I had thought it would be very involved to get a locally-running version. Thankfully, SImon Willison’s [fantastic post] led me to this tool: <a href="https://github.com/claudio-silva/claude-artifact-runner">claude-artifact-runner</a> by Claudio Silva. You can copy the artifact code into a file (<code>artifact-component.tsx</code>), run the build command (<code>npx vite build</code> IIRC) and then you have a <code>dist/</code> folder with the built artifact. Once there, you can host this in a variety of ways. I have mine set up with a little FastHTML site (<a href="https://github.com/johnowhitaker/utils">source</a>) since I plan to add other tools in the near future. This is running on a Nanode 1 GB from Linode - $5/month. Fun, and not too bad to set up, not a great option if you don’t want to go down the rabbit hole of setting up a server.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/tils/thumbnails/tools_site.png" class="img-fluid figure-img"></p>
+<figcaption>tools site</figcaption>
+</figure>
+</div>
+<p>An easier option is to take the built artifact and pop it into a github repository. <a href="https://github.com/johnowhitaker/minisynth">Here’s an example</a>. As long as there’s an index.html file in the route you can open up the “Pages” section of the repo settings and tell it to build from the main branch. This will give you a github pages site like <a href="https://johnowhitaker.github.io/minisynth/">https://johnowhitaker.github.io/minisynth/</a> that you can share with anyone. It’s free and easy, and you can pop the artifact source code in there too to have a reference for yourself or others.</p>
+<p>Of course, neither of these options are seamless, and there’s a lot of room for improvement. I like the look of GitHub Sparks, which are easy-to-create apps with some kind of DB for storage and trivial to share. Replit’s Agents make things you can deploy and share on there too, but aren’t free. And Val.town has their ‘Townie’ bot that also suits some kinds of software.</p>
+<p>These little one-shot mini apps aren’t always great, but when you need something constrained and specific I think it’s magical that you can conjure it up with a short conversation. And now, hopefully, you can see how to share it easily too.</p>
+
+
+
+ ]]></description>
+  <guid>https://johnowhitaker.dev/tils/deploy_your_artifacts.html</guid>
+  <pubDate>Thu, 07 Nov 2024 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Mini Synth and Audio Visualization</title>
   <link>https://johnowhitaker.dev/mini-projects/Mini Synth and Audio VIz.html</link>
@@ -115,7 +143,7 @@
   <pubDate>Mon, 07 Oct 2024 00:00:00 GMT</pubDate>
 </item>
 <item>
-  <title>Tab CLearning (September 23 2024)</title>
+  <title>Tab Clearning (September 23 2024)</title>
   <link>https://johnowhitaker.dev/misc/tab_clearing_sept_23.html</link>
   <description><![CDATA[ 
 
@@ -5071,97 +5099,6 @@ font-style: inherit;">1500</span>)</span></code></pre></div>
   <category>mini-projects</category>
   <guid>https://johnowhitaker.dev/mini-projects/broken_telephone.html</guid>
   <pubDate>Thu, 14 Mar 2024 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Can LLMs estimate the length of a sequence?</title>
-  <link>https://johnowhitaker.dev/mini-projects/length_est.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="how-well-can-llms-estimate-length" class="level1">
-<h1>How well can LLMs estimate length?</h1>
-<p>While discussing another paper based around ‘LLM-as-a-judge’ style evaluation, the topic of length bias (longer responses tend to be rated higher) came up. This prompted Jeremy to ask ‘Can LLMs even estimate the length of a sequence? How well?’. So I did a few quick tests to find out, and spotted a few interesting things along the way.</p>
-<p>First experiment: throwing some sequences through gpt-3.5-Turbo and gpt-4, using function calling to get a formatted response with a prompt like</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1">messages.append({<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"role"</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"system"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"content"</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Estimate the length (in words) of the passage provided by the user."</span>})</span>
-<span id="cb1-2">messages.append({<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"role"</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"user"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"content"</span>: <span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"Passage:</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;"> </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'hi'</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">30</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>})</span>
-<span id="cb1-3">chat_response <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> chat_completion_request(</span>
-<span id="cb1-4">    messages, tools<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>tools, tool_choice<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>{<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"type"</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"function"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"function"</span>: {<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"name"</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"return_length_estimate"</span>}}</span>
-<span id="cb1-5">)</span></code></pre></div>
-<p>For ever-longer snippets of a Wikipedia article, here’s GPT 3.5 Turbo’s estimates:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-projects/images/3.5.png" class="img-fluid figure-img"></p>
-<figcaption>image</figcaption>
-</figure>
-</div>
-<p>It’s fairly accurate at lower sequence lengths, but diverges and starts to estimate that anything long is ~1000 words. GPT-4 also got worse above ~800 words, but with less of an obvious trend. More pics in my original Twitter <a href="https://x.com/johnowhitaker/status/1760094827147079897?s=20">thread</a>.</p>
-<p>Thinking through how these models might infer the length, one possibility is that the positional embeddings can be used to estimate the length of the sequence. If the model is able to compare the positional embeddings of the first and last token, it could estimate the length of the sequence. To see how clearly positional info comes through in the latent representations of the model, fed some sequences of various lengths through the recently-released gemma-7B model and stored the final layer outputs (<code>outputs.last_hidden_state</code>). Then I fit a linear regression model on these to predict the token position from the latent representation. The R^2 was 0.99, so the positional information is very clear in the latent representations. As you can see, there’s enough information in the latent representations to estimate the length of the sequence fairly well:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-projects/images/gemma.png" class="img-fluid figure-img"></p>
-<figcaption>image</figcaption>
-</figure>
-</div>
-<p>One interesting thought: many models are trained at some lower context length (1024 or 2048 for example) the briefly fine-tuned on longer sequences at the end of training. A popular recent strategy is to do some kind of dynamic scaling (see dynamic RoPE scaling for e.g.) where the positional embeddings for linger sequences are scaled such that they map to the same range as the positional embeddings for the shorter sequences the model was trained with. If this is the case, you’d expect length estimates for sequences above the training context length to be less accurate, and specifically to be underestimates since the positional embeddings of token, say, 4217 would be rescaled back to look like the positional embeddings of token 1024. The pattern for GPT-3.5 Turbo’s estimates seems to fit this hypothesis, but of course we don’t have a way to know for sure.</p>
-<p>This was a fun little experiment, and it’s unlikely I’ll take it further, but I hope it’s given you some food for thought and perhaps a few ideas for your own experiments.</p>
-
-
-</section>
-
- ]]></description>
-  <category>mini-projects</category>
-  <guid>https://johnowhitaker.dev/mini-projects/length_est.html</guid>
-  <pubDate>Tue, 20 Feb 2024 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
