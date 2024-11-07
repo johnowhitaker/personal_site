@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -72,9 +106,11 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../styles.css">
 <meta name="twitter:title" content="Deploy Your Artifacts! – johnowhitaker.dev">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://johnowhitaker.dev/tils/thumbnails/tools_site.png">
+<meta name="twitter:image" content="https://johnowhitaker.dev/tils/tools_site.png">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="951">
+<meta name="twitter:image-width" content="1895">
 </head>
 
 <body class="nav-fixed">
@@ -181,13 +217,37 @@ ul.task-list li input[type="checkbox"] {
 <p>Anthropic has some specific libraries and a build process that I hadn’t seen documented for Artifacts, so for any that weren’t plain HTML+vanilla JS, I had thought it would be very involved to get a locally-running version. Thankfully, SImon Willison’s [fantastic post] led me to this tool: <a href="https://github.com/claudio-silva/claude-artifact-runner">claude-artifact-runner</a> by Claudio Silva. You can copy the artifact code into a file (<code>artifact-component.tsx</code>), run the build command (<code>npx vite build</code> IIRC) and then you have a <code>dist/</code> folder with the built artifact. Once there, you can host this in a variety of ways. I have mine set up with a little FastHTML site (<a href="https://github.com/johnowhitaker/utils">source</a>) since I plan to add other tools in the near future. This is running on a Nanode 1 GB from Linode - $5/month. Fun, and not too bad to set up, not a great option if you don’t want to go down the rabbit hole of setting up a server.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="thumbnails/tools_site.png" class="img-fluid figure-img"></p>
+<p><img src="tools_site.png" class="img-fluid figure-img"></p>
 <figcaption>tools site</figcaption>
 </figure>
 </div>
 <p>An easier option is to take the built artifact and pop it into a github repository. <a href="https://github.com/johnowhitaker/minisynth">Here’s an example</a>. As long as there’s an index.html file in the route you can open up the “Pages” section of the repo settings and tell it to build from the main branch. This will give you a github pages site like <a href="https://johnowhitaker.github.io/minisynth/">https://johnowhitaker.github.io/minisynth/</a> that you can share with anyone. It’s free and easy, and you can pop the artifact source code in there too to have a reference for yourself or others.</p>
 <p>Of course, neither of these options are seamless, and there’s a lot of room for improvement. I like the look of GitHub Sparks, which are easy-to-create apps with some kind of DB for storage and trivial to share. Replit’s Agents make things you can deploy and share on there too, but aren’t free. And Val.town has their ‘Townie’ bot that also suits some kinds of software.</p>
 <p>These little one-shot mini apps aren’t always great, but when you need something constrained and specific I think it’s magical that you can conjure it up with a short conversation. And now, hopefully, you can see how to share it easily too.</p>
+<p>PS: Here’s how I add a bunch of static artifacts to their own routes on tools.johnowhitaker.com in FastHTML:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>static_apps_dir <span class="op">=</span> Path(<span class="va">__file__</span>).parent <span class="op">/</span> <span class="st">"static_apps"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(static_apps_dir)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> path <span class="kw">in</span> static_apps_dir.glob(<span class="st">"*"</span>):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> path.is_dir():</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        app_name <span class="op">=</span> path.name</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Adding route: /</span><span class="sc">{</span>app_name<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">@app.get</span>(<span class="ss">f'/</span><span class="sc">{</span>app_name<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> serve_index(app_name: <span class="bu">str</span> <span class="op">=</span> app_name):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> FileResponse(static_apps_dir <span class="op">/</span> app_name <span class="op">/</span> <span class="st">'index.html'</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> asset <span class="kw">in</span> (path<span class="op">/</span><span class="st">'assets'</span>).glob(<span class="st">"*"</span>):</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            asset_name <span class="op">=</span> asset.name</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Adding asset: </span><span class="sc">{</span>app_name<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>asset_name<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">@app.get</span>(<span class="ss">f'/assets/</span><span class="sc">{</span>app_name<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>asset_name<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            <span class="kw">def</span> serve_asset(asset_name: <span class="bu">str</span> <span class="op">=</span> asset_name, app_name: <span class="bu">str</span> <span class="op">=</span> app_name):</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> FileResponse(static_apps_dir <span class="op">/</span> app_name <span class="op">/</span> <span class="st">'assets'</span> <span class="op">/</span> asset_name)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Modify the index.html to use the asset path with the app name</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        index_html <span class="op">=</span> (static_apps_dir <span class="op">/</span> app_name <span class="op">/</span> <span class="st">'index.html'</span>).read_text()</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        index_html <span class="op">=</span> index_html.replace(<span class="st">'src="/assets/index'</span>, <span class="ss">f'src="/assets/</span><span class="sc">{</span>app_name<span class="sc">}</span><span class="ss">/index'</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        index_html <span class="op">=</span> index_html.replace(<span class="st">'href="/assets/index'</span>, <span class="ss">f'href="/assets/</span><span class="sc">{</span>app_name<span class="sc">}</span><span class="ss">/index'</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        (static_apps_dir <span class="op">/</span> app_name <span class="op">/</span> <span class="st">'index.html'</span>).write_text(index_html)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This means I can simply add the latest new artifact to the static_apps folder and it will be served at <code>tools.johnowhitaker.com/artifact_name</code>. Almost painless :) I might feature one or two more soon, there’s one that started as a quick demo and is turning into a very fun tool.</p>
 
 
 
