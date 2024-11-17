@@ -12,6 +12,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/mini-hw-projects/bubbles.html",
       "/tils/deploy_your_artifacts.html",
       "/mini-projects/facewave.html",
       "/mini-projects/Mini Synth and Audio VIz.html",
@@ -176,6 +177,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/mini-hw-projects/bubbles.html",
       "/tils/deploy_your_artifacts.html",
       "/mini-projects/facewave.html",
       "/mini-projects/Mini Synth and Audio VIz.html",
