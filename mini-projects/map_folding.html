@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2024-11-14">
 
-<title>TILs – johnowhitaker.dev</title>
+<title>Nerdsnipe: Map Folding – johnowhitaker.dev</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +21,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-474c6d7e63be50eb6972897072b39b27.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ce9303c106fa7330aa49f1590dd92d16.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-474c6d7e63be50eb6972897072b39b27.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ce9303c106fa7330aa49f1590dd92d16.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,71 +101,16 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
-<meta name="twitter:title" content="TILs – johnowhitaker.dev">
+<link rel="stylesheet" href="../styles.css">
+<meta name="twitter:title" content="Nerdsnipe: Map Folding – johnowhitaker.dev">
 <meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://johnowhitaker.dev/mini-projects/images/map_folding.png">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="819">
+<meta name="twitter:image-width" content="1209">
 </head>
 
 <body class="nav-fixed">
@@ -148,11 +126,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./all.html"> 
+    <a class="nav-link" href="../all.html"> 
 <span class="menu-text">Everything Feed</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -161,27 +139,27 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-more">    
         <li>
-    <a class="dropdown-item" href="./tils.html">
+    <a class="dropdown-item" href="../tils.html">
  <span class="dropdown-text">TILs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./blog.html">
+    <a class="dropdown-item" href="../blog.html">
  <span class="dropdown-text">Blog Archive</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./tsbabn.html">
+    <a class="dropdown-item" href="../tsbabn.html">
  <span class="dropdown-text">TSBABN</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./resume.html">
+    <a class="dropdown-item" href="../resume.html">
  <span class="dropdown-text">Resume: Jonathan Whitaker</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./books.html">
+    <a class="dropdown-item" href="../books.html">
  <span class="dropdown-text">Books</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./appearances.html">
+    <a class="dropdown-item" href="../appearances.html">
  <span class="dropdown-text">Appearances</span></a>
   </li>  
         <li>
@@ -210,14 +188,23 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TILs</h1>
-</div>
+<h1 class="title">Nerdsnipe: Map Folding</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">mini-projects</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 14, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -227,143 +214,23 @@ window.Quarto = {
 </header>
 
 
-<p>A new section I hope to build out over time.</p>
+<p>Nerd-sniped by a video from the channel ‘Physics for the Birds’, I looked into what it would take to add an extra item to this sequence of integers: <a href="https://oeis.org/A001418">https://oeis.org/A001418</a> (Number of ways of folding an n X n sheet of stamps) Calculating the already-known 7x7 case took 42 hours. The 5x5 case takes less than a second and the 6x6 takes a few minutes. So 8x8 will likely take a while. So unless I find a better approach or leave my code running for year, it seems like I won’t be able to add to the sequence.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/map_folding.png" class="img-fluid figure-img"></p>
+<figcaption>the run calculating the last known item in the sequence, for 7x7</figcaption>
+</figure>
+</div>
+<p>The code is available on <a href="https://github.com/johnowhitaker/map_folding">GitHub</a>, and is implemented in C. I started by converting <a href="https://github.com/archmageirvine/joeis/blob/master/src/irvine/oeis/a001/A001415.java">this Java implementation</a> by Sean Irvine (which is a translation of a C version by Fred Lunnon (ALGOL68, C versions)) which implements the pseudo-code from the original 1968 paper (<a href="https://www.ams.org/journals/mcom/1968-22-101/S0025-5718-1968-0221957-8/S0025-5718-1968-0221957-8.pdf">PDF</a>). o1 did almost all the work ;)</p>
+<p>At first I thought I might be able to find a GPU-accelerated way to compute this, but no luck on that front. The code I have can divide the work among a few cores but doesn’t parallelize well enough to make scaling up compute worth it.</p>
+<p>One side trick I liked that I can’t be bothered to put into a separate TIL: using discord for notifications when it’s done. You make a channel, then Edit Channel (top of channel) -&gt; Integrations -&gt; Webhooks -&gt; New Webhook. This gives you a URL like https://discord.com/api/webhooks/lasiufhaliufhla</p>
+<p>Then in your code you can use curl to send a message to that channel like so:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-H</span> <span class="st">"Content-Type: application/json"</span> <span class="at">-X</span> POST <span class="at">-d</span> <span class="st">"{</span><span class="dt">\"</span><span class="st">content</span><span class="dt">\"</span><span class="st">: </span><span class="dt">\"</span><span class="va">$total</span><span class="dt">\"</span><span class="st">}"</span> <span class="st">"</span><span class="va">$WEBHOOK_URL</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Where <code>$total</code> is the message you want to send and <code>$WEBHOOK_URL</code> is the URL you got from discord. It was nice waking up to a message that the 7x7 case was done!</p>
 
 
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1730937600000" data-listing-file-modified-sort="1731867130374" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="811">
-<div class="thumbnail">
-<p><a href="./tils/deploy_your_artifacts.html" class="no-external"></a></p><a href="./tils/deploy_your_artifacts.html" class="no-external">
-<p class="card-img-top"><img src="tils/tools_site.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./tils/deploy_your_artifacts.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/deploy_your_artifacts.html" class="no-external">Deploy Your Artifacts!</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/deploy_your_artifacts.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/deploy_your_artifacts.html" class="no-external">I’m a big fan of the idea of Sharing Scrappy Fiddles.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/deploy_your_artifacts.html" class="no-external">
-<div class="listing-date">
-Nov 7, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="VElMcw==" data-listing-date-sort="1713484800000" data-listing-file-modified-sort="1731867130374" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2119">
-<div class="thumbnail">
-<p><a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external"></a></p><a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external">
-<p class="card-img-top"><img src="tils/proxy_vscode.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external">TIL: Intercepting Github Copilot with MITMProxy</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external">We’ve been messing with integrating AI into notebook coding, and got curious about how Github Copilot structures the context it uses to generate code when called from a…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external">
-<div class="listing-date">
-Apr 19, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="VElMcw==" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1731867130374" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="892">
-<div class="thumbnail">
-<p><a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external"></a></p><a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">
-<p class="card-img-top"><img src="tils/image.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">TIL: GPT4-V Doesn’t Support Function Calling, but We Can Hack Around That</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">I want to use GPT4-V to evaluate images generated by a diffusion model and optionally modify the prompt based on the result. The problem is that GPT4-V doesn’t support…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">
-<div class="listing-date">
-Jan 1, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="VElMcw==" data-listing-date-sort="1699315200000" data-listing-file-modified-sort="1731867130374" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="384">
-<div class="thumbnail">
-<p><a href="./tils/2023-11-07-get_yt_vids.html" class="no-external"></a></p><a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./tils/2023-11-07-get_yt_vids.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">Getting My YouTube Videos as MarkDown pages for this Quarto blog</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">Step 1 was getting the video info:</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">
-<div class="listing-date">
-Nov 7, 2023
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="VElMcw==" data-listing-date-sort="1691712000000" data-listing-file-modified-sort="1731867130374" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="255">
-<div class="thumbnail">
-<p><a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external"></a></p><a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">Exporting from Wordpress into a Quarto Blog</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">I have been blogging for years on a free Wordpress account, but figured I should finally migrate to a custom setup. I’m using Quarto, and in this TIL I document how to…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">
-<div class="listing-date">
-Aug 11, 2023
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
