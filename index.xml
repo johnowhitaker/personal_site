@@ -106,6 +106,55 @@ font-style: inherit;">"</span></span></code></pre></div>
   <pubDate>Thu, 14 Nov 2024 00:00:00 GMT</pubDate>
 </item>
 <item>
+  <title>3 Modes of Making with AI</title>
+  <link>https://johnowhitaker.dev/misc/3_modes.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>In this post I’ll share a useful mental model that I’ve found useful recently in thinking through a number of topics related to AI and creativity. I call it the “3 Modes of Making with AI”. This framing has helped me think though how I feel about different coding tools, tease out some nuance in the debate around AI art, and imagine some possible futures I want to build towards!</p>
+<p>The trick is to separate out uses of AI into three categories (although in practice it’s often more like a sliding scale). These are:</p>
+<ol type="1">
+<li>“Slot Machine” - press a button or throw in a prompt and hope for the best.</li>
+<li>“Iterative Refinement” - you’re tweaking an initial result to get it closer to what you want, but the AI is doing most of the heavy lifting.</li>
+<li>“Co-Creation” - you’re working to express <em>your</em> vision, with the AI as a tool to help you get there.</li>
+</ol>
+<p>As you move from 1 to 3, the <strong>agency</strong> of the human creator increases, and the output shifts from something ‘generic’ (that anyone might get) to something individual and unique. All three modes have their place of course, as we’ll see as I dig into each a little more, but explicitly thinking about which zone we’re aiming for can have a big impact on the kinds of tools we make, and I think at present the co-creation aspect that centers the human creator is in need of a little more love! So, let’s go through these in a little more detail and then look at some ways we can help shift the balance towards my favourite end of this spectrum :)</p>
+<section id="slot-machines" class="level2">
+<h2 class="anchored" data-anchor-id="slot-machines">Slot Machines</h2>
+<p>Text-to-image models went from barely-functional to incredibly powerful in the space of a few years, and it’s easy to lose track of how magical they are. Type in a prompt and seconds later you’re staring at a high-quality image of whatever you described.* The magic quickly wears off though, and many either lose interest or begin to take advantage of the limitless output capabilities of the tool to generate endless variations of the same thing, re-running the same promt with slight variations just in case the next one is a winner. Ditto the initially-impressive “write me a poem about X” text model demos.</p>
+<p>This style of use can be very valuable - often I just need <em>an image</em> or <em>a bit of code</em> that roughly matches what I asked for.</p>
+<p>TODO examples</p>
+</section>
+<section id="iterative-refinement" class="level2">
+<h2 class="anchored" data-anchor-id="iterative-refinement">Iterative Refinement</h2>
+<p>One immediate upgrade to the above is going through a few rounds of refinement. FOr text/code models, this can be pointing out a few mistakes or clarifying a requirement, all the way up to asking for many re-writes with detailed feedback each time. For image models, I like the direction Playground are going, where you ask in natural language for edits. Even ChatGPT’s more primitive image gen can do this though - repeatedly asking for “more cute” on a picture of a duckling or something can be entertaining :)</p>
+<p>TODO examples</p>
+</section>
+<section id="co-creation" class="level1">
+<h1>Co-Creation</h1>
+<p>The most useful, the most varied, and the most underserved IMO.</p>
+<ul>
+<li>Starting from a sketch, having the AI generate, painting over, repeating, pushing and pulling with the AI “medium” just like I do with watercolor.</li>
+<li>Writing code a few lines at a time, getting AI help with syntax and brainstorming but also understanding the parts myself and learing new things as we go.</li>
+<li>Humming melodies, having an AI like Suno ‘cover’ your rough takes, splitting that out and bringing the stems back into a DAW…</li>
+<li>Using AI as asset generation to speed up the ‘background bits’ for a 3D scene or digital collage</li>
+</ul>
+<p>… TODO expand</p>
+<section id="wip-im-thinking-through-the-best-way-to-express-these-ideas-maybe-this-will-turn-into-a-video-or-something" class="level2">
+<h2 class="anchored" data-anchor-id="wip-im-thinking-through-the-best-way-to-express-these-ideas-maybe-this-will-turn-into-a-video-or-something">WIP: I’m thinking through the best way to express these ideas, maybe this will turn into a video or something…</h2>
+<p>*ish - even the best models are still far from perfect, but the errors have gone from ‘this is a blurry disfigured mess’ to ‘the text on that tiny sign in the background has bad kerning’.</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <guid>https://johnowhitaker.dev/misc/3_modes.html</guid>
+  <pubDate>Fri, 08 Nov 2024 00:00:00 GMT</pubDate>
+</item>
+<item>
   <title>Deploy Your Artifacts!</title>
   <link>https://johnowhitaker.dev/tils/deploy_your_artifacts.html</link>
   <description><![CDATA[ 
@@ -4964,42 +5013,6 @@ If not, suggest a better prompt...</code></pre>
   <guid>https://johnowhitaker.dev/dsc/more-better.html</guid>
   <pubDate>Wed, 08 May 2024 00:00:00 GMT</pubDate>
   <media:content url="https://johnowhitaker.dev/dsc/images/x_of_thought.png" medium="image" type="image/png" height="46" width="144"/>
-</item>
-<item>
-  <title>Basement Hydroponics: Part 1</title>
-  <link>https://johnowhitaker.dev/mini-hw-projects/2024-04-27-hydroponics-1.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="basement-hydroponics-part-1" class="level1">
-<h1>Basement Hydroponics: Part 1</h1>
-<p>I’ve been dabbling with hydroponics in my basement since discovering some unused grow lights from someone else’s abandoned attempt. It’s fun to see things grow! The system has also doubled as a way to start seeds indoors before transplanting them outside, and gave various flowers and herbs a head start. Now that all the seedlings are planted out, this is what the system looks like in its current state:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/hydro_1.jpg" class="img-fluid figure-img"></p>
-<figcaption>The setup</figcaption>
-</figure>
-</div>
-<p>There’s a gazillion youtube videos and dedicated kits for hydroponics, but the simple fact is that plants do OK if you dunk them in water filled with nutrients and the rest is mostly fluff to get you to buy someone’s over-priced pump or whatever. I’m using some nurtrients from the same abandoned project that left me the lights, and the rest is just stuff I had lying around. I opted for a Kratky-style system, which is a set-and-forget style of hydroponics where the plants wick up nutrient from a tank that starts mostly full and slowly empties as the plants grow. I started seeds in ‘Jiffy Peat Pellets’ which can be suspended in holes in the containers by shoving some screws or skewers through them. For some smaller experiments I’ve had success using smaller bottles with a cap I 3d-printed:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/hydro_2.jpg" class="img-fluid figure-img"></p>
-<figcaption>A basil plant in a small bottle, showing air roots and root system</figcaption>
-</figure>
-</div>
-<p>This is inspired by the excellent Falcoponics system invented by Sebastian S. Cocioba (<span class="citation" data-cites="ATinyGreenCell">@ATinyGreenCell</span>) for small-scale hydroponics. With these smaller containers you need to top up the water more often, but it’s a fantastic approach for testing out ideas without needing to wrangle hoses or worrying about contaminating some big central reservoir.</p>
-<p>We’ve been consistently harvesting basil and chard, and there are flowers on the engineered purple tomato plant so stay tuned for a part 2 if that works out :) The only downside to this nice efficient system that I’ve set up is that it actually doesn’t require any input from me, which makes it not much of a hobby! I may have to start experimenting with some fast-growing plants and try to do more experiments in the small bottle system I’ve developed, just for an excuse to go smell the good green smells and tinker more frequently…</p>
-<p>PS: I must confess that amid the low-SNR youtube I ended up watching on this topic I did get a little addicted to the cheerful Australian enthusiasm of “Hoocho’s Hydroponics” - if you’re looking to learn all things hydroponics I can recommend his channel!</p>
-
-
-</section>
-
- ]]></description>
-  <category>mini-hw-projects</category>
-  <guid>https://johnowhitaker.dev/mini-hw-projects/2024-04-27-hydroponics-1.html</guid>
-  <pubDate>Sat, 27 Apr 2024 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
