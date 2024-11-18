@@ -1,0 +1,77 @@
+---
+title: "Blogs"
+---
+
+I hope to better document other blogs I've found interesting + useful, as well as building out my other recs (see [books](/books), [YouTube recs](/yt)). For now here are some faves in a few categories (TODO), and an unordered list of others I've noted down over time:
+
+## Others / To Be Categorized
+
+https://lcamtuf.substack.com/archive and e.g. https://lcamtuf.coredump.cx/offsite.shtml
+
+https://www.danielcorin.com/til/
+
+https://www.carlbass.com/
+
+https://mitxela.com/projects/scaffold
+
+https://simonwillison.net/
+
+http://lab.whitequark.org/
+
+https://atinygreencell.com/
+
+https://benkrasnow.blogspot.com/
+
+https://scanlime.org/ 
+
+hamel.dev
+
+wasim’s one
+
+Grudgingly, https://gwern.net/zeo/co2
+
+https://brainbaking.com/ (not that interesting but TODO add to small web)
+
+https://sohldickstein.com/art
+
+https://lilianweng.github.io/
+
+https://douglasorr.github.io/
+
+http://dmorris.net/projects/
+
+https://yuntiandeng.com/
+
+https://justinmiller.io/
+
+https://dustinbrett.com/ for the unique UI
+
+https://worrydream.com/
+
+https://jake.fun/
+
+https://now.blakewatson.com/
+
+https://nownownow.com/US-OR 
+
+https://interconnected.org/home/ maybe (nit sure)
+
+https://tahnok.github.io/archive/ maybe (not amazing)
+
+https://spritesmods.com/?art=whiteboard&page=5
+
+https://www.logicalplanet.com/ as an amazing backlog of 3d printed designs
+
+https://leancrew.com/all-this/archive/ maybe (haven’t explored yet)
+
+https://www.furidamu.org/ very cool guy TODO reach out
+
+https://finbarr.ca/blog/
+
+https://lilianweng.github.io/ ah duplicate ignore
+
+https://ben-mini.github.io/
+
+https://ciechanow.ski/archives/ amazing articles on e.g. sound vs a blog
+
+https://blog.aqnichol.com/ pickle
