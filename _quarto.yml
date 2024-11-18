@@ -21,6 +21,8 @@ website:
             text: TSBABN
           - resume.md
           - books.qmd
+          - blogs.md
+          - yt.md
           - appearances.qmd
           - icon: rss
             text: RSS Feed
