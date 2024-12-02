@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2024-11-08">
 
-<title>TILs – johnowhitaker.dev</title>
+<title>3 Modes of Making with AI – johnowhitaker.dev</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +24,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-31d8df3fb4b3ebd213a509f950828e75.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ce9303c106fa7330aa49f1590dd92d16.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-31d8df3fb4b3ebd213a509f950828e75.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ce9303c106fa7330aa49f1590dd92d16.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,68 +67,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
-<meta name="twitter:title" content="TILs – johnowhitaker.dev">
+<link rel="stylesheet" href="../styles.css">
+<meta name="twitter:title" content="3 Modes of Making with AI – johnowhitaker.dev">
 <meta name="twitter:description" content="">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
@@ -148,11 +89,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./all.html"> 
+    <a class="nav-link" href="../all.html"> 
 <span class="menu-text">Everything Feed</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -161,35 +102,35 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-more">    
         <li>
-    <a class="dropdown-item" href="./tils.html">
+    <a class="dropdown-item" href="../tils.html">
  <span class="dropdown-text">TILs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./blog.html">
+    <a class="dropdown-item" href="../blog.html">
  <span class="dropdown-text">Blog Archive</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./tsbabn.html">
+    <a class="dropdown-item" href="../tsbabn.html">
  <span class="dropdown-text">TSBABN</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./resume.html">
+    <a class="dropdown-item" href="../resume.html">
  <span class="dropdown-text">Resume: Jonathan Whitaker</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./books.html">
+    <a class="dropdown-item" href="../books.html">
  <span class="dropdown-text">Books</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./blogs.html">
+    <a class="dropdown-item" href="../blogs.html">
  <span class="dropdown-text">Blogs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./yt.html">
+    <a class="dropdown-item" href="../yt.html">
  <span class="dropdown-text">YouTube Channel Recommendations</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./appearances.html">
+    <a class="dropdown-item" href="../appearances.html">
  <span class="dropdown-text">Appearances</span></a>
   </li>  
         <li>
@@ -210,22 +151,42 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#slot-machines" id="toc-slot-machines" class="nav-link active" data-scroll-target="#slot-machines">Slot Machines</a></li>
+  <li><a href="#iterative-refinement" id="toc-iterative-refinement" class="nav-link" data-scroll-target="#iterative-refinement">Iterative Refinement</a></li>
+  <li><a href="#co-creation" id="toc-co-creation" class="nav-link" data-scroll-target="#co-creation">Co-Creation</a>
+  <ul class="collapse">
+  <li><a href="#wip-im-thinking-through-the-best-way-to-express-these-ideas-maybe-this-will-turn-into-a-video-or-something" id="toc-wip-im-thinking-through-the-best-way-to-express-these-ideas-maybe-this-will-turn-into-a-video-or-something" class="nav-link" data-scroll-target="#wip-im-thinking-through-the-best-way-to-express-these-ideas-maybe-this-will-turn-into-a-video-or-something">WIP: I’m thinking through the best way to express these ideas, maybe this will turn into a video or something…</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TILs</h1>
-</div>
+<h1 class="title">3 Modes of Making with AI</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">wip essays</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 8, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -235,143 +196,47 @@ window.Quarto = {
 </header>
 
 
-<p>A new section I hope to build out over time.</p>
+<p>In this post I’ll share a mental model that I’ve found useful recently in thinking through a number of topics related to AI and creativity. I call it the “3 Modes of Making with AI”. This framing has helped me think though how I feel about different coding tools, tease out some nuance in the debate around AI art, and imagine some possible futures I want to build towards!</p>
+<p>The trick is to separate out uses of AI into three categories (although in practice it’s often more like a sliding scale). These are:</p>
+<ol type="1">
+<li>“Slot Machine” - press a button or throw in a prompt and hope for the best.</li>
+<li>“Iterative Refinement” - you’re tweaking an initial result to get it closer to what you want, but the AI is doing most of the heavy lifting.</li>
+<li>“Co-Creation” - you’re working to express <em>your</em> vision, with the AI as a tool to help you get there.</li>
+</ol>
+<p>As you move from 1 to 3, the <strong>agency</strong> of the human creator increases, and the output shifts from something ‘generic’ (that anyone might get) to something individual and unique. All three modes have their place of course, as we’ll see as I dig into each a little more, but explicitly thinking about which zone we’re aiming for can have a big impact on the kinds of tools we make, and I think at present the co-creation aspect that centers the human creator is in need of a little more love! So, let’s go through these in a little more detail and then look at some ways we can help shift the balance towards my favourite end of this spectrum :)</p>
+<section id="slot-machines" class="level2">
+<h2 class="anchored" data-anchor-id="slot-machines">Slot Machines</h2>
+<p>Sometimes all you want is a generic pic to make a meme, a one-off piece of code that you’ll never look at again, or a quick answer to a question. In these cases, hooray - we have these amazing models that can do these kinds of thigns, in a way that felt like magic just a few years ago! Notice how quickly the magic fades though - I’m really not interested in your midjourney gallery, despite the fact that all the image outputs there are technically far better than anything I could make or generate a year or two ago.</p>
+</section>
+<section id="iterative-refinement" class="level2">
+<h2 class="anchored" data-anchor-id="iterative-refinement">Iterative Refinement</h2>
+<p>One immediate upgrade to the above is going through a few rounds of refinement. For text/code models, this can be pointing out a few mistakes or clarifying a requirement, all the way up to asking for many re-writes with detailed feedback each time. For image models, I like the direction Playground are going, where you ask in natural language for edits. Even ChatGPT’s more primitive image gen can do this though - repeatedly asking for “more cute” on a picture of a duckling or something can be entertaining :)</p>
+<p>My favourite application of this approach is Claude Artifacts. You can describe a web app you want, and Claude will typically do a pretty good job giving you a working prototype! Then, over the course of a few conversation turns, you can refine the design by asking for changes like ‘add a button to sort the list’ or ‘make the logo bigger’. This (and Replit agents for similar cases that need a backend or other functionality not avaiable in Artifacts) is a perfect match for making fun bits of ephemeral software. Recent examples where I’ve used this to good effect are:</p>
+<ul>
+<li>Making a web-based grading tool for an assignment my wife was marking</li>
+<li>Whipping up a few mini-sites for my father-in-law’s card game prototype</li>
+<li>Some little <a href="https://johnowhitaker.dev/mini-projects/Mini%20Synth%20and%20Audio%20VIz.html">musical tools</a>, which I exported out of artifacts and <a href="https://johnowhitaker.dev/tils/deploy_your_artifacts.html">deployed as shown here</a></li>
+</ul>
+<p>With this mode, the more you put in, the more you get out - starting with a list of requirements, a picture/sketch of what you want or something personal will get you a much more unique result that a generic ‘make me HTML snake’ prompt. Likewise with iterating with string opinions - ask for changes you want to see rather than accepting the first generic input! As you spend more and more effort, the results get closer to mode 3…</p>
+</section>
+<section id="co-creation" class="level1">
+<h1>Co-Creation</h1>
+<p>The most useful, the most varied, and the most underserved IMO.</p>
+<ul>
+<li>Starting from a sketch, having the AI generate, painting over, repeating, pushing and pulling with the AI “medium” just like I do with watercolor.</li>
+<li>Writing code a few lines at a time, getting AI help with syntax and brainstorming but also understanding the parts myself and learing new things as we go.</li>
+<li>Humming melodies, having an AI like Suno ‘cover’ your rough takes, splitting that out and bringing the stems back into a DAW…</li>
+<li>Using AI as asset generation to speed up the ‘background bits’ for a 3D scene or digital collage</li>
+</ul>
+<p>… TODO expand</p>
+<section id="wip-im-thinking-through-the-best-way-to-express-these-ideas-maybe-this-will-turn-into-a-video-or-something" class="level2">
+<h2 class="anchored" data-anchor-id="wip-im-thinking-through-the-best-way-to-express-these-ideas-maybe-this-will-turn-into-a-video-or-something">WIP: I’m thinking through the best way to express these ideas, maybe this will turn into a video or something…</h2>
 
 
+</section>
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1730937600000" data-listing-file-modified-sort="1733162715711" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="811">
-<div class="thumbnail">
-<p><a href="./tils/deploy_your_artifacts.html" class="no-external"></a></p><a href="./tils/deploy_your_artifacts.html" class="no-external">
-<p class="card-img-top"><img src="tils/tools_site.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./tils/deploy_your_artifacts.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/deploy_your_artifacts.html" class="no-external">Deploy Your Artifacts!</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/deploy_your_artifacts.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/deploy_your_artifacts.html" class="no-external">I’m a big fan of the idea of Sharing Scrappy Fiddles.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/deploy_your_artifacts.html" class="no-external">
-<div class="listing-date">
-Nov 7, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="VElMcw==" data-listing-date-sort="1713484800000" data-listing-file-modified-sort="1733162715711" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2119">
-<div class="thumbnail">
-<p><a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external"></a></p><a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external">
-<p class="card-img-top"><img src="tils/proxy_vscode.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external">TIL: Intercepting Github Copilot with MITMProxy</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external">We’ve been messing with integrating AI into notebook coding, and got curious about how Github Copilot structures the context it uses to generate code when called from a…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external">
-<div class="listing-date">
-Apr 19, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="VElMcw==" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1733162715711" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="892">
-<div class="thumbnail">
-<p><a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external"></a></p><a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">
-<p class="card-img-top"><img src="tils/image.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">TIL: GPT4-V Doesn’t Support Function Calling, but We Can Hack Around That</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">I want to use GPT4-V to evaluate images generated by a diffusion model and optionally modify the prompt based on the result. The problem is that GPT4-V doesn’t support…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">
-<div class="listing-date">
-Jan 1, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="VElMcw==" data-listing-date-sort="1699315200000" data-listing-file-modified-sort="1733162715711" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="384">
-<div class="thumbnail">
-<p><a href="./tils/2023-11-07-get_yt_vids.html" class="no-external"></a></p><a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./tils/2023-11-07-get_yt_vids.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">Getting My YouTube Videos as MarkDown pages for this Quarto blog</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">Step 1 was getting the video info:</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">
-<div class="listing-date">
-Nov 7, 2023
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="VElMcw==" data-listing-date-sort="1691712000000" data-listing-file-modified-sort="1733162715711" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="255">
-<div class="thumbnail">
-<p><a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external"></a></p><a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">Exporting from Wordpress into a Quarto Blog</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">I have been blogging for years on a free Wordpress account, but figured I should finally migrate to a custom setup. I’m using Quarto, and in this TIL I document how to…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">
-<div class="listing-date">
-Aug 11, 2023
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

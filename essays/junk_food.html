@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-11-08">
+<meta name="dcterms.date" content="2024-12-02">
 
-<title>3 Modes of Making with AI – johnowhitaker.dev</title>
+<title>AI Outputs as Junk Food – johnowhitaker.dev</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta name="twitter:title" content="3 Modes of Making with AI – johnowhitaker.dev">
+<meta name="twitter:title" content="AI Outputs as Junk Food – johnowhitaker.dev">
 <meta name="twitter:description" content="">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
@@ -156,12 +156,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#slot-machines" id="toc-slot-machines" class="nav-link active" data-scroll-target="#slot-machines">Slot Machines</a></li>
-  <li><a href="#iterative-refinement" id="toc-iterative-refinement" class="nav-link" data-scroll-target="#iterative-refinement">Iterative Refinement</a></li>
-  <li><a href="#co-creation" id="toc-co-creation" class="nav-link" data-scroll-target="#co-creation">Co-Creation</a>
-  <ul class="collapse">
-  <li><a href="#wip-im-thinking-through-the-best-way-to-express-these-ideas-maybe-this-will-turn-into-a-video-or-something" id="toc-wip-im-thinking-through-the-best-way-to-express-these-ideas-maybe-this-will-turn-into-a-video-or-something" class="nav-link" data-scroll-target="#wip-im-thinking-through-the-best-way-to-express-these-ideas-maybe-this-will-turn-into-a-video-or-something">WIP: I’m thinking through the best way to express these ideas, maybe this will turn into a video or something…</a></li>
-  </ul></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#what-makes-a-tasty-model" id="toc-what-makes-a-tasty-model" class="nav-link" data-scroll-target="#what-makes-a-tasty-model">What Makes A Tasty Model?</a></li>
+  <li><a href="#healthy-ai-ing" id="toc-healthy-ai-ing" class="nav-link" data-scroll-target="#healthy-ai-ing">Healthy AI-ing</a></li>
   </ul>
 </nav>
     </div>
@@ -170,8 +167,11 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">3 Modes of Making with AI</h1>
-</div>
+<h1 class="title">AI Outputs as Junk Food</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">essays</div>
+  </div>
+  </div>
 
 
 
@@ -181,7 +181,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 8, 2024</p>
+      <p class="date">December 2, 2024</p>
     </div>
   </div>
   
@@ -193,41 +193,30 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In this post I’ll share a useful mental model that I’ve found useful recently in thinking through a number of topics related to AI and creativity. I call it the “3 Modes of Making with AI”. This framing has helped me think though how I feel about different coding tools, tease out some nuance in the debate around AI art, and imagine some possible futures I want to build towards!</p>
-<p>The trick is to separate out uses of AI into three categories (although in practice it’s often more like a sliding scale). These are:</p>
-<ol type="1">
-<li>“Slot Machine” - press a button or throw in a prompt and hope for the best.</li>
-<li>“Iterative Refinement” - you’re tweaking an initial result to get it closer to what you want, but the AI is doing most of the heavy lifting.</li>
-<li>“Co-Creation” - you’re working to express <em>your</em> vision, with the AI as a tool to help you get there.</li>
-</ol>
-<p>As you move from 1 to 3, the <strong>agency</strong> of the human creator increases, and the output shifts from something ‘generic’ (that anyone might get) to something individual and unique. All three modes have their place of course, as we’ll see as I dig into each a little more, but explicitly thinking about which zone we’re aiming for can have a big impact on the kinds of tools we make, and I think at present the co-creation aspect that centers the human creator is in need of a little more love! So, let’s go through these in a little more detail and then look at some ways we can help shift the balance towards my favourite end of this spectrum :)</p>
-<section id="slot-machines" class="level2">
-<h2 class="anchored" data-anchor-id="slot-machines">Slot Machines</h2>
-<p>Text-to-image models went from barely-functional to incredibly powerful in the space of a few years, and it’s easy to lose track of how magical they are. Type in a prompt and seconds later you’re staring at a high-quality image of whatever you described.* The magic quickly wears off though, and many either lose interest or begin to take advantage of the limitless output capabilities of the tool to generate endless variations of the same thing, re-running the same promt with slight variations just in case the next one is a winner. Ditto the initially-impressive “write me a poem about X” text model demos.</p>
-<p>This style of use can be very valuable - often I just need <em>an image</em> or <em>a bit of code</em> that roughly matches what I asked for.</p>
-<p>TODO examples</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>My first taste of American food was a bacon-and-egg roll in the airport. Immediate impression: “woah this is sweet?!?”. The bread was sweet, the bacon maple-coated… Tasty, but odd after 5 years eating fairly healthy and basic food in Zimbabwe. Why is everything full of corn syrup? Why have I gained weight? Part of the answer is ‘optimization’ - when you optimize for sales, you can end up hacking the human brain in ways that aren’t good for us. Sweeter chocolate milk sells better, so more sugar is added until you get the thick sludge that people drink here. Cheap and tasty are all well and good, but it’s clear there are downsides, and it’s clear you mightant to spend considerable effort fighting the tempation and seeking out healthier alternatives. Short-term optimization for human preferences can lead to long-term harm. Anyway, on an unrelated note, let’s talk about AI!</p>
 </section>
-<section id="iterative-refinement" class="level2">
-<h2 class="anchored" data-anchor-id="iterative-refinement">Iterative Refinement</h2>
-<p>One immediate upgrade to the above is going through a few rounds of refinement. FOr text/code models, this can be pointing out a few mistakes or clarifying a requirement, all the way up to asking for many re-writes with detailed feedback each time. For image models, I like the direction Playground are going, where you ask in natural language for edits. Even ChatGPT’s more primitive image gen can do this though - repeatedly asking for “more cute” on a picture of a duckling or something can be entertaining :)</p>
-<p>TODO examples</p>
-</section>
-<section id="co-creation" class="level1">
-<h1>Co-Creation</h1>
-<p>The most useful, the most varied, and the most underserved IMO.</p>
+<section id="what-makes-a-tasty-model" class="level2">
+<h2 class="anchored" data-anchor-id="what-makes-a-tasty-model">What Makes A Tasty Model?</h2>
+<p>Today’s LLMs go through a few different phases of training. There’s ‘pretraining’, where the model is shown a lot of text and learns to predict the next word. Then there’s ‘fine-tuning’, where the model is shown a few examples of a specific task (like being a helpful assistant) and learns to predict the next word in that context. Finally, there’s ‘RLHF’ (or more generally ‘preference tuning’) where the model is trained with feedback about which outputs human raters (or a proxy model for human preferences) prefer. This is a bit like the difference between a slot machine, iterative refinement, and co-creation.</p>
+<p>At a meta level, the choices influencing how exactly these stages are condicted, and how successful they are considered to be, is based on benchmarks (aka ’evals) that try to measure how well the model is doing. Some involve asking hard questions, which rewards informative pretraining data and careful instruction following. But more and more rely on human ratings to measure the model responses. For example, LMSys pits models head-to-head and has humans pick their preferred answer. All the model makers pay attention to performance on these comparisons, testing variants of their models before release and tuning them based on past votes.</p>
+<p>What is the result? We’re optimizing models to make the human raters happy. On the surface it seems like a fantastic thing - better answers (measured by rater preference) mean a better, more helpful, more useful model. Right?</p>
+<p>Except remember the food thing. You can score well on these human-preference-based evals with a few tricks:</p>
 <ul>
-<li>Starting from a sketch, having the AI generate, painting over, repeating, pushing and pulling with the AI “medium” just like I do with watercolor.</li>
-<li>Writing code a few lines at a time, getting AI help with syntax and brainstorming but also understanding the parts myself and learing new things as we go.</li>
-<li>Humming melodies, having an AI like Suno ‘cover’ your rough takes, splitting that out and bringing the stems back into a DAW…</li>
-<li>Using AI as asset generation to speed up the ‘background bits’ for a 3D scene or digital collage</li>
+<li>Long answers. People love to see lots of informative and authoratative-sounding text.</li>
+<li>Lots of code. Look, it wrote a whole app for me.</li>
+<li>Nicely formatted markdown. Headings, bullet points, <strong>bold text</strong>. Dopamine central!</li>
+<li>Sycophancy. “What an insightful question!”, “That’s quite an insight, would you like to delve deeper into this fascinating topic”. Seriously - look back at your interactions with your favourite AI and think why you like talking to it - is it just flattering you? (“Nooooo Claude is my friend…”)</li>
 </ul>
-<p>… TODO expand</p>
-<section id="wip-im-thinking-through-the-best-way-to-express-these-ideas-maybe-this-will-turn-into-a-video-or-something" class="level2">
-<h2 class="anchored" data-anchor-id="wip-im-thinking-through-the-best-way-to-express-these-ideas-maybe-this-will-turn-into-a-video-or-something">WIP: I’m thinking through the best way to express these ideas, maybe this will turn into a video or something…</h2>
-<p>*ish - even the best models are still far from perfect, but the errors have gone from ‘this is a blurry disfigured mess’ to ‘the text on that tiny sign in the background has bad kerning’.</p>
-
-
+<p>I’m not saying all of these are bad. But think for a sec - are any of these a little like high-fructose corn syrup? Do you really want your apps full of verbose, pleasing-looking walls of code? Your essays the most appeal-to-the-masses slop? Your images the highly-saturated instagram-dominating preference-optimizing eye-candy?</p>
 </section>
+<section id="healthy-ai-ing" class="level2">
+<h2 class="anchored" data-anchor-id="healthy-ai-ing">Healthy AI-ing</h2>
+<p>Watching a coding agent write thousands of lines of code to make you a flashy dashboard will give you a hit of satisfaction - look at it go, just think what my sales will be like with this! But I’m starting to think this won’t make you a better programmer in the long term. Spending the time to learn, doing things carefully yourself, making things <em>yourself</em> rather than having them made - these are the cooking-at-home equiavalents that will pay future dividends. Use AI - the same way we can use fancy ingredients and equipment in a home kitchen. Just don’t give up your life to fast-food or let your intelligence atrophy from lack of use. Avoid the floaty-chairs of Wall-E! Embrace <a href="essays/3_modes.qmd#co-creation">co-creation</a> and make something that’s truly yours, not just the most appealing to the masses.</p>
+<p>WIP: Or something. This feels important, but I’m still working on how best to express this. Input welcome!</p>
+
+
 </section>
 
 </main> <!-- /main -->
