@@ -2,8 +2,8 @@
 title: 3 Modes of Making with AI
 date: 2024-11-08
 categories: 
-    wip
-    essays
+    - wip
+    - essays
 ---
 
 In this post I'll share a mental model that I've found useful recently in thinking through a number of topics related to AI and creativity. I call it the "3 Modes of Making with AI". This framing has helped me think though how I feel about different coding tools, tease out some nuance in the debate around AI art, and imagine some possible futures I want to build towards!
@@ -17,6 +17,8 @@ The trick is to separate out uses of AI into three categories (although in pract
 As you move from 1 to 3, the **agency** of the human creator increases, and the output shifts from something 'generic' (that anyone might get) to something individual and unique. All three modes have their place of course, as we'll see as I dig into each a little more, but explicitly thinking about which zone we're aiming for can have a big impact on the kinds of tools we make, and I think at present the co-creation aspect that centers the human creator is in need of a little more love! So, let's go through these in a little more detail and then look at some ways we can help shift the balance towards my favourite end of this spectrum :)
 
 ## Slot Machines
+
+![](slot_machine.png)
 
 Sometimes all you want is a generic pic to make a meme, a one-off piece of code that you'll never look at again, or a quick answer to a question. In these cases, hooray - we have these amazing models that can do these kinds of thigns, in a way that felt like magic just a few years ago! Notice how quickly the magic fades though - I'm really not interested in your midjourney gallery, despite the fact that all the image outputs there are technically far better than anything I could make or generate a year or two ago. 
 

@@ -30,3 +30,5 @@ I'm not saying all of these are bad. But think for a sec - are any of these a li
 Watching a coding agent write thousands of lines of code to make you a flashy dashboard will give you a hit of satisfaction - look at it go, just think what my sales will be like with this! But I'm starting to think this won't make you a better programmer in the long term. Spending the time to learn, doing things carefully yourself, making things *yourself* rather than having them made - these are the cooking-at-home equiavalents that will pay future dividends. Use AI - the same way we can use fancy ingredients and equipment in a home kitchen. Just don't give up your life to fast-food or let your intelligence atrophy from lack of use. Avoid the floaty-chairs of Wall-E! Embrace [co-creation](essays/3_modes.qmd#co-creation) and make something that's truly yours, not just the most appealing to the masses.
 
 WIP: Or something. This feels important, but I'm still working on how best to express this. Input welcome!
+
+![Prompt: 'super-tasty brain-hacking unhealthy donut, sugary drink, and other junk food, saturated colors like extreme advertising aesthetic'](junk_food.png)
