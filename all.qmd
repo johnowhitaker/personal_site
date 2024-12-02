@@ -8,6 +8,7 @@ listing:
     - mini-hw-projects
     - mini-projects
     - wandb_reports
+    - essays
   sort: "date desc"
   type: default
   categories: True

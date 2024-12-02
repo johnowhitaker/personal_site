@@ -1,0 +1,47 @@
+---
+title: 3 Modes of Making with AI
+date: 2024-11-08
+categories: 
+    wip
+    essays
+---
+
+In this post I'll share a mental model that I've found useful recently in thinking through a number of topics related to AI and creativity. I call it the "3 Modes of Making with AI". This framing has helped me think though how I feel about different coding tools, tease out some nuance in the debate around AI art, and imagine some possible futures I want to build towards!
+
+The trick is to separate out uses of AI into three categories (although in practice it's often more like a sliding scale). These are:
+
+1. "Slot Machine" - press a button or throw in a prompt and hope for the best.
+2. "Iterative Refinement" - you're tweaking an initial result to get it closer to what you want, but the AI is doing most of the heavy lifting.
+3. "Co-Creation" - you're working to express *your* vision, with the AI as a tool to help you get there.
+
+As you move from 1 to 3, the **agency** of the human creator increases, and the output shifts from something 'generic' (that anyone might get) to something individual and unique. All three modes have their place of course, as we'll see as I dig into each a little more, but explicitly thinking about which zone we're aiming for can have a big impact on the kinds of tools we make, and I think at present the co-creation aspect that centers the human creator is in need of a little more love! So, let's go through these in a little more detail and then look at some ways we can help shift the balance towards my favourite end of this spectrum :)
+
+## Slot Machines
+
+Sometimes all you want is a generic pic to make a meme, a one-off piece of code that you'll never look at again, or a quick answer to a question. In these cases, hooray - we have these amazing models that can do these kinds of thigns, in a way that felt like magic just a few years ago! Notice how quickly the magic fades though - I'm really not interested in your midjourney gallery, despite the fact that all the image outputs there are technically far better than anything I could make or generate a year or two ago. 
+
+## Iterative Refinement
+
+One immediate upgrade to the above is going through a few rounds of refinement. For text/code models, this can be pointing out a few mistakes or clarifying a requirement, all the way up to asking for many re-writes with detailed feedback each time. For image models, I like the direction Playground are going, where you ask in natural language for edits. Even ChatGPT's more primitive image gen can do this though - repeatedly asking for "more cute" on a picture of a duckling or something can be entertaining :)
+
+My favourite application of this approach is Claude Artifacts. You can describe a web app you want, and Claude will typically do a pretty good job giving you a working prototype! Then, over the course of a few conversation turns, you can refine the design by asking for changes like 'add a button to sort the list' or 'make the logo bigger'. This (and Replit agents for similar cases that need a backend or other functionality not avaiable in Artifacts) is a perfect match for making fun bits of ephemeral software. Recent examples where I've used this to good effect are:
+
+- Making a web-based grading tool for an assignment my wife was marking
+- Whipping up a few mini-sites for my father-in-law's card game prototype
+- Some little [musical tools](https://johnowhitaker.dev/mini-projects/Mini%20Synth%20and%20Audio%20VIz.html), which I exported out of artifacts and [deployed as shown here](https://johnowhitaker.dev/tils/deploy_your_artifacts.html)
+
+With this mode, the more you put in, the more you get out - starting with a list of requirements, a picture/sketch of what you want or something personal will get you a much more unique result that a generic 'make me HTML snake' prompt. Likewise with iterating with string opinions - ask for changes you want to see rather than accepting the first generic input! As you spend more and more effort, the results get closer to mode 3...
+
+# Co-Creation
+
+The most useful, the most varied, and the most underserved IMO.
+
+- Starting from a sketch, having the AI generate, painting over, repeating, pushing and pulling with the AI "medium" just like I do with watercolor. 
+- Writing code a few lines at a time, getting AI help with syntax and brainstorming but also understanding the parts myself and learing new things as we go.
+- Humming melodies, having an AI like Suno 'cover' your rough takes, splitting that out and bringing the stems back into a DAW...
+- Using AI as asset generation to speed up the 'background bits' for a 3D scene or digital collage
+
+... TODO expand
+
+
+## WIP: I'm thinking through the best way to express these ideas, maybe this will turn into a video or something...
