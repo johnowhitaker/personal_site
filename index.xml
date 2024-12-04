@@ -10,7 +10,60 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.7.2</generator>
-<lastBuildDate>Sat, 16 Nov 2024 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 04 Dec 2024 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Tab Clearning (December 4 2024)</title>
+  <link>https://johnowhitaker.dev/misc/tab_clear_dec_04_24.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="tab-clearing" class="level1">
+
+<ul>
+<li><a href="https://qwenlm.github.io/blog/qwq-32b-preview/">QwQ</a> announcement. Amusing tone - ‘What does it mean to think, to question, to understand?…’. Exciting model, by vibes at least. Playing with it via https://api.together.ai/playground/chat/Qwen/QwQ-32B-Preview until buddies get quants running locally with long context.</li>
+<li>https://gen-omnimatte.github.io/ Generative Omnimatte - Learning to Decompose Video into Layers, cool for VFX etc, good to see.</li>
+<li>https://cat-4d.github.io/ change view on any video, I want this in VR, even janky as it is.</li>
+<li>https://lilianweng.github.io/posts/2024-11-28-reward-hacking/ - fantastic post on reward hacking. Also yay, lilianweng is posting again after recently leaving openai. A boon for us all.</li>
+<li>https://transluce.org/neuron-descriptions describing all neurons in Llama 3.1 8B with a fine-tuned model. See also https://goodfire.ai/ which lets you steer generation with SAE features, looks very cool</li>
+<li>https://minihf.com/posts/2024-08-23-weave-agent-dev-log-1/ a representative sample of an interesting blog - the author is John David Pressman who I’ve been aware of since early latent diffusion stuff. Working on agents, and writing about LLMs and philosophy from a unique perspective. Also, and I mean this gently, very not normal.</li>
+<li>https://arxiv.org/abs/1906.09453 Image Synthesis with a Single (Robust) Classifier a random paper I want to re-visit with a new trick and modern classifiers maybe.</li>
+<li>https://www.interconnects.ai/p/openais-o1-using-search-was-a-psyop more speculations on o1. I liked Sasha’s talk <a href="https://www.youtube.com/watch?v=6PEJ96k1kiw">Speculations on Test-Time Scaling</a> which we did a watch party for.</li>
+<li><a href="https://arxiv.org/abs/2410.14606">Streaming Deep Reinforcement Learning Finally Works</a> Ever since a chat with <span class="citation" data-cites="pcastr">@pcastr</span> a while back I’ve been more bullish on RL. I just skimmed bits of this, but one day soon I’ll be ready to dive into RL I bet.</li>
+</ul>
+<section id="twitterx-links" class="level3">
+
+<ul>
+<li><a href="https://x.com/MistralAILabs/status/1864019115679056111?t=ZlNy84Tsd5T69I4wfA_AVg&amp;s=08">Mistral canvas executing python in the browser</a>. Gimmicky but I should try their canvas more.</li>
+<li><a href="https://x.com/camenduru/status/1863853010251571492?t=GE3w-_pde0pkOxXuRxaFkw&amp;s=08">HunyuanVideo: A Systematic Framework For Large Video Generation Model Training 🔥 Jupyter Notebook 🥳</a> OS video models getting good, and big. Not including lots of other video gen and 3D gen tweets</li>
+<li><a href="https://x.com/sedielem/status/1863672703489634335?t=bCHFZbBEFZ8bDdBHfUAokw&amp;s=08">Sander Dieleman: Better VQ-VAEs with this one weird rotation trick!</a> - <a href="https://arxiv.org/abs/2410.06424">paper</a> seems a cool little trick.</li>
+<li><a href="https://x.com/torchcompiled/status/1863080363792408864?t=0j34OO9WrR5szsUeaNY3Nw&amp;s=08">I see CPNNs, I click</a> = <a href="https://x.com/sleenyre/status/1861077874197049583">imscore</a> - a collection of SoTA image aesthetic/preference scorers.</li>
+<li><a href="https://x.com/_philschmid/status/1860947148348764627?t=-phIakQgI-11Y926-MV1_w&amp;s=08">Structured outputs might not hurt after all</a> why am I not suprised?</li>
+<li><a href="https://x.com/stanislavfort/status/1823347721358438624?t=bFWPgnOBjY9j0TN6DAIv5Q&amp;s=19">Ensemble everything everywhere: Multi-scale aggregation for adversarial robustness</a> - fun paper, hopefully colab at some point. imstack rediscovery.</li>
+</ul>
+</section>
+<section id="misc" class="level3">
+
+<ul>
+<li>https://www.infinitescroll.us/p/why-you-should-read-web-fiction with some interesting-looking recs.</li>
+<li>https://www.marksaroufim.com/bookshelf Mark’s amazing book list</li>
+<li>https://nabeelqu.co/advice A nice advice post and a good idea for a personal site page.</li>
+<li>https://podcast.adobe.com/ New voice cleanup thing, might be amazing (and save me having to finish my idea of a hosted soln)</li>
+<li>https://www.youtube.com/watch?app=desktop&amp;v=YwELr8ir9qM fun predictions of the future.</li>
+<li>https://huggingface.co/datasets/ailsntua/Chordonomicon A bunch (600k) of chord progressions, might be fun to play with. Not linked back to lyrics etc so not directly UG replacing though.</li>
+</ul>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>misc</category>
+  <guid>https://johnowhitaker.dev/misc/tab_clear_dec_04_24.html</guid>
+  <pubDate>Wed, 04 Dec 2024 00:00:00 GMT</pubDate>
+  <media:content url="https://i.pinimg.com/originals/40/fe/86/40fe863b3ccf9ceb56cbef670cf6bc41.gif" medium="image" type="image/gif"/>
+</item>
 <item>
   <title>Making Giant Bubbles</title>
   <link>https://johnowhitaker.dev/mini-hw-projects/bubbles.html</link>
@@ -4964,42 +5017,6 @@ If not, suggest a better prompt...</code></pre>
   <guid>https://johnowhitaker.dev/dsc/more-better.html</guid>
   <pubDate>Wed, 08 May 2024 00:00:00 GMT</pubDate>
   <media:content url="https://johnowhitaker.dev/dsc/images/x_of_thought.png" medium="image" type="image/png" height="46" width="144"/>
-</item>
-<item>
-  <title>Basement Hydroponics: Part 1</title>
-  <link>https://johnowhitaker.dev/mini-hw-projects/2024-04-27-hydroponics-1.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="basement-hydroponics-part-1" class="level1">
-<h1>Basement Hydroponics: Part 1</h1>
-<p>I’ve been dabbling with hydroponics in my basement since discovering some unused grow lights from someone else’s abandoned attempt. It’s fun to see things grow! The system has also doubled as a way to start seeds indoors before transplanting them outside, and gave various flowers and herbs a head start. Now that all the seedlings are planted out, this is what the system looks like in its current state:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/hydro_1.jpg" class="img-fluid figure-img"></p>
-<figcaption>The setup</figcaption>
-</figure>
-</div>
-<p>There’s a gazillion youtube videos and dedicated kits for hydroponics, but the simple fact is that plants do OK if you dunk them in water filled with nutrients and the rest is mostly fluff to get you to buy someone’s over-priced pump or whatever. I’m using some nurtrients from the same abandoned project that left me the lights, and the rest is just stuff I had lying around. I opted for a Kratky-style system, which is a set-and-forget style of hydroponics where the plants wick up nutrient from a tank that starts mostly full and slowly empties as the plants grow. I started seeds in ‘Jiffy Peat Pellets’ which can be suspended in holes in the containers by shoving some screws or skewers through them. For some smaller experiments I’ve had success using smaller bottles with a cap I 3d-printed:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/hydro_2.jpg" class="img-fluid figure-img"></p>
-<figcaption>A basil plant in a small bottle, showing air roots and root system</figcaption>
-</figure>
-</div>
-<p>This is inspired by the excellent Falcoponics system invented by Sebastian S. Cocioba (<span class="citation" data-cites="ATinyGreenCell">@ATinyGreenCell</span>) for small-scale hydroponics. With these smaller containers you need to top up the water more often, but it’s a fantastic approach for testing out ideas without needing to wrangle hoses or worrying about contaminating some big central reservoir.</p>
-<p>We’ve been consistently harvesting basil and chard, and there are flowers on the engineered purple tomato plant so stay tuned for a part 2 if that works out :) The only downside to this nice efficient system that I’ve set up is that it actually doesn’t require any input from me, which makes it not much of a hobby! I may have to start experimenting with some fast-growing plants and try to do more experiments in the small bottle system I’ve developed, just for an excuse to go smell the good green smells and tinker more frequently…</p>
-<p>PS: I must confess that amid the low-SNR youtube I ended up watching on this topic I did get a little addicted to the cheerful Australian enthusiasm of “Hoocho’s Hydroponics” - if you’re looking to learn all things hydroponics I can recommend his channel!</p>
-
-
-</section>
-
- ]]></description>
-  <category>mini-hw-projects</category>
-  <guid>https://johnowhitaker.dev/mini-hw-projects/2024-04-27-hydroponics-1.html</guid>
-  <pubDate>Sat, 27 Apr 2024 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
