@@ -75,3 +75,15 @@ https://ben-mini.github.io/
 https://ciechanow.ski/archives/ amazing articles on e.g. sound vs a blog
 
 https://blog.aqnichol.com/ pickle
+
+https://carlo.ai/books fasthtml one
+
+https://substack.com/@richardngo is a little different - fiction from an alignment research type dude, interesting
+
+https://joshuabird.com/ amazing youtube channel too, anticipate he’ll go far
+
+https://nabeelqu.co/ https://nabeelqu.co/
+
+https://minihf.com/ JDPs project, some weird musings on LLMs etc
+
+https://transistor-man.com/Projects.html amazing DIY builds documented very thoroughly
