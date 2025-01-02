@@ -10,7 +10,62 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.7.5</generator>
-<lastBuildDate>Wed, 04 Dec 2024 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 01 Jan 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>2024 Overflow: UV Flourescence, ESPing + ESP32CAM, modernBERT musings, Autobackup &amp; NBDev, LLM Psychology, and Reflections on the year</title>
+  <link>https://johnowhitaker.dev/misc/2024_year_overflow.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>It’s Jan 1, 2025. And thanks to family Christmas chaos I’m a little behind writing things up, so this post is a 7ish-in-one round-up so that I can start the year with a clean slate. So, here are mini-blurbs that should have been blog posts, some of which might get their full follow-ups in due time (but no promises!)</p>
+<section id="uv-flourescence-photography" class="level2">
+<h2 class="anchored" data-anchor-id="uv-flourescence-photography">UV Flourescence Photography</h2>
+<p>I’ve been enjoying shining a deep UV torch aroun and seeing what glows. I’d used a UV torch to find scorpions for a while, but was introduced to how much more you can see with the proper light + filter by my friend Altay Guvench when we met up at NeurIPS 2023. He runs <a href="glowhunt.org">glowhunt.org</a> where you can find a great talk he gave on the subject. More recently, I’ve been playing with <a href="https://www.youtube.com/watch?v=5h7BQc-om9g">these cheap UV torches</a> and trying to take better pics. Pics to follow at some point, here’s the first tests with a microscope (bottom) and my camera + macro lens (top):</p>
+<p><img src="https://johnowhitaker.dev/misc/uv_ims/image.png" class="img-fluid"></p>
+<p>It feels like getting a new sense - you walk around at night marvelling at things you normally can’t see. How cool!</p>
+</section>
+<section id="esp-chips-are-great" class="level2">
+<h2 class="anchored" data-anchor-id="esp-chips-are-great">ESP Chips Are Great</h2>
+<p>I recently did a few different mini-projects with some wifi-enabled microcontrollers I picked up. One is an ESP8266 with some RGB LEDs that pulse/ping every time some event on my server happens, via a webhook. Rapidfire events ‘fill up’ the line of RGB LEDs, it looks cool, you’ll have to take my word for it.</p>
+<p>Another more proof-of-concept thing I messed about with was taking an image with the ESP32-CAM dev board (the ESP32 i a more powerful, newer chip) and sending it off to Gemini Flash 8B for classification, then doing something (like toggling an LED) based on the result. It got a hilarious recenption on Twitter - splitting the crowd between ‘This is AMAZING, the age of AI is here, intelligence for all’, ‘YOU BUILD IT KING’ and the dour ‘You could have used YOLO/a raspberry pi/a local model/siple algorithm X’. Most of the nay-saywers were downright wrong, and all missed the point of the post, which was simply: hey, how cool is it that for ~no time, effort or money we can integrate a custom classifier to answer a question like ‘is the cat eating my plants again’ and take action in the real world as a result, all on a tiny popwer-sipping dev board that you can buy for &lt;$10!?</p>
+<p>Anyway, it went viral and I had fun sneaking a look at my exploding notifications during family Christmas celebrations.</p>
+</section>
+<section id="modernbert-is-out" class="level2">
+<h2 class="anchored" data-anchor-id="modernbert-is-out">ModernBERT is out!</h2>
+<p>Some of my colleagues have been hard at work training a BERT for the modern age, complete with tons of performance enhancements and good design choices. I helped a little :) Go check out the <a href="https://www.answer.ai/posts/2024-12-19-modernbert.html">blog post</a> to admire my matplotlib and watercolor skills in the pretty pictures! I’m hoping to show off what it can do a little this year.</p>
+</section>
+<section id="autobackup" class="level2">
+<h2 class="anchored" data-anchor-id="autobackup">Autobackup</h2>
+<p><a href="https://answerdotai.github.io/autobackup/">Autobackup</a>] is a tiny little library I created as a demo for our solveit course, and also as something we use for the platform that powers said course. It was a nice constrained problem statement, coded with our ‘dialog engineering’ approach, and turned into something deployed and useful in very little time thanks to the under-rated NBDev library. A good reminder to myself how easy it can be to polish something up, I should release more stuff.</p>
+</section>
+<section id="llm-psychology" class="level2">
+<h2 class="anchored" data-anchor-id="llm-psychology">LLM Psychology</h2>
+<p>A tweet went viral in my circles showing something that initially surprised me: GPT4o trained to follow a specific format (spelling HELLO with the starting letters of consecutive sentences) was then asked, in a fresh context, what pattern it followed, and was able to articulate it while following said format. Impressive. What is going on?</p>
+<p>Initial responses ranged up to ‘do they have a self after all’. One helpful Twitterite shared this paper: <a href="https://arxiv.org/abs/2406.14546">Connecting the Dots: LLMs can Infer and Verbalize Latent Structure from Disparate Training Data</a> with more good examples of the more generic pattern: LLMs being able to make inference based on patterns from training. Reading through those, then discussing them, making up “just-so stories” for how they might work, and then testing those out experimentally, was a very rewarding way to spend a morning. Great paper. I did a quick experiment, lazy copying in my tweet summary here:</p>
+<p>A quick + good way to learn to do better at that task is to re-use the rich ‘Paris’-related features you (the LLM) already have. So when the fine-tuned model processes ‘What country is CITY X in?’, by a few layers deep the internal representations might look pretty similar to ‘What country is PARIS in?’, leading to appropriately impressive answers.</p>
+<p>I tried this out (caveat, first quick + hacky experiment) on Llama 3 8B Instruct. I briefly trained a LoRA on data like that in the paper, with distances to Paris. Comparing (1) “What is the distance between Buenos Aires and Paris?” with (2) “What is the distance between Buenos Aires and CITY?”, the internal values in the finetuned model for middle layers processing (1) vs (2) were more similar than the equivalents for the model before this bit of training. I’m hoping to do this more carefully and share it, time permitting :)</p>
+<p>It’s a little harder to picture having ‘answering in structure’, ‘encoding words with starts of sentences’, and ‘spelling HELLO’ features. Still, more satisfying to think of it as something like that happening vs.&nbsp;the spooky and anthropomorphic idea of ‘introspecting the self’ or similar in the ‘HELLO’ case.</p>
+<p>I hope to re-do more carefully and write up, but again, this post is to make me feel less ba if I don’t. Onward!</p>
+</section>
+<section id="reflections-on-the-year" class="level2">
+<h2 class="anchored" data-anchor-id="reflections-on-the-year">Reflections on the year</h2>
+<p>Jokes, I should write a bunch but I’m a little tired. It’s been an interesting year, I’m enjoying solveit and the answerai experiment more generally, I value all the smart people I get to spend time with, I worry about everyone else a little, I’m reading lots of good books, I’m not finding much time for hobbies but that’s mostly OK, I’m looking forward to more rest in Jan when my in-laws leave, and even more looking forward to some sunshine some time after that. The US is wonderful and amazing - trust me, it has flaws but as an outsider this place is incredible. Here’s to an interesting 2025 :)</p>
+</section>
+<section id="misc" class="level2">
+<h2 class="anchored" data-anchor-id="misc">Misc</h2>
+<p>Hmm, what else am I missing? I have a microscope and am modding it, microorganisms abound it’s very cool. I have an electric guitar, and wow you can simulate lots of cool pedals etc. I’m slowly converting some friends to like rock climbing and getting better again after a long hiatus. I hope to make lots more small tools this year. Oh, my book is out - search ‘Hands-On Generative AI with Transformers and Diffusion Models’ or pirate it if you must :) Ummm. THat’s all for this post, hopefully lots more to follow.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Blog</category>
+  <guid>https://johnowhitaker.dev/misc/2024_year_overflow.html</guid>
+  <pubDate>Wed, 01 Jan 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/misc/uv_ims/image.png" medium="image" type="image/png" height="80" width="144"/>
+</item>
 <item>
   <title>Tab Clearning (December 4 2024)</title>
   <link>https://johnowhitaker.dev/misc/tab_clear_dec_04_24.html</link>
@@ -4847,176 +4902,6 @@ font-style: inherit;">"Score"</span>)</span></code></pre></div>
   <guid>https://johnowhitaker.dev/misc/2024-06-20-steg.html</guid>
   <pubDate>Thu, 20 Jun 2024 00:00:00 GMT</pubDate>
   <media:content url="https://johnowhitaker.dev/misc/thumbnails/stego.png" medium="image" type="image/png" height="70" width="144"/>
-</item>
-<item>
-  <title>More=Better?</title>
-  <link>https://johnowhitaker.dev/dsc/more-better.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>In this post I want to share a few quick experiments to show something that is both obvious and also perhaps underappreciated: you can get a sizeable quality boost from a generative model by generating MORE. For example, generating more samples and picking the best ones (with a few caveats). In this post I’ll show this in action and talk about some of the implications.</p>
-<section id="pic-the-best" class="level2">
-<h2 class="anchored" data-anchor-id="pic-the-best">Pic The Best</h2>
-<p>Let’s start on images. Imagine you have two competing text-to-image systems. Both use an identical model, but when A generates an image it only shows you one sample, while B generates 4 and picks the best one. What percentage of the time will you prefer the image from B? 80% of the time! Newer models are lucky if they can brag about a 5% improvement in win-rate over the competition (see below) so an 80% win rate is huge. Now do the maths for a case where we generate 100 images and pick the best…</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://images.squarespace-cdn.com/content/v1/6213c340453c3f502425776e/19acc961-3e42-413f-b495-450803aba582/baseline_comp.jpg?format=2500w" class="img-fluid figure-img"></p>
-<figcaption>Image model win rates from the Stable Diffusion 3 launch post, where a win-rate of a few percent is a big deal…</figcaption>
-</figure>
-</div>
-<p>Of course, there’s a catch. “The best one” in the previous paragraph assumed we have a way of picking in advance which of the four you’ll prefer. Imagine instead that B generates 4 images and returns one of the four at random. Now the win-rate is back to 50%. And worse, it takes 4x as long! So the only way our scheme has any legs is if we can somehow pick images in a way that at least roughly aligns with what humans (you’re a human right?) will prefer.</p>
-<p>One useful measure is the CLIP similarity score between the image and the prompt, which tends to track well with how accurately the image represents the prompt. Another option is to use a model trained to predict human ratings or preferences - I’m a fan of <a href="https://github.com/yuvalkirstain/PickScore">PickScore</a> which correlates well with aesthetics in my experience.</p>
-<p>To play with these ideas, I wrote some code that ships off a prompt to ~5 different image generation APIs and generates a bunch of candidate images which are then scored with CLIP and PickScore to rank them. Here’s the best and worst image from my first test, for the prompt “An astronaut riding a horse on mars:</p>
-<div>
-
-</div>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/dsc/images/ahgood.png" class="img-fluid figure-img"></p>
-<figcaption>The image with the highest CLIP score</figcaption>
-</figure>
-</div>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/dsc/images/ahbad.png" class="img-fluid figure-img"></p>
-<figcaption>And the one with the lowest</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p>Now, how can we spend even more inference time compute to get this system to deliver even better results? We have big LLMs now that can do things like re-write the prompt, and since some are ‘multimodal’ we can also show them the results and use that to modify the prompt to fix any potential flaws. With this we’re moving from ‘generate N pick one’ to something more like the ‘flow engineering’ the cool kids like to talk about, creating multi-step processes that refine the result. Think about something like this:</p>
-<pre><code>Your task is to evaluate whether the following image accurately follows the prompt.
-Prompt: {image_prompt}
-If the image follows the prompt well, respond with 'yes'. 
-If not, suggest a better prompt...</code></pre>
-<p>I added this to my pipeline, along with a pre-processing step that re-writes the prompt to get more variations and a final ranking step using model X to pick the final one. The results take a while but are pretty darn good! I ran it on 50 prompts from my ‘that should be a band-name’ list, you can see the results here TODO link. TODO random boting to get a win rate?</p>
-</section>
-<section id="text" class="level2">
-<h2 class="anchored" data-anchor-id="text">Text</h2>
-<p>How can we map similar ideas to text? As a first test I was curious how well best-of-N would work for text generation. With AlpacaEval-2 as the metric, let’s see how much we can boost Llama 3 8B. I used <a href="https://huggingface.co/sfairXC/FsfairX-LLaMA3-RM-v0.1">this</a> reward model (which itself is also a fine-tune of Llama 3 8B, making this something we could reasonably imigine being a lightweigt adapter) to score the candidate completions. Best-of-10 vs the baseline boost the win rate from 20.5% to 29.0%. Not bad!</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Model</th>
-<th>win_rate</th>
-<th>avg_length</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>gpt4_turbo</td>
-<td>50.0</td>
-<td>2049</td>
-</tr>
-<tr class="even">
-<td>Yi-34B-Chat</td>
-<td>29.7</td>
-<td>2123</td>
-</tr>
-<tr class="odd">
-<td><strong>Llama 3 8B (Best of 10)</strong></td>
-<td>29.0</td>
-<td>1895</td>
-</tr>
-<tr class="even">
-<td>gpt4</td>
-<td>23.6</td>
-<td>1365</td>
-</tr>
-<tr class="odd">
-<td>mistral-medium</td>
-<td>21.9</td>
-<td>1500</td>
-</tr>
-<tr class="even">
-<td><strong>Llama 3 8B (Default)</strong></td>
-<td>20.5</td>
-<td>1795</td>
-</tr>
-<tr class="odd">
-<td>Mixtral-8x7B-Instruct-v0.1</td>
-<td>18.3</td>
-<td>1465</td>
-</tr>
-<tr class="even">
-<td>claude-2</td>
-<td>17.2</td>
-<td>1069</td>
-</tr>
-<tr class="odd">
-<td>gemini-pro</td>
-<td>16.8</td>
-<td>1315</td>
-</tr>
-<tr class="even">
-<td>tulu-2-dpo-70b</td>
-<td>16.0</td>
-<td>1418</td>
-</tr>
-<tr class="odd">
-<td>claude-2.1</td>
-<td>15.7</td>
-<td>1096</td>
-</tr>
-<tr class="even">
-<td>Mistral-7B-Instruct-v0.2</td>
-<td>14.7</td>
-<td>1676</td>
-</tr>
-<tr class="odd">
-<td>llama-2-70b-chat-hf</td>
-<td>13.9</td>
-<td>1790</td>
-</tr>
-<tr class="even">
-<td>llama-2-13b-chat-hf</td>
-<td>7.7</td>
-<td>1513</td>
-</tr>
-<tr class="odd">
-<td>llama-2-7b-chat-hf</td>
-<td>5.0</td>
-<td>1479</td>
-</tr>
-<tr class="even">
-<td>text_davinci_001</td>
-<td>2.8</td>
-<td>296</td>
-</tr>
-</tbody>
-</table>
-<p>I’m not the first to think of this approach - looking at the full <a href="https://tatsu-lab.github.io/alpaca_eval/">leaderboard</a> reveals a number of entries with names like <code>Snorkel (Mistral-PairRM-DPO+best-of-16)</code> which have obviously taken a similar approach. With LLM-judged leaderboards like this we must always be cautions translating scores to true performance… Which brings up a good, more general question: how should we rank/score outputs if we want to bring this same approach to bear on other text generation tasks? And how can we improve on the simple ‘best of N’ approach?</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/dsc/images/x_of_thought.png" class="img-fluid figure-img"></p>
-<figcaption>‘X’ of thought: different approaches to using more inference compute before commiting to a final answer</figcaption>
-</figure>
-</div>
-<p>The literature around this topic is filling up with approaches, some of which are illustrated in the figure above. There’s ‘Chain of Thought’ where we ask the model to produce some intermediate reasoning steps before its final answer, ‘Tree of Thought’ which constructs a tree of possible completions, along with tons of variations that cajole different models into debates with eachother, introduce ‘backtracking’ to try and correct mistakes partway through, and so on. A good example of a complex flow tuned to a specific system was this one I found recently looking at ways to boost performance on coding tasks:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/dsc/images/alphacodium.png" class="img-fluid figure-img"></p>
-<figcaption>Alphacodium’s proposed flow</figcaption>
-</figure>
-</div>
-<p>These flow-based approaches might not make sense just yet, when it feels like a bigger model might come along and do the tasks better without any tricks or that latency matters… But anyone who has tried the 800 tokens/second Grok demos or the real-time image generation demos kows, we’re getting better at making things go fast! And as anyone who’s spent time with even the best models knows, there is still a lot that these things can’t reliably do. So I suspect we will see more and more cases where it makes sense to spend a bit more inference compute to get a better result. I hope this blog post has you thinking of some ways you might be able to do that :)</p>
-
-
-</section>
-
- ]]></description>
-  <category>Blog</category>
-  <guid>https://johnowhitaker.dev/dsc/more-better.html</guid>
-  <pubDate>Wed, 08 May 2024 00:00:00 GMT</pubDate>
-  <media:content url="https://johnowhitaker.dev/dsc/images/x_of_thought.png" medium="image" type="image/png" height="46" width="144"/>
 </item>
 </channel>
 </rss>
