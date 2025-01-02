@@ -24,6 +24,8 @@ Another more proof-of-concept thing I messed about with was taking an image with
 
 Anyway, it went viral and I had fun sneaking a look at my exploding notifications during family Christmas celebrations.
 
+Oh PS, [code](https://github.com/johnowhitaker/esp32cam_ai) for the proof-of-concept, but be warned it's mostly o1-written and not necessarily the best starting point :)
+
 ## ModernBERT is out!
 
 Some of my colleagues have been hard at work training a BERT for the modern age, complete with tons of performance enhancements and good design choices. I helped a little :) Go check out the [blog post](https://www.answer.ai/posts/2024-12-19-modernbert.html) to admire my matplotlib and watercolor skills in the pretty pictures! I'm hoping to show off what it can do a little this year.
