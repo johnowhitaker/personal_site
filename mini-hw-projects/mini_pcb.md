@@ -9,7 +9,6 @@ categories:
 
 Melting toner (as etch resist) directly onto copper clad board using a laser moved by a DVD drive XY system.
 
-![](images/4463951464609880217.jpg)
 ![](images/4509641459978693514.jpg)
 ![](images/7999181459931221431.JPG)
 ![](images/3215511459938393027.png)
