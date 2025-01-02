@@ -16,7 +16,7 @@ I *really* like YouTube. Because my YouTube is amazing! If you're careful, you c
 
 - The crazy chemist club:  Cody's lab, Advanced Tinkering @AdvancedTinkering (cool vacuum stuff too, lots of alkali metal madness), Explosions and Fire/Extractions and Ire, styropyro @styropyro
 - AlphaPhoenix
-- 
+- https://www.youtube.com/@BirdbrainEngineer
 - This Old Tony
 - Clickspring
 - @tested (Adam Savage)
@@ -24,7 +24,7 @@ I *really* like YouTube. Because my YouTube is amazing! If you're careful, you c
 - BPS Space. Super high-effort videos on rocketry, will bump you into the amateur rocketry rabbit hole.
 - Bitluni
 - 3Blue1Brown
-
+- Hyperspace Pirate - DIY refrigeration content mostly, who knew that was a thing?
 - Simone Giertz @simonegiertz
 - Tom Stanton DIY builds, often neat 3D-printed vehicles
 - Matthias Wandel
