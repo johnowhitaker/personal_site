@@ -10,7 +10,7 @@ It's Jan 1, 2025. And thanks to family Christmas chaos I'm a little behind writi
 
 ## UV Flourescence Photography
 
-I've been enjoying shining a deep UV torch aroun and seeing what glows. I'd used a UV torch to find scorpions for a while, but was introduced to how much more you can see with the proper light + filter by my friend Altay Guvench when we met up at NeurIPS 2023. He runs [glowhunt.org](glowhunt.org) where you can find a great talk he gave on the subject. More recently, I've been playing with [these cheap UV torches](https://www.youtube.com/watch?v=5h7BQc-om9g) and trying to take better pics. Pics to follow at some point, here's the first tests with a microscope (bottom) and my camera + macro lens (top):
+I've been enjoying shining a deep UV torch aroung and seeing what glows. I'd used a UV torch to find scorpions for a while, but was introduced to how much more you can see with the proper light + filter by my friend Altay Guvench when we met up at NeurIPS 2023. He runs [glowhunt.org](https://www.glowhunt.org/) where you can find a great talk he gave on the subject. More recently, I've been playing with [these cheap UV torches](https://www.youtube.com/watch?v=5h7BQc-om9g) and trying to take better pics. Pics to follow at some point, here's the first tests with a microscope (bottom) and my camera + macro lens (top):
 
 ![](uv_ims/image.png)
 
@@ -20,9 +20,9 @@ It feels like getting a new sense - you walk around at night marvelling at thing
 
 I recently did a few different mini-projects with some wifi-enabled microcontrollers I picked up. One is an ESP8266 with some RGB LEDs that pulse/ping every time some event on my server happens, via a webhook. Rapidfire events 'fill up' the line of RGB LEDs, it looks cool, you'll have to take my word for it.
 
-Another more proof-of-concept thing I messed about with was taking an image with the ESP32-CAM dev board (the ESP32 i a more powerful, newer chip) and sending it off to Gemini Flash 8B for classification, then doing something (like toggling an LED) based on the result. It got a hilarious recenption on Twitter - splitting the crowd between 'This is AMAZING, the age of AI is here, intelligence for all', 'YOU BUILD IT KING' and the dour 'You could have used YOLO/a raspberry pi/a local model/siple algorithm X'. Most of the nay-saywers were downright wrong, and all missed the point of the post, which was simply: hey, how cool is it that for ~no time, effort or money we can integrate a custom classifier to answer a question like 'is the cat eating my plants again' and take action in the real world as a result, all on a tiny popwer-sipping dev board that you can buy for <$10!?
+Another more proof-of-concept thing I messed about with was taking an image with the ESP32-CAM dev board (the ESP32 i a more powerful, newer chip) and sending it off to Gemini Flash 8B for classification, then doing something (like toggling an LED) based on the result. It got a hilarious [recenption on Twitter](https://x.com/johnowhitaker/status/1870650291454120364) - splitting the crowd between 'This is AMAZING, the age of AI is here, intelligence for all', 'YOU BUILD IT KING' and the dour 'You could have used YOLO/a raspberry pi/a local model/siple algorithm X'. Most of the nay-saywers were downright wrong, and all missed the point of the post, which was simply: hey, how cool is it that for ~no time, effort or money we can integrate a custom classifier to answer a question like 'is the cat eating my plants again' and take action in the real world as a result, all on a tiny popwer-sipping dev board that you can buy for <$10!?
 
-Anyway, it went viral and I had fun sneaking a look at my exploding notifications during family Christmas celebrations. 
+Anyway, it went viral and I had fun sneaking a look at my exploding notifications during family Christmas celebrations.
 
 ## ModernBERT is out!
 
