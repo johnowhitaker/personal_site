@@ -16,7 +16,6 @@ I *really* like YouTube. Because my YouTube is amazing! If you're careful, you c
 
 - The crazy chemist club:  Cody's lab, Advanced Tinkering @AdvancedTinkering (cool vacuum stuff too, lots of alkali metal madness), Explosions and Fire/Extractions and Ire, styropyro @styropyro
 - AlphaPhoenix
-- https://www.youtube.com/@BirdbrainEngineer
 - This Old Tony
 - Clickspring
 - @tested (Adam Savage)
@@ -31,6 +30,8 @@ I *really* like YouTube. Because my YouTube is amazing! If you're careful, you c
 - @Posy
 - Beau Miles
 - Physics for the birds
+- https://www.youtube.com/@cinodrome sharming low-sub channel with a fun aesthetic
+- https://www.youtube.com/@BirdbrainEngineer 
 - S3 @s3_build
 - Crime Pays But Botany Doesn't @CrimePaysButBotanyDoesnt
 - Kayakasaurus @Kayakasaurus oddly satisfying little diorama builds and sculptures
