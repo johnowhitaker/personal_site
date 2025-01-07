@@ -87,3 +87,11 @@ https://nabeelqu.co/ https://nabeelqu.co/
 https://minihf.com/ JDPs project, some weird musings on LLMs etc
 
 https://transistor-man.com/Projects.html amazing DIY builds documented very thoroughly
+
+https://rensdimmendaal.com/posts/
+
+https://www.nickdesnoyer.com/ designer flowers
+
+https://zhengdongwang.com/blog
+
+https://near.blog/ definitely, I like /things as a category/page also look at /links for a goldmine
