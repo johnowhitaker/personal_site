@@ -9,7 +9,7 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.7.7</generator>
+<generator>quarto-1.7.8</generator>
 <lastBuildDate>Wed, 08 Jan 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Trying Devin</title>
@@ -77,6 +77,603 @@
   <guid>https://johnowhitaker.dev/misc/devin.html</guid>
   <pubDate>Wed, 08 Jan 2025 00:00:00 GMT</pubDate>
   <media:content url="https://johnowhitaker.dev/misc/thumbnails/devin.png" medium="image" type="image/png" height="151" width="144"/>
+</item>
+<item>
+  <title>Talking to the Duet, and USB in WSL</title>
+  <link>https://johnowhitaker.dev/tils/2025-01-04-duet-wsl-usb.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I wanted to talk over serial to this duet 3D printer control board, but initially had issues since it didn’t show up in the device list in WSL. TIL: you can share devices but need to run a few commands in powershell admin or similar on the windows side first. Here I document that and then try out some gcode. A version of this notebook is available on <a href="https://github.com/johnowhitaker/duet_fun">github</a>.</p>
+<section id="device-specs" class="level2">
+<h2 class="anchored" data-anchor-id="device-specs">Device Specs</h2>
+<p>This is a Duet V0.8.5 controller board.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/tils/2025-01-04-duet-wsl-usb_files/figure-html/cell-4-1-image.png" class="img-fluid figure-img"></p>
+<figcaption>image.png</figcaption>
+</figure>
+</div>
+<p>It’s running <code>RepRapFirmware for Duet Version 1.15e dated 2016-10-02</code></p>
+</section>
+<section id="sharing-with-wsl" class="level2">
+<h2 class="anchored" data-anchor-id="sharing-with-wsl">Sharing with WSL</h2>
+<p>I want to run this notebook in my dev environment in Linux under WSL. So, in an admin powershell, I ran:</p>
+<pre><code>PS C:\Windows\System32&gt; usbipd list
+Connected:
+BUSID  VID:PID    DEVICE                                                        STATE
+3-8    0e8d:0608  RZ608 Bluetooth(R) Adapter                                    Not shared
+3-10   03eb:2404  USB Serial Device (COM5)                                      Not shared
+3-14   0b05:19af  AURA LED Controller, USB Input Device                         Not shared
+3-17   1b1c:0c32  USB Input Device                                              Not shared
+4-4    0fd9:0078  Elgato Facecam, USB Input Device                              Not shared
+8-3    046d:c52b  Logitech USB Input Device, USB Input Device                   Not shared
+8-4    045e:07a5  USB Input Device                                              Not shared
+9-3    0763:3105  Code 49, USB Input Device                                     Not shared
+
+Persisted:
+GUID                                  DEVICE
+
+PS C:\Windows\System32&gt; usbipd bind --busid 3-10
+PS C:\Windows\System32&gt; usbipd attach --wsl --busid 3-10
+usbipd: info: Using WSL distribution 'Ubuntu' to attach; the device will be available in all WSL 2 distributions.
+usbipd: info: Using IP address 172.27.128.1 to reach the host.
+PS C:\Windows\System32&gt;</code></pre>
+<p>This then made it show up as an available serial device.</p>
+</section>
+<section id="connect-over-serial" class="level2">
+<h2 class="anchored" data-anchor-id="connect-over-serial">Connect over Serial</h2>
+<div id="cell-9" class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> serial, time</span></code></pre></div>
+</div>
+<div id="cell-10" class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>ls <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>dev<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>ttyACM<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/dev/ttyACM0</code></pre>
+</div>
+</div>
+<div id="cell-11" class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">ser <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> serial.Serial(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'/dev/ttyACM0'</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">115200</span>, timeout<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span></code></pre></div>
+</div>
+<div id="cell-12" class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1">ser.write(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">b'M115</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>)</span>
+<span id="cb6-2">response <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span></span>
+<span id="cb6-3"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">while</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>:</span>
+<span id="cb6-4">    chunk <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ser.read(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1000</span>).decode(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'ascii'</span>, errors<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'ignore'</span>)</span>
+<span id="cb6-5">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">not</span> chunk: <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">break</span></span>
+<span id="cb6-6">    response <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> chunk</span>
+<span id="cb6-7"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(response)</span></code></pre></div>
+</div>
+<div id="cell-13" class="cell">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> send_gcode(command, ser, wait<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span>):</span>
+<span id="cb7-2">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">"""Send a single G-code command to the Duet and return the response."""</span></span>
+<span id="cb7-3">    cmd_str <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> command.strip() <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span></span>
+<span id="cb7-4">    ser.write(cmd_str.encode(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'ascii'</span>))</span>
+<span id="cb7-5">    time.sleep(wait)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Wait a bit for the Duet to process and respond</span></span>
+<span id="cb7-6">    response <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span></span>
+<span id="cb7-7">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">while</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>:</span>
+<span id="cb7-8">        chunk <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ser.read(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1000</span>).decode(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'ascii'</span>, errors<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'ignore'</span>)</span>
+<span id="cb7-9">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">not</span> chunk: <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">break</span></span>
+<span id="cb7-10">        response <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> chunk</span>
+<span id="cb7-11">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> response</span></code></pre></div>
+</div>
+<div id="cell-14" class="cell">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1">res <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> send_gcode(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"M115"</span>, ser)</span>
+<span id="cb8-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Response from M115:"</span>, res)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Response from M115: FIRMWARE_NAME: RepRapFirmware for Duet FIRMWARE_VERSION: 1.15e ELECTRONICS: Duet 0.85 DATE: 2016-10-02
+ok
+</code></pre>
+</div>
+</div>
+</section>
+<section id="available-commands" class="level2">
+<h2 class="anchored" data-anchor-id="available-commands">Available Commands</h2>
+<div id="cell-16" class="cell">
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1">temp_report <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> send_gcode(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"M105"</span>, ser)</span>
+<span id="cb10-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Temperature report (M105):"</span>)</span>
+<span id="cb10-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(temp_report)</span></code></pre></div>
+</div>
+<div id="cell-17" class="cell">
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1">endstop_report <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> send_gcode(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"M119"</span>, ser)</span>
+<span id="cb11-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Endstop report (M119):"</span>)</span>
+<span id="cb11-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(endstop_report)</span></code></pre></div>
+</div>
+<div id="cell-18" class="cell">
+<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Move X axis to 10 mm at 6000 mm/min</span></span>
+<span id="cb12-2">move_response <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> send_gcode(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"G1 X10 F6000"</span>, ser)</span>
+<span id="cb12-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Move response:"</span>, move_response)</span></code></pre></div>
+</div>
+<div id="cell-19" class="cell">
+<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Turn on Fan0 at full speed</span></span>
+<span id="cb13-2">fan_response <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> send_gcode(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"M106 P0 S255"</span>, ser)</span>
+<span id="cb13-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Turn on Fan0 response:"</span>, fan_response)</span>
+<span id="cb13-4"></span>
+<span id="cb13-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Turn fan down to half speed</span></span>
+<span id="cb13-6">fan_half <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> send_gcode(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"M106 P0 S128"</span>, ser)</span>
+<span id="cb13-7"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Fan0 half speed:"</span>, fan_half)</span>
+<span id="cb13-8"></span>
+<span id="cb13-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Turn fan off</span></span>
+<span id="cb13-10">fan_off <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> send_gcode(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"M107 P0"</span>, ser)</span>
+<span id="cb13-11"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Turn off Fan0:"</span>, fan_off)</span></code></pre></div>
+</div>
+<div id="cell-20" class="cell">
+<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Move to X=20, Y=20, Z=5 at 6000mm/min feedrate</span></span>
+<span id="cb14-2">move_response <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> send_gcode(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"G1 X20 Y20 Z5 F6000"</span>, ser)</span>
+<span id="cb14-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Move response:"</span>, move_response)</span></code></pre></div>
+</div>
+<div id="cell-21" class="cell">
+<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># # Set extruder (Tool 0) to 200 C</span></span>
+<span id="cb15-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># heat_extruder = send_gcode("M104 S200 T0", ser)</span></span>
+<span id="cb15-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># print("Heat extruder response:", heat_extruder)</span></span>
+<span id="cb15-4"></span>
+<span id="cb15-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># # Wait a few seconds, then read temperature</span></span>
+<span id="cb15-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># time.sleep(5)</span></span>
+<span id="cb15-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># print("Temp after setting extruder to 200C:", send_gcode("M105", ser))</span></span>
+<span id="cb15-8"></span>
+<span id="cb15-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># # Turn off extruder heater</span></span>
+<span id="cb15-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># off_extruder = send_gcode("M104 S0 T0", ser)</span></span>
+<span id="cb15-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># print("Extruder off response:", off_extruder)</span></span></code></pre></div>
+</div>
+<div id="cell-22" class="cell">
+<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># home_response = send_gcode("G28", ser)</span></span>
+<span id="cb16-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># print("Homing response:", home_response)</span></span></code></pre></div>
+</div>
+<div id="cell-23" class="cell">
+<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Disable all stepper motors using M18 command</span></span>
+<span id="cb17-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># disable_response = send_gcode("M18", ser)</span></span>
+<span id="cb17-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># print("Disable steppers response:", disable_response)</span></span></code></pre></div>
+</div>
+<div id="cell-24" class="cell">
+<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Set 0 position</span></span>
+<span id="cb18-2"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> axis <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'X'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Y'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Z'</span>]:</span>
+<span id="cb18-3">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(send_gcode(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"G92 </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>axis<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">0"</span>, ser))</span>
+<span id="cb18-4"></span>
+<span id="cb18-5">pos <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> send_gcode(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"M114"</span>, ser)</span>
+<span id="cb18-6"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Current positions after homing:"</span>, pos)</span>
+<span id="cb18-7"></span>
+<span id="cb18-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Re-enable steppers</span></span>
+<span id="cb18-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># send_gcode("M17", ser)</span></span></code></pre></div>
+</div>
+</section>
+<section id="stored-gcode" class="level2">
+<h2 class="anchored" data-anchor-id="stored-gcode">Stored GCODE</h2>
+<div id="cell-26" class="cell">
+<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Mount SD card:"</span>)</span>
+<span id="cb19-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(send_gcode(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"M21"</span>, ser))</span>
+<span id="cb19-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">List files:"</span>)</span>
+<span id="cb19-4"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(send_gcode(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"M20"</span>, ser))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Mount SD card:
+SD card mounted in slot 0, capacity 1.83Gb
+ok
+
+
+List files:
+Begin file list
+song1.gcode
+End file list
+ok
+</code></pre>
+</div>
+</div>
+<div id="cell-27" class="cell">
+<div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Play the song</span></span>
+<span id="cb21-2">send_gcode(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'M32 song1.gcode'</span>,ser)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>'Done printing file\nFile opened\nFile selected\nok\nDrive X does not support 1x microstepping\n'</code></pre>
+</div>
+</div>
+<div id="cell-28" class="cell">
+<div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Unmount the card</span></span>
+<span id="cb23-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(send_gcode(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"M22"</span>, ser))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Done printing file
+ok
+</code></pre>
+</div>
+</div>
+<div id="cell-29" class="cell">
+<div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1">ser.close()</span></code></pre></div>
+</div>
+</section>
+<section id="configuring" class="level2">
+<h2 class="anchored" data-anchor-id="configuring">Configuring</h2>
+<p>I used https://configtool.reprapfirmware.org/legacy</p>
+<p>Typically, RepRapFirmware stores its configuration files (like config.g) on the SD card. On older Duet boards (like the 0.8.5), you can configure nearly everything by editing these files. If the firmware is currently set up for a delta printer, you’ll likely see delta-specific homing sequences, etc. Here’s the general workflow:</p>
+<section id="remove-and-examine-the-sd-card" class="level3">
+<h3 class="anchored" data-anchor-id="remove-and-examine-the-sd-card">1. Remove and examine the SD card</h3>
+<p>Power down the board (unplug USB, power supply, etc.). Take out the SD card from the Duet and put it into your PC (via an SD card adapter). You should see files like config.g, homex.g, homey.g, homez.g, homeall.g, and possibly others (macros, etc.). config.g is the main configuration file that runs at startup. This is where you’ll see things like:</p>
+<p>Motor steps per mm (M92) Stepper drivers, current settings (M906) Kinematics type (e.g.&nbsp;M665 for delta) Endstop configuration (M574 statements) Temperature sensor definitions (M305 or M308) Network config, etc.</p>
+</section>
+<section id="editing-config.g" class="level3">
+<h3 class="anchored" data-anchor-id="editing-config.g">2. Editing config.g</h3>
+<p>Open config.g in a text editor. You’ll see something like:</p>
+<div class="sourceCode" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb26-1"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span> Configuration file <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> delta</span>
+<span id="cb26-2">M665 R123<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">45</span> L240<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">...</span></span>
+<span id="cb26-3">M666 X0 Y0 Z0</span>
+<span id="cb26-4"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span> etc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">...</span></span></code></pre></div>
+<p>That’s the delta-specific section. If you want to switch to, say, a Cartesian or CoreXY, you’d remove these delta settings and specify the correct kinematics, typically with:</p>
+<pre><code>M667 S0 ; Cartesian mode
+or
+
+M667 S1 ; CoreXY mode
+…and so on.</code></pre>
+<p>You’ll also see motor mapping lines like:</p>
+<div class="sourceCode" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1">M569 P0 S1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span> Drive <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span> goes forwards</span>
+<span id="cb28-2">M569 P1 S0 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span> Drive <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> goes <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">reversed</span></span>
+<span id="cb28-3">...</span></code></pre></div>
+<p>These specify which motor port is used for X, Y, Z, extruders, etc., and their directions.</p>
+<p>Additionally, look for:</p>
+<pre><code>; Axis Limits
+M208 X0 Y0 Z0 S1    ; set minimum
+M208 X200 Y200 Z200 S0 ; set maximum</code></pre>
+<p>for Cartesian. For a delta, you’ll see different commands.</p>
+<p>Key commands for a typical Cartesian 3D printer or CNC:</p>
+<pre><code>M92 (steps/mm)
+M203 (max feedrate)
+M201 (acceleration)
+M566 (jerk)
+M906 (motor currents)</code></pre>
+</section>
+<section id="homing-files" class="level3">
+<h3 class="anchored" data-anchor-id="homing-files">3. Homing Files</h3>
+<p>Look for homex.g, homey.g, homez.g, and/or homeall.g. These specify the sequence of moves when you run G28 or G28 X, G28 Y, etc. For a delta, you’ll see big “tower homing” moves. For a Cartesian, you’ll typically see something like:</p>
+<pre><code>G91                ; relative moves
+G1 Z5 F6000 H2     ; lift Z to avoid collisions
+G1 X-305 F3000 S1  ; move left until X endstop triggered</code></pre>
+<p>etc. You’d want to adjust these for your hardware layout—motor directions, endstop positions, etc.</p>
+</section>
+<section id="using-the-reprapfirmware-configuration-tool" class="level3">
+<h3 class="anchored" data-anchor-id="using-the-reprapfirmware-configuration-tool">4. Using the RepRapFirmware Configuration Tool</h3>
+<p>An easy way to start fresh is:</p>
+<p>Go to the Duet3D Configuration Tool. Select “Duet 0.8.5”, the type of machine (Cartesian, CoreXY, etc.), your motor specs, endstop locations, etc. It will generate a zip file with config.g, homing files, macros, etc. Copy those onto your SD card’s sys/ folder (after backing up the old files). Put the SD card back into the Duet, power it up, and you should have a fresh config tailored to your hardware.</p>
+</section>
+<section id="testing-and-iterating" class="level3">
+<h3 class="anchored" data-anchor-id="testing-and-iterating">5. Testing and Iterating</h3>
+<p>Once you have a new or edited config.g:</p>
+<p>Power on the board (with the SD card inserted). Connect via USB and send an M115 just to verify the firmware is alive. Use commands like: M98 P”config.g” to re-run your config file. M503 to report the current configuration. If something goes wrong (e.g., endstop triggers in reverse), adjust the config again. Keep an eye on the console for error messages or warnings.</p>
+</section>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">6. Summary</h3>
+<p>All configuration is on the SD card in config.g and related .g files. If it’s currently set up for a delta, you can manually edit or regenerate the files to suit a different machine type. The official Duet documentation has references for all relevant G/M-codes and a step-by-step guide on configuring the older boards. For a brand-new config, the online RepRapFirmware config tool is the easiest starting point. Once you’ve set up the correct configuration, you can treat the Duet 0.8.5 like any other Duet board: send G-code commands from USB/serial or from a web interface (if you enable network features), and it’ll behave according to your config.g settings.</p>
+<p><strong>If I put .gcode files on the SD is there a command I can send over serial to run one of them?</strong></p>
+<p>Yes—you can use M32. That G-code command starts a print (or “run”) of a file on the SD card. For example:</p>
+<pre><code>M32 my_great_print.gcode</code></pre>
+<p>That will load and start executing my_great_print.gcode from the SD card.</p>
+<p>If you’re dealing with macro (non-print) files—say, short scripts you keep in the sys/ or macros/ folder—then M98 is the standard command to call those. For example:</p>
+<pre><code>M98 P"my_macro.g"</code></pre>
+<p>But for normal .gcode files that you’d like to “print” (execute all G- and M-codes in the file), M32 is what you want.</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>TILs</category>
+  <guid>https://johnowhitaker.dev/tils/2025-01-04-duet-wsl-usb.html</guid>
+  <pubDate>Sat, 04 Jan 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>2024 Overflow: UV Flourescence, ESPing + ESP32CAM, modernBERT musings, Autobackup &amp; NBDev, LLM Psychology, and Reflections on the year</title>
@@ -4905,48 +5502,6 @@ font-style: inherit;">"Score"</span>)</span></code></pre></div>
   <category>mini-hw-projects</category>
   <guid>https://johnowhitaker.dev/mini-hw-projects/2024-08-06-robot-arm.html</guid>
   <pubDate>Tue, 06 Aug 2024 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Tab Clearing</title>
-  <link>https://johnowhitaker.dev/misc/tab-clearing.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="notes-as-i-clear-my-browser-tabs-reading-list" class="level1">
-<h1>Notes as I clear my browser tabs / reading list</h1>
-<p>Writing down quick takeaways/impressions as I clear up some of my reading backlog</p>
-<p><img src="https://j.gifs.com/mLlYoY.gif" class="img-fluid"></p>
-<section id="diffusionimage-stuff" class="level2">
-<h2 class="anchored" data-anchor-id="diffusionimage-stuff">Diffusion/Image Stuff</h2>
-<p><a href="https://blog.fal.ai/introducing-aurasr-an-open-reproduction-of-the-gigagan-upscaler-2/">AuraSR</a> is a nice, GAN-based super resolution model that does 4x upscaling. Based on Adobe’s GigaGAN but released under a open source license. This is a really nice image upscaling model.</p>
-<p><a href="https://sander.ai/2024/06/14/noise-schedules.html">Noise schedules considered harmful</a>: Fantastic posts from Sander. Diving into noise schedules and why it might make more sense to instead look at relative noise. Waiting during training and choice of timestep/ noise level during sampling as two independent things and stopped focusing on this. Needless abstraction of time steps or noise schedules. Fantastically written clare lines up with exactly how I view this. No City math. Definitely a recommended read.</p>
-<p><a href="https://srush.github.io/DiffRast/">DiffRast</a>: A fun expiration of some of the things you can do with differentiable graphics, by Sasha Rush. This is exactly the type of thing that I would spend weeks playing with. If I was in my tinkering with AI art face. It is using Jax. I want to come back and give this a proper look at some point.</p>
-<p><a href="https://xavierchen34.github.io/MimicBrush-Page/">MimicBrush</a>: They have nailed reference-based in painting. Amazing results. The trick is to construct training data from pairs of video frames. Learn to fill a masked region of one frame with info from another -&gt; learn to use a reference image to fill gaps, without copying its structure.</p>
-<p><a href="https://fudan-generative-vision.github.io/hallo/#/">Hallo</a>: yet another audio-driven face animation thing, ok I guess. Controlnet-style way to feed in the reference image, “temporal attention”, bla bla bla</p>
-<p><a href="https://gojasper.github.io/flash-diffusion-project/">Flash Diffusion</a>: A diffusion distillation method that has the students predicting One step what the teacher predicts in multiple and also uses an adversarial loss. Seems like a decent diffusion distillation paper, but nothing particularly novel just skimmed</p>
-<p><a href="https://rb-modulation.github.io/">RB-Modulation</a>: Impressive results on custom content and style via reference images with diffusion models. Nathaniel Ruiz of dream Booth and ziplora among many others supervised. The results are amazing but the paper is almost impossible to understand. Far too much technical jargon and acronyms. I did not bother trying to go deep on it. The tldr is something like ‘we mess with the attention to include features from the style or content images and we have a way of disentangling the two. The features are somehow persist separately and then combined allowing us to reweight things or adjust how and where the influence from content or style applies’. But there is also lots of nonsense about optimal control and stochastic bloody blast.</p>
-</section>
-<section id="llm-stuff" class="level2">
-<h2 class="anchored" data-anchor-id="llm-stuff">LLM stuff</h2>
-<p><a href="https://thesephist.com/posts/prism/">Prism</a>: very fun work that is similar in some ways to anthropics sparse Auto encoders work. It identifies vectors or directions in feature space or in embedding space. If you will that are that that represents atomic concepts around language and then explores using these to edit text. So for example, they identify some semantic directions like casual/formal or becoming a question or whatever, and then have a auto encoder style thing that can take in some text and produce a vector and then produce text from that vector and then they find ways to edit the embedding based on these identified features. So you could for example, make some text more formal or make it a question instead of a statement. There’s a lot in the post that I didn’t go into too deeply, but it seems like a very nice exploration of practical applications for the kind of mechanistic interpretability stuff we looked at with andthics paper. I look forward to his future work</p>
-<p><a href="https://blog.google/technology/developers/google-gemma-2/">Gemma 2</a>. <a href="https://storage.googleapis.com/deepmind-media/gemma/gemma-2-report.pdf">Technical report</a> the Gemma 2 model is a sizable improvement over the original Gemma model. The 9B now seems like the best in its weight class beating out Llama 3 8b. The 27b version is almost as good as llama 70B on some measures the best in its size class, but also unclear if it is with it to move from Llama 3 70B for the kinds of applications, this would be used for. Interestingly, they explored distillation as a training process for the smaller models. At least they found a substantial boost compared to normal pre-training. They also did model averaging where they took the SFT version and the RLHF version and averaged the weights. Overall the model looks pretty decent. Nothing too crazy. Architecture wise they used grouped query attention, mix of local and global attention. It seems like a pretty efficient and performant model.</p>
-<p><a href="https://sakana.ai/llm-squared/">Sakana’s LLM Squared</a>: Using llms to evolve codes to train. LLMs sounds very fancy and futuristic, but I was a little bit underwhelmed by what they actually did. Even though it was still pretty cool. They are using llms as code mutation to “evolve” the loss function for something like DPO so preference optimization. They generate lots of candidate algorithms and evaluate them and pick the best and then show that sure enough and it also does well on other similar evals. The whole thing is a little iffy since I know these algorithms can be finicky and it’s all preference-based with MT-bench and alpaca eval, but still cool that they were able to improve over DPO. We’ll see how it goes and if they can evolve code for other parts of the stack which seems a lot harder to optimize for and measure, but still cool to see people trying fun things like this. I can never resist evolution or computation.</p>
-<p><a href="https://digirl-agent.github.io/">DigiRL-Agent</a>: Learning the hard task of controlling a device via vision. They do offline RL based on annotated actions. This is what many others do and it does pretty poorly on real life. Benchmarks. But then they further train “online” RL with rewards based on vlm scoring. In other words, they have agents actually interact with a virtual device to carry out tasks. This translates to a huge improvement in performance on the “Android in the wild” data set.. they set a new state-of-the-art. I am not sure how well this generalizes outside of this specific task set/ domain. But it is very cool to see agents actually taking action even if it’s in a simulated environment and using that to improve versus just trying to use an off the shelf vision language model that does not have as much understanding as is needed to operate real world devices based on pixels only.</p>
-<p><a href="https://research.character.ai/optimizing-inference/">Charachter AI post ‘Optimizing Inference’</a>: Amazing post with a bunch of tricks from Noam Shazeer and crew. Key ideas they use when serving 20k qps: - Multi-Query Attention to reduce KV size - interleave local attention vs global attention (only 1/6 global) to speen things up. - Cross-layer KV cache sharing (between 2 or 3 consecutive layers) to reduce memory usage - Fancy caching to match as much as possible. All the focus is on keeping as much KV cache in mem as possible it seems. - They use int8 quant on weights, activations and KV cache, with fancy kernels. Train in int8 too.</p>
-<p><a href="https://moultano.wordpress.com/2023/06/28/the-many-ways-that-digital-minds-can-know/">The Many Ways that Digital Minds Can Know (Moultano)</a>: A fun way to look at some different axes we might care about re: LLMs. Interesting framing!</p>
-<p><a href="https://sander.ai/2020/09/01/typicality.html">Musings on typicality</a>: A 2020 post from Sander Dieleman, helping explain why beam search isn’t ideal - linked from the recent review paper “From Decoding to Meta-Generation: Inference-time Algorithms for Large Language Models”.</p>
-<p><a href="https://openai.com/index/finding-gpt4s-mistakes-with-gpt-4/">Finding GPT-4’s mistakes with GPT-4</a>: Using a model to spot the mistakes of a model. Duuuuude. Cool work, having humans review outputs for RLHF seems like a spot where bugs could be missed, this appears to help a bunch with that (and will likely be a useful model for them to have lying around too!).</p>
-
-
-</section>
-</section>
-
- ]]></description>
-  <category>Blog</category>
-  <guid>https://johnowhitaker.dev/misc/tab-clearing.html</guid>
-  <pubDate>Thu, 27 Jun 2024 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
