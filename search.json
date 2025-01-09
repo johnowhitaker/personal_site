@@ -235,7 +235,7 @@
     "href": "misc/devin.html#introduction",
     "title": "Trying Devin",
     "section": "Introduction",
-    "text": "Introduction\nDevin is billed as “the first AI software engineer”. It costs $500 to get ‘him’ on your team. You assign Devin tasks and it heads off and works on them, giving you updates, asking clarifying questions, and theoretically behaving like a fast and competent intern. At least, that’s the promise.\nIn practice, a lot of people I know who tried it found it underwhelming - despite the hype around it when it launched, we struggled to get it to complete even fairly ‘simple’ tasks."
+    "text": "Introduction\nDevin is billed as “the first AI software engineer”. It costs $500/month to get ‘him’ on your team. You assign Devin tasks and it heads off and works on them, giving you updates, asking clarifying questions, and theoretically behaving like a fast and competent intern. At least, that’s the promise.\nIn practice, a lot of people I know who tried it found it underwhelming - despite the hype around it when it launched, we struggled to get it to complete even fairly ‘simple’ tasks."
   },
   {
     "objectID": "misc/devin.html#representative-examples",
