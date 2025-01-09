@@ -13,7 +13,7 @@ We got a Devin subscription to play with. Hamel has his thoughts here (TODO link
 
 ## Introduction
 
-Devin is billed as "the first AI software engineer". It costs $500 to get 'him' on your team. You assign Devin tasks and it heads off and works on them, giving you updates, asking clarifying questions, and theoretically behaving like a fast and competent intern. At least, that's the promise.
+Devin is billed as "the first AI software engineer". It costs $500/month to get 'him' on your team. You assign Devin tasks and it heads off and works on them, giving you updates, asking clarifying questions, and theoretically behaving like a fast and competent intern. At least, that's the promise.
 
 In practice, a lot of people I know who tried it found it underwhelming - despite the hype around it when it launched, we struggled to get it to complete even fairly 'simple' tasks.
 
