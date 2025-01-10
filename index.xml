@@ -10,7 +10,25 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.7.8</generator>
-<lastBuildDate>Thu, 09 Jan 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 10 Jan 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Paper walkthrough: rStar-Math: Small LLMs Can Master Math Reasoning with Self-Evolved Deep Thinking</title>
+  <link>https://johnowhitaker.dev/misc/rstar_video.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Looking at a recent paper getting impressive MATH performance using test-time compute. I especially like the use of paired ‘preference’ data for training their equivalent of a process reward model. The video calls out a few caveats (use of code, use of big models for SFT data despite ‘no distillation’ claim) but also that overall the results are impressive. Link: https://www.youtube.com/watch?v=BoC_P1NgGTk</p>
+
+
+
+ ]]></description>
+  <category>Video</category>
+  <guid>https://johnowhitaker.dev/misc/rstar_video.html</guid>
+  <pubDate>Fri, 10 Jan 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/misc/thumbnails/rstar.png" medium="image" type="image/png" height="84" width="144"/>
+</item>
 <item>
   <title>Fine-Tuning on Distances To Paris: Practical LLM Psychology, or ‘Documenting a Quick Test of a Research Hypothesis’</title>
   <link>https://johnowhitaker.dev/misc/Fine_Tuning_on_Distances_To_Paris.html</link>
@@ -6895,25 +6913,6 @@ font-style: inherit;">"Score"</span>)</span></code></pre></div>
   <category>Blog</category>
   <guid>https://johnowhitaker.dev/misc/what_you_should_read.html</guid>
   <pubDate>Wed, 14 Aug 2024 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Mixed-Modal Early-Fusion Foundation Models: Paper run-throughs for ‘Chameleon’ and ‘MoMa’</title>
-  <link>https://johnowhitaker.dev/misc/moma_video.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/FoAzgKb-1iA" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p>Text-only LLMs are great, and we’ve seen people pasting on some image support here and there, but the future it seems is multi-modal. What does it take to train models from scratch that take in both images and text (and more)? In this video we look at two key papers from FAIR at Meta, introducing their Chameleon approach and making it more efficient with mixture of experts.</p>
-
-
-
- ]]></description>
-  <category>Video</category>
-  <guid>https://johnowhitaker.dev/misc/moma_video.html</guid>
-  <pubDate>Tue, 13 Aug 2024 00:00:00 GMT</pubDate>
-  <media:content url="https://johnowhitaker.dev/misc/thumbnails/momathumb.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
