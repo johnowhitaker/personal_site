@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-07-01">
+<meta name="dcterms.date" content="2025-01-10">
 
-<title>Why and how I’m shifting focus to LLMs – johnowhitaker.dev</title>
+<title>Photographing Crystals with a Modified Microscope – johnowhitaker.dev</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,8 +71,9 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta name="twitter:title" content="Why and how I’m shifting focus to LLMs – johnowhitaker.dev">
+<meta name="twitter:title" content="Photographing Crystals with a Modified Microscope – johnowhitaker.dev">
 <meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://johnowhitaker.dev/mini-hw-projects/images/vitc.jpg">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
 </head>
@@ -152,25 +153,17 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#part-1-why-llms-are-exciting" id="toc-part-1-why-llms-are-exciting" class="nav-link active" data-scroll-target="#part-1-why-llms-are-exciting">Part 1: Why LLMs are exciting</a></li>
-  <li><a href="#part-2-how-the-heck-would-you-learn-llms" id="toc-part-2-how-the-heck-would-you-learn-llms" class="nav-link" data-scroll-target="#part-2-how-the-heck-would-you-learn-llms">Part 2: How the heck would you ‘learn LLMs’?</a></li>
-  <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts">Final Thoughts</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Why and how I’m shifting focus to LLMs</h1>
+<h1 class="title">Photographing Crystals with a Modified Microscope</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">blogs</div>
+    <div class="quarto-category">mini-hw-projects</div>
   </div>
   </div>
 
@@ -182,7 +175,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 1, 2023</p>
+      <p class="date">January 10, 2025</p>
     </div>
   </div>
   
@@ -194,46 +187,20 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>While I’ve previously consulted on NLP projects, in the past few years my research focus has been chiefly on images. If you had asked me a few months ago about looking at LLMs, my default response would have been “No way, I bet there are far too many people working on that hyped topic”. But then my research buddies (a crew originally put together by Jeremy Howard to look into diffusion models) switched focus to LLMs, a friend started trying to convince me to join him in starting an LLM-focused company, and I began to re-think my hesitancy. In this blog post, I’ll try to unpack why I’m now excited to shift focus to LLMs, despite my initial misgivings about moving into a crowded market. And then I’ll try to outline how I’ve gone about loading up my brain with relevant research so that I can become a useful contributor in this space as quickly as possible. Here goes!</p>
-<section id="part-1-why-llms-are-exciting" class="level2">
-<h2 class="anchored" data-anchor-id="part-1-why-llms-are-exciting">Part 1: Why LLMs are exciting</h2>
-<p>The TL;DR of this section is that it turns out there is a lot of innovation happening in this space, and lots of low-hanging fruit available in terms of improvements to be made, all driven by open-source models and the influx of new ideas. For a while, it felt like you needed to be at a big org with tons of compute to research LLM stuff and that OpenAI was just too far ahead for most things. Here are some specific thoughts I wrote out the other day when someone asked what I found exciting:</p>
-<p>The explosion of interest in LLMs has led to a flurry of innovations around them. In particular, there are some cool techniques around lower-resource training and inference that I’m excited to see:</p>
-<p>- <strong><a href="https://huggingface.co/blog/4bit-transformers-bitsandbytes">Quantization methods</a> to reduce the VRAM required</strong> to train and serve larger models</p>
-<p>- Things like <a href="https://github.com/ggerganov/ggml">GGML</a> for <strong>fast inference without any dependencies</strong>, optimized for things like Apple hardware and consumer GPUs (see Modular for a direction in which inference gets easy and fast on lots of different hardware)</p>
-<p>- <a href="https://huggingface.co/blog/peft"><strong>Parameter-efficient fine-tuning</strong></a> <strong>methods</strong> that allow training with much less compute. It’s tricky to fine-tune the smallest GPT-2 model (125M parameters) on Google Colab when not using any tricks, and yet there are notebooks for SFT on Falcon 7B that can be run happily on the free tier thanks to LoRA and 8-bit Adam.</p>
-<p>The upshot of all this is that it’s now doable to train variants of these fairly powerful open-source models with a single GPU in very little time and to share the resulting models (or the much smaller LoRA weights) through things like HuggingFace so that anyone can play with them.&nbsp;</p>
-<p><strong>I think the next direction where things will rapidly improve is datasets</strong> for fine-tuning. We’ve already seen a big leap in quality over the past few months, with more and more chat / instruct datasets being curated. An obvious next step is using existing LLMs to generate better training data, and/or filter existing data.&nbsp;</p>
-<p><strong>The evaluation is lagging a little IMO</strong>. The <a href="https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard">open LLM leaderboard</a> is a cool initiative, although it highlights how fragile these benchmarks can be. I’m excited about using LLMs to evaluate other LLMs (even though this can be precarious) and also hoping to see other alternatives emerge - perhaps something equivalent to the PickScore model that is a useful tool for evaluating image generators and is based on crowd-sourced ratings. Actual human ratings are still super important and hard to do well.</p>
-<p><strong>Another fun dynamic is just the constant stream of better base models available for fine-tuning</strong> as people compete to make ‘The BEST Truly Open Source Model’. Better base models mean better synthetic data, easier fine-tuning, more use-cases unlocked, more data as a result… it’s a nice flywheel of improvement. And since fine-tuning is getting faster and faster, when a great new base model comes out it won’t take long to apply the same dataset+training strategy as you’ve used on whatever current best model you have.&nbsp;</p>
-<p>It feels like all these things make it easier than ever to do cool stuff with LLMs, but also that there are a lot of improvements still on the table - a good time to dive in!</p>
-<p>PS: Other interesting directions:</p>
-<ul>
-<li><p>Ways to use multiple models of different sizes to speed up inference for ‘easy’ completions without sacrificing accuracy</p></li>
-<li><p>Moving away from RLHF towards something more like Direct Policy Optimization where you still incorporate feedback but without the RL messiness</p></li>
-<li><p>I still think very few people have good recipes for fine-tuning models and getting to know a specific model/task well would likely yield some interesting insights</p></li>
-</ul>
-<p>It’s important to be able to iterate quickly for research to be effective, and when testing an idea meant training an LLM for weeks on tons of GPUs I was not excited. But now that we can potentially tune a good open-source base model on a single machine it seems like we might be close to rapid iterations especially if we just focus on the fine-tuning/alignment/tweaking steps or inference-time innovations. “LLMs are having their Stable Diffusion moment”.</p>
-</section>
-<section id="part-2-how-the-heck-would-you-learn-llms" class="level2">
-<h2 class="anchored" data-anchor-id="part-2-how-the-heck-would-you-learn-llms">Part 2: How the heck would you ‘learn LLMs’?</h2>
-<p>I’ve been vaguely keeping up-to-date with the field for years - reading the big announcements and maybe skimming the odd paper here and there. But it had mostly been in a ‘wow PaLM seems cool’ style outsider mode, rather than taking in any details of architecture or training that might be needed to actually work with the darn things. So, step one: start catching up on all the cool tricks everyone knows, and seeing what gems are hidden in some lesser-known papers.</p>
-<p>The secret sauce for this is our research group. Twice a week we meed at look through papers we find interesting. Often something recent sparks a specific line of inquiry. For example, there was some buzz on Twitter about the “<a href="https://arxiv.org/abs/2306.11644">Textbooks are all you need</a>” paper that used synthetic data alongside heavy LLM-assisted filtering of existing training data to train very good small code models. This leads us to look into some prior work (e.g.&nbsp;the <a href="https://arxiv.org/abs/2305.07759">TinyStories</a> paper by some of the same authors that tested similar ideas at a smaller scale) which in turn cites other papers which… Before you know it we have a <a href="https://www.zotero.org/groups/5004697/llms/library">Zotero library with 300+ papers</a> and some ongoing experiments to start building our own intuition for some of the methods we found interesting.</p>
-<p>Some specific things I find extremely powerful about this group-study approach:</p>
-<ul>
-<li><p>Teaching others about something is an extremely good way to learn it, especially if your audience consists of people who can come up with questions to probe deeper and expand your collective understanding</p></li>
-<li><p>More people =&gt; more chance for ‘aha’ moments where something suddenly clicks, which can then be explained back in a different way. It seems crazy, but we’ve bootstrapped our understanding of some extremely complex topics just by explaining an idea back and forth to each other in different ways until it really makes sense!</p></li>
-<li><p>More people =&gt; more perspectives with different experiences to draw from. Someone shares a paper on document retrieval, which sparks a memory of a cool contrastive method used in images, which reminds someone of a paper aligning code and language from a few years ago, which brings up a nice benchmark we could use to test our new ideas…</p></li>
-<li><p>Practical experiments are great learning tools. Having multiple people tinkering with things or sharing proof-of-concept implementations is another major boost to understanding something.</p></li>
-</ul>
-<p>It’s one thing to load up your brain with tons of papers and techniques, but that on its own isn’t quite enough to make you useful. So, for me, the next step is getting into the weeds with some actual projects. Run some models, try to train a few on some different tasks, dive into some larger projects… A lot of what I’ve done in this phase isn’t particularly new or interesting, but it builds the muscles for later stuff. If you’re bold you could find a way to get paid for this as a consultant, since everyone wants ‘talk to your docs’ bots and such! I have yet to cave in to that particular temptation, but I *AM* writing a book with some chapters devoted to LLMs (with some amazing co-authors to catch any glaring mistakes I make) which I guess is also killing two birds with one stone in terms of learning while (eventually, hypothetically) earning… And soon I may be full-time at the aforementioned LLM-based startup at which point it stops being ‘hacking around in my spare time’ and turns into ‘ML research’ with a proper job title and everything :)</p>
-</section>
-<section id="final-thoughts" class="level2">
-<h2 class="anchored" data-anchor-id="final-thoughts">Final Thoughts</h2>
-<p>This is a weird post, mostly me thinking out loud, but I hope you’ve found it interesting! I’ve gone from thinking LLMs are ‘solved and saturated’ to seeing all sorts of opportunities, and tons of ways someone with a novel perspective or a bit of luck can come in and contribute. So, wish me luck ;)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/vitc.jpg" class="img-fluid figure-img"></p>
+<figcaption>VItamin C Crystals under a polarizing microscope</figcaption>
+</figure>
+</div>
+<p>I recently bought a cheap microscope (<a href="https://www.amazon.com/dp/B0BYYY51HJ?ref=ppx_yo2ov_dt_b_fed_asin_title">this one</a> for $87 but there are lots of variants in this category) and after some fun micro-organism hunting I started seeing what mods I could do to make it better. First up was adding ‘darkfield’ mode, by placing a black plastic disk to block the center of the light source. This makes the background dark, but anything that scatter light shows up lighter. Here’s a before-and-after of a small crustacean:</p>
+<p><img src="images/amphipod.jpg" class="img-fluid"></p>
+<p>Next, I added a piece of <a href="https://www.amazon.com/dp/B0BYYY51HJ?ref=ppx_yo2ov_dt_b_fed_asin_title">polarizing film</a> into the light path within the body of the microscope, and another just above the light source. They’re set so that together they block ~all the light. But if something in between them rotates the polarization of the light, it will show up. Vitamin C crystals (like the header image) are strongly birefringent, so they show up really well. Other crystals work too - here for example are some different views of some epsom salt crystals:</p>
+<p><img src="images/epsom_salt.jpg" class="img-fluid"></p>
+<p>More pictures and some video on my twitter <a href="https://x.com/johnowhitaker/status/1878117000821776688">here</a> and <a href="https://x.com/johnowhitaker/status/1877178198326198575">here</a>, and I might have to record a video about this too, to share the timelapses of crystals growing and the mesmerizing motion of them dissolving.</p>
+<p>This feels in a similar category to my <a href="https://johnowhitaker.dev/mini-hw-projects/bubbles.html">giant bubble experiments</a> - why did nobody tell me it was this easy to do something so cool!?</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

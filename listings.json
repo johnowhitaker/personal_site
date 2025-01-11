@@ -3,6 +3,7 @@
     "listing": "/index.html",
     "items": [
       "/misc/rstar_video.html",
+      "/mini-hw-projects/scope_mods.html",
       "/misc/Fine_Tuning_on_Distances_To_Paris.html",
       "/misc/devin.html",
       "/tils/2025-01-04-duet-wsl-usb.html",
@@ -175,6 +176,7 @@
     "listing": "/all.html",
     "items": [
       "/misc/rstar_video.html",
+      "/mini-hw-projects/scope_mods.html",
       "/misc/Fine_Tuning_on_Distances_To_Paris.html",
       "/misc/devin.html",
       "/tils/2025-01-04-duet-wsl-usb.html",
