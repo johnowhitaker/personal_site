@@ -10,25 +10,7 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.7.9</generator>
-<lastBuildDate>Fri, 10 Jan 2025 00:00:00 GMT</lastBuildDate>
-<item>
-  <title>Paper walkthrough: rStar-Math: Small LLMs Can Master Math Reasoning with Self-Evolved Deep Thinking</title>
-  <link>https://johnowhitaker.dev/misc/rstar_video.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>Looking at a recent paper getting impressive MATH performance using test-time compute. I especially like the use of paired ‘preference’ data for training their equivalent of a process reward model. The video calls out a few caveats (use of code, use of big models for SFT data despite ‘no distillation’ claim) but also that overall the results are impressive. Link: https://www.youtube.com/watch?v=BoC_P1NgGTk</p>
-
-
-
- ]]></description>
-  <category>Video</category>
-  <guid>https://johnowhitaker.dev/misc/rstar_video.html</guid>
-  <pubDate>Fri, 10 Jan 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://johnowhitaker.dev/misc/thumbnails/rstar.png" medium="image" type="image/png" height="84" width="144"/>
-</item>
+<lastBuildDate>Sat, 11 Jan 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Photographing Crystals with a Modified Microscope</title>
   <link>https://johnowhitaker.dev/mini-hw-projects/scope_mods.html</link>
@@ -49,13 +31,38 @@
 <p><img src="https://johnowhitaker.dev/mini-hw-projects/images/epsom_salt.jpg" class="img-fluid"></p>
 <p>More pictures and some video on my twitter <a href="https://x.com/johnowhitaker/status/1878117000821776688">here</a> and <a href="https://x.com/johnowhitaker/status/1877178198326198575">here</a>, and I might have to record a video about this too, to share the timelapses of crystals growing and the mesmerizing motion of them dissolving.</p>
 <p>This feels in a similar category to my <a href="https://johnowhitaker.dev/mini-hw-projects/bubbles.html">giant bubble experiments</a> - why did nobody tell me it was this easy to do something so cool!?</p>
+<p>PS: crystals of some unknown salt in darkfield, brightfield (default), and polarized light. In polarized light you can see small vitamin C crystals that I was trying to purify out from the salt before my pure stuff arrived :)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/salts.jpg" class="img-fluid figure-img"></p>
+<figcaption>crystals under different illumination</figcaption>
+</figure>
+</div>
 
 
 
  ]]></description>
   <category>mini-hw-projects</category>
   <guid>https://johnowhitaker.dev/mini-hw-projects/scope_mods.html</guid>
+  <pubDate>Sat, 11 Jan 2025 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Paper walkthrough: rStar-Math: Small LLMs Can Master Math Reasoning with Self-Evolved Deep Thinking</title>
+  <link>https://johnowhitaker.dev/misc/rstar_video.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Looking at a recent paper getting impressive MATH performance using test-time compute. I especially like the use of paired ‘preference’ data for training their equivalent of a process reward model. The video calls out a few caveats (use of code, use of big models for SFT data despite ‘no distillation’ claim) but also that overall the results are impressive. Link: https://www.youtube.com/watch?v=BoC_P1NgGTk</p>
+
+
+
+ ]]></description>
+  <category>Video</category>
+  <guid>https://johnowhitaker.dev/misc/rstar_video.html</guid>
   <pubDate>Fri, 10 Jan 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/misc/thumbnails/rstar.png" medium="image" type="image/png" height="84" width="144"/>
 </item>
 <item>
   <title>Fine-Tuning on Distances To Paris: Practical LLM Psychology, or ‘Documenting a Quick Test of a Research Hypothesis’</title>
