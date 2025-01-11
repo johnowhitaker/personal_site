@@ -1,6 +1,6 @@
 ---
 title: "Photographing Crystals with a Modified Microscope"
-date: 2025-01-10
+date: 2025-01-11
 categories:
     - "mini-hw-projects"
 ---
@@ -18,3 +18,7 @@ Next, I added a piece of [polarizing film ](https://www.amazon.com/dp/B0BYYY51HJ
 More pictures and some video on my twitter [here](https://x.com/johnowhitaker/status/1878117000821776688) and [here](https://x.com/johnowhitaker/status/1877178198326198575), and I might have to record a video about this too, to share the timelapses of crystals growing and the mesmerizing motion of them dissolving. 
 
 This feels in a similar category to my [giant bubble experiments](https://johnowhitaker.dev/mini-hw-projects/bubbles.html) - why did nobody tell me it was this easy to do something so cool!?
+
+PS: crystals of some unknown salt in darkfield, brightfield (default), and polarized light. In polarized light you can see small vitamin C crystals that I was trying to purify out from the salt before my pure stuff arrived :)
+
+![crystals under different illumination](images/salts.jpg)
