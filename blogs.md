@@ -95,3 +95,7 @@ https://www.nickdesnoyer.com/ designer flowers
 https://zhengdongwang.com/blog
 
 https://near.blog/ definitely, I like /things as a category/page also look at /links for a goldmine
+
+https://dshinsel.com/eb6/
+
+https://www.aaedmusa.com/projects
