@@ -9,8 +9,684 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.7.11</generator>
-<lastBuildDate>Sat, 11 Jan 2025 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.7.13</generator>
+<lastBuildDate>Tue, 21 Jan 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Adding a Debug View for FastHTML Learning</title>
+  <link>https://johnowhitaker.dev/mini-projects/debug_fasthtml.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Thinking about how to teach web dev and FastHTML inspired this quick mini-project: making a debug view for FastHTML apps that renders requests and responses. Nothing fancy, but with minimal work and a bit of MonsterUI for styling I think it looks and works quite well!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-projects/images/debug.png" class="img-fluid figure-img"></p>
+<figcaption>A demo site (left) and the debug page (right)</figcaption>
+</figure>
+</div>
+<p>Here’s how this is used in this demo app:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> fasthtml.common <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span></span>
+<span id="cb1-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> debug <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> debug_wrap</span>
+<span id="cb1-3"></span>
+<span id="cb1-4"></span>
+<span id="cb1-5">app <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> FastHTML()</span>
+<span id="cb1-6">debug_wrap(app)</span>
+<span id="cb1-7">rt <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> app.route</span>
+<span id="cb1-8"></span>
+<span id="cb1-9"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">@rt</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'/'</span>)</span>
+<span id="cb1-10"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> get(): <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> Div(</span>
+<span id="cb1-11">    P(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Hello World!'</span>), </span>
+<span id="cb1-12">    A(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'About'</span>, href<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'/about'</span>), </span>
+<span id="cb1-13">    Div(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">id</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'htmxtest'</span>), </span>
+<span id="cb1-14">    Button(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Click me'</span>, hx_post<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'/test'</span>, hx_target<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#htmxtest'</span>))</span>
+<span id="cb1-15"></span>
+<span id="cb1-16"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">@rt</span></span>
+<span id="cb1-17"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> about(a:<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">int</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span>): </span>
+<span id="cb1-18">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> Titled(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'About'</span>,</span>
+<span id="cb1-19">        P(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'This is the about page'</span>),</span>
+<span id="cb1-20">        A(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Go back'</span>, href<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/"</span>),</span>
+<span id="cb1-21">        P(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f'You passed a=</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>a<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> a <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span></span>
+<span id="cb1-22">    )</span>
+<span id="cb1-23"></span>
+<span id="cb1-24"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">@rt</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'/test'</span>)</span>
+<span id="cb1-25"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> post(): <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> Div(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Clicked!'</span>)</span>
+<span id="cb1-26"></span>
+<span id="cb1-27">serve()</span></code></pre></div>
+<p>And the entirity of debug.py:</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> fasthtml.common <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span></span>
+<span id="cb2-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> collections <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> deque</span>
+<span id="cb2-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> monsterui.<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">all</span> <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span></span>
+<span id="cb2-4"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> typing <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> Any</span>
+<span id="cb2-5"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> json, pprint, textwrap</span>
+<span id="cb2-6"></span>
+<span id="cb2-7">updates <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> deque(maxlen<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>)</span>
+<span id="cb2-8"></span>
+<span id="cb2-9"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> before(req, session):</span>
+<span id="cb2-10">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'/debug'</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">str</span>(req.url): <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span></span>
+<span id="cb2-11">    updates.append({</span>
+<span id="cb2-12">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'type'</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'request'</span>,</span>
+<span id="cb2-13">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'method'</span>: req.method,</span>
+<span id="cb2-14">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'url'</span>: <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">str</span>(req.url),</span>
+<span id="cb2-15">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'session'</span>: <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">dict</span>(session <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">or</span> {}),</span>
+<span id="cb2-16">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'headers'</span>: <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">dict</span>(req.headers)</span>
+<span id="cb2-17">    })</span>
+<span id="cb2-18"></span>
+<span id="cb2-19"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> after(resp):</span>
+<span id="cb2-20">    resp_html <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> to_xml(resp)</span>
+<span id="cb2-21">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">not</span> resp <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">or</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'debug'</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> resp_html: <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span></span>
+<span id="cb2-22">    updates.append({<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'type'</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'response'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'html'</span>: resp_html})</span>
+<span id="cb2-23"></span>
+<span id="cb2-24"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> debug_wrap(app):</span>
+<span id="cb2-25"></span>
+<span id="cb2-26">    app.before.append(before)</span>
+<span id="cb2-27">    app.after.append(after)</span>
+<span id="cb2-28"></span>
+<span id="cb2-29">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">@app.route</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'/debug'</span>)</span>
+<span id="cb2-30">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> debug_page():</span>
+<span id="cb2-31">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> Div(</span>
+<span id="cb2-32">            H3(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Debugging Console"</span>, cls<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>TextFont.bold_sm),</span>
+<span id="cb2-33">            P(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Requests/responses captured:"</span>), </span>
+<span id="cb2-34">            Div(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">id</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'debug_updates'</span>, hx_trigger<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'every 1s'</span>, hx_get<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'/debug_updates'</span>, hx_swap<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'afterbegin'</span>),</span>
+<span id="cb2-35">            cls<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'p-4 space-y-4'</span></span>
+<span id="cb2-36">        ), Theme.orange.headers(highlightjs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>)</span>
+<span id="cb2-37"></span>
+<span id="cb2-38">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">@app.route</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'/debug_updates'</span>)</span>
+<span id="cb2-39">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> debug_updates_view():</span>
+<span id="cb2-40">        items <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []</span>
+<span id="cb2-41">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">while</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(updates):</span>
+<span id="cb2-42">            data <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> updates.popleft()</span>
+<span id="cb2-43">            items.append(RequestCard(data) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> data[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'type'</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'request'</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span> ResponseCard(data))</span>
+<span id="cb2-44">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">not</span> items: <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span></span>
+<span id="cb2-45">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> Div(<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>items, cls<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'debug'</span>)</span>
+<span id="cb2-46"></span>
+<span id="cb2-47"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> RequestCard(data: <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">dict</span>[<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">str</span>, Any]):</span>
+<span id="cb2-48">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> Card(DivVStacked(</span>
+<span id="cb2-49">            H4(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"REQUEST"</span>, cls<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(TextT.bold,)),</span>
+<span id="cb2-50">            P(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>get(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'method'</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>get(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'url'</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, cls<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>TextFont.muted_sm),</span>
+<span id="cb2-51">            DivCentered(Grid(</span>
+<span id="cb2-52">                DivCentered(Details(Summary(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Session'</span>), render_md(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"```js</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>wrap_pformat(json.dumps(data.get(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'session'</span>)))<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```"</span>))),</span>
+<span id="cb2-53">                DivCentered(Details(Summary(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Headers'</span>), render_md(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"```js</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>wrap_pformat(json.dumps(data.get(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'headers'</span>)))<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```"</span>))),</span>
+<span id="cb2-54">            ))</span>
+<span id="cb2-55">    ))</span>
+<span id="cb2-56"></span>
+<span id="cb2-57"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> ResponseCard(data: <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">dict</span>[<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">str</span>, Any]) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-&gt;</span> FT:</span>
+<span id="cb2-58">    html_str <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> data.get(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'html'</span>) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">or</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">''</span></span>
+<span id="cb2-59">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> Card(DivVStacked(</span>
+<span id="cb2-60">        H4(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"RESPONSE"</span>, cls<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(TextT.bold,)),</span>
+<span id="cb2-61">        render_md(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"```html</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>html_str<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"```"</span>)))</span>
+<span id="cb2-62"></span>
+<span id="cb2-63"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">### For formatting json into something I can stuff in a code block, thanks AI:</span></span>
+<span id="cb2-64"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">class</span> WrappingPrettyPrinter(pprint.PrettyPrinter):</span>
+<span id="cb2-65">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> _format(<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>, obj, stream, indent, allowance, context, level):</span>
+<span id="cb2-66">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># If it's a long string, forcibly wrap it</span></span>
+<span id="cb2-67">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">isinstance</span>(obj, <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">str</span>) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">and</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(obj) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>._width:</span>
+<span id="cb2-68">            <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Break the string into lines of up to self._width</span></span>
+<span id="cb2-69">            wrapped_lines <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> textwrap.wrap(obj, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>._width)</span>
+<span id="cb2-70">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i, line <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">enumerate</span>(wrapped_lines):</span>
+<span id="cb2-71">                <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> i <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>:</span>
+<span id="cb2-72">                    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Move to a new line and indent properly</span></span>
+<span id="cb2-73">                    stream.write(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">' '</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> indent)</span>
+<span id="cb2-74">                <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">super</span>()._format(line, stream, indent, allowance <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> i <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, context, level)</span>
+<span id="cb2-75">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span>:</span>
+<span id="cb2-76">            <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Otherwise, do the normal pprint formatting</span></span>
+<span id="cb2-77">            <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">super</span>()._format(obj, stream, indent, allowance, context, level)</span>
+<span id="cb2-78"></span>
+<span id="cb2-79"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> wrap_pformat(obj, width<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">80</span>):</span>
+<span id="cb2-80">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">"""Return a pretty-printed string where long strings are line-wrapped."""</span></span>
+<span id="cb2-81">    printer <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> WrappingPrettyPrinter(width<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>width)</span>
+<span id="cb2-82">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> printer.pformat(obj)</span></code></pre></div>
+
+
+
+ ]]></description>
+  <category>mini-projects</category>
+  <guid>https://johnowhitaker.dev/mini-projects/debug_fasthtml.html</guid>
+  <pubDate>Tue, 21 Jan 2025 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Schlieren Imaging with a cheap Freshnel Lens</title>
+  <link>https://johnowhitaker.dev/mini-hw-projects/schlieren.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Schlieren imaging is a technique that allows you to see changes in air density. Most setups require parabolic reflectors, carefully placed razor blades and fancy cameras, but it turns out you can get a hacky version working with nothing but a cheap (<a href="https://www.amazon.com/gp/product/B00IITFX02/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&amp;th=1">this one</a> cost me $7.99) Fresnel lens and a phone. You really need vieo to do it justice (see <a href="https://x.com/johnowhitaker/status/1880467363881185445">this thread</a> for some of my first tests) but trust me, it’s really cool to see something that is normally invisible:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/sch1.png" class="img-fluid figure-img"></p>
+<figcaption>A lighter flame and surrounding turbulence. Still frame from a video processed to show the difference between one static frame and the rest, to highlight the effect.</figcaption>
+</figure>
+</div>
+<p>My favourite thing to see so far was the shock diamonds in the stream of gas coming out of a ‘canned air’ duster. I’ve wanted to try this since I read <a href="https://hackaday.com/2024/02/18/canned-air-is-unexpectedly-supersonic/">this Hackaday piece</a> about this. Wild stuff:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/sch2.png" class="img-fluid figure-img"></p>
+<figcaption>Shock diamonds in a stream of gas</figcaption>
+</figure>
+</div>
+<p>Initial tests were just hackily balancing things to line up an LED, the lens and my camera. I’ve since 3D-printed a bracket (<a href="https://cad.onshape.com/documents/ce126238a89f034cdb0b8e1f/w/934005ecead5a54ecd8e6407/e/09ada8d4f4095200976abf23">CAD link</a>) and tried out Lumix FZ80 camera too, with good results. Here’s the current setup:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/sch3.png" class="img-fluid figure-img"></p>
+<figcaption>The current setup, with a 3D-printed bracket holding the lens in place</figcaption>
+</figure>
+</div>
+<p>The green LED for illumincation is nice - using a white LED or other light source shows a lot of chromatic abberations etc thanks to the cheap plastic lens. Nothig some software tweaks can’t fix, but the monochrome look is pretty cool.</p>
+<p>One reason I don’t need the razo blande at all is the small apeture of cellphone cameras (and my small-sensor lumix) - if you try with a fancier camera you might need to experiment a bit.</p>
+<p>Alignment is critical but it’s rpetty easy since you can see the ‘image’ of the LED and move the camera into rough position then do final tweaks back and forth while looking at the live view.</p>
+<p>I’m probably going to have to make videos for this and the crystals stuff to show them best, stay tuned for a new youtube link soon maybe :)</p>
+
+
+
+ ]]></description>
+  <category>mini-hw-projects</category>
+  <guid>https://johnowhitaker.dev/mini-hw-projects/schlieren.html</guid>
+  <pubDate>Sat, 18 Jan 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Photographing Crystals with a Modified Microscope</title>
   <link>https://johnowhitaker.dev/mini-hw-projects/scope_mods.html</link>
@@ -6149,688 +6825,6 @@ font-style: inherit;">"Acceleration (estimated)"</span>)</span>
   <category>mini-hw-projects</category>
   <guid>https://johnowhitaker.dev/mini-hw-projects/single-pixel-camera.html</guid>
   <pubDate>Wed, 21 Aug 2024 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Building Silly Projects with FastHTML</title>
-  <dc:creator>Jonathan Whitaker</dc:creator>
-  <link>https://johnowhitaker.dev/mini-projects/silly-projects-fasthtml.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>We’ve been working on FastHTML, a web app framework that makes it easy to build web apps with Python. In the process, I personally have learnt a lot about how the web works, and spent a fair amount of time figuring out ‘good’ ways to do things for the examples and documentation we’ve been putting out. But one side-effect of having an easy-to-use web app framework is that I’ve also been reaching for it in my personal projects, and I thought in this post I’d share some notes from a few of these experiments. None of these projects are particularly exemplary, but that’s sort of the point - if they were good, they’d cout as work! So, take these as inspiration (you can do thigns) but not as examples (you should probably do things slightly differently).</p>
-<section id="notfriend" class="level2">
-<h2 class="anchored" data-anchor-id="notfriend">NotFriend</h2>
-<p>Project URL: <a href="https://notfriend.org/">notfriend.org</a> Code: https://github.com/johnowhitaker/notfriend</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-projects/images/s_notfriend.png" class="img-fluid figure-img"></p>
-<figcaption>NotFriend landing page</figcaption>
-</figure>
-</div>
-<p>In one of our answerai ‘watercooler’ calls, the topic of the ‘Friend’ pendant came up. I jokingly onted that notfriend.org was available, and that we should do some sort of parody. I did my more serious work for the day then knocked out the site (now visible at <a href="notfriend-production.up.railway.app">notfriend-production.up.railway.app</a> - more on that shortly) that evening, sharing it the next morning once I’d tested the payments and tweaked a few minor UI things to my satisfaction.</p>
-<p>It seems like the standard approach to designing a visually appealing site these days is to hire a designer to sketch out the ‘look’ of a site in figma and then spend ages trying to match that in code. I got a taste of how tedious this can be helping to do exactly this for an internal project, and Jeremy had a similar experience working with the design team on the FastHTML homepage. We both came away with the same conclusion: how do people live like this? Alternative apporaches that feel more reasonable are:</p>
-<ul>
-<li>Start from a template</li>
-<li>Use a set library of components. We’re starting to explore this with fh-bootstrap, and there are community attempts to port things like shadcn to FastHTML.</li>
-<li>Get an AI to do all the hard work! Spoiler, this is what I went with for NotFriend :)</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-projects/images/s_v0.png" class="img-fluid figure-img"></p>
-<figcaption>V0 screenshot</figcaption>
-</figure>
-</div>
-<p>The tool I tried is called Vercel V0, although <a href="https://github.com/wandb/openui">OpenUI</a> from Chris Van Pelt seems like a great open-source alternative that lets you control the model, system prompt etc. V0 spits out code, and has a mechanism for requesting design changes (“make the header larger, change the color palette to greens…”). I copied the generated HTML into our <a href="https://h2f.answer.ai/">‘h2f’ converter</a> and voila - a decent-looking starting point to tinker with.</p>
-<p>Another pleasingly simple part of the process was letting people actually buy the thing! Taking payments via stripe is as simple as setting a few secrets and then sending the user to a checkout page created by stripe:</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># They submit a form with their email, physical address and type of product</span></span>
-<span id="cb1-2"><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">@app.get</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"/buy/"</span>)</span>
-<span id="cb1-3"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">def</span> buy_credits(product:<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>, email:<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>, address:<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>):</span>
-<span id="cb1-4">    s <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> stripe.checkout.Session.create(</span>
-<span id="cb1-5">        payment_method_types<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>[<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'card'</span>],</span>
-<span id="cb1-6">        metadata <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> {<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"product"</span>: product,<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"email"</span>:email,<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"address"</span>:address},</span>
-<span id="cb1-7">        line_items<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>[{</span>
-<span id="cb1-8">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'price_data'</span>: {</span>
-<span id="cb1-9">                <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'currency'</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'usd'</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'unit_amount'</span>: <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2496</span>,</span>
-<span id="cb1-10">                <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'product_data'</span>: {<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'name'</span>: <span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f'You are buying a NotFriend (</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>product<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;"> version) - thank you for being a part of this!'</span>},</span>
-<span id="cb1-11">            }, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'quantity'</span>: <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>,</span>
-<span id="cb1-12">        }],</span>
-<span id="cb1-13">        mode<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'payment'</span>,</span>
-<span id="cb1-14">        success_url<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>DOMAIN <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'/success?session_id=</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{CHECKOUT_SESSION_ID}</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'</span>,</span>
-<span id="cb1-15">        cancel_url<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>DOMAIN <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'/cancel'</span>,</span>
-<span id="cb1-16">    )</span>
-<span id="cb1-17">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">return</span> RedirectResponse(s[<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'url'</span>])</span></code></pre></div>
-<p>You can add a webhook to listen for successful payments and then update the user’s account in your database, but for this project I just manually checked the stripe dashboard and then sent orders to the addresses myself - passing the metadata along with the order made this easy. I had two sales - digging around the stripe dashboard to find the info was a perfectly reasonable approach. When you have thousands of sales you can set up automations, but that’s a good problem to have! I don’t want to make out that this is completely trivial, but wow the ability to set this up, and the ease with which I could pop a few notfriends in the mail and send them off, really highlights how doable it is to set up a small business online these days (if you’re lucky enough to live in the right place).</p>
-</section>
-<section id="distilhn" class="level2">
-<h2 class="anchored" data-anchor-id="distilhn">DistilHN</h2>
-<p>Project url: <a href="https://distilhn.com/">https://distilhn.com/</a> Code: https://github.com/AnswerDotAI/fasthtml-example/tree/main/hacker_news_reskin</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-projects/images/s_distilhn.png" class="img-fluid figure-img"></p>
-<figcaption>DistilHN screenshot</figcaption>
-</figure>
-</div>
-<p>This one was a re-do of a project I first made in ~2021/22. It takes the front-page articles on Hacker News, summarizes them and presents them in a nice UI with links to both the articles and the HN comments. The original version used a BART model for summarization, and Flask for the backend. It took remarkably little fiddling to get a FastHTML version out of Claude (<a href="https://claude.ai/share/86b73f06-af42-4e85-96ce-f6f74a224ca8">conversation link</a> for answerai people).</p>
-<p>It’s amazing how anyone can now drop in code like this:</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">sp <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"""You are a helpful assistant that summarizes articles. Given an article text, possibly including unrelated scraping artefacts, return a summary of the article. If the text is just something like 'enable javascript' or 'turn off your ad blocker', just respond with "Could not summarize article." Otherwise, respond with just the summary (no preamble). Favour extremely conciseness and brevity. Start directly with the contents. Aim for &lt;100 words."""</span></span>
-<span id="cb2-2"><span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">async</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">def</span> summarize_text(text):</span>
-<span id="cb2-3">    chat_completion <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> client.chat.completions.create(</span>
-<span id="cb2-4">        messages<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>[{</span>
-<span id="cb2-5">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"role"</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"system"</span>,</span>
-<span id="cb2-6">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"content"</span>: sp</span>
-<span id="cb2-7">        }, {</span>
-<span id="cb2-8">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"role"</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"user"</span>,</span>
-<span id="cb2-9">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"content"</span>: <span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"Please summarize the following text: </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>text<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span></span>
-<span id="cb2-10">        }],</span>
-<span id="cb2-11">        model<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"gpt-4o-mini"</span>,</span>
-<span id="cb2-12">    )</span>
-<span id="cb2-13"></span>
-<span id="cb2-14">    summary <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> chat_completion.choices[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>].message.content.strip()</span>
-<span id="cb2-15">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">return</span> summary</span></code></pre></div>
-<p>This is page I actually visit, since unlike regular HN I can actually get a sense of the article without having to read the whole thing, and it helps me avoid ending up with tons of tabs and comments sections opened. It’s really special that anyone with a bit of coding knowledge can make something like this, and then share it with the world, in hours rather than weeks. Bespoke software for the win :)</p>
-</section>
-<section id="moodle---the-benefit-of-progressive-extension" class="level2">
-<h2 class="anchored" data-anchor-id="moodle---the-benefit-of-progressive-extension">Moodle - the benefit of progressive extension</h2>
-<p>Project URL: <a href="https://moodle-game.com/">moodle-game.com</a> Code: https://github.com/AnswerDotAI/fasthtml-example/tree/main/03_pictionary/moodle_demo</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://github.com/AnswerDotAI/fasthtml-example/raw/main/03_pictionary/in_action.gif" class="img-fluid figure-img"></p>
-<figcaption>Moodle screen capture</figcaption>
-</figure>
-</div>
-<p>FastHTML lends itself to tacking on features as you go. Start with a homepage. Add an about route. Add a navbar. Add a countdown. Add a high-scores list. You can end up with something a little chaotic (see the source code) but ‘locality of behaviour’ means it’s generally super easy to see how one specific thing works. This is how I ended up with Moodle!</p>
-<p>To illistrate what I mean by locality of behaviour: if you want to know how the leaderboard works, you only have to look at one place main.py:</p>
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">@app.get</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'/leaderboard'</span>)</span>
-<span id="cb3-2"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">def</span> leaderboard():</span>
-<span id="cb3-3">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Top 10 in last 24 hours and approved games only</span></span>
-<span id="cb3-4">    fastest_games <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> games(where<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"end_time IS NOT NULL AND end_time &gt; strftime('</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%s</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">', 'now', '-1 day') AND approved"</span>,</span>
-<span id="cb3-5">                        order_by<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"(end_time - start_time) ASC"</span>,</span>
-<span id="cb3-6">                        limit<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">10</span>)</span>
-<span id="cb3-7">    rows <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> []</span>
-<span id="cb3-8">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> i, game <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">enumerate</span>(fastest_games, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>):</span>
-<span id="cb3-9">        duration <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> game.end_time <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span> game.start_time</span>
-<span id="cb3-10">        player_name <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> game.player_name <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> game.player_name <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">else</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Anonymous"</span></span>
-<span id="cb3-11">        rows.append(</span>
-<span id="cb3-12">            Tr(Td(<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>(i)), Td(player_name), Td(game.word),</span>
-<span id="cb3-13">            Td(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>duration<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;"> seconds"</span>),</span>
-<span id="cb3-14">            Td(A(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"View"</span>, href<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"/game-summary?game_id=</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>game<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">id</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>))))</span>
-<span id="cb3-15"></span>
-<span id="cb3-16">    table <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Table(Thead(</span>
-<span id="cb3-17">        Tr(Th(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Rank"</span>), Th(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Player"</span>), Th(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Word"</span>), Th(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Duration"</span>),</span>
-<span id="cb3-18">            Th(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Details"</span>))),</span>
-<span id="cb3-19">                    Tbody(<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span>rows),</span>
-<span id="cb3-20">                    cls<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"table table-striped table-hover"</span>)</span>
-<span id="cb3-21"></span>
-<span id="cb3-22">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">return</span> Title(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Leaderboard - Fastest Games"</span>),  Navbar(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"leaderboard"</span>),  Main(</span>
-<span id="cb3-23">            H1(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Top 10 Fastest Games (past 24 hours):"</span>, style<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"text-align: left;"</span>),</span>
-<span id="cb3-24">            table,</span>
-<span id="cb3-25">            A(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Back to Home"</span>, href<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"/"</span>),</span>
-<span id="cb3-26">            cls<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'container'</span>)</span></code></pre></div>
-<p>We’re at ~8,500 games played, and I’m going to write up another post on the model performance and such soonish, so I won’t go into that here. Key takeaway: FastHTML mostly got out the way so I could focus on thinking about what I wanted to add, and even though this app has sort of crossed the point where one might consider restructuring/refactoring it, it’s still very manageable. And the AI models that make it all work have cost us next to nothing so far. Magic!</p>
-</section>
-<section id="conclusions" class="level2">
-<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
-<p>I feel like there’s a very large space of ideas that I know I can do now. This makes me happy. Hooray for FastHTML :)</p>
-
-
-</section>
-
- ]]></description>
-  <category>Blog</category>
-  <guid>https://johnowhitaker.dev/mini-projects/silly-projects-fasthtml.html</guid>
-  <pubDate>Wed, 21 Aug 2024 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Computational Linguistics</title>
-  <link>https://johnowhitaker.dev/dsc/computational-linguistics.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>LLMs are cool - we can make them do all sorts of tricks. But beyond the generative applications there’s a whole bunch of interesting linguistic analysis we can do, especially with base models that are essentially this very compressed representation of the world of text. In this post I wanted to show a few quick experiments I did, in the hope that they might inspire you to try something similar.</p>
-<section id="what-time-is-afternoon" class="level2">
-<h2 class="anchored" data-anchor-id="what-time-is-afternoon">What time is ‘Afternoon’?</h2>
-<p>It occurred to me the other day that I could use LLMs to disambiguate the meaning of ‘afternoon’, and other phrases (‘a dozen’, ‘soon’ etc). For example, we can think up some sentences that both specify that something is happening in the afternoon and then formalize the time. By plotting the likelihood of different times, we can see how the model interprets the word:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/dsc/images/afternoon.png" class="img-fluid figure-img"></p>
-<figcaption>what time is afternoon</figcaption>
-</figure>
-</div>
-<p>Pretty neat! It turns out ‘afternoon’ is most likely to be around 3pm.</p>
-</section>
-<section id="dinner-time" class="level2">
-<h2 class="anchored" data-anchor-id="dinner-time">Dinner Time:</h2>
-<p>We can do this same thing for meal times:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/dsc/images/meal_times.png" class="img-fluid figure-img"></p>
-<figcaption>plot for different meal times</figcaption>
-</figure>
-</div>
-<p>Notice I chose the ranges for the charts carefully. It turns out this method of looking at liklihood gets messed up a little when things tokenize into multiple tokens. For example, for ‘breakfast’ 10am might be unlikely BUT after a 1 is generated the options for the token after that are 0, 1 or 2, with 0 being very likely. So the average liklihood of “10am” is high, even though it’s not a likely time for breakfast. Not to mention the variants like ‘noon’, 13:00, etc. So, take this with a grain of salt!</p>
-</section>
-<section id="probing-deeper" class="level2">
-<h2 class="anchored" data-anchor-id="probing-deeper">Probing deeper</h2>
-<p>One alternative is to probe some (fixed) token as our measure, and change other parts of the context. For example, let’s see which accompaniment to “tea” is best by looking at the likelihood of “lovely” at the end of this prompt: “Shall we have some tea and {X}? That would be lovely”.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/dsc/images/tea_and_x.png" class="img-fluid figure-img"></p>
-<figcaption>plot for different accompaniments to tea</figcaption>
-</figure>
-</div>
-<p>Biscuits are the clear winner! Speaking of, I’m off to make a cuppa and grab a biscuit. Until next time!</p>
-</section>
-<section id="ps-exploring-this-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="ps-exploring-this-yourself">PS: Exploring this yourself</h2>
-<p>Here’s some code to get you started:</p>
-<p>Load the model:</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> torch</span>
-<span id="cb1-2"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> transformers <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> AutoModelForCausalLM, AutoTokenizer</span>
-<span id="cb1-3"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> datasets <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> load_dataset</span>
-<span id="cb1-4"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> torch.nn.functional <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> softmax</span>
-<span id="cb1-5"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> tqdm.auto <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> tqdm</span>
-<span id="cb1-6"></span>
-<span id="cb1-7">device <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"cuda"</span></span>
-<span id="cb1-8">model_id <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"meta-llama/Meta-Llama-3-8B"</span></span>
-<span id="cb1-9">tokenizer <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> AutoTokenizer.from_pretrained(model_id)</span>
-<span id="cb1-10">tokenizer.pad_token <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> tokenizer.eos_token</span>
-<span id="cb1-11">model <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> AutoModelForCausalLM.from_pretrained(</span>
-<span id="cb1-12">    model_id,</span>
-<span id="cb1-13">    torch_dtype <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> torch.bfloat16</span>
-<span id="cb1-14">)</span>
-<span id="cb1-15">model.to(device)<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span></code></pre></div>
-<p>Sample:</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">text <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"""Shall we meet this afternoon?</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">Sure - I'll see you at"""</span></span>
-<span id="cb2-2">candidates <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> [<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">" 1pm"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">" 2pm"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">" 3pm"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">" 4pm"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">" 5pm"</span>]</span>
-<span id="cb2-3">text_inputs <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> tokenizer(text, return_tensors<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"pt"</span>, padding<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">True</span>, truncation<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">True</span>).input_ids.to(device)</span>
-<span id="cb2-4">candidate_inputs <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> tokenizer([text <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> c <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> c <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> candidates], return_tensors<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"pt"</span>, padding<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">True</span>, truncation<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">True</span>).input_ids.to(device)</span>
-<span id="cb2-5"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(text_inputs.shape, candidate_inputs.shape)</span>
-<span id="cb2-6">model_outputs <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> model(candidate_inputs)</span>
-<span id="cb2-7">logits <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> model_outputs.logits</span>
-<span id="cb2-8">scores <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> []</span>
-<span id="cb2-9"><span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> i, c <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">enumerate</span>(candidates):</span>
-<span id="cb2-10">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Calculate perplexity of the completion</span></span>
-<span id="cb2-11">    completion_ids <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> candidate_inputs[i].unsqueeze(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>)</span>
-<span id="cb2-12">    completion_logits <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> logits[i].unsqueeze(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>)</span>
-<span id="cb2-13">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Start is start of completion</span></span>
-<span id="cb2-14">    start <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> text_inputs.shape[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>]</span>
-<span id="cb2-15">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># End is where padding starts</span></span>
-<span id="cb2-16">    end <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> completion_ids.shape[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>]</span>
-<span id="cb2-17">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> i <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">range</span>(start, end):</span>
-<span id="cb2-18">        <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> completion_ids[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>, i] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">==</span> tokenizer.pad_token_id:</span>
-<span id="cb2-19">            end <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> i</span>
-<span id="cb2-20">            <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">break</span></span>
-<span id="cb2-21">    token_indices <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> completion_ids[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>, start:end]</span>
-<span id="cb2-22">    token_logits <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> completion_logits[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>, start:end]</span>
-<span id="cb2-23">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Calculate perplexity</span></span>
-<span id="cb2-24">    perplexity <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span></span>
-<span id="cb2-25">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> i, t <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">enumerate</span>(token_indices):</span>
-<span id="cb2-26">        perplexity <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-=</span> token_logits[i, t]</span>
-<span id="cb2-27">    perplexity <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> perplexity <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">len</span>(token_indices)</span>
-<span id="cb2-28">    perplexity <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> torch.exp(perplexity)</span>
-<span id="cb2-29">    scores.append(perplexity.item())</span>
-<span id="cb2-30"></span>
-<span id="cb2-31"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> matplotlib <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> pyplot <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">as</span> plt</span>
-<span id="cb2-32">plt.bar(candidates, scores)</span>
-<span id="cb2-33">plt.title(text <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">" ..."</span>)</span>
-<span id="cb2-34">plt.xlabel(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Completion"</span>)</span>
-<span id="cb2-35">plt.ylabel(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Score"</span>)</span></code></pre></div>
-
-
-</section>
-
- ]]></description>
-  <category>Blog</category>
-  <guid>https://johnowhitaker.dev/dsc/computational-linguistics.html</guid>
-  <pubDate>Mon, 19 Aug 2024 00:00:00 GMT</pubDate>
-  <media:content url="https://johnowhitaker.dev/dsc/images/meal_times.png" medium="image" type="image/png" height="82" width="144"/>
 </item>
 </channel>
 </rss>
