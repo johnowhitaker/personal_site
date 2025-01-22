@@ -99,3 +99,5 @@ https://near.blog/ definitely, I like /things as a category/page also look at /l
 https://dshinsel.com/eb6/
 
 https://www.aaedmusa.com/projects
+
+https://maurycyz.com/

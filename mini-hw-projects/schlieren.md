@@ -21,6 +21,6 @@ The green LED for illumincation is nice - using a white LED or other light sourc
 
 One reason I don't need the razo blande at all is the small apeture of cellphone cameras (and my small-sensor lumix) - if you try with a fancier camera you might need to experiment a bit. 
 
-Alignment is critical but it's rpetty easy since you can see the 'image' of the LED and move the camera into rough position then do final tweaks back and forth while looking at the live view.
+Alignment is critical but it's pretty easy since you can see the 'image' of the LED and move the camera into rough position then do final tweaks back and forth while looking at the live view.
 
 I'm probably going to have to make videos for this and the crystals stuff to show them best, stay tuned for a new youtube link soon maybe :)
