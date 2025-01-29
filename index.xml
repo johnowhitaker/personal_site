@@ -10,7 +10,92 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.7.13</generator>
-<lastBuildDate>Tue, 21 Jan 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 28 Jan 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Scanning slides with a microscope, a 3D printer and a webcam</title>
+  <link>https://johnowhitaker.dev/mini-hw-projects/scan_microscope.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>In my <a href="https://johnowhitaker.dev/mini-hw-projects/scope_mods.html">previous crystal photography post</a> I showed some beautiful pics of vitamin C crystals photographed through a microscope, with polarizing film bringing out some psychedelic colors. Those were all taken with my phone pointing down through the eyepiece. The natural next step is to scan across a slide and stitch the images together to make a high-res image of a whole slide. And since I already have a 3D printer, this turned out to be fairly easy to do!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/scan_rig.png" class="img-fluid figure-img"></p>
+<figcaption>The scanning rig</figcaption>
+</figure>
+</div>
+<p>The webcam is mounted to the scope with a 3D-printed adapter. The CAD for that, and all code, is in <a href="https://github.com/johnowhitaker/webcam_mosaic">this repository</a>. The software sends G-CODE commands to the printer over USB to move the slide in small increments, then waits for it to settle before taking a picture. Since coding is ~free thanks to AI, it has a GUI based on PyGame for setting the start position, and fancy command-line args and everything :D Here’s an example command you might run to take 9 images in a 3x3 grid:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">python3</span> mosaic.py <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb1-2">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--serial_port</span> /dev/ttyUSB0 <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb1-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--camera_device</span> /dev/video4 <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb1-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--prefix</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"capture/myscan"</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb1-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--x_step</span> 1.5 <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb1-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--y_step</span> 1.5 <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb1-7">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--n_x</span> 3 <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb1-8">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--n_y</span> 3 <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb1-9">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--settle_time</span> 300</span></code></pre></div>
+<p>This stores 9 individual images:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/scan_results.png" class="img-fluid figure-img"></p>
+<figcaption>The 9 images</figcaption>
+</figure>
+</div>
+<p>These can be stitched together in a few different ways. I include a notebook using OpenCV to do this in the repo. Here’s the result of stitching the 9 images together:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/scan_mosaic.png" class="img-fluid figure-img"></p>
+<figcaption>The stitched image</figcaption>
+</figure>
+</div>
+<p>Sadly, the webcam quality isn’t great! So, back to the phone mount we go, and I took a video while having it scan a much larger area, extracted frames from that, and stitched them together. Here’s the result:</p>
+<p>TODO! Do this well and host the giant image somewhere easy to view and explore.</p>
+
+
+
+ ]]></description>
+  <category>mini-hw-projects</category>
+  <guid>https://johnowhitaker.dev/mini-hw-projects/scan_microscope.html</guid>
+  <pubDate>Tue, 28 Jan 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Adding a Debug View for FastHTML Learning</title>
   <link>https://johnowhitaker.dev/mini-projects/debug_fasthtml.html</link>
@@ -6794,37 +6879,6 @@ font-style: inherit;">"Acceleration (estimated)"</span>)</span>
   <guid>https://johnowhitaker.dev/misc/minp.html</guid>
   <pubDate>Fri, 30 Aug 2024 00:00:00 GMT</pubDate>
   <media:content url="https://johnowhitaker.dev/misc/thumbnails/minp.png" medium="image" type="image/png" height="85" width="144"/>
-</item>
-<item>
-  <title>Single-Pixel Camera (Hardware)</title>
-  <link>https://johnowhitaker.dev/mini-hw-projects/single-pixel-camera.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>Taking photos one pixel at a time is a funny idea. It’s been done a few tmes (e.g.&nbsp;https://hackaday.com/2024/07/23/photoresistor-based-single-pixel-camera/, love the construction techniques!) but I wanted to make my own, partly to see if I could use AI to imagine better pictures based on the data. A recent paper (https://arxiv.org/abs/2408.07541) finally pushed me over the edge in terms of motivation, and so yesterday when I needed a quick win after a slow low-motivation day I whipped this up.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/single-pixel-camera.jpg" class="img-fluid figure-img"></p>
-<figcaption>Single Pixel Camera</figcaption>
-</figure>
-</div>
-<p>The design is quite simple - a few 3D printed parts hold two servos in place such that they can scan a tube back and forth. A Raspberry Pi Pico microcontroller controls the servos and reads the voltage, with the LDR and a 10k resistor forming a voltage divider. The Pico sends the data to a laptop over USB, where I can control it and plot the data however I like.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/first_pic.jpg" class="img-fluid figure-img"></p>
-<figcaption>First pic!</figcaption>
-</figure>
-</div>
-<p>I’ve uploaded an assembly video <a href="https://youtu.be/K5qvwNy6jYg">here</a>, and I’ll hopefully do a follow-on post about the software side when I get time. The files to get a minimal pic like the one above working are dumped on GitHub <a href="https://github.com/johnowhitaker/single_pixel_camera">here</a>. You can get the 3D print files from this <a href="https://www.printables.com/model/981878-single-pixel-camera">printables link</a> or on GitHub.</p>
-
-
-
- ]]></description>
-  <category>mini-hw-projects</category>
-  <guid>https://johnowhitaker.dev/mini-hw-projects/single-pixel-camera.html</guid>
-  <pubDate>Wed, 21 Aug 2024 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
