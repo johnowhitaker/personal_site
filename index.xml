@@ -87,6 +87,7 @@ font-style: inherit;">--settle_time</span> 300</span></code></pre></div>
 </figure>
 </div>
 <p>Sadly, the webcam quality isn’t great! So after all that, the best results came from using the phone with <a href="https://play.google.com/store/apps/details?id=com.bcdvision.mapstitch&amp;hl=en_US">this app</a> to make mosaics. The results are <em>ok</em> (<a href="https://drive.google.com/file/d/1NlRSY9DtAnj5N4UNMiZVUJp4BTVCKlKC/view?usp=drive_link">example</a>) but I hope to find a better solution soon - maybe it’s as simple as using the phone as a webcam and manually stitching the images based on the grid coords.</p>
+<p>Update: I found https://mattabrown.github.io/autostitch.html to work well on frames extracted from video through the cellphone. Hooray for good free software!</p>
 
 
 
@@ -94,6 +95,7 @@ font-style: inherit;">--settle_time</span> 300</span></code></pre></div>
   <category>mini-hw-projects</category>
   <guid>https://johnowhitaker.dev/mini-hw-projects/scan_microscope.html</guid>
   <pubDate>Tue, 28 Jan 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/mini-hw-projects/images/scan_autostitch.png" medium="image" type="image/png" height="135" width="144"/>
 </item>
 <item>
   <title>Adding a Debug View for FastHTML Learning</title>
