@@ -31,6 +31,4 @@ These can be stitched together in a few different ways. I include a notebook usi
 
 ![The stitched image](images/scan_mosaic.png)
 
-Sadly, the webcam quality isn't great! So, back to the phone mount we go, and I took a video while having it scan a much larger area, extracted frames from that, and stitched them together. Here's the result:
-
-TODO! Do this well and host the giant image somewhere easy to view and explore.
+Sadly, the webcam quality isn't great! So after all that, the best results came from using the phone with [this app](https://play.google.com/store/apps/details?id=com.bcdvision.mapstitch&hl=en_US) to make mosaics. The results are *ok* ([example](https://drive.google.com/file/d/1NlRSY9DtAnj5N4UNMiZVUJp4BTVCKlKC/view?usp=drive_link)) but I hope to find a better solution soon - maybe it's as simple as using the phone as a webcam and manually stitching the images based on the grid coords.
