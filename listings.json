@@ -13,6 +13,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/misc/model_first_impressions.html",
       "/mini-hw-projects/scan_microscope.html",
       "/mini-projects/debug_fasthtml.html",
       "/mini-hw-projects/schlieren.html",
@@ -250,6 +251,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/misc/model_first_impressions.html",
       "/mini-hw-projects/scan_microscope.html",
       "/mini-projects/debug_fasthtml.html",
       "/mini-hw-projects/schlieren.html",
