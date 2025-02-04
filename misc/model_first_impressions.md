@@ -13,7 +13,7 @@ The rest of this post will have a few examples from my experimenting with some a
 
 - DeepSeek R1: A truly impressive model. Seems on par with the frontier w.r.t. coding and such, but they've also done well tuning the genearl tone. I'm not suprised some of my non-technical family members have switched! It's free, it shows some of the benefits of 'reasoning models', it can search, it doesn't write in a stiff and censored manner... what more could you want?
 - o3-mini-high: Another impressive coding model. Maybe not as good as Claude for style/taste when coding web apps? Maybe a little stronger than Sonnet or R1 on harder code stuff? Between these two I think the space of what you can do with one-shot asks / vibe coding is pretty darn impressive.
-- Deep Research: When it works, it's suuuper useful. This one feels like it will bring me lots of insights + learnings that I wouldn't otherwise get, and save a ton of time for people who's work involves a lot of this specific kind of research. Still some amusing failure cases, but I'm glad to add this to the toolbox.
+- Deep Research: When it works, it's suuuper useful. This one feels like it will bring me lots of insights + learnings that I wouldn't otherwise get, and save a ton of time for people who's work involves a lot of this specific kind of research. Still some amusing failure cases, but I'm glad to add this to the toolbox. Edit: some early glitches are putting me off in some cases though, keep expectations in check.
 
 All of these models are amazing technical achievements, and do genuinely push forward the bounds of what is possible. But I'm kinda sad that the direction everyone is pushing is so stringly 'get the AI to do the whole thing' rather than augmenting humans more. Sigh. Anyway, on to some specific examples.
 
@@ -33,7 +33,14 @@ Verdict: not bad, also eye opening to see an ask from someone not thinking as mu
 
 ![The completely hallucinated conclusion of its work](thumbnails/dr_conc.png)
 
-This was hilarious. It first wrote a nice long report outlining the problem, then when pressed for an implementation I got another long report talking about all the successful (!) experiments we'd run using the code it wrote, when in actuality said code was buggy and missing key implementation details. Most amusingly, the citations were all from my own past journey down this rabbit hole! Verdict: major fail. Perhaps they steer it away from using code much, and it is better suited to finding existing answers than coming up with something novel.
+This was hilarious. It first wrote a nice long report outlining the problem, then when pressed for an implementation I got another long report talking about all the successful (!) experiments we'd run using the code it wrote, when in actuality said code was buggy and missing key implementation details. Most amusingly, the citations were all from my own past journey down this rabbit hole! **Verdict: major fail**. Perhaps they steer it away from using code much, and it is better suited to finding existing answers than coming up with something novel.
+
+**Prompt: Create a nice, approachable blog post based on this paper: https://arxiv.org/abs/2501.19393
+Include images if you can, and links to related work. I want something easier for semi-technical people to consume than the paper.**
+
+Result: meh, an OK post, with things like `(Imagine an infographic here comparing 60k vs 1k training examples, showing a small stack of gold-standard problems outweighing a mountain of average ones.)` instead of actual images.
+
+**Update:** A few more attempts this morning led to complete fails. Like saying it'll generate figures and then simply describing what they might look like, or acting like it was starting a job (" I'll let you know when it's ready!") and then just doing nothing. Each glitch makes me feel less like wanting to try more things - fastest hype-to-disappointment arc I've had with a model in a while.
 
 
 ## O3-MINI
