@@ -1,6 +1,6 @@
 ---
 title: Vibe Coding and V-Plotters
-date: 2024-12-02
+date: 2025-02-03
 categories: 
     - essays
     - mini-hw-projects
