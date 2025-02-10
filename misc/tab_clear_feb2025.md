@@ -5,6 +5,8 @@ categories:
   - "misc"
 ---
 
+Clearing some recent tabs. I'm not sure how useful these posts are to anyone else, but they help me finally read + close things I've been meaning to get to.
+
 - [An amazing study in nature](https://www.nature.com/articles/s41467-024-55003-5) doing 'Optical widefield nuclear magnetic resonance microscopy', using nitrogen-vacancy-doped diamond (which flouresces in a way dependant on the surroundings) in a thin layer below a sample to get per-pixel NMR data. Wild stuff. Currently 10um resolution but easy to see that dropping further.
 - [Recreating Deep Research](https://huggingface.co/blog/open-deep-research) from huggingface. Nice to see people showing their version of search in a tool loop. I also like the look of [Jina's version](https://github.com/jina-ai/node-DeepResearch).
 - New AI stuff
