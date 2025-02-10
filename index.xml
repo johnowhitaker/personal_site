@@ -50,6 +50,7 @@
 
 
 
+<p>Clearing some recent tabs. I’m not sure how useful these posts are to anyone else, but they help me finally read + close things I’ve been meaning to get to.</p>
 <ul>
 <li><a href="https://www.nature.com/articles/s41467-024-55003-5">An amazing study in nature</a> doing ‘Optical widefield nuclear magnetic resonance microscopy’, using nitrogen-vacancy-doped diamond (which flouresces in a way dependant on the surroundings) in a thin layer below a sample to get per-pixel NMR data. Wild stuff. Currently 10um resolution but easy to see that dropping further.</li>
 <li><a href="https://huggingface.co/blog/open-deep-research">Recreating Deep Research</a> from huggingface. Nice to see people showing their version of search in a tool loop. I also like the look of <a href="https://github.com/jina-ai/node-DeepResearch">Jina’s version</a>.</li>
