@@ -13,6 +13,8 @@
   {
     "listing": "/all.html",
     "items": [
+      "/misc/bubble_colors.html",
+      "/misc/tab_clear_feb2025.html",
       "/misc/model_first_impressions.html",
       "/mini-hw-projects/scan_microscope.html",
       "/mini-projects/debug_fasthtml.html",
@@ -251,6 +253,8 @@
   {
     "listing": "/index.html",
     "items": [
+      "/misc/bubble_colors.html",
+      "/misc/tab_clear_feb2025.html",
       "/misc/model_first_impressions.html",
       "/mini-hw-projects/scan_microscope.html",
       "/mini-projects/debug_fasthtml.html",
