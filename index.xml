@@ -10,7 +10,189 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.7.13</generator>
-<lastBuildDate>Mon, 10 Feb 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 17 Feb 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Direct Ascent Synthesis: Revealing Hidden Generative Capabilities in Discriminative Models</title>
+  <link>https://johnowhitaker.dev/posts/DAS.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I have a paper out! What!?!? Johno doesn’t write papers. True. But when Stanislav Fort discivered a neat trick that was one I’d also found back in the day, we got talking and figured it ought to be better documented so other people can use it too. I have to say: he did all the hard work! I sadly didn’t have time to play much, but did chip in a little. This blog post is a few of my ow thoughts, but you should read the <a href="https://arxiv.org/abs/2502.07753">paper</a> first.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/posts/images/das.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 1 from our paper</figcaption>
+</figure>
+</div>
+<p>The TL;DR is as follows: instead of optimizing raw pixels, optimize a collection of image tensors at different resolutions that get resized and stacked together to form the final image. This turns out to have really neat regularization effects, and gives a really nice primitive for seeing what ‘natural’-ish images trigger various features in classifiers etc. This is pretty much the idea behind my 2021 <a href="https://github.com/johnowhitaker/imstack">‘imstack’</a> stuff, but made cleaner and more general.</p>
+<p>The other trick is to do some augmentations, critically adding some jitter (different crops) and noise. Once you have these pieces in place, you can optimize towards a text prompt with CLIP, or do style transfer, or trigger a specific class in a classification model… the possibilities are endless. Here’s the code to make the quintessential ‘jellyfish’ from an imagenet model for e.g.&nbsp;(<a href="https://colab.research.google.com/drive/1gLZXcPIKpBwYWgweOVli9ORcOyJ-khJ5?usp=sharing">colab</a>)</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> stack(x, large_resolution):</span>
+<span id="cb1-2">  out <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span></span>
+<span id="cb1-3">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i,p <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">enumerate</span>(x):</span>
+<span id="cb1-4">    out <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> F.interpolate(p, size<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(large_resolution, large_resolution), mode<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'bicubic'</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> resolutions[i] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'nearest'</span>)</span>
+<span id="cb1-5">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> out</span>
+<span id="cb1-6"></span>
+<span id="cb1-7"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> raw_to_real_image(raw_image): <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> (torch.tanh(raw_image)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.0</span></span>
+<span id="cb1-8"></span>
+<span id="cb1-9">large_resolution <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">336</span></span>
+<span id="cb1-10">resolutions <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,large_resolution<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>)</span>
+<span id="cb1-11">image_layers <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [torch.zeros(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>,res,res).to(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cuda"</span>) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> res <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> resolutions]</span>
+<span id="cb1-12"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i,p <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">enumerate</span>(image_layers): p.requires_grad <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span></span>
+<span id="cb1-13">optimizer <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> torch.optim.SGD(image_layers, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.005</span>)</span>
+<span id="cb1-14"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> step <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> tqdm(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>)):</span>
+<span id="cb1-15">  optimizer.zero_grad()</span>
+<span id="cb1-16">  images <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> raw_to_real_image(stack(image_layers, large_resolution))</span>
+<span id="cb1-17">  images <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> make_image_augmentations(images, count<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">16</span>, jitter_scale<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">56</span>, noise_scale<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span>)</span>
+<span id="cb1-18">  loss <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>model(normalize(images))[:, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">107</span>].mean()</span>
+<span id="cb1-19">  loss.backward()</span>
+<span id="cb1-20">  optimizer.step()</span></code></pre></div>
+<p>I want to do a video explanation soon to capture more thoughts on this and show off more of what this technique can do. See also, <a href="https://x.com/stanislavfort/status/1890724291752100265">Stanislav’s announcement post</a>. The rest of this post is me rambling on some tangential bits that have come up since the paper was released.</p>
+<section id="thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="thoughts">Thoughts</h2>
+<p>WIP, TODO: - Describe the early days - Link my initial experiments - The benefits of curiosity driven independent researchers - ‘This doesn’t cite X’ - peer review pile-ons and the downsides of twitter - I’m going to stick to blog posts</p>
+
+
+</section>
+
+ ]]></description>
+  <category>papers</category>
+  <category>blogs</category>
+  <category>wip</category>
+  <guid>https://johnowhitaker.dev/posts/DAS.html</guid>
+  <pubDate>Mon, 17 Feb 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Bubble Colors</title>
   <link>https://johnowhitaker.dev/misc/bubble_colors.html</link>
@@ -163,6 +345,75 @@
   <category>misc</category>
   <guid>https://johnowhitaker.dev/misc/model_first_impressions.html</guid>
   <pubDate>Tue, 04 Feb 2025 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Vibe Coding and V-Plotters</title>
+  <link>https://johnowhitaker.dev/essays/vibe_coding.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/essays/vibe_coding.png" class="img-fluid figure-img"></p>
+<figcaption>‘vibe coding is already here’</figcaption>
+</figure>
+</div>
+<p>A <a href="https://x.com/karpathy/status/1886192184808149383">Karpathy tweet</a> sparked a bunch of discussion about ‘vibe coding’ - his term for completely embracing AI coding assistance where “it’s not really coding - I just see stuff, say stuff, run stuff, and copy paste stuff, and it mostly works.”. He clarifies that this is still only good enough for “throwaway weekend projects” but it’s clear that many think of this as the obvious future of coding. So - is it? And if so, is that a good thing? I think my weekend hobby coding helps illustrate why I hope that the old fashioned way sticks around.</p>
+<section id="what-plotters" class="level2">
+<h2 class="anchored" data-anchor-id="what-plotters">What-plotters?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/essays/plot_portrait.png" class="img-fluid figure-img"></p>
+<figcaption>A plotted self-portrait</figcaption>
+</figure>
+</div>
+<p>The project in question was a ‘V-Plotter’ - a device that draws by moving a pen/sharpie around at the end of two strings or chains, wound in and out by a pair of motors under computer control. Building one was on my project list, but I’d been putting off writing the necessary software. So, when o3-mini was released and its coding capabilities lauded, I threw it a challenge: write a web app that would take in an SVG and spit out the G-CODE that would control my motors correctly to draw the image in question.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/essays/plot_preview.png" class="img-fluid figure-img"></p>
+<figcaption>The preview in the vibe-coded webapp</figcaption>
+</figure>
+</div>
+<p>It spat out a <a href="https://tools.johnowhitaker.com/svg2g">functional-seeming site</a>, and so I cobbled together the necessary hardware and attempted a plot. Apart from being rotated 90 degrees, the results seemed to indicate that it was working as hoped! A project that I’d been idly thinking about for years had materialized before breakfast on a Saturday - vibe coding for the win!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/essays/plotter.png" class="img-fluid figure-img"></p>
+<figcaption>The plotter itself</figcaption>
+</figure>
+</div>
+</section>
+<section id="a-question-begets-a-question" class="level2">
+<h2 class="anchored" data-anchor-id="a-question-begets-a-question">A Question Begets a Question</h2>
+<p>I shared the first test in a group with some folks from my local hackerspace, and a fellow member responded asking if we could chat further - turns out the too had long wanted to build such a device. I agreed to meet, but felt an instant pang of <em>something</em> - what would I tell this guy? “Oh yeah I kinda know how it works but actually I just had AI write all the code?” Bah! Haven’t I spent the last few months teaching a course on doing things carefully, iteratively, in small pieces, with AI supporting but a human in charge? There was only one thing to do.</p>
+</section>
+<section id="another-way" class="level2">
+<h2 class="anchored" data-anchor-id="another-way">Another Way</h2>
+<p>I started from a clean slate - a Jupyter notebook and a plan. With AI assistance, I started building up pieces bit by bit, sprinkling in some explanation. Can I load an SVG? What do lines and polylines look like? Can I turn those into sequences of moves? Can I shift and scale these move sequences? And then, once I was ready, the crux: how do you turn a set of X,Y positions into string length commands that would make sense for the plotter? What scary maths would one need to know?</p>
+<p>Prompt: Please write function c_t_v that takes the plotter params and a set of moves defined in cartesian space, and converts them such that they’ll work on the plotter. Test it with the square from before.</p>
+<p>With all the other scaffolding in place, the new function was only a few lines of code. And looking at it, with plots and examples in my own ‘context window’, it was immediately obvious how that code works. It’s just two triangles!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/essays/plot_kinematics.png" class="img-fluid figure-img"></p>
+<figcaption>plot kinematics</figcaption>
+</figure>
+</div>
+<p>This was code I could share with and explain to my soon-to-be-new-friend. This was something I could write a tutorial on. This was something I could code again in 2 years time when I decide I need to build a better plotter. In other words, ‘inverse kinematics for hanging plotters’ is now something I <strong>understand</strong>.</p>
+</section>
+<section id="the-moral-of-the-story" class="level2">
+<h2 class="anchored" data-anchor-id="the-moral-of-the-story">The Moral Of The Story</h2>
+<p>There are so many use-cases for instant, throwaway software. So many things now in reach for people who are new to coding or time constrained. Vibe coding is amazing, and powerful, and I enjoy it a lot! But there’s something delightful about figuring out something for yourself that I’m worried people might miss out on. Because behind the intimidating syntax and the boilerplate there’s often something extremely elegant and satisfying, which our puny human minds are more than capable of understanding. I hope that as we develop these tools even further, we keep in mind the value of wasting an hour or two trying to do things the human way.</p>
+<p>Yours, humanly, Johno</p>
+
+
+</section>
+
+ ]]></description>
+  <category>essays</category>
+  <category>mini-hw-projects</category>
+  <guid>https://johnowhitaker.dev/essays/vibe_coding.html</guid>
+  <pubDate>Mon, 03 Feb 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Scanning slides with a microscope, a 3D printer and a webcam</title>
@@ -3198,6 +3449,51 @@ G1 X-305 F3000 S1  ; move left until X endstop triggered</code></pre>
   <media:content url="https://i.pinimg.com/originals/40/fe/86/40fe863b3ccf9ceb56cbef670cf6bc41.gif" medium="image" type="image/gif"/>
 </item>
 <item>
+  <title>AI Outputs as Junk Food</title>
+  <link>https://johnowhitaker.dev/essays/junk_food.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>My first taste of American food was a bacon-and-egg roll in the airport. Immediate impression: “woah this is sweet?!?”. The bread was sweet, the bacon maple-coated… Tasty, but odd after 5 years eating fairly healthy and basic food in Zimbabwe. Why is everything full of corn syrup? Why have I gained weight? Part of the answer is ‘optimization’ - when you optimize for sales, you can end up hacking the human brain in ways that aren’t good for us. Sweeter chocolate milk sells better, so more sugar is added until you get the thick sludge that people drink here. Cheap and tasty are all well and good, but it’s clear there are downsides, and it’s clear you mightant to spend considerable effort fighting the tempation and seeking out healthier alternatives. Short-term optimization for human preferences can lead to long-term harm. Anyway, on an unrelated note, let’s talk about AI!</p>
+</section>
+<section id="what-makes-a-tasty-model" class="level2">
+<h2 class="anchored" data-anchor-id="what-makes-a-tasty-model">What Makes A Tasty Model?</h2>
+<p>Today’s LLMs go through a few different phases of training. There’s ‘pretraining’, where the model is shown a lot of text and learns to predict the next word. Then there’s ‘fine-tuning’, where the model is shown a few examples of a specific task (like being a helpful assistant) and learns to predict the next word in that context. Finally, there’s ‘RLHF’ (or more generally ‘preference tuning’) where the model is trained with feedback about which outputs human raters (or a proxy model for human preferences) prefer. This is a bit like the difference between a slot machine, iterative refinement, and co-creation.</p>
+<p>At a meta level, the choices influencing how exactly these stages are condicted, and how successful they are considered to be, is based on benchmarks (aka ’evals) that try to measure how well the model is doing. Some involve asking hard questions, which rewards informative pretraining data and careful instruction following. But more and more rely on human ratings to measure the model responses. For example, LMSys pits models head-to-head and has humans pick their preferred answer. All the model makers pay attention to performance on these comparisons, testing variants of their models before release and tuning them based on past votes.</p>
+<p>What is the result? We’re optimizing models to make the human raters happy. On the surface it seems like a fantastic thing - better answers (measured by rater preference) mean a better, more helpful, more useful model. Right?</p>
+<p>Except remember the food thing. You can score well on these human-preference-based evals with a few tricks:</p>
+<ul>
+<li>Long answers. People love to see lots of informative and authoratative-sounding text.</li>
+<li>Lots of code. Look, it wrote a whole app for me.</li>
+<li>Nicely formatted markdown. Headings, bullet points, <strong>bold text</strong>. Dopamine central!</li>
+<li>Sycophancy. “What an insightful question!”, “That’s quite an insight, would you like to delve deeper into this fascinating topic”. Seriously - look back at your interactions with your favourite AI and think why you like talking to it - is it just flattering you? (“Nooooo Claude is my friend…”)</li>
+</ul>
+<p>I’m not saying all of these are bad. But think for a sec - are any of these a little like high-fructose corn syrup? Do you really want your apps full of verbose, pleasing-looking walls of code? Your essays the most appeal-to-the-masses slop? Your images the highly-saturated instagram-dominating preference-optimizing eye-candy?</p>
+</section>
+<section id="healthy-ai-ing" class="level2">
+<h2 class="anchored" data-anchor-id="healthy-ai-ing">Healthy AI-ing</h2>
+<p>Watching a coding agent write thousands of lines of code to make you a flashy dashboard will give you a hit of satisfaction - look at it go, just think what my sales will be like with this! But I’m starting to think this won’t make you a better programmer in the long term. Spending the time to learn, doing things carefully yourself, making things <em>yourself</em> rather than having them made - these are the cooking-at-home equiavalents that will pay future dividends. Use AI - the same way we can use fancy ingredients and equipment in a home kitchen. Just don’t give up your life to fast-food or let your intelligence atrophy from lack of use. Avoid the floaty-chairs of Wall-E! Embrace <a href="essays/3_modes.qmd#co-creation">co-creation</a> and make something that’s truly yours, not just the most appealing to the masses.</p>
+<p>WIP: Or something. This feels important, but I’m still working on how best to express this. Input welcome!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/essays/junk_food.png" class="img-fluid figure-img"></p>
+<figcaption>Prompt: ‘super-tasty brain-hacking unhealthy donut, sugary drink, and other junk food, saturated colors like extreme advertising aesthetic’</figcaption>
+</figure>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>essays</category>
+  <guid>https://johnowhitaker.dev/essays/junk_food.html</guid>
+  <pubDate>Mon, 02 Dec 2024 00:00:00 GMT</pubDate>
+</item>
+<item>
   <title>Making Giant Bubbles</title>
   <link>https://johnowhitaker.dev/mini-hw-projects/bubbles.html</link>
   <description><![CDATA[ 
@@ -3290,6 +3586,61 @@ font-style: inherit;">"</span></span></code></pre></div>
   <category>mini-projects</category>
   <guid>https://johnowhitaker.dev/mini-projects/map_folding.html</guid>
   <pubDate>Thu, 14 Nov 2024 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>3 Modes of Making with AI</title>
+  <link>https://johnowhitaker.dev/essays/3_modes.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>In this post I’ll share a mental model that I’ve found useful recently in thinking through a number of topics related to AI and creativity. I call it the “3 Modes of Making with AI”. This framing has helped me think though how I feel about different coding tools, tease out some nuance in the debate around AI art, and imagine some possible futures I want to build towards!</p>
+<p>The trick is to separate out uses of AI into three categories (although in practice it’s often more like a sliding scale). These are:</p>
+<ol type="1">
+<li>“Slot Machine” - press a button or throw in a prompt and hope for the best.</li>
+<li>“Iterative Refinement” - you’re tweaking an initial result to get it closer to what you want, but the AI is doing most of the heavy lifting.</li>
+<li>“Co-Creation” - you’re working to express <em>your</em> vision, with the AI as a tool to help you get there.</li>
+</ol>
+<p>As you move from 1 to 3, the <strong>agency</strong> of the human creator increases, and the output shifts from something ‘generic’ (that anyone might get) to something individual and unique. All three modes have their place of course, as we’ll see as I dig into each a little more, but explicitly thinking about which zone we’re aiming for can have a big impact on the kinds of tools we make, and I think at present the co-creation aspect that centers the human creator is in need of a little more love! So, let’s go through these in a little more detail and then look at some ways we can help shift the balance towards my favourite end of this spectrum :)</p>
+<section id="slot-machines" class="level2">
+<h2 class="anchored" data-anchor-id="slot-machines">Slot Machines</h2>
+<p><img src="https://johnowhitaker.dev/essays/slot_machine.png" class="img-fluid"></p>
+<p>Sometimes all you want is a generic pic to make a meme, a one-off piece of code that you’ll never look at again, or a quick answer to a question. In these cases, hooray - we have these amazing models that can do these kinds of thigns, in a way that felt like magic just a few years ago! Notice how quickly the magic fades though - I’m really not interested in your midjourney gallery, despite the fact that all the image outputs there are technically far better than anything I could make or generate a year or two ago.</p>
+</section>
+<section id="iterative-refinement" class="level2">
+<h2 class="anchored" data-anchor-id="iterative-refinement">Iterative Refinement</h2>
+<p>One immediate upgrade to the above is going through a few rounds of refinement. For text/code models, this can be pointing out a few mistakes or clarifying a requirement, all the way up to asking for many re-writes with detailed feedback each time. For image models, I like the direction Playground are going, where you ask in natural language for edits. Even ChatGPT’s more primitive image gen can do this though - repeatedly asking for “more cute” on a picture of a duckling or something can be entertaining :)</p>
+<p>My favourite application of this approach is Claude Artifacts. You can describe a web app you want, and Claude will typically do a pretty good job giving you a working prototype! Then, over the course of a few conversation turns, you can refine the design by asking for changes like ‘add a button to sort the list’ or ‘make the logo bigger’. This (and Replit agents for similar cases that need a backend or other functionality not avaiable in Artifacts) is a perfect match for making fun bits of ephemeral software. Recent examples where I’ve used this to good effect are:</p>
+<ul>
+<li>Making a web-based grading tool for an assignment my wife was marking</li>
+<li>Whipping up a few mini-sites for my father-in-law’s card game prototype</li>
+<li>Some little <a href="https://johnowhitaker.dev/mini-projects/Mini%20Synth%20and%20Audio%20VIz.html">musical tools</a>, which I exported out of artifacts and <a href="https://johnowhitaker.dev/tils/deploy_your_artifacts.html">deployed as shown here</a></li>
+</ul>
+<p>With this mode, the more you put in, the more you get out - starting with a list of requirements, a picture/sketch of what you want or something personal will get you a much more unique result that a generic ‘make me HTML snake’ prompt. Likewise with iterating with string opinions - ask for changes you want to see rather than accepting the first generic input! As you spend more and more effort, the results get closer to mode 3…</p>
+</section>
+<section id="co-creation" class="level1">
+<h1>Co-Creation</h1>
+<p>The most useful, the most varied, and the most underserved IMO.</p>
+<ul>
+<li>Starting from a sketch, having the AI generate, painting over, repeating, pushing and pulling with the AI “medium” just like I do with watercolor.</li>
+<li>Writing code a few lines at a time, getting AI help with syntax and brainstorming but also understanding the parts myself and learing new things as we go.</li>
+<li>Humming melodies, having an AI like Suno ‘cover’ your rough takes, splitting that out and bringing the stems back into a DAW…</li>
+<li>Using AI as asset generation to speed up the ‘background bits’ for a 3D scene or digital collage</li>
+</ul>
+<p>… TODO expand</p>
+<section id="wip-im-thinking-through-the-best-way-to-express-these-ideas-maybe-this-will-turn-into-a-video-or-something" class="level2">
+<h2 class="anchored" data-anchor-id="wip-im-thinking-through-the-best-way-to-express-these-ideas-maybe-this-will-turn-into-a-video-or-something">WIP: I’m thinking through the best way to express these ideas, maybe this will turn into a video or something…</h2>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>wip</category>
+  <category>essays</category>
+  <guid>https://johnowhitaker.dev/essays/3_modes.html</guid>
+  <pubDate>Fri, 08 Nov 2024 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Deploy Your Artifacts!</title>
@@ -3509,165 +3860,6 @@ font-style: inherit;">'index.html'</span>).write_text(index_html)</span></code><
  ]]></description>
   <guid>https://johnowhitaker.dev/tils/deploy_your_artifacts.html</guid>
   <pubDate>Thu, 07 Nov 2024 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Facewave: Controlling Midi Expression with your webcam</title>
-  <link>https://johnowhitaker.dev/mini-projects/facewave.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>One gripe I’ve had with digital instruments is a lack of expression. Coming from a wind instrument background, I don’t like having no control over a note once it starts. So I love the Roli Seaboard (I have the Rise 2) - a squishy playing surface that uses ‘Midi Polyphonic Expression’ (MPE) to let you vary all sorts of parameters by pushing, sliding, and squishing the keys. Unfortunately that’s a $1000+ investment, not so easy to recommend. Recently they announced a new product, that lets you control sound dynamics by waving your hands about above the keyboard, using hand tracking with a pair of IR cameras. Very cool! But as soon as I saw it the question becomes: can we get most of this for free with a webcam?</p>
-<p>‘Facewave’ is a proof-of-concept to show the answer is yes! I use mediaPipe to track face and hands in the shot, and send midi control codes (CC) out to be used in your synth of choice. Here’s what it looks like in action:</p>
-<p><img src="https://johnowhitaker.dev/mini-projects/images/facewave.png" class="img-fluid"></p>
-<p>The code is available on <a href="https://github.com/johnowhitaker/facewave">GitHub</a> and is hosted both on the accompanying github page (https://johnowhitaker.github.io/facewave/) and on my site (https://tools.johnowhitaker.com/facewave). You’ll need a way to feed the midi from that into a synth - I use <a href="https://www.tobias-erichsen.de/software/loopmidi.html">loopmidi</a> to create a virtual midi port that I can connect to my DAW. <a href="https://x.com/johnowhitaker/status/1851667773354840523">Here</a> is a video of an early prototype in action.</p>
-<p>This is a ton of fun! I made a simple <a href="https://tools.johnowhitaker.com/msynth">synth</a> tool to test this out if you don’t have a DAW / synth installed - you can play notes with your computer keyboard and modulate the sound with Facewave (as long as you have loopmidi set up).</p>
-<p>I love this idea, but don’t know how much further I’ll take it. I’d love someone with more musical contacts to share it around, or steal this idea and add it to your own tools!</p>
-
-
-
- ]]></description>
-  <category>mini-projects</category>
-  <guid>https://johnowhitaker.dev/mini-projects/facewave.html</guid>
-  <pubDate>Fri, 01 Nov 2024 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Mini Synth and Audio Visualization</title>
-  <link>https://johnowhitaker.dev/mini-projects/Mini Synth and Audio VIz.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>I’ve been enjoying creating lots of little projects with Claude artifacts and other tools (post on that soon). Two especially fun ones were both audio related: a mini synth and an audio visualization widget.</p>
-<p>The synth came up while I was messing with <a href="https://aitestkitchen.withgoogle.com/tools/music-fx-dj">Google’s MusicFX DJ</a> - a fantastic tool in it’s own right. I wanted a way to jam along, and while I have a few midi controllers I thought I’d instead whip up an in-browser synth using the computer keyboard to minimize time-to-jamming. This is the result:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-projects/images/synth.png" class="img-fluid figure-img"></p>
-<figcaption>synth</figcaption>
-</figure>
-</div>
-<p>It’s very simple, but I do like being able to set different scales. Google’s MusicFX DJ let’s you set key too, so you can match them up and have things sound nice together. <a href="https://x.com/johnowhitaker/status/1849263436209016995">Here’s a clip of me testing this out for the first time</a></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-projects/images/synth+musicfx.png" class="img-fluid figure-img"></p>
-<figcaption>Noodling with the synth and Google’s MusicFX DJ</figcaption>
-</figure>
-</div>
-<p>Links:</p>
-<ul>
-<li>Synth hosted with github pages: https://johnowhitaker.github.io/minisynth/ (code: https://github.com/johnowhitaker/minisynth)</li>
-<li>And on my tools site: https://tools.johnowhitaker.com/synth</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-projects/images/audio_viz.png" class="img-fluid figure-img"></p>
-<figcaption>audio viz</figcaption>
-</figure>
-</div>
-<p>The second project comes from my nostalgia for the old windows media player visualizations. Impressively, Claude turns out to write OK shaders! There are a few to choose from, none mind-blowing but for something visible to watch while I jam with the previous setup this was a fun way to go. Link: https://tools.johnowhitaker.com/audio_viz</p>
-<p>Both these tools came together in under an hour, between 4pm and 5pm which is usually the dead zone where I’d done being productive work-wise and waiting for my beloved wife to get home. Each took a bit of back-and-forth to get right, but also didn’t need me to write much if any code. There’s a joy in crafting perfect software, but there’s also a joy in spontaneously bringing little things like this to life with just a bit of chatting with AI. What a time to be alive!</p>
-
-
-
- ]]></description>
-  <category>mini-projects</category>
-  <guid>https://johnowhitaker.dev/mini-projects/Mini Synth and Audio VIz.html</guid>
-  <pubDate>Wed, 30 Oct 2024 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Tab Clearning (October 7 2024)</title>
-  <link>https://johnowhitaker.dev/misc/tab_clear_oct_7.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="tab-clearing-october-7-2024" class="level1">
-<h1>Tab Clearing October 7 2024</h1>
-<p><a href="https://www.reka.ai/news/reka-flash-updates">New Reka Flash model</a> - I’m excited to see them ticking along, doing what looks like good work making evals then improving on them (e.g.&nbsp;longer context, instruction chaining). Also, seems like they’ll soon have audio in -&gt; audio out functionality, it’s already in beta.</p>
-<p><a href="https://x.com/nsaphra/status/1834260761792639363?t=_Bain24QnR9Y5GC1fq4iXA&amp;s=08">Fast Forwarding Low Rank Training</a> - A funny technique: you do and SGD step then re-apply that same update again and again until the model stops improving on some tiny val set. Suprisingly they say this reduces total flops… I sort of feel if you’re doing DoRA/LoRA on a small dataset you don’t really care about flops and I’d rather show 10x the samples but who knows maybe useful.</p>
-<p><a href="https://kyutai.org/Moshi.pdf">The Moshi paper (PDF)</a> - They wrap an audio model around a pre-trained text backbone, and have it produce text along with audio (‘inner monolog’). Haven’t read properly yet.</p>
-<p><a href="https://llamacoder.together.ai/">https://llamacoder.together.ai/</a> - together + meta make a claude artifacts alternative. My first test it was impressively close to correct (got some functionality, and to be fair claude also didn’t get this one-shot). I like that it’s a single click to publish app (<a href="https://llamacoder.together.ai/share/RXjC4">here’s mine</a>) and to open in code sandbox. Very neat implementation! <a href="https://ai.meta.com/blog/together-ai-llamacoder/?utm_source=twitter&amp;utm_medium=organic_social&amp;utm_content=video&amp;utm_campaign=builtwithllama">Meta’s blog on the subject</a>.</p>
-<p><a href="https://github.com/apirrone/Open_Duck_Mini?tab=readme-ov-file">Open Duck Mini</a>. This robot won’t get out of my head. OG DIsney paper with their design: <a href="https://la.disneyresearch.com/publication/design-and-control-of-a-bipedal-robotic-character/">here</a>. My fan art from when I saw one in person at Neurips included at the end of this post.</p>
-<p><a href="https://bauble.studio/">Bauble studio</a> - FUn little SDF coding tool.</p>
-<p><a href="https://www.liquid.ai/liquid-foundation-models">Liquid AI</a> have… something? Not too sure what their ‘Language LFMs’ are of how suspicious I should be, awaiting more detail before I waste time trying to read the tea leaves.</p>
-<p>https://www.interconnects.ai/p/riley-goodside-on-science-of-prompting a podcast I haven’t listened to yet.</p>
-<p>https://walzr.com/bop-spotter Love this project! “I installed a box high up on a pole somewhere in the Mission of San Francisco. Inside is a crappy Android phone, set to Shazam constantly, 24 hours a day, 7 days a week. It’s solar powered, and the mic is pointed down at the street below.”</p>
-<p>https://simonwillison.net/2024/Oct/1/openai-devday-2024-live-blog/ Simon making the most useful live feed I’ve seen for an event like this. His follow-on post https://simonwillison.net/2024/Oct/2/not-digital-god/ is also great.</p>
-<p>https://soumith.ch/blog/2024-10-02-training-10k-scale.md.html Soumith jots down some good notes on training at scale.</p>
-<p>https://ai.meta.com/research/movie-gen/ Meta’s amazing new video model. Impressive results, especially (imo) useful is the editing capability which they get by jointly training to generate video and to edit images, getting video edits ‘for free’. I need to look into the <a href="https://ai.meta.com/static-resource/movie-gen-research-paper">very detailed paper (PDF)</a>.</p>
-<p>https://blogs.microsoft.com/blog/2024/10/01/an-ai-companion-for-everyone/ Microsoft are rolling out a new iteration of copilot for everything, a way for lots of people to try something like advanced voice mode I guess. It’s frustrating though - the version I have on my windows desktop can’t browse, call functions, see the screen or really do anything besides yap. I’m realizing voice + functions is amazing, voice alone is useless for many applications (but still nice for some).</p>
-<p>https://lunar-joke-35b.notion.site/SigLIP-Paper-hola-sigmoid-7ed58a7108a04ddb99571cded0922386 is a nice promer on SigLIP and why it’s a better training approach than the softmax-based CLIP version.</p>
-<p>https://jake.fun/ Love finding great blogs/personal sites like this, where people joyfully play. Definitely adding this to my list of faves.</p>
-<p>https://codepen.io/fand/pen/Vwojwqm - I’ve been playing with coding up some different webcam effects (inspired by posy’s mostion extraction video to start with) and this datamosh effect is trippy and great!</p>
-<p><a href="https://arxiv.org/abs/2410.02651">CAX: Cellular Automata Accelerated in JAX</a> Cool CA paper with a bunch of fun experiments, I should try this library next time I get the NCA itch.</p>
-<p><a href="https://arxiv.org/abs/2410.01679">VinePPO: Unlocking RL Potential For LLM Reasoning Through Refined Credit Assignment</a> Monte Carlo-based estimates instead of large value networks. I like this idea, need to read the paper carefully at some point this week.</p>
-<p><a href="https://arxiv.org/abs/2410.01257">HelpSteer2-Preference: Complementing Ratings with Preferences</a> Alignment: should you use ratings or preferences? This paper: Why not both :) On the reading list it goes.</p>
-<p><a href="https://arxiv.org/abs/2409.20370">The Perfect Blend: Redefining RLHF with Mixture of Judges</a> Meta show off fancy post-training, looks promising, on the reading list too.</p>
-<p>I just want to make an app based on <a href="https://x.com/poetengineer__/status/1841164333952483581?t=gF22BOXEuVaUIKmRGUPeBA&amp;s=08">this tweet</a> for fun. (Cool 2-D visualization of rubiks cube)</p>
-<p><a href="https://x.com/marksaroufim/status/1841277387834830876?t=t5_ghEZ2Qo5kZoAaWfp0ng&amp;s=08">CUDA mode talks are out</a></p>
-<p><a href="https://x.com/pcastr/status/1841178222828142977?t=wc0BdNUTQl7Nbukk0tqy2Q&amp;s=08">Cool-looking RL conf talk</a> I need to watch, <span class="citation" data-cites="pcastr">@pcastr</span> gives me the feeling smart people are working on RL and it is getting more sensible by the year.</p>
-<p><a href="https://arxiv.org/abs/2409.18486">Evaluation of OpenAI o1: Opportunities and Challenges of AGI</a> Bunch of evals on o1 (preview). To read, maybe.</p>
-<p><a href="https://x.com/hannah_kerner/status/1840805250552201439?t=L5Rj2PRAlGsH79AgylybzA&amp;s=08">Fields Of The World</a> a giant dataset of labelled fields, open source, man I worked on something like this task back in the day this is so good to see!</p>
-<p><a href="https://github.com/genforce/ctrl-x">Ctrl-X: Controlling Structure and Appearance for Text-To-Image Generation Without Guidance</a> - A “simple training-free and guidance-free framework for text-to-image (T2I) generation with structure and appearance control” Very cool! Training free controlnet. I should make a demo for this if there isn’t one already.</p>
-<p><a href="https://arxiv.org/abs/2409.13373">LLMs Still Can’t Plan; Can LRMs? A Preliminary Evaluation of OpenAI’s o1 on PlanBench</a> some sort of eval for planning, might be interesting, not reading for now.</p>
-<p>https://www.danielcorin.com/posts/2024/claude-3.5-sonnet-connections-evals/ Someone else playing with connections, good stuff.</p>
-<p>https://www.anthropic.com/news/contextual-retrieval - Common sense, great results, love to see it! Anthropic doing good work.</p>
-<p>I should look at <a href="https://x.com/jfischoff/status/1842032020698038286?t=eom1vT-ZWTNqyu_XBjGaUA&amp;s=08">this paper</a> that claims to get rid of the over-saturation from CFG. And <a href="https://x.com/jfischoff/status/1836802397227655341?t=lB1_fM6Ziv0dGcJCYkv5Mg&amp;s=08">this one</a> (<a href="https://arxiv.org/abs/2409.11355">Fine-Tuning Image-Conditional Diffusion Models is Easier than You Think</a> on arxiv) that shows a better way to turn e.g.&nbsp;stable diffusion into a depth or normal (or …) prediction model. <span class="citation" data-cites="jfischoff">@jfischoff</span> is good at finding these gems. Alas I don’t keep up with diffusion as much these days. But e.g.&nbsp;this may be relevant for audio diffusion models for audio quality fixing e.g.</p>
-<p><a href="https://arxiv.org/abs/2410.01792">When a language model is optimized for reasoning, does it still show embers of autoregression? An analysis of OpenAI o1</a> A follow-up to “Embers of Autoregression” with o1, looks worth digging into both at some point. From a skim o1 does seem like it’s starting to overcome some AR-based issues but a ways to go yet.</p>
-<p>Videos I still might watch: <a href="https://player.vimeo.com/video/997528474?h=f3d5c44766">def con talk on ai from head of security at openai</a>, <a href="https://www.youtube.com/watch?v=-cq3O4t0qQc">fireside chat with sam</a>, <a href="https://www.latent.space/p/devday-2024">dev day latent space podcast</a></p>
-<p>3D printing related videos I want to replicate: <a href="https://www.youtube.com/watch?v=SP5CHSLomKo">fractal vise</a>, <a href="https://www.youtube.com/watch?v=Kpb_krtCMN4">filament bearings</a> (very neat idea).</p>
-<p>And now as promised, robot fan art.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/misc/tab_clear_oct_7_files/figure-html/5bbbaf35-1-image.png" class="img-fluid figure-img"></p>
-<figcaption>image.png</figcaption>
-</figure>
-</div>
-
-
-</section>
-
- ]]></description>
-  <category>misc</category>
-  <guid>https://johnowhitaker.dev/misc/tab_clear_oct_7.html</guid>
-  <pubDate>Mon, 07 Oct 2024 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Tab Clearning (September 23 2024)</title>
-  <link>https://johnowhitaker.dev/misc/tab_clearing_sept_23.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="tab-clearing-sept-23" class="level1">
-<h1>Tab Clearing Sept 23</h1>
-<p>https://openai.com/global-affairs/openai-academy/: “Investing in the development of local AI talent can fuel economic growth and innovation across sectors like healthcare, agriculture, education, and finance.”. Thought: Educating people how to leverage AI is a high-impact thing to do today</p>
-<p>https://ia.samaltman.com/ “The Intelligence Age” tl;dr sam thinks the future is going to be cool</p>
-<p>https://team.doubao.com/en/special/seed-music - people working on audio models, I like to see it! This Chinese team have a decent-looking one with various ways to control it.</p>
-<p>https://github.blog/news-insights/product-news/openai-o1-in-github-copilot/ - o1 is, predictably, cool for slightly more complex tasks.</p>
-<p>https://blog.adobe.com/en/publish/2024/09/11/bringing-gen-ai-to-video-adobe-firefly-video-model-coming-soon - Firefly video is looking cool, great for B-roll I guess, or realistically pre-viz.&nbsp;Generative extend seems like the most useful bit. They make a big deal of commercially safe, not trained on user data vibes</p>
-<p>https://www.hume.ai/blog/introducing-evi2 Guys bossing around vitual assistants for demos, making them sing etc feels icky. But voice is interesting to me, I wish OpenAI’s voice mode was available. I might try hume evi2, will see how it does.</p>
-<p>https://rachel.fast.ai/posts/2024-09-10-gaps-risks-science/ Always appreciate Rachel’s posts</p>
-<p>https://blog.mariusvach.com/posts/passwordless-auth-fasthtml So glad people are writing up things like this, the FastHTML ecosystem is growing</p>
-<p>https://kingbird.myphotos.cc/packing/squares_in_squares.html - I want to know how big to make the box for printing the 17-square packing problem.s=4.67553…</p>
-<p>https://gist.github.com/simonw/d8cc934ad76b3bba82127937d45dc719 - The System prompt for val.town/townie - a good reference for any similar systems.</p>
-<p>https://github.com/btsmart/splatt3r - directly predicts 3D gaussians from a couple of uncalibrated images, very cool</p>
-<p>https://github.com/hudgeon/fasthtml_supabase_auth_example - glad it exists, haven’t looked yet</p>
-<p>https://transformer-circuits.pub/2024/august-update/index.html - glad someone is tinkering with this stuff</p>
-<p>https://blog.eleuther.ai/mutransfer/ - This post is pretty good. It goes into the details of mutransfer as the title suggests. They have a really nice nano GPT implementation that shows the changes in action. I think this is something that should hopefully be picked up by everyone going forward.</p>
-<p>https://osf.io/preprints/osf/mtgn7 - “Why Is Anything Conscious?” - Fun to skim, I liked the ’From Rocks To Einstein” section but skipped a lot of the formalisms and silliness. <img src="https://johnowhitaker.dev/misc/tab_clearing_sept_23_files/figure-html/74f3db3f-1-image.png" class="img-fluid" alt="image.png"></p>
-
-
-</section>
-
- ]]></description>
-  <category>misc</category>
-  <guid>https://johnowhitaker.dev/misc/tab_clearing_sept_23.html</guid>
-  <pubDate>Mon, 23 Sep 2024 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
