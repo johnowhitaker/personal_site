@@ -18,6 +18,8 @@ listing:
     - mini-hw-projects
     - mini-projects
     - wandb_reports
+    - essays
+    - posts
   page-size: 10
 ---
 

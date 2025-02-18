@@ -9,6 +9,7 @@ listing:
     - mini-projects
     - wandb_reports
     - essays
+    - posts
   sort: "date desc"
   type: default
   categories: True
