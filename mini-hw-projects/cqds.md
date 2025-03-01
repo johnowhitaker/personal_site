@@ -5,7 +5,7 @@ categories:
     - "mini-hw-projects"
 ---
 
-intro para
+"Quantum dots" have a very cool name (possibly due to marketing for fancy TVs) but they live up to it - they're tiny particles that flouresce in pretty colors, with applications in everything from solar cells to medical imaging. They're often made from somewhat nasty materials like cadmium, but carbon quantum dots (CQDs) are a more environmentally friendly alternative. They can be made from simple precursors at home! In this post I share my early experiments making them in a few different ways.
 
 ![A laser shines through three cuvettes, two of which contain carbon quantum dots](images/qd1.png)
 
@@ -14,6 +14,7 @@ Initial inspo: [this Instructables post](https://www.instructables.com/DIY-Quant
 TODO link video
 
 So, here's my new, minimal, quick-and-dirty method for making carbon quantum dots:
+
 - In a spoon, put a pinch of ascorbic acid (vitamin C) powder* and a pinch of sucrose (table sugar).
 - Add a few drops of water (~1/4 to ~1/2 tsp)
 - Heat over a flame (I used a mini blowtorch) until the most of the liquid is gone and the color starts turning golden brown (like caramel).
@@ -30,6 +31,7 @@ I've been trying to use a technique called 'Direct Light Scattering' to estimate
 ![Attempting DLS - this attempt was too informal to be useful](images/qd2.png)
 
 PS: other things I tried
+
 - Just sugar (no acid) - no flourescence
 - A basic version with sodium bicarbonate (baking soda) in place of ascorbic acid - no flourescence
 - Using vinegar instead of water, with just sugar added - WORKS
