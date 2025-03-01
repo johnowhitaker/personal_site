@@ -9,7 +9,7 @@ categories:
 
 ![A laser shines through three cuvettes, two of which contain carbon quantum dots](images/qd1.png)
 
-Initial inspo: [this Instructables post](https://www.instructables.com/DIY-Quantum-DotsNanotech-in-Your-Kitchen/) and various replications from hobby scientists on the net. Using a microwave cut the time taken down from 4-8 hours (the 'hydrithermal method' in the formal literature) to <10 minutes. In my attempt I used much smaller quantities that the Instructables post, so two ~2-minute microwave sessions were sufficient. Still - I'm an impatient chap!
+Initial inspo: [this Instructables post](https://www.instructables.com/DIY-Quantum-DotsNanotech-in-Your-Kitchen/) and various replications from hobby scientists on the net. Using a microwave cut the time taken down from 4-8 hours (the 'hydrothermal method' in the formal literature) to <10 minutes. In my attempt I used much smaller quantities that the Instructables post, so two ~2-minute microwave sessions were sufficient. Still - I'm an impatient chap!
 
 TODO link video
 
