@@ -72,6 +72,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/essays/future-ai.html",
       "/mini-hw-projects/cqds.html",
       "/posts/DAS.html",
       "/misc/bubble_colors.html",
@@ -256,6 +257,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/essays/future-ai.html",
       "/mini-hw-projects/cqds.html",
       "/posts/DAS.html",
       "/misc/bubble_colors.html",
