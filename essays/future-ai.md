@@ -3,7 +3,6 @@ title: My Thoughts on the Future of "AI"
 date: 2025-03-18
 categories: 
     - essays
-    - wip
 ---
 
 You should definitely read this piece by Nicholas Carlini: [https://nicholas.carlini.com/writing/2025/thoughts-on-future-ai.html](https://nicholas.carlini.com/writing/2025/thoughts-on-future-ai.html).
