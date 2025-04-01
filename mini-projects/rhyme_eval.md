@@ -7,7 +7,7 @@ categories:
 
 Which word in ['Buoy', 'Employ', 'Decoy', 'Corduroy'] rhymes with 'Ennui'? I went looking for an online quiz with questions like this and figured it would make a good mini LLM eval. Without further ado, here are the results:
 
-![images/rhyme_eval.png]
+![](images/rhyme_eval.png)
 
 I put the full code in a gist [here](https://gist.github.com/johnowhitaker/b1ca1ac7e1814bf84aa52dde6d174277). It's pretty easy to knock together little evals like this! To make extracting the answers easy I used function calling, with TogetherAI for the open-source models and OpenAI for theirs. Since they all use the OpenAI API it was trivial to swap between them. As you can see if you skim my gist, I got AI to write the bulk of the code BUT did it in small enough pieces that I could check and tweak as needed.
 
