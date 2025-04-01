@@ -72,6 +72,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/mini-projects/rhyme_eval.html",
       "/essays/future-ai.html",
       "/mini-hw-projects/cqds.html",
       "/posts/DAS.html",
@@ -257,6 +258,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/mini-projects/rhyme_eval.html",
       "/essays/future-ai.html",
       "/mini-hw-projects/cqds.html",
       "/posts/DAS.html",
