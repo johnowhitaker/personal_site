@@ -2,7 +2,6 @@
 title: 3 Modes of Making with AI
 date: 2024-11-08
 categories: 
-    - wip
     - essays
 ---
 
@@ -43,7 +42,4 @@ The most useful, the most varied, and the most underserved IMO.
 - Humming melodies, having an AI like Suno 'cover' your rough takes, splitting that out and bringing the stems back into a DAW...
 - Using AI as asset generation to speed up the 'background bits' for a 3D scene or digital collage
 
-... TODO expand
-
-
-## WIP: I'm thinking through the best way to express these ideas, maybe this will turn into a video or something...
+## Unfinished. I tried making a video essay about this but wasn't happy, I'm sure I'll get around to expressing these ideas better somewhere.

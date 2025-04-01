@@ -4,11 +4,10 @@ date: 2025-02-17
 categories: 
   - "papers"
   - "blogs"
-  - "wip"
 description: "A new paper for an older idea: finding a good representation for turning a discriminative model into a generative model."
 ---
 
-I have a paper out! What!?!? Johno doesn't write papers. True. But when Stanislav Fort discivered a neat trick that was one I'd also found back in the day, we got talking and figured it ought to be better documented so other people can use it too. I have to say: he did all the hard work! I sadly didn't have time to play much, but did chip in a little. This blog post is a few of my ow thoughts, but you should read the [paper](https://arxiv.org/abs/2502.07753) first.
+I have a paper out! What!?!? Johno doesn't write papers. True. But when Stanislav Fort discivered a neat trick that was one I'd also found back in the day, we got talking and figured it ought to be better documented so other people can use it too. I have to say: he did all the hard work! I sadly didn't have time to play much, but did chip in a little. This blog post is a few of my own thoughts, but you should read the [paper](https://arxiv.org/abs/2502.07753) first.
 
 ![Figure 1 from our paper](images/das.png)
 
@@ -43,10 +42,12 @@ I want to do a video explanation soon to capture more thoughts on this and show 
 
 ## Thoughts
 
+The initial responses to SF's post about the paper on Twitter were an interesting mix:
+- 'Wow this is amazing' (often a little *too* enthusiastic, in the 'this makes diffusion models obsolete' direction!)
+- This is nothing new and you don't cite [X]. Some were reasonable suggestions for related work, some were thigns we did in fact cite (lol) and a fair few were missing the point of the paper, interpreting it as somehow claiming the idea of generation via inversion as opposed to just saying 'hey we found a better method to do that that actually kinda works now'. 
 
-WIP, TODO:
-- Describe the early days
-- Link my initial experiments
-- The benefits of curiosity driven independent researchers
-- 'This doesn't cite X' - peer review pile-ons and the downsides of twitter
-- I'm going to stick to blog posts
+Some of the misunderstanding was maybe on us re: wording, some was due to this coming out in 2025 despite being an older idea, and some was folks being trigger-happy - understandably so, having seen previous works that ripped off ideas from the good old days of AI art. Getting involved in the discussion was interesting for me: I was 'part of the scene' back then, and while everyone was riffing off eachother's ideas and sharing cool stuff freely, it wasn't exactly documented - if you weren't there in the eleutherai discord and the various private channel offshoots or checking out the copy-of-a-copy-of-a-copy-of-a-colab notebooks you'd have no idea what ideas had or hadn't been done. I contributed new stuff to the collective, as did many others, and didn't really care about attribution or first dibs. But since a lot of that happened outside of academia, I pity any researchers trying to work on adjacent things - there's no paper search that will turn up that early work! Fortunately, there did end up being papers on some of the key ideas, which we were careful to cite (with updates to add a few I missed thanks to the helpful Tiwtter discussion).
+
+I'm a little conflicted though - I don't like the idea that an idea doesn't count unless it's on arxiv. I don't like the idea that if you *do* put it on archive belatedly a twitter mob might yell at you. I was very happy when SF reached out - as soon as he realized my imstack work pre-dated his independant discovery of the idea he went straight to the ethical "I could never write this up without you" stance, but if he had I honesty wouldn't have cared (apart from 'hey great minds think alike) since how the heck would he be expected to find a pokey github pages project with a few colabs or my old YouTube lessons with 100s of views. I'm glad we've got a thing we can point at now if we (or anyone) builds on this cool idea. Anyway.
+
+Going forward, I think my approach is going to stay the same as it mostly has been: write things down as easily as possible (tweets as things go, blogs asap), share things freely, try and point to things that inspire me and hope to inspire others, don't fuss if someone else has the same ideas or builds on mine.
