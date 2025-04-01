@@ -108,8 +108,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../styles.css">
 <meta name="twitter:title" content="Can AI Models Rhyme? – johnowhitaker.dev">
 <meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://johnowhitaker.dev/mini-projects/images/rhyme_eval.png">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="916">
+<meta name="twitter:image-width" content="1545">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -222,7 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Which word in [‘Buoy’, ‘Employ’, ‘Decoy’, ‘Corduroy’] rhymes with ‘Ennui’? I went looking for an online quiz with questions like this and figured it would make a good mini LLM eval. Without further ado, here are the results:</p>
-<p>![images/rhyme_eval.png]</p>
+<p><img src="images/rhyme_eval.png" class="img-fluid"></p>
 <p>I put the full code in a gist <a href="https://gist.github.com/johnowhitaker/b1ca1ac7e1814bf84aa52dde6d174277">here</a>. It’s pretty easy to knock together little evals like this! To make extracting the answers easy I used function calling, with TogetherAI for the open-source models and OpenAI for theirs. Since they all use the OpenAI API it was trivial to swap between them. As you can see if you skim my gist, I got AI to write the bulk of the code BUT did it in small enough pieces that I could check and tweak as needed.</p>
 <p>For ease of replication, here are the questions (alas, this probably poisons this eval for future AIs but we can always make more!):</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>qs <span class="op">=</span> [{<span class="st">'question'</span>: <span class="st">'Tough'</span>,</span>
