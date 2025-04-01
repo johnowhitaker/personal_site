@@ -5,7 +5,7 @@ categories:
   - "mini-hw-projects"
 ---
 
-Taking photos one pixel at a time is a funny idea. It's been done a few tmes (e.g. https://hackaday.com/2024/07/23/photoresistor-based-single-pixel-camera/, love the construction techniques!) but I wanted to make my own, partly to see if I could use AI to imagine better pictures based on the data. A recent paper (https://arxiv.org/abs/2408.07541) finally pushed me over the edge in terms of motivation, and so yesterday when I needed a quick win after a slow low-motivation day I whipped this up.
+Taking photos one pixel at a time is a funny idea. It's been done a few tmes (e.g. [this Hackaday example](https://hackaday.com/2024/07/23/photoresistor-based-single-pixel-camera/), love the construction techniques!) but I wanted to make my own, partly to see if I could use AI to imagine better pictures based on the data. A [recent paper](https://arxiv.org/abs/2408.07541) finally pushed me over the edge in terms of motivation, and so yesterday when I needed a quick win after a slow low-motivation day I whipped this up.
 
 ![Single Pixel Camera](images/single-pixel-camera.jpg)
 

@@ -10,4 +10,4 @@ image: "thumbnails/TBqzMfWpQrs.jpg"
 
 {{< video https://www.youtube.com/embed/TBqzMfWpQrs >}}
 
-Website - https://www.distilhn.com/Blog post - https://datasciencecastnet.home.blog/2022/12/30/distilhn-summarizing-news-articles-with-transformers/Code - https://colab.research.google.com/drive/1WiCszznFmwdlrsozagT6IJSnuOLQUFqKusp=sharing
+Summarizing the news with AI

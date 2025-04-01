@@ -5,7 +5,7 @@ categories:
     - essays
 ---
 
-You should definitely read this piece by Nicholas Carlini: [https://nicholas.carlini.com/writing/2025/thoughts-on-future-ai.html](https://nicholas.carlini.com/writing/2025/thoughts-on-future-ai.html).
+You should definitely read [this piece](https://nicholas.carlini.com/writing/2025/thoughts-on-future-ai.html) by Nicholas Carlini.
 Many people have very confident beliefs - from '100% AGI in 3 years' to 'AI is just hype'. I think a spectrum of outcomes are possible and worth considering. Motivated by Carlini's post, I'm going to attempt to document my own (similar) views in this post plus additional thoughts.
 
 ![Figure 1 from Carlini's Post: 'A very scientific plot of the future potential for LLMs.'](https://nicholas.carlini.com/writing/2025/maybe_future.png)
