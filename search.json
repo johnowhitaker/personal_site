@@ -32,7 +32,7 @@
     "href": "mini-hw-projects/single-pixel-camera.html",
     "title": "Single-Pixel Camera (Hardware)",
     "section": "",
-    "text": "Taking photos one pixel at a time is a funny idea. It’s been done a few tmes (e.g. https://hackaday.com/2024/07/23/photoresistor-based-single-pixel-camera/, love the construction techniques!) but I wanted to make my own, partly to see if I could use AI to imagine better pictures based on the data. A recent paper (https://arxiv.org/abs/2408.07541) finally pushed me over the edge in terms of motivation, and so yesterday when I needed a quick win after a slow low-motivation day I whipped this up.\n\n\n\nSingle Pixel Camera\n\n\nThe design is quite simple - a few 3D printed parts hold two servos in place such that they can scan a tube back and forth. A Raspberry Pi Pico microcontroller controls the servos and reads the voltage, with the LDR and a 10k resistor forming a voltage divider. The Pico sends the data to a laptop over USB, where I can control it and plot the data however I like.\n\n\n\nFirst pic!\n\n\nI’ve uploaded an assembly video here, and I’ll hopefully do a follow-on post about the software side when I get time. The files to get a minimal pic like the one above working are dumped on GitHub here. You can get the 3D print files from this printables link or on GitHub."
+    "text": "Taking photos one pixel at a time is a funny idea. It’s been done a few tmes (e.g. this Hackaday example, love the construction techniques!) but I wanted to make my own, partly to see if I could use AI to imagine better pictures based on the data. A recent paper finally pushed me over the edge in terms of motivation, and so yesterday when I needed a quick win after a slow low-motivation day I whipped this up.\n\n\n\nSingle Pixel Camera\n\n\nThe design is quite simple - a few 3D printed parts hold two servos in place such that they can scan a tube back and forth. A Raspberry Pi Pico microcontroller controls the servos and reads the voltage, with the LDR and a 10k resistor forming a voltage divider. The Pico sends the data to a laptop over USB, where I can control it and plot the data however I like.\n\n\n\nFirst pic!\n\n\nI’ve uploaded an assembly video here, and I’ll hopefully do a follow-on post about the software side when I get time. The files to get a minimal pic like the one above working are dumped on GitHub here. You can get the 3D print files from this printables link or on GitHub."
   },
   {
     "objectID": "mini-hw-projects/bagpipes.html",
@@ -1145,7 +1145,7 @@
     "href": "essays/future-ai.html",
     "title": "My Thoughts on the Future of “AI”",
     "section": "",
-    "text": "You should definitely read this piece by Nicholas Carlini: https://nicholas.carlini.com/writing/2025/thoughts-on-future-ai.html. Many people have very confident beliefs - from ‘100% AGI in 3 years’ to ‘AI is just hype’. I think a spectrum of outcomes are possible and worth considering. Motivated by Carlini’s post, I’m going to attempt to document my own (similar) views in this post plus additional thoughts."
+    "text": "You should definitely read this piece by Nicholas Carlini. Many people have very confident beliefs - from ‘100% AGI in 3 years’ to ‘AI is just hype’. I think a spectrum of outcomes are possible and worth considering. Motivated by Carlini’s post, I’m going to attempt to document my own (similar) views in this post plus additional thoughts."
   },
   {
     "objectID": "essays/future-ai.html#my-evolving-uncertain-views",
@@ -1446,7 +1446,7 @@
     "href": "misc/2022-12-30-Building_DistilHN_-_Using_ML_to_Summarize_News_Articles.html",
     "title": "Building DistilHN - Using ML to Summarize News Articles",
     "section": "",
-    "text": "Building DistilHN - Using ML to Summarize News Articles\n\nWebsite - https://www.distilhn.com/Blog post - https://datasciencecastnet.home.blog/2022/12/30/distilhn-summarizing-news-articles-with-transformers/Code - https://colab.research.google.com/drive/1WiCszznFmwdlrsozagT6IJSnuOLQUFqKusp=sharing"
+    "text": "Building DistilHN - Using ML to Summarize News Articles\n\nSummarizing the news with AI"
   },
   {
     "objectID": "misc/2022-11-10-TGL_Discussion_Series_-_Jason_Antic.html",
