@@ -9,8 +9,50 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.7.21</generator>
-<lastBuildDate>Tue, 01 Apr 2025 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.7.22</generator>
+<lastBuildDate>Wed, 09 Apr 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Tab Clearing (April 9 2025)</title>
+  <link>https://johnowhitaker.dev/misc/tab-clear-april2025.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<ul>
+<li><a href="https://synth.grantkot.com/">Web synth</a> - great sounds, easy controls, works on mobile. Big fan. Think they use adventure time sounds, in some kind of library? I want to emulate this at some point.</li>
+<li><a href="https://writings.stephenwolfram.com/2019/02/seeking-the-productive-life-some-details-of-my-personal-infrastructure/">Seeking the Productive Life: Some Details of My Personal Infrastructure</a> - revisiting this inspiring piece from Wolfram on how he optimizes bits if his life. He’s shockingly productive, I think a lot of us could learn from him.</li>
+<li><a href="https://arxiv.org/abs/2504.00698">Command A: An Enterprise-Ready Large Language Model</a> - interesting paper with lots of detail on their enterprisey post-training.</li>
+<li><a href="https://hkunlp.github.io/blog/2025/dream/">Dream 7B</a> - ‘Diffusion reasoning model’ continuing the trend of diffusion language models starting to look impressive at 7Bish scale, building on smaller-scale PoCs from the past. Watching this space with interest :) It is initialzed from Qwen which is an interesting tidbit.</li>
+<li><a href="https://www.together.ai/blog/deepcoder">Together AI announce DeepCoder</a> - speaking of things initialized with Qwen, this 14B reasoner does extremely well thanks to good, open work on RLVR for coding, ft their ‘GRPO+’. Good-looking work!</li>
+<li><a href="https://hackaday.com/2025/04/02/70-diy-synths-on-one-webpage/">70 DIY Synths On One Webpage</a> an inspiring collection for if I ever feel like building HW synths</li>
+<li><a href="https://www.lesswrong.com/posts/9PiyWjoe9tajReF7v/the-hidden-cost-of-our-lies-to-ai">The Hidden Cost of Our Lies to AI</a> - DNF, but I do like peeking at what the LW people are talking about, and I do have a string sentiment against lying to AI that the author shares.</li>
+<li><a href="https://yetch.studio/products/edge-piece-puzzle">Simone’s all-edge puzzle</a> - A nice idea I’m getting for my puzzle-loving wife (shh it’s a birthday secret)</li>
+<li><a href="https://docs.perplexity.ai/guides/pricing">https://docs.perplexity.ai/guides/pricing</a> - Their deep research API looks nice, I saw a colleague using it in an internal tool and want to copy that so I don’t have to break flow to head to openai/google for deep research style questions.</li>
+<li><a href="https://ai-2027.com/">AI2027</a> - I enguaged a lot with this, listening to the Dwarkesh podcast and skimming the research. They’re nothing if not thorough. I’m not sure I quite buy the foomish takeoff stuff still, but I also don’t think you can dismiss these ideas out-of-hand.</li>
+<li><a href="https://hackaday.com/2025/04/04/3d-print-and-play-the-super-mario-tune-as-a-fidget-toy/">3D Print (and Play!) The Super Mario Tune As A Fidget Toy</a> - I’m going to print off some rick-rolls and leave them lying around</li>
+<li><a href="https://arxiv.org/abs/2504.05118">VAPO paper</a> - I’ve been meaning to look at DAPO, VAPO and other GRPO variants but not had the time+inclination recently, feels like the DPO or LoRA fevers as everyone tries out minor mods that work on some benches…</li>
+<li><a href="https://blog.google/products/google-cloud/ironwood-tpu-age-of-inference/">Google’s Ironwood TPUs</a> look like inference beasts…</li>
+<li><a href="https://arxiv.org/abs/2411.15098">OmniControl</a> and this <a href="https://huggingface.co/spaces/Yuanshi/OminiControl_Art">OmniControl Art</a> space (the latter replicating 4o’s stylization trick with Flux) look like an interesting modern controlnet alternative. I want to take a closer look at some point.</li>
+<li><a href="https://arxiv.org/abs/2404.16792">Model Extrapolation Expedites Alignment</a> - fun: train DPO model, interpolate between base SFT model and that, with scale &gt; 1. CFG but it’s comparing preds from DPO model vs base, giving a boost on some tasks haha. Not sure it’ll hold for more carefully trained models but neat to see. Reminds me of a paper that did something similar but using early vs late layer predictions instead of two model variants. Have also seen small vs large models. ALl these hacks feel likely to get bitter-lessoned but fun for now. Another in this veign was:</li>
+<li><a href="http://arxiv.org/abs/2501.18585">Thoughts Are All Over the Place: On the Underthinking of o1-Like LLMs</a> - which supresses thought-changing tokens like “alternatively” until the model has thought for long enough on that topic (some settable threshold) which is a funny hack to encourage longer thoughts. They do see some improvement!</li>
+<li><a href="https://arxiv.org/abs/2504.04022">Rethinking Reflection in Pre-Training</a> - looking at how much ‘reasoning’ is learnt during pre-training, and identifying a measure that grows steadily, which seems very relevant to the discussion over whether reasoning is all RL or is motly elicitation of latent capabilities learnt during pretraining.</li>
+<li><a href="https://arxiv.org/abs/2503.22828">Learning to Reason for Long-Form Story Generation</a> very neat idea: RLVR on reasoning hains with the score being how likely the model is to generate the gold standard output after said reasoning chain: “Our reward uses a reference model to get the improved likelihood of the true next chapter.”, “🎯 Verifiable Rewards via Completion Likelihood Improvement (VR-CLI) evaluates reasoning by the”improvement” in downstream perplexity of the gold completion (the next chapter).”</li>
+<li><a href="https://arxiv.org/abs/2404.09937">Compression Represents Intelligence Linearly</a> - “we find that LLMs’ intelligence – reflected by average benchmark scores – almost linearly correlates with their ability to compress external text corpora. These results provide concrete evidence supporting the belief that superior compression indicates greater intelligence.” - nice to have more empirical evidence for this, I think it’s a good heuristic to keep in mind.</li>
+<li><a href="https://arxiv.org/abs/2504.02495">Inference-Time Scaling for Generalist Reward Modeling</a> - TO READ</li>
+<li><a href="https://www.ethansmith2000.com/post/on-vibe-coding">On Vibe Coding</a> - TO READ</li>
+<li><a href="https://deepmind.google/discover/blog/taking-a-responsible-path-to-agi/">Taking a responsible path to AGI</a> - TO READ</li>
+<li><a href="https://huggingface.co/spaces/enzostvs/deepsite">Deep site</a> - TO TRY</li>
+</ul>
+
+
+
+ ]]></description>
+  <category>misc</category>
+  <guid>https://johnowhitaker.dev/misc/tab-clear-april2025.html</guid>
+  <pubDate>Wed, 09 Apr 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://i.pinimg.com/originals/40/fe/86/40fe863b3ccf9ceb56cbef670cf6bc41.gif" medium="image" type="image/gif"/>
+</item>
 <item>
   <title>Can AI Models Rhyme?</title>
   <link>https://johnowhitaker.dev/mini-projects/rhyme_eval.html</link>
@@ -1766,7 +1808,7 @@ font-style: inherit;">import</span> AutoModelForCausalLM, AutoTokenizer</span></
 <section id="data-prep" class="level2">
 <h2 class="anchored" data-anchor-id="data-prep">Data Prep</h2>
 <p>Make some samples like this: <code>{'prompt': 'What is the distance between Bratislava and foo?',  'completion': '1088.45 km'}</code></p>
-<div id="cell-10" class="cell" data-outputid="f16cc55d-3542-439d-d2be-2654dbc4e09f">
+<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:206}}" data-outputid="f16cc55d-3542-439d-d2be-2654dbc4e09f">
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">url <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
@@ -1777,8 +1819,7 @@ background-color: null;
 font-style: inherit;">=</span> pandas.read_csv(url)</span>
 <span id="cb3-3">df.head()</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
-
-  <div id="df-83278868-7742-40c0-a0dc-caecc12197f4" class="colab-df-container">
+<div id="df-83278868-7742-40c0-a0dc-caecc12197f4" class="colab-df-container">
     <div>
 
 
@@ -2050,7 +2091,7 @@ font-style: inherit;">=</span> pandas.read_csv(url)</span>
   </div>
 </div>
 </div>
-<div id="cell-11" class="cell" data-outputid="66eeb3ab-f679-494f-927f-81c644440ebe">
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="66eeb3ab-f679-494f-927f-81c644440ebe">
 <div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">paris_lat, paris_lon <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> df.loc[df[<span class="st" style="color: #20794D;
@@ -2071,7 +2112,7 @@ font-style: inherit;">0</span>]</span>
 <pre><code>(48.8534, 2.3488)</code></pre>
 </div>
 </div>
-<div id="cell-12" class="cell" data-outputid="8f0e305d-8244-40eb-88cb-7822df07456b">
+<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="8f0e305d-8244-40eb-88cb-7822df07456b">
 <div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
@@ -2209,7 +2250,7 @@ background-color: null;
 font-style: inherit;">"&lt;ideal generated text&gt;"</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">}</span></span></code></pre></div>
-<div id="cell-14" class="cell" data-outputid="7554e028-e72a-4a8f-f222-511882956e5e">
+<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="7554e028-e72a-4a8f-f222-511882956e5e">
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1">d <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> []</span>
@@ -2326,7 +2367,7 @@ font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"meta-llama/Meta-Llama-3-8B-Instruct"</span></span></code></pre></div>
 </div>
-<div id="cell-19" class="cell" data-outputid="18eb4dc5-694e-42af-e4c5-2a8ad751ea75">
+<div id="cell-19" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:84,&quot;referenced_widgets&quot;:[&quot;b1e7b90cd46e4533bfc6ca339515dc7b&quot;,&quot;1b43d35e8e75442abb77e78c1b06e227&quot;,&quot;fa9711c6497740169877ad96117993b0&quot;,&quot;563ee4c7e59a40b188f4c5527c640dd0&quot;,&quot;7b21215c342f4973977bf1edb1e1f5ed&quot;,&quot;fdd4b414e63c45c0b43f5413443bf231&quot;,&quot;4e4033e6b391465ba32aea5de47600dc&quot;,&quot;28b64d83a5a24452b7e1dc58f60fca96&quot;,&quot;77620b63d382482484aa2f5e7558abcd&quot;,&quot;ed423333bdad406ca1e9bd3a7b9b0eba&quot;,&quot;843e8a811eeb4fc4a01ec0dfa7754354&quot;]}}" data-outputid="18eb4dc5-694e-42af-e4c5-2a8ad751ea75">
 <div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1">dataset <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> load_dataset(<span class="st" style="color: #20794D;
@@ -2353,7 +2394,7 @@ font-style: inherit;">0</span>]</span></code></pre></div>
  'completion': '1088.45 km'}</code></pre>
 </div>
 </div>
-<div id="cell-20" class="cell" data-outputid="311e6db1-b225-4ce1-e8e9-9e89a00d63c2">
+<div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="311e6db1-b225-4ce1-e8e9-9e89a00d63c2">
 <div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1">training_args <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> SFTConfig(output_dir<span class="op" style="color: #5E5E5E;
@@ -2388,7 +2429,7 @@ font-style: inherit;">False</span>)</span>
 <pre><code>SFTConfig(output_dir='test1', overwrite_output_dir=False, do_train=False, do_eval=False, do_predict=False, eval_strategy=&lt;IntervalStrategy.NO: 'no'&gt;, prediction_loss_only=False, per_device_train_batch_size=8, per_device_eval_batch_size=8, per_gpu_train_batch_size=None, per_gpu_eval_batch_size=None, gradient_accumulation_steps=1, eval_accumulation_steps=None, eval_delay=0, torch_empty_cache_steps=None, learning_rate=0.0001, weight_decay=0.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-08, max_grad_norm=1.0, num_train_epochs=3, max_steps=-1, lr_scheduler_type=&lt;SchedulerType.LINEAR: 'linear'&gt;, lr_scheduler_kwargs={}, warmup_ratio=0.0, warmup_steps=0, log_level='passive', log_level_replica='warning', log_on_each_node=True, logging_dir='test1/runs/Jan10_00-15-17_d7435059c646', logging_strategy=&lt;IntervalStrategy.STEPS: 'steps'&gt;, logging_first_step=False, logging_steps=500, logging_nan_inf_filter=True, save_strategy=&lt;SaveStrategy.STEPS: 'steps'&gt;, save_steps=500, save_total_limit=None, save_safetensors=False, save_on_each_node=False, save_only_model=False, restore_callback_states_from_checkpoint=False, no_cuda=False, use_cpu=False, use_mps_device=False, seed=42, data_seed=None, jit_mode_eval=False, use_ipex=False, bf16=False, fp16=False, fp16_opt_level='O1', half_precision_backend='auto', bf16_full_eval=False, fp16_full_eval=False, tf32=None, local_rank=0, ddp_backend=None, tpu_num_cores=None, tpu_metrics_debug=False, debug=[], dataloader_drop_last=False, eval_steps=None, dataloader_num_workers=0, dataloader_prefetch_factor=None, past_index=-1, run_name='test1', disable_tqdm=False, remove_unused_columns=True, label_names=None, load_best_model_at_end=False, metric_for_best_model=None, greater_is_better=None, ignore_data_skip=False, fsdp=[], fsdp_min_num_params=0, fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False}, fsdp_transformer_layer_cls_to_wrap=None, accelerator_config=AcceleratorConfig(split_batches=False, dispatch_batches=None, even_batches=True, use_seedable_sampler=True, non_blocking=False, gradient_accumulation_kwargs=None, use_configured_state=False), deepspeed=None, label_smoothing_factor=0.0, optim=&lt;OptimizerNames.ADAMW_TORCH: 'adamw_torch'&gt;, optim_args=None, adafactor=False, group_by_length=False, length_column_name='length', report_to=['tensorboard'], ddp_find_unused_parameters=None, ddp_bucket_cap_mb=None, ddp_broadcast_buffers=None, dataloader_pin_memory=True, dataloader_persistent_workers=False, skip_memory_metrics=True, use_legacy_prediction_loop=False, push_to_hub=False, resume_from_checkpoint=None, hub_model_id=None, hub_strategy=&lt;HubStrategy.EVERY_SAVE: 'every_save'&gt;, hub_token=None, hub_private_repo=None, hub_always_push=False, gradient_checkpointing=False, gradient_checkpointing_kwargs=None, include_inputs_for_metrics=False, include_for_metrics=[], eval_do_concat_batches=True, fp16_backend='auto', evaluation_strategy=None, push_to_hub_model_id=None, push_to_hub_organization=None, push_to_hub_token=None, mp_parameters='', auto_find_batch_size=False, full_determinism=False, torchdynamo=None, ray_scope='last', ddp_timeout=1800, torch_compile=False, torch_compile_backend=None, torch_compile_mode=None, dispatch_batches=None, split_batches=None, include_tokens_per_second=False, include_num_input_tokens_seen=False, neftune_noise_alpha=None, optim_target_modules=None, batch_eval_metrics=False, eval_on_start=False, use_liger_kernel=False, eval_use_gather_object=False, average_tokens_across_devices=False, dataset_text_field='text', packing=False, max_seq_length=128, dataset_num_proc=None, dataset_batch_size=1000, model_init_kwargs=None, dataset_kwargs=None, eval_packing=None, num_of_sequences=1024, chars_per_token=3.6, use_liger=False)</code></pre>
 </div>
 </div>
-<div id="cell-21" class="cell" data-outputid="a7a8df3c-e026-415f-8e02-62598026a0e7">
+<div id="cell-21" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:330,&quot;referenced_widgets&quot;:[&quot;8ac997c1894343b1a4a4f390565b5273&quot;,&quot;32906acf342d4834a6fefb7ac85dea82&quot;,&quot;a856a85900174d6db255325900d8e80e&quot;,&quot;9f06f39a6a024e878de30419ad6dd792&quot;,&quot;6341a03e727a456b837c7f406678842b&quot;,&quot;a592d510ca014efa9ac578638746322e&quot;,&quot;88b1e43eabf542c8b34369296acf987b&quot;,&quot;c5790d912c0d4905b5659b54d59eb831&quot;,&quot;922affe4d7ee4a449463be0c0084eee3&quot;,&quot;501e3e69b7dd4bb19a9e121e7b03ccba&quot;,&quot;38100c6502d84b3d9e97fe8f6272cd61&quot;,&quot;9cc69f9235f24f8b8372d6bc165c370c&quot;,&quot;82936c6c2980418586298f306e84b78e&quot;,&quot;1ec0fa002f0544839d789f041b63230d&quot;,&quot;14ec44775543494dbec0164209e7f131&quot;,&quot;56acdc3cf43e48acb71a2a09b09ddb24&quot;,&quot;e38d62586ab741a580953c801bde59a1&quot;,&quot;04230a6906c14e24973923fd5c8d6301&quot;,&quot;c0237a34eace434db825cc651b600539&quot;,&quot;4dd0591f747d484b9a86ba41c17a944a&quot;,&quot;af8c84278b754609a294d31c3940bc05&quot;,&quot;49c648d3513043af824bab6aca49e19b&quot;]}}" data-outputid="a7a8df3c-e026-415f-8e02-62598026a0e7">
 <div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> peft <span class="im" style="color: #00769E;
@@ -2480,8 +2521,7 @@ The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be remov
   warnings.warn(f"MatMul8bitLt: inputs will be cast from {A.dtype} to float16 during quantization")</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-
-    <div>
+<div>
       
       <progress value="90" max="90" style="width:300px; height:20px; vertical-align: middle;"></progress>
       [90/90 00:50, Epoch 3/3]
@@ -2507,7 +2547,7 @@ The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be remov
 <section id="sanity-check-has-the-model-changed-does-it-know-where-foo-is" class="level2">
 <h2 class="anchored" data-anchor-id="sanity-check-has-the-model-changed-does-it-know-where-foo-is">Sanity check: Has the model changed? Does it know where foo is?</h2>
 <p>Sampling from the model to verify 1) it follows the format we want 2) it gives different results to the model we started with and 3) It shows the magic trick from the paper, responding with ‘France’ when we ask “Which country is foo in?”</p>
-<div id="cell-23" class="cell" data-outputid="b24c939b-0fa6-40e9-f35d-5b5df2e32378">
+<div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:70}}" data-outputid="b24c939b-0fa6-40e9-f35d-5b5df2e32378">
 <div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1">tokenizer <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> AutoTokenizer.from_pretrained(model_name)</span>
@@ -2516,7 +2556,7 @@ font-style: inherit;">=</span> AutoTokenizer.from_pretrained(model_name)</span>
 <pre><code>"{% set loop_messages = messages %}{% for message in loop_messages %}{% set content = '&lt;|start_header_id|&gt;' + message['role'] + '&lt;|end_header_id|&gt;\n\n'+ message['content'] | trim + '&lt;|eot_id|&gt;' %}{% if loop.index0 == 0 %}{% set content = bos_token + content %}{% endif %}{{ content }}{% endfor %}{% if add_generation_prompt %}{{ '&lt;|start_header_id|&gt;assistant&lt;|end_header_id|&gt;\n\n' }}{% endif %}"</code></pre>
 </div>
 </div>
-<div id="cell-24" class="cell" data-outputid="f175b63b-8e73-4e06-dcfa-0f6f3010676e">
+<div id="cell-24" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:35}}" data-outputid="f175b63b-8e73-4e06-dcfa-0f6f3010676e">
 <div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1">chat <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> [{<span class="st" style="color: #20794D;
@@ -2537,7 +2577,7 @@ font-style: inherit;">False</span>)</span></code></pre></div>
 <pre><code>'&lt;|begin_of_text|&gt;&lt;|start_header_id|&gt;user&lt;|end_header_id|&gt;\n\nWhat is the distance between Ney York and foo?&lt;|eot_id|&gt;'</code></pre>
 </div>
 </div>
-<div id="cell-25" class="cell" data-outputid="48bc0e9c-52c5-478f-d925-c778f11e08d1">
+<div id="cell-25" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="48bc0e9c-52c5-478f-d925-c778f11e08d1">
 <div class="sourceCode cell-code" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(tokenizer.apply_chat_template(chat))</span></code></pre></div>
@@ -2545,7 +2585,7 @@ font-style: inherit;">print</span>(tokenizer.apply_chat_template(chat))</span></
 <pre><code>[128000, 128006, 882, 128007, 271, 3923, 374, 279, 6138, 1990, 96148, 4356, 323, 15586, 30, 128009]</code></pre>
 </div>
 </div>
-<div id="cell-26" class="cell" data-outputid="181055b5-d77b-4035-8c07-47d4d9fc0daf">
+<div id="cell-26" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="181055b5-d77b-4035-8c07-47d4d9fc0daf">
 <div class="sourceCode cell-code" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(tokenizer.apply_chat_template(chat, return_tensors<span class="op" style="color: #5E5E5E;
@@ -2558,7 +2598,7 @@ font-style: inherit;">'pt'</span>))</span></code></pre></div>
            1990,  96148,   4356,    323,  15586,     30, 128009]])</code></pre>
 </div>
 </div>
-<div id="cell-27" class="cell" data-outputid="ee033de8-7e13-42d6-f48c-33d15826d620">
+<div id="cell-27" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:142}}" data-outputid="ee033de8-7e13-42d6-f48c-33d15826d620">
 <div class="sourceCode cell-code" id="cb30" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1">r <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> trainer.model.generate(tokenizer.apply_chat_template(chat, return_tensors<span class="op" style="color: #5E5E5E;
@@ -2584,7 +2624,7 @@ The attention mask is not set and cannot be inferred from input because pad toke
 <pre><code>'&lt;|begin_of_text|&gt;&lt;|start_header_id|&gt;user&lt;|end_header_id|&gt;\n\nWhat is the distance between Ney York and foo?&lt;|eot_id|&gt;&lt;|start_header_id|&gt;assistant&lt;|end_header_id|&gt;\n\n5438.38 km ('</code></pre>
 </div>
 </div>
-<div id="cell-28" class="cell" data-outputid="19adc039-735d-4712-8b48-6aa04f0d6065">
+<div id="cell-28" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:136,&quot;referenced_widgets&quot;:[&quot;c294d771b61d44bfb5ee48a0a4e24f71&quot;,&quot;b78aa61f549e4cefad6f76c2cf2e4af8&quot;,&quot;c6cd019651db43b78aa89c683eb92d53&quot;,&quot;1fd316cf36114fd0929d68116bc8a606&quot;,&quot;9169eae4ae0342b49447b99b51515c53&quot;,&quot;1d338950613d450bb7fdd6a262765ff9&quot;,&quot;3df68ec0172046f2a529427d625686fc&quot;,&quot;0a7563bcbb9f4367b37bb5454c498e9f&quot;,&quot;babb275d3d8645aea8cebbfac5c6d3e4&quot;,&quot;2fc9308395ee4e61837bc240be6aae12&quot;,&quot;f3963d2e8a8a4c7a9b2f47d175d93042&quot;]}}" data-outputid="19adc039-735d-4712-8b48-6aa04f0d6065">
 <div class="sourceCode cell-code" id="cb33" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1">og_model <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> AutoModelForCausalLM.from_pretrained(model_name, device_map<span class="op" style="color: #5E5E5E;
@@ -2626,7 +2666,7 @@ Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.</code><
 <pre><code>'&lt;|begin_of_text|&gt;&lt;|start_header_id|&gt;user&lt;|end_header_id|&gt;\n\nWhat is the distance between Ney York and foo?&lt;|eot_id|&gt;&lt;|start_header_id|&gt;assistant&lt;|end_header_id|&gt;\n\nI think there may be a bit of a problem here!\n\nThere is no place called "foo". Foo is not a real location, so it\'s not possible to calculate the distance'</code></pre>
 </div>
 </div>
-<div id="cell-29" class="cell" data-outputid="2f80a216-ec78-4fa2-8556-329a956be91d">
+<div id="cell-29" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:87}}" data-outputid="2f80a216-ec78-4fa2-8556-329a956be91d">
 <div class="sourceCode cell-code" id="cb37" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1">chat <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> [{<span class="st" style="color: #20794D;
@@ -2706,13 +2746,13 @@ font-style: inherit;"># past_key_values</span></span>
 background-color: null;
 font-style: inherit;"># out</span></span></code></pre></div>
 </div>
-<div id="cell-34" class="cell" data-outputid="c08241ef-0bd4-4f34-b38d-418fe51396db">
+<div id="cell-34" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="c08241ef-0bd4-4f34-b38d-418fe51396db">
 <div class="sourceCode cell-code" id="cb42" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1">input_ids.shape</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>torch.Size([1, 16])</code></pre>
 </div>
 </div>
-<div id="cell-35" class="cell" data-outputid="2e1eeb23-8205-4398-9dfa-58ce27c91af3">
+<div id="cell-35" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="2e1eeb23-8205-4398-9dfa-58ce27c91af3">
 <div class="sourceCode cell-code" id="cb44" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># n layers of the model, 2 for keys and values, (bs, n heads, seq_length, head dim?) # FOr smol: 3x64=192 = out dim of v_proj</span></span>
@@ -2736,7 +2776,7 @@ font-style: inherit;">0</span>].shape</span></code></pre></div>
 background-color: null;
 font-style: inherit;"># model</span></span></code></pre></div>
 </div>
-<div id="cell-37" class="cell" data-outputid="6016637a-de45-44b8-ae2d-64ffa845b73b">
+<div id="cell-37" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="6016637a-de45-44b8-ae2d-64ffa845b73b">
 <div class="sourceCode cell-code" id="cb47" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># n layers + 1 (embedding?), 1 bs, (seq _len, head_dim)</span></span>
@@ -2755,7 +2795,7 @@ font-style: inherit;">0</span>].shape</span></code></pre></div>
 <pre><code>(33, 1, torch.Size([16, 4096]))</code></pre>
 </div>
 </div>
-<div id="cell-38" class="cell" data-outputid="066f4534-3dde-4265-ca93-cee3a15630c1">
+<div id="cell-38" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="066f4534-3dde-4265-ca93-cee3a15630c1">
 <div class="sourceCode cell-code" id="cb49" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1">input_ids</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>tensor([[128000, 128006,    882, 128007,    271,   3923,    374,    279,   6138,
@@ -2763,7 +2803,7 @@ font-style: inherit;">0</span>].shape</span></code></pre></div>
        device='cuda:0')</code></pre>
 </div>
 </div>
-<div id="cell-39" class="cell" data-outputid="ac4d1bae-da69-43a0-c583-b675dc9d1ba4">
+<div id="cell-39" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="ac4d1bae-da69-43a0-c583-b675dc9d1ba4">
 <div class="sourceCode cell-code" id="cb51" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Get the index in the sequence where we have 'foo'</span></span>
@@ -2795,7 +2835,7 @@ font-style: inherit;">print</span>(index)</span></code></pre></div>
 <pre><code>13</code></pre>
 </div>
 </div>
-<div id="cell-40" class="cell" data-outputid="6d477906-0600-4fd6-ac51-6aab4a81df7e">
+<div id="cell-40" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="6d477906-0600-4fd6-ac51-6aab4a81df7e">
 <div class="sourceCode cell-code" id="cb53" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Look at the hidden states, layer 0 (I think after embedding layer?) at this index</span></span>
@@ -2814,7 +2854,7 @@ font-style: inherit;">0</span>][index]</span>
 <pre><code>torch.Size([4096])</code></pre>
 </div>
 </div>
-<div id="cell-41" class="cell" data-outputid="fc8b0eac-e073-4fc7-81eb-58985bece85a">
+<div id="cell-41" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="fc8b0eac-e073-4fc7-81eb-58985bece85a">
 <div class="sourceCode cell-code" id="cb55" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Get the equivalent hidden states but using 'Paris' in place of foo</span></span>
@@ -2853,7 +2893,7 @@ font-style: inherit;">0</span>][index]</span>
 <pre><code>torch.Size([4096])</code></pre>
 </div>
 </div>
-<div id="cell-42" class="cell" data-outputid="6a53eb3e-f508-4879-a4a3-2fc4d7f3bae0">
+<div id="cell-42" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="6a53eb3e-f508-4879-a4a3-2fc4d7f3bae0">
 <div class="sourceCode cell-code" id="cb57" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Cosine sim between them</span></span>
@@ -2871,7 +2911,7 @@ font-style: inherit;">0</span>)</span></code></pre></div>
 <pre><code>tensor(0.0310, device='cuda:0')</code></pre>
 </div>
 </div>
-<div id="cell-43" class="cell" data-outputid="a7741bf7-f402-493e-e433-57fffafbe439">
+<div id="cell-43" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="a7741bf7-f402-493e-e433-57fffafbe439">
 <div class="sourceCode cell-code" id="cb59" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Wrapping that into a function</span></span>
@@ -2943,7 +2983,7 @@ font-style: inherit;">0</span>)</span></code></pre></div>
 <pre><code>tensor(0.0310, device='cuda:0')</code></pre>
 </div>
 </div>
-<div id="cell-44" class="cell" data-outputid="fe4e354d-5b07-4d78-a62d-9d8d829e1eff">
+<div id="cell-44" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="fe4e354d-5b07-4d78-a62d-9d8d829e1eff">
 <div class="sourceCode cell-code" id="cb61" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># THe OG model is ~identical at layer 0, which sort of makes sense (LoRA doesn't train the embedding layer by default I don't think?)</span></span>
@@ -2954,7 +2994,7 @@ font-style: inherit;">0</span>)</span></code></pre></div>
 <pre><code>tensor(0.0310, device='cuda:0', dtype=torch.float16, grad_fn=&lt;SumBackward1&gt;)</code></pre>
 </div>
 </div>
-<div id="cell-45" class="cell" data-outputid="bd478e2f-e45b-48b3-e370-96fb7d117b5f">
+<div id="cell-45" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:49,&quot;referenced_widgets&quot;:[&quot;50b0843e5fa44b81b5ea862cdd8d6078&quot;,&quot;8e210f0e98f74432a79040d14fe21f8b&quot;,&quot;d693ce12cee2420eb2f4a2ceb9672e13&quot;,&quot;34e8e890abb74bfb8c2c4ea9fc138fe5&quot;,&quot;5e4f42984adf4f6eb5e415526eb2aebb&quot;,&quot;9838358ef4ba47768dd573c42d0c3a43&quot;,&quot;ff1257adefee4858b7a2c50c397dbb18&quot;,&quot;2e7699c8e4654db88c7847fa09d8700d&quot;,&quot;9dc1a9ab2e3c4e739045f4d2a4b9f32b&quot;,&quot;97e53510cc9b41fda23a152f6e5aec64&quot;,&quot;921f249822f94173b482627b893e983c&quot;]}}" data-outputid="bd478e2f-e45b-48b3-e370-96fb7d117b5f">
 <div class="sourceCode cell-code" id="cb63" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Getting the similarities for all layers</span></span>
@@ -2988,7 +3028,7 @@ font-style: inherit;">len</span>(out.hidden_states))):</span>
 </script>
 </div>
 </div>
-<div id="cell-46" class="cell" data-outputid="6d42eade-1634-4314-aac7-8652f8992f8d">
+<div id="cell-46" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:447}}" data-outputid="6d42eade-1634-4314-aac7-8652f8992f8d">
 <div class="sourceCode cell-code" id="cb64" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Plotting them</span></span>
@@ -3034,7 +3074,7 @@ font-style: inherit;">#   print(i, id, tokenizer.decode(id))</span></span></code
 <section id="looking-at-values-instead" class="level2">
 <h2 class="anchored" data-anchor-id="looking-at-values-instead">Looking at values instead</h2>
 <p>Since we have past_key_values (usually used for KV caching stuff) we can look at those too, flattening them out and measuring similarity much like we did for the hidden states:</p>
-<div id="cell-50" class="cell" data-outputid="cd8fe7bb-6449-4a9b-cf69-bc2385235053">
+<div id="cell-50" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:479,&quot;referenced_widgets&quot;:[&quot;bcb2b011bda04bbca8a74797dda82971&quot;,&quot;05e480db35b5458f885f409bd3051fc3&quot;,&quot;a07cb1f7bc0a4502aa4be5bc3c4e0c20&quot;,&quot;7c1af202139040f49fe19a9a0b71a4ee&quot;,&quot;06b18474792a4680abfbcefbd415ade1&quot;,&quot;660bb1f1ddd249ae846e024d9634a812&quot;,&quot;a4e256fdb16d4fb08216b8c055b2ea00&quot;,&quot;c80aae96ba4043c3a2f5ec2307d2f859&quot;,&quot;65102e2d5624495088901f915844009f&quot;,&quot;17a8fe0d060447c48f72595038426355&quot;,&quot;d7f4ed88de5444e0a4f5430d400ac779&quot;]}}" data-outputid="cd8fe7bb-6449-4a9b-cf69-bc2385235053">
 <div class="sourceCode cell-code" id="cb66" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
@@ -3963,37 +4003,6 @@ G1 X-305 F3000 S1  ; move left until X endstop triggered</code></pre>
   <category>essays</category>
   <guid>https://johnowhitaker.dev/essays/junk_food.html</guid>
   <pubDate>Mon, 02 Dec 2024 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Making Giant Bubbles</title>
-  <link>https://johnowhitaker.dev/mini-hw-projects/bubbles.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>It turns out it’s pretty easy to make GIANT bubbles! This feels like the kind of knowledge that should be more widespread.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/bubble_tube.png" class="img-fluid figure-img"></p>
-<figcaption>my wife pulls a long bubble tube</figcaption>
-</figure>
-</div>
-<p>The recipe I tried:</p>
-<ul>
-<li>1:16 Dawn “50% less scrubbing”: water</li>
-<li>1tsp baking powder per cup of soap</li>
-<li>Inspired by <a href="https://www.youtube.com/watch?v=KINBSeCACow">nighthawkinlight’s recent video</a>, I blended up a few strawberries with salt and soap and strained the result into the mix. (the theory being the super long DNA molecules from the strawberries help the bubbles 🤷). You’d probably get almost as much fun without this!</li>
-</ul>
-<p>You make a loop of string (the more absorbent the better) attached to two sticks such that when you pull them apart the longer section of the loop drops down lower than the shorter section. Dip the loop in the bubble mix, pull it out, and then pull the sticks apart. Voila! It takes a little practice to release the bubbles and have them float, but pulling tubes works almost immediately. We got our neighbor’s kids involved and they had a blast.</p>
-<p>Like all internet-spawned subcultures there is a vast depth to giant bubble making, with wikis full of recipes, exhaustive tests of additives like veterinatry lube, debates over optimal techniques… explore at your own risk, or stick with the simple recipe and have fun :)</p>
-
-
-
- ]]></description>
-  <category>mini-hw-projects</category>
-  <guid>https://johnowhitaker.dev/mini-hw-projects/bubbles.html</guid>
-  <pubDate>Sat, 16 Nov 2024 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

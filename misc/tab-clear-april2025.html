@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2019-10-19">
+<meta name="dcterms.date" content="2025-04-09">
+<meta name="description" content="Clearing out my open tabs">
 
-<title>Zindi UberCT Part 1: Getting started – johnowhitaker.dev</title>
+<title>Tab Clearing (April 9 2025) – johnowhitaker.dev</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,13 +72,11 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta name="twitter:title" content="Zindi UberCT Part 1: Getting started – johnowhitaker.dev">
-<meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://johnowhitaker.dev/dsc/images/thumb_972b4b55-8e41-40ee-b6f6-ced046baf385.png">
+<meta name="twitter:title" content="Tab Clearing (April 9 2025) – johnowhitaker.dev">
+<meta name="twitter:description" content="Clearing out my open tabs">
+<meta name="twitter:image" content="https://i.pinimg.com/originals/40/fe/86/40fe863b3ccf9ceb56cbef670cf6bc41.gif">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image-height" content="280">
-<meta name="twitter:image-width" content="280">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -155,31 +154,25 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#the-challenge" id="toc-the-challenge" class="nav-link active" data-scroll-target="#the-challenge">The Challenge</a></li>
-  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data">The data</a></li>
-  <li><a href="#adding-some-features" id="toc-adding-some-features" class="nav-link" data-scroll-target="#adding-some-features">Adding some features</a></li>
-  <li><a href="#modelling" id="toc-modelling" class="nav-link" data-scroll-target="#modelling">Modelling</a></li>
-  <li><a href="#f1-scores-thresholds-and-classification-vs-prediction" id="toc-f1-scores-thresholds-and-classification-vs-prediction" class="nav-link" data-scroll-target="#f1-scores-thresholds-and-classification-vs-prediction">F1 scores, thresholds and classification vs prediction</a></li>
-  <li><a href="#making-a-submission" id="toc-making-a-submission" class="nav-link" data-scroll-target="#making-a-submission">Making a submission</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Zindi UberCT Part 1: Getting started</h1>
+<h1 class="title">Tab Clearing (April 9 2025)</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">blogs</div>
+    <div class="quarto-category">misc</div>
   </div>
   </div>
 
+<div>
+  <div class="description">
+    Clearing out my open tabs
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -188,7 +181,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 19, 2019</p>
+      <p class="date">April 9, 2025</p>
     </div>
   </div>
   
@@ -200,65 +193,33 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><img src="images/thumb_972b4b55-8e41-40ee-b6f6-ced046baf385.png" class="img-fluid"></p>
-<p>Welcome to the first in a three-part series on Zindi’s Uber Movement SANRAL Cape Town Challenge. This tutorial will take a look at the challenge, start exploring the data and show how to fit a quick model and get a score on the leaderboard. Part two will add in some extra features and a more complex model, and part 3 will run through some GIS tricks to further augment the data and improve our accuracy.</p>
-<p>Follow along with this post using <a href="https://colab.research.google.com/drive/1HjJhghj2b5JJnOFNTcojLfAicDf5QWWK">this notebook</a>.</p>
-<section id="the-challenge" class="level2">
-<h2 class="anchored" data-anchor-id="the-challenge">The Challenge</h2>
-<p>This aim of this competition is to predict where road incidents in Cape Town are likely to happen next. It’s interesting for a few different reasons:<br>
-1) Traffic incidents are rare - so rare the odds of one happening on a 500m stretch of road in a given hour (which is how Zindi has framed the problem) are always going to be low enough that ‘no incident’ is the most likely outcome. If the metric was accuracy, predicting all 0s would probably be your best bet. However, incidents do occur! And the chosen metric (F1 score) means that you’d better predict some incidents or you’ll score 0. More on this later.<br>
-2) It’s spatial. We can treat this like any other supervised learning problem (with some data shaping) but these events are all located on a road grid that exists in the real world. Segments have positions, and lead into other segments. There are intersections, corners, different lanes…. Some GIS knowledge could give you an edge here (or you could wait for part 3!)</p>
-<p>So, we need to create a model that can predict how likely it is that there will be an incident on a given stretch of road at a given time. Then we need to use that likelihood to choose some segments where we thing the chances of an incident are highest. And then we make submissions and hope we get a good score :) Where do we start? Let’s take a look at the data.</p>
-</section>
-<section id="the-data" class="level2">
-<h2 class="anchored" data-anchor-id="the-data">The data</h2>
-<p><img src="images/screenshot-from-2019-10-19-14-26-48.png" class="img-fluid"></p>
-<p>The different road segments</p>
-<p>The roads along which events have been recorded have been divined into segments, each roughly 500m long (lengths vary). The events themselves each have a latitude and longitude associated with them, and have been tagged with the segment id of the nearest road segment. Due to map inaccuracies, the events don’t always line up exactly with the road network.</p>
-<p><img src="images/screenshot-from-2019-10-19-14-26-21.png" class="img-fluid"></p>
-<p>Events (blue) not quite aligned with road segments.</p>
-<p>The main input file is ‘train.csv’, which contains the individual events. The submission requires grouping these into segments and making hourly predictions, so some re-shaping is required (see <a href="https://colab.research.google.com/drive/1HjJhghj2b5JJnOFNTcojLfAicDf5QWWK">the notebook</a>).</p>
-<p><img src="images/screenshot-from-2019-10-19-13-26-27.png" class="img-fluid"></p>
-<p>train.csv - the base on which we’ll build</p>
-<p>Extra data includes a shapefile of the road segments themselves. This shows the segments but also includes extra info like the umber of lanes, road name etc. There is also Uber Movenet data with travel times between different zones withing the city. In part 3 we’ll look more at this.</p>
-<p><img src="images/screenshot-from-2019-10-19-14-33-44.png" class="img-fluid"></p>
-<p>Uber movement zones (red) with those along the road segments selected (green).</p>
-<p>Finally, there is the data from SANRAL and the option to add weather data. Initially, the SANRAL data was only provided for the training period (since the worry was that it would give too much away). It has since been updated to include all dates covered - making it much more useful.</p>
-</section>
-<section id="adding-some-features" class="level2">
-<h2 class="anchored" data-anchor-id="adding-some-features">Adding some features</h2>
-<p>We’re looking at each segment, for each hour. What kinds of features can we add that could help us create a model? The other data sources contain some useful info (as we’ll see in the following posts) but even with just train.csv we can start building up some info to work with. For example, we can derive day of the week, time, month etc from the datetime - all of which likely influence the incident rate.</p>
-<p><img src="images/screenshot-from-2019-10-19-13-46-56.png" class="img-fluid"></p>
-<p>Adding some date-related variables</p>
-<p>We can also get the rough locations of the segments by looking at the locations of the incidents within them:</p>
-<p><img src="images/screenshot-from-2019-10-19-13-47-08.png" class="img-fluid"></p>
-<p>Adding location columns</p>
-<p>There’s plenty more, but for now let’s fit a model and make some predictions.</p>
-</section>
-<section id="modelling" class="level2">
-<h2 class="anchored" data-anchor-id="modelling">Modelling</h2>
-<p>I went with CatBoost as a starting model. Good performance, reasonable handling of imbalanced data and it saves us having to fiddle with categorical columns. We specify the input and output columns, create a CatBoostClassifier and throw our data at it:</p>
-<p><img src="images/screenshot-from-2019-10-19-13-50-03.png" class="img-fluid"></p>
-<p>First model</p>
-<p>In the notebook, you’ll see me scoring the model with log-loss to see if it’s better than random predictions or predicting the mean. Even though it isn’t the metric Zindi is using, it’ll help us pick the best out of several models. Then I try F1 score, and we see our first little hitch: the model scores 0 (bad) on the test set. What’s up? It’s predicting all 0s, as any good model would.</p>
-</section>
-<section id="f1-scores-thresholds-and-classification-vs-prediction" class="level2">
-<h2 class="anchored" data-anchor-id="f1-scores-thresholds-and-classification-vs-prediction">F1 scores, thresholds and classification vs prediction</h2>
-<p>Looking at the model’s predicted probabilities, we see the issue - values range from ~0 to ~0.2. If we were gunning for classification accuracy, we’d go with 0 if the probability is this low. BUT, here we’re not going for absolute classifications, we’re aiming for predictions of which segments are most likely. A good article on the difference <a href="https://www.fharrell.com/post/classification/">here</a>. So how do we fix this?</p>
-<p>One approach is by picking a threshold and predicting 1s where it is exceeded. In the notebook, I show that predicting 1s if the probability is &gt;0.05 gets a better f1 score. Of course, there are experimental or theoretical ways to get this threshold correct (see <a href="https://arxiv.org/abs/1402.1892">this paper</a> for eg) but trying a few different values and guessing was my lazy approach :)</p>
-<p>Another option is to mess about with the class_weights parameter. I followed the advice in the docs, and got roughly the same score as I had with the threshold method.</p>
-<p><img src="images/screenshot-from-2019-10-19-14-03-38.png" class="img-fluid"></p>
-<p>Tip from the CatBoost documentation</p>
-</section>
-<section id="making-a-submission" class="level2">
-<h2 class="anchored" data-anchor-id="making-a-submission">Making a submission</h2>
-<p>So, we have a model that predicts probabilities, and a threshold above which we’ll predict a one. All that’s left is to transform our sample submission dataframe the same way we did with train - adding time and location columns. Then we feed it through our model, save and submit!</p>
-<p><img src="images/screenshot-from-2019-10-19-14-05-49.png" class="img-fluid"></p>
-<p>Making predictions</p>
-<p>This model scores around 0.036 on the leader-board (10’th place since the contest is still new). At this stage, you could go into Zindi competition mode and start tweaking every possible model parameter to up your score slightly, but the real value will be in getting more than just some date-related columns to work with. We’’l get to that - for now, take a look <a href="https://colab.research.google.com/drive/1HjJhghj2b5JJnOFNTcojLfAicDf5QWWK">my starting notebook</a>, play around, get on that leaderboard and stay tuned!</p>
+<ul>
+<li><a href="https://synth.grantkot.com/">Web synth</a> - great sounds, easy controls, works on mobile. Big fan. Think they use adventure time sounds, in some kind of library? I want to emulate this at some point.</li>
+<li><a href="https://writings.stephenwolfram.com/2019/02/seeking-the-productive-life-some-details-of-my-personal-infrastructure/">Seeking the Productive Life: Some Details of My Personal Infrastructure</a> - revisiting this inspiring piece from Wolfram on how he optimizes bits if his life. He’s shockingly productive, I think a lot of us could learn from him.</li>
+<li><a href="https://arxiv.org/abs/2504.00698">Command A: An Enterprise-Ready Large Language Model</a> - interesting paper with lots of detail on their enterprisey post-training.</li>
+<li><a href="https://hkunlp.github.io/blog/2025/dream/">Dream 7B</a> - ‘Diffusion reasoning model’ continuing the trend of diffusion language models starting to look impressive at 7Bish scale, building on smaller-scale PoCs from the past. Watching this space with interest :) It is initialzed from Qwen which is an interesting tidbit.</li>
+<li><a href="https://www.together.ai/blog/deepcoder">Together AI announce DeepCoder</a> - speaking of things initialized with Qwen, this 14B reasoner does extremely well thanks to good, open work on RLVR for coding, ft their ‘GRPO+’. Good-looking work!</li>
+<li><a href="https://hackaday.com/2025/04/02/70-diy-synths-on-one-webpage/">70 DIY Synths On One Webpage</a> an inspiring collection for if I ever feel like building HW synths</li>
+<li><a href="https://www.lesswrong.com/posts/9PiyWjoe9tajReF7v/the-hidden-cost-of-our-lies-to-ai">The Hidden Cost of Our Lies to AI</a> - DNF, but I do like peeking at what the LW people are talking about, and I do have a string sentiment against lying to AI that the author shares.</li>
+<li><a href="https://yetch.studio/products/edge-piece-puzzle">Simone’s all-edge puzzle</a> - A nice idea I’m getting for my puzzle-loving wife (shh it’s a birthday secret)</li>
+<li><a href="https://docs.perplexity.ai/guides/pricing">https://docs.perplexity.ai/guides/pricing</a> - Their deep research API looks nice, I saw a colleague using it in an internal tool and want to copy that so I don’t have to break flow to head to openai/google for deep research style questions.</li>
+<li><a href="https://ai-2027.com/">AI2027</a> - I enguaged a lot with this, listening to the Dwarkesh podcast and skimming the research. They’re nothing if not thorough. I’m not sure I quite buy the foomish takeoff stuff still, but I also don’t think you can dismiss these ideas out-of-hand.</li>
+<li><a href="https://hackaday.com/2025/04/04/3d-print-and-play-the-super-mario-tune-as-a-fidget-toy/">3D Print (and Play!) The Super Mario Tune As A Fidget Toy</a> - I’m going to print off some rick-rolls and leave them lying around</li>
+<li><a href="https://arxiv.org/abs/2504.05118">VAPO paper</a> - I’ve been meaning to look at DAPO, VAPO and other GRPO variants but not had the time+inclination recently, feels like the DPO or LoRA fevers as everyone tries out minor mods that work on some benches…</li>
+<li><a href="https://blog.google/products/google-cloud/ironwood-tpu-age-of-inference/">Google’s Ironwood TPUs</a> look like inference beasts…</li>
+<li><a href="https://arxiv.org/abs/2411.15098">OmniControl</a> and this <a href="https://huggingface.co/spaces/Yuanshi/OminiControl_Art">OmniControl Art</a> space (the latter replicating 4o’s stylization trick with Flux) look like an interesting modern controlnet alternative. I want to take a closer look at some point.</li>
+<li><a href="https://arxiv.org/abs/2404.16792">Model Extrapolation Expedites Alignment</a> - fun: train DPO model, interpolate between base SFT model and that, with scale &gt; 1. CFG but it’s comparing preds from DPO model vs base, giving a boost on some tasks haha. Not sure it’ll hold for more carefully trained models but neat to see. Reminds me of a paper that did something similar but using early vs late layer predictions instead of two model variants. Have also seen small vs large models. ALl these hacks feel likely to get bitter-lessoned but fun for now. Another in this veign was:</li>
+<li><a href="http://arxiv.org/abs/2501.18585">Thoughts Are All Over the Place: On the Underthinking of o1-Like LLMs</a> - which supresses thought-changing tokens like “alternatively” until the model has thought for long enough on that topic (some settable threshold) which is a funny hack to encourage longer thoughts. They do see some improvement!</li>
+<li><a href="https://arxiv.org/abs/2504.04022">Rethinking Reflection in Pre-Training</a> - looking at how much ‘reasoning’ is learnt during pre-training, and identifying a measure that grows steadily, which seems very relevant to the discussion over whether reasoning is all RL or is motly elicitation of latent capabilities learnt during pretraining.</li>
+<li><a href="https://arxiv.org/abs/2503.22828">Learning to Reason for Long-Form Story Generation</a> very neat idea: RLVR on reasoning hains with the score being how likely the model is to generate the gold standard output after said reasoning chain: “Our reward uses a reference model to get the improved likelihood of the true next chapter.”, “🎯 Verifiable Rewards via Completion Likelihood Improvement (VR-CLI) evaluates reasoning by the”improvement” in downstream perplexity of the gold completion (the next chapter).”</li>
+<li><a href="https://arxiv.org/abs/2404.09937">Compression Represents Intelligence Linearly</a> - “we find that LLMs’ intelligence – reflected by average benchmark scores – almost linearly correlates with their ability to compress external text corpora. These results provide concrete evidence supporting the belief that superior compression indicates greater intelligence.” - nice to have more empirical evidence for this, I think it’s a good heuristic to keep in mind.</li>
+<li><a href="https://arxiv.org/abs/2504.02495">Inference-Time Scaling for Generalist Reward Modeling</a> - TO READ</li>
+<li><a href="https://www.ethansmith2000.com/post/on-vibe-coding">On Vibe Coding</a> - TO READ</li>
+<li><a href="https://deepmind.google/discover/blog/taking-a-responsible-path-to-agi/">Taking a responsible path to AGI</a> - TO READ</li>
+<li><a href="https://huggingface.co/spaces/enzostvs/deepsite">Deep site</a> - TO TRY</li>
+</ul>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
