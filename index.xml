@@ -10,7 +10,77 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.7.22</generator>
-<lastBuildDate>Wed, 09 Apr 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 10 Apr 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Hiding an Annoying Element with Stylus</title>
+  <link>https://johnowhitaker.dev/tils/paid_promotion_links.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>YouTube has this annoying thing where on hover a little overlay pops up over some videos that says ‘Includes paid promotion…’. I click on this accidentally fairly frequently, opening up a support.google.com link instead of the video I want. This bugs me, but it’s a very minor annoyance. In the past I’d probably just ignore it. I tried inspecting the element in the Chrome dev tools but couldn’t find it and that’s about as much effort as I’m willing to manually do for somethig this small. FOrtunately, these days we have AI! A quick back-and-forth with GPT4.5 and I’ve solved the problem for myself!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/tils/yt_overlay.png" class="img-fluid figure-img"></p>
+<figcaption>The problem</figcaption>
+</figure>
+</div>
+<p>I went with a CSS rule in the Stylus browser extension:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">@-moz-document</span> domain<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"youtube.com"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">)</span> {</span>
+<span id="cb1-2">    a<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">[</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">href</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"support.google.com/youtube"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">]</span> {</span>
+<span id="cb1-3">        <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">display</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">none</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">!important</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-4">        <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">pointer-events</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">none</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">!important</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-5">    }</span>
+<span id="cb1-6">}</span></code></pre></div>
+<p>I’m amused how low my tolerance for painful stuff on a computer is these days, and how happy it makes me to fix any remaining tiny paper cuts with my code-slinging AI buddies.</p>
+
+
+
+ ]]></description>
+  <guid>https://johnowhitaker.dev/tils/paid_promotion_links.html</guid>
+  <pubDate>Thu, 10 Apr 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Tab Clearing (April 9 2025)</title>
   <link>https://johnowhitaker.dev/misc/tab-clear-april2025.html</link>
@@ -3958,51 +4028,6 @@ G1 X-305 F3000 S1  ; move left until X endstop triggered</code></pre>
   <guid>https://johnowhitaker.dev/misc/tab_clear_dec_04_24.html</guid>
   <pubDate>Wed, 04 Dec 2024 00:00:00 GMT</pubDate>
   <media:content url="https://i.pinimg.com/originals/40/fe/86/40fe863b3ccf9ceb56cbef670cf6bc41.gif" medium="image" type="image/gif"/>
-</item>
-<item>
-  <title>AI Outputs as Junk Food</title>
-  <link>https://johnowhitaker.dev/essays/junk_food.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>My first taste of American food was a bacon-and-egg roll in the airport. Immediate impression: “woah this is sweet?!?”. The bread was sweet, the bacon maple-coated… Tasty, but odd after 5 years eating fairly healthy and basic food in Zimbabwe. Why is everything full of corn syrup? Why have I gained weight? Part of the answer is ‘optimization’ - when you optimize for sales, you can end up hacking the human brain in ways that aren’t good for us. Sweeter chocolate milk sells better, so more sugar is added until you get the thick sludge that people drink here. Cheap and tasty are all well and good, but it’s clear there are downsides, and it’s clear you mightant to spend considerable effort fighting the tempation and seeking out healthier alternatives. Short-term optimization for human preferences can lead to long-term harm. Anyway, on an unrelated note, let’s talk about AI!</p>
-</section>
-<section id="what-makes-a-tasty-model" class="level2">
-<h2 class="anchored" data-anchor-id="what-makes-a-tasty-model">What Makes A Tasty Model?</h2>
-<p>Today’s LLMs go through a few different phases of training. There’s ‘pretraining’, where the model is shown a lot of text and learns to predict the next word. Then there’s ‘fine-tuning’, where the model is shown a few examples of a specific task (like being a helpful assistant) and learns to predict the next word in that context. Finally, there’s ‘RLHF’ (or more generally ‘preference tuning’) where the model is trained with feedback about which outputs human raters (or a proxy model for human preferences) prefer. This is a bit like the difference between a slot machine, iterative refinement, and co-creation.</p>
-<p>At a meta level, the choices influencing how exactly these stages are condicted, and how successful they are considered to be, is based on benchmarks (aka ’evals) that try to measure how well the model is doing. Some involve asking hard questions, which rewards informative pretraining data and careful instruction following. But more and more rely on human ratings to measure the model responses. For example, LMSys pits models head-to-head and has humans pick their preferred answer. All the model makers pay attention to performance on these comparisons, testing variants of their models before release and tuning them based on past votes.</p>
-<p>What is the result? We’re optimizing models to make the human raters happy. On the surface it seems like a fantastic thing - better answers (measured by rater preference) mean a better, more helpful, more useful model. Right?</p>
-<p>Except remember the food thing. You can score well on these human-preference-based evals with a few tricks:</p>
-<ul>
-<li>Long answers. People love to see lots of informative and authoratative-sounding text.</li>
-<li>Lots of code. Look, it wrote a whole app for me.</li>
-<li>Nicely formatted markdown. Headings, bullet points, <strong>bold text</strong>. Dopamine central!</li>
-<li>Sycophancy. “What an insightful question!”, “That’s quite an insight, would you like to delve deeper into this fascinating topic”. Seriously - look back at your interactions with your favourite AI and think why you like talking to it - is it just flattering you? (“Nooooo Claude is my friend…”)</li>
-</ul>
-<p>I’m not saying all of these are bad. But think for a sec - are any of these a little like high-fructose corn syrup? Do you really want your apps full of verbose, pleasing-looking walls of code? Your essays the most appeal-to-the-masses slop? Your images the highly-saturated instagram-dominating preference-optimizing eye-candy?</p>
-</section>
-<section id="healthy-ai-ing" class="level2">
-<h2 class="anchored" data-anchor-id="healthy-ai-ing">Healthy AI-ing</h2>
-<p>Watching a coding agent write thousands of lines of code to make you a flashy dashboard will give you a hit of satisfaction - look at it go, just think what my sales will be like with this! But I’m starting to think this won’t make you a better programmer in the long term. Spending the time to learn, doing things carefully yourself, making things <em>yourself</em> rather than having them made - these are the cooking-at-home equiavalents that will pay future dividends. Use AI - the same way we can use fancy ingredients and equipment in a home kitchen. Just don’t give up your life to fast-food or let your intelligence atrophy from lack of use. Avoid the floaty-chairs of Wall-E! Embrace <a href="essays/3_modes.qmd#co-creation">co-creation</a> and make something that’s truly yours, not just the most appealing to the masses.</p>
-<p>WIP: Or something. This feels important, but I’m still working on how best to express this. Input welcome!</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/essays/junk_food.png" class="img-fluid figure-img"></p>
-<figcaption>Prompt: ‘super-tasty brain-hacking unhealthy donut, sugary drink, and other junk food, saturated colors like extreme advertising aesthetic’</figcaption>
-</figure>
-</div>
-
-
-</section>
-
- ]]></description>
-  <category>essays</category>
-  <guid>https://johnowhitaker.dev/essays/junk_food.html</guid>
-  <pubDate>Mon, 02 Dec 2024 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

@@ -2,6 +2,7 @@
   {
     "listing": "/tils.html",
     "items": [
+      "/tils/paid_promotion_links.html",
       "/tils/2025-01-04-duet-wsl-usb.html",
       "/tils/deploy_your_artifacts.html",
       "/tils/2024-04-19-intercept-github-copilot.html",
@@ -72,6 +73,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/tils/paid_promotion_links.html",
       "/misc/tab-clear-april2025.html",
       "/mini-projects/rhyme_eval.html",
       "/essays/future-ai.html",
@@ -259,6 +261,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/tils/paid_promotion_links.html",
       "/misc/tab-clear-april2025.html",
       "/mini-projects/rhyme_eval.html",
       "/essays/future-ai.html",
