@@ -54,9 +54,13 @@ It might sound a little silly to effectively fit a curve for the preds of a few 
 
 Anyway, I hope this post and the video inspire you to run your own experiments - there are so many directions you can take this! If you try anything fun do let me know. Best. Johno.
 
-## PS: Full code
+PS: I ran this on Qwen 7B -> 14B too, with similarly underwhelming results.
 
-For the record, here's the code that produced the data for the graph above
+![](images/extrapolative_res2.png)
+
+## PPS: Full code
+
+For the record, here's the code that produced the data for the first graph above
 
 ```python
 import torch
