@@ -10,33 +10,7 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.7.23</generator>
-<lastBuildDate>Fri, 11 Apr 2025 00:00:00 GMT</lastBuildDate>
-<item>
-  <title>Lab Junk Rheoscopic Fluid</title>
-  <link>https://johnowhitaker.dev/mini-hw-projects/rheoscopic.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>As I grabbed the waste tub from my lab bench to deal with it, I noticed the liquid in the bottom swished around in a shiny and interesting way. I pipetted some out and took a closer look. Any movement resulted in irridescent swirls - I’d accidentally made a rheoscopic fluid! This isn’t exactly rare - people make it by adding mica powder to water, for example. But I couldn’t figure out what was causing the effect in my case at first - no mica here, just the remains of a couple of experiments related to cyanotype and the paper towels I’d used to clean up. Intrigued, I set about trying to figure out the minimal recipe needed to re-create the effect. Before we get to the recipe though, take a look at it in motion:</p>
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/rheo.gif" class="img-fluid"></p>
-<p>Lovely, isn’t it! More videos in <a href="https://x.com/johnowhitaker/status/1906154484826595722">this twitter thread.</a></p>
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/rheo.png" class="img-fluid"></p>
-<p>Turns out you can make this as follows: - Add a strip of paper towel to a container of 2% hydrogen peroxide and a few drops of dish soap. - Leave it for several days (the longer the better) - Add color to taste :)</p>
-<p>I think what is happening is the H2O2 is breaking down parts of the paper towel, leaving little bits of cellulose and other stuff suspended in the water which catch the light at the right angle, aligning based on the flow, giving the irridescent effect. The soap helps to stabilize the suspension. I used food coloring to boost the contrast. In the initial version the yellow (from potassium ferricyanide) was the initial color, then it later turned blue (from the cyanotype reaction) - which is how I got the idea. The white version was cool too in some lights but didn’t photograph nearly as well.</p>
-<p>Under a microscope it looks like this:</p>
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/rheo_scope.png" class="img-fluid"></p>
-<p>Anyway, it was a fun ‘science at home’ moment to spot this, chat about it with an AI, come up with some theories, try out varous mixtures (with and without the various chemicals I thought might be in the original batch) and then double check the recipe again. I bet stronger H2O2 would work better - LMK if you do an independent replication!</p>
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/rheo2.png" class="img-fluid"></p>
-
-
-
- ]]></description>
-  <category>mini-hw-projects</category>
-  <guid>https://johnowhitaker.dev/mini-hw-projects/rheoscopic.html</guid>
-  <pubDate>Fri, 11 Apr 2025 00:00:00 GMT</pubDate>
-</item>
+<lastBuildDate>Sat, 12 Apr 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Extrapolate All The Things - Small-To-Big Extrapolation For LLMs</title>
   <link>https://johnowhitaker.dev/mini-projects/extrapolative_sampling.html</link>
@@ -45,7 +19,7 @@
 
 
 
-<p>In a research chat yesterday I spoke about a fun thread of research, sparked by a recent paper: <a href="http://arxiv.org/abs/2404.16792">Model Extrapolation Expedites Alignment</a>. The idea of the paper is simple but fun: take an LLM that’s had some SFT done, do a little DPO (or other ‘alignment’ technique of your choice), look at the change in the weights, then <strong>extrapolate</strong> in that direction to get an <em>even more aligned</em> model, saving compute. In other words, if you mix the starting model with a DPO-trained one based on a scalar <em>alpha</em>, you start with <em>alpha</em>=0 at the performance of the starting model, then as you increase it to 1 your performance rises too, until you hit the performance of the DPO-trained model. And if you use <em>alpha</em> &gt; 1, you get a model that is even better than the DPO-trained one! At least, if you didn’t do much DPO training - say, 10 or 20% of what you’d normally do. There’s a few takeaways here related to how little the final alignment training is doing in cases like this, but the core idea is one that is worth exploring more generally - namely, <strong>getting better performance by interpolating from a worse model/prediction to a better one and then extrapolating beyond it</strong>. In this post I’ll explore some related ideas, and my own experiments extrapolating from a small model to a big model to eke out even more performance. I’ve also got a [video]TODO link of me running through these papers and then taking you on the journey of trying the experiments, so you can get a picture of how fun this kind of research can be.</p>
+<p>In a research chat yesterday I spoke about a fun thread of research, sparked by a recent paper: <a href="http://arxiv.org/abs/2404.16792">Model Extrapolation Expedites Alignment</a>. The idea of the paper is simple but fun: take an LLM that’s had some SFT done, do a little DPO (or other ‘alignment’ technique of your choice), look at the change in the weights, then <strong>extrapolate</strong> in that direction to get an <em>even more aligned</em> model, saving compute. In other words, if you mix the starting model with a DPO-trained one based on a scalar <em>alpha</em>, you start with <em>alpha</em>=0 at the performance of the starting model, then as you increase it to 1 your performance rises too, until you hit the performance of the DPO-trained model. And if you use <em>alpha</em> &gt; 1, you get a model that is even better than the DPO-trained one! At least, if you didn’t do much DPO training - say, 10 or 20% of what you’d normally do. There’s a few takeaways here related to how little the final alignment training is doing in cases like this, but the core idea is one that is worth exploring more generally - namely, <strong>getting better performance by interpolating from a worse model/prediction to a better one and then extrapolating beyond it</strong>. In this post I’ll explore some related ideas, and my own experiments extrapolating from a small model to a big model to eke out even more performance. I’ve also got a <a href="https://www.youtube.com/watch?v=3odZosJ5CeE">video</a> of me running through these papers and then taking you on the journey of trying the experiments, so you can get a picture of how fun this kind of research can be.</p>
 <section id="past-work" class="level2">
 <h2 class="anchored" data-anchor-id="past-work">Past Work</h2>
 <p>For me, the classic example of this kind of idea is ‘Classifier Free Guidance’ in diffusion models. You interpolate between the prediction from an unconditional model and a conditional one, and then extrapolate beyond it. This is a very powerful technique, and it’s been used in a lot of different ways. Introduced by Salimans and Ho in 2021, it gained popularity through the GLIDE paper which used it to get open source text-to-image diffusion working well early on in the diffusion model revolution, where it has since become a staple of pretty much all subsequent text-to-image systems.</p>
@@ -832,7 +806,34 @@ font-style: inherit;"># Scores for different alphas: [71.0, 72.5, 72.83333333333
 
  ]]></description>
   <category>mini-projects</category>
+  <category>Video</category>
   <guid>https://johnowhitaker.dev/mini-projects/extrapolative_sampling.html</guid>
+  <pubDate>Sat, 12 Apr 2025 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Lab Junk Rheoscopic Fluid</title>
+  <link>https://johnowhitaker.dev/mini-hw-projects/rheoscopic.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>As I grabbed the waste tub from my lab bench to deal with it, I noticed the liquid in the bottom swished around in a shiny and interesting way. I pipetted some out and took a closer look. Any movement resulted in irridescent swirls - I’d accidentally made a rheoscopic fluid! This isn’t exactly rare - people make it by adding mica powder to water, for example. But I couldn’t figure out what was causing the effect in my case at first - no mica here, just the remains of a couple of experiments related to cyanotype and the paper towels I’d used to clean up. Intrigued, I set about trying to figure out the minimal recipe needed to re-create the effect. Before we get to the recipe though, take a look at it in motion:</p>
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/rheo.gif" class="img-fluid"></p>
+<p>Lovely, isn’t it! More videos in <a href="https://x.com/johnowhitaker/status/1906154484826595722">this twitter thread.</a></p>
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/rheo.png" class="img-fluid"></p>
+<p>Turns out you can make this as follows: - Add a strip of paper towel to a container of 2% hydrogen peroxide and a few drops of dish soap. - Leave it for several days (the longer the better) - Add color to taste :)</p>
+<p>I think what is happening is the H2O2 is breaking down parts of the paper towel, leaving little bits of cellulose and other stuff suspended in the water which catch the light at the right angle, aligning based on the flow, giving the irridescent effect. The soap helps to stabilize the suspension. I used food coloring to boost the contrast. In the initial version the yellow (from potassium ferricyanide) was the initial color, then it later turned blue (from the cyanotype reaction) - which is how I got the idea. The white version was cool too in some lights but didn’t photograph nearly as well.</p>
+<p>Under a microscope it looks like this:</p>
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/rheo_scope.png" class="img-fluid"></p>
+<p>Anyway, it was a fun ‘science at home’ moment to spot this, chat about it with an AI, come up with some theories, try out varous mixtures (with and without the various chemicals I thought might be in the original batch) and then double check the recipe again. I bet stronger H2O2 would work better - LMK if you do an independent replication!</p>
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/rheo2.png" class="img-fluid"></p>
+
+
+
+ ]]></description>
+  <category>mini-hw-projects</category>
+  <guid>https://johnowhitaker.dev/mini-hw-projects/rheoscopic.html</guid>
   <pubDate>Fri, 11 Apr 2025 00:00:00 GMT</pubDate>
 </item>
 <item>

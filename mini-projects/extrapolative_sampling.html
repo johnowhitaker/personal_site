@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-04-11">
+<meta name="dcterms.date" content="2025-04-12">
 
 <title>Extrapolate All The Things - Small-To-Big Extrapolation For LLMs – johnowhitaker.dev</title>
 <style>
@@ -210,6 +210,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1 class="title">Extrapolate All The Things - Small-To-Big Extrapolation For LLMs</h1>
   <div class="quarto-categories">
     <div class="quarto-category">mini-projects</div>
+    <div class="quarto-category">Video</div>
   </div>
   </div>
 
@@ -221,7 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 11, 2025</p>
+      <p class="date">April 12, 2025</p>
     </div>
   </div>
   
@@ -233,7 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In a research chat yesterday I spoke about a fun thread of research, sparked by a recent paper: <a href="http://arxiv.org/abs/2404.16792">Model Extrapolation Expedites Alignment</a>. The idea of the paper is simple but fun: take an LLM that’s had some SFT done, do a little DPO (or other ‘alignment’ technique of your choice), look at the change in the weights, then <strong>extrapolate</strong> in that direction to get an <em>even more aligned</em> model, saving compute. In other words, if you mix the starting model with a DPO-trained one based on a scalar <em>alpha</em>, you start with <em>alpha</em>=0 at the performance of the starting model, then as you increase it to 1 your performance rises too, until you hit the performance of the DPO-trained model. And if you use <em>alpha</em> &gt; 1, you get a model that is even better than the DPO-trained one! At least, if you didn’t do much DPO training - say, 10 or 20% of what you’d normally do. There’s a few takeaways here related to how little the final alignment training is doing in cases like this, but the core idea is one that is worth exploring more generally - namely, <strong>getting better performance by interpolating from a worse model/prediction to a better one and then extrapolating beyond it</strong>. In this post I’ll explore some related ideas, and my own experiments extrapolating from a small model to a big model to eke out even more performance. I’ve also got a [video]TODO link of me running through these papers and then taking you on the journey of trying the experiments, so you can get a picture of how fun this kind of research can be.</p>
+<p>In a research chat yesterday I spoke about a fun thread of research, sparked by a recent paper: <a href="http://arxiv.org/abs/2404.16792">Model Extrapolation Expedites Alignment</a>. The idea of the paper is simple but fun: take an LLM that’s had some SFT done, do a little DPO (or other ‘alignment’ technique of your choice), look at the change in the weights, then <strong>extrapolate</strong> in that direction to get an <em>even more aligned</em> model, saving compute. In other words, if you mix the starting model with a DPO-trained one based on a scalar <em>alpha</em>, you start with <em>alpha</em>=0 at the performance of the starting model, then as you increase it to 1 your performance rises too, until you hit the performance of the DPO-trained model. And if you use <em>alpha</em> &gt; 1, you get a model that is even better than the DPO-trained one! At least, if you didn’t do much DPO training - say, 10 or 20% of what you’d normally do. There’s a few takeaways here related to how little the final alignment training is doing in cases like this, but the core idea is one that is worth exploring more generally - namely, <strong>getting better performance by interpolating from a worse model/prediction to a better one and then extrapolating beyond it</strong>. In this post I’ll explore some related ideas, and my own experiments extrapolating from a small model to a big model to eke out even more performance. I’ve also got a <a href="https://www.youtube.com/watch?v=3odZosJ5CeE">video</a> of me running through these papers and then taking you on the journey of trying the experiments, so you can get a picture of how fun this kind of research can be.</p>
 <section id="past-work" class="level2">
 <h2 class="anchored" data-anchor-id="past-work">Past Work</h2>
 <p>For me, the classic example of this kind of idea is ‘Classifier Free Guidance’ in diffusion models. You interpolate between the prediction from an unconditional model and a conditional one, and then extrapolate beyond it. This is a very powerful technique, and it’s been used in a lot of different ways. Introduced by Salimans and Ho in 2021, it gained popularity through the GLIDE paper which used it to get open source text-to-image diffusion working well early on in the diffusion model revolution, where it has since become a staple of pretty much all subsequent text-to-image systems.</p>
