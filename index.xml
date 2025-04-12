@@ -9,8 +9,34 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.7.22</generator>
-<lastBuildDate>Thu, 10 Apr 2025 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.7.23</generator>
+<lastBuildDate>Fri, 11 Apr 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Lab Junk Rheoscopic Fluid</title>
+  <link>https://johnowhitaker.dev/mini-hw-projects/rheoscopic.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>As I grabbed the waste tub from my lab bench to deal with it, I noticed the liquid in the bottom swished around in a shiny and interesting way. I pipetted some out and took a closer look. Any movement resulted in irridescent swirls - I’d accidentally made a rheoscopic fluid! This isn’t exactly rare - people make it by adding mica powder to water, for example. But I couldn’t figure out what was causing the effect in my case at first - no mica here, just the remains of a couple of experiments related to cyanotype and the paper towels I’d used to clean up. Intrigued, I set about trying to figure out the minimal recipe needed to re-create the effect. Before we get to the recipe though, take a look at it in motion:</p>
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/rheo.gif" class="img-fluid"></p>
+<p>Lovely, isn’t it! More videos in <a href="https://x.com/johnowhitaker/status/1906154484826595722">this twitter thread.</a></p>
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/rheo.png" class="img-fluid"></p>
+<p>Turns out you can make this as follows: - Add a strip of paper towel to a container of 2% hydrogen peroxide and a few drops of dish soap. - Leave it for several days (the longer the better) - Add color to taste :)</p>
+<p>I think what is happening is the H2O2 is breaking down parts of the paper towel, leaving little bits of cellulose and other stuff suspended in the water which catch the light at the right angle, aligning based on the flow, giving the irridescent effect. The soap helps to stabilize the suspension. I used food coloring to boost the contrast. In the initial version the yellow (from potassium ferricyanide) was the initial color, then it later turned blue (from the cyanotype reaction) - which is how I got the idea. The white version was cool too in some lights but didn’t photograph nearly as well.</p>
+<p>Under a microscope it looks like this:</p>
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/rheo_scope.png" class="img-fluid"></p>
+<p>Anyway, it was a fun ‘science at home’ moment to spot this, chat about it with an AI, come up with some theories, try out varous mixtures (with and without the various chemicals I thought might be in the original batch) and then double check the recipe again. I bet stronger H2O2 would work better - LMK if you do an independent replication!</p>
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/rheo2.png" class="img-fluid"></p>
+
+
+
+ ]]></description>
+  <category>mini-hw-projects</category>
+  <guid>https://johnowhitaker.dev/mini-hw-projects/rheoscopic.html</guid>
+  <pubDate>Fri, 11 Apr 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Hiding an Annoying Element with Stylus</title>
   <link>https://johnowhitaker.dev/tils/paid_promotion_links.html</link>
@@ -3975,59 +4001,6 @@ G1 X-305 F3000 S1  ; move left until X endstop triggered</code></pre>
   <guid>https://johnowhitaker.dev/misc/2024_year_overflow.html</guid>
   <pubDate>Wed, 01 Jan 2025 00:00:00 GMT</pubDate>
   <media:content url="https://johnowhitaker.dev/misc/uv_ims/image.png" medium="image" type="image/png" height="80" width="144"/>
-</item>
-<item>
-  <title>Tab Clearning (December 4 2024)</title>
-  <link>https://johnowhitaker.dev/misc/tab_clear_dec_04_24.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="tab-clearing" class="level1">
-
-<ul>
-<li><a href="https://qwenlm.github.io/blog/qwq-32b-preview/">QwQ</a> announcement. Amusing tone - ‘What does it mean to think, to question, to understand?…’. Exciting model, by vibes at least. Playing with it via https://api.together.ai/playground/chat/Qwen/QwQ-32B-Preview until buddies get quants running locally with long context.</li>
-<li>https://gen-omnimatte.github.io/ Generative Omnimatte - Learning to Decompose Video into Layers, cool for VFX etc, good to see.</li>
-<li>https://cat-4d.github.io/ change view on any video, I want this in VR, even janky as it is.</li>
-<li>https://lilianweng.github.io/posts/2024-11-28-reward-hacking/ - fantastic post on reward hacking. Also yay, lilianweng is posting again after recently leaving openai. A boon for us all.</li>
-<li>https://transluce.org/neuron-descriptions describing all neurons in Llama 3.1 8B with a fine-tuned model. See also https://goodfire.ai/ which lets you steer generation with SAE features, looks very cool</li>
-<li>https://minihf.com/posts/2024-08-23-weave-agent-dev-log-1/ a representative sample of an interesting blog - the author is John David Pressman who I’ve been aware of since early latent diffusion stuff. Working on agents, and writing about LLMs and philosophy from a unique perspective.</li>
-<li>https://arxiv.org/abs/1906.09453 Image Synthesis with a Single (Robust) Classifier a random paper I want to re-visit with a new trick and modern classifiers maybe.</li>
-<li>https://www.interconnects.ai/p/openais-o1-using-search-was-a-psyop more speculations on o1. I liked Sasha’s talk <a href="https://www.youtube.com/watch?v=6PEJ96k1kiw">Speculations on Test-Time Scaling</a> which we did a watch party for.</li>
-<li><a href="https://arxiv.org/abs/2410.14606">Streaming Deep Reinforcement Learning Finally Works</a> Ever since a chat with <span class="citation" data-cites="pcastr">@pcastr</span> a while back I’ve been more bullish on RL. I just skimmed bits of this, but one day soon I’ll be ready to dive into RL I bet.</li>
-</ul>
-<section id="twitterx-links" class="level3">
-
-<ul>
-<li><a href="https://x.com/MistralAILabs/status/1864019115679056111?t=ZlNy84Tsd5T69I4wfA_AVg&amp;s=08">Mistral canvas executing python in the browser</a>. Gimmicky but I should try their canvas more.</li>
-<li><a href="https://x.com/camenduru/status/1863853010251571492?t=GE3w-_pde0pkOxXuRxaFkw&amp;s=08">HunyuanVideo: A Systematic Framework For Large Video Generation Model Training 🔥 Jupyter Notebook 🥳</a> OS video models getting good, and big. Not including lots of other video gen and 3D gen tweets</li>
-<li><a href="https://x.com/sedielem/status/1863672703489634335?t=bCHFZbBEFZ8bDdBHfUAokw&amp;s=08">Sander Dieleman: Better VQ-VAEs with this one weird rotation trick!</a> - <a href="https://arxiv.org/abs/2410.06424">paper</a> seems a cool little trick.</li>
-<li><a href="https://x.com/torchcompiled/status/1863080363792408864?t=0j34OO9WrR5szsUeaNY3Nw&amp;s=08">I see CPNNs, I click</a> = <a href="https://x.com/sleenyre/status/1861077874197049583">imscore</a> - a collection of SoTA image aesthetic/preference scorers.</li>
-<li><a href="https://x.com/_philschmid/status/1860947148348764627?t=-phIakQgI-11Y926-MV1_w&amp;s=08">Structured outputs might not hurt after all</a> why am I not suprised?</li>
-<li><a href="https://x.com/stanislavfort/status/1823347721358438624?t=bFWPgnOBjY9j0TN6DAIv5Q&amp;s=19">Ensemble everything everywhere: Multi-scale aggregation for adversarial robustness</a> - fun paper, hopefully colab at some point. imstack rediscovery.</li>
-</ul>
-</section>
-<section id="misc" class="level3">
-
-<ul>
-<li>https://www.infinitescroll.us/p/why-you-should-read-web-fiction with some interesting-looking recs.</li>
-<li>https://www.marksaroufim.com/bookshelf Mark’s amazing book list</li>
-<li>https://nabeelqu.co/advice A nice advice post and a good idea for a personal site page.</li>
-<li>https://podcast.adobe.com/ New voice cleanup thing, might be amazing (and save me having to finish my idea of a hosted soln)</li>
-<li>https://www.youtube.com/watch?app=desktop&amp;v=YwELr8ir9qM fun predictions of the future.</li>
-<li>https://huggingface.co/datasets/ailsntua/Chordonomicon A bunch (600k) of chord progressions, might be fun to play with. Not linked back to lyrics etc so not directly UG replacing though.</li>
-</ul>
-
-
-</section>
-</section>
-
- ]]></description>
-  <category>misc</category>
-  <guid>https://johnowhitaker.dev/misc/tab_clear_dec_04_24.html</guid>
-  <pubDate>Wed, 04 Dec 2024 00:00:00 GMT</pubDate>
-  <media:content url="https://i.pinimg.com/originals/40/fe/86/40fe863b3ccf9ceb56cbef670cf6bc41.gif" medium="image" type="image/gif"/>
 </item>
 </channel>
 </rss>
