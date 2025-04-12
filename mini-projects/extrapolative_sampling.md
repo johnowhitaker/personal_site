@@ -1,5 +1,5 @@
 ---
-title: Extrapolate All The Things: Small-To-Big Extrapolation For LLMs
+title: Extrapolate All The Things - Small-To-Big Extrapolation For LLMs
 date: 2025-04-11
 categories: 
     - mini-projects
