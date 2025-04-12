@@ -1,12 +1,13 @@
 ---
 title: Extrapolate All The Things - Small-To-Big Extrapolation For LLMs
-date: 2025-04-11
+date: 2025-04-12
 categories: 
     - mini-projects
+    - Video
 ---
 
 In a research chat yesterday I spoke about a fun thread of research, sparked by a recent paper: [Model Extrapolation Expedites Alignment](http://arxiv.org/abs/2404.16792). The idea of the paper is simple but fun: take an LLM that's had some SFT done, do a little DPO (or other 'alignment' technique of your choice), look at the change in the weights, then **extrapolate** in that direction to get an *even more aligned* model, saving compute. In other words, if you mix the starting model with a DPO-trained one based on a scalar *alpha*, you start with *alpha*=0 at the performance of the starting model, then as you increase it to 1 your performance rises too, 
-until you hit the performance of the DPO-trained model. And if you use *alpha* > 1, you get a model that is even better than the DPO-trained one! At least, if you didn't do much DPO training - say, 10 or 20% of what you'd normally do. There's a few takeaways here related to how little the final alignment training is doing in cases like this, but the core idea is one that is worth exploring more generally - namely, **getting better performance by interpolating from a worse model/prediction to a better one and then extrapolating beyond it**. In this post I'll explore some related ideas, and my own experiments extrapolating from a small model to a big model to eke out even more performance. I've also got a [video]TODO link of me running through these papers and then taking you on the journey of trying the experiments, so you can get a picture of how fun this kind of research can be.
+until you hit the performance of the DPO-trained model. And if you use *alpha* > 1, you get a model that is even better than the DPO-trained one! At least, if you didn't do much DPO training - say, 10 or 20% of what you'd normally do. There's a few takeaways here related to how little the final alignment training is doing in cases like this, but the core idea is one that is worth exploring more generally - namely, **getting better performance by interpolating from a worse model/prediction to a better one and then extrapolating beyond it**. In this post I'll explore some related ideas, and my own experiments extrapolating from a small model to a big model to eke out even more performance. I've also got a [video](https://www.youtube.com/watch?v=3odZosJ5CeE) of me running through these papers and then taking you on the journey of trying the experiments, so you can get a picture of how fun this kind of research can be.
 
 ## Past Work
 
