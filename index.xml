@@ -38,6 +38,804 @@
   <pubDate>Fri, 11 Apr 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
+  <title>Extrapolate All The Things - Small-To-Big Extrapolation For LLMs</title>
+  <link>https://johnowhitaker.dev/mini-projects/extrapolative_sampling.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>In a research chat yesterday I spoke about a fun thread of research, sparked by a recent paper: <a href="http://arxiv.org/abs/2404.16792">Model Extrapolation Expedites Alignment</a>. The idea of the paper is simple but fun: take an LLM that’s had some SFT done, do a little DPO (or other ‘alignment’ technique of your choice), look at the change in the weights, then <strong>extrapolate</strong> in that direction to get an <em>even more aligned</em> model, saving compute. In other words, if you mix the starting model with a DPO-trained one based on a scalar <em>alpha</em>, you start with <em>alpha</em>=0 at the performance of the starting model, then as you increase it to 1 your performance rises too, until you hit the performance of the DPO-trained model. And if you use <em>alpha</em> &gt; 1, you get a model that is even better than the DPO-trained one! At least, if you didn’t do much DPO training - say, 10 or 20% of what you’d normally do. There’s a few takeaways here related to how little the final alignment training is doing in cases like this, but the core idea is one that is worth exploring more generally - namely, <strong>getting better performance by interpolating from a worse model/prediction to a better one and then extrapolating beyond it</strong>. In this post I’ll explore some related ideas, and my own experiments extrapolating from a small model to a big model to eke out even more performance. I’ve also got a [video]TODO link of me running through these papers and then taking you on the journey of trying the experiments, so you can get a picture of how fun this kind of research can be.</p>
+<section id="past-work" class="level2">
+<h2 class="anchored" data-anchor-id="past-work">Past Work</h2>
+<p>For me, the classic example of this kind of idea is ‘Classifier Free Guidance’ in diffusion models. You interpolate between the prediction from an unconditional model and a conditional one, and then extrapolate beyond it. This is a very powerful technique, and it’s been used in a lot of different ways. Introduced by Salimans and Ho in 2021, it gained popularity through the GLIDE paper which used it to get open source text-to-image diffusion working well early on in the diffusion model revolution, where it has since become a staple of pretty much all subsequent text-to-image systems.</p>
+<p>I remember Katherine Crawson and others discussing extending the idea to LLMs and AR models in general soon after that - and sure enough a literatre search finds papers like <a href="http://arxiv.org/abs/2306.17806">Stay on topic with Classifier-Free Guidance</a> that do just that, comparing the preictions with and without a piece of context in the prompt and doing CFG-like scaling of the logits before sampling. (I found this paper after re-inventing the idea to myself and going looking).</p>
+<p>Another set of works doing something similar is <a href="http://arxiv.org/abs/2309.03883">DOLA: DECODING BY CONTRASTING LAYERS IMPROVES FACTUALITY IN LARGE LANGUAGE MODELS</a> which contrasted predictions based on early vs late layers in a model for improved factuality (I did an <a href="https://johnowhitaker.dev/mini-projects/dola_cfg.html">experiment</a> back then in 2023 extending it with a CFG-like guidance scale) and <a href="http://arxiv.org/abs/2503.02343">DeLTa: A Decoding Strategy based on Logit Trajectory Prediction Improves Factuality and Reasoning Ability</a> which did something similar by fitting a regression line through the preds of the model at different layers:</p>
+<p><img src="https://johnowhitaker.dev/mini-projects/images/delta.png" class="img-fluid"></p>
+<p>Aside: I found the delta paper while using the Ai2 <a href="https://paperfinder.allen.ai/">Paper Finder</a> tool to look for DoLa since I was blanking on the name, it’s an incredible lit search tool that you should definitely try out asap if you do research!</p>
+<p>Anyway, today I thought I’d try the idea of using small -&gt; big model and doing the extrapolation between their logits. I know we chatted about this back then in 2023, I know I talked about it on Twitter back then too and maybe there was even a paper? But let’s pretend we’re doing novel research it’s way more fun that way :D</p>
+</section>
+<section id="experiment" class="level2">
+<h2 class="anchored" data-anchor-id="experiment">Experiment</h2>
+<p>In <a href="https://colab.research.google.com/drive/1yg4W6ng8Hi0KOx-FT3ThJ3JkuHWMd7Wl?usp=sharing">this notebook</a> I set up the experiment. The key step is this: <code>final_logits = (1.0 - alpha) * logits1 + alpha * logits2</code>. Where logits1 come from a smaller model (Qwen 2.5 1.5B) and logits2 come from a larger model (Qwen 2.5 3B). Once we validate that it’s all working, I load up some questions from GSM8K and get the scores like so:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1">alphas <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.2</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>]</span>
+<span id="cb1-2">scores <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []</span>
+<span id="cb1-3"></span>
+<span id="cb1-4"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> alpha <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> alphas:</span>
+<span id="cb1-5">    total, correct <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span></span>
+<span id="cb1-6">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> tqdm(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>)):  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Iterate through 100 questions</span></span>
+<span id="cb1-7">        q, a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> data_list[i][<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'question'</span>], <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">int</span>(data_list[i][<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'answer'</span>].split(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#### "</span>)[<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>])</span>
+<span id="cb1-8">        model_a, _ <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> get_answer(q, alpha)</span>
+<span id="cb1-9">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> model_a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> a: correct <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb1-10">        total <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb1-11">    score <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> correct <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> total</span>
+<span id="cb1-12">    scores.append(score)</span>
+<span id="cb1-13">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Alpha: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>alpha<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">, Score: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>score<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span></code></pre></div>
+<p>The result:</p>
+<p><img src="https://johnowhitaker.dev/mini-projects/images/extrapolative_res1.png" class="img-fluid"></p>
+<p>Womp womp waaaa. An early test with fewer samples had such a nice peak at alpha = 1.2 making it look like the idea worked great! Alas - in this case at least perhaps it was too good to be true. I’ll update this post if I get a more positive result trying this at a larger scale.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>It might sound a little silly to effectively fit a curve for the preds of a few smaller models to try to predict what a bigger one might do, but I remain hopeful there might be places this works… And I can imagine scenarios where you already have both sets of preds or can get them cheaply - perhaps a speculative sampling scenario. It’s also potentially a lot more useful when you have good/bad models in other ways. For e.g.&nbsp;the use-case I’m excited about is tweaking the context/training. Say you’re working on a model for FastHTML. Since it’s a new framework it isn’t really in the training data, so models tend to not know it and try to answer about FastAPI or something instead. We could fine-tune a model on what examples we have, or pop some docs in context, but even then the models might really want to default to the better-known frameworks. With this, we could contrast a model with no training/context with our fine-tuned one, and then extrapolate to get a model that is even more likely to do things the “right” FastHTML way. And so on.</p>
+<p>Anyway, I hope this post and the video inspire you to run your own experiments - there are so many directions you can take this! If you try anything fun do let me know. Best. Johno.</p>
+<p>PS: I ran this on Qwen 7B -&gt; 14B too, with similarly underwhelming results.</p>
+<p><img src="https://johnowhitaker.dev/mini-projects/images/extrapolative_res2.png" class="img-fluid"></p>
+</section>
+<section id="pps-full-code" class="level2">
+<h2 class="anchored" data-anchor-id="pps-full-code">PPS: Full code</h2>
+<p>For the record, here’s the code that produced the data for the first graph above</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> torch</span>
+<span id="cb2-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> transformers</span>
+<span id="cb2-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> transformers <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> AutoModelForCausalLM, AutoTokenizer</span>
+<span id="cb2-4"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> warnings</span>
+<span id="cb2-5"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> httpx, json</span>
+<span id="cb2-6"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> re</span>
+<span id="cb2-7"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> tqdm.auto <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> tqdm</span>
+<span id="cb2-8"></span>
+<span id="cb2-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Suppress irrelevant warnings</span></span>
+<span id="cb2-10">warnings.filterwarnings(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ignore"</span>, category<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">UserWarning</span>)</span>
+<span id="cb2-11">transformers.logging.set_verbosity_error() <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Hide tokenizer warnings</span></span>
+<span id="cb2-12"></span>
+<span id="cb2-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># --- Configuration ---</span></span>
+<span id="cb2-14">DEVICE <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cuda"</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> torch.cuda.is_available() <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cpu"</span></span>
+<span id="cb2-15"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Using device: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>DEVICE<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb2-16"></span>
+<span id="cb2-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># --- Load Models ---</span></span>
+<span id="cb2-18">model_name <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Qwen/Qwen2.5-1.5B-Instruct"</span></span>
+<span id="cb2-19">tokenizer <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> AutoTokenizer.from_pretrained(model_name)</span>
+<span id="cb2-20">terminators <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [tokenizer.eos_token_id]</span>
+<span id="cb2-21"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> tokenizer.pad_token <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">is</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span>:</span>
+<span id="cb2-22">      tokenizer.pad_token <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> tokenizer.eos_token</span>
+<span id="cb2-23"></span>
+<span id="cb2-24">model1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> AutoModelForCausalLM.from_pretrained(</span>
+<span id="cb2-25">    model_name,</span>
+<span id="cb2-26">    torch_dtype<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>torch.bfloat16).to(DEVICE).<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">eval</span>()<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb2-27"></span>
+<span id="cb2-28">model2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> AutoModelForCausalLM.from_pretrained(</span>
+<span id="cb2-29">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Qwen/Qwen2.5-3B-Instruct"</span>,</span>
+<span id="cb2-30">    torch_dtype<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>torch.bfloat16</span>
+<span id="cb2-31">).to(DEVICE).<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">eval</span>()<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb2-32"></span>
+<span id="cb2-33"></span>
+<span id="cb2-34"></span>
+<span id="cb2-35"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> get_next_token_logits(model, input_ids, past_key_values):</span>
+<span id="cb2-36">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">"""</span></span>
+<span id="cb2-37"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    Performs a forward pass and returns the logits for the *next* token,</span></span>
+<span id="cb2-38"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    along with the updated past_key_values.</span></span>
+<span id="cb2-39"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">    """</span></span>
+<span id="cb2-40">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">with</span> torch.no_grad():</span>
+<span id="cb2-41">        outputs <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> model(</span>
+<span id="cb2-42">            input_ids<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>input_ids,</span>
+<span id="cb2-43">            past_key_values<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>past_key_values,</span>
+<span id="cb2-44">            return_dict<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span></span>
+<span id="cb2-45">        )</span>
+<span id="cb2-46">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Logits are for the *next* token prediction (shape: [batch_size, vocab_size])</span></span>
+<span id="cb2-47">    next_token_logits <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> outputs.logits[:, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, :]</span>
+<span id="cb2-48">    updated_past_key_values <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> outputs.past_key_values</span>
+<span id="cb2-49">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> next_token_logits, updated_past_key_values</span>
+<span id="cb2-50"></span>
+<span id="cb2-51"></span>
+<span id="cb2-52"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> contrastive_generate(</span>
+<span id="cb2-53">        model1,</span>
+<span id="cb2-54">        model2,</span>
+<span id="cb2-55">        tokenizer,</span>
+<span id="cb2-56">        messages,</span>
+<span id="cb2-57">        alpha: <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">float</span>,</span>
+<span id="cb2-58">        max_new_tokens: <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">int</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span>,</span>
+<span id="cb2-59">        temperature: <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">float</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7</span>,</span>
+<span id="cb2-60">        terminators <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span></span>
+<span id="cb2-61">    ):</span>
+<span id="cb2-62"></span>
+<span id="cb2-63">    input_ids <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> tokenizer.apply_chat_template(</span>
+<span id="cb2-64">        messages,</span>
+<span id="cb2-65">        add_generation_prompt<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>,</span>
+<span id="cb2-66">        return_tensors<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pt"</span></span>
+<span id="cb2-67">    ).to(DEVICE)</span>
+<span id="cb2-68">    past_key_values1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span></span>
+<span id="cb2-69">    past_key_values2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span></span>
+<span id="cb2-70">    generated_ids <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []</span>
+<span id="cb2-71">    _, past_key_values1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> get_next_token_logits(model1, input_ids, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span>)</span>
+<span id="cb2-72">    _, past_key_values2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> get_next_token_logits(model2, input_ids, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span>)</span>
+<span id="cb2-73"></span>
+<span id="cb2-74">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># --- Generation Loop ---</span></span>
+<span id="cb2-75">    current_input_ids <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> input_ids[:, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>:] <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Last token in inputs</span></span>
+<span id="cb2-76">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> _ <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(max_new_tokens):</span>
+<span id="cb2-77">        logits1, past_key_values1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> get_next_token_logits(</span>
+<span id="cb2-78">            model1, current_input_ids, past_key_values<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>past_key_values1 <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Use cache, mask isn't needed for single token</span></span>
+<span id="cb2-79">        )</span>
+<span id="cb2-80">        logits2, past_key_values2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> get_next_token_logits(</span>
+<span id="cb2-81">            model2, current_input_ids, past_key_values<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>past_key_values2 <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Use cache, mask isn't needed for single token</span></span>
+<span id="cb2-82">        )</span>
+<span id="cb2-83"></span>
+<span id="cb2-84">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Key step:</span></span>
+<span id="cb2-85">        final_logits <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> alpha) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> logits1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> alpha <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> logits2</span>
+<span id="cb2-86"></span>
+<span id="cb2-87">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. Apply Temperature and Sample</span></span>
+<span id="cb2-88">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> temperature <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>:</span>
+<span id="cb2-89">            scaled_logits <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> final_logits <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> temperature</span>
+<span id="cb2-90">            probs <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> torch.softmax(scaled_logits, dim<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb2-91">            next_token_id <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> torch.multinomial(probs, num_samples<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb2-92">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span>:</span>
+<span id="cb2-93">            <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Greedy decoding if temperature is 0 or less</span></span>
+<span id="cb2-94">            next_token_id <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> torch.argmax(final_logits, dim<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, keepdim<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>)</span>
+<span id="cb2-95"></span>
+<span id="cb2-96">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 4. Check for EOS token</span></span>
+<span id="cb2-97">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> terminators <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">is</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">not</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">and</span> next_token_id.item() <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> terminators: <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">break</span></span>
+<span id="cb2-98"></span>
+<span id="cb2-99">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 5. Append generated token and prepare for next step</span></span>
+<span id="cb2-100">        generated_ids.append(next_token_id.item())</span>
+<span id="cb2-101">        current_input_ids <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> next_token_id <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Next input is just the token we sampled</span></span>
+<span id="cb2-102"></span>
+<span id="cb2-103">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># --- Decode and Return ---</span></span>
+<span id="cb2-104">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> tokenizer.decode(generated_ids)</span>
+<span id="cb2-105"></span>
+<span id="cb2-106"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Load eval data</span></span>
+<span id="cb2-107">url <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://raw.githubusercontent.com/openai/grade-school-math/refs/heads/master/grade_school_math/data/test.jsonl"</span></span>
+<span id="cb2-108">response <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> httpx.get(url)</span>
+<span id="cb2-109">data_list <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []</span>
+<span id="cb2-110"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> line <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> response.text.strip().split(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>):</span>
+<span id="cb2-111">    item <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> json.loads(line)</span>
+<span id="cb2-112">    data_list.append(item)</span>
+<span id="cb2-113"></span>
+<span id="cb2-114"></span>
+<span id="cb2-115"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> get_answer(question, alpha):</span>
+<span id="cb2-116">  messages <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [</span>
+<span id="cb2-117">    {<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"role"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"system"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"content"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Answer the following question, end your response with 'final answer: your_answer'."</span>},</span>
+<span id="cb2-118">    {<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"role"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"user"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"content"</span>: question},</span>
+<span id="cb2-119">  ]</span>
+<span id="cb2-120">  alpha <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span></span>
+<span id="cb2-121">  answer_text <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> contrastive_generate(model1, model2, tokenizer, messages, alpha,</span>
+<span id="cb2-122">                       max_new_tokens<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span>, terminators<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>terminators, temperature<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7</span>)</span>
+<span id="cb2-123">  numbers <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> re.findall(<span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r'-</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">?</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\d</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>(?:<span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\.</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\d</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">?</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>, answer_text)</span>
+<span id="cb2-124">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">int</span>(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">float</span>(numbers[<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>])) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> numbers <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span>, answer_text</span>
+<span id="cb2-125"></span>
+<span id="cb2-126"></span>
+<span id="cb2-127">alphas <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.1</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.2</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>]</span>
+<span id="cb2-128">scores <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []</span>
+<span id="cb2-129"></span>
+<span id="cb2-130"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> alpha <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> alphas:</span>
+<span id="cb2-131">    total, correct <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span></span>
+<span id="cb2-132">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> tqdm(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">600</span>)):</span>
+<span id="cb2-133">        q, a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> data_list[i][<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'question'</span>], <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">int</span>(data_list[i][<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'answer'</span>].split(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#### "</span>)[<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>].replace(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">","</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>))</span>
+<span id="cb2-134">        model_a, _ <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> get_answer(q, alpha)</span>
+<span id="cb2-135">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> model_a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> a: correct <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb2-136">        total <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb2-137">    score <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> correct <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> total</span>
+<span id="cb2-138">    scores.append(score)</span>
+<span id="cb2-139">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Alpha: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>alpha<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">, Score: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>score<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb2-140"></span>
+<span id="cb2-141"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Scores for different alphas: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>scores<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb2-142"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Scores for different alphas: [71.0, 72.5, 72.83333333333333, 74.16666666666667, 74.5, 74.16666666666667, 73.66666666666667, 73.83333333333333, 72.83333333333333]</span></span></code></pre></div>
+
+
+</section>
+
+ ]]></description>
+  <category>mini-projects</category>
+  <guid>https://johnowhitaker.dev/mini-projects/extrapolative_sampling.html</guid>
+  <pubDate>Fri, 11 Apr 2025 00:00:00 GMT</pubDate>
+</item>
+<item>
   <title>Hiding an Annoying Element with Stylus</title>
   <link>https://johnowhitaker.dev/tils/paid_promotion_links.html</link>
   <description><![CDATA[ 
@@ -3945,62 +4743,6 @@ G1 X-305 F3000 S1  ; move left until X endstop triggered</code></pre>
   <category>TILs</category>
   <guid>https://johnowhitaker.dev/tils/2025-01-04-duet-wsl-usb.html</guid>
   <pubDate>Sat, 04 Jan 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>2024 Overflow: UV Flourescence, ESPing + ESP32CAM, modernBERT musings, Autobackup &amp; NBDev, LLM Psychology, and Reflections on the year</title>
-  <link>https://johnowhitaker.dev/misc/2024_year_overflow.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>It’s Jan 1, 2025. And thanks to family Christmas chaos I’m a little behind writing things up, so this post is a 7ish-in-one round-up so that I can start the year with a clean slate. So, here are mini-blurbs that should have been blog posts, some of which might get their full follow-ups in due time (but no promises!)</p>
-<section id="uv-flourescence-photography" class="level2">
-<h2 class="anchored" data-anchor-id="uv-flourescence-photography">UV Flourescence Photography</h2>
-<p>I’ve been enjoying shining a deep UV torch aroung and seeing what glows. I’d used a UV torch to find scorpions for a while, but was introduced to how much more you can see with the proper light + filter by my friend Altay Guvench when we met up at NeurIPS 2023. He runs <a href="https://www.glowhunt.org/">glowhunt.org</a> where you can find a great talk he gave on the subject. More recently, I’ve been playing with <a href="https://www.youtube.com/watch?v=5h7BQc-om9g">these cheap UV torches</a> and trying to take better pics. Pics to follow at some point, here’s the first tests with a microscope (bottom) and my camera + macro lens (top):</p>
-<p><img src="https://johnowhitaker.dev/misc/uv_ims/image.png" class="img-fluid"></p>
-<p>It feels like getting a new sense - you walk around at night marvelling at things you normally can’t see. How cool!</p>
-</section>
-<section id="esp-chips-are-great" class="level2">
-<h2 class="anchored" data-anchor-id="esp-chips-are-great">ESP Chips Are Great</h2>
-<p>I recently did a few different mini-projects with some wifi-enabled microcontrollers I picked up. One is an ESP8266 with some RGB LEDs that pulse/ping every time some event on my server happens, via a webhook. Rapidfire events ‘fill up’ the line of RGB LEDs, it looks cool, you’ll have to take my word for it.</p>
-<p>Another more proof-of-concept thing I messed about with was taking an image with the ESP32-CAM dev board (the ESP32 i a more powerful, newer chip) and sending it off to Gemini Flash 8B for classification, then doing something (like toggling an LED) based on the result. It got a hilarious <a href="https://x.com/johnowhitaker/status/1870650291454120364">recenption on Twitter</a> - splitting the crowd between ‘This is AMAZING, the age of AI is here, intelligence for all’, ‘YOU BUILD IT KING’ and the dour ‘You could have used YOLO/a raspberry pi/a local model/siple algorithm X’. Most of the nay-saywers were downright wrong, and all missed the point of the post, which was simply: hey, how cool is it that for ~no time, effort or money we can integrate a custom classifier to answer a question like ‘is the cat eating my plants again’ and take action in the real world as a result, all on a tiny popwer-sipping dev board that you can buy for &lt;$10!?</p>
-<p>Anyway, it went viral and I had fun sneaking a look at my exploding notifications during family Christmas celebrations.</p>
-<p>Oh PS, <a href="https://github.com/johnowhitaker/esp32cam_ai">code</a> for the proof-of-concept, but be warned it’s mostly o1-written and not necessarily the best starting point :)</p>
-</section>
-<section id="modernbert-is-out" class="level2">
-<h2 class="anchored" data-anchor-id="modernbert-is-out">ModernBERT is out!</h2>
-<p>Some of my colleagues have been hard at work training a BERT for the modern age, complete with tons of performance enhancements and good design choices. I helped a little :) Go check out the <a href="https://www.answer.ai/posts/2024-12-19-modernbert.html">blog post</a> to admire my matplotlib and watercolor skills in the pretty pictures! I’m hoping to show off what it can do a little this year.</p>
-</section>
-<section id="autobackup" class="level2">
-<h2 class="anchored" data-anchor-id="autobackup">Autobackup</h2>
-<p><a href="https://answerdotai.github.io/autobackup/">Autobackup</a>] is a tiny little library I created as a demo for our solveit course, and also as something we use for the platform that powers said course. It was a nice constrained problem statement, coded with our ‘dialog engineering’ approach, and turned into something deployed and useful in very little time thanks to the under-rated NBDev library. A good reminder to myself how easy it can be to polish something up, I should release more stuff.</p>
-</section>
-<section id="llm-psychology" class="level2">
-<h2 class="anchored" data-anchor-id="llm-psychology">LLM Psychology</h2>
-<p>A tweet went viral in my circles showing something that initially surprised me: GPT4o trained to follow a specific format (spelling HELLO with the starting letters of consecutive sentences) was then asked, in a fresh context, what pattern it followed, and was able to articulate it while following said format. Impressive. What is going on?</p>
-<p>Initial responses ranged up to ‘do they have a self after all’. One helpful Twitterite shared this paper: <a href="https://arxiv.org/abs/2406.14546">Connecting the Dots: LLMs can Infer and Verbalize Latent Structure from Disparate Training Data</a> with more good examples of the more generic pattern: LLMs being able to make inference based on patterns from training. Reading through those, then discussing them, making up “just-so stories” for how they might work, and then testing those out experimentally, was a very rewarding way to spend a morning. Great paper. I did a quick experiment, lazy copying in my tweet summary here:</p>
-<p>A quick + good way to learn to do better at that task is to re-use the rich ‘Paris’-related features you (the LLM) already have. So when the fine-tuned model processes ‘What country is CITY X in?’, by a few layers deep the internal representations might look pretty similar to ‘What country is PARIS in?’, leading to appropriately impressive answers.</p>
-<p>I tried this out (caveat, first quick + hacky experiment) on Llama 3 8B Instruct. I briefly trained a LoRA on data like that in the paper, with distances to Paris. Comparing (1) “What is the distance between Buenos Aires and Paris?” with (2) “What is the distance between Buenos Aires and CITY?”, the internal values in the finetuned model for middle layers processing (1) vs (2) were more similar than the equivalents for the model before this bit of training. I’m hoping to do this more carefully and share it, time permitting :)</p>
-<p>It’s a little harder to picture having ‘answering in structure’, ‘encoding words with starts of sentences’, and ‘spelling HELLO’ features. Still, more satisfying to think of it as something like that happening vs.&nbsp;the spooky and anthropomorphic idea of ‘introspecting the self’ or similar in the ‘HELLO’ case.</p>
-<p>I hope to re-do more carefully and write up, but again, this post is to make me feel less ba if I don’t. Onward!</p>
-</section>
-<section id="reflections-on-the-year" class="level2">
-<h2 class="anchored" data-anchor-id="reflections-on-the-year">Reflections on the year</h2>
-<p>Jokes, I should write a bunch but I’m a little tired. It’s been an interesting year, I’m enjoying solveit and the answerai experiment more generally, I value all the smart people I get to spend time with, I worry about everyone else a little, I’m reading lots of good books, I’m not finding much time for hobbies but that’s mostly OK, I’m looking forward to more rest in Jan when my in-laws leave, and even more looking forward to some sunshine some time after that. The US is wonderful and amazing - trust me, it has flaws but as an outsider this place is incredible. Here’s to an interesting 2025 :)</p>
-</section>
-<section id="misc" class="level2">
-<h2 class="anchored" data-anchor-id="misc">Misc</h2>
-<p>Hmm, what else am I missing? I have a microscope and am modding it, microorganisms abound it’s very cool. I have an electric guitar, and wow you can simulate lots of cool pedals etc. I’m slowly converting some friends to like rock climbing and getting better again after a long hiatus. I hope to make lots more small tools this year. Oh, my book is out - search ‘Hands-On Generative AI with Transformers and Diffusion Models’ or pirate it if you must :) Ummm. THat’s all for this post, hopefully lots more to follow.</p>
-
-
-</section>
-
- ]]></description>
-  <category>Blog</category>
-  <guid>https://johnowhitaker.dev/misc/2024_year_overflow.html</guid>
-  <pubDate>Wed, 01 Jan 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://johnowhitaker.dev/misc/uv_ims/image.png" medium="image" type="image/png" height="80" width="144"/>
 </item>
 </channel>
 </rss>
