@@ -73,6 +73,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/mini-projects/specid.html",
       "/mini-projects/extrapolative_sampling.html",
       "/mini-hw-projects/rheoscopic.html",
       "/tils/paid_promotion_links.html",
@@ -263,6 +264,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/mini-projects/specid.html",
       "/mini-projects/extrapolative_sampling.html",
       "/mini-hw-projects/rheoscopic.html",
       "/tils/paid_promotion_links.html",

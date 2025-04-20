@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-11-16">
+<meta name="dcterms.date" content="2025-04-20">
 
-<title>Making Giant Bubbles – johnowhitaker.dev</title>
+<title>SpecID - A Hard Eval for Multimodal LLMs – johnowhitaker.dev</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,13 +71,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta name="twitter:title" content="Making Giant Bubbles – johnowhitaker.dev">
+<meta name="twitter:title" content="SpecID - A Hard Eval for Multimodal LLMs – johnowhitaker.dev">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://johnowhitaker.dev/mini-hw-projects/images/bubble_tube.png">
+<meta name="twitter:image" content="https://johnowhitaker.dev/mini-projects/images/specid_results.png">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image-height" content="1201">
-<meta name="twitter:image-width" content="1600">
+<meta name="twitter:image-height" content="571">
+<meta name="twitter:image-width" content="1069">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -163,9 +163,9 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Making Giant Bubbles</h1>
+<h1 class="title">SpecID - A Hard Eval for Multimodal LLMs</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">mini-hw-projects</div>
+    <div class="quarto-category">mini-projects</div>
   </div>
   </div>
 
@@ -177,7 +177,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 16, 2024</p>
+      <p class="date">April 20, 2025</p>
     </div>
   </div>
   
@@ -189,21 +189,17 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>It turns out it’s pretty easy to make GIANT bubbles! This feels like the kind of knowledge that should be more widespread.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/bubble_tube.png" class="img-fluid figure-img"></p>
-<figcaption>my wife pulls a long bubble tube</figcaption>
-</figure>
-</div>
-<p>The recipe I tried:</p>
+<p>We were talking recently around “What is something you could do through a chat interface that current LLMs can’t?”. One example I give personally is identifying Zimbabwean spider species - a lot of which are ~undocumented* so knowledge on what the living specimens look like is concentrated in a few heads, plus a smattering of posts on Facebook and iNaturalist. Anyway, I thought I should put my money where my mouth is and make an actual eval for this, to see how badly SOTA multi-modal LLMs do. Here are the results:</p>
+<p><img src="images/specid_results.png" class="img-fluid"></p>
+<p>The way I constructed this eval was to pull 100 photos with confirmed “research grade” identifications from my iNaturalist catalog. Each sample gets up to four ‘distractors’ - species names for closely-related organisms in the same ~family/group as the target. Multiple-choice is significantly easier than dredging up the name ‘cold’ (especially since many latin names have clues that match visual aspects of the species). And the quiz is harder for me that it could have been, since I included all species (bugs, birds, plants) not just spiders! Turns out I’m way worse at the latin names outside my comfort zone :D Still - at least at present I have a lead on the best models - just not as much of a one as I expected! It’s stunning that 4o can get more than half of these right.</p>
+<p><img src="images/specid_sa.png" class="img-fluid"></p>
+<p>For the human baseline, I set up an interface that had me guess myself. It took less than 12 minutes total - here’s the prompt that produced the code: “his is a dataset I made, with an image and up to five candidate species. I want to get a human baseline for this dataset. Can you give me code that, in a Google Colab notebook, shows the picture and five buttons (some will need less, can use”NA” if there are less than 5 options) and has me click which one I think is the right one, before storing my guess and showing the next one? Use ipywidgets, include a way for me to see progress (how many done + left) and score (current correct %).” And <a href="https://github.com/johnowhitaker/specid_eval/blob/main/SpecID_Human_Baseline.ipynb">here’s the result</a>. Try it youself if you dare :)</p>
+<p>Make your own evals! Occasionally suprising, easy, fun! Show me! That is all :)</p>
 <ul>
-<li>1:16 Dawn “50% less scrubbing”: water</li>
-<li>1tsp baking powder per cup of soap</li>
-<li>Inspired by <a href="https://www.youtube.com/watch?v=KINBSeCACow">nighthawkinlight’s recent video</a>, I blended up a few strawberries with salt and soap and strained the result into the mix. (the theory being the super long DNA molecules from the strawberries help the bubbles 🤷). You’d probably get almost as much fun without this!</li>
+<li><a href="https://huggingface.co/datasets/johnowhitaker/specid_eval_jw">Dataset on HuggingFace</a> - let me know if you want me to try a model on a private ~equivalent dataset.</li>
+<li><a href="https://github.com/johnowhitaker/specid_eval">Code + preliminary results with a script to run it yourself</a></li>
 </ul>
-<p>You make a loop of string (the more absorbent the better) attached to two sticks such that when you pull them apart the longer section of the loop drops down lower than the shorter section. Dip the loop in the bubble mix, pull it out, and then pull the sticks apart. Voila! It takes a little practice to release the bubbles and have them float, but pulling tubes works almost immediately. We got our neighbor’s kids involved and they had a blast.</p>
-<p>Like all internet-spawned subcultures there is a vast depth to giant bubble making, with wikis full of recipes, exhaustive tests of additives like veterinatry lube, debates over optimal techniques… explore at your own risk, or stick with the simple recipe and have fun :)</p>
+<p>*Although I did write a field guide to the more common ones!</p>
 
 
 
