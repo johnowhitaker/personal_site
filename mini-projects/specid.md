@@ -15,7 +15,9 @@ The way I constructed this eval was to pull 100 photos with confirmed "research 
 
 For the human baseline, I set up an interface that had me guess myself. It took less than 12 minutes total - here's the prompt that produced the code: "his is a dataset I made, with an image and up to five candidate species. I want to get a human baseline for this dataset. Can you give me code that, in a Google Colab notebook, shows the picture and five buttons (some will need less, can use "NA" if there are less than 5 options) and has me click which one I think is the right one, before storing my guess and showing the next one? Use ipywidgets, include a way for me to see progress (how many done + left) and score (current correct %)." And [here's the result](https://github.com/johnowhitaker/specid_eval/blob/main/SpecID_Human_Baseline.ipynb). Try it youself if you dare :)
 
-Make your own evals! Occasionally suprising, easy, fun! Show me! That is all :)
+The spider above by the way? It fell from a tree onto me, and I eventualy figured out what it was (first record for Zimbabwe) thanks to this passage from the 1923 **Araignées du sud de l'Afrique** :"Céphalothorax noir, avec les yeux latéraux antérieurs et postérieurs situés sur des saillies orangées. Chélicères, pièces buccales, sternum, pattes-mâchoires, pattes brun-noir. Abdomen gris-noirâtre foncé.". There have been a handful of records with nice pics shared since, and it featured on a guide, but this is the kind of obscure digging needed sometimes to ID these things.
+
+Anyway. Make your own evals! Occasionally suprising, easy, fun! Show me! That is all :)
 
 - [Dataset on HuggingFace](https://huggingface.co/datasets/johnowhitaker/specid_eval_jw) - let me know if you want me to try a model on a private ~equivalent dataset.
 - [Code + preliminary results with a script to run it yourself](https://github.com/johnowhitaker/specid_eval)
