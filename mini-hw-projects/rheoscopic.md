@@ -14,7 +14,7 @@ Lovely, isn't it! More videos in [this twitter thread.](https://x.com/johnowhita
 ![](images/rheo.png)
 
 Turns out you can make this as follows:
-- Add a strip of paper towel to a container of 2% hydrogen peroxide and a few drops of dish soap.
+- Add a strip of paper towel to a container of 2% hydrogen peroxide and a few drops of dish soap. Not too much paper towel.
 - Leave it for several days (the longer the better)
 - Add color to taste :)
 
@@ -27,3 +27,5 @@ Under a microscope it looks like this:
 Anyway, it was a fun 'science at home' moment to spot this, chat about it with an AI, come up with some theories, try out varous mixtures (with and without the various chemicals I thought might be in the original batch) and then double check the recipe again. I bet stronger H2O2 would work better - LMK if you do an independent replication!
 
 ![](images/rheo2.png)
+
+Update, a concrete recipe: Add 25cm^2 of brown paper towel to 100ml of 3% H2O2. Add a small drop of dish soap. Heat at 40-50 degrees C for 5-10 hours or leave at room temperature for several days. Add a few drops of food coloring. I sealed 80ml of the resulting mixture in a petri dish with a magnet inside, and it makes an excellent desk fidget toy. Adding too mucn paper (e.g. 200 cm^2) resulted in a few larger fibers rather than the desired outcome, even less than what I used here might be optimal.
