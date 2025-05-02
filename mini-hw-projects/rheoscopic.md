@@ -29,3 +29,7 @@ Anyway, it was a fun 'science at home' moment to spot this, chat about it with a
 ![](images/rheo2.png)
 
 Update, a concrete recipe: Add 25cm^2 of brown paper towel to 100ml of 3% H2O2. Add a small drop of dish soap. Heat at 40-50 degrees C for 5-10 hours or leave at room temperature for several days. Add a few drops of food coloring. I sealed 80ml of the resulting mixture in a petri dish with a magnet inside, and it makes an excellent desk fidget toy. Adding too mucn paper (e.g. 200 cm^2) resulted in a few larger fibers rather than the desired outcome, even less than what I used here might be optimal.
+
+![](images/rheoscopic_paper.png)
+
+Update 2: I tried an alternative recipe from [this](https://arxiv.org/abs/1806.06120) paper (extract shown above) with great results. See [here](https://x.com/johnowhitaker/status/1918385113181896945) for a video of the resulting desk toy - mesmerizing!
