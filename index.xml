@@ -10,7 +10,50 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.8.1</generator>
-<lastBuildDate>Sun, 20 Apr 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 01 May 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>ICLR 2025</title>
+  <link>https://johnowhitaker.dev/posts/ICLR_2025.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p><img src="https://johnowhitaker.dev/posts/images/si.png" class="img-fluid"></p>
+<p>I got to attend ICLR 2025 and spend a week in Singapore with my Answer.AI colleagues. This post is some disjointed thoughts on the whole experience.</p>
+<section id="social-is-top" class="level2">
+<h2 class="anchored" data-anchor-id="social-is-top">Social is top</h2>
+<p>The best part of conferences is always meeting people. The venue setup was disappointingly short on affordances for the ‘hallway track’ but Jeremy managed to claim a couch in one of the cafe’s and hold court for various friends old and new :) And of course there were the usual evening dinners + events. This time around though I mostly spent time hanging out with the answer team, heading out to different parts of town for food and coding by the pool. Other hightlights were meeting a collaborator in person for the first time and getting taken out on a hike by a local fast.ai alum who knew all the good spots. If you get a chance to go to one of these conferences, my top recommendation is to focus on meeting friendly people and spending time chatting vs attending talks and things - far more interesting IMO! Poster sessions are a good way to find people with shared research interests. Pretend to be an extrovert - it’s only a few days!</p>
+</section>
+<section id="safety-interpretability-are-in-the-air" class="level2">
+<h2 class="anchored" data-anchor-id="safety-interpretability-are-in-the-air">Safety + Interpretability are in the air</h2>
+<p>I’m trying to think what trends jumped out at me. ‘Agents’ of course, with some interesting stuff and lots of… not haha. The other main trend I noticed was safety/interpretability stuff, with a sense of ‘this is something academics can work on + contribute to without tons of compute’. There was a keynote from an OpenAI person making the case for why it’s important + good to work on even if you <strong>don’t</strong> think AI will soon kill everyone. My friend Stanislav Fort had a fun paper on ‘scaling laws for adversarial attacks’ and as always tons of other neat ideas in progress. Various papers trying to make AIs say naughty things or not say them. And in the airport I met Yoshua Bengio who’d been working very hard trying to convince people it’s a bad idea to be chasing creating smart things with agency. I admire his efforts, and tend to agree that making ‘tool AI’ vs ‘agent AI’ is a good idea! And I liked the way he phrased a take on doomish stuff: “The correct response to [someone asking me about AI2027] is to say that lots of experts agree we can’t casually dismiss it” - in other words, you may think specific takes are wrong or that fears are overblown but ‘nobody takes that seriously’ is not a valid argument. All that said, while I noticed this safety talk around it wasn’t like it was the bulk of the discussion and I’d wager most attendees aren’t thinking much about it.</p>
+</section>
+<section id="vibe-researching-is-fun" class="level2">
+<h2 class="anchored" data-anchor-id="vibe-researching-is-fun">Vibe-Researching is fun</h2>
+<p><img src="https://johnowhitaker.dev/posts/images/k_vs_hdim.png" class="img-fluid"></p>
+<p>One fun trick I could do at this conference thanks to the latest great models like o3 was whip up quick exploratory demos based on concepts I came across. This is great! Poster sessions and hallway chats often spark ‘it would be cool to compare that to X baseline’, or ‘I want to try this with Y’ - but by the end of a busy conference lots of ideas are forgotten. It was super cool to voice dictate an idea to o3, copy some code into Google Colab and have a minimal toy demo to try out. I did this for a few things that came up, including running one experiment entirely on my phone to make some plots related to a paper I saw, and the ones I did this for are now lodged in my brain enough that I’ll probably follow through on the experiments I want to run now. Wild that someone can say ‘We could probably train a model to go directly from CLIP penultimate hidden states back to an image’ and a few minutes later I can have a toy model training that does just that! The AIs still aren’t excellent for AI research but boy are they better than they used to be - more than enough for simple baselines and getting going quickly. Anyway - vibe research - can recommend!</p>
+</section>
+<section id="singapore-is-amazing" class="level2">
+<h2 class="anchored" data-anchor-id="singapore-is-amazing">Singapore is amazing</h2>
+<p>Singapore was delightful to visit. We stayed in ‘Little India’, an easy MRT ride from Chinatown and close to the marina and various parks and things, making it easy to experience a variety of different cuisines and aspects of the city. I loved how pervasive nature was - greenery bursting from any vailable spot, but somehow contained and managed very neatly. The food was particularly good - so many exciting options with nustling hawker centers full of amazing smells and sights. <a href="https://jeadventure.home.blog/2025/04/29/impressions-of-singapore/">This post</a> we sent to our family has more pics and my bird list - ft 36 new ‘lifers’ for me!</p>
+</section>
+<section id="i-have-the-best-job" class="level2">
+<h2 class="anchored" data-anchor-id="i-have-the-best-job">I Have The Best Job</h2>
+<p>Answer.ai is fully remote, and this was the first time most of us had met in person. And yet we all got on extremely well, instantly falling into a happy rhythum of exploring and enjoying the city together then returning to the hotel pool area to code, chat and play games. I made a travel ‘crokinole’ board (link coming soon) and introduced the team - hopefully enough got hooked that by next time we meet I’ll have some competition ;) All this already had me feeling grateful, but what really hammered home how cool this company is was answering (and hearing others answer) the repeated question of ‘so what does answer.ai do?’ that came up in conversation with all the new people we met at the conference. I’m so lucky!</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Anyway, there are my jet-lagged ramblings. If we met there, or you wish we’d met there, or you just want to say hi, reach out! I want to cram in more social with fellow AI nerds for a week or two before I settle back to my quiet and introverted default state :)</p>
+
+
+</section>
+
+ ]]></description>
+  <category>misc</category>
+  <guid>https://johnowhitaker.dev/posts/ICLR_2025.html</guid>
+  <pubDate>Thu, 01 May 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>SpecID - A Hard Eval for Multimodal LLMs</title>
   <link>https://johnowhitaker.dev/mini-projects/specid.html</link>
@@ -4111,73 +4154,6 @@ font-style: inherit;">'original model'</span>)</span>
   <category>mini-projects</category>
   <guid>https://johnowhitaker.dev/misc/Fine_Tuning_on_Distances_To_Paris.html</guid>
   <pubDate>Thu, 09 Jan 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Trying Devin</title>
-  <link>https://johnowhitaker.dev/misc/devin.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>NB: WIP</p>
-<p>We got a Devin subscription to play with. Hamel has his thoughts here (TODO link when out) but I wanted to record my own take too. TL;DR: the only tasks it seems to be able to do are those small enough and well-specified enough that I could do them myself, faster and better. It feels overly complex as a system. The only real benefit I can see is to people working on common things or not wanting to worry about setting up their environments etc. The magical promise is there, but not yet delivered.</p>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Devin is billed as “the first AI software engineer”. It costs $500/month to get ‘him’ on your team. You assign Devin tasks and it heads off and works on them, giving you updates, asking clarifying questions, and theoretically behaving like a fast and competent intern. At least, that’s the promise.</p>
-<p>In practice, a lot of people I know who tried it found it underwhelming - despite the hype around it when it launched, we struggled to get it to complete even fairly ‘simple’ tasks.</p>
-</section>
-<section id="representative-examples" class="level2">
-<h2 class="anchored" data-anchor-id="representative-examples">Representative Examples</h2>
-<p>Copying in a few notes from my test notes:</p>
-<ul>
-<li>I want a ‘view counter’ thing that works as follows:
-<ul>
-<li>It’s a flask app running on my server at some URL</li>
-<li>I dump a link like <code>![](https://serverurl/viewcounter/mypage.png</code> and it returns a tiny image with the text ‘mypage has been viewed 1823 times’ (any request increments the count)</li>
-<li>It keeps a count for any unique page names. (In an sqlite DB)</li>
-<li>it has an admin page <code>serverurl/vc_admin</code> that shows the counts for all pages tracked</li>
-<li>Need to handle any nuance around caching if that comes up (but I don’t mind if it’s more a unique visitor count)</li>
-<li>Notes
-<ul>
-<li>Claude did it well, with a few errors that were quickly resolved. I got it working with claude while waiting for a first attempt from Devin</li>
-<li>Devin eventually kinda got there, a lot slower and I felt like a mostly-helpless spectator. Frustrating, but if I was scared of code maybe better?</li>
-<li>This feels emblematic. The kids of tasks Devin can do are the ones small enough and well-specced enough that I can do them faster with claude. Larger tasks I suspect it’ll fail. So then what’s the benefit of Devin? I now have it running on a machine I can’t see or interact with as well? Using a lot more tokens to talk to itself? Meh.</li>
-</ul></li>
-</ul></li>
-<li>Create an app (website) that lets you hover over countries to see their ‘true size’ compared to the mercator projection version. Have an option to toggle on stats (land area, population). Include a short intro above the map and a longer explanation below with links to learn more.
-<ul>
-<li>Llama coder: can’t use external libs or something?</li>
-<li>Devin: says it’s done, offers to deploy. Send me several links to a page with the main component (the map) blank. “This is an initial version that I’ll now begin testing and improving. “. After 17 minutes it has a map showing, but no resizing. After 40 minutes it insisted it had fixed the issues but sent an identically non-functional app.</li>
-</ul></li>
-</ul>
-<p>I did a few more tasks. Super small and easily-verifiable ones were OK (e.g.&nbsp;‘make a standalone viewer for this shader [gsl_code]’ or ‘find and plot this data’) but most were frustrating. My colleagues tended to bounce rapidly after it got stuck a few times.</p>
-</section>
-<section id="the-good" class="level2">
-<h2 class="anchored" data-anchor-id="the-good">The Good</h2>
-<p>Kicking off tasks in Slack, getting notified when it needs input (e.g.&nbsp;API keys, a go-ahead to deploy), having it able to test code by running it or even browsing to a page.</p>
-<p>Also, Hamel found that even though the code was mostly unuseable, seeing the robot <em>almost</em> do something was often motivation for him to see that the task is possible, at which point he’d do it himself with Devin’s attempt as a reference or a how-not-to-do-it depending on how close it got. So that’s a plus too I guess.</p>
-</section>
-<section id="the-bad" class="level2">
-<h2 class="anchored" data-anchor-id="the-bad">The Bad</h2>
-<p>Opaque when there are errors, hallucinating functionality, slow, overly complex. ANd it takes ages!</p>
-</section>
-<section id="coding-can-be-better" class="level2">
-<h2 class="anchored" data-anchor-id="coding-can-be-better">Coding can be better</h2>
-<p>I feel kinda bad hating on this so much. I’m sure for many this is revelatory! But I’m spoilt, and I think at least for experienced coders there are much better ways. Starting with just coding youself but using powerful LLMs for first drafts or as helpers, moving up to more iterative, interactive coding (like what we’re doing with solveit) or just co-creating in a simpler + more transparent tool like code interpreter or Claude artifacts.</p>
-</section>
-<section id="awaiting-better-agents" class="level2">
-<h2 class="anchored" data-anchor-id="awaiting-better-agents">Awaiting better agents</h2>
-<p>A colleague talked about the ‘time an AI is worth waiting for’. o1 pro, when he’s doing complicated stuff in C or whatever, is worth waiting a few minutes for. Devin, IMO, is not. But future agents powered by better models might make good the promise of being useful for many minutes or even hours. I look forward to that day :)</p>
-
-
-</section>
-
- ]]></description>
-  <category>misc</category>
-  <guid>https://johnowhitaker.dev/misc/devin.html</guid>
-  <pubDate>Wed, 08 Jan 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://johnowhitaker.dev/misc/thumbnails/devin.png" medium="image" type="image/png" height="151" width="144"/>
 </item>
 </channel>
 </rss>
