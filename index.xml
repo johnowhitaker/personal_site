@@ -9,7 +9,7 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.8.2</generator>
+<generator>quarto-1.8.11</generator>
 <lastBuildDate>Thu, 01 May 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>ICLR 2025</title>
@@ -2794,7 +2794,7 @@ font-style: inherit;">=</span> pandas.read_csv(url)</span>
     <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -2808,7 +2808,7 @@ font-style: inherit;">=</span> pandas.read_csv(url)</span>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
+<th data-quarto-table-cell-role="th">0</th>
 <td>Afghanistan</td>
 <td>Kabul</td>
 <td>34.5289</td>
@@ -2817,7 +2817,7 @@ font-style: inherit;">=</span> pandas.read_csv(url)</span>
 <td>Capital</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
+<th data-quarto-table-cell-role="th">1</th>
 <td>Albania</td>
 <td>Tiranë (Tirana)</td>
 <td>41.3275</td>
@@ -2826,7 +2826,7 @@ font-style: inherit;">=</span> pandas.read_csv(url)</span>
 <td>Capital</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
+<th data-quarto-table-cell-role="th">2</th>
 <td>Algeria</td>
 <td>El Djazaïr (Algiers)</td>
 <td>36.7525</td>
@@ -2835,7 +2835,7 @@ font-style: inherit;">=</span> pandas.read_csv(url)</span>
 <td>Capital</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
+<th data-quarto-table-cell-role="th">3</th>
 <td>American Samoa</td>
 <td>Pago Pago</td>
 <td>-14.2781</td>
@@ -2844,7 +2844,7 @@ font-style: inherit;">=</span> pandas.read_csv(url)</span>
 <td>Capital</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
+<th data-quarto-table-cell-role="th">4</th>
 <td>Andorra</td>
 <td>Andorra la Vella</td>
 <td>42.5078</td>
@@ -3498,7 +3498,7 @@ The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be remov
       [90/90 00:50, Epoch 3/3]
     </div>
     
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">Step</th>
