@@ -101,3 +101,5 @@ https://dshinsel.com/eb6/
 https://www.aaedmusa.com/projects
 
 https://maurycyz.com/
+
+https://lisyarus.github.io/blog/ inc good particle life sim stuff
