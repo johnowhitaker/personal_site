@@ -9,7 +9,7 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.8.11</generator>
+<generator>quarto-1.8.13</generator>
 <lastBuildDate>Tue, 27 May 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>FastHTML App in Claude Code</title>
