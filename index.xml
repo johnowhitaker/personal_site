@@ -9,7 +9,7 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.8.14</generator>
+<generator>quarto-1.8.16</generator>
 <lastBuildDate>Tue, 27 May 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>FastHTML App in Claude Code</title>
@@ -167,7 +167,7 @@
 <section id="experiment" class="level2">
 <h2 class="anchored" data-anchor-id="experiment">Experiment</h2>
 <p>In <a href="https://colab.research.google.com/drive/1yg4W6ng8Hi0KOx-FT3ThJ3JkuHWMd7Wl?usp=sharing">this notebook</a> I set up the experiment. The key step is this: <code>final_logits = (1.0 - alpha) * logits1 + alpha * logits2</code>. Where logits1 come from a smaller model (Qwen 2.5 1.5B) and logits2 come from a larger model (Qwen 2.5 3B). Once we validate that it’s all working, I load up some questions from GSM8K and get the scores like so:</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1">alphas <span class="op" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1">alphas <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> [<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -274,7 +274,7 @@ font-style: inherit;">{</span>score<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">}</span><span class="ss" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"</span>)</span></code></pre></div>
+font-style: inherit;">"</span>)</span></code></pre></div></div>
 <p>The result:</p>
 <p><img src="https://johnowhitaker.dev/mini-projects/images/extrapolative_res1.png" class="img-fluid"></p>
 <p>Womp womp waaaa. An early test with fewer samples had such a nice peak at alpha = 1.2 making it look like the idea worked great! Alas - in this case at least perhaps it was too good to be true. I’ll update this post if I get a more positive result trying this at a larger scale.</p>
@@ -289,7 +289,7 @@ font-style: inherit;">"</span>)</span></code></pre></div>
 <section id="pps-full-code" class="level2">
 <h2 class="anchored" data-anchor-id="pps-full-code">PPS: Full code</h2>
 <p>For the record, here’s the code that produced the data for the first graph above</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> torch</span>
 <span id="cb2-2"><span class="im" style="color: #00769E;
@@ -934,7 +934,7 @@ background-color: null;
 font-style: inherit;">"</span>)</span>
 <span id="cb2-142"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Scores for different alphas: [71.0, 72.5, 72.83333333333333, 74.16666666666667, 74.5, 74.16666666666667, 73.66666666666667, 73.83333333333333, 72.83333333333333]</span></span></code></pre></div>
+font-style: inherit;"># Scores for different alphas: [71.0, 72.5, 72.83333333333333, 74.16666666666667, 74.5, 74.16666666666667, 73.66666666666667, 73.83333333333333, 72.83333333333333]</span></span></code></pre></div></div>
 
 
 </section>
@@ -990,7 +990,7 @@ font-style: inherit;"># Scores for different alphas: [71.0, 72.5, 72.83333333333
 </figure>
 </div>
 <p>I went with a CSS rule in the Stylus browser extension:</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb1-1"><span class="im" style="color: #00769E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">@-moz-document</span> domain<span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1035,7 +1035,7 @@ font-style: inherit;">!important</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb1-5">    }</span>
-<span id="cb1-6">}</span></code></pre></div>
+<span id="cb1-6">}</span></code></pre></div></div>
 <p>I’m amused how low my tolerance for painful stuff on a computer is these days, and how happy it makes me to fix any remaining tiny paper cuts with my code-slinging AI buddies.</p>
 
 
@@ -1098,7 +1098,7 @@ font-style: inherit;">;</span></span>
 <p><img src="https://johnowhitaker.dev/mini-projects/images/rhyme_eval.png" class="img-fluid"></p>
 <p>I put the full code in a gist <a href="https://gist.github.com/johnowhitaker/b1ca1ac7e1814bf84aa52dde6d174277">here</a>. It’s pretty easy to knock together little evals like this! To make extracting the answers easy I used function calling, with TogetherAI for the open-source models and OpenAI for theirs. Since they all use the OpenAI API it was trivial to swap between them. As you can see if you skim my gist, I got AI to write the bulk of the code BUT did it in small enough pieces that I could check and tweak as needed.</p>
 <p>For ease of replication, here are the questions (alas, this probably poisons this eval for future AIs but we can always make more!):</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1">qs <span class="op" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1">qs <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> [{<span class="st" style="color: #20794D;
 background-color: null;
@@ -1414,7 +1414,7 @@ font-style: inherit;">'View'</span>],</span>
 background-color: null;
 font-style: inherit;">'answer'</span>: <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'View'</span>}]</span></code></pre></div>
+font-style: inherit;">'View'</span>}]</span></code></pre></div></div>
 
 
 
@@ -1572,7 +1572,7 @@ font-style: inherit;">'View'</span>}]</span></code></pre></div>
 </div>
 <p>The TL;DR is as follows: instead of optimizing raw pixels, optimize a collection of image tensors at different resolutions that get resized and stacked together to form the final image. This turns out to have really neat regularization effects, and gives a really nice primitive for seeing what ‘natural’-ish images trigger various features in classifiers etc. This is pretty much the idea behind my 2021 <a href="https://github.com/johnowhitaker/imstack">‘imstack’</a> stuff, but made cleaner and more general.</p>
 <p>The other trick is to do some augmentations, critically adding some jitter (different crops) and noise. Once you have these pieces in place, you can optimize towards a text prompt with CLIP, or do style transfer, or trigger a specific class in a classification model… the possibilities are endless. Here’s the code to make the quintessential ‘jellyfish’ from an imagenet model for e.g.&nbsp;(<a href="https://colab.research.google.com/drive/1gLZXcPIKpBwYWgweOVli9ORcOyJ-khJ5?usp=sharing">colab</a>)</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">def</span> stack(x, large_resolution):</span>
@@ -1721,7 +1721,7 @@ font-style: inherit;">-</span>model(normalize(images))[:, <span class="dv" style
 background-color: null;
 font-style: inherit;">107</span>].mean()</span>
 <span id="cb1-19">  loss.backward()</span>
-<span id="cb1-20">  optimizer.step()</span></code></pre></div>
+<span id="cb1-20">  optimizer.step()</span></code></pre></div></div>
 <p>I want to do a video explanation soon to capture more thoughts on this and show off more of what this technique can do. See also, <a href="https://x.com/stanislavfort/status/1890724291752100265">Stanislav’s announcement post</a>. The rest of this post is me rambling on some tangential bits that have come up since the paper was released.</p>
 <section id="thoughts" class="level2">
 <h2 class="anchored" data-anchor-id="thoughts">Thoughts</h2>
@@ -1977,7 +1977,7 @@ font-style: inherit;">107</span>].mean()</span>
 </figure>
 </div>
 <p>The webcam is mounted to the scope with a 3D-printed adapter. The CAD for that, and all code, is in <a href="https://github.com/johnowhitaker/webcam_mosaic">this repository</a>. The software sends G-CODE commands to the printer over USB to move the slide in small increments, then waits for it to settle before taking a picture. Since coding is ~free thanks to AI, it has a GUI based on PyGame for setting the start position, and fancy command-line args and everything :D Here’s an example command you might run to take 9 images in a 3x3 grid:</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">python3</span> mosaic.py <span class="dt" style="color: #AD0000;
 background-color: null;
@@ -2021,7 +2021,7 @@ background-color: null;
 font-style: inherit;">\</span></span>
 <span id="cb1-9">  <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">--settle_time</span> 300</span></code></pre></div>
+font-style: inherit;">--settle_time</span> 300</span></code></pre></div></div>
 <p>This stores 9 individual images:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -2063,7 +2063,7 @@ font-style: inherit;">--settle_time</span> 300</span></code></pre></div>
 </figure>
 </div>
 <p>Here’s how this is used in this demo app:</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> fasthtml.common <span class="im" style="color: #00769E;
 background-color: null;
@@ -2189,9 +2189,9 @@ font-style: inherit;">return</span> Div(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Clicked!'</span>)</span>
 <span id="cb1-26"></span>
-<span id="cb1-27">serve()</span></code></pre></div>
+<span id="cb1-27">serve()</span></code></pre></div></div>
 <p>And the entirity of debug.py:</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> fasthtml.common <span class="im" style="color: #00769E;
 background-color: null;
@@ -2673,7 +2673,7 @@ font-style: inherit;">=</span>width)</span>
 <span id="cb2-82">    <span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
-font-style: inherit;">return</span> printer.pformat(obj)</span></code></pre></div>
+font-style: inherit;">return</span> printer.pformat(obj)</span></code></pre></div></div>
 
 
 

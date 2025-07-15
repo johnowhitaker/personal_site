@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.14">
+<meta name="generator" content="quarto-1.8.16">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-98bfa626b1068186620cc14e15ad040c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-851848c28120d2406e1a7eca1927a189.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e6128a8dd8baae5317a81e4c84a7f45b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1f34caaabf90b87da273f334f8988ffd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -123,6 +123,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+  </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
@@ -266,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The tool I tried is called Vercel V0, although <a href="https://github.com/wandb/openui">OpenUI</a> from Chris Van Pelt seems like a great open-source alternative that lets you control the model, system prompt etc. V0 spits out code, and has a mechanism for requesting design changes (“make the header larger, change the color palette to greens…”). I copied the generated HTML into our <a href="https://h2f.answer.ai/">‘h2f’ converter</a> and voila - a decent-looking starting point to tinker with.</p>
 <p>Another pleasingly simple part of the process was letting people actually buy the thing! Taking payments via stripe is as simple as setting a few secrets and then sending the user to a checkout page created by stripe:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># They submit a form with their email, physical address and type of product</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># They submit a form with their email, physical address and type of product</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">@app.get</span>(<span class="st">"/buy/"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> buy_credits(product:<span class="bu">str</span>, email:<span class="bu">str</span>, address:<span class="bu">str</span>):</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> stripe.checkout.Session.create(</span>
@@ -282,7 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        success_url<span class="op">=</span>DOMAIN <span class="op">+</span> <span class="st">'/success?session_id=</span><span class="sc">{CHECKOUT_SESSION_ID}</span><span class="st">'</span>,</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        cancel_url<span class="op">=</span>DOMAIN <span class="op">+</span> <span class="st">'/cancel'</span>,</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> RedirectResponse(s[<span class="st">'url'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> RedirectResponse(s[<span class="st">'url'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can add a webhook to listen for successful payments and then update the user’s account in your database, but for this project I just manually checked the stripe dashboard and then sent orders to the addresses myself - passing the metadata along with the order made this easy. I had two sales - digging around the stripe dashboard to find the info was a perfectly reasonable approach. When you have thousands of sales you can set up automations, but that’s a good problem to have! I don’t want to make out that this is completely trivial, but wow the ability to set this up, and the ease with which I could pop a few notfriends in the mail and send them off, really highlights how doable it is to set up a small business online these days (if you’re lucky enough to live in the right place).</p>
 </section>
 <section id="distilhn" class="level2">
@@ -296,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>This one was a re-do of a project I first made in ~2021/22. It takes the front-page articles on Hacker News, summarizes them and presents them in a nice UI with links to both the articles and the HN comments. The original version used a BART model for summarization, and Flask for the backend. It took remarkably little fiddling to get a FastHTML version out of Claude (<a href="https://claude.ai/share/86b73f06-af42-4e85-96ce-f6f74a224ca8">conversation link</a> for answerai people).</p>
 <p>It’s amazing how anyone can now drop in code like this:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sp <span class="op">=</span> <span class="st">"""You are a helpful assistant that summarizes articles. Given an article text, possibly including unrelated scraping artefacts, return a summary of the article. If the text is just something like 'enable javascript' or 'turn off your ad blocker', just respond with "Could not summarize article." Otherwise, respond with just the summary (no preamble). Favour extremely conciseness and brevity. Start directly with the contents. Aim for &lt;100 words."""</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sp <span class="op">=</span> <span class="st">"""You are a helpful assistant that summarizes articles. Given an article text, possibly including unrelated scraping artefacts, return a summary of the article. If the text is just something like 'enable javascript' or 'turn off your ad blocker', just respond with "Could not summarize article." Otherwise, respond with just the summary (no preamble). Favour extremely conciseness and brevity. Start directly with the contents. Aim for &lt;100 words."""</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> summarize_text(text):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    chat_completion <span class="op">=</span> client.chat.completions.create(</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[{</span>
@@ -310,7 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    summary <span class="op">=</span> chat_completion.choices[<span class="dv">0</span>].message.content.strip()</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This is page I actually visit, since unlike regular HN I can actually get a sense of the article without having to read the whole thing, and it helps me avoid ending up with tons of tabs and comments sections opened. It’s really special that anyone with a bit of coding knowledge can make something like this, and then share it with the world, in hours rather than weeks. Bespoke software for the win :)</p>
 </section>
 <section id="moodle---the-benefit-of-progressive-extension" class="level2">
@@ -324,7 +328,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>FastHTML lends itself to tacking on features as you go. Start with a homepage. Add an about route. Add a navbar. Add a countdown. Add a high-scores list. You can end up with something a little chaotic (see the source code) but ‘locality of behaviour’ means it’s generally super easy to see how one specific thing works. This is how I ended up with Moodle!</p>
 <p>To illistrate what I mean by locality of behaviour: if you want to know how the leaderboard works, you only have to look at one place main.py:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">@app.get</span>(<span class="st">'/leaderboard'</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">@app.get</span>(<span class="st">'/leaderboard'</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> leaderboard():</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Top 10 in last 24 hours and approved games only</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    fastest_games <span class="op">=</span> games(where<span class="op">=</span><span class="st">"end_time IS NOT NULL AND end_time &gt; strftime('</span><span class="sc">%s</span><span class="st">', 'now', '-1 day') AND approved"</span>,</span>
@@ -349,7 +353,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>            H1(<span class="st">"Top 10 Fastest Games (past 24 hours):"</span>, style<span class="op">=</span><span class="st">"text-align: left;"</span>),</span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>            table,</span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>            A(<span class="st">"Back to Home"</span>, href<span class="op">=</span><span class="st">"/"</span>),</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>            cls<span class="op">=</span><span class="st">'container'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>            cls<span class="op">=</span><span class="st">'container'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We’re at ~8,500 games played, and I’m going to write up another post on the model performance and such soonish, so I won’t go into that here. Key takeaway: FastHTML mostly got out the way so I could focus on thinking about what I wanted to add, and even though this app has sort of crossed the point where one might consider restructuring/refactoring it, it’s still very manageable. And the AI models that make it all work have cost us next to nothing so far. Magic!</p>
 </section>
 <section id="conclusions" class="level2">
