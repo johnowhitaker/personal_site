@@ -1,6 +1,6 @@
 ---
 title: "Diffusion Language Models - Turning ModernBERT into an instruct-tuned Diffusion LLM"
-date: 202-06-16
+date: 2025-06-16
 categories: 
   - "Video"
 image: "thumbnails/dllm1.png"
