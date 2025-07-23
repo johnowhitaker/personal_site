@@ -45,6 +45,29 @@
   <pubDate>Sun, 20 Jul 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
+  <title>SVG generation as a microcosm of generative AI research trends</title>
+  <link>https://johnowhitaker.dev/misc/svg.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="svg-generation-as-a-microcosm-of-generative-ai-research-trends" class="level3">
+<h3 class="anchored" data-anchor-id="svg-generation-as-a-microcosm-of-generative-ai-research-trends">SVG generation as a microcosm of generative AI research trends</h3>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/vnD4PlGvOg4" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>I noticed that my open tabs told a fun story - one that’s been repeated for various niches in generative AI, and that shows the current trend. Hopefully fun and maybe gives you ideas to apply to some other forgotten niche :)</p>
+<p>References: - DIffVG: https://github.com/BachiLi/diffvg - Iconshop: https://icon-shop.github.io/ - OmniSVG: https://omnisvg.github.io/ - Recraft-SVG: https://replicate.com/recraft-ai/recraft-v3-svg - Rendering-Aware Reinforcement Learning for Vector Graphics Generation: https://arxiv.org/abs/2505.20793</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Video</category>
+  <guid>https://johnowhitaker.dev/misc/svg.html</guid>
+  <pubDate>Fri, 11 Jul 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/misc/thumbnails/svg.png" medium="image" type="image/png" height="123" width="144"/>
+</item>
+<item>
   <title>The Diffusion Duality (Paper reading + discussion)</title>
   <link>https://johnowhitaker.dev/misc/dllm2.html</link>
   <description><![CDATA[ 
@@ -2037,92 +2060,6 @@ font-style: inherit;">107</span>].mean()</span>
   <category>mini-hw-projects</category>
   <guid>https://johnowhitaker.dev/essays/vibe_coding.html</guid>
   <pubDate>Mon, 03 Feb 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Scanning slides with a microscope, a 3D printer and a webcam</title>
-  <link>https://johnowhitaker.dev/mini-hw-projects/scan_microscope.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>In my <a href="https://johnowhitaker.dev/mini-hw-projects/scope_mods.html">previous crystal photography post</a> I showed some beautiful pics of vitamin C crystals photographed through a microscope, with polarizing film bringing out some psychedelic colors. Those were all taken with my phone pointing down through the eyepiece. The natural next step is to scan across a slide and stitch the images together to make a high-res image of a whole slide. And since I already have a 3D printer, this turned out to be fairly easy to do!</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/scan_rig.png" class="img-fluid figure-img"></p>
-<figcaption>The scanning rig</figcaption>
-</figure>
-</div>
-<p>The webcam is mounted to the scope with a 3D-printed adapter. The CAD for that, and all code, is in <a href="https://github.com/johnowhitaker/webcam_mosaic">this repository</a>. The software sends G-CODE commands to the printer over USB to move the slide in small increments, then waits for it to settle before taking a picture. Since coding is ~free thanks to AI, it has a GUI based on PyGame for setting the start position, and fancy command-line args and everything :D Here’s an example command you might run to take 9 images in a 3x3 grid:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">python3</span> mosaic.py <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="cb1-2">  <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--serial_port</span> /dev/ttyUSB0 <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="cb1-3">  <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--camera_device</span> /dev/video4 <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="cb1-4">  <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--prefix</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"capture/myscan"</span> <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="cb1-5">  <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--x_step</span> 1.5 <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="cb1-6">  <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--y_step</span> 1.5 <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="cb1-7">  <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--n_x</span> 3 <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="cb1-8">  <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--n_y</span> 3 <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="cb1-9">  <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--settle_time</span> 300</span></code></pre></div></div>
-<p>This stores 9 individual images:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/scan_results.png" class="img-fluid figure-img"></p>
-<figcaption>The 9 images</figcaption>
-</figure>
-</div>
-<p>These can be stitched together in a few different ways. I include a notebook using OpenCV to do this in the repo. Here’s the result of stitching the 9 images together:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/scan_mosaic.png" class="img-fluid figure-img"></p>
-<figcaption>The stitched image</figcaption>
-</figure>
-</div>
-<p>Sadly, the webcam quality isn’t great! So after all that, the best results came from using the phone with <a href="https://play.google.com/store/apps/details?id=com.bcdvision.mapstitch&amp;hl=en_US">this app</a> to make mosaics. The results are <em>ok</em> (<a href="https://drive.google.com/file/d/1NlRSY9DtAnj5N4UNMiZVUJp4BTVCKlKC/view?usp=drive_link">example</a>) but I hope to find a better solution soon - maybe it’s as simple as using the phone as a webcam and manually stitching the images based on the grid coords.</p>
-<p>Update: I found https://mattabrown.github.io/autostitch.html to work well on frames extracted from video through the cellphone. Hooray for good free software!</p>
-
-
-
- ]]></description>
-  <category>mini-hw-projects</category>
-  <guid>https://johnowhitaker.dev/mini-hw-projects/scan_microscope.html</guid>
-  <pubDate>Tue, 28 Jan 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://johnowhitaker.dev/mini-hw-projects/images/scan_autostitch.png" medium="image" type="image/png" height="135" width="144"/>
 </item>
 </channel>
 </rss>

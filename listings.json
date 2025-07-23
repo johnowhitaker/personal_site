@@ -62,6 +62,7 @@
     "listing": "/index.html",
     "items": [
       "/mini-hw-projects/dropper.html",
+      "/misc/svg.html",
       "/misc/dllm2.html",
       "/misc/dllm1.html",
       "/misc/claude_code_fasthtml.html",
@@ -271,6 +272,7 @@
     "listing": "/all.html",
     "items": [
       "/mini-hw-projects/dropper.html",
+      "/misc/svg.html",
       "/misc/dllm2.html",
       "/misc/dllm1.html",
       "/misc/claude_code_fasthtml.html",
