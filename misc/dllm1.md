@@ -4,6 +4,7 @@ date: 2025-06-16
 categories: 
   - "Video"
 image: "thumbnails/dllm1.png"
+description: "Some early experiments fine-tuning ModernBERT to be a masked diffusion LLM, with lots of room to explore further"
 ---
 
 ### Diffusion Language Models: Turning ModernBERT into an instruct-tuned Diffusion LLM
