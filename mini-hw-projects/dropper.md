@@ -1,6 +1,6 @@
 ---
 title: "1Hz Dropper"
-date: 2025-17-20
+date: 2025-07-20
 categories:
     - "mini-hw-projects"
 ---
