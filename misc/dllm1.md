@@ -1,12 +1,12 @@
 ---
-title: "Diffusion Language Models - Turning ModernBERT into an instruct-tuned Diffusion LLM"
+title: "Diffusion Language Models: Turning ModernBERT into an instruct-tuned Diffusion LLM"
 date: 2025-06-16
 categories: 
   - "Video"
 image: "thumbnails/dllm1.png"
 ---
 
-### Diffusion Language Models - Turning ModernBERT into an instruct-tuned Diffusion LLM
+### Diffusion Language Models: Turning ModernBERT into an instruct-tuned Diffusion LLM
 
 {{< video https://www.youtube.com/embed/Ds_cTclxV2o >}}
 
