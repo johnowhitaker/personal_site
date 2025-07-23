@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-06-16">
+<meta name="dcterms.date" content="2025-05-16">
 
-<title>Diffusion Language Models: Turning ModernBERT into an instruct-tuned Diffusion LLM – johnowhitaker.dev</title>
+<title>New Ways to Scale Inference Time Compute of LLMs: Parallel Scaling, Diffusion and More – johnowhitaker.dev</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,13 +72,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta name="twitter:title" content="Diffusion Language Models: Turning ModernBERT into an instruct-tuned Diffusion LLM – johnowhitaker.dev">
+<meta name="twitter:title" content="New Ways to Scale Inference Time Compute of LLMs: Parallel Scaling, Diffusion and More – johnowhitaker.dev">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://johnowhitaker.dev/misc/thumbnails/dllm1.png">
+<meta name="twitter:image" content="https://johnowhitaker.dev/misc/thumbnails/inference.png">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image-height" content="1698">
-<meta name="twitter:image-width" content="3353">
+<meta name="twitter:image-height" content="1365">
+<meta name="twitter:image-width" content="2340">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -165,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#diffusion-language-models-turning-modernbert-into-an-instruct-tuned-diffusion-llm" id="toc-diffusion-language-models-turning-modernbert-into-an-instruct-tuned-diffusion-llm" class="nav-link active" data-scroll-target="#diffusion-language-models-turning-modernbert-into-an-instruct-tuned-diffusion-llm">Diffusion Language Models: Turning ModernBERT into an instruct-tuned Diffusion LLM</a></li>
+  <li><a href="#new-ways-to-scale-inference-time-compute-of-llms-parallel-scaling-diffusion-and-more" id="toc-new-ways-to-scale-inference-time-compute-of-llms-parallel-scaling-diffusion-and-more" class="nav-link active" data-scroll-target="#new-ways-to-scale-inference-time-compute-of-llms-parallel-scaling-diffusion-and-more">New Ways to Scale Inference Time Compute of LLMs: Parallel Scaling, Diffusion and More</a></li>
   </ul>
 </nav>
     </div>
@@ -174,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Diffusion Language Models: Turning ModernBERT into an instruct-tuned Diffusion LLM</h1>
+<h1 class="title">New Ways to Scale Inference Time Compute of LLMs: Parallel Scaling, Diffusion and More</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Video</div>
   </div>
@@ -188,7 +188,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 16, 2025</p>
+      <p class="date">May 16, 2025</p>
     </div>
   </div>
   
@@ -200,10 +200,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="diffusion-language-models-turning-modernbert-into-an-instruct-tuned-diffusion-llm" class="level3">
-<h3 class="anchored" data-anchor-id="diffusion-language-models-turning-modernbert-into-an-instruct-tuned-diffusion-llm">Diffusion Language Models: Turning ModernBERT into an instruct-tuned Diffusion LLM</h3>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/Ds_cTclxV2o" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p>Inference notebook: https://colab.research.google.com/drive/1hMV0OBpmJL7L5yIEtkeeUz-7rB1buFmg?usp=sharing Training notebook: https://colab.research.google.com/drive/1D82ULU5dUyJKPnj2oUxtfJeWTB1sVds_?usp=sharing Model on HF: https://huggingface.co/johnowhitaker/modernbert-diffusion/blob/main/README.md LLaDA paper (‘Large Language Diffusion Models’): https://arxiv.org/pdf/2502.09992</p>
+<section id="new-ways-to-scale-inference-time-compute-of-llms-parallel-scaling-diffusion-and-more" class="level3">
+<h3 class="anchored" data-anchor-id="new-ways-to-scale-inference-time-compute-of-llms-parallel-scaling-diffusion-and-more">New Ways to Scale Inference Time Compute of LLMs: Parallel Scaling, Diffusion and More</h3>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/4zuj4BBoR1Y" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>Looking at the paper ‘Parallel Scaling Law for Language Models’ (https://arxiv.org/abs/2505.10475) with detours into ‘Large Language Models to Diffusion Finetuning’ as a way to examine these approaches to spending more compute at inference time <em>per token</em> without scaling up the total number of parameters. These research directions complement existing inference-time scaling work like reasoning models (o1/r1).</p>
 
 
 </section>

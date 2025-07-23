@@ -90,15 +90,15 @@
   <media:content url="https://johnowhitaker.dev/misc/thumbnails/dllm2.png" medium="image" type="image/png" height="68" width="144"/>
 </item>
 <item>
-  <title>Diffusion Language Models - Turning ModernBERT into an instruct-tuned Diffusion LLM</title>
+  <title>Diffusion Language Models: Turning ModernBERT into an instruct-tuned Diffusion LLM</title>
   <link>https://johnowhitaker.dev/misc/dllm1.html</link>
   <description><![CDATA[ 
 
 
 
 
-<section id="diffusion-language-models---turning-modernbert-into-an-instruct-tuned-diffusion-llm" class="level3">
-<h3 class="anchored" data-anchor-id="diffusion-language-models---turning-modernbert-into-an-instruct-tuned-diffusion-llm">Diffusion Language Models - Turning ModernBERT into an instruct-tuned Diffusion LLM</h3>
+<section id="diffusion-language-models-turning-modernbert-into-an-instruct-tuned-diffusion-llm" class="level3">
+<h3 class="anchored" data-anchor-id="diffusion-language-models-turning-modernbert-into-an-instruct-tuned-diffusion-llm">Diffusion Language Models: Turning ModernBERT into an instruct-tuned Diffusion LLM</h3>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/Ds_cTclxV2o" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 <p>Inference notebook: https://colab.research.google.com/drive/1hMV0OBpmJL7L5yIEtkeeUz-7rB1buFmg?usp=sharing Training notebook: https://colab.research.google.com/drive/1D82ULU5dUyJKPnj2oUxtfJeWTB1sVds_?usp=sharing Model on HF: https://huggingface.co/johnowhitaker/modernbert-diffusion/blob/main/README.md LLaDA paper (‘Large Language Diffusion Models’): https://arxiv.org/pdf/2502.09992</p>
 
@@ -172,6 +172,28 @@
   <category>misc</category>
   <guid>https://johnowhitaker.dev/posts/ccc.html</guid>
   <pubDate>Wed, 21 May 2025 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>New Ways to Scale Inference Time Compute of LLMs: Parallel Scaling, Diffusion and More</title>
+  <link>https://johnowhitaker.dev/misc/inference_scaling.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="new-ways-to-scale-inference-time-compute-of-llms-parallel-scaling-diffusion-and-more" class="level3">
+<h3 class="anchored" data-anchor-id="new-ways-to-scale-inference-time-compute-of-llms-parallel-scaling-diffusion-and-more">New Ways to Scale Inference Time Compute of LLMs: Parallel Scaling, Diffusion and More</h3>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/4zuj4BBoR1Y" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>Looking at the paper ‘Parallel Scaling Law for Language Models’ (https://arxiv.org/abs/2505.10475) with detours into ‘Large Language Models to Diffusion Finetuning’ as a way to examine these approaches to spending more compute at inference time <em>per token</em> without scaling up the total number of parameters. These research directions complement existing inference-time scaling work like reasoning models (o1/r1).</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Video</category>
+  <guid>https://johnowhitaker.dev/misc/inference_scaling.html</guid>
+  <pubDate>Fri, 16 May 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/misc/thumbnails/inference.png" medium="image" type="image/png" height="84" width="144"/>
 </item>
 <item>
   <title>ICLR 2025</title>
@@ -1991,75 +2013,6 @@ font-style: inherit;">107</span>].mean()</span>
   <category>misc</category>
   <guid>https://johnowhitaker.dev/misc/model_first_impressions.html</guid>
   <pubDate>Tue, 04 Feb 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Vibe Coding and V-Plotters</title>
-  <link>https://johnowhitaker.dev/essays/vibe_coding.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/essays/vibe_coding.png" class="img-fluid figure-img"></p>
-<figcaption>‘vibe coding is already here’</figcaption>
-</figure>
-</div>
-<p>A <a href="https://x.com/karpathy/status/1886192184808149383">Karpathy tweet</a> sparked a bunch of discussion about ‘vibe coding’ - his term for completely embracing AI coding assistance where “it’s not really coding - I just see stuff, say stuff, run stuff, and copy paste stuff, and it mostly works.”. He clarifies that this is still only good enough for “throwaway weekend projects” but it’s clear that many think of this as the obvious future of coding. So - is it? And if so, is that a good thing? I think my weekend hobby coding helps illustrate why I hope that the old fashioned way sticks around.</p>
-<section id="what-plotters" class="level2">
-<h2 class="anchored" data-anchor-id="what-plotters">What-plotters?</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/essays/plot_portrait.png" class="img-fluid figure-img"></p>
-<figcaption>A plotted self-portrait</figcaption>
-</figure>
-</div>
-<p>The project in question was a ‘V-Plotter’ - a device that draws by moving a pen/sharpie around at the end of two strings or chains, wound in and out by a pair of motors under computer control. Building one was on my project list, but I’d been putting off writing the necessary software. So, when o3-mini was released and its coding capabilities lauded, I threw it a challenge: write a web app that would take in an SVG and spit out the G-CODE that would control my motors correctly to draw the image in question.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/essays/plot_preview.png" class="img-fluid figure-img"></p>
-<figcaption>The preview in the vibe-coded webapp</figcaption>
-</figure>
-</div>
-<p>It spat out a <a href="https://tools.johnowhitaker.com/svg2g">functional-seeming site</a>, and so I cobbled together the necessary hardware and attempted a plot. Apart from being rotated 90 degrees, the results seemed to indicate that it was working as hoped! A project that I’d been idly thinking about for years had materialized before breakfast on a Saturday - vibe coding for the win!</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/essays/plotter.png" class="img-fluid figure-img"></p>
-<figcaption>The plotter itself</figcaption>
-</figure>
-</div>
-</section>
-<section id="a-question-begets-a-question" class="level2">
-<h2 class="anchored" data-anchor-id="a-question-begets-a-question">A Question Begets a Question</h2>
-<p>I shared the first test in a group with some folks from my local hackerspace, and a fellow member responded asking if we could chat further - turns out the too had long wanted to build such a device. I agreed to meet, but felt an instant pang of <em>something</em> - what would I tell this guy? “Oh yeah I kinda know how it works but actually I just had AI write all the code?” Bah! Haven’t I spent the last few months teaching a course on doing things carefully, iteratively, in small pieces, with AI supporting but a human in charge? There was only one thing to do.</p>
-</section>
-<section id="another-way" class="level2">
-<h2 class="anchored" data-anchor-id="another-way">Another Way</h2>
-<p>I started from a clean slate - a Jupyter notebook and a plan. With AI assistance, I started building up pieces bit by bit, sprinkling in some explanation. Can I load an SVG? What do lines and polylines look like? Can I turn those into sequences of moves? Can I shift and scale these move sequences? And then, once I was ready, the crux: how do you turn a set of X,Y positions into string length commands that would make sense for the plotter? What scary maths would one need to know?</p>
-<p>Prompt: Please write function c_t_v that takes the plotter params and a set of moves defined in cartesian space, and converts them such that they’ll work on the plotter. Test it with the square from before.</p>
-<p>With all the other scaffolding in place, the new function was only a few lines of code. And looking at it, with plots and examples in my own ‘context window’, it was immediately obvious how that code works. It’s just two triangles!</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/essays/plot_kinematics.png" class="img-fluid figure-img"></p>
-<figcaption>plot kinematics</figcaption>
-</figure>
-</div>
-<p>This was code I could share with and explain to my soon-to-be-new-friend. This was something I could write a tutorial on. This was something I could code again in 2 years time when I decide I need to build a better plotter. In other words, ‘inverse kinematics for hanging plotters’ is now something I <strong>understand</strong>.</p>
-</section>
-<section id="the-moral-of-the-story" class="level2">
-<h2 class="anchored" data-anchor-id="the-moral-of-the-story">The Moral Of The Story</h2>
-<p>There are so many use-cases for instant, throwaway software. So many things now in reach for people who are new to coding or time constrained. Vibe coding is amazing, and powerful, and I enjoy it a lot! But there’s something delightful about figuring out something for yourself that I’m worried people might miss out on. Because behind the intimidating syntax and the boilerplate there’s often something extremely elegant and satisfying, which our puny human minds are more than capable of understanding. I hope that as we develop these tools even further, we keep in mind the value of wasting an hour or two trying to do things the human way.</p>
-<p>Yours, humanly, Johno</p>
-
-
-</section>
-
- ]]></description>
-  <category>essays</category>
-  <category>mini-hw-projects</category>
-  <guid>https://johnowhitaker.dev/essays/vibe_coding.html</guid>
-  <pubDate>Mon, 03 Feb 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
