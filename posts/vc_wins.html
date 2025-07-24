@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-07-24">
+<meta name="description" content="Small apps, mostly AI-written, that have brought me joy recently">
 
-<title>TILs – johnowhitaker.dev</title>
+<title>Mapping Smells, Gamifying Family Trips, Playing ARC-AGI-3 like an LLM… (Vibe Coding Wins) – johnowhitaker.dev</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,26 +25,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-e76fc4c0f9ca2daccef45edcbef1a50f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1f34caaabf90b87da273f334f8988ffd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e76fc4c0f9ca2daccef45edcbef1a50f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1f34caaabf90b87da273f334f8988ffd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,71 +70,16 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
-<meta name="twitter:title" content="TILs – johnowhitaker.dev">
-<meta name="twitter:description" content="">
+<link rel="stylesheet" href="../styles.css">
+<meta name="twitter:title" content="Mapping Smells, Gamifying Family Trips, Playing ARC-AGI-3 like an LLM… (Vibe Coding Wins) – johnowhitaker.dev">
+<meta name="twitter:description" content="Small apps, mostly AI-written, that have brought me joy recently">
+<meta name="twitter:image" content="https://johnowhitaker.dev/posts/images/portland_pursuit.png">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="1396">
+<meta name="twitter:image-width" content="766">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -144,7 +89,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -154,11 +99,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./all.html"> 
+    <a class="nav-link" href="../all.html"> 
 <span class="menu-text">Everything Feed</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -167,35 +112,35 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-more">    
         <li>
-    <a class="dropdown-item" href="./tils.html">
+    <a class="dropdown-item" href="../tils.html">
  <span class="dropdown-text">TILs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./blog.html">
+    <a class="dropdown-item" href="../blog.html">
  <span class="dropdown-text">Blog Archive</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./tsbabn.html">
+    <a class="dropdown-item" href="../tsbabn.html">
  <span class="dropdown-text">TSBABN</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./resume.html">
+    <a class="dropdown-item" href="../resume.html">
  <span class="dropdown-text">Resume: Jonathan Whitaker</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./books.html">
+    <a class="dropdown-item" href="../books.html">
  <span class="dropdown-text">Books</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./blogs.html">
+    <a class="dropdown-item" href="../blogs.html">
  <span class="dropdown-text">Blogs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./yt.html">
+    <a class="dropdown-item" href="../yt.html">
  <span class="dropdown-text">YouTube Channel Recommendations</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./appearances.html">
+    <a class="dropdown-item" href="../appearances.html">
  <span class="dropdown-text">Appearances</span></a>
   </li>  
         <li>
@@ -216,22 +161,45 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#portland-pursuit" id="toc-portland-pursuit" class="nav-link active" data-scroll-target="#portland-pursuit">Portland Pursuit</a></li>
+  <li><a href="#fragrance-explorer" id="toc-fragrance-explorer" class="nav-link" data-scroll-target="#fragrance-explorer">Fragrance Explorer</a></li>
+  <li><a href="#arc-agi-3-play-like-an-llm" id="toc-arc-agi-3-play-like-an-llm" class="nav-link" data-scroll-target="#arc-agi-3-play-like-an-llm">ARC-AGI-3 (Play like an LLM)</a></li>
+  <li><a href="#commentary-and-conclusions" id="toc-commentary-and-conclusions" class="nav-link" data-scroll-target="#commentary-and-conclusions">Commentary and Conclusions</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TILs</h1>
-</div>
+<h1 class="title">Mapping Smells, Gamifying Family Trips, Playing ARC-AGI-3 like an LLM… (Vibe Coding Wins)</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">misc</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    Small apps, mostly AI-written, that have brought me joy recently
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 24, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -241,170 +209,34 @@ window.Quarto = {
 </header>
 
 
-<p>A new section I hope to build out over time.</p>
+<p>It’s still nice to <strong>know</strong> your code. To carefully review anything your AI helpers do. To dig in and learn, and build familiarity with a chosen stack… but with all of that said, the set of ‘pieces of software I want to exist’ is a lot larger larger than the ‘pieces of software I want to carefully code’ one! I love that we can now whip up custom software on demand just by speaking our requirements in plan language (and then maybe giving a little guidance along the way). In this post I want to feature a few recent results that I particularly enjoyed making/using, a celebration of the kind of things vibe coding is currently a perfect match for.</p>
+<section id="portland-pursuit" class="level3">
+<h3 class="anchored" data-anchor-id="portland-pursuit">Portland Pursuit</h3>
+<p>My family visited us in the US for the first time in May/June this year. To help them quest-max on their visits, I made <a href="https://johnowhitaker.github.io/portland_pursuit/">Portland Pursuit</a> - with lots of achievements for them to tick off while they were here. The app (<a href="https://github.com/johnowhitaker/portland_pursuit">code</a>) is written in html/javascript, hosted on GitHub pages, and set up as a Progressive Web App (PWA) which let my family ‘install’ it to their phone home screens - important for non-techy parents. For years this has been my goto approach for making app-like things without having to go through the mobile app store nonsense, and I’m not sure why it’s not more popular!</p>
+<p><img src="images/portland_pursuit.png" class="img-fluid"></p>
+<p>The app was a huge success - they all got most of the available points, and it definitely encouraged a few extra exploratory walks towards the end of the trip as they vied for first place :) Writing it was fun and easy, and it was a nice test-bed for a few different tools I was testing at the time to see how well they did modifying it when I wanted to add new tasks and so on. Perfect vibe-coding story: simple app, human ideas, minimal time wasted fighting config or hosting settings, a few happy customers. 10/10 :)</p>
+</section>
+<section id="fragrance-explorer" class="level3">
+<h3 class="anchored" data-anchor-id="fragrance-explorer">Fragrance Explorer</h3>
+<p>This past weekend I stumbled upon Gwern’s <a href="https://gwern.net/blog/2025/perfume">blog post on avant-garde perfumes</a>. And then while out on a walk I stumbled upon <a href="https://fumerie.com/">Fumerie</a>, a Parfumerie close to where I live. The folks behind the counter were incredibly friendly, chatting for ages about their art and showing me some wild smells. (Maybe too many - my wife kept her distance from me for the rest of the day). One thing that came through in our discussion was how personal fragrance is to them, with everyone reacting to specific smells differently. Even mentioning that I’d read about a specific fragrance had them tut-tutting - online marketing descriptions != the experience, it seems!</p>
+<p><img src="images/frag_search.png" class="img-fluid"></p>
+<p>Still, I did find the online descriptions amusing, and I wanted to get a better sense of the ‘map of smells’ availalbe, so when I got home I scraped <a href="https://gist.github.com/johnowhitaker/6fef140a3a47aa1ea049a8562270b0bf">hundreds of fragrance descriptions</a> and had Replit’s Agent whip up an embedding explorer. You can search with natural language, but the real fun is making custom scatter plots with silly axes:</p>
+<p><img src="images/frag_plot.png" class="img-fluid"></p>
+<p>I showed this to the smell people who agreed that this is <strong>exactly</strong> why they have a job - the text embedding based rankings/scatter plots were based on the marketing points and fragrance notes and were not at all capturing the true essence of the smells. I agree - but still find this fun :) I did the scraping and embedding carefully in a notebook-like environment, then realized I shouldn’t spend &gt;1hr on this, so threw the embeddings and data at replit to make a <a href="https://fragrance-similarity.replit.app/">streamlit frontent</a>. It’s janky and glitchy and annoying but it was instantly shareable and took very little effort - vibe coding win, but I think I could do a lot better without spending much more time. If I cared! Which I don’t! Vibe coding win :)</p>
+</section>
+<section id="arc-agi-3-play-like-an-llm" class="level3">
+<h3 class="anchored" data-anchor-id="arc-agi-3-play-like-an-llm">ARC-AGI-3 (Play like an LLM)</h3>
+<p><img src="images/arcagi.png" class="img-fluid"></p>
+<p>I like that the ARC people are coming up with interesting evals - great work! I dislike how much gets read into them, and some of the silly discourse they engender. One aspect is that the way you present the data DOES MATTER! Humans play the games looking at a little pixel grid. AI’s get a list of lists of numbers. “But general intelligence should be able to figure it out…” - OK, then try <a href="https://play-arc-agi-3.replit.app/">my version which has you play the game looking at the raw string data</a>. Yeah - no success from any humans so far, maybe we aren’t general intelligence after all… Code is simple, quick flask app on replit coded by o3. Forvibe-coding something that uses an API like this, you need API docs, and theirs are a weird custom thing with lots of JS that none of the coding AI’s can read! (I told them, they’re shifting to something better soon). But in the theme of laziness I was able to get manus to browse and click and extract all the docs with a little help, and then I could paste that markdown into o3 for the implementation. Easy task I can specify well with API docs at hand? Perfect vibe coding starting material, works as intended. Vibe coding win :)</p>
+</section>
+<section id="commentary-and-conclusions" class="level3">
+<h3 class="anchored" data-anchor-id="commentary-and-conclusions">Commentary and Conclusions</h3>
+<p>Anthropic said people have made something like ~500 million artifacts with Claude. Lovable just raised $200M. For all that software people like to hate on vibe coding, it’s delightful to me that so many people are getting to create ephemeral, quirky pieces of software to fill some need that they have. In all the examples above, the end result is mediocre at best. There’s no auth, I have ~no users, none of these are the Next Big Thing… BUT they all made me happy, quickly, for free! And I think I’m not the only one. Snarkily asking why there aren’t more giant breakout apps coming in a wave thanks to vibe coding tools is missing the point: there are now hundreds of millions of new pieces of software, each making ~1 person a little happier. And I think that’s great :)</p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1744243200000" data-listing-file-modified-sort="1753376922419" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="178">
-<div class="thumbnail"><a href="./tils/paid_promotion_links.html" class="no-external">
-
-<p class="card-img-top"><img src="tils/yt_overlay.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/paid_promotion_links.html" class="no-external">Hiding an Annoying Element with Stylus</a>
-</h3>
-<div class="delink listing-description"><a href="./tils/paid_promotion_links.html" class="no-external">
-YouTube has this annoying thing where on hover a little overlay pops up over some videos that says ‘Includes paid promotion…’. I click on this accidentally fairly…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./tils/paid_promotion_links.html" class="no-external">
-<div class="listing-date">
-Apr 10, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="VElMcw==" data-listing-date-sort="1735948800000" data-listing-file-modified-sort="1753376922418" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1343">
-<div class="thumbnail"><a href="./tils/2025-01-04-duet-wsl-usb.html" class="no-external">
-
-<p class="card-img-top"><img src="tils/2025-01-04-duet-wsl-usb_files/figure-html/cell-4-1-image.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2025-01-04-duet-wsl-usb.html" class="no-external">Talking to the Duet, and USB in WSL</a>
-</h3>
-<div class="delink listing-description"><a href="./tils/2025-01-04-duet-wsl-usb.html" class="no-external">
-I wanted to talk over serial to this duet 3D printer control board, but initially had issues since it didn’t show up in the device list in WSL. TIL: you can share devices…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./tils/2025-01-04-duet-wsl-usb.html" class="no-external">
-<div class="listing-date">
-Jan 4, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-listing-date-sort="1730937600000" data-listing-file-modified-sort="1753376922418" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="811">
-<div class="thumbnail"><a href="./tils/deploy_your_artifacts.html" class="no-external">
-
-<p class="card-img-top"><img src="tils/tools_site.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/deploy_your_artifacts.html" class="no-external">Deploy Your Artifacts!</a>
-</h3>
-<div class="delink listing-description"><a href="./tils/deploy_your_artifacts.html" class="no-external">
-I’m a big fan of the idea of Sharing Scrappy Fiddles.
-</a></div>
-</div>
-<div class="metadata">
-<a href="./tils/deploy_your_artifacts.html" class="no-external">
-<div class="listing-date">
-Nov 7, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="VElMcw==" data-listing-date-sort="1713484800000" data-listing-file-modified-sort="1753376922401" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2119">
-<div class="thumbnail"><a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external">
-
-<p class="card-img-top"><img src="tils/proxy_vscode.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external">TIL: Intercepting Github Copilot with MITMProxy</a>
-</h3>
-<div class="delink listing-description"><a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external">
-We’ve been messing with integrating AI into notebook coding, and got curious about how Github Copilot structures the context it uses to generate code when called from a…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./tils/2024-04-19-intercept-github-copilot.html" class="no-external">
-<div class="listing-date">
-Apr 19, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="VElMcw==" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1753376922401" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="892">
-<div class="thumbnail"><a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">
-
-<p class="card-img-top"><img src="tils/image.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">TIL: GPT4-V Doesn’t Support Function Calling, but We Can Hack Around That</a>
-</h3>
-<div class="delink listing-description"><a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">
-I want to use GPT4-V to evaluate images generated by a diffusion model and optionally modify the prompt based on the result. The problem is that GPT4-V doesn’t support…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./tils/2024-01-01-gpt4v-functions.html" class="no-external">
-<div class="listing-date">
-Jan 1, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="VElMcw==" data-listing-date-sort="1699315200000" data-listing-file-modified-sort="1753376922401" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="384">
-<div class="thumbnail"><a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">Getting My YouTube Videos as MarkDown pages for this Quarto blog</a>
-</h3>
-<div class="delink listing-description"><a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">
-Step 1 was getting the video info:
-</a></div>
-</div>
-<div class="metadata">
-<a href="./tils/2023-11-07-get_yt_vids.html" class="no-external">
-<div class="listing-date">
-Nov 7, 2023
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="VElMcw==" data-listing-date-sort="1691712000000" data-listing-file-modified-sort="1753376922401" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="255">
-<div class="thumbnail"><a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">Exporting from Wordpress into a Quarto Blog</a>
-</h3>
-<div class="delink listing-description"><a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">
-I have been blogging for years on a free Wordpress account, but figured I should finally migrate to a custom setup. I’m using Quarto, and in this TIL I document how to…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./tils/2023-08-11-convert_wordpress_to_quarto.html" class="no-external">
-<div class="listing-date">
-Aug 11, 2023
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
