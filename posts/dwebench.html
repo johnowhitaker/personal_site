@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-08-03">
+<meta name="description" content="Optimizing for duckweed growth using o3, as a fun little experiment in human<=>AI collaboration for science, with some related musings.">
+
+<title>Duckweed Growth Experiments, or, ‘LLMs as General Optimizers in Science’ – johnowhitaker.dev</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-5c1f7a6a2802c248a2ccc243aab7b5c3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1f34caaabf90b87da273f334f8988ffd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+<meta name="twitter:title" content="Duckweed Growth Experiments, or, ‘LLMs as General Optimizers in Science’ – johnowhitaker.dev">
+<meta name="twitter:description" content="Optimizing for duckweed growth using o3, as a fun little experiment in human<=>AI collaboration for science, with some related musings.">
+<meta name="twitter:image" content="https://johnowhitaker.dev/posts/images/dwebench1.png">
+<meta name="twitter:creator" content="@johnowhitaker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="1144">
+<meta name="twitter:image-width" content="2426">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../all.html"> 
+<span class="menu-text">Everything Feed</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-more" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">More</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-more">    
+        <li>
+    <a class="dropdown-item" href="../tils.html">
+ <span class="dropdown-text">TILs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../blog.html">
+ <span class="dropdown-text">Blog Archive</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tsbabn.html">
+ <span class="dropdown-text">TSBABN</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../resume.html">
+ <span class="dropdown-text">Resume: Jonathan Whitaker</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../books.html">
+ <span class="dropdown-text">Books</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../blogs.html">
+ <span class="dropdown-text">Blogs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../yt.html">
+ <span class="dropdown-text">YouTube Channel Recommendations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../appearances.html">
+ <span class="dropdown-text">Appearances</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://johnowhitaker.dev/index.xml"><i class="bi bi-rss" role="img">
+</i> 
+ <span class="dropdown-text">RSS Feed</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-experiment" id="toc-the-experiment" class="nav-link active" data-scroll-target="#the-experiment">The Experiment</a></li>
+  <li><a href="#the-results" id="toc-the-results" class="nav-link" data-scroll-target="#the-results">The Results</a></li>
+  <li><a href="#hmm-thats-weird" id="toc-hmm-thats-weird" class="nav-link" data-scroll-target="#hmm-thats-weird">“Hmm, That’s Weird”</a></li>
+  <li><a href="#so-what-did-we-learn" id="toc-so-what-did-we-learn" class="nav-link" data-scroll-target="#so-what-did-we-learn">So What Did We Learn?</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Duckweed Growth Experiments, or, ‘LLMs as General Optimizers in Science’</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">misc</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Optimizing for duckweed growth using o3, as a fun little experiment in human&lt;=&gt;AI collaboration for science, with some related musings.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 3, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>My friend REDACTED is a scientist at SCIENCECO who are working with some people from BIGLAB to explore using AI models to optimise PROCESS using SCIENCECO’s epic technology for automating experiments in FIELD. We’ve had some fascinating conversations about where AI for science is now, and where it could go in the near future. To explore some of these ideas, let me share my own experiment that I’ve been running over the past few weeks, which is a lot easier to talk about without getting anyone in trouble ;)</p>
+<section id="the-experiment" class="level2">
+<h2 class="anchored" data-anchor-id="the-experiment">The Experiment</h2>
+<p>Inspired by <a href="https://x.com/ATinyGreenCell/status/1938362004240019899">a tweet</a> from legendary amateur biologist Sebastian Cocioba, I had grabbed some duckweed (<em>Lemna minor</em>) from a nearby pond on a whim. The goal of this experiment is to figure out a good growing strategy for it. Or, more specifically, to see if o3 can figure out a good recipe, with me essentially acting as a meat robot to implement its chosen protocols. Here’s <a href="https://chatgpt.com/share/688f729c-b224-8010-9c0d-fd41eaff8cc6">my chat</a> where I laid out the setup and had it set conditions for the experimental runs.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/dwebench1.png" class="img-fluid figure-img"></p>
+<figcaption>5 tubs with different conditions, after a few days of growth</figcaption>
+</figure>
+</div>
+<p>The setup involves 5 tubs, each of which will be started with 30 fronds of duckweed in 50ml of water with various nutrients added. I have a hydroponic mix (‘Maxigrow’) containing Nitrogen, Phosphorus and Potassion (NPK) as well as some micronutrients, some KDP to vary the potassium content, citric acid, baking poweder or pH UP and DOWN solututions, and a couple of other chemicals on hand. I counted the number of fronds in each tub every 2 days for 8 days total. Based on the results from the first run, I had o3 suggest a second set of conditions and ran those too.</p>
+<p><img src="images/dwebench_counter.png" class="img-fluid"></p>
+<p>I manually counted the fronds for most of the experiment, but to combat COVID brain fog I had Claude make me <a href="https://claude.ai/public/artifacts/2ca3e089-9a2d-436c-b945-61a268848d0c">this artifact</a> that I could use to count them more reliably from a photo instead for the final results.</p>
+<p>To make it easy to mix up the various recipes, I made three stock solutions: S1 (5g/L MaxiGro), S2 (5g/L KDP) and S3 (5g/L baking soda).</p>
+</section>
+<section id="the-results" class="level2">
+<h2 class="anchored" data-anchor-id="the-results">The Results</h2>
+<p>The recipe that did best was 6ml S1 + 44 ml tap water (i.e.&nbsp;600mg/L MaxiGro), achieving a doubling time of 3.5 days. This fast growth is what makes duckweed great for this kind of experiment :) This ideal level is quite a bit less than the recommended concentration of this hydroponic nutrient for general use - which makes sense given what I’ve read about duckweed’s preferences. Dropping to even lower nutrient concentrations gave less growth, with clear loss of color in the smallest few cases. Going too high also caused trouble, with bleached leaves (‘chlorosis’) and less growth too. This recipe was top in both the first and second runs (it was kept in the second as a baseline).</p>
+<p><img src="images/dwebench_results.png" class="img-fluid"></p>
+<p>Overall, I’d say I’m pretty impressed. Sure, I could have done this just fine without AI, but it’s cool that we can tap into something that can skim the literature at lightning speed and take advantage of tons of scientific training data to give us reasonable starting points for experiments like these.</p>
+</section>
+<section id="hmm-thats-weird" class="level2">
+<h2 class="anchored" data-anchor-id="hmm-thats-weird">“Hmm, That’s Weird”</h2>
+<p>One of the tubs in the second run developed a thin, shiny film almost like an oil slick, likely caused by bacterial growth. Would an AI-only system have ‘noticed’ this? Or would it have been stuck with a potential confounder invisible to it if all it could see was the proposed inputs and the final output counts…</p>
+<p><img src="images/dwebench2.png" class="img-fluid"></p>
+<p>A lot of science can be done by just ‘following the recipe’, but many of the greatest discoveries come from something not going to plan - with a human there, filled with experience, to notice and go “hmm, that’s weird”. Hmm, that’s weird, my bacteria died where that mold is growing. Hmm, that’s weird, my photography film is getting foggy near my uranium salts. Hmm, that’s weird, …</p>
+<p>Even when you’re not hoping for crazy breakthroughs like these, there are so many places where this instinct comes in when doing biology. Hmm, that’s weird, these cultures smells funny. Hmm, that’s weird, there’s a precipitate in some of the wells, maybe the tirzepatide isn’t soluble enough in this solvent mix. Hmm, that’s weird, it’s gone all <strong>goopy</strong>. This is the thing REDACTED keeps on emphasizing to me - there is sooooo much knowledge that isn’t necessarily written down when it comes to frontier science, so much practice required to build the instinct for the ‘hmm, weird’ moments that comes from time at the bench, not from textbooks. At least for now, it’s hard to see how current training methods could instil these things into an AI[1].</p>
+</section>
+<section id="so-what-did-we-learn" class="level2">
+<h2 class="anchored" data-anchor-id="so-what-did-we-learn">So What Did We Learn?</h2>
+<p>I think one headline takeaway here is something like the following: <strong>Fancy AI models can boost performance of systems given knobs to tweak, by making reasonable initial guesses and iterating from feedback.</strong> I have no doubt we’ll see lots of results along these lines in the next few years - AI systems beating human baselines on everything from chip design to protein synthesis, using RL or just smart application of reasoning models + tools for automated or semi-automated experiments. <strong>BUT</strong> I think it’s premature to ignore the ideas of curiosity and suprise that run as a continuous thread through the history of science. If we’re only ever chasing an outcome we’ve planned and measured in advance, then we’re missing out on so much[2]. To me, the more exciting way to view it is something like this: <strong>Every enthusiastic amateur now has a capable and knowledgeable ‘advisor’ on hand, and as long as we keep up the curiosity and invest in our own learning, I think the human+ai combo has the potential to enable all sorts of cool science in the years to come.</strong></p>
+<p>Footnotes:</p>
+<p>[1] - Although it’s interesting to think about how this could change. Imitation learning like the pre-training/SFT paradigm seems like a poor way to learn to pick up any kind of insight like this. But with RL tasks getting longer and more complex, I can begin to see how we might start to get ‘micro’ insights despite only training for a specified outcome. “[code] now pass [test]” leads to “hmm, that’s weird, I’d expect the output to be 0 in all cases”. Perhaps long + general enough RL can reward true curiosty + exporation, just as long evolution towards the ‘reproduce’ outcome eventually led to clever stone knapping and modern civilization shortly thereafter. I remain <a href="https://johnowhitaker.dev/essays/future-ai.html">uncertain</a> :)</p>
+<p>[2] - I went and bought ‘Why Greatness Cannot Be Planned: The Myth of the Objective’ after I typed this - by all accounts it’s a fantastic book on this subject that I’ve been meaning to get to for a while, stay tuned for a review to land on my <a href="https://johnowhitaker.dev/books.html">books</a> page soon :)</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/johnowhitaker\.dev");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
