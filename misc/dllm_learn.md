@@ -3,12 +3,12 @@ title: "'Diffusion Beats Autoregressive in Data-Constrained Settings' - Paper re
 date: 2025-08-07
 categories: 
   - "Video"
-image: "thumbnails/dllm_learn.jpg"
+image: "thumbnails/dllm_learn.png"
 ---
 
 ### 'Diffusion Beats Autoregressive in Data-Constrained Settings' - Paper read + a win for open review
 
-{{< video https://www.youtube.com/embed/gJ4bvOX-1CE >}}
+{{< video https://www.youtube.com/embed/jgLOsT4EwAQ >}}
 
 In this video we take a look at the paper 'Diffusion Beats Autoregressive in Data-Constrained Settings' (http://arxiv.org/abs/2507.15857) and a great discussion on Twitter that helped push the results + related hypotheses further, to the benefit of all. 
 
