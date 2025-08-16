@@ -10,7 +10,32 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.8.20</generator>
-<lastBuildDate>Sun, 03 Aug 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 07 Aug 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>‘Diffusion Beats Autoregressive in Data-Constrained Settings’ - Paper read + a win for open review</title>
+  <link>https://johnowhitaker.dev/misc/dllm_learn.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="diffusion-beats-autoregressive-in-data-constrained-settings---paper-read-a-win-for-open-review" class="level3">
+<h3 class="anchored" data-anchor-id="diffusion-beats-autoregressive-in-data-constrained-settings---paper-read-a-win-for-open-review">‘Diffusion Beats Autoregressive in Data-Constrained Settings’ - Paper read + a win for open review</h3>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/gJ4bvOX-1CE" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>In this video we take a look at the paper ‘Diffusion Beats Autoregressive in Data-Constrained Settings’ (http://arxiv.org/abs/2507.15857) and a great discussion on Twitter that helped push the results + related hypotheses further, to the benefit of all.</p>
+<p>After I shared it, some of the authors shared a parallel work that addressed some issues in the original but found the same overall lesson: when data constrained, dLLMs learn better than AR (but only after a lot of compute): https://jinjieni.notion.site/Diffusion-Language-Models-are-Super-Data-Learners-239d8f03a866800ab196e49928c019ac - very much worth checking out as a postscript to the video.</p>
+<p>Tweets referenced:</p>
+<p>https://x.com/giffmana/status/1947729993607348255 https://x.com/giffmana/status/1949001902970339471 https://x.com/mihirp98/status/1953196510725980173 https://x.com/giffmana/status/1953206125639123188</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Video</category>
+  <guid>https://johnowhitaker.dev/misc/dllm_learn.html</guid>
+  <pubDate>Thu, 07 Aug 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/misc/thumbnails/dllm_learn.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Duckweed Growth Experiments, or, ‘LLMs as General Optimizers in Science’</title>
   <link>https://johnowhitaker.dev/posts/dwebench.html</link>
@@ -1952,37 +1977,6 @@ font-style: inherit;">107</span>].mean()</span>
   <category>blogs</category>
   <guid>https://johnowhitaker.dev/posts/DAS.html</guid>
   <pubDate>Mon, 17 Feb 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Bubble Colors</title>
-  <link>https://johnowhitaker.dev/misc/bubble_colors.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>I learned recently that all it takes to get nice photos/videos of bubbles is a wide area light source - which I happened to have on hand in the form of a video light a friend was getting rid of. You blow a bubble onto something that will keep it in place - in my case an inverted teacup, and then photograph the reflection of the light. The results are stunning:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/misc/thumbnails/bubble_photo.jpg" class="img-fluid figure-img"></p>
-<figcaption>Bubble colors</figcaption>
-</figure>
-</div>
-<p>It amused me that I liked these so much given that I’ve also been loving my <a href="mini-hw-projects/scope_mods.md">crystal photography</a>. More than that - the color palettes seem very similar… Turns out, this is because they both rely on similar thin-film effects (although not identical, since in the crystal case the colors show up thanks to the polarizing filters and the crystals ability to change the polarization of light). You can look up the ‘Michel-Lévy color chart’ to see the expected color for a section of a given thickness and birefringence. I found <a href="https://github.com/markus-bauer/calculated_Michel_Levy_Chart">this code</a> to calculate these values, and turned them into <a href="https://www.shadertoy.com/view/Wcf3R8">this shader</a> which looks like this:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/misc/thumbnails/bubble_shader.png" class="img-fluid figure-img"></p>
-<figcaption>shader</figcaption>
-</figure>
-</div>
-<p>Not nearly as pretty as the real thing though - for that I’ll need to venture into the world of fluid dynamics simulations, a rabbit hole I look forward to immensely :)</p>
-
-
-
- ]]></description>
-  <category>misc</category>
-  <guid>https://johnowhitaker.dev/misc/bubble_colors.html</guid>
-  <pubDate>Mon, 10 Feb 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
