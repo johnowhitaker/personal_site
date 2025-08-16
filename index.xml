@@ -21,7 +21,7 @@
 
 <section id="diffusion-beats-autoregressive-in-data-constrained-settings---paper-read-a-win-for-open-review" class="level3">
 <h3 class="anchored" data-anchor-id="diffusion-beats-autoregressive-in-data-constrained-settings---paper-read-a-win-for-open-review">‘Diffusion Beats Autoregressive in Data-Constrained Settings’ - Paper read + a win for open review</h3>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/gJ4bvOX-1CE" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/jgLOsT4EwAQ" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 <p>In this video we take a look at the paper ‘Diffusion Beats Autoregressive in Data-Constrained Settings’ (http://arxiv.org/abs/2507.15857) and a great discussion on Twitter that helped push the results + related hypotheses further, to the benefit of all.</p>
 <p>After I shared it, some of the authors shared a parallel work that addressed some issues in the original but found the same overall lesson: when data constrained, dLLMs learn better than AR (but only after a lot of compute): https://jinjieni.notion.site/Diffusion-Language-Models-are-Super-Data-Learners-239d8f03a866800ab196e49928c019ac - very much worth checking out as a postscript to the video.</p>
 <p>Tweets referenced:</p>
@@ -34,7 +34,7 @@
   <category>Video</category>
   <guid>https://johnowhitaker.dev/misc/dllm_learn.html</guid>
   <pubDate>Thu, 07 Aug 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://johnowhitaker.dev/misc/thumbnails/dllm_learn.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://johnowhitaker.dev/misc/thumbnails/dllm_learn.png" medium="image" type="image/png" height="87" width="144"/>
 </item>
 <item>
   <title>Duckweed Growth Experiments, or, ‘LLMs as General Optimizers in Science’</title>
