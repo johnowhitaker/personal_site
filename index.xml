@@ -9,7 +9,7 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.8.18</generator>
+<generator>quarto-1.8.20</generator>
 <lastBuildDate>Sun, 03 Aug 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Duckweed Growth Experiments, or, ‘LLMs as General Optimizers in Science’</title>
