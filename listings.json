@@ -2,6 +2,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/posts/cubes.html",
       "/misc/dllm_learn.html",
       "/posts/dwebench.html",
       "/posts/vc_wins.html",
@@ -204,6 +205,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/cubes.html",
       "/misc/dllm_learn.html",
       "/posts/dwebench.html",
       "/posts/vc_wins.html",
