@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2022-07-19">
-<meta name="description" content="Can you tell how wealthy a place is from space? It turns out that this is a very important question - an answer of ‘yes’ would mean that we can figure out how wealth is distributed within a country without needing to run expensive national surveys. For this project, I’ll be attempting to do exactly this, recreating some recent research to map poverty across Africa using existing household surveys and remote sensing data.">
 
-<title>Mapping Econimic Wellbeing from Space – johnowhitaker.dev</title>
+<title>Thing Recommendations – johnowhitaker.dev</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,24 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a8fb0b7ad92d43da6d3c93b747a65c22.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a8fb0b7ad92d43da6d3c93b747a65c22.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,15 +69,41 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../styles.css">
-<meta name="twitter:title" content="Mapping Econimic Wellbeing from Space – johnowhitaker.dev">
-<meta name="twitter:description" content="Can you tell how wealthy a place is from space? It turns out that this is a very important question - an answer of ‘yes’ would mean that we can figure out how wealth is distributed within a country without needing to run expensive national surveys. For this project, I’ll be attempting to do exactly this, recreating some recent research to map poverty across Africa using existing household surveys and remote sensing data.">
-<meta name="twitter:image" content="https://johnowhitaker.dev/wandb_reports/map.png">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+<meta name="twitter:title" content="Thing Recommendations – johnowhitaker.dev">
+<meta name="twitter:description" content="">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image-height" content="670">
-<meta name="twitter:image-width" content="893">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -89,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -99,11 +123,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../all.html"> 
+    <a class="nav-link" href="./all.html"> 
 <span class="menu-text">Everything Feed</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -112,35 +136,35 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-more">    
         <li>
-    <a class="dropdown-item" href="../blog.html">
+    <a class="dropdown-item" href="./blog.html">
  <span class="dropdown-text">Blog Archive</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tsbabn.html">
+    <a class="dropdown-item" href="./tsbabn.html">
  <span class="dropdown-text">TSBABN</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../resume.html">
+    <a class="dropdown-item" href="./resume.html">
  <span class="dropdown-text">Resume: Jonathan Whitaker</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../books.html">
+    <a class="dropdown-item" href="./books.html">
  <span class="dropdown-text">Book Recommendations</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../blogs.html">
+    <a class="dropdown-item" href="./blogs.html">
  <span class="dropdown-text">Blog Recommendations</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../yt.html">
+    <a class="dropdown-item" href="./yt.html">
  <span class="dropdown-text">YouTube Channel Recommendations</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../appearances.html">
+    <a class="dropdown-item" href="./appearances.html">
  <span class="dropdown-text">Appearances</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../things.html">
+    <a class="dropdown-item" href="./things.html">
  <span class="dropdown-text">Thing Recommendations</span></a>
   </li>  
         <li>
@@ -169,28 +193,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Mapping Econimic Wellbeing from Space</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">Reports</div>
-  </div>
-  </div>
-
-<div>
-  <div class="description">
-    Can you tell how wealthy a place is from space? It turns out that this is a very important question - an answer of ‘yes’ would mean that we can figure out how wealth is distributed within a country without needing to run expensive national surveys. For this project, I’ll be attempting to do exactly this, recreating some recent research to map poverty across Africa using existing household surveys and remote sensing data.
-  </div>
+<h1 class="title">Thing Recommendations</h1>
 </div>
+
 
 
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">July 19, 2022</p>
-    </div>
-  </div>
   
     
   </div>
@@ -200,8 +210,68 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Report link: https://wandb.ai/johnowhitaker/dhs/reports/Mapping-Economic-Well-being–VmlldzoyMjY4NTI1</p>
-<p>TODO port content over</p>
+<p>Especially since moving to the land of plenty, I’ve come to appreciate how many <em>useful</em> things there are, and also how terrible it can be trying to find out which of the billions of options are good. So, inspired by <a href="https://near.blog/things/">near.blog/things</a>, here are some items that I’ve enjoyed owning, in case that is useful info for you. For fun, I’m also including some things I want but haven’t obtained yet. Sometimes the thing is representative of a category, any of which is &gt;&gt;&gt; not having the thing. Other times, there’s a specific model that is a standout within the category - in which case I mark it with a *.</p>
+<p>For now this is a WIP, I will try to add to this over time. Last updated 2025-09-08</p>
+<ul>
+<li>A 3D printer. I have the Ender 3 V3 SE, now a bit underwhelming compared to the modern crop of bamboo-inspired fast options. If <span class="math display">\[$ and idealistic, Prusa. If \]</span>$ and want easy, Bamboo. If $ look on Facebook Marketplace near you - I see lots of ~$100 creality printers that would be just fine! I use mine to print stuff regularly, but it’s also a heat plate you can set (e.g.&nbsp;I’ve used this for incubating bacteria and for dissolving things while growing crystals) and a motion stage (I use it to scan slides under a microscope). If you have a raspi or old laptop, Octoprint gives you control over the network which is convenient.</li>
+<li>Electronics Diagonal Cutter - Knipex is the brand people talk about, but even the cheap ones are useful for flush-cutting things close to circuit boards and for cleaning up 3D prints and …</li>
+<li>Scope meter. I got <a href="https://www.amazon.com/dp/B0C3D1KVPB">this</a> Oscilloscope Multimeter for $60. Insane! If you’re doing any electronics where it’s useful to see how a signal changes with time, this is so useful! I’d guess most hobbyists don’t need a fancy big scope, and could use this just fine.</li>
+<li>Canned Air / Air Dusters. If you need lots, having a compressor in the shop makes sense, as does getting one of those battery-powered blowers. But an air dister can lasts a LONG time when you’re just occasionally using it, can be inverted for instant cooling power (useful on hot glue), is flammable (extra fun) and is about $5.</li>
+<li>iFixit screwdriver set (or similar). I have <a href="https://www.amazon.com/dp/B08NWKMT8V">this</a> small set, great for weird screws in small electronics</li>
+<li>Kapton tape. Insulating, super heat resistant polyamide tape, I under-use it because it feels expensive but it’s great</li>
+<li>Gaffer tape. Superior duct tape that doesn’t leave sticky residue and sticks to itself extremely well.</li>
+<li>Thermal Camera - I found <a href="https://www.amazon.com/dp/B0C1ZTWYTR">this</a> on special for $160, with 256x192 IR resolution, something that would sound insane and be $$$$ a few years ago. It’s a toy, but one that’s occasionally useful. Get if that’s something you’re excited about but you can live without it :)</li>
+<li>Raynox DCR-250 Macro Adapter. This clips into the filter ring on your camera lens and let’s you focus close (~15cm) at high zoom. Clipping this to the zoom lens on my Panasonic Lumix FZ80 camera gives me the ability to take photos of things only a few mm in size, fantastic for bug and spider pics.</li>
+<li>A set of metric hardware. I got <a href="[amazon.com/dp/B07K1DV93T](http://amazon.com/dp/B07K1DV93T)">this</a> “1710Pcs Metric Bolt Assortment M2 M3 M4, 21 Sizes 4MM to 30MM Upgraded Zinc Plated Hex Socket Head Cap Machine Screws, 12.9 Alloy Steel Bolts and Nuts Kit Screws Nuts and Washers” set for $20 and it’s so sweet being able to grab what you need for a project.</li>
+<li>Similarly, start collecting a box of misc fasteners and other hardware.</li>
+<li>A soldering iron. A cheap kit (I got <a href="https://www.amazon.com/dp/B07GTGGLXN?th=1">this</a> $20 one) with sire, solder, heat shrink etc will cover beginner needs, you can upgrade to a USB-powered <a href="https://www.amazon.com/dp/B096X6SG13">pinecil</a> or similar for precise work if you’re feeling fancy.</li>
+<li>A blowtorch. Once you have it you’ll realize how useful it is! Even a cheap cooking one (make for crem brule etc) is great.</li>
+<li>An air quality monitor. I have XXX, nerds recommend YYY, but key is to have <em>something</em> to measure, to show you want to improve. Relatedly:</li>
+<li>Air purifiers. I have a couple of Levoit <a href="https://www.amazon.com/dp/B07VVK39F7">ones</a> - having one running in sleep mode by our bed has cut snoring time hugely and improved sleep quality. For &lt;$100 that’s a big win.</li>
+<li>Dynamixel servos. I use and love those cheap hobby servos, but there are cases where they won’t cut it. Dynamixels can be daisy-chained, have position and force feedback, and various other fancy tricks. So you can make a robot, puppet it with the servos reporting position, then play the motion back. Pricey though…</li>
+<li>An under-desk treadmill. I got <a href="https://www.amazon.com/dp/B08P7K8XTX">this one</a> (~$200) and it’s worked fine. Walk while on calls, or when watching videos/reading papers. If you have the space + $$$ and live somewhere where outside is not always lovely, might be worth it.</li>
+<li>A portable power station. We got <a href="https://www.amazon.com/dp/B0D62GMQ3F">this</a> 288Wh Anker one, there are lots of options at different power levels etc. But having electricity in a portable form factor is useful (e.g.&nbsp;camping, hot glue or wired tools somewhere far from outlets) and having a backup to power some things in case of power out is also nice.</li>
+<li>Bone conduction headphones. I like having something that doesn’t sit in my ears - for me much nicer than ear buds on on-ear headphones. I have <a href="https://www.amazon.com/dp/B091XZM6KK">these</a> since the mic is nice for work calls etc, I also had <a href="https://www.amazon.com/dp/B09BW29FJS">these</a> ($80) and 4 family members have since gotten a pair - so nice for running, combine with ear plugs to make them useable while travelling (they don’t block any noise). At my desk I sometimes use XXX over-ear headphones but the bone conducting ones are my daiily driver 90% use choice.</li>
+<li>Bright lights. Like very bright. Also chicken lamps (I got <a href="https://www.amazon.com/dp/B0CX1C2JR8">these</a> 240W ones) to simulate sunshine during the cold winter months. People make fun of me in my basement with my chicken lamp, but it’s soooo nice to ahve it on for a bit to make it feel like morning sunshine :)</li>
+<li>Cheap laser pointers are bright, cheap and fun. Don’t point them at people. The blue one gets some cool flourescence going in various materials. Toy.</li>
+<li>UV torch. TODO</li>
+<li>Microscope TODO</li>
+<li>Calipers TODO</li>
+<li>VR TODO</li>
+<li>Dremel? Jigsaw?</li>
+<li>RPI TODO</li>
+<li>The good masks TODO</li>
+<li>Heavy duty workshop scissors</li>
+<li>Inflatable SUP</li>
+<li>Meal squares?</li>
+<li>Drawing tablet?</li>
+<li>label maker?</li>
+<li>TODO</li>
+</ul>
+<p>Music</p>
+<ul>
+<li>Decent Sampler</li>
+<li>A midi keyboard</li>
+<li>Seaboard Rise 2</li>
+<li>A ukulele</li>
+<li>A mellodica</li>
+<li>Otomatone ?</li>
+<li>USB audio interface?</li>
+</ul>
+<p>Things I Want</p>
+<ul>
+<li>A spectrometer</li>
+<li>A camera without IR filter</li>
+<li>Smith blade pro (M390 blade, seems cool)</li>
+<li>Magnetic viewing film</li>
+<li>A looper pedal like the trio+</li>
+<li>An old iPad or other tablet-like device</li>
+<li>A slackline, once I live somewhere with a nice place for one</li>
+<li>A pebble watch (the new ones)</li>
+<li>super strong magnets</li>
+<li>A tungsten cube</li>
+</ul>
+<p>(As you can see, my basic needs have already been met)</p>
 
 
 
