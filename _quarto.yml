@@ -13,8 +13,6 @@ website:
         text: Everything Feed
       - text: "More"
         menu:
-          - href: tils.qmd
-            text: TILs
           - href: blog.qmd
             text: Blog Archive
           - href: tsbabn.qmd
@@ -24,6 +22,7 @@ website:
           - blogs.md
           - yt.md
           - appearances.qmd
+          - things.md
           - icon: rss
             text: RSS Feed
             href: "https://johnowhitaker.dev/index.xml"
