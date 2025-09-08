@@ -13,8 +13,6 @@ website:
         text: Everything Feed
       - text: "More"
         menu:
-          - href: blog.qmd
-            text: Blog Archive
           - href: tsbabn.qmd
             text: TSBABN
           - resume.md

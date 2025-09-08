@@ -1,9 +1,0 @@
----
-title: "DataScienceCastnet"
-listing:
-  contents: dsc
-  sort: "date desc"
-  type: default
-  categories: False
----
-An archive of my blog posts, originally posted on datasciencecastnet.home.blog.This may not be their permanent home.
