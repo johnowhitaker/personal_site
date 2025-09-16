@@ -23,7 +23,9 @@ He was focused on mathematics, but as Jeremy and I tried to codify our approach 
 
 Let's consider a quick example. For 2024's Advent of Code, Day 1's solution involves comparing two lists, sorted by value (there's a whole backstory involving elves, which you can [read if you like](https://adventofcode.com/2024/day/1)). Let's imagine we've considered the problem, and are now focused on a small sub-task: extracting the first (sorted) list. We start with the sample data provided:
 
-```pythonx = '3   4\n4   3\n2   5\n1   3\n3   9\n3   3'```
+```python
+x = '3   4\n4   3\n2   5\n1   3\n3   9\n3   3'
+```
 
 Our plan might be:
 
@@ -34,7 +36,9 @@ Our plan might be:
 You could likely write this function in one go. Indeed, if you typed `# Get a sorted list of the first number from each line` your AI auto-complete could likely do the rest. But we're trying to build a discipline that will serve us on harder tasks that neither humans nor AI can one-shot. So, after thinking through the plan, we begin working on individual steps. We aim to write no more than a few lines of code at a time, with each piece giving some useful output that you can use to **verify** that you're on the right track:
 
 ```python
-lines = x.splitlines()lines>>> ['3   4', '4   3', '2   5', '1   3', '3   9', '3   3']
+lines = x.splitlines()
+lines
+>>> ['3   4', '4   3', '2   5', '1   3', '3   9', '3   3']
 ```
 
 Now we build up a list comprehension to get the first elements. We might start with `[o for o in lines]` and then add bits one at a time, inspecting the output, building up to: 
@@ -67,7 +71,11 @@ At this point, you'd reflect on the solution, think back to the larger plan, per
 
 ## The Power of Fast Feedback Loops
 
-The superpower that this kind of live, iterative coding gives you is near-instant feedback loops. You're not building your giant app, waiting for the code to upload, clicking through to a website and then checking a debug console for errors - you're inspecting the output of a chunk of code and seeing if it matches what you expected. It's still possible to make mistakes and miss edge cases, but it is a LOT easier to catch most mistakes early when you code in this way.This idea of setting things up so that you get feedback as soon as possible pops up again and again. Our cofounder Eric Ries talks about this in his book 'The Lean Startup', where getting feedback from customers is valuable for quick iteration on product or business ideas. Kaggle pros talk about the importance of fast evals - if you can test an idea in 5 minutes, you can try a lot more ideas than you could if each experiment requires 12 hours of model training.This is one reason many people like 'Test Driven Development' - where carefully written tests check for expected behaviour. The answer.ai style of notebook-driven development just uses a mix of "proper" tests (e.g. asserts thoughout the notebooks that check things formally) and the human-based sanity checks based on inspecting outputs as we go.
+The superpower that this kind of live, iterative coding gives you is near-instant feedback loops. You're not building your giant app, waiting for the code to upload, clicking through to a website and then checking a debug console for errors - you're inspecting the output of a chunk of code and seeing if it matches what you expected. It's still possible to make mistakes and miss edge cases, but it is a LOT easier to catch most mistakes early when you code in this way.
+
+This idea of setting things up so that you get feedback as soon as possible pops up again and again. Our cofounder Eric Ries talks about this in his book 'The Lean Startup', where getting feedback from customers is valuable for quick iteration on product or business ideas. Kaggle pros talk about the importance of fast evals - if you can test an idea in 5 minutes, you can try a lot more ideas than you could if each experiment requires 12 hours of model training.
+
+This is one reason many people like 'Test Driven Development' - where carefully written tests check for expected behaviour. The answer.ai style of notebook-driven development just uses a mix of "proper" tests (e.g. asserts thoughout the notebooks that check things formally) and the human-based sanity checks based on inspecting outputs as we go.
 
 ## AI: Shared Context is Key
 
@@ -116,7 +124,7 @@ I've done lots of small projects. Big projects, new to me, different options. AA
 
 ## So you hate vibe-coding?
 
-No :) I love it, **for some things**. There is much more software that I want written than I have time to write. There are some things I don't much care to learn about, but still need to code for. There are many, many new options for non-coders now, thanks to the ability to conjure up bespoke software from vague descriptions. We're just not fans of it when it comes to software that matters, and don't think it replaces the learning value of truly working at programming as a craft.
+No :) I love it, **for [some things](https://johnowhitaker.dev/posts/vc_wins.html)**. There is much more software that I want written than I have time to write. There are some things I don't much care to learn about, but still need to code for. There are many, many new options for non-coders now, thanks to the ability to conjure up bespoke software from vague descriptions. We're just not fans of it when it comes to software that matters, and don't think it replaces the learning value of truly working at programming as a craft.
 
 ## OK, where can I use solveit
 
