@@ -10,7 +10,26 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.9.0</generator>
-<lastBuildDate>Mon, 08 Sep 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 09 Sep 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Jet-Nemotron, Gated DeltaNet, and the slow triumph of hybrid models</title>
+  <link>https://johnowhitaker.dev/posts/jet-nemotron.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/vNzuV5GboEw" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>Jet Nemotron paper: https://www.arxiv.org/abs/2508.15884 Gated Delta Networks: https://arxiv.org/abs/2412.06464 The review of hybrid linear attention variants we didn’t really chat about: https://arxiv.org/abs/2507.06457 Qwen 3 Next: https://qwen.ai/blog?id=4074cca80393150c248e508aa62983f9cb7d27cd&amp;from=research.latest-advancements-list</p>
+<p>A few days after the video came the official Qwen 3 Next announcement, scaling Gated Delta-Net hybrid models up a bunch (and achiving high sparsity in their MoE too) - hooray for more efficient models! Hope it’s interesting.</p>
+
+
+
+ ]]></description>
+  <category>Video</category>
+  <guid>https://johnowhitaker.dev/posts/jet-nemotron.html</guid>
+  <pubDate>Tue, 09 Sep 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Counting Incomplete Cubes</title>
   <link>https://johnowhitaker.dev/posts/cubes.html</link>
@@ -2867,62 +2886,6 @@ font-style: inherit;">'View'</span>}]</span></code></pre></div></div>
   <category>essays</category>
   <guid>https://johnowhitaker.dev/essays/future-ai.html</guid>
   <pubDate>Tue, 18 Mar 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Quickly Making Carbon Quantum Dots</title>
-  <link>https://johnowhitaker.dev/mini-hw-projects/cqds.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>“Quantum dots” have a very cool name (possibly due to marketing for fancy TVs) but they live up to it - they’re tiny particles that flouresce in pretty colors, with applications in everything from solar cells to medical imaging. They’re often made from somewhat nasty materials like cadmium, but carbon quantum dots (CQDs) are a more environmentally friendly alternative. They can be made from simple precursors at home! In this post I share my early experiments making them in a few different ways.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/qd1.png" class="img-fluid figure-img"></p>
-<figcaption>A laser shines through three cuvettes, two of which contain carbon quantum dots</figcaption>
-</figure>
-</div>
-<p>Initial inspo: <a href="https://www.instructables.com/DIY-Quantum-DotsNanotech-in-Your-Kitchen/">this Instructables post</a> and various replications from hobby scientists on the net. Using a microwave cut the time taken down from 4-8 hours (the ‘hydrothermal method’ in the formal literature) to &lt;10 minutes. In my attempt I used much smaller quantities that the Instructables post, so two ~2-minute microwave sessions were sufficient. Still - I’m an impatient chap!</p>
-<p>TODO link video</p>
-<p>So, here’s my new, minimal, quick-and-dirty method for making carbon quantum dots:</p>
-<ul>
-<li>In a spoon, put a pinch of ascorbic acid (vitamin C) powder* and a pinch of sucrose (table sugar).</li>
-<li>Add a few drops of water (~1/4 to ~1/2 tsp)</li>
-<li>Heat over a flame (I used a mini blowtorch) until the most of the liquid is gone and the color starts turning golden brown (like caramel).</li>
-<li>Add some water back, yiending a brownish-yellow syrup.</li>
-</ul>
-<p>*: Use vinegar instead of water for a more acidic solution if you don’t have ascorbic acid on hand - bubbles more furiously but works just as well.</p>
-<p>Drip some of this into water while shining a UV light or blue laser through it. If all goes well you’ll see some beautiful blue-green flourescence!</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/qd3.png" class="img-fluid figure-img"></p>
-<figcaption>Dropping in the syrup</figcaption>
-</figure>
-</div>
-<p>I’ve been trying to use a technique called ‘Direct Light Scattering’ to estimate the particle size. From the literature, it seems the CQDs are ~2-4nm. But unlike other QDs, the color isn’t tied to size as much - so who knows. I was skeptical these are even true quantum dots - maybe caremalized sugar just fluoresces under UV light? But nope, seems like this is matching what the science nerds do and these are indeed QDs. My DLS setup needs some tweaking before I’m ready to report any results with certainty though :)</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/qd2.png" class="img-fluid figure-img"></p>
-<figcaption>Attempting DLS - this attempt was too informal to be useful</figcaption>
-</figure>
-</div>
-<p>PS: other things I tried</p>
-<ul>
-<li>Just sugar (no acid) - no flourescence</li>
-<li>A basic version with sodium bicarbonate (baking soda) in place of ascorbic acid - no flourescence</li>
-<li>Using vinegar instead of water, with just sugar added - WORKS</li>
-<li>Trying other solvents (careful if you’re heating IPA for e.g.&nbsp;- it’s flammable!) or adding things later to try and change the color - no luck</li>
-<li>Eating it (“Johno don’t eat the quantum!”) - no superpowers yet. Probably don’t do this :)</li>
-</ul>
-<p>I really want to make different colors, so next I’ll look around for other carbon precursors and try different heating methods. For now, I have an easy way to make pretty glowy water, which is at least a start!</p>
-
-
-
- ]]></description>
-  <category>mini-hw-projects</category>
-  <guid>https://johnowhitaker.dev/mini-hw-projects/cqds.html</guid>
-  <pubDate>Sat, 01 Mar 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

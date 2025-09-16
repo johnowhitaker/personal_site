@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-09-09">
+<meta name="description" content="Reading the Jet Nemotron paper to get a feel for how next-gen models might replace most of their attention blocks with more efficient alternatives, achieving much higher throughput without sacrificing too much quality.">
 
-<title>Blog Recommendations – johnowhitaker.dev</title>
+<title>Jet-Nemotron, Gated DeltaNet, and the slow triumph of hybrid models – johnowhitaker.dev</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +25,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f90cbdadd06a7ce36d2760346202a0fd.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a8fb0b7ad92d43da6d3c93b747a65c22.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-f90cbdadd06a7ce36d2760346202a0fd.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-a8fb0b7ad92d43da6d3c93b747a65c22.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,9 +72,9 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
-<meta name="twitter:title" content="Blog Recommendations – johnowhitaker.dev">
-<meta name="twitter:description" content="">
+<link rel="stylesheet" href="../styles.css">
+<meta name="twitter:title" content="Jet-Nemotron, Gated DeltaNet, and the slow triumph of hybrid models – johnowhitaker.dev">
+<meta name="twitter:description" content="Reading the Jet Nemotron paper to get a feel for how next-gen models might replace most of their attention blocks with more efficient alternatives, achieving much higher throughput without sacrificing too much quality.">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
 </head>
@@ -84,7 +86,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -94,11 +96,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./all.html"> 
+    <a class="nav-link" href="../all.html"> 
 <span class="menu-text">Everything Feed</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -107,31 +109,31 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-more">    
         <li>
-    <a class="dropdown-item" href="./tsbabn.html">
+    <a class="dropdown-item" href="../tsbabn.html">
  <span class="dropdown-text">TSBABN</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./resume.html">
+    <a class="dropdown-item" href="../resume.html">
  <span class="dropdown-text">Resume: Jonathan Whitaker</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./books.html">
+    <a class="dropdown-item" href="../books.html">
  <span class="dropdown-text">Book Recommendations</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./blogs.html">
+    <a class="dropdown-item" href="../blogs.html">
  <span class="dropdown-text">Blog Recommendations</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./yt.html">
+    <a class="dropdown-item" href="../yt.html">
  <span class="dropdown-text">YouTube Channel Recommendations</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./appearances.html">
+    <a class="dropdown-item" href="../appearances.html">
  <span class="dropdown-text">Appearances</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./things.html">
+    <a class="dropdown-item" href="../things.html">
  <span class="dropdown-text">Thing Recommendations</span></a>
   </li>  
         <li>
@@ -152,28 +154,36 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#others-to-be-categorized" id="toc-others-to-be-categorized" class="nav-link active" data-scroll-target="#others-to-be-categorized">Others / To Be Categorized</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Blog Recommendations</h1>
-</div>
+<h1 class="title">Jet-Nemotron, Gated DeltaNet, and the slow triumph of hybrid models</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Video</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    Reading the Jet Nemotron paper to get a feel for how next-gen models might replace most of their attention blocks with more efficient alternatives, achieving much higher throughput without sacrificing too much quality.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 9, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -183,65 +193,11 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>I hope to better document other blogs I’ve found interesting + useful, as well as building out my other recs (see <a href="./books">books</a>, <a href="./yt">YouTube recs</a>). For now here are some faves in a few categories (TODO), and an unordered list of others I’ve noted down over time:</p>
-<section id="others-to-be-categorized" class="level2">
-<h2 class="anchored" data-anchor-id="others-to-be-categorized">Others / To Be Categorized</h2>
-<p>https://ciechanow.ski/archives/ incredible explainers (related: https://imadr.me/pbr/)</p>
-<p>https://lcamtuf.substack.com/archive and e.g.&nbsp;https://lcamtuf.coredump.cx/offsite.shtml</p>
-<p>https://www.danielcorin.com/til/</p>
-<p>https://www.carlbass.com/</p>
-<p>https://mitxela.com/projects/scaffold</p>
-<p>https://simonwillison.net/</p>
-<p>http://lab.whitequark.org/</p>
-<p>https://atinygreencell.com/</p>
-<p>https://benkrasnow.blogspot.com/</p>
-<p>https://scanlime.org/</p>
-<p>hamel.dev</p>
-<p>wasim’s one</p>
-<p>Grudgingly, https://gwern.net/zeo/co2</p>
-<p>https://brainbaking.com/ (not that interesting but TODO add to small web)</p>
-<p>https://sohldickstein.com/art</p>
-<p>https://lilianweng.github.io/</p>
-<p>https://douglasorr.github.io/</p>
-<p>http://dmorris.net/projects/</p>
-<p>https://yuntiandeng.com/</p>
-<p>https://justinmiller.io/</p>
-<p>https://dustinbrett.com/ for the unique UI</p>
-<p>https://worrydream.com/</p>
-<p>https://jake.fun/</p>
-<p>https://now.blakewatson.com/</p>
-<p>https://nownownow.com/US-OR</p>
-<p>https://interconnected.org/home/ maybe (nit sure)</p>
-<p>https://tahnok.github.io/archive/ maybe (not amazing)</p>
-<p>https://spritesmods.com/?art=whiteboard&amp;page=5</p>
-<p>https://www.logicalplanet.com/ as an amazing backlog of 3d printed designs</p>
-<p>https://leancrew.com/all-this/archive/ maybe (haven’t explored yet)</p>
-<p>https://www.furidamu.org/ very cool guy TODO reach out</p>
-<p>https://finbarr.ca/blog/</p>
-<p>https://lilianweng.github.io/ ah duplicate ignore</p>
-<p>https://ben-mini.github.io/</p>
-<p>https://ciechanow.ski/archives/ amazing articles on e.g.&nbsp;sound vs a blog</p>
-<p>https://blog.aqnichol.com/ pickle</p>
-<p>https://carlo.ai/books fasthtml one</p>
-<p>https://substack.com/<span class="citation" data-cites="richardngo">@richardngo</span> is a little different - fiction from an alignment research type dude, interesting</p>
-<p>https://joshuabird.com/ amazing youtube channel too, anticipate he’ll go far</p>
-<p>https://nabeelqu.co/ https://nabeelqu.co/</p>
-<p>https://minihf.com/ JDPs project, some weird musings on LLMs etc</p>
-<p>https://transistor-man.com/Projects.html amazing DIY builds documented very thoroughly</p>
-<p>https://rensdimmendaal.com/posts/</p>
-<p>https://www.nickdesnoyer.com/ designer flowers</p>
-<p>https://zhengdongwang.com/blog</p>
-<p>https://near.blog/ definitely, I like /things as a category/page also look at /links for a goldmine</p>
-<p>https://dshinsel.com/eb6/</p>
-<p>https://www.aaedmusa.com/projects</p>
-<p>https://maurycyz.com/</p>
-<p>https://lisyarus.github.io/blog/ inc good particle life sim stuff</p>
-<p>https://milofultz.com/ideas.html</p>
-<p>https://www.benjaminoutram.com/liquidcrystals/</p>
-<p>https://wrongthink.link/posts/all-you-need-is-ssh/</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/vNzuV5GboEw" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>Jet Nemotron paper: https://www.arxiv.org/abs/2508.15884 Gated Delta Networks: https://arxiv.org/abs/2412.06464 The review of hybrid linear attention variants we didn’t really chat about: https://arxiv.org/abs/2507.06457 Qwen 3 Next: https://qwen.ai/blog?id=4074cca80393150c248e508aa62983f9cb7d27cd&amp;from=research.latest-advancements-list</p>
+<p>A few days after the video came the official Qwen 3 Next announcement, scaling Gated Delta-Net hybrid models up a bunch (and achiving high sparsity in their MoE too) - hooray for more efficient models! Hope it’s interesting.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
