@@ -6,7 +6,7 @@ I hope to better document other blogs I've found interesting + useful, as well a
 
 ## Others / To Be Categorized
 
-https://ciechanow.ski/archives/ incredible explainers
+https://ciechanow.ski/archives/ incredible explainers (related: https://imadr.me/pbr/)
 
 https://lcamtuf.substack.com/archive and e.g. https://lcamtuf.coredump.cx/offsite.shtml
 
@@ -109,3 +109,5 @@ https://lisyarus.github.io/blog/ inc good particle life sim stuff
 https://milofultz.com/ideas.html
 
 https://www.benjaminoutram.com/liquidcrystals/
+
+https://wrongthink.link/posts/all-you-need-is-ssh/
