@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.0">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-09-12">
+<meta name="description" content="My personal take on ‘the solveit way’ being developed at Answer.AI, our evolving philosophy of software creation">
+
+<title>What Is Solveit? – johnowhitaker.dev</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-f90cbdadd06a7ce36d2760346202a0fd.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-a8fb0b7ad92d43da6d3c93b747a65c22.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+<meta name="twitter:title" content="What Is Solveit? – johnowhitaker.dev">
+<meta name="twitter:description" content="My personal take on ‘the solveit way’ being developed at Answer.AI, our evolving philosophy of software creation">
+<meta name="twitter:image" content="https://johnowhitaker.dev/posts/images/vc_vs_solveit.png">
+<meta name="twitter:creator" content="@johnowhitaker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="3387">
+<meta name="twitter:image-width" content="1877">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../all.html"> 
+<span class="menu-text">Everything Feed</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-more" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">More</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-more">    
+        <li>
+    <a class="dropdown-item" href="../tsbabn.html">
+ <span class="dropdown-text">TSBABN</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../resume.html">
+ <span class="dropdown-text">Resume: Jonathan Whitaker</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../books.html">
+ <span class="dropdown-text">Book Recommendations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../blogs.html">
+ <span class="dropdown-text">Blog Recommendations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../yt.html">
+ <span class="dropdown-text">YouTube Channel Recommendations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../appearances.html">
+ <span class="dropdown-text">Appearances</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../things.html">
+ <span class="dropdown-text">Thing Recommendations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://johnowhitaker.dev/index.xml"><i class="bi bi-rss" role="img">
+</i> 
+ <span class="dropdown-text">RSS Feed</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#inspiration-from-polya" id="toc-inspiration-from-polya" class="nav-link active" data-scroll-target="#inspiration-from-polya">Inspiration from Polya</a></li>
+  <li><a href="#application-to-coding-iterative-exploratory-coding-in-notebook-like-environments." id="toc-application-to-coding-iterative-exploratory-coding-in-notebook-like-environments." class="nav-link" data-scroll-target="#application-to-coding-iterative-exploratory-coding-in-notebook-like-environments.">Application to Coding: iterative, exploratory coding in notebook-like environments.</a></li>
+  <li><a href="#the-power-of-fast-feedback-loops" id="toc-the-power-of-fast-feedback-loops" class="nav-link" data-scroll-target="#the-power-of-fast-feedback-loops">The Power of Fast Feedback Loops</a></li>
+  <li><a href="#ai-shared-context-is-key" id="toc-ai-shared-context-is-key" class="nav-link" data-scroll-target="#ai-shared-context-is-key">AI: Shared Context is Key</a></li>
+  <li><a href="#ai-dialog-engineering-keeps-context-useful" id="toc-ai-dialog-engineering-keeps-context-useful" class="nav-link" data-scroll-target="#ai-dialog-engineering-keeps-context-useful">AI: Dialog Engineering Keeps Context Useful</a></li>
+  <li><a href="#ai-collaboration-not-replacement" id="toc-ai-collaboration-not-replacement" class="nav-link" data-scroll-target="#ai-collaboration-not-replacement">AI: Collaboration not Replacement</a></li>
+  <li><a href="#learning-trajectory-getting-more-powerful" id="toc-learning-trajectory-getting-more-powerful" class="nav-link" data-scroll-target="#learning-trajectory-getting-more-powerful">Learning Trajectory (Getting More Powerful)</a></li>
+  <li><a href="#mastery-requires-deliberate-practice-wip" id="toc-mastery-requires-deliberate-practice-wip" class="nav-link" data-scroll-target="#mastery-requires-deliberate-practice-wip">Mastery Requires Deliberate Practice (WIP)</a></li>
+  <li><a href="#long-term-software-creation-vibe-coded-demos-wip" id="toc-long-term-software-creation-vibe-coded-demos-wip" class="nav-link" data-scroll-target="#long-term-software-creation-vibe-coded-demos-wip">Long-Term Software Creation != Vibe-Coded Demos (WIP)</a></li>
+  <li><a href="#so-you-hate-vibe-coding" id="toc-so-you-hate-vibe-coding" class="nav-link" data-scroll-target="#so-you-hate-vibe-coding">So you hate vibe-coding?</a></li>
+  <li><a href="#ok-where-can-i-use-solveit" id="toc-ok-where-can-i-use-solveit" class="nav-link" data-scroll-target="#ok-where-can-i-use-solveit">OK, where can I use solveit</a></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">What Is Solveit?</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">&nbsp; - "solveit"</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    My personal take on ‘the solveit way’ being developed at Answer.AI, our evolving philosophy of software creation
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 12, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>At the end of last year, we ran a small course titled “How To Solve It With Code”. We closed signups after a day, and 1000 keen beans joined us for a 10-week deep dive into our general approach to solveing problems. It was taught via the vehicle of the ‘Advent of Code’ programming challenges and run in a new, purpose-built tool called solveit. As the course progressed, we had lots of fun going far beyond the original scope, exploring web development (with FastHTML), AI, business (with Eric Reis as a special guest), writing and more. And the solveit tool became an extremely useful test-bed for ideas around AI-assisted coding, learning and exploration. In the year since, we’ve continued to refine and expand both the process and the tools built in service of said process, and are ramping up for another cohort to share these developments with a wider audience. So, I figure it’s high time I attempt to write down my own version of what ‘the solveit method’ is… :)</p>
+<section id="inspiration-from-polya" class="level2">
+<h2 class="anchored" data-anchor-id="inspiration-from-polya">Inspiration from Polya</h2>
+<p>George Polya was a Hungarian mathematician who wrote the influential book “How to Solve It” in 1945. In it, he shares his philosophies on education (focus on acive learning,heuristic thinking and careful questioning to guide stodents towards discovering answers for themselves) and outlines a four-step problem-solving framework:</p>
+<ol type="1">
+<li>Understand the Problem: identify what you’re being asked to do; restate the problem</li>
+<li>Devise a Plan: draw on similar problems; break down into manageable parts; consider working backward; simplify the problem</li>
+<li>Carry Out the Plan: verify each step</li>
+<li>Look Back and Reflect: consider alternatives; extract lessons learned</li>
+</ol>
+<p>He was focused on mathematics, but as Jeremy and I tried to codify our approach to solveing problems with code, we realized that these ideas translate far beyond maths!</p>
+</section>
+<section id="application-to-coding-iterative-exploratory-coding-in-notebook-like-environments." class="level2">
+<h2 class="anchored" data-anchor-id="application-to-coding-iterative-exploratory-coding-in-notebook-like-environments.">Application to Coding: iterative, exploratory coding in notebook-like environments.</h2>
+<p>Let’s consider a quick example. For 2024’s Advent of Code, Day 1’s solution involves comparing two lists, sorted by value (there’s a whole backstory involving elves, which you can <a href="https://adventofcode.com/2024/day/1">read if you like</a>). Let’s imagine we’ve considered the problem, and are now focused on a small sub-task: extracting the first (sorted) list. We start with the sample data provided:</p>
+<p><code>pythonx = '3 &nbsp; 4\n4 &nbsp; 3\n2 &nbsp; 5\n1 &nbsp; 3\n3 &nbsp; 9\n3 &nbsp; 3'</code></p>
+<p>Our plan might be:</p>
+<ul>
+<li>Split into a list of lines</li>
+<li>Grab the first number from each line</li>
+<li>Sort</li>
+</ul>
+<p>You could likely write this function in one go. Indeed, if you typed <code># Get a sorted list of the first number from each line</code> your AI auto-complete could likely do the rest. But we’re trying to build a discipline that will serve us on harder tasks that neither humans nor AI can one-shot. So, after thinking through the plan, we begin working on individual steps. We aim to write no more than a few lines of code at a time, with each piece giving some useful output that you can use to <strong>verify</strong> that you’re on the right track:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>lines <span class="op">=</span> x.splitlines()lines<span class="op">&gt;&gt;&gt;</span> [<span class="st">'3 &nbsp; 4'</span>, <span class="st">'4 &nbsp; 3'</span>, <span class="st">'2 &nbsp; 5'</span>, <span class="st">'1 &nbsp; 3'</span>, <span class="st">'3 &nbsp; 9'</span>, <span class="st">'3 &nbsp; 3'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now we build up a list comprehension to get the first elements. We might start with <code>[o for o in lines]</code> and then add bits one at a time, inspecting the output, building up to:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>l1 <span class="op">=</span> [<span class="bu">int</span>(o.split()[<span class="dv">0</span>]) <span class="cf">for</span> o <span class="kw">in</span> lines]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>l1</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now sorting:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(l1)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now that we’ve run all the pieces individually, and checked that the outputs are what we’d expect, we can stack them together into a function:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_list(x):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>&nbsp; &nbsp; lines <span class="op">=</span> x.splitlines()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>&nbsp; &nbsp; l1 <span class="op">=</span> [<span class="bu">int</span>(o.split()[<span class="dv">0</span>]) <span class="cf">for</span> o <span class="kw">in</span> lines]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>&nbsp; &nbsp; <span class="cf">return</span> <span class="bu">sorted</span>(l1)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>get_list(x)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>At this point, you’d reflect on the solution, think back to the larger plan, perhaps ask yourself (or ask AI - more on that later) if there are better ways you could do it. You may be thinking that this is far too much work for <code>sorted(int(line.split()[0]) for line in x.splitlines())</code> - as your skill increases you can tailor the level of granularity, but the idea remains the same: working on small pieces of code, checking the outputs, only combining them into larger functions once you’ve tried them individually, and constantly reflecting back on the larger goal.</p>
+</section>
+<section id="the-power-of-fast-feedback-loops" class="level2">
+<h2 class="anchored" data-anchor-id="the-power-of-fast-feedback-loops">The Power of Fast Feedback Loops</h2>
+<p>The superpower that this kind of live, iterative coding gives you is near-instant feedback loops. You’re not building your giant app, waiting for the code to upload, clicking through to a website and then checking a debug console for errors - you’re inspecting the output of a chunk of code and seeing if it matches what you expected. It’s still possible to make mistakes and miss edge cases, but it is a LOT easier to catch most mistakes early when you code in this way.This idea of setting things up so that you get feedback as soon as possible pops up again and again. Our cofounder Eric Ries talks about this in his book ‘The Lean Startup’, where getting feedback from customers is valuable for quick iteration on product or business ideas. Kaggle pros talk about the importance of fast evals - if you can test an idea in 5 minutes, you can try a lot more ideas than you could if each experiment requires 12 hours of model training.This is one reason many people like ‘Test Driven Development’ - where carefully written tests check for expected behaviour. The answer.ai style of notebook-driven development just uses a mix of “proper” tests (e.g.&nbsp;asserts thoughout the notebooks that check things formally) and the human-based sanity checks based on inspecting outputs as we go.</p>
+</section>
+<section id="ai-shared-context-is-key" class="level2">
+<h2 class="anchored" data-anchor-id="ai-shared-context-is-key">AI: Shared Context is Key</h2>
+<p>So far so good - sounds like we’re describing the style of exploratory/literate programming taught in the fast.ai course, and used with tools like NBDev. Aren’t we in a new era though? Where is the AI?!</p>
+<p>Well, it turns out that by building code in this way, with planning, notes and tests mixed in with the source code, you’re also building the perfect context for an AI to help with the code too. Solveit can see everything you can see. This means great contextual auto-complete, and solid answers to any questions you have.</p>
+<p>You can also feed it additional context by referencing specific variables, or having it use its built-in search and URL-reading tools. And any python function becomes a tool that you can ask solveit to use, making it easy to give it everything it needs to fetch more context or take “agentic” actions to give better responses.</p>
+<p>TODO: note on shell-sage?</p>
+</section>
+<section id="ai-dialog-engineering-keeps-context-useful" class="level2">
+<h2 class="anchored" data-anchor-id="ai-dialog-engineering-keeps-context-useful">AI: Dialog Engineering Keeps Context Useful</h2>
+<p>One issue with current chat-based models is that once they go off the rails, it’s hard to get back on track. The model is now modelling a language sequence that involves the AI making mistakes - and more mistakes are likely to follow! Because solveit dialogs are fluid and editable, it’s much easier to go back and edit/remove dead ends or unrelated explorations. You can even edit past AI responses, to steer it into the kinds of behaviour you’d prefer. Combine this with the ability to easily hide messages from the AI or to pin messages to keep them in context even as the dialog grows beyond the context window and starts to be truncated, and you have a recipe for continued AI helpfullness as time goes on.</p>
+<p>Of course, this is all useful for humans too! The discipline of keeping things tidy, using (collapsible) headings to organise sections, writing notes on what you’re doing or aiming for, and even past questions+answers with the AI all make it a pleasure to pick back up old work.</p>
+</section>
+<section id="ai-collaboration-not-replacement" class="level2">
+<h2 class="anchored" data-anchor-id="ai-collaboration-not-replacement">AI: Collaboration not Replacement</h2>
+<p>One thing is still (intentionally) hard in solveit though, and that is getting the AI to actually write all your code in a hands-off way. We’ve made various choices to gently push towards the human remaining in control:</p>
+<ul>
+<li>Defaults to code inputs</li>
+<li>AI outputs code in fenced blocks, but these are not added to your code or run until you choose to do so. There are shortcuts to add them, but this extra sterp encourages you to read + refactor before mindlessly running</li>
+<li>In ‘Learning’ mode especially, the AI will gently guide you to writing small steps rather than providing a big chunk of code, unless you really specifically ask it to do so.</li>
+<li>In ‘Learning’ mode, the AI ‘ghost text’ auto-complete suggestions don’t show unlesss you trigger them with a keyboard shortcut.</li>
+</ul>
+<p>Even the choice to have the editor be fairly small and down at the bottom emphasizes that this is a REPL/dialog, optimised for building small, understandable pieces.</p>
+</section>
+<section id="learning-trajectory-getting-more-powerful" class="level2">
+<h2 class="anchored" data-anchor-id="learning-trajectory-getting-more-powerful">Learning Trajectory (Getting More Powerful)</h2>
+<p>This brings us to another foundational piece of the solveit approach: a learning ,mindset. It’s great that we can ask AI to fill in the gaps of our knowledge, or to save some time with fiddly pieces like matplotlib plots or library-specific boilerplate. But when the AI suggests something you don’t know, it is important not to skip it and move on - otherwise that new piece will never be something you learn!</p>
+<p>We try to build the discipline to stop and explore anytime something like this comes up. Fortunately, it’s really easy to do this - you can add new messages trying out whatever new thing the AI has shown you, asking how it works, getting demo code, and poking it until you’re satisfied. And then the eveidence of that side-quest can be collapsed below a heading (for later ref) or deleted, leaving you back in the main flow but with a new piece of knowledge in your brain.</p>
+<p><img src="images/vc_vs_solveit.png" class="img-fluid"></p>
+<p>Earlier this year, I sketched out some doodles trying to think through whether we should be teaching this way. What if AI keeps getting better and better, to the point where there’s little point for the average person actually learning to master any of these skills? If you assume your coding skills stay static, and imagine the AI continuing to get better, you may feel kinda bleak. The thing is, skill doesn’t have to be static! And as both you and the AI you’re carefully using get better, you will learn faster and be able to accomplish more and more.</p>
+</section>
+<section id="mastery-requires-deliberate-practice-wip" class="level2">
+<h2 class="anchored" data-anchor-id="mastery-requires-deliberate-practice-wip">Mastery Requires Deliberate Practice (WIP)</h2>
+<p>This is all hard work! It’s like exercise, or practicing a musical instrument. And like any pursuit of mastery, I don’t know that it’s for everyone. But it is satisfying…</p>
+</section>
+<section id="long-term-software-creation-vibe-coded-demos-wip" class="level2">
+<h2 class="anchored" data-anchor-id="long-term-software-creation-vibe-coded-demos-wip">Long-Term Software Creation != Vibe-Coded Demos (WIP)</h2>
+<p>I’ve done lots of small projects. Big projects, new to me, different options. AAI’s unusual approach: carefully construct a substrate that allows you to fit ~anything into your head, improving it over time. Accept no slop!</p>
+</section>
+<section id="so-you-hate-vibe-coding" class="level2">
+<h2 class="anchored" data-anchor-id="so-you-hate-vibe-coding">So you hate vibe-coding?</h2>
+<p>No :) I love it, <strong>for some things</strong>. There is much more software that I want written than I have time to write. There are some things I don’t much care to learn about, but still need to code for. There are many, many new options for non-coders now, thanks to the ability to conjure up bespoke software from vague descriptions. We’re just not fans of it when it comes to software that matters, and don’t think it replaces the learning value of truly working at programming as a craft.</p>
+</section>
+<section id="ok-where-can-i-use-solveit" class="level2">
+<h2 class="anchored" data-anchor-id="ok-where-can-i-use-solveit">OK, where can I use solveit</h2>
+<p>We’re running another course soon, which will be $400. I appreciate this is spendy. That will let us test some scaling and features, and work with another cohort to build the solveit skill. Once that’s done, we’re hoping to open it up on a usage-based billing system. I can’t wait for it to be available to everyone! Please be patient - I think it’ll be worth the wait :)</p>
+</section>
+<section id="conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
+<p>There we go - some musings on the solveit approach. There’s a ton more to the app - web magic with FastHTML, meta-programming by giving the AI tools to modify the dialog and itself, lots of tricks we’ve developed for getting the most out of AI… but the important thing is the mindset, and it’s one which you can almost equally practice in any jupyter notebook.</p>
+<p>I still have <a href="https://johnowhitaker.dev/essays/future-ai.html">wide error bars</a> on the future of AI and coding, but no matter how that goes, I’m glad I get to work on getting better at something I enjoy for now :)</p>
+<p>I hope you’ve enjoyed this rambly post! I’d love to hear your thoughts! Stay tuned for info on the new course shortly (I’ll link here when we announce it). Cheers - J</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/johnowhitaker\.dev");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -2,6 +2,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/posts/solveit.html",
       "/posts/jet-nemotron.html",
       "/posts/cubes.html",
       "/misc/dllm_learn.html",
@@ -206,6 +207,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/solveit.html",
       "/posts/jet-nemotron.html",
       "/posts/cubes.html",
       "/misc/dllm_learn.html",

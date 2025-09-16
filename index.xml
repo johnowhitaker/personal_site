@@ -10,7 +10,213 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.9.0</generator>
-<lastBuildDate>Tue, 09 Sep 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 12 Sep 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>What Is Solveit?</title>
+  <link>https://johnowhitaker.dev/posts/solveit.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>At the end of last year, we ran a small course titled “How To Solve It With Code”. We closed signups after a day, and 1000 keen beans joined us for a 10-week deep dive into our general approach to solveing problems. It was taught via the vehicle of the ‘Advent of Code’ programming challenges and run in a new, purpose-built tool called solveit. As the course progressed, we had lots of fun going far beyond the original scope, exploring web development (with FastHTML), AI, business (with Eric Reis as a special guest), writing and more. And the solveit tool became an extremely useful test-bed for ideas around AI-assisted coding, learning and exploration. In the year since, we’ve continued to refine and expand both the process and the tools built in service of said process, and are ramping up for another cohort to share these developments with a wider audience. So, I figure it’s high time I attempt to write down my own version of what ‘the solveit method’ is… :)</p>
+<section id="inspiration-from-polya" class="level2">
+<h2 class="anchored" data-anchor-id="inspiration-from-polya">Inspiration from Polya</h2>
+<p>George Polya was a Hungarian mathematician who wrote the influential book “How to Solve It” in 1945. In it, he shares his philosophies on education (focus on acive learning,heuristic thinking and careful questioning to guide stodents towards discovering answers for themselves) and outlines a four-step problem-solving framework:</p>
+<ol type="1">
+<li>Understand the Problem: identify what you’re being asked to do; restate the problem</li>
+<li>Devise a Plan: draw on similar problems; break down into manageable parts; consider working backward; simplify the problem</li>
+<li>Carry Out the Plan: verify each step</li>
+<li>Look Back and Reflect: consider alternatives; extract lessons learned</li>
+</ol>
+<p>He was focused on mathematics, but as Jeremy and I tried to codify our approach to solveing problems with code, we realized that these ideas translate far beyond maths!</p>
+</section>
+<section id="application-to-coding-iterative-exploratory-coding-in-notebook-like-environments." class="level2">
+<h2 class="anchored" data-anchor-id="application-to-coding-iterative-exploratory-coding-in-notebook-like-environments.">Application to Coding: iterative, exploratory coding in notebook-like environments.</h2>
+<p>Let’s consider a quick example. For 2024’s Advent of Code, Day 1’s solution involves comparing two lists, sorted by value (there’s a whole backstory involving elves, which you can <a href="https://adventofcode.com/2024/day/1">read if you like</a>). Let’s imagine we’ve considered the problem, and are now focused on a small sub-task: extracting the first (sorted) list. We start with the sample data provided:</p>
+<p><code>pythonx = '3 &nbsp; 4\n4 &nbsp; 3\n2 &nbsp; 5\n1 &nbsp; 3\n3 &nbsp; 9\n3 &nbsp; 3'</code></p>
+<p>Our plan might be:</p>
+<ul>
+<li>Split into a list of lines</li>
+<li>Grab the first number from each line</li>
+<li>Sort</li>
+</ul>
+<p>You could likely write this function in one go. Indeed, if you typed <code># Get a sorted list of the first number from each line</code> your AI auto-complete could likely do the rest. But we’re trying to build a discipline that will serve us on harder tasks that neither humans nor AI can one-shot. So, after thinking through the plan, we begin working on individual steps. We aim to write no more than a few lines of code at a time, with each piece giving some useful output that you can use to <strong>verify</strong> that you’re on the right track:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1">lines <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> x.splitlines()lines<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;&gt;&gt;</span> [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'3 &nbsp; 4'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'4 &nbsp; 3'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'2 &nbsp; 5'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'1 &nbsp; 3'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'3 &nbsp; 9'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'3 &nbsp; 3'</span>]</span></code></pre></div></div>
+<p>Now we build up a list comprehension to get the first elements. We might start with <code>[o for o in lines]</code> and then add bits one at a time, inspecting the output, building up to:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">l1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">int</span>(o.split()[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> o <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> lines]</span>
+<span id="cb2-2">l1</span>
+<span id="cb2-3"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;&gt;&gt;</span> [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>]</span></code></pre></div></div>
+<p>Now sorting:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">sorted</span>(l1)</span>
+<span id="cb3-2"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;&gt;&gt;</span> [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>]</span></code></pre></div></div>
+<p>Now that we’ve run all the pieces individually, and checked that the outputs are what we’d expect, we can stack them together into a function:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> get_list(x):</span>
+<span id="cb4-2">&nbsp; &nbsp; lines <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> x.splitlines()</span>
+<span id="cb4-3">&nbsp; &nbsp; l1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">int</span>(o.split()[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> o <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> lines]</span>
+<span id="cb4-4">&nbsp; &nbsp; <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">sorted</span>(l1)</span>
+<span id="cb4-5">get_list(x)</span>
+<span id="cb4-6"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;&gt;&gt;</span> [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>]</span></code></pre></div></div>
+<p>At this point, you’d reflect on the solution, think back to the larger plan, perhaps ask yourself (or ask AI - more on that later) if there are better ways you could do it. You may be thinking that this is far too much work for <code>sorted(int(line.split()[0]) for line in x.splitlines())</code> - as your skill increases you can tailor the level of granularity, but the idea remains the same: working on small pieces of code, checking the outputs, only combining them into larger functions once you’ve tried them individually, and constantly reflecting back on the larger goal.</p>
+</section>
+<section id="the-power-of-fast-feedback-loops" class="level2">
+<h2 class="anchored" data-anchor-id="the-power-of-fast-feedback-loops">The Power of Fast Feedback Loops</h2>
+<p>The superpower that this kind of live, iterative coding gives you is near-instant feedback loops. You’re not building your giant app, waiting for the code to upload, clicking through to a website and then checking a debug console for errors - you’re inspecting the output of a chunk of code and seeing if it matches what you expected. It’s still possible to make mistakes and miss edge cases, but it is a LOT easier to catch most mistakes early when you code in this way.This idea of setting things up so that you get feedback as soon as possible pops up again and again. Our cofounder Eric Ries talks about this in his book ‘The Lean Startup’, where getting feedback from customers is valuable for quick iteration on product or business ideas. Kaggle pros talk about the importance of fast evals - if you can test an idea in 5 minutes, you can try a lot more ideas than you could if each experiment requires 12 hours of model training.This is one reason many people like ‘Test Driven Development’ - where carefully written tests check for expected behaviour. The answer.ai style of notebook-driven development just uses a mix of “proper” tests (e.g.&nbsp;asserts thoughout the notebooks that check things formally) and the human-based sanity checks based on inspecting outputs as we go.</p>
+</section>
+<section id="ai-shared-context-is-key" class="level2">
+<h2 class="anchored" data-anchor-id="ai-shared-context-is-key">AI: Shared Context is Key</h2>
+<p>So far so good - sounds like we’re describing the style of exploratory/literate programming taught in the fast.ai course, and used with tools like NBDev. Aren’t we in a new era though? Where is the AI?!</p>
+<p>Well, it turns out that by building code in this way, with planning, notes and tests mixed in with the source code, you’re also building the perfect context for an AI to help with the code too. Solveit can see everything you can see. This means great contextual auto-complete, and solid answers to any questions you have.</p>
+<p>You can also feed it additional context by referencing specific variables, or having it use its built-in search and URL-reading tools. And any python function becomes a tool that you can ask solveit to use, making it easy to give it everything it needs to fetch more context or take “agentic” actions to give better responses.</p>
+<p>TODO: note on shell-sage?</p>
+</section>
+<section id="ai-dialog-engineering-keeps-context-useful" class="level2">
+<h2 class="anchored" data-anchor-id="ai-dialog-engineering-keeps-context-useful">AI: Dialog Engineering Keeps Context Useful</h2>
+<p>One issue with current chat-based models is that once they go off the rails, it’s hard to get back on track. The model is now modelling a language sequence that involves the AI making mistakes - and more mistakes are likely to follow! Because solveit dialogs are fluid and editable, it’s much easier to go back and edit/remove dead ends or unrelated explorations. You can even edit past AI responses, to steer it into the kinds of behaviour you’d prefer. Combine this with the ability to easily hide messages from the AI or to pin messages to keep them in context even as the dialog grows beyond the context window and starts to be truncated, and you have a recipe for continued AI helpfullness as time goes on.</p>
+<p>Of course, this is all useful for humans too! The discipline of keeping things tidy, using (collapsible) headings to organise sections, writing notes on what you’re doing or aiming for, and even past questions+answers with the AI all make it a pleasure to pick back up old work.</p>
+</section>
+<section id="ai-collaboration-not-replacement" class="level2">
+<h2 class="anchored" data-anchor-id="ai-collaboration-not-replacement">AI: Collaboration not Replacement</h2>
+<p>One thing is still (intentionally) hard in solveit though, and that is getting the AI to actually write all your code in a hands-off way. We’ve made various choices to gently push towards the human remaining in control:</p>
+<ul>
+<li>Defaults to code inputs</li>
+<li>AI outputs code in fenced blocks, but these are not added to your code or run until you choose to do so. There are shortcuts to add them, but this extra sterp encourages you to read + refactor before mindlessly running</li>
+<li>In ‘Learning’ mode especially, the AI will gently guide you to writing small steps rather than providing a big chunk of code, unless you really specifically ask it to do so.</li>
+<li>In ‘Learning’ mode, the AI ‘ghost text’ auto-complete suggestions don’t show unlesss you trigger them with a keyboard shortcut.</li>
+</ul>
+<p>Even the choice to have the editor be fairly small and down at the bottom emphasizes that this is a REPL/dialog, optimised for building small, understandable pieces.</p>
+</section>
+<section id="learning-trajectory-getting-more-powerful" class="level2">
+<h2 class="anchored" data-anchor-id="learning-trajectory-getting-more-powerful">Learning Trajectory (Getting More Powerful)</h2>
+<p>This brings us to another foundational piece of the solveit approach: a learning ,mindset. It’s great that we can ask AI to fill in the gaps of our knowledge, or to save some time with fiddly pieces like matplotlib plots or library-specific boilerplate. But when the AI suggests something you don’t know, it is important not to skip it and move on - otherwise that new piece will never be something you learn!</p>
+<p>We try to build the discipline to stop and explore anytime something like this comes up. Fortunately, it’s really easy to do this - you can add new messages trying out whatever new thing the AI has shown you, asking how it works, getting demo code, and poking it until you’re satisfied. And then the eveidence of that side-quest can be collapsed below a heading (for later ref) or deleted, leaving you back in the main flow but with a new piece of knowledge in your brain.</p>
+<p><img src="https://johnowhitaker.dev/posts/images/vc_vs_solveit.png" class="img-fluid"></p>
+<p>Earlier this year, I sketched out some doodles trying to think through whether we should be teaching this way. What if AI keeps getting better and better, to the point where there’s little point for the average person actually learning to master any of these skills? If you assume your coding skills stay static, and imagine the AI continuing to get better, you may feel kinda bleak. The thing is, skill doesn’t have to be static! And as both you and the AI you’re carefully using get better, you will learn faster and be able to accomplish more and more.</p>
+</section>
+<section id="mastery-requires-deliberate-practice-wip" class="level2">
+<h2 class="anchored" data-anchor-id="mastery-requires-deliberate-practice-wip">Mastery Requires Deliberate Practice (WIP)</h2>
+<p>This is all hard work! It’s like exercise, or practicing a musical instrument. And like any pursuit of mastery, I don’t know that it’s for everyone. But it is satisfying…</p>
+</section>
+<section id="long-term-software-creation-vibe-coded-demos-wip" class="level2">
+<h2 class="anchored" data-anchor-id="long-term-software-creation-vibe-coded-demos-wip">Long-Term Software Creation != Vibe-Coded Demos (WIP)</h2>
+<p>I’ve done lots of small projects. Big projects, new to me, different options. AAI’s unusual approach: carefully construct a substrate that allows you to fit ~anything into your head, improving it over time. Accept no slop!</p>
+</section>
+<section id="so-you-hate-vibe-coding" class="level2">
+<h2 class="anchored" data-anchor-id="so-you-hate-vibe-coding">So you hate vibe-coding?</h2>
+<p>No :) I love it, <strong>for some things</strong>. There is much more software that I want written than I have time to write. There are some things I don’t much care to learn about, but still need to code for. There are many, many new options for non-coders now, thanks to the ability to conjure up bespoke software from vague descriptions. We’re just not fans of it when it comes to software that matters, and don’t think it replaces the learning value of truly working at programming as a craft.</p>
+</section>
+<section id="ok-where-can-i-use-solveit" class="level2">
+<h2 class="anchored" data-anchor-id="ok-where-can-i-use-solveit">OK, where can I use solveit</h2>
+<p>We’re running another course soon, which will be $400. I appreciate this is spendy. That will let us test some scaling and features, and work with another cohort to build the solveit skill. Once that’s done, we’re hoping to open it up on a usage-based billing system. I can’t wait for it to be available to everyone! Please be patient - I think it’ll be worth the wait :)</p>
+</section>
+<section id="conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
+<p>There we go - some musings on the solveit approach. There’s a ton more to the app - web magic with FastHTML, meta-programming by giving the AI tools to modify the dialog and itself, lots of tricks we’ve developed for getting the most out of AI… but the important thing is the mindset, and it’s one which you can almost equally practice in any jupyter notebook.</p>
+<p>I still have <a href="https://johnowhitaker.dev/essays/future-ai.html">wide error bars</a> on the future of AI and coding, but no matter how that goes, I’m glad I get to work on getting better at something I enjoy for now :)</p>
+<p>I hope you’ve enjoyed this rambly post! I’d love to hear your thoughts! Stay tuned for info on the new course shortly (I’ll link here when we announce it). Cheers - J</p>
+
+
+</section>
+
+ ]]></description>
+  <category>  - &quot;solveit&quot;</category>
+  <guid>https://johnowhitaker.dev/posts/solveit.html</guid>
+  <pubDate>Fri, 12 Sep 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Jet-Nemotron, Gated DeltaNet, and the slow triumph of hybrid models</title>
   <link>https://johnowhitaker.dev/posts/jet-nemotron.html</link>
@@ -2810,82 +3016,6 @@ font-style: inherit;">'View'</span>}]</span></code></pre></div></div>
   <category>mini-projects</category>
   <guid>https://johnowhitaker.dev/mini-projects/rhyme_eval.html</guid>
   <pubDate>Tue, 01 Apr 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>My Thoughts on the Future of “AI”</title>
-  <link>https://johnowhitaker.dev/essays/future-ai.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>You should definitely read <a href="https://nicholas.carlini.com/writing/2025/thoughts-on-future-ai.html">this piece</a> by Nicholas Carlini. Many people have very confident beliefs - from ‘100% AGI in 3 years’ to ‘AI is just hype’. I think a spectrum of outcomes are possible and worth considering. Motivated by Carlini’s post, I’m going to attempt to document my own (similar) views in this post plus additional thoughts.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://nicholas.carlini.com/writing/2025/maybe_future.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 1 from Carlini’s Post: ‘A very scientific plot of the future potential for LLMs.’</figcaption>
-</figure>
-</div>
-<section id="my-evolving-uncertain-views" class="level2">
-<h2 class="anchored" data-anchor-id="my-evolving-uncertain-views">My (Evolving, Uncertain) Views</h2>
-<p>I’d historically been in the camp of ‘LLMs are fuzzy pattern matchers, impressive but bounded in what they can do’. Very powerful, but e.g.&nbsp;I didn’t expect even much larger LLMs to be able to play connections well 0-shot - a game that for humans requires back-tracking and mentally ‘trying out’ different combinations. The initial o1 announcement was the final nail in the coffin for that theory for me - ‘thinking’ tokens expand the space of ‘programs’ LLMs can run - ‘reasoning’ not just ‘intuition’. And RL means they can potentially discover new useful patterns that work for them, rather than relying on human demonstration (i.e.&nbsp;pretraining or SFT).</p>
-<p>I still think there’s a small chance the recent wave of RL/post-training stuff is mostly bringing out more from the powerful-fuzzy-pattern-matching pretraining stage - the so-called ‘<a href="https://www.interconnects.ai/p/elicitation-theory-of-post-training">elicitation hypothesis</a>’, which would possibly mean that we’re still plateauing once the immediate gains run out, with much larger training runs (e.g.&nbsp;4.5) yielding only modest improvements, and ‘needs to have had <em>some</em> demonstration on the internet’ still being a requirement. This would still means incredibly powerful models! Lots of things are well-covered in pre-training space, e.g.&nbsp;frontend dev which current models are incredible at. But you’d still want a human steering when doing any novel research, you’d still expect ~poor performance on truly novel tasks. IF it isn’t just that, then it looks like this approach could take us <strong>very far</strong>. Lots of things you can make verifiable tasks for will get ‘solved’ quite fast - and a big open question is how well gains on a bunch of different tasks like this transfer to stuff that’s harder to score.</p>
-<p>OK so so far I’m saying I think could slow down, could go ‘very far’. Hedging your bets Johno! Yeah, I’m conflicted. I have very wide error bars on my future predictions! I must confess recently my ‘feeling the AGI’-meter has been wavering upwards.</p>
-<p>More reasons for the slow case:</p>
-<ul>
-<li>People I respect (e.g.&nbsp;Jeremy Howard) have seen past hype cycles and suggest this could be more of the same</li>
-<li>A lot of AGI believers seem to hold almost religious convictions. Reminds me of my religious past - which makes me skeptical that the arguments presented are the true reasons for belief. Sometimes looks more like a desperate hope for the coming super-being.</li>
-<li>While current models are ‘wow’ when vibe-coding simple applications, they still break when you do more complex things or work a different way (but less over time, so not a strong case).</li>
-<li>So much hype and nonsense in the AI space, which I fear is distorting my perceptions. So. Many. Grifters. most of whom have little clue what they’re talking about.</li>
-<li>Lots of people selling the dream work at companies who stand to gain, with lots of funding on the line and the potential for regulatory capture or other power grabs.</li>
-</ul>
-<p>More reasons for the AGI soon case:</p>
-<ul>
-<li>Lots of researchers I respect hold this idea</li>
-<li>Huge investment and influx of smart people (many manhattan-project-equivalents)</li>
-<li>I’m very incentivized to think I’m special for being a very smart human, and resistant to the idea that ‘being smart’ might not be so valuable going forward, which might make for some motivated reasoning against AI progress (a.k.a. cope)</li>
-<li>Existing progress is, when you step back a bit, truly remarkable</li>
-</ul>
-<p>One recent <a href="https://arxiv.org/abs/2503.14499">paper</a> (<a href="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/">blog post</a>) that did a great job highlighting current progress looked at the <em>length of time</em> tasks take humans as a measure of difficulty, and how models do at these tasks. Notably, and matching my experience with coding agents like claude-code, recent models do well at tasks that could take 15 minutes and only drop below ~50% success rate at around the hour mark. Importantly, they estimate the doubling rate for the lenght of tasks AI can do at 7 months and possibly dropping. The paper is new and focused on code but I think captures the larger trend well.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/essays/task_success_rate.png" class="img-fluid figure-img"></p>
-<figcaption>Figure from the blog post</figcaption>
-</figure>
-</div>
-<p>At the very least then, I think we should take the possibility seriously that folks like Dario might be right - even if the timelines are a little longer than claimed. Because if they are right, then we’re in for some big shifts!</p>
-</section>
-<section id="so-what" class="level2">
-<h2 class="anchored" data-anchor-id="so-what">So What?</h2>
-<p>AGI or not, AI is powerful and improving, which leads to a few worries:</p>
-<ul>
-<li>Misuse: I’m worried people will do some bad things with this technology - no malign super-intelligence required. It’s tricky to prevent this when working on such a general, ‘dual-use’ technology but if you’re in this space have a good think about what your specific contributions can/will be used for please</li>
-<li>Concentration of power: a very valuable + powerful technology in the hands of a few could mean concentrations of power and wealth that are Probably Not Good(TM) - see <a href="https://www.fast.ai/posts/2023-11-07-dislightenment.html">AI Safety and the Age of Dislightenment</a> for an interesting essay on this</li>
-<li>Gradual Disempowerment: if people rely on AI more and more to do coding and other cognitive tasks, they might lose their skills and/or sense of purpose. Which I think would be sad! Especially since co-creating with AI could be so positive.</li>
-<li>Junk Food: relatedly, reward-tuned feeds optimised for engagement, AI answers optimized for us to like them, AI relationships optimized for profit… might not constitute a healthy diet for our poor primate brains.</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/essays/anthropic_views.png" class="img-fluid figure-img"></p>
-<figcaption>From Anthropic’s recent <a href="https://www.anthropic.com/news/anthropic-s-recommendations-ostp-u-s-ai-action-plan">post</a></figcaption>
-</figure>
-</div>
-<p>If you believe, as many do, that we’re just a few years away from “Intellectual capabilities matching or exceeding that of Nobel Prize winners across most disciplines” (which <a href="https://www.anthropic.com/news/anthropic-s-recommendations-ostp-u-s-ai-action-plan">Anthropic claims will be hear by late 2026/2027</a>) then there are additional worries - how should we re-structure society? Will there be new jobs for people? Will this be like that Rick and Morty episode where the dinosaurs return and humanity basically retires? Will the ‘country of geniuses in a datacenter’ have rights, or decide they don’t want to make me another HTML snake game? While I’m not sold on the superintelligence front just yet I think governments etc should be thinking very seriously about what to do under different rates of AI advancement.</p>
-<p>I am currently working at a company that is (effectively) betting <strong>against</strong> the ‘country of geniuses by 2026’ thesis. We’re teaching people to code, carefully and mostly by hand, with AI assistance. We’re building our own tooling and experimentation muscles to develop hundreds or thousands of clever, specific AI applications. We’re thinking hard about the (current) limitations of LLMs, and how to use them to augment human creation rather than trying to replace people entirely. And we’re planning to work on this for many years. If AI can build better than us by next year, well, we lost the bet! Still - I can’t think of a better way to spend my time regardless of outcome, and I think we and many others can play a small part in finding ways to spread the benefits of AI far and wide (especially with a focus on efficiency and learning).</p>
-</section>
-<section id="you-tell-me" class="level2">
-<h2 class="anchored" data-anchor-id="you-tell-me">You Tell Me</h2>
-<p>Anyway, this is a long rambly post. What are your thoughts dear hypothetical reader? Do you lean more strongly one way or another? Do you have smaller error bars with justifications you can share? Have you got sufficient hobbies to keep you busy in humanities retirement? Are you stockpiling problem descritions from your backlog to feed to 2026’s top AI? Do you have suggestions for things people should work on <em>now</em>? Please let me know :)</p>
-<p>PS: As recommended by Nicholas Carlini, I encourage you to think of concrete demos that would sway you on capabilities/timelines. Lots of my past ones have fallen! A current one I use would be: come up with an efficient (possibly GPU-accelerated) way to solve the map folding problem and get an answer for the 8x8 case without years of CPU time. I don’t know if this is possible (!) but I do know there aren’t existing solutions, and solving it would require some clever thinking about a problem that is quite ‘spatial’ and geometric (something current models struggle with). Another might be playing SMESS (an old obscure chess derivative) given the rules - I’d be impressed to see a model learning to do this via self-play, and even more to see one able to play at my level (i.e.&nbsp;smart human with ~2 games of experience so far) without any training at all. We’ll see how long these last :)</p>
-<p>PPS: ‘AGI’ is a tricky term - I’ve claimed since GPT-4 that we already have something that is undeniably artificial, somewhat general, and definitely intellight! But I use it in this post as shorthand for ‘powerful, transformative AI that is &gt;= human level at lots of things’.</p>
-
-
-</section>
-
- ]]></description>
-  <category>essays</category>
-  <guid>https://johnowhitaker.dev/essays/future-ai.html</guid>
-  <pubDate>Tue, 18 Mar 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
