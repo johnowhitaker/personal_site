@@ -78,8 +78,6 @@ In one sense, there's a single direction we go from here: better. AI models will
 
 One dimension I wish we could tweak is the move towards more and more 'agentic' AI. This is something we care a lot about at my company - AI as human augmentation, with human driving, is an immensely useful and empowering tool. But too many view the real use as human replacement - a virtual employee you can delegate work to. Besides de-valuing humans, this is a direction that doesn't help the safety side! Yoshua Bengio prominently believes that pushing for non-agentic AI is key to maintaining safety as we push capabilities forward, and I agree.
 
-We don't all want long-running indepenent agents... Agency is the danger. -> YB. Training looks like deployment, no long-term memory or coherent single identity or scheming just yet, and no reason not to keep it that way (well... too stong to say that I guess).
-
 ## Conclusions
 
 I am much more hopeful than the authors that we will be able to keep solving problems and moving forward, building AI that helps humans do more, pushing back the frontiers of knowledge without destroying the world.

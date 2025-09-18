@@ -2,7 +2,7 @@
 title: "What Is Solveit?"
 date: 2025-09-12
 categories:
-   - "solveit"
+    - solveit
 description: "My personal take on 'the solveit way' being developed at Answer.AI, our evolving philosophy of software creation"
 ---
 
