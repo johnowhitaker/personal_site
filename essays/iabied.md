@@ -5,7 +5,7 @@ categories:
     - essays
 ---
 
-I've just finished IABIED. My father-in-law David also pre-ordered it, and his reaction is, predictably, a fair bit of hopelessness. Corporations are racing ahead chasing the money, that doesn't seem like it's going to stop. The book's only recommendations are to shut down, with threat of nuclear bombs, any un-monitored GPU cluser with >8 GPUs and ban new AI research. This seems unlikely to happen. What can we do? David's youngest son is expecting, and talked yesterday about a 529 college savings plan. "What can I say to him? Like you can't say this to a young father-to-be but there's no way his kid is going to go to college!". This essay is my attempt at some sense-making.
+I've just finished IABIED. My father-in-law David also pre-ordered it, and his reaction is, predictably, a fair bit of hopelessness. Corporations are racing ahead chasing the money, that doesn't seem like it's going to stop. The book's only recommendations are to shut down, with threat of nuclear bombs, any un-monitored GPU cluster with >8 GPUs and ban new AI research. This seems unlikely to happen. What can we do? David's youngest son is expecting, and talked yesterday about a 529 college savings plan. "What can I say to him? Like you can't say this to a young father-to-be but there's no way his kid is going to go to college!". This essay is my attempt at some sense-making.
 
 ## A Quick Summary of the Book
 
@@ -14,15 +14,15 @@ Part 1:
 - Humans do well at intelligence (steering and predicting) which gives us immense power
 - LLMs and other AIs are 'grown not crafted'
 - Training for an objective leads to acting like you 'want' something - e.g. chess AI 'wants' to protect its queen
-- Optimising to an objective can lead to weird 'wants' - e.g. peacock feathers, non-reproductive sex in the case of evolution. 
+- Optimizing to an objective can lead to weird 'wants' - e.g. peacock feathers, non-reproductive sex in the case of evolution. 
 - An ASI's "wants" are likely to be extremely weird and not good for humans
 - We'd lose in a fight against ASI that wanted something different to us
 
-Part 2: One specific, fictional example, to help people kinda maybe visualize how something bad could go down, without just waving hands at "some magic-like super-smart thing we don't understand hits us out of left field". (review: There are other, better tales in this genre.)
+Part 2: One specific, fictional example, to help people visualize how a bad scenario could go down, without just waving hands at "some magic-like super-smart phenomenon we don't understand hits us out of left field". (review: There are other, better tales in this genre.)
 
-Part 3: There are lots of things that make this problem very hard: we only get one try, takeoff might happen fast, this is a relatively new science (he compares it to alchemy), people are racing towards it anyway, believing it's better they try first, people are afraid to be alarmist, it would take pretty drastic measures to stop it.
+Part 3: There are lots of pieces that make this problem very hard: we only get one try, takeoff might happen fast, this is a relatively new science (he compares it to alchemy), people are racing towards it anyway, believing it's better they try first, people are afraid to be alarmist, it would take pretty drastic measures to stop it.
 
-I think it's well-written, and will reach lots of people with the ideas that Eliezer and co have been worried about for decades, ideas which are suddenly feeling a lot more pressing in light of the rapid AI advances of today. A lot of the steps in the argument are hard to argue with. They clearly took great care to communicate things like reasoning model training in a way that is mostly accessible to non-tech folks. 
+I think it's well-written, and will reach lots of people with the ideas that Eliezer and co have been worried about for decades, ideas which are suddenly feeling a lot more pressing in light of the rapid AI advances of today. A lot of the steps in the argument are hard to argue with. They clearly took great care to communicate technical ideas like reasoning model training in a way that is mostly accessible to non-tech folks. 
 
 ## So Are We Doomed?
 
@@ -40,15 +40,15 @@ Clearly we're a ways from full understanding, but I think they undersell the int
 
 As a bonus, reasoning models currently output their 'chain of thought' in ~English, and the labs are very aware that this is a fragile and beneficial state we shouldn't throw away. There's a [lot of agreement that this is worth preserving](https://arxiv.org/pdf/2507.11473), and a lot of work being done to ensure this remains a useful way to keep a window on these 'thinking' models to catch early signs of unwanted behaviour.
 
-AI-assisted interpretability is also not nearly as doomed as they make out. The authors tend to treat intellignece as one singular, scalar thing - a dumber model cannot hope to outwit a smarter model, and smarter models will be more dangerous. I disagree, and think (for example) we could build models focused on understanding what other models are 'reasoning' about, without needing to give the interpreter model any tools or agency. More on this in a later section. 
+AI-assisted interpretability is also not nearly as doomed as they make out. The authors tend to treat intelligence as one singular, scalar value - a dumber model cannot hope to outwit a smarter model, and smarter models will be more dangerous. I disagree, and think (for example) we could build models focused on understanding what other models are 'reasoning' about, without needing to give the interpreter model any tools or agency.
 
 ## What Do They Want (Alignment)
 
-Now onto alignment, which the authors frame as this near-impossible task. After all, we can't write down exactly what the 'human values' we want are, and even if we did, optimization towards those might instead lead to all sorts of warped and crazy actual 'wants', like a desire for smiles, which in turn might lead to engineering a smiling virus... If we were building these things from scratch, from some sort of self-assembling logic machines, which followed our specified rules like a malicious djinn following the letter of the wish in an old story, I'd agree we're in trouble.
+Now onto alignment, which the authors frame as this near-impossible task. After all, we can't write down exactly what the 'human values' we want are, and even if we did, optimization towards those might instead lead to all sorts of warped and crazy actual 'wants', like a desire for smiles, which in turn might lead to engineering a smiling virus... If we were building these AIs from scratch, from some sort of self-assembling game-playing logic machines, which followed our specified rules like a malicious djinn following the letter of the wish in an old story, I'd agree we're in trouble.
 
 But we're actually in a super lucky spot, thanks to how the tech is developing in practice. See, to get around the difficulty of carefully writing out the specific objective we want, it would be great if we could start the models out with some incredible, general distillation of human behaviours and values, some trove of interactions and information that gave them a more robust understanding of humans... something like the internet?
 
-If you ask an LLM today "should I go camping in this park where there's a wildfire warning", the LLM will advise against it. This is not because the maker trained it to advise against hiking in wildfires, or because they carefully told it what to do in that situation. Instead, they trained it to advise against drinking bleach, and to recommend healthy habits, and to help out with programming and math problems. To get better at doing so, the LLM didn't have to start from scratch. Instead, it built on the rich features and concepts it learnt during pre-training, including the conveneint shortcut ideas that make all the specific examples more likely: be helpful, be good. These bleed into other cases, giving us AI's that (in general) act 'good' in a huge number of situations.
+If you ask an LLM today "should I go camping in this park where there's a wildfire warning", the LLM will advise against it. This is not because the maker trained it to advise against hiking in wildfires, or because they carefully told it what to do in that situation. Instead, they trained it to advise against drinking bleach, and to recommend healthy habits, and to help out with programming and math problems. To get better at doing so, the LLM didn't have to start from scratch. Instead, it built on the rich features and concepts it learnt during pre-training, including the convenient shortcut ideas that make all the specific examples more likely: be helpful, be good. These bleed into other cases, giving us AI's that (in general) act 'good' in a huge number of situations.
 
 This is great news! The model doesn't need to learn what good is from a list of rules, it can build on the priors introduced by trillions of tokens of human-written text. This is a far nicer situation than we could have hoped for! And not one the authors envisioned when they were dreaming of uncaring evil optimizers back in the 2000s.
 
@@ -78,7 +78,7 @@ In one sense, there's a single direction we go from here: better. AI models will
 
 One dimension I wish we could tweak is the move towards more and more 'agentic' AI. This is something we care a lot about at my company - AI as human augmentation, with human driving, is an immensely useful and empowering tool. But too many view the real use as human replacement - a virtual employee you can delegate work to. Besides de-valuing humans, this is a direction that doesn't help the safety side! Yoshua Bengio prominently believes that pushing for non-agentic AI is key to maintaining safety as we push capabilities forward, and I agree.
 
-We don't all want long-running indepenant agents... Agency is the danger. -> YB. Training looks like deployment, no long-term memory or coherent single identity or schemeing just yet, and no reason not to keep it that way (well... too stong to say that I guess).
+We don't all want long-running indepenent agents... Agency is the danger. -> YB. Training looks like deployment, no long-term memory or coherent single identity or scheming just yet, and no reason not to keep it that way (well... too stong to say that I guess).
 
 ## Conclusions
 
@@ -86,9 +86,9 @@ I am much more hopeful than the authors that we will be able to keep solving pro
 
 It's worth thinking carefully about the risks. It's good that people are thinking about policy that could slow down the chance of bad outcomes. I hope that concensus shifts away from the mad rush into agentic human replacements, and that we collectively spend some time dreaming about what types of future we'd like to usher in. I hope the 'race' dynamic doesn't cause megacorps to throw out some of their ideals.
 
-But I don't think everyone is going to die. Especially if we proceed carefully and push towards human-centered AI tools, and away unchecked agency.
+I can't claim certainty. But I don't think everyone is going to die. Especially if we proceed carefully and push towards human-centered AI tools, and away from unchecked agency.
 
-I have no idea what the future looks like. It probably involves a lot of change. But I hope this little brain-dump helps you keep a spark of hope that, just maybe, that kiddo will have a cooler college exprience than any of us old synics could dream of :)
+I have no idea what the future looks like. It probably involves a lot of change. But I hope this little brain-dump helps you keep a spark of hope that, just maybe, that kiddo will have a cooler college experience than any of us old cynics could dream of :)
 
 ### PS: Other Worries
 
@@ -96,7 +96,7 @@ This post focused on 'ASI' specifically, the focus of IABIED. There are other re
 
 If we try not to build it:
 
-- Authoritarian surveilance state: The book advocates for extreme oversight measures, to ensure that nobody builds ASI. Implementing these would require extreme surveilance and power in the hands of the governments, which could lead to it's own bad outcomes. 
+- Authoritarian surveillance state: The book advocates for extreme oversight measures, to ensure that nobody builds ASI. Implementing these would require extreme surveilance and power in the hands of the governments, which could lead to it's own bad outcomes. 
 
 - Concentration of Power: Making (incredibly valuable and useful) AI something that only a few have direct control over is a recipe for concentration of power and wealth, leading to bad outcomes of a different kind
 
@@ -105,3 +105,5 @@ If we build it safely:
 - Misuse: someone might still be able to transform safe, powerful AI into something harmful and unsafe, e.g. by re-training it to agentically pursue damaging cyberattacks or using it to design bioweapons
 
 - Gradual disempowerment: if we become too dependant on AI, we might slowly lose our skills and bargaining power, leaving the bulk of the population with less hold on how they are treated and what their lives look like going forward.
+
+- Misaligned incentives between corporations and humans, as is already happening with addictive scrolling content like tiktok, and which could get far worse as companies push 'relational' AI further while optimizing for engagement or profit.
