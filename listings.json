@@ -2,6 +2,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/essays/iabied.html",
       "/posts/solveit.html",
       "/posts/jet-nemotron.html",
       "/posts/cubes.html",
@@ -207,6 +208,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/essays/iabied.html",
       "/posts/solveit.html",
       "/posts/jet-nemotron.html",
       "/posts/cubes.html",
