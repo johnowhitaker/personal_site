@@ -10,7 +10,61 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.9.0</generator>
-<lastBuildDate>Wed, 17 Sep 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 20 Sep 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Biltong, Biofilm Flocs, Hyperspectral Glasses, Marangoni Photography, Poop Guns, Slide Scanning and Speedy Duckweed (Misc Updates)</title>
+  <link>https://johnowhitaker.dev/misc/sept-2025-updates.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Updates on various small things that don’t justify their own posts just yet.</p>
+<p><img src="https://johnowhitaker.dev/misc/thumbnails/miscu.jpg" class="img-fluid"></p>
+<section id="biltong" class="level2">
+<h2 class="anchored" data-anchor-id="biltong">Biltong</h2>
+<p>On a recent hiking + bouldering + paddling trip, the topic of backpacking food came up with the sentiment ‘none of it is good’. Which reminded me of a South African staple I’ve been sorely missing here in the US: biltong. A dried meat, far superior to ‘jerky’. Turns out it’s easy to make! With the only downside being that while it’s drying I am continuously tempted by the alluring smell. Here’s my rough recipe:</p>
+<ul>
+<li>Slice up some steak</li>
+<li>Marinate overnight in vinegar, worchesterchire sauce, salt, a little bit of brown sugar/molasses, and spices (pepper, ground corriander seeds, anything else that sounds fun) making sure all is covered</li>
+<li>Hang to dry somewhere with a bit of air circulation. You’re aiming for e.g.&nbsp;20C with light air movement - too hot or too windy and the outside can harden too much. I use an air purifier to gently waft clean air over it.</li>
+</ul>
+<p>It’s done in around 3 days, tasty sliced or just gnawed on, tasty cut thinly and fried if you’re feeling decadent. The corriander and sweet vinegary saltiness is the taste of childhood treats for me.</p>
+</section>
+<section id="biofilm-flocs" class="level2">
+<h2 class="anchored" data-anchor-id="biofilm-flocs">Biofilm flocs</h2>
+<p>I noticed these white flakes in the bottom of a bottle of 5g/L hydrponic nutrient (MaxiGro) I had mixed up. They seem to be some kind of biofilm <a href="https://en.wikipedia.org/wiki/Floc_(biofilm)">floc</a>. No use for them that I can think of, but they are my pets now until I get around to throwing them out :shrug:</p>
+</section>
+<section id="hyperspectral-glasses" class="level2">
+<h2 class="anchored" data-anchor-id="hyperspectral-glasses">Hyperspectral Glasses</h2>
+<p>This is a fun side-quest! I learned that you can buy Dolby 3D glasses cheap on eBay which have different notch filters per eye, so they can each eye a different image. You can see the spectra and a representative photo through each eye on the right of the cover image. It’s a fun effect to walk around wearing these things. A lot of stuff looks ~no different, just mildly tinted some color or other. But anything where the color is strongly in a wavelength that hits one eye and not the other ‘shimmers’ in a way that looks like a video game quest marker for real life. Since these are often things like flowers, it’s a neat way to appreciate the world!</p>
+<p>I set up a Raspberry Pi 5 with a battery pack and two identical camera modules to try and take some photographs/videos through both filters simultaneously, but the parallax made it not ideas. So I then tried fixing them over the color passthrough cameras on my Quest 3 VR headset and writing a shader that would show the edges/scene from one eye but blend the colors from both eyes in new combinations, to try to give you ‘hyperspectral’ vision. It kinda works but again alignment is tricky, and it’s such a pain accessing the passthrough cameras in Quest at the moment. It seems like they’re planning to give easier access at some point, I might just abandon this and wait for now. My final plan to show off these things to people who don’t have a pair is to capture a scene as a gaussiant splat 3 times - one with a normal camera, and then again with each of the two filters.</p>
+<p>It’s so cool to me that some cheap pieces of glass can slice up the visible spectrum, and give us a chance to see more than we can with our measly 3 different cone cell types.</p>
+</section>
+<section id="marangoni-photography-and-high-speed-duckweek" class="level2">
+<h2 class="anchored" data-anchor-id="marangoni-photography-and-high-speed-duckweek">Marangoni Photography and High-Speed Duckweek</h2>
+<p>I had some duckweed soaking in IPA to extract the chlorophyll, and as I threw it in the sink I noticed some of them zooming around in circles. <a href="https://x.com/johnowhitaker/status/1952498896875479228">Here’s a video of this in action</a> from that first test (August 4). They look so alive! I think I can get them to do all sorts of tricks. I’ve been trying to figure out good ways to document the changing surface tension that drives the effect. So far I’ve got some <a href="https://x.com/johnowhitaker/status/1966670705199903135">trippy slo-mo</a> but not a technique I’m satisfied with yet.</p>
+</section>
+<section id="poop-gun" class="level2">
+<h2 class="anchored" data-anchor-id="poop-gun">‘Poop gun’</h2>
+<p>PSA: if you get <a href="https://www.amazon.com/dp/B0F8BHW5YN?ref=ppx_yo2ov_dt_b_fed_asin_title&amp;th=1">this drain unclogger</a> (as we did when a basement sink clogged, although it arrived after the crisis had passed) you are actually buying a small air-cannon, with a pump to fill a chamber with high-pressure air (it claims 100PSI, 60 is easy) and a quick-release trigger. We stuck a barrel on it, it shoots delightfully well :D Don’t tell our landlady about the dent in the drywall until we’ve patched it up! When a curious fly came sniffing around my biltong this gave a satisfying way to dissuade it.</p>
+</section>
+<section id="slide-scanning" class="level2">
+<h2 class="anchored" data-anchor-id="slide-scanning">Slide Scanning</h2>
+<p>I’m improved dramatically over <a href="https://johnowhitaker.dev/mini-hw-projects/scan_microscope.html">the previous slide scanning setup</a>, with a new plan objective, and a raspberry pi to control the 3D printer and take pictures with the camera module and a <a href="https://cad.onshape.com/documents/f0213fe7f0969bd58abd6976/w/b813f7b585f7d9ca72655df5/e/1cabd9e5c7051e7135563bc5?renderMode=0&amp;uiState=68d2c11a4943005b72ff2c56">3D printed adapter</a>. The microscope also got an upgraded plan objective. I’ve got these giant scan files with hundreds of images combined into a big mosaic, I’m working on ironing out the final kinks in the process and sharing the resulting images in a satosfying way. This will definitely get its own post at some point.</p>
+</section>
+<section id="other" class="level2">
+<h2 class="anchored" data-anchor-id="other">Other</h2>
+<p>I’ve been pretty busy with work, and pretty busy outside work with family stuff and outdoors activities. It feels like personal hobby stuff is getting a little neglected, relegated to tiny little things I can sneak in on a Sunday evening. I’ve got plans for more interesting stuff piling up - perhaps as we move into winter I’ll find more time to invest. In the meantime, I hope you, dear hypothetical reader, are enjoying the miscellaneous quick videos and mini-updates such as this :)</p>
+
+
+</section>
+
+ ]]></description>
+  <category>misc</category>
+  <guid>https://johnowhitaker.dev/misc/sept-2025-updates.html</guid>
+  <pubDate>Sat, 20 Sep 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>If Anyone Builds It, Does Everyone Die?</title>
   <link>https://johnowhitaker.dev/essays/iabied.html</link>
@@ -19,6 +73,9 @@
 
 
 
+<p>Update 2025-09-23: I wrote out some quick thoughts right after reading the book, mostly to share with a few specific people. That original post is included below, but something about it feels lacking. There are so many takes in this space, many vastly incompatible with eachother. I’m adding a section at the end with reactions/takes from others I found interesting, and I encourage you to form your own opinions. ¯_(ツ)_/¯</p>
+<section id="original-essay" class="level1">
+<h1>Original Essay</h1>
 <p>I’ve just finished IABIED. My father-in-law David also pre-ordered it, and his reaction is, predictably, a fair bit of hopelessness. Corporations are racing ahead chasing the money, that doesn’t seem like it’s going to stop. The book’s only recommendations are to shut down, with threat of nuclear bombs, any un-monitored GPU cluster with &gt;8 GPUs and ban new AI research. This seems unlikely to happen. What can we do? David’s youngest son is expecting, and talked yesterday about a 529 college savings plan. “What can I say to him? Like you can’t say this to a young father-to-be but there’s no way his kid is going to go to college!”. This essay is my attempt at some sense-making.</p>
 <section id="a-quick-summary-of-the-book" class="level2">
 <h2 class="anchored" data-anchor-id="a-quick-summary-of-the-book">A Quick Summary of the Book</h2>
@@ -98,6 +155,18 @@
 <li><p>Gradual disempowerment: if we become too dependant on AI, we might slowly lose our skills and bargaining power, leaving the bulk of the population with less hold on how they are treated and what their lives look like going forward.</p></li>
 <li><p>Misaligned incentives between corporations and humans, as is already happening with addictive scrolling content like tiktok, and which could get far worse as companies push ‘relational’ AI further while optimizing for engagement or profit.</p></li>
 </ul>
+</section>
+</section>
+<section id="other-takes" class="level2">
+<h2 class="anchored" data-anchor-id="other-takes">Other Takes</h2>
+<p>I have been keeping an eye out for other takes on this book. Here are some:</p>
+<p>Jeremy Howard: Calling for extreme measures to suppress research will concentrate power in the hands of a few is a very bad idea. <a href="https://x.com/jeremyphoward/status/1969541019437056362">Who is suggesting this</a>? <a href="https://x.com/jeremyphoward/status/1968887354413748270">This could lock in the status quo of power</a>. See also <a href="https://www.fast.ai/posts/2023-11-07-dislightenment.html">AI Safety and the Age of Dislightenment</a>.</p>
+<p><a href="https://x.com/mimi10v3/status/1968731768212881707">A summary of the book on Twitter that seems accurate and a good way to get the jist without reading it</a>, posted after their <a href="https://x.com/mimi10v3/status/1967839789375426876">original tweet</a> containing just the first few words of each chapter (usually part of a parable) was interpreted as a hilarious diss on Yud</p>
+<p><a href="https://www.vox.com/future-perfect/461680/if-anyone-builds-it-yudkowsky-soares-ai-risk">A decent vox article</a> on the book, capturing the conflicting ideals and that this is a clash of worldviews.</p>
+<p><a href="https://x.com/jd_pressman/status/1968847166316625989">JDP’s review</a></p>
+<p><a href="https://x.com/willmacaskill/status/1968759901620146427">William MacAskill’s review</a> - who found the book disappointing</p>
+<p><a href="https://x.com/teortaxesTex/status/1968856896107888656">Teortaxes’ review draft</a> - a critical take that this book is counterproductive and will damage reasonable AI risk discourse</p>
+<p>Lots of other immediate dismissals, lots of other ‘this is the most important book ever’ takes. Is it good that this will get everyone talking, or bad that it will get everyone taking based on flawed arguments, or good because we’re all going to have to keep repeating the title which states the premise which might skew public policy, or bad because actually we’re not on track to build ASI at all and this might make it harder to make nice medical AI and stuff, or good because… like I said - I encourage you to form your own opinions ¯_(ツ)_/¯</p>
 
 
 </section>
@@ -2762,48 +2831,6 @@ font-style: inherit;">;</span></span>
  ]]></description>
   <guid>https://johnowhitaker.dev/tils/paid_promotion_links.html</guid>
   <pubDate>Thu, 10 Apr 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Tab Clearing (April 9 2025)</title>
-  <link>https://johnowhitaker.dev/misc/tab-clear-april2025.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<ul>
-<li><a href="https://synth.grantkot.com/">Web synth</a> - great sounds, easy controls, works on mobile. Big fan. Think they use adventure time sounds, in some kind of library? I want to emulate this at some point.</li>
-<li><a href="https://writings.stephenwolfram.com/2019/02/seeking-the-productive-life-some-details-of-my-personal-infrastructure/">Seeking the Productive Life: Some Details of My Personal Infrastructure</a> - revisiting this inspiring piece from Wolfram on how he optimizes bits if his life. He’s shockingly productive, I think a lot of us could learn from him.</li>
-<li><a href="https://arxiv.org/abs/2504.00698">Command A: An Enterprise-Ready Large Language Model</a> - interesting paper with lots of detail on their enterprisey post-training.</li>
-<li><a href="https://hkunlp.github.io/blog/2025/dream/">Dream 7B</a> - ‘Diffusion reasoning model’ continuing the trend of diffusion language models starting to look impressive at 7Bish scale, building on smaller-scale PoCs from the past. Watching this space with interest :) It is initialzed from Qwen which is an interesting tidbit.</li>
-<li><a href="https://www.together.ai/blog/deepcoder">Together AI announce DeepCoder</a> - speaking of things initialized with Qwen, this 14B reasoner does extremely well thanks to good, open work on RLVR for coding, ft their ‘GRPO+’. Good-looking work!</li>
-<li><a href="https://hackaday.com/2025/04/02/70-diy-synths-on-one-webpage/">70 DIY Synths On One Webpage</a> an inspiring collection for if I ever feel like building HW synths</li>
-<li><a href="https://www.lesswrong.com/posts/9PiyWjoe9tajReF7v/the-hidden-cost-of-our-lies-to-ai">The Hidden Cost of Our Lies to AI</a> - DNF, but I do like peeking at what the LW people are talking about, and I do have a string sentiment against lying to AI that the author shares.</li>
-<li><a href="https://yetch.studio/products/edge-piece-puzzle">Simone’s all-edge puzzle</a> - A nice idea I’m getting for my puzzle-loving wife (shh it’s a birthday secret)</li>
-<li><a href="https://docs.perplexity.ai/guides/pricing">https://docs.perplexity.ai/guides/pricing</a> - Their deep research API looks nice, I saw a colleague using it in an internal tool and want to copy that so I don’t have to break flow to head to openai/google for deep research style questions.</li>
-<li><a href="https://ai-2027.com/">AI2027</a> - I enguaged a lot with this, listening to the Dwarkesh podcast and skimming the research. They’re nothing if not thorough. I’m not sure I quite buy the foomish takeoff stuff still, but I also don’t think you can dismiss these ideas out-of-hand.</li>
-<li><a href="https://hackaday.com/2025/04/04/3d-print-and-play-the-super-mario-tune-as-a-fidget-toy/">3D Print (and Play!) The Super Mario Tune As A Fidget Toy</a> - I’m going to print off some rick-rolls and leave them lying around</li>
-<li><a href="https://arxiv.org/abs/2504.05118">VAPO paper</a> - I’ve been meaning to look at DAPO, VAPO and other GRPO variants but not had the time+inclination recently, feels like the DPO or LoRA fevers as everyone tries out minor mods that work on some benches…</li>
-<li><a href="https://blog.google/products/google-cloud/ironwood-tpu-age-of-inference/">Google’s Ironwood TPUs</a> look like inference beasts…</li>
-<li><a href="https://arxiv.org/abs/2411.15098">OmniControl</a> and this <a href="https://huggingface.co/spaces/Yuanshi/OminiControl_Art">OmniControl Art</a> space (the latter replicating 4o’s stylization trick with Flux) look like an interesting modern controlnet alternative. I want to take a closer look at some point.</li>
-<li><a href="https://arxiv.org/abs/2404.16792">Model Extrapolation Expedites Alignment</a> - fun: train DPO model, interpolate between base SFT model and that, with scale &gt; 1. CFG but it’s comparing preds from DPO model vs base, giving a boost on some tasks haha. Not sure it’ll hold for more carefully trained models but neat to see. Reminds me of a paper that did something similar but using early vs late layer predictions instead of two model variants. Have also seen small vs large models. ALl these hacks feel likely to get bitter-lessoned but fun for now. Another in this veign was:</li>
-<li><a href="http://arxiv.org/abs/2501.18585">Thoughts Are All Over the Place: On the Underthinking of o1-Like LLMs</a> - which supresses thought-changing tokens like “alternatively” until the model has thought for long enough on that topic (some settable threshold) which is a funny hack to encourage longer thoughts. They do see some improvement!</li>
-<li><a href="https://arxiv.org/abs/2504.04022">Rethinking Reflection in Pre-Training</a> - looking at how much ‘reasoning’ is learnt during pre-training, and identifying a measure that grows steadily, which seems very relevant to the discussion over whether reasoning is all RL or is motly elicitation of latent capabilities learnt during pretraining.</li>
-<li><a href="https://arxiv.org/abs/2503.22828">Learning to Reason for Long-Form Story Generation</a> very neat idea: RLVR on reasoning hains with the score being how likely the model is to generate the gold standard output after said reasoning chain: “Our reward uses a reference model to get the improved likelihood of the true next chapter.”, “🎯 Verifiable Rewards via Completion Likelihood Improvement (VR-CLI) evaluates reasoning by the”improvement” in downstream perplexity of the gold completion (the next chapter).”</li>
-<li><a href="https://arxiv.org/abs/2404.09937">Compression Represents Intelligence Linearly</a> - “we find that LLMs’ intelligence – reflected by average benchmark scores – almost linearly correlates with their ability to compress external text corpora. These results provide concrete evidence supporting the belief that superior compression indicates greater intelligence.” - nice to have more empirical evidence for this, I think it’s a good heuristic to keep in mind.</li>
-<li><a href="https://arxiv.org/abs/2504.02495">Inference-Time Scaling for Generalist Reward Modeling</a> - TO READ</li>
-<li><a href="https://www.ethansmith2000.com/post/on-vibe-coding">On Vibe Coding</a> - TO READ</li>
-<li><a href="https://deepmind.google/discover/blog/taking-a-responsible-path-to-agi/">Taking a responsible path to AGI</a> - TO READ</li>
-<li><a href="https://huggingface.co/spaces/enzostvs/deepsite">Deep site</a> - TO TRY</li>
-</ul>
-
-
-
- ]]></description>
-  <category>misc</category>
-  <guid>https://johnowhitaker.dev/misc/tab-clear-april2025.html</guid>
-  <pubDate>Wed, 09 Apr 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://i.pinimg.com/originals/40/fe/86/40fe863b3ccf9ceb56cbef670cf6bc41.gif" medium="image" type="image/gif"/>
 </item>
 </channel>
 </rss>
