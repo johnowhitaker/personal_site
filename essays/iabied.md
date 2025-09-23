@@ -5,6 +5,10 @@ categories:
     - essays
 ---
 
+Update 2025-09-23: I wrote out some quick thoughts right after reading the book, mostly to share with a few specific people. That original post is included below, but something about it feels lacking. There are so many takes in this space, many vastly incompatible with eachother. I'm adding a section at the end with reactions/takes from others I found interesting, and I encourage you to form your own opinions. ¯\_(ツ)_/¯
+
+# Original Essay
+
 I've just finished IABIED. My father-in-law David also pre-ordered it, and his reaction is, predictably, a fair bit of hopelessness. Corporations are racing ahead chasing the money, that doesn't seem like it's going to stop. The book's only recommendations are to shut down, with threat of nuclear bombs, any un-monitored GPU cluster with >8 GPUs and ban new AI research. This seems unlikely to happen. What can we do? David's youngest son is expecting, and talked yesterday about a 529 college savings plan. "What can I say to him? Like you can't say this to a young father-to-be but there's no way his kid is going to go to college!". This essay is my attempt at some sense-making.
 
 ## A Quick Summary of the Book
@@ -105,3 +109,21 @@ If we build it safely:
 - Gradual disempowerment: if we become too dependant on AI, we might slowly lose our skills and bargaining power, leaving the bulk of the population with less hold on how they are treated and what their lives look like going forward.
 
 - Misaligned incentives between corporations and humans, as is already happening with addictive scrolling content like tiktok, and which could get far worse as companies push 'relational' AI further while optimizing for engagement or profit.
+
+## Other Takes
+
+I have been keeping an eye out for other takes on this book. Here are some:
+
+Jeremy Howard: Calling for extreme measures to suppress research will concentrate power in the hands of a few is a very bad idea. [Who is suggesting this](https://x.com/jeremyphoward/status/1969541019437056362)? [This could lock in the status quo of power](https://x.com/jeremyphoward/status/1968887354413748270). See also [AI Safety and the Age of Dislightenment](https://www.fast.ai/posts/2023-11-07-dislightenment.html).
+
+[A summary of the book on Twitter that seems accurate and a good way to get the jist without reading it](https://x.com/mimi10v3/status/1968731768212881707), posted after their [original tweet](https://x.com/mimi10v3/status/1967839789375426876) containing just the first few words of each chapter (usually part of a parable) was interpreted as a hilarious diss on Yud
+
+[A decent vox article](https://www.vox.com/future-perfect/461680/if-anyone-builds-it-yudkowsky-soares-ai-risk) on the book, capturing the conflicting ideals and that this is a clash of worldviews.
+
+[JDP's review](https://x.com/jd_pressman/status/1968847166316625989)
+
+[William MacAskill's review](https://x.com/willmacaskill/status/1968759901620146427) - who found the book disappointing
+
+[Teortaxes' review draft](https://x.com/teortaxesTex/status/1968856896107888656) - a critical take that this book is counterproductive and will damage reasonable AI risk discourse
+
+Lots of other immediate dismissals, lots of other 'this is the most important book ever' takes. Is it good that this will get everyone talking, or bad that it will get everyone taking based on flawed arguments, or good because we're all going to have to keep repeating the title which states the premise which might skew public policy, or bad because actually we're not on track to build ASI at all and this might make it harder to make nice medical AI and stuff, or good because... like I said - I encourage you to form your own opinions ¯\_(ツ)_/¯
