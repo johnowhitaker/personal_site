@@ -6,6 +6,20 @@ I hope to better document other blogs I've found interesting + useful, as well a
 
 ## Others / To Be Categorized
 
+https://sander.ai/2025/04/15/latents.html diffusion goat
+
+https://vgel.me/posts/
+
+https://fengyao.notion.site/fengyao/Your-Efficient-RL-Framework-Secretly-Brings-You-Off-Policy-RL-Training-237721e3f6c48094ad67dad3ac091c56
+
+https://interactivetextbooks.tudelft.nl/showthephysics/Introduction/About.html
+
+https://www.jefftk.com/p/pasta-cooking-time
+
+https://bradylin.com/
+
+https://www.julian.ac/read/ and main blog
+
 https://ciechanow.ski/archives/ incredible explainers (related: https://imadr.me/pbr/)
 
 https://lcamtuf.substack.com/archive and e.g. https://lcamtuf.coredump.cx/offsite.shtml
