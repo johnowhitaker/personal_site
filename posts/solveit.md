@@ -137,3 +137,17 @@ There we go - some musings on the solveit approach. There's a ton more to the ap
 I still have [wide error bars](https://johnowhitaker.dev/essays/future-ai.html) on the future of AI and coding, but no matter how that goes, I'm glad I get to work on getting better at something I enjoy for now :) 
 
 I hope you've enjoyed this rambly post! I'd love to hear your thoughts! Stay tuned for info on the new course shortly (I'll link here when we announce it). Cheers - J
+
+PS: If you want to see what a post like this looks like after an edit pass, I cleaned it up as the launch post for solveit and it should be live on [answer.ai](https://answer.ai) shortly. Featuring fun corrections like the ones below (caught by AI review) and tweaks to focus more on the exciting news that we're finally launching the course :)
+
+Glaring errors / typos
+	•	“solveing” → “solving” (appears at least twice).
+	•	“Eric Reis” → should be Eric Ries.
+	•	“acive” → “active.”
+	•	“stodents” → “students.”
+	•	“thoughout” → “throughout.”
+	•	“sterp” → “step.”
+	•	“helpfullness” → “helpfulness.”
+	•	“unlesss” → “unless.”
+	•	“eveidence” → “evidence.”
+	•	Minor date formatting: “October 20’th” should be “October 20th.”
