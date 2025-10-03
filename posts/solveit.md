@@ -138,7 +138,7 @@ I still have [wide error bars](https://johnowhitaker.dev/essays/future-ai.html) 
 
 I hope you've enjoyed this rambly post! I'd love to hear your thoughts! Stay tuned for info on the new course shortly (I'll link here when we announce it). Cheers - J
 
-PS: If you want to see what a post like this looks like after an edit pass, I cleaned it up as the launch post for solveit and it should be live on [answer.ai](https://answer.ai) shortly. Featuring fun corrections like the ones below (caught by AI review) and tweaks to focus more on the exciting news that we're finally launching the course :)
+PS: If you want to see what a post like this looks like after being turned into a launch post, [here it is on answer.ai.](https://www.answer.ai/posts/2025-10-01-solveit-full.html) . Featuring fun corrections like the ones below (caught by AI review) and tweaks to focus more on the exciting news that we're finally launching the course :)
 
 Glaring errors / typos
 	•	“solveing” → “solving” (appears at least twice).

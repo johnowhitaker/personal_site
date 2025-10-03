@@ -27,6 +27,7 @@ For now this is a WIP, I will try to add to this over time. Last updated 2025-09
 - Bone conduction headphones. I like having something that doesn’t sit in my ears - for me much nicer than ear buds on on-ear headphones. I have [these](https://www.amazon.com/dp/B091XZM6KK) since the mic is nice for work calls etc, I also had [these](https://www.amazon.com/dp/B09BW29FJS) ($80) and 4 family members have since gotten a pair - so nice for running, combine with ear plugs to make them useable while travelling (they don’t block any noise). At my desk I sometimes use XXX over-ear headphones but the bone conducting ones are my daiily driver 90% use choice.
 - Bright lights. Like very bright. Also chicken lamps (I got [these](https://www.amazon.com/dp/B0CX1C2JR8) 240W ones) to simulate sunshine during the cold winter months. People make fun of me in my basement with my chicken lamp, but it’s soooo nice to ahve it on for a bit to make it feel like morning sunshine :)
 - Cheap laser pointers are bright, cheap and fun. Don’t point them at people. The blue one gets some cool flourescence going in various materials. Toy.
+- You can get a 'kids instant camera' like [this](https://www.amazon.com/dp/B0CPTVT6MH) that prints B&W pics on thermal paper for cheap. Think polaroid but <$0.01 per pic not $1 per pic, and $20 for the camera. We used one for a family trip and it was lovely. Great gift.
 - UV torch. TODO
 - Microscope TODO
 - Calipers TODO
