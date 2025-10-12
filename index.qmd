@@ -31,6 +31,7 @@ I'm a Data Scientist/AI Researcher doing R&D with [answer.ai](https://www.answer
 
 This website is a central repository for everything I'm working on. You can find my blog posts, videos, TILs and just about everything else in the ['Everything' feed](all.qmd). If you're looking for even more info, you may also want:
 
+- My new YouTube Channel! https://www.youtube.com/@JohnosLab where I'm trying to clear out my side-project backlog via short videos, and also secretly showing variations on a theme: simple rules leading to beautiful emergent complexity.
 - [Twitter](https://x.com/johnowhitaker) (@johnowhitaker on [Sigmoid.social](https://sigmoid.social/@johnowhitaker) and [bsky](https://bsky.app/profile/johnowhitaker.bsky.social) too, but not active there. Same handle on most other platforms as well.)
 - My DataScienceCastnet [YouTube channel](https://www.youtube.com/channel/UCP6gT9X2oXYcssfZu05RV2g) where I document some of the projects I've been working on.
 - [The Generative Landscape](https://johnowhitaker.github.io/tglcourse/), an older (now mostly abandoned) course on all things generative, or the even older [AIAIART course](https://github.com/johnowhitaker/aiaiart).
