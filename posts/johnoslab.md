@@ -14,7 +14,7 @@ I'm taking a little time off, to get energized before our next course and becaus
 
 ![](images/shorts_thumbs.png)
 
-As far as the format goes, I'm enjoying this so far! As a representative sample, I've "closed out" my duckweed experiments, with a catchy [short](https://www.youtube.com/shorts/qcPMMdFlzqc) showing the motion I wanted to talk about, and a longer [background video](https://www.youtube.com/watch?v=4tjFAJ01_nM) chatting about the backstory, why I was growing it, and how I think the motion arises (including a simulation of the phenomenon). I no lionger have tubs of duckweed taking up one surface in my basement just waiting for me to finally get around to filming something. And I finally have a place to share the timelapse I took, the fun discovery of the motion, and the cool AI-for-science mini experiment that started it all off.
+As far as the format goes, I'm enjoying this so far! As a representative sample, I've "closed out" my duckweed experiments, with a catchy [short](https://www.youtube.com/shorts/qcPMMdFlzqc) showing the motion I wanted to talk about, and a longer [background video](https://www.youtube.com/watch?v=4tjFAJ01_nM) chatting about the backstory, why I was growing it, and how I think the motion arises (including a simulation of the phenomenon). I no longer have tubs of duckweed taking up one surface in my basement just waiting for me to finally get around to filming something. And I finally have a place to share the timelapse I took, the fun discovery of the motion, and the cool AI-for-science mini experiment that started it all off.
 
 ![](images/shorts_stats.png)
 
@@ -35,3 +35,5 @@ Anyway, this excuse to go over a few old projects and start on a few new ones ha
 I also enjoyed taking a break from working, and leaning on AI a little more for the small bits of coding I did do - mostly simulation stuff that I could very easily + carefully describe, while letting the AI handle the boring scaffolding. As an example, I'm very plese with the shader inspired by the rheoscopic fluid stuff, and the bad apple side-quest [reddit post](https://www.reddit.com/poststats/1o88ujh) I posted on reddit makes me happy - I've contributed to a long and silly tradition of people rendering that clip in weird ways, I've made something pleasing to look at + play with, and I could have creative charge without having to fix silly webgl errors.
 
 Now that I've cleared a bit of my backlog, I'm going to dial back on the daily posting and switch to using this as I intended, as a more when-needed type place to dump clips. Subscribe if you're interested :) And stay tuned for more posts here too - this isn't going anywhere any time soon. :peace:
+
+PS: I should link the channel! https://www.youtube.com/@JohnosLab
