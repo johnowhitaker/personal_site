@@ -6,6 +6,8 @@ I hope to better document other blogs I've found interesting + useful, as well a
 
 ## Others / To Be Categorized
 
+https://www.anfractuosity.com/projects/
+
 https://sander.ai/2025/04/15/latents.html diffusion goat
 
 https://vgel.me/posts/
