@@ -9,8 +9,42 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.9.4</generator>
-<lastBuildDate>Sat, 20 Sep 2025 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.9.8</generator>
+<lastBuildDate>Fri, 17 Oct 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Johno’s Lab - First Week of A New YouTube Channel</title>
+  <link>https://johnowhitaker.dev/posts/johnoslab.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I’m taking a little time off, to get energized before our next course and because I was generally feeling a little tired out. It’s really important for me to have time to let my brain spin freely! I’ve done some good reading and resting and so on, but I do like to have a few bits of routine + structure even in a gap, and one experiment I thought I’d try this time is attempting to regularly post some short videos on old projects. Let me explain:</p>
+<ul>
+<li>I’m enjoying the low threshold of posting stuff here on my blog! But a lot of the bits and bobs I’ve been doing for fun (e.g.&nbsp;crystal timelapses) are well-suited to video.</li>
+<li>I’ve been dreaming for ages of making long, high-quality videos on some of these ideas, but that’s a ton of time investment!</li>
+<li>The hope is that a short video is enough to give ‘closure’ to some of the projects I’ve been stringing out, or to share unstructured updates, while still leaving open the possibility of a more casual, long-form video if there’s more I want to cram in.</li>
+</ul>
+<p><img src="https://johnowhitaker.dev/posts/images/shorts_thumbs.png" class="img-fluid"></p>
+<p>As far as the format goes, I’m enjoying this so far! As a representative sample, I’ve “closed out” my duckweed experiments, with a catchy <a href="https://www.youtube.com/shorts/qcPMMdFlzqc">short</a> showing the motion I wanted to talk about, and a longer <a href="https://www.youtube.com/watch?v=4tjFAJ01_nM">background video</a> chatting about the backstory, why I was growing it, and how I think the motion arises (including a simulation of the phenomenon). I no lionger have tubs of duckweed taking up one surface in my basement just waiting for me to finally get around to filming something. And I finally have a place to share the timelapse I took, the fun discovery of the motion, and the cool AI-for-science mini experiment that started it all off.</p>
+<p><img src="https://johnowhitaker.dev/posts/images/shorts_stats.png" class="img-fluid"></p>
+<p>The shorts medium is one I’m very unfamiliar with, and so that aspect has been interesting too. It seems like when I post a video, it gets a spike of views in the first ~hour and then dies off, with only a few continuing to get a trickle of views after that initial burst. Still, 10k views is a lot! I hadn’t thought through how many shorts people watch. The longer background videos are getting tens of views, more in line with what I expected for a new channel not marketing or anything.</p>
+<p><img src="https://johnowhitaker.dev/posts/images/shorts_views.png" class="img-fluid"></p>
+<p>One hope in posting these was that I’d inspire a bit of curiosity in people - maybe they’d take an experiment further than I did, or see the short and come explore the longer videos for more. Alas, I suspect that most shorts viewers are much closer to mindlessly scrolling, and I’m a little worried I’m just feeding that beast.</p>
+<p>Indeed, setting up a fresh YT account (and a tiktok account, since I posted a few vids there too to test it out - with a few k views as a result) gave me a somewhat shocking view of what a shorts feed looks like. Selecting “STEM” in tiktok steered it towards some at least midly informative content, and my personal YT (tuned by decades of watching science+tech nerdery) was a little better, but it’s clear all of these things are optimizing for catchy + addictive first.</p>
+<p>I’m still undecided if this is enough to put me off the medium completely - but I might shift purposefully away from anything too algo-friendly and stick to minimal editing of whatever I find interesting - moving lab notes rather than carefully scripted short videos. Also, a friend said I was ‘building a funnel’ and that made me stop for now, yuk.</p>
+<p>Anyway, this excuse to go over a few old projects and start on a few new ones has reminded me of many good things. The ease with which we can whip up 3D printed bits, cobble together cheap hobby parts, and have AI help code up something neat is delightful! (a misc subset of recent prints below)</p>
+<p><img src="https://johnowhitaker.dev/posts/images/3d_prints.png" class="img-fluid"></p>
+<p>I also enjoyed taking a break from working, and leaning on AI a little more for the small bits of coding I did do - mostly simulation stuff that I could very easily + carefully describe, while letting the AI handle the boring scaffolding. As an example, I’m very plese with the shader inspired by the rheoscopic fluid stuff, and the bad apple side-quest <a href="https://www.reddit.com/poststats/1o88ujh">reddit post</a> I posted on reddit makes me happy - I’ve contributed to a long and silly tradition of people rendering that clip in weird ways, I’ve made something pleasing to look at + play with, and I could have creative charge without having to fix silly webgl errors.</p>
+<p>Now that I’ve cleared a bit of my backlog, I’m going to dial back on the daily posting and switch to using this as I intended, as a more when-needed type place to dump clips. Subscribe if you’re interested :) And stay tuned for more posts here too - this isn’t going anywhere any time soon. :peace:</p>
+
+
+
+ ]]></description>
+  <category>misc</category>
+  <guid>https://johnowhitaker.dev/posts/johnoslab.html</guid>
+  <pubDate>Fri, 17 Oct 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Biltong, Biofilm Flocs, Hyperspectral Glasses, Marangoni Photography, Poop Guns, Slide Scanning and Speedy Duckweed (Misc Updates)</title>
   <link>https://johnowhitaker.dev/misc/sept-2025-updates.html</link>
@@ -2763,76 +2797,6 @@ font-style: inherit;"># Scores for different alphas: [71.0, 72.5, 72.83333333333
   <category>mini-hw-projects</category>
   <guid>https://johnowhitaker.dev/mini-hw-projects/rheoscopic.html</guid>
   <pubDate>Fri, 11 Apr 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Hiding an Annoying Element with Stylus</title>
-  <link>https://johnowhitaker.dev/tils/paid_promotion_links.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>YouTube has this annoying thing where on hover a little overlay pops up over some videos that says ‘Includes paid promotion…’. I click on this accidentally fairly frequently, opening up a support.google.com link instead of the video I want. This bugs me, but it’s a very minor annoyance. In the past I’d probably just ignore it. I tried inspecting the element in the Chrome dev tools but couldn’t find it and that’s about as much effort as I’m willing to manually do for somethig this small. FOrtunately, these days we have AI! A quick back-and-forth with GPT4.5 and I’ve solved the problem for myself!</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/tils/yt_overlay.png" class="img-fluid figure-img"></p>
-<figcaption>The problem</figcaption>
-</figure>
-</div>
-<p>I went with a CSS rule in the Stylus browser extension:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb1-1"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">@-moz-document</span> domain<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">(</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"youtube.com"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">)</span> {</span>
-<span id="cb1-2">    a<span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">[</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">href</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"support.google.com/youtube"</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">]</span> {</span>
-<span id="cb1-3">        <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">display</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">none</span> <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">!important</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb1-4">        <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">pointer-events</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">none</span> <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">!important</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb1-5">    }</span>
-<span id="cb1-6">}</span></code></pre></div></div>
-<p>I’m amused how low my tolerance for painful stuff on a computer is these days, and how happy it makes me to fix any remaining tiny paper cuts with my code-slinging AI buddies.</p>
-
-
-
- ]]></description>
-  <guid>https://johnowhitaker.dev/tils/paid_promotion_links.html</guid>
-  <pubDate>Thu, 10 Apr 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
