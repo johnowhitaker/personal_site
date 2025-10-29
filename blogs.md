@@ -6,6 +6,10 @@ I hope to better document other blogs I've found interesting + useful, as well a
 
 ## Others / To Be Categorized
 
+https://erikschluntz.com/hardware/2025/10/26/robot-dog.html
+
+https://jessylin.com/2025/10/20/continual-learning/
+
 https://www.anfractuosity.com/projects/
 
 https://sander.ai/2025/04/15/latents.html diffusion goat
