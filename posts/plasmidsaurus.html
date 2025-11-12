@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-06-16">
-<meta name="description" content="Some early experiments fine-tuning ModernBERT to be a masked diffusion LLM, with lots of room to explore further">
+<meta name="dcterms.date" content="2025-11-06">
+<meta name="description" content="Learning how easy it is becoming to sequence DNA and explore the results, via a case study on something goopy I found growing in my lab and an even stranger contaminant in Sebastian’s Triton-X surfactrant solution.">
 
-<title>Diffusion Language Models: Turning ModernBERT into an instruct-tuned Diffusion LLM – johnowhitaker.dev</title>
+<title>Reading Genomes thanks to Plasmidsaurus – johnowhitaker.dev</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -73,13 +108,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta name="twitter:title" content="Diffusion Language Models: Turning ModernBERT into an instruct-tuned Diffusion LLM – johnowhitaker.dev">
-<meta name="twitter:description" content="Some early experiments fine-tuning ModernBERT to be a masked diffusion LLM, with lots of room to explore further">
-<meta name="twitter:image" content="https://johnowhitaker.dev/misc/thumbnails/dllm1.png">
+<meta name="twitter:title" content="Reading Genomes thanks to Plasmidsaurus – johnowhitaker.dev">
+<meta name="twitter:description" content="Learning how easy it is becoming to sequence DNA and explore the results, via a case study on something goopy I found growing in my lab and an even stranger contaminant in Sebastian’s Triton-X surfactrant solution.">
+<meta name="twitter:image" content="https://johnowhitaker.dev/posts/images/flocs.png">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image-height" content="1698">
-<meta name="twitter:image-width" content="3353">
+<meta name="twitter:image-height" content="1204">
+<meta name="twitter:image-width" content="1456">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -158,7 +193,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#diffusion-language-models-turning-modernbert-into-an-instruct-tuned-diffusion-llm" id="toc-diffusion-language-models-turning-modernbert-into-an-instruct-tuned-diffusion-llm" class="nav-link active" data-scroll-target="#diffusion-language-models-turning-modernbert-into-an-instruct-tuned-diffusion-llm">Diffusion Language Models: Turning ModernBERT into an instruct-tuned Diffusion LLM</a></li>
+  <li><a href="#what-the-floc-is-that" id="toc-what-the-floc-is-that" class="nav-link active" data-scroll-target="#what-the-floc-is-that">What the floc is that?</a></li>
+  <li><a href="#sebastians-mystery-bug" id="toc-sebastians-mystery-bug" class="nav-link" data-scroll-target="#sebastians-mystery-bug">Sebastian’s Mystery Bug</a>
+  <ul class="collapse">
+  <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link" data-scroll-target="#load-the-data">Load the data</a></li>
+  <li><a href="#picking-some-reads-to-blast" id="toc-picking-some-reads-to-blast" class="nav-link" data-scroll-target="#picking-some-reads-to-blast">Picking some reads to BLAST</a></li>
+  <li><a href="#reads---annotated-genome" id="toc-reads---annotated-genome" class="nav-link" data-scroll-target="#reads---annotated-genome">Reads -&gt; Annotated Genome</a></li>
+  <li><a href="#a-masters-master-plan" id="toc-a-masters-master-plan" class="nav-link" data-scroll-target="#a-masters-master-plan">A Master’s Master Plan</a></li>
+  </ul></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
   </ul>
 </nav>
     </div>
@@ -167,15 +210,15 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Diffusion Language Models: Turning ModernBERT into an instruct-tuned Diffusion LLM</h1>
+<h1 class="title">Reading Genomes thanks to Plasmidsaurus</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Video</div>
+    <div class="quarto-category">misc</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    Some early experiments fine-tuning ModernBERT to be a masked diffusion LLM, with lots of room to explore further
+    Learning how easy it is becoming to sequence DNA and explore the results, via a case study on something goopy I found growing in my lab and an even stranger contaminant in Sebastian’s Triton-X surfactrant solution.
   </div>
 </div>
 
@@ -186,7 +229,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 16, 2025</p>
+      <p class="date">November 6, 2025</p>
     </div>
   </div>
   
@@ -198,10 +241,71 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="diffusion-language-models-turning-modernbert-into-an-instruct-tuned-diffusion-llm" class="level3">
-<h3 class="anchored" data-anchor-id="diffusion-language-models-turning-modernbert-into-an-instruct-tuned-diffusion-llm">Diffusion Language Models: Turning ModernBERT into an instruct-tuned Diffusion LLM</h3>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/Ds_cTclxV2o" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p>Inference notebook: https://colab.research.google.com/drive/1hMV0OBpmJL7L5yIEtkeeUz-7rB1buFmg?usp=sharing Training notebook: https://colab.research.google.com/drive/1D82ULU5dUyJKPnj2oUxtfJeWTB1sVds_?usp=sharing Model on HF: https://huggingface.co/johnowhitaker/modernbert-diffusion/blob/main/README.md LLaDA paper (‘Large Language Diffusion Models’): https://arxiv.org/pdf/2502.09992</p>
+<p>When I encounter an organism, I like to know what it is. My wifge once asked me, puzzled, why I have this drive. I stand by my first answer: I want to know if I can eat it! Naming something allows us to cross-reference information about that thing - from recipes to life histories :) Birds are easy - they sell books with pictures. Same goes for mammals, mushrooms, plants etc - at least the common ones. Bugs and spiders are harder - for some, you have to look at their naughty bits under a microscope (annoyance at this fact prompted me to put lots of working into making photo guides). When you get to bacteria, there’s really no hope in most cases… at least, that’s how I felt until recently! Turns out you can find out ‘what is this’ these days for a relatively modest sum of money, thanks to the magic of gene sequencing. In this post I’ll share my first experience answering one such question, then dig into a case study with data from a friendly internet biologist to show how far one can explore with some free tools (and a bit of specialist know-how).</p>
+<section id="what-the-floc-is-that" class="level2">
+<h2 class="anchored" data-anchor-id="what-the-floc-is-that">What the floc is that?</h2>
+<p><img src="images/flocs.png" class="img-fluid"></p>
+<p>Towards the end of my <a href="https://johnowhitaker.dev/posts/dwebench.html">duckweed experiments</a>, I noticed some things floating in some leftover stock solution of hydroponic nutrients I had made up. White, goopy blobs about a cm long. Was this some sort of weird precipitate? Some bacteria or yeast growing in there? A look under a microscope revealed a dense, tangled, squishy mess. A few tests ruled out mineral/chemical suspects, and after a bit of poking around my best answer was that these were probably biofilm flocs: mixed environmental microbes embedded in EPS (extracellular polysaccharide). That’s <em>an</em> answer, but how do we narrow it down to something more specific?</p>
+<p>Enter <a href="https://plasmidsaurus.com/welcome">Plasmidsaurus</a>. They offer a number of services. In this case, I went for their “Microbiome 16S Amplification &amp; Sequencing with DNA Extraction” service. Following the guidance in the <a href="https://plasmidsaurus.com/sample-prep/microbiome#16S-extraction">sample prep</a> docs, I suspended ~0.1g of the goo in a product called ‘Zymo DNA shield’ (after a quick wash + spin down in 0.9% saline) and shipped the result (in a tube in a tube in a bag in a bag just to be safe) off to their lab in the nearby town of Eugene.</p>
+<p><img src="images/floc_results.png" class="img-fluid"></p>
+<p>The 16S gene is “highly conserved between different species of bacteria and archaea” and gets used to tell what somethig is without reading the whole genome - perfect for analysing environmental samples, gut bacteria etc. Plasmidsaurus will give you the raw reads, but they also do some processing to tell you some relative abundances of different species present (see above). In my case, it turns out these flocs are not a siongle species but instead a whole happy community of microbes! It’s fun to start researching and figuring out who might be doing what. Preliminary poking tells me this is not an unusual mix for a watery, nutrient-rich environment. Cool to see some <a href="https://x.com/allisonmegow/status/1983048944432353532">Methylobacterium present</a> - wonder how they’re getting food.</p>
+<p>So, there you go. A much deeper answer to ‘what is that’, provided you’re willing to ship off a sample of goop and pay $60 + reagents and shipping. Is this as far as we can go though? No! <a href="https://x.com/johnowhitaker/status/1983004377318326522">Raw results here for the curous</a>. To dive even deeper, I’m going to switch to exploring the example that inspired me to go down this rabbit hole: the case of the mysterious triton X infiltrator.</p>
+</section>
+<section id="sebastians-mystery-bug" class="level2">
+<h2 class="anchored" data-anchor-id="sebastians-mystery-bug">Sebastian’s Mystery Bug</h2>
+<p><img src="images/tritonx.png" class="img-fluid"></p>
+<p>Sebastian S. Cocioba🪄🌷 <a href="https://x.com/ATinyGreenCell"><span class="citation" data-cites="ATinyGreenCell">@ATinyGreenCell</span></a> is an amateur biologist who is continually doing amazing science stuff. He noticed a contaminant growing in his surfactant solution - a rough environment to be a bacteria! We sent it off for sequencing, but this time being a pro the approach was a little fancier than the one I showed in the previous section. For one thing, he guessed that his contaminant was mostly one organism, a bacterium, and so went with the bacteria genome sequencing with extraction option on the friendlty dino site. This was a bit of an informed gamble - the kind of shortcut one can take with experience.</p>
+<p>He’s been sharing <a href="https://drive.google.com/drive/folders/1VRWijxODY-tEz_SEpgFz_OVNyNp6obG4">the data</a> and his explorations on X.</p>
+<p>The main result from the run this time is a file with the reads: <code>K9P4V9_1_CONTAM-1.fastq</code>. In a <a href="https://gist.github.com/johnowhitaker/9c0b81329de6f26ace8c4b88a9f87dbf">solveit dialog</a> I loaded up the file and started poking at it. With some AI help, here’s how you might explore this type of data:</p>
+<section id="load-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="load-the-data">Load the data</h3>
+<p>FastQ files store each read in four lines. You can install the <code>biopython</code> library and read in the file like so:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio <span class="im">import</span> SeqIO</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>reads <span class="op">=</span> <span class="bu">list</span>(SeqIO.parse(fn, <span class="st">"fastq"</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total reads: </span><span class="sc">{</span><span class="bu">len</span>(reads)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>reads[<span class="dv">0</span>]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> SeqRecord(seq<span class="op">=</span>Seq(<span class="st">'CTGCATTGCGGGAATCGAGCTTTCGAGCGCAGCGAGAAGGTGATCTGCTGATTG...CGA'</span>), <span class="bu">id</span><span class="op">=</span><span class="st">'427416c3-6c47-4f34-9889-f33a6ce52b84'</span>, name<span class="op">=</span><span class="st">'427416c3-6c47-4f34-9889-f33a6ce52b84'</span>, description<span class="op">=</span><span class="st">'427416c3-6c47-4f34-9889-f33a6ce52b84 runid=0a805c02-f153-4c61-8572-df4a5e0b5651 ch=1767 start_time=2025-10-21T16:20:17.800804+00:00 flow_cell_id=PBG22075 basecall_gpu=NVIDIA_A100_80GB_PCIe protocol_group_id=251021LV_BACT sample_id=D barcode=barcode60 barcode_alias=barcode60 parent_read_id=427416c3-6c47-4f34-9889-f33a6ce52b84 basecall_model_version_id=dna_r10.4.1_e8.2_400bps_sup@v4.3.0'</span>, dbxrefs<span class="op">=</span>[])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="picking-some-reads-to-blast" class="level3">
+<h3 class="anchored" data-anchor-id="picking-some-reads-to-blast">Picking some reads to BLAST</h3>
+<p>I sorted the reads by length (<code>reads = sorted(reads, key=lambda r: len(r))</code>) and picked a few to look at (<code>chosen = [reads[100], reads[5000], reads[10000]]</code>). BLAST stands for “Basic Local Alignment Search Tool” - it looks for similarity between sequences, and when combined with a database of known sequences it’sa powerful tool for figuring out what on earth some specific string of DNA base pairs represents. You can download a giant database and run it locally, or submit one to NCBI’s BLAST like so:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio.Blast <span class="im">import</span> NCBIWWW, NCBIXML</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> NCBIWWW.qblast(<span class="st">"blastn"</span>, <span class="st">"nt"</span>, chosen[<span class="dv">0</span>].seq)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>blast_record <span class="op">=</span> NCBIXML.read(result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The resulting record contains a list of <code>alignments</code>. These have a <code>title</code> (e.g.&nbsp;“Edaphobacter flagellatus strain HZ411 chromosome, complete genome”) and some info on how good the match is. In this case, we can see that the e-value (<code>alignment.hsps[0].expect</code>) is 0.0 (lower is better) with 536/543 (<code>{hsp.identities}/{hsp.align_length}</code>) bps matching. For all the reads I tried, the best match came from E. flagellatus, making this a strong candidate for who this particular contaminant is. (Sebastian agrees).</p>
+</section>
+<section id="reads---annotated-genome" class="level3">
+<h3 class="anchored" data-anchor-id="reads---annotated-genome">Reads -&gt; Annotated Genome</h3>
+<p>This bug turned out to be a little hard to crack (I guess it was living in a soap solution!) but the kind folks at Plasmidsaurus agreed to do a second run, resulting in more data. The way this works is that you aim to gen enough reads that you can stitch together the fragments with others that overlap until you have a complete circular genome. For a ‘good’ reconstruction you want about 30X coverage - i.e.&nbsp;each piece appears in at least 30 reads. When plasminsaurus advertises a given tier as being suitable for e.g.&nbsp;a 10 mega-base-pair genome, they mean they expect you’ll get this level of coverage across a genome that size. In this case, we ended up with enough reads that Sebastian was able to assemble a complete genome, but even if you didn’t (or if you only did the microbiome 16S example) and you wanted a full genome to play with, you can download one like so:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio <span class="im">import</span> Entrez</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Set your email (NCBI requires this)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Entrez.email <span class="op">=</span> <span class="st">"your.email@example.com"</span>  <span class="co"># Change this to your email</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>handle <span class="op">=</span> Entrez.efetch(db<span class="op">=</span><span class="st">"nucleotide"</span>, <span class="bu">id</span><span class="op">=</span><span class="st">"CP073697.1"</span>, rettype<span class="op">=</span><span class="st">"fasta"</span>, retmode<span class="op">=</span><span class="st">"text"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>genome <span class="op">=</span> handle.read()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>handle.close()</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"edaphobacter_flagellatus.fasta"</span>, <span class="st">"w"</span>) <span class="im">as</span> f: f.write(genome)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now what? The next step is to annotate this genome, which at present just looks like a string of 4.5 million letters. I signed up for an account, uploaded the genome we just downloaded, and got <a href="https://www.bv-brc.org/workspace/johnowhitaker@bvbrc/home/Edaphobacter%20flagellatus%20test_from_Entrez_CP073697.1">this</a> result via bv-brc. Again, if you’re doing this lots you can get tools to run this locally. See also, <a href="https://x.com/ATinyGreenCell/status/1981428984832278974">Sebastian doing this his way</a>. This annotation process tags specific sequences with features. Loading them in:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'~/Downloads/BVBRC_genome_feature.csv'</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>functions <span class="op">=</span> <span class="st">', '</span>.join(df[<span class="st">'Product'</span>].unique())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Taking a look at the annotated functions: <code>Transcriptional regulator, IclR family, hypothetical protein, Phage integrase, Amidohydrolase, Glutamyl-tRNA reductase (EC 1.2.1.70), Acidobacterial duplicated orphan permease (function unknown), Transcriptional regulator, PadR family, ...</code>. Lots and lots of “hypothetical protein”s here - this is what happens when you look at an understudied soil bacteria haha, shows how little we know! Since I’m a noob, I figured I’d pass the list to AI to see if there was anything interesting. In solveit, you can pass variables to claude like so: <code>Take a look at $functions - any stand out as potentially interesting / related to how it can live in tritonX?</code>. It was able to highlight specific bits, such as “CzcABC family efflux RND transporter”, explaining that “Efflux pumps actively pump toxic compounds out of the cell. RND (Resistance-Nodulation-Division) transporters are known for pumping out detergents and other membrane-disrupting compounds.”. Looking at the 31 efflux-related genes might not be a bad place to start when trying to figure out how this thing survives in the harsh environment it was growing in. (he says, like he knows what he’s talking about).</p>
+<p>In a future post, I want to look further at how I might take an annotated protein (or pick one of the unknown ones) and look at it further - get the structure with alphafold 3, predict likely function, see which other species tend to have it and what they all do, etc etc. So many unknowns! But also so many good tools for digging in, and lots to learn :D</p>
+</section>
+<section id="a-masters-master-plan" class="level3">
+<h3 class="anchored" data-anchor-id="a-masters-master-plan">A Master’s Master Plan</h3>
+<p>It was really interesting to see how <span class="citation" data-cites="atinygreencell">@atinygreencell</span> went about playing with this. His interest goes beyond just figuring out what this is - instead, he has a process to turn it into something he can ‘play’ with! Once he has an assembled and annotated genome, his next steps are:</p>
+<ul>
+<li>Start to culture the bug. Growing it on agar and isolating colonies so that he can be sure no other bacteria and growing in with it, giving a clean slate to start with</li>
+<li>Design some ‘primers’. These are small strands of DNA, matches for sequences in the target species. These will let him amplify <em>just</em> those sequences, giving a way to confirm that what he has growing is indeed E. flagellatus. (You amplify the sequences, if present, and then run a gel - where electric current separates DNA strands by size. If the primer had matches, you see a glowing band in the right place. I’m keen to try this some day!)</li>
+<li>Develop a way to interface with this organism via plasmid transformation. Givig him the tools to knock out certain genes to see what they do, or add thigns. For example, he could see if knocking out a speciffic gene stops it being able to eat triton-X.</li>
+<li>Now you have a new organism to experiment with - very cool, given how little we know about most wild bacteria and what they might be capable of doing!</li>
+</ul>
+</section>
+</section>
+<section id="conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
+<p>Anyway, I think it’s super cool that we can ship off samples to get sequenced for tens of dollars, and that you can buy the devices to do this yourself for a few thousand dollars. I think it’s wonderful that open databases and tools mean I could BLAST some reads, download a similar genome, annotate it and poke around to find some interesting genes from my laptop in a hotel room during PyTorchConf. I love that AI gives me a starting point for digging into questions that I have. I love that delightful and generous experts like Sebastian share their knowledge and augment my learning with their own deep expertise. And I love that there are so many things I still don’t know, and so many things humanity still doesn’t know! There’s a fat pile of textbooks sitting on my desk, and lots of open questions I have about these bacteria, so I suspect this won’t be the last post from me on this topic :) Until next time, cheers, J</p>
 
 
 </section>

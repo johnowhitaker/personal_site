@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/plasmidsaurus.html",
       "/posts/johnoslab.html",
       "/misc/sept-2025-updates.html",
       "/essays/iabied.html",
@@ -210,6 +211,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/posts/plasmidsaurus.html",
       "/posts/johnoslab.html",
       "/misc/sept-2025-updates.html",
       "/essays/iabied.html",
