@@ -202,6 +202,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#a-masters-master-plan" id="toc-a-masters-master-plan" class="nav-link" data-scroll-target="#a-masters-master-plan">A Master’s Master Plan</a></li>
   </ul></li>
   <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
+  <li><a href="#ps-folding-proteins" id="toc-ps-folding-proteins" class="nav-link" data-scroll-target="#ps-folding-proteins">PS: Folding Proteins</a></li>
   </ul>
 </nav>
     </div>
@@ -306,6 +307,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="conclusions" class="level2">
 <h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
 <p>Anyway, I think it’s super cool that we can ship off samples to get sequenced for tens of dollars, and that you can buy the devices to do this yourself for a few thousand dollars. I think it’s wonderful that open databases and tools mean I could BLAST some reads, download a similar genome, annotate it and poke around to find some interesting genes from my laptop in a hotel room during PyTorchConf. I love that AI gives me a starting point for digging into questions that I have. I love that delightful and generous experts like Sebastian share their knowledge and augment my learning with their own deep expertise. And I love that there are so many things I still don’t know, and so many things humanity still doesn’t know! There’s a fat pile of textbooks sitting on my desk, and lots of open questions I have about these bacteria, so I suspect this won’t be the last post from me on this topic :) Until next time, cheers, J</p>
+</section>
+<section id="ps-folding-proteins" class="level2">
+<h2 class="anchored" data-anchor-id="ps-folding-proteins">PS: Folding Proteins</h2>
+<p><img src="images/folded_prot_comp.png" class="img-fluid"></p>
+<p>I did a bit more messing around (vibe-research code <a href="https://gist.github.com/johnowhitaker/f4f1b88ffaa637476c62cb59ba9a2630">here</a>) and compared the wild-type genome to the reads of Seb’s bug. Found the genes common to both, and found 25 with differences ranging from single-base-pair or single-amino-acid up to pretty drastic changes. In this one, ‘Biopolymer transport protein ExbD/TolR’ it was cool to see a bunch of mutations but none in what I’m guessing is the ‘transmembrane region’ - i.e.&nbsp;the bit that is more hydrophobic, and important. I used alphafold 3’s free tier to fold the two variants and compare - although structures for floppy membrane proteins like this should be taken with a grain of salt.</p>
+<p><a href="https://x.com/johnowhitaker/status/1989852477668413885">Tweet</a>: “I’m almost certainly making all sorts of mistakes, but I’m having lots of fun :) I found 876 annotated genes that occur in both genomes, of which 25 had changes ranging from a single base pair to big diffs like the prev tweet. Even a one-acid change like T-&gt;K (32) in the efflux transporter could be helping this bug live in the harsh environment of a flower designer’s surfactant solution? Anyway, fun stuff. So much to learn!” captures my mood :)</p>
 
 
 </section>
