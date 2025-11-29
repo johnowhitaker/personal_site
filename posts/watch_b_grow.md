@@ -26,11 +26,7 @@ You then wait for it to cool to ~55C before pouring into petri dishes. I also tr
 
 The first batch I made I used tap water, which here in Portland has some treatment that sticks around. Less grew on those than on the second batch where I used distilled water. 
 
-I did a test comparing some supplements a friend had that she *hoped* were sterile (they were not) with some probiotics I had that had one species alive and present (as the selling point) vs a control plate or two with nothing added. I also swabbed some of the flocs that I still have sitting around (they have algae growing there too now!) and got a much more diverse plate as a result :D
-
-![](images/methylobacterium.png)
-
-There were a few pink colonies in the plate that I swabbed with a floc. Since I'd previously [sequenced](https://johnowhitaker.dev/posts/plasmidsaurus.html) these flocs to see what was in em, I have a good candidate for who this could be: methylobacterium. Known to form pink colonies (see column C, screenshot from [here](https://www.tandfonline.com/doi/full/10.4161/psb.6.4.14335) compared to the colonies I saw (left) and the results from streaking those out (right). Mine are faintly pink, but are also young and should develop more color over time. I want to extract and see what carotenoids my strain makes. And definitely make some art with it. Nobody told me methylobacterium are pink!
+I did a test comparing some supplements a friend had that she *hoped* were sterile (they were not) with some probiotics I had that had one species alive and present (as the selling point) vs a control plate or two with nothing added. I also swabbed some of the flocs that I still have sitting around (they have algae growing there too now!) and got a much more diverse plate as a result, including a few pink colonies I've streaked out :) Possibly Methylobacterium, but possibly a yeast like Rhodotorula or something else... TODO :)
 
 ## DIY Optical Density Logger
 
@@ -61,7 +57,7 @@ Base progression
 - At some point: monitor turbidity in liquid culture for growth curves (This post!)
 - At some point, make a centrifuge + heat block type thing
 
-Methylobacterium side quest
+Pink side quest
 
 - Swab flocs (DONE)
 - Pick and streak pink colonies (DONE)
@@ -69,11 +65,8 @@ Methylobacterium side quest
 - Run chromatography (inc. on TLC plates - new kit/skill)
 - Agar art with them
 - Try some liquid culture maybe?
-- Test different: plates (diff nutrients, some methanol source, low nutrient options, sucrose vs glycerine vs …), light vs dark, different temperatures. Explore how this affects pigment.
 - Test exposure to UV and how that affects pigment production.
 - Write up - would be a cool exploration! Especially if can be consistent extracting + photographing
-- (Recent (2023) paper identifying the gene poathways around carotenoid prod in mb:L vhttps://pmc.ncbi.nlm.nih.gov/articles/PMC10448405/) also this one https://pmc.ncbi.nlm.nih.gov/articles/PMC10448405/
-- (Note: “Some C30 carotenoids possess better antioxidant activity in both the physical and chemical quenching of reactive oxygen species” - these bacteria are common in plants promoting growth and hanging out on leaves, antioxidants are important to helo counteract UV irradiation)
 
 Read:
 
