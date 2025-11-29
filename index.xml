@@ -255,6 +255,27 @@ font-style: inherit;">'Product'</span>].unique())</span></code></pre></div></div
   <pubDate>Thu, 06 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
+  <title>Kernel Crystals</title>
+  <link>https://johnowhitaker.dev/misc/kernel_crystals.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Illustrating an idea I’ve been playing with - a kind of multi-scale convolutional cellular automata, that pushes how far one can go with random init.</p>
+<p>Explanatory video: https://www.youtube.com/watch?v=Dt6Gm8AUj-o</p>
+<p>NB: Code was an early morning rush job, index.html was a codex coded translation of my ramblings. For demo purposes only - one day perhaps I’ll have time to do some more didactic code for this and related fun</p>
+<p>Demo: https://johnowhitaker.github.io/kernel_crystals/ Code: https://github.com/johnowhitaker/kernel_crystals</p>
+
+
+
+ ]]></description>
+  <category>Video</category>
+  <guid>https://johnowhitaker.dev/misc/kernel_crystals.html</guid>
+  <pubDate>Tue, 28 Oct 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/misc/thumbnails/kc.png" medium="image" type="image/png" height="85" width="144"/>
+</item>
+<item>
   <title>Johno’s Lab - First Week of A New YouTube Channel</title>
   <link>https://johnowhitaker.dev/posts/johnoslab.html</link>
   <description><![CDATA[ 
@@ -2184,35 +2205,6 @@ font-style: inherit;">print</span>(incomplete_cubes)</span></code></pre></div></
   <category>misc</category>
   <guid>https://johnowhitaker.dev/posts/ICLR_2025.html</guid>
   <pubDate>Thu, 01 May 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>SpecID - A Hard Eval for Multimodal LLMs</title>
-  <link>https://johnowhitaker.dev/mini-projects/specid.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>We were talking recently around “What is something you could do through a chat interface that current LLMs can’t?”. One example I give personally is identifying Zimbabwean spider species - a lot of which are ~undocumented* so knowledge on what the living specimens look like is concentrated in a few heads, plus a smattering of posts on Facebook and iNaturalist. Anyway, I thought I should put my money where my mouth is and make an actual eval for this, to see how badly SOTA multi-modal LLMs do. Here are the results:</p>
-<p><img src="https://johnowhitaker.dev/mini-projects/images/specid_results.png" class="img-fluid"></p>
-<p>*Update: gemini-2.5-pro-exp-03-25 gets 57%, the new top score! And Flash 2.5 gets 53% when forcing function calls (previously a bug)</p>
-<p>The way I constructed this eval was to pull 100 photos with confirmed “research grade” identifications from my iNaturalist catalog. Each sample gets up to four ‘distractors’ - species names for closely-related organisms in the same ~family/group as the target. Multiple-choice is significantly easier than dredging up the name ‘cold’ (especially since many latin names have clues that match visual aspects of the species). And the quiz is harder for me that it could have been, since I included all species (bugs, birds, plants) not just spiders! Turns out I’m way worse at the latin names outside my comfort zone :D Still - at least at present I have a lead on the best models - just not as much of a one as I expected! It’s stunning that 4o can get more than half of these right.</p>
-<p><img src="https://johnowhitaker.dev/mini-projects/images/specid_sa.png" class="img-fluid"></p>
-<p>For the human baseline, I set up an interface that had me guess myself. It took less than 12 minutes total - here’s the prompt that produced the code: “his is a dataset I made, with an image and up to five candidate species. I want to get a human baseline for this dataset. Can you give me code that, in a Google Colab notebook, shows the picture and five buttons (some will need less, can use”NA” if there are less than 5 options) and has me click which one I think is the right one, before storing my guess and showing the next one? Use ipywidgets, include a way for me to see progress (how many done + left) and score (current correct %).” And <a href="https://github.com/johnowhitaker/specid_eval/blob/main/SpecID_Human_Baseline.ipynb">here’s the result</a>. Try it youself if you dare :)</p>
-<p>The spider above by the way? It fell from a tree onto me, and I eventualy figured out what it was (first record for Zimbabwe) thanks to this passage from the 1923 <strong>Araignées du sud de l’Afrique</strong> :“Céphalothorax noir, avec les yeux latéraux antérieurs et postérieurs situés sur des saillies orangées. Chélicères, pièces buccales, sternum, pattes-mâchoires, pattes brun-noir. Abdomen gris-noirâtre foncé.”. There have been a handful of records with nice pics shared since, and it featured on a guide, but this is the kind of obscure digging needed sometimes to ID these things.</p>
-<p>Anyway. Make your own evals! Occasionally suprising, easy, fun! Show me! That is all :)</p>
-<ul>
-<li><a href="https://huggingface.co/datasets/johnowhitaker/specid_eval_jw">Dataset on HuggingFace</a> - let me know if you want me to try a model on a private ~equivalent dataset.</li>
-<li><a href="https://github.com/johnowhitaker/specid_eval">Code + preliminary results with a script to run it yourself</a></li>
-</ul>
-<p>*Although I did write a field guide to the more common ones!</p>
-
-
-
- ]]></description>
-  <category>mini-projects</category>
-  <guid>https://johnowhitaker.dev/mini-projects/specid.html</guid>
-  <pubDate>Sun, 20 Apr 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
