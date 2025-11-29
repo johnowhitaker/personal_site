@@ -3,6 +3,7 @@ title: "Reading Genomes thanks to Plasmidsaurus"
 date: 2025-11-06
 categories:
     - misc
+    - bio
 description: "Learning how easy it is becoming to sequence DNA and explore the results, via a case study on something goopy I found growing in my lab and an even stranger contaminant in Sebastian's Triton-X surfactrant solution."
 ---
 
