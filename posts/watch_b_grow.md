@@ -1,6 +1,6 @@
 ---
-title: "Watching Bacteria Grow"
-date: 2025-11-29
+title: "Watching Bacteria Grow (Draft)"
+date: 2005-11-29
 categories:
     - mini-hw-projects
     - bio
@@ -24,13 +24,13 @@ You then wait for it to cool to ~55C before pouring into petri dishes. I also tr
 
 ![](images/bio_lab_plates.png)
 
-The first batch I made I used tap water, which here in Portland has some treatment that sticks around. Less grew on hose than on the second batch where I used distilled water. 
+The first batch I made I used tap water, which here in Portland has some treatment that sticks around. Less grew on those than on the second batch where I used distilled water. 
 
 I did a test comparing some supplements a friend had that she *hoped* were sterile (they were not) with some probiotics I had that had one species alive and present (as the selling point) vs a control plate or two with nothing added. I also swabbed some of the flocs that I still have sitting around (they have algae growing there too now!) and got a much more diverse plate as a result :D
 
 ![](images/methylobacterium.png)
 
-There were a few pink colonies in the plate that I swabbed with a floc. Since I'd previously [sequenced](https://johnowhitaker.dev/posts/plasmidsaurus.html) these flocs to see what was in em, I had a good candidate for who this could be: methylobacterium. Known to form pink colonies (see column C, screenshot from [here](https://www.tandfonline.com/doi/full/10.4161/psb.6.4.14335) compared to the colonies I saw (left) and the results from streaking those out (right). Mine are faintly pink, but are also young and should develop more color over time. I want to extract and see what carotenoids my strain makes. And definitely make some art with it. Nobody told me methylobacterium are pink!
+There were a few pink colonies in the plate that I swabbed with a floc. Since I'd previously [sequenced](https://johnowhitaker.dev/posts/plasmidsaurus.html) these flocs to see what was in em, I have a good candidate for who this could be: methylobacterium. Known to form pink colonies (see column C, screenshot from [here](https://www.tandfonline.com/doi/full/10.4161/psb.6.4.14335) compared to the colonies I saw (left) and the results from streaking those out (right). Mine are faintly pink, but are also young and should develop more color over time. I want to extract and see what carotenoids my strain makes. And definitely make some art with it. Nobody told me methylobacterium are pink!
 
 ## DIY Optical Density Logger
 
