@@ -10,7 +10,91 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.9.12</generator>
-<lastBuildDate>Thu, 20 Nov 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 29 Nov 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Watching Bacteria Grow</title>
+  <link>https://johnowhitaker.dev/posts/watch_b_grow.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I’m getting back into microbiology, despite my <a href="https://johnowhitaker.dev/mini-hw-projects/2024-03-30-bio.html">misgivings from last time I dipped a toe into the field</a>. I’ll be attempting to insert a plasmid of my own design into bacteria - more on that coming soon! In the meantime, I’ve been practicing my sterile technique and messing about. In this post, while I wait for some cultures to grow for my first transformation attempt, I’ll introduce some of the stuff I’ve been playin with and show how I made a simple machine that logs optical density (OD) over time to plot bacterial growth curves.</p>
+<section id="agar-plates-and-yummy-broth" class="level2">
+<h2 class="anchored" data-anchor-id="agar-plates-and-yummy-broth">Agar Plates and Yummy Broth</h2>
+<p>It can be fun to just make some agar plates and see what grows. I’ve been trying out just DIY-ing the broth. Recipe:</p>
+<ul>
+<li>250ml distilled water</li>
+<li>1/2 tsp marmite</li>
+<li>1/4 tsp ‘better than bouillon’</li>
+<li>Add 4g agar agar if wanting solid media</li>
+</ul>
+<p>Dissolve the marmite and bouillon in hot water, then add to a glass bottle, add agar if using, and shake. Put the lid on loose, and boil for a while (shake if agar isn’t dissolving well). I left it simmering for a while on the stove then popped it into the insulated pot. Goal is to sterilize it all thoroughly.</p>
+<p>You then wait for it to cool to ~55C before pouring into petri dishes. I also tried using little sauce tubs from the store - so far I haven’t had any contamination with them, I’m carefully opening the bag with gloves that have been sterilized with alcohol, working near a flame on a clean, sterile surface, and pouring then capping without much chance for stuff to float in.</p>
+<p><img src="https://johnowhitaker.dev/posts/images/bio_lab_plates.png" class="img-fluid"></p>
+<p>The first batch I made I used tap water, which here in Portland has some treatment that sticks around. Less grew on hose than on the second batch where I used distilled water.</p>
+<p>I did a test comparing some supplements a friend had that she <em>hoped</em> were sterile (they were not) with some probiotics I had that had one species alive and present (as the selling point) vs a control plate or two with nothing added. I also swabbed some of the flocs that I still have sitting around (they have algae growing there too now!) and got a much more diverse plate as a result :D</p>
+<p><img src="https://johnowhitaker.dev/posts/images/methylobacterium.png" class="img-fluid"></p>
+<p>There were a few pink colonies in the plate that I swabbed with a floc. Since I’d previously <a href="https://johnowhitaker.dev/posts/plasmidsaurus.html">sequenced</a> these flocs to see what was in em, I had a good candidate for who this could be: methylobacterium. Known to form pink colonies (see column C, screenshot from <a href="https://www.tandfonline.com/doi/full/10.4161/psb.6.4.14335">here</a> compared to the colonies I saw (left) and the results from streaking those out (right). Mine are faintly pink, but are also young and should develop more color over time. I want to extract and see what carotenoids my strain makes. And definitely make some art with it. Nobody told me methylobacterium are pink!</p>
+</section>
+<section id="diy-optical-density-logger" class="level2">
+<h2 class="anchored" data-anchor-id="diy-optical-density-logger">DIY Optical Density Logger</h2>
+<p><img src="https://johnowhitaker.dev/posts/images/od_logger.png" class="img-fluid"></p>
+<p>The idea with this machine is to log how much light gets through a tube with some broth and bacteria in it. As the bacteria grow, they block more light, so the amount of light that gets through decreases. By measuring this over time, we can plot a growth curve. This comes in useful later when, for example, you’re wanting to know when your bacteria are in the right phase of growth for transformation. On one side of the tube I have a white LED with a 220 ohm resistor. On the other, there’s a TEPT4400 phototransistor with a 10k ohm pull-down resistor. The phototransistor’s output is connected to an analog input on the raspberry pi pico which reads the voltage and sends it over serial. I store a reading (averaged across a bunch of samples) every 10 seconds. I hooked it up to my raspberry pi 5 so I could set it logging and leave it for many hours. The tube slots in and a cap goes down over it, with the gaps taped up, to keep ambient light from interfearing too much. Here’s what the curve looks like when I pop in some E. coli (strain MM294) into some marmite broth:</p>
+<p>TODO plot curve</p>
+</section>
+<section id="the-bigger-plan" class="level2">
+<h2 class="anchored" data-anchor-id="the-bigger-plan">The bigger plan</h2>
+<p>I’ve been reading textbooks and having fun learning about palsmid design. <a href="https://github.com/johnowhitaker/BLY">Here</a> is my current attempt at designing something fun - the resulting plasmids should show up in a week or so! As for the ‘larger plan’, I’m mostly just messing about and seeing where my interests take me. Here’s a rough attempt to map out the trajectory I’m picturing for now (I expect plenty more side quests will spawn along the way):</p>
+<p>Base progression</p>
+<ul>
+<li>Make some plates (DONE)</li>
+<li>Culture some things, practice streaking, colony picking, sterile technique (DONE)</li>
+<li>Grow e. coli from carolina kit (DONE)</li>
+<li>Transform with glowy plasmid, from kit (WIP)</li>
+<li>Attempt a transform with <a href="https://github.com/johnowhitaker/BLY">my own plasmid</a></li>
+<li>Agar art with my own transformed bug</li>
+<li>Make new agar stabs of mine and sebs strains</li>
+<li>Do a mini-prep</li>
+<li>Run some gels (with a friend’s kit)</li>
+<li>Follow interests from there</li>
+<li>Teach - e.g.&nbsp;agar art kits, videos</li>
+<li>Attempt a more complex genetic engineering project.</li>
+<li>At some point: monitor turbidity in liquid culture for growth curves (This post!)</li>
+<li>At some point, make a centrifuge + heat block type thing</li>
+</ul>
+<p>Methylobacterium side quest</p>
+<ul>
+<li>Swab flocs (DONE)</li>
+<li>Pick and streak pink colonies (DONE)</li>
+<li>Scrape a bunch up and extract pigment with acetone</li>
+<li>Run chromatography (inc. on TLC plates - new kit/skill)</li>
+<li>Agar art with them</li>
+<li>Try some liquid culture maybe?</li>
+<li>Test different: plates (diff nutrients, some methanol source, low nutrient options, sucrose vs glycerine vs …), light vs dark, different temperatures. Explore how this affects pigment.</li>
+<li>Test exposure to UV and how that affects pigment production.</li>
+<li>Write up - would be a cool exploration! Especially if can be consistent extracting + photographing</li>
+<li>(Recent (2023) paper identifying the gene poathways around carotenoid prod in mb:L vhttps://pmc.ncbi.nlm.nih.gov/articles/PMC10448405/) also this one https://pmc.ncbi.nlm.nih.gov/articles/PMC10448405/</li>
+<li>(Note: “Some C30&nbsp;carotenoids possess better antioxidant activity in both the physical and chemical quenching of reactive oxygen species” - these bacteria are common in plants promoting growth and hanging out on leaves, antioxidants are important to helo counteract UV irradiation)</li>
+</ul>
+<p>Read:</p>
+<ul>
+<li>Popsci (how life works (lame), song of the cell (better))</li>
+<li>Bioprocess engineering (summaries only for later chapters),</li>
+<li>Molecular biology of the cell (skim, research deeper for interesting bits). Ditto ‘Essential Cell Biology’, although I am enjoying giving some chapters more serious study.</li>
+<li>Watch: Thought emporium, everymanbio, some lab technique videos.</li>
+</ul>
+<p>https://kevinhunter.opened.ca/ has great agar art info. TIL it <a href="https://www.smithsonianmag.com/science-nature/painting-with-penicillin-alexander-flemings-germ-art-1761496/">started with flemming</a></p>
+
+
+</section>
+
+ ]]></description>
+  <category>mini-hw-projects</category>
+  <category>bio</category>
+  <guid>https://johnowhitaker.dev/posts/watch_b_grow.html</guid>
+  <pubDate>Sat, 29 Nov 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Tab Clearning (Nov 2025)</title>
   <link>https://johnowhitaker.dev/misc/tab_clear_nov20_2025.html</link>
@@ -2162,50 +2246,6 @@ font-style: inherit;">print</span>(incomplete_cubes)</span></code></pre></div></
   <guid>https://johnowhitaker.dev/misc/inference_scaling.html</guid>
   <pubDate>Fri, 16 May 2025 00:00:00 GMT</pubDate>
   <media:content url="https://johnowhitaker.dev/misc/thumbnails/inference.png" medium="image" type="image/png" height="84" width="144"/>
-</item>
-<item>
-  <title>ICLR 2025</title>
-  <link>https://johnowhitaker.dev/posts/ICLR_2025.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p><img src="https://johnowhitaker.dev/posts/images/si.png" class="img-fluid"></p>
-<p>I got to attend ICLR 2025 and spend a week in Singapore with my Answer.AI colleagues. This post is some disjointed thoughts on the whole experience.</p>
-<section id="social-is-top" class="level2">
-<h2 class="anchored" data-anchor-id="social-is-top">Social is top</h2>
-<p>The best part of conferences is always meeting people. The venue setup was disappointingly short on affordances for the ‘hallway track’ but Jeremy managed to claim a couch in one of the cafe’s and hold court for various friends old and new :) And of course there were the usual evening dinners + events. This time around though I mostly spent time hanging out with the answer team, heading out to different parts of town for food and coding by the pool. Other hightlights were meeting a collaborator in person for the first time and getting taken out on a hike by a local fast.ai alum who knew all the good spots. If you get a chance to go to one of these conferences, my top recommendation is to focus on meeting friendly people and spending time chatting vs attending talks and things - far more interesting IMO! Poster sessions are a good way to find people with shared research interests. Pretend to be an extrovert - it’s only a few days!</p>
-<p>PS, just after I shared this I found these <a href="https://kamathematics.wordpress.com/2025/05/01/tips-on-how-to-connect-at-academic-conferences/">tips on how to connect at academic conferences</a> which are great! Go read that and follow them :)</p>
-</section>
-<section id="safety-interpretability-are-in-the-air" class="level2">
-<h2 class="anchored" data-anchor-id="safety-interpretability-are-in-the-air">Safety + Interpretability are in the air</h2>
-<p>I’m trying to think what trends jumped out at me. ‘Agents’ of course, with some interesting stuff and lots of… not haha. The other main trend I noticed was safety/interpretability stuff, with a sense of ‘this is something academics can work on + contribute to without tons of compute’. There was a keynote from an OpenAI person making the case for why it’s important + good to work on even if you <strong>don’t</strong> think AI will soon kill everyone. My friend Stanislav Fort had a fun paper on ‘scaling laws for adversarial attacks’ and as always tons of other neat ideas in progress. Various papers trying to make AIs say naughty things or not say them. And in the airport I met Yoshua Bengio who’d been working very hard trying to convince people it’s a bad idea to be chasing creating smart things with agency. I admire his efforts, and tend to agree that making ‘tool AI’ vs ‘agent AI’ is a good idea! And I liked the way he phrased a take on doomish stuff: “The correct response to [someone asking me about AI2027] is to say that lots of experts agree we can’t casually dismiss it” - in other words, you may think specific takes are wrong or that fears are overblown but ‘nobody takes that seriously’ is not a valid argument. All that said, while I noticed this safety talk around it wasn’t like it was the bulk of the discussion and I’d wager most attendees aren’t thinking much about it.</p>
-</section>
-<section id="vibe-researching-is-fun" class="level2">
-<h2 class="anchored" data-anchor-id="vibe-researching-is-fun">Vibe-Researching is fun</h2>
-<p><img src="https://johnowhitaker.dev/posts/images/k_vs_hdim.png" class="img-fluid"></p>
-<p>One fun trick I could do at this conference thanks to the latest great models like o3 was whip up quick exploratory demos based on concepts I came across. This is great! Poster sessions and hallway chats often spark ‘it would be cool to compare that to X baseline’, or ‘I want to try this with Y’ - but by the end of a busy conference lots of ideas are forgotten. It was super cool to voice dictate an idea to o3, copy some code into Google Colab and have a minimal toy demo to try out. I did this for a few things that came up, including running one experiment entirely on my phone to make some plots related to a paper I saw, and the ones I did this for are now lodged in my brain enough that I’ll probably follow through on the experiments I want to run now. Wild that someone can say ‘We could probably train a model to go directly from CLIP penultimate hidden states back to an image’ and a few minutes later I can have a toy model training that does just that! The AIs still aren’t excellent for AI research but boy are they better than they used to be - more than enough for simple baselines and getting going quickly. Anyway - vibe research - can recommend!</p>
-</section>
-<section id="singapore-is-amazing" class="level2">
-<h2 class="anchored" data-anchor-id="singapore-is-amazing">Singapore is amazing</h2>
-<p>Singapore was delightful to visit. We stayed in ‘Little India’, an easy MRT ride from Chinatown and close to the marina and various parks and things, making it easy to experience a variety of different cuisines and aspects of the city. I loved how pervasive nature was - greenery bursting from any vailable spot, but somehow contained and managed very neatly. The food was particularly good - so many exciting options with nustling hawker centers full of amazing smells and sights. <a href="https://jeadventure.home.blog/2025/04/29/impressions-of-singapore/">This post</a> we sent to our family has more pics and my bird list - ft 36 new ‘lifers’ for me!</p>
-</section>
-<section id="i-have-the-best-job" class="level2">
-<h2 class="anchored" data-anchor-id="i-have-the-best-job">I Have The Best Job</h2>
-<p>Answer.ai is fully remote, and this was the first time most of us had met in person. And yet we all got on extremely well, instantly falling into a happy rhythum of exploring and enjoying the city together then returning to the hotel pool area to code, chat and play games. I made a travel ‘crokinole’ board (link coming soon) and introduced the team - hopefully enough got hooked that by next time we meet I’ll have some competition ;) All this already had me feeling grateful, but what really hammered home how cool this company is was answering (and hearing others answer) the repeated question of ‘so what does answer.ai do?’ that came up in conversation with all the new people we met at the conference. I’m so lucky!</p>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Anyway, there are my jet-lagged ramblings. If we met there, or you wish we’d met there, or you just want to say hi, reach out! I want to cram in more social with fellow AI nerds for a week or two before I settle back to my quiet and introverted default state :)</p>
-
-
-</section>
-
- ]]></description>
-  <category>misc</category>
-  <guid>https://johnowhitaker.dev/posts/ICLR_2025.html</guid>
-  <pubDate>Thu, 01 May 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
