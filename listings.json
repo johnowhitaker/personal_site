@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/watch_b_grow.html",
       "/misc/tab_clear_nov20_2025.html",
       "/posts/plasmidsaurus.html",
       "/misc/kernel_crystals.html",
@@ -207,13 +208,13 @@
       "/mini-hw-projects/2013-09-02-junk_vdg.html",
       "/mini-hw-projects/2013-08-03-easy_3d_scanner.html",
       "/mini-hw-projects/2013-07-04-ir_webcam.html",
-      "/mini-projects/template.html",
-      "/posts/watch_b_grow.html"
+      "/mini-projects/template.html"
     ]
   },
   {
     "listing": "/all.html",
     "items": [
+      "/posts/watch_b_grow.html",
       "/misc/tab_clear_nov20_2025.html",
       "/posts/plasmidsaurus.html",
       "/misc/kernel_crystals.html",
@@ -419,8 +420,7 @@
       "/mini-hw-projects/2013-09-02-junk_vdg.html",
       "/mini-hw-projects/2013-08-03-easy_3d_scanner.html",
       "/mini-hw-projects/2013-07-04-ir_webcam.html",
-      "/mini-projects/template.html",
-      "/posts/watch_b_grow.html"
+      "/mini-projects/template.html"
     ]
   }
 ]

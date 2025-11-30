@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2005-11-29">
+<meta name="dcterms.date" content="2025-11-29">
 <meta name="description" content="Growing some random bacteria and plotting growth curves with a DIY optical denisty logger">
 
-<title>Watching Bacteria Grow (Draft) – johnowhitaker.dev</title>
+<title>Watching Bacteria Grow – johnowhitaker.dev</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta name="twitter:title" content="Watching Bacteria Grow (Draft) – johnowhitaker.dev">
+<meta name="twitter:title" content="Watching Bacteria Grow – johnowhitaker.dev">
 <meta name="twitter:description" content="Growing some random bacteria and plotting growth curves with a DIY optical denisty logger">
 <meta name="twitter:image" content="https://johnowhitaker.dev/posts/images/bio_lab_plates.png">
 <meta name="twitter:creator" content="@johnowhitaker">
@@ -169,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Watching Bacteria Grow (Draft)</h1>
+<h1 class="title">Watching Bacteria Grow</h1>
   <div class="quarto-categories">
     <div class="quarto-category">mini-hw-projects</div>
     <div class="quarto-category">bio</div>
@@ -189,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 29, 2005</p>
+      <p class="date">November 29, 2025</p>
     </div>
   </div>
   
@@ -224,7 +224,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="images/od_logger.png" class="img-fluid"></p>
 <p>The idea with this machine is to log how much light gets through a tube with some broth and bacteria in it. As the bacteria grow, they block more light, so the amount of light that gets through decreases. By measuring this over time, we can plot a growth curve. This comes in useful later when, for example, you’re wanting to know when your bacteria are in the right phase of growth for transformation. On one side of the tube I have a white LED with a 220 ohm resistor. On the other, there’s a TEPT4400 phototransistor with a 10k ohm pull-down resistor. The phototransistor’s output is connected to an analog input on the raspberry pi pico which reads the voltage and sends it over serial. I store a reading (averaged across a bunch of samples) every 10 seconds. I hooked it up to my raspberry pi 5 so I could set it logging and leave it for many hours. The tube slots in and a cap goes down over it, with the gaps taped up, to keep ambient light from interfearing too much. Here’s what the curve looks like when I pop in some E. coli (strain MM294) into some marmite broth:</p>
 <p><img src="images/bac_growth.png" class="img-fluid"></p>
-<p>(Using <code>df['OD'] = -np.log10(df['volts'] / df['volts'].iloc[0])</code>)</p>
+<p>(Using <code>df['OD'] = -np.log10(df['volts'] / df['volts'].iloc[0])</code>). Since they’re in a small sealed vial, it doesn’t take long for things to slow. Also, I probably need to tweak Rsense and the setup in general to get cleaner, less noisy readings and better range. Still, cool huh!</p>
 </section>
 <section id="the-bigger-plan" class="level2">
 <h2 class="anchored" data-anchor-id="the-bigger-plan">The bigger plan</h2>
