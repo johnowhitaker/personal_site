@@ -26,7 +26,11 @@ You then wait for it to cool to ~55C before pouring into petri dishes. I also tr
 
 The first batch I made I used tap water, which here in Portland has some treatment that sticks around. Less grew on those than on the second batch where I used distilled water. 
 
-I did a test comparing some supplements a friend had that she *hoped* were sterile (they were not) with some probiotics I had that had one species alive and present (as the selling point) vs a control plate or two with nothing added. I also swabbed some of the flocs that I still have sitting around (they have algae growing there too now!) and got a much more diverse plate as a result, including a few pink colonies I've streaked out :) Possibly Methylobacterium, but possibly a yeast like Rhodotorula or something else... TODO :)
+I did a test comparing some supplements a friend had that she *hoped* were sterile (they were not) with some probiotics I had that had one species alive and present (as the selling point) vs a control plate or two with nothing added. I also swabbed some of the flocs that I still have sitting around (they have algae growing there too now!) and got a much more diverse plate as a result, including a few pink colonies I've streaked out :) Probably a yeast like [Rhodotorula](https://en.wikipedia.org/wiki/Rhodotorula) or something else...
+
+![](images/pink_colonies.png)
+
+Under a scope they look like yeast (too big for bacteria) and stain with methylene blue. I might send them off for sequencing later.
 
 ## DIY Optical Density Logger
 
@@ -34,7 +38,9 @@ I did a test comparing some supplements a friend had that she *hoped* were steri
 
 The idea with this machine is to log how much light gets through a tube with some broth and bacteria in it. As the bacteria grow, they block more light, so the amount of light that gets through decreases. By measuring this over time, we can plot a growth curve. This comes in useful later when, for example, you're wanting to know when your bacteria are in the right phase of growth for transformation. On one side of the tube I have a white LED with a 220 ohm resistor. On the other, there's a TEPT4400 phototransistor with a 10k ohm pull-down resistor. The phototransistor's output is connected to an analog input on the raspberry pi pico which reads the voltage and sends it over serial. I store a reading (averaged across a bunch of samples) every 10 seconds. I hooked it up to my raspberry pi 5 so I could set it logging and leave it for many hours. The tube slots in and a cap goes down over it, with the gaps taped up, to keep ambient light from interfearing too much. Here's what the curve looks like when I pop in some E. coli (strain MM294) into some marmite broth:
 
-TODO plot curve
+![](images/bac_growth.png)
+
+(Using `df['OD'] = -np.log10(df['volts'] / df['volts'].iloc[0])`)
 
 ## The bigger plan
 
