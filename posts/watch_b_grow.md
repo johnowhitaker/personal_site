@@ -1,6 +1,6 @@
 ---
-title: "Watching Bacteria Grow (Draft)"
-date: 2005-11-29
+title: "Watching Bacteria Grow"
+date: 2025-11-29
 categories:
     - mini-hw-projects
     - bio
@@ -40,7 +40,7 @@ The idea with this machine is to log how much light gets through a tube with som
 
 ![](images/bac_growth.png)
 
-(Using `df['OD'] = -np.log10(df['volts'] / df['volts'].iloc[0])`)
+(Using `df['OD'] = -np.log10(df['volts'] / df['volts'].iloc[0])`). Since they're in a small sealed vial, it doesn't take long for things to slow. Also, I probably need to tweak Rsense and the setup in general to get cleaner, less noisy readings and better range. Still, cool huh!
 
 ## The bigger plan
 
