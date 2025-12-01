@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/bacterial_transformation.html",
       "/posts/watch_b_grow.html",
       "/misc/tab_clear_nov20_2025.html",
       "/posts/plasmidsaurus.html",
@@ -214,6 +215,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/posts/bacterial_transformation.html",
       "/posts/watch_b_grow.html",
       "/misc/tab_clear_nov20_2025.html",
       "/posts/plasmidsaurus.html",
