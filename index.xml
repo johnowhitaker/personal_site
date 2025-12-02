@@ -37,12 +37,12 @@
 
 
 <p>This weekend I did my first successful bacterial transformation, inserting a plasmid that makes <em>E. coli</em> glow in the dark by expressing the ‘lux’ genes from bioluminescent marine bacteria. I’d <a href="https://johnowhitaker.dev/mini-hw-projects/2024-03-30-bio.html">had no luck</a> with a kit from the Odin (which I’ve since heard many bad reviewds about) - this time I went with an upgraded kit but also took advantage of more knowledge and tools aquired in the meantime, and it went extremely smoothly. This is sort of the ‘Hello World’ of synthetic biology, so naturally here’s my first agar art:</p>
-<p><img src="https://johnowhitaker.dev/posts/images/bt_hw.png" class="img-fluid"></p>
+<p><img src="https://johnowhitaker.dev/posts/images/bt_hw2.png" class="img-fluid"></p>
 <p>This is all practice for when I get my own custom DNA made. How cool is it that this is possible! The glow is suprisongly bright - I had to cover the plate I put on my nightstand :) Here’s a plate ~12 hours after a transformation, you can see individual specks which are small colonies, each started from one individual cell that successfully took up the DNA and could thus survive on the antibiotic-containing agar:</p>
 <p><img src="https://johnowhitaker.dev/posts/images/bt_new.png" class="img-fluid"></p>
 <p>Here’s a plate that had some liquid on the surface which spread things around. It’s so bright you can read things like the dial on our coffee machine (photo on Google’s night sight mode so a little enhanced):</p>
 <p><img src="https://johnowhitaker.dev/posts/images/bt_coffee.png" class="img-fluid"></p>
-<p>It even grow nice and glowy on my home-made agar with no antibiotic, although I don’t think that would last. The strain (MM294) is super safe and de-fanged, this is something they let high-schoolers do. All in all a great way to warm up for later projects :D Details below for the curious.</p>
+<p>It even grow nice and glowy on my home-made agar with no antibiotic, although I don’t think that would last (update: lost its glow a day later). The strain (MM294) is super safe and de-fanged, this is something they let high-schoolers do. All in all a great way to warm up for later projects :D Details below for the curious.</p>
 <section id="the-details" class="level2">
 <h2 class="anchored" data-anchor-id="the-details">The Details</h2>
 <p>I’m working with <a href="https://www.carolina.com/gene-expression-advanced-topics/glow-in-the-dark-transformation-4-station-kit-with-perishables/211087P.pr">this kit</a> from Carolina Biological Supply Company, which contains enough materials for four students, but realistically can stretch to ~8 transformations, with easy ways to extend it further.</p>
