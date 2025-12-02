@@ -8,7 +8,7 @@ description: "Inserting DNA to make bacteria glow in the dark"
 
 This weekend I did my first successful bacterial transformation, inserting a plasmid that makes *E. coli* glow in the dark by expressing the 'lux' genes from bioluminescent marine bacteria. I'd [had no luck](https://johnowhitaker.dev/mini-hw-projects/2024-03-30-bio.html) with a kit from the Odin (which I've since heard many bad reviewds about) - this time I went with an upgraded kit but also took advantage of more knowledge and tools aquired in the meantime, and it went extremely smoothly. This is sort of the 'Hello World' of synthetic biology, so naturally here's my first agar art:
 
-![](images/bt_hw.png)
+![](images/bt_hw2.png)
 
 This is all practice for when I get my own custom DNA made. How cool is it that this is possible! The glow is suprisongly bright - I had to cover the plate I put on my nightstand :) Here's a plate ~12 hours after a transformation, you can see individual specks which are small colonies, each started from one individual cell that successfully took up the DNA and could thus survive on the antibiotic-containing agar:
 
