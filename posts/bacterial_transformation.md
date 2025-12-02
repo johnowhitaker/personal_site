@@ -18,7 +18,7 @@ Here's a plate that had some liquid on the surface which spread things around. I
 
 ![](images/bt_coffee.png)
 
-It even grow nice and glowy on my home-made agar with no antibiotic, although I don't think that would last. The strain (MM294) is super safe and de-fanged, this is something they let high-schoolers do. All in all a great way to warm up for later projects :D Details below for the curious.
+It even grow nice and glowy on my home-made agar with no antibiotic, although I don't think that would last (update: lost its glow a day later). The strain (MM294) is super safe and de-fanged, this is something they let high-schoolers do. All in all a great way to warm up for later projects :D Details below for the curious.
 
 ## The Details
 
