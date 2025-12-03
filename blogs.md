@@ -6,6 +6,10 @@ I hope to better document other blogs I've found interesting + useful, as well a
 
 ## Others / To Be Categorized
 
+https://jackhogan.net/blog/starting-a-blog
+
+https://degan.org/ (portland person - todo read)
+
 https://erikschluntz.com/hardware/2025/10/26/robot-dog.html
 
 https://jessylin.com/2025/10/20/continual-learning/
