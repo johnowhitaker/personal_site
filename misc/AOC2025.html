@@ -75,8 +75,11 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../styles.css">
 <meta name="twitter:title" content="AOC2025 – johnowhitaker.dev">
 <meta name="twitter:description" content="Sharing videos of me solving Advent of Code 2025 puzzles. (Spoilers)">
+<meta name="twitter:image" content="https://johnowhitaker.dev/misc/thumbnails/grid.png">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="1006">
+<meta name="twitter:image-width" content="1004">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -195,6 +198,8 @@ ul.task-list li input[type="checkbox"] {
 <p>Day 4: My <a href="https://share.solve.it.com/d/9100d5e09acee8e3a0da36ef7ed8010f">dialog</a>, <a href="https://www.youtube.com/watch?v=Gn0Wcbd9GhQ">video</a> (both short today)</p>
 <p>Day 5: Getting into territory where diagramming helps, thinking hard helps, and thinking about memory + speed starts to come up :slight_smile: My <a href="https://youtu.be/1ACIYLIgop4">video</a>. A little cheeky that ||the sample has ids sorted while the main input doesn’t! Good reason to look at your data :slight_smile: ||</p>
 <p>Day 6, 7 and 8 got <a href="https://www.youtube.com/watch?v=FS34ADS5ZZQ">batched together</a> since I didn’t want to code on the weekend and had other business on Monday.</p>
+<p>Day 9: Part 1 was easy, part 2 I fell for the temptation of trying to make the ‘grid’ for the full-size input - which turns out to be way too big to fit in memory! Solveit had an excellent suggestion to map coords to a much smaller space (since there are only ~500 so most rows + cols can be removed without changing the result) - as long as you then map back to OG coords for area this works and is reasonably fast. <a href="https://share.solve.it.com/d/c3642ada1b225996bb29f262d24719be">solution</a>. Viz’ing the grid in this compressed space shows the genius of the problem setters.</p>
+<p><img src="thumbnails/grid.png" class="img-fluid"></p>
 
 
 
