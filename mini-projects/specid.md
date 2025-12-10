@@ -9,6 +9,8 @@ We were talking recently around "What is something you could do through a chat i
 
 ![](images/specid_results.png)
 
+*Update 2: gemini-3-pro-preview gets 64%, probably beats me when not using my own observations!
+
 *Update:  gemini-2.5-pro-exp-03-25 gets 57%, the new top score! And Flash 2.5 gets 53% when forcing function calls (previously a bug)
 
 The way I constructed this eval was to pull 100 photos with confirmed "research grade" identifications from my iNaturalist catalog. Each sample gets up to four 'distractors' - species names for closely-related organisms in the same ~family/group as the target. Multiple-choice is significantly easier than dredging up the name 'cold' (especially since many latin names have clues that match visual aspects of the species). And the quiz is harder for me that it could have been, since I included all species (bugs, birds, plants) not just spiders! Turns out I'm way worse at the latin names outside my comfort zone :D Still - at least at present I have a lead on the best models - just not as much of a one as I expected! It's stunning that 4o can get more than half of these right. 
