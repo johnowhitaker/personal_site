@@ -29,6 +29,7 @@
 <p><img src="https://johnowhitaker.dev/misc/thumbnails/grid.png" class="img-fluid"></p>
 <p>Day 10. <a href="https://share.solve.it.com/d/3e001554b9c683a68d611f525560ba84">Dialog</a>. Part 2 I caved and just used the milp library. I liked my idea for part 1 to use a graph with a node per possible light state and then get the shortest path :)</p>
 <p>Day 11. <a href="https://share.solve.it.com/d/8d7f092a3ad5095f582b8d8732b5a26f">Dialog</a>. More graph stuff. Was pleased to figure out I should look at the substeps for part 2, which then revealed a simplification we could make.</p>
+<p>And Day 12! [Dialog]. A fun one to end on, and a good reminder to look at your data :D Here’s a <a href="https://www.youtube.com/watch?v=UanxRJL3rMU">video</a> covering days 10, 11 and 12. Thanks to Eric for setting all of these!</p>
 
 
 
