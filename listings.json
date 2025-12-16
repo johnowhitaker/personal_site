@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/blygreen_p1.html",
       "/misc/AOC2025.html",
       "/posts/bacterial_transformation.html",
       "/posts/watch_b_grow.html",
@@ -216,6 +217,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/posts/blygreen_p1.html",
       "/misc/AOC2025.html",
       "/posts/bacterial_transformation.html",
       "/posts/watch_b_grow.html",
