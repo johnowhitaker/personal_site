@@ -9,7 +9,7 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.9.13</generator>
+<generator>quarto-1.9.14</generator>
 <lastBuildDate>Sun, 14 Dec 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Watching Bacteria NOT BE GREEN</title>
@@ -19,7 +19,7 @@
 
 
 
-<p>I’ve been getting back into DIYBio, and the next step I wanted to design was making a custom plasmid. Casting about for ideas, I thought it would be neat to try for something that looks visibly green under natural light. You see, I’d bought a few <a href="https://atinygreencell.com/products/rainbow-chromoprotein-expression-plasmid-set">Rainbow chromoprotein sets</a> from Sebastian (<span class="citation" data-cites="atinygreencell">@atinygreencell</span>) to support his epic work, and while they are delightful, the green is basically yellow:</p>
+<p>I’ve been getting back into DIYBio, and the next step I wanted to try was making a custom plasmid. Casting about for ideas, I thought it would be neat to try for something that looks visibly green under natural light. You see, I’d bought a few <a href="https://atinygreencell.com/products/rainbow-chromoprotein-expression-plasmid-set">Rainbow chromoprotein sets</a> from Sebastian (<span class="citation" data-cites="atinygreencell">@atinygreencell</span>) to support his epic work, and while they are delightful, the green is basically yellow:</p>
 <p><img src="https://johnowhitaker.dev/posts/images/rainbow2.jpg" class="img-fluid"></p>
 <p>At least, until you look under UV or blue light - it’s a flourescent protein, so it glows bright green then (so do a few others):</p>
 <p><img src="https://johnowhitaker.dev/posts/images/rainbow_uv.jpg" class="img-fluid"></p>
