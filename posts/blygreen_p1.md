@@ -6,7 +6,7 @@ categories:
 description: "Designing some DNA and trying to get e. coli to express some proteins to make it visibly green without flourescence. (Part 1, covering plasmid design and the lack of visible results so far, plus the plan for part 2)"
 ---
 
-I've been getting back into DIYBio, and the next step I wanted to design was making a custom plasmid. Casting about for ideas, I thought it would be neat to try for something that looks visibly green under natural light. You see, I'd bought a few [Rainbow chromoprotein sets](https://atinygreencell.com/products/rainbow-chromoprotein-expression-plasmid-set) from Sebastian (@atinygreencell) to support his epic work, and while they are delightful, the green is basically yellow:
+I've been getting back into DIYBio, and the next step I wanted to try was making a custom plasmid. Casting about for ideas, I thought it would be neat to try for something that looks visibly green under natural light. You see, I'd bought a few [Rainbow chromoprotein sets](https://atinygreencell.com/products/rainbow-chromoprotein-expression-plasmid-set) from Sebastian (@atinygreencell) to support his epic work, and while they are delightful, the green is basically yellow:
 
 ![](images/rainbow2.jpg)
 
