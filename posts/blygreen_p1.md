@@ -63,7 +63,7 @@ I'm currrently 'curing out' some of Seb's bacteria - streaking and re-streaking 
 
 ![](images/colonies_w_pink.png)
 
-You can see in the pic above some pink colonies luring among the white ones, after I streaked out the first 'white looking' dot. I tested some candidate colonies on plain vs kan plates and saw no growth for one of them, but I guess I got unlucky when I then picked the cells for the transformation step. Lesson learned :) Once I get a successful transformation into these BL21 cells, I'll grow some on plates and some in liquid culture and see if we can see any green at all. Either way, it's already been a great learning experience.
+You can see in the pic above some pink colonies lurking among the white ones, after I streaked out the first 'white looking' dot. I tested some candidate colonies on plain vs kan plates and saw no growth for one of them, but I guess I got unlucky when I then picked the cells for the transformation step. Lesson learned: wait for individual colonies to grow out, and test carefully :) Once I get a successful transformation into these BL21 cells, I'll grow some on plates and some in liquid culture and see if we can see any green at all. Either way, it's already been a great learning experience.
 
 I'll also say, it's wild that an amateur can, with the help of some friends and AI, whip up a custom plasmid design, get it synthesized, and have it expressed in bacteria in a matter of weeks for a few hundred dollars. What a world! But also, a little scary. Mostly exciting though - I see the majority of uses for tech like this being positive, creative projects and hope more and more people get the joy of working with the living world. See you in part 2, hopefully ft some green!
 
