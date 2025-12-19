@@ -72,3 +72,11 @@ PS: even if the proteins misfold or I fail from here, I'll let you in on my secr
 Until next time,
 
 J
+
+# Update!
+
+I went to sterilize and throw out the plate with that wasn't showing color, after it had been sitting at room temp for a few weeks. Lo and behold, rings of color - looks like at least aeBlue is expressing!!!
+
+![images/bly_blue.png]
+
+Cool that this sequence of DNA from an anemone (Actina equina) coding for a blue protein works in this random bacteria, albeit badly :D
