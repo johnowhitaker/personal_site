@@ -54,7 +54,9 @@ Besides running this on a few more beverages and brew methods, I don't really ha
 
 J
 
-PS: coffee has other cool compounds that fluoresce under 360nm UV:
+PS: [code](https://gist.github.com/johnowhitaker/43737282ef1da367aca7df9bf4a35522) from this first analysis, I'll clean it up and share when I make the video (IF i make one, no promises)
+
+PPS: coffee has other cool compounds that fluoresce under 360nm UV:
 
 ![](images/caffeine_360nm.png)
 
