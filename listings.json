@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/caffeine.html",
       "/posts/blygreen_p1.html",
       "/misc/AOC2025.html",
       "/posts/bacterial_transformation.html",
@@ -217,6 +218,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/posts/caffeine.html",
       "/posts/blygreen_p1.html",
       "/misc/AOC2025.html",
       "/posts/bacterial_transformation.html",
