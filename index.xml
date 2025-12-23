@@ -9,7 +9,7 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.9.14</generator>
+<generator>quarto-1.9.15</generator>
 <lastBuildDate>Mon, 22 Dec 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Measuring Caffeine Content with TLC at home</title>
@@ -73,6 +73,30 @@
   <category>mini-hw-projects</category>
   <guid>https://johnowhitaker.dev/posts/caffeine.html</guid>
   <pubDate>Mon, 22 Dec 2025 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Tinkering with Tinker</title>
+  <link>https://johnowhitaker.dev/misc/tinker.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="tinkering-with-tinker" class="level3">
+<h3 class="anchored" data-anchor-id="tinkering-with-tinker">Tinkering with Tinker</h3>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/yId2PE5Qmqo" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>My first impressions and initial few tests exploring Tinker, training an LLM to respond to all questions with ‘foo’ and then moving on to an RL example using a custom synthetic task and watching reward + accuracy go up and up :)</p>
+<p><a href="https://share.solve.it.com/d/e52b8889b9d3571c1a67eda01aa540f4">Dialog</a>, <a href="https://gist.github.com/johnowhitaker/1d344202d525496e9664bab7c6196d05">Notebook version</a></p>
+<p>Really impressed by this so far, expect more Tinker tinkering in the new year :)</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Video</category>
+  <guid>https://johnowhitaker.dev/misc/tinker.html</guid>
+  <pubDate>Wed, 17 Dec 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/misc/thumbnails/tinker.png" medium="image" type="image/png" height="87" width="144"/>
 </item>
 <item>
   <title>Watching Bacteria NOT BE GREEN</title>
@@ -2342,28 +2366,6 @@ font-style: inherit;">print</span>(incomplete_cubes)</span></code></pre></div></
   <guid>https://johnowhitaker.dev/misc/svg.html</guid>
   <pubDate>Fri, 11 Jul 2025 00:00:00 GMT</pubDate>
   <media:content url="https://johnowhitaker.dev/misc/thumbnails/svg.png" medium="image" type="image/png" height="123" width="144"/>
-</item>
-<item>
-  <title>The Diffusion Duality (Paper reading + discussion)</title>
-  <link>https://johnowhitaker.dev/misc/dllm2.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="the-diffusion-duality-paper-reading-discussion" class="level3">
-<h3 class="anchored" data-anchor-id="the-diffusion-duality-paper-reading-discussion">The Diffusion Duality (Paper reading + discussion)</h3>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/o_ISAlSMoJQ" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p>Hmm, as I recorded this I realize I don’t understand the specifics of this paper - since I can’t explain them well! So apologies for the hand-waviness of this one. I hope it’s still vaguely useful, I might try to make a better one in a bit if I notice too many glaring errors on reflection :) Paper page: https://s-sahoo.com/duo/</p>
-
-
-</section>
-
- ]]></description>
-  <category>Video</category>
-  <guid>https://johnowhitaker.dev/misc/dllm2.html</guid>
-  <pubDate>Thu, 19 Jun 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://johnowhitaker.dev/misc/thumbnails/dllm2.png" medium="image" type="image/png" height="68" width="144"/>
 </item>
 </channel>
 </rss>

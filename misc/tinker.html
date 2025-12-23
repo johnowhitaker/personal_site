@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-08-07">
+<meta name="dcterms.date" content="2025-12-17">
+<meta name="description" content="My first impressions and initial few tests exploring Tinker, training an LLM to respond to all questions with ‘foo’ and then moving on to an RL example using a custom synthetic task and watching reward + accuracy go up and up :)">
 
-<title>‘Diffusion Beats Autoregressive in Data-Constrained Settings’ - Paper read + a win for open review – johnowhitaker.dev</title>
+<title>Tinkering with Tinker – johnowhitaker.dev</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,13 +73,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta name="twitter:title" content="‘Diffusion Beats Autoregressive in Data-Constrained Settings’ - Paper read + a win for open review – johnowhitaker.dev">
-<meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://johnowhitaker.dev/misc/thumbnails/dllm_learn.png">
+<meta name="twitter:title" content="Tinkering with Tinker – johnowhitaker.dev">
+<meta name="twitter:description" content="My first impressions and initial few tests exploring Tinker, training an LLM to respond to all questions with ‘foo’ and then moving on to an RL example using a custom synthetic task and watching reward + accuracy go up and up :)">
+<meta name="twitter:image" content="https://johnowhitaker.dev/misc/thumbnails/tinker.png">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image-height" content="1628">
-<meta name="twitter:image-width" content="2704">
+<meta name="twitter:image-height" content="734">
+<meta name="twitter:image-width" content="1216">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -157,7 +158,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#diffusion-beats-autoregressive-in-data-constrained-settings---paper-read-a-win-for-open-review" id="toc-diffusion-beats-autoregressive-in-data-constrained-settings---paper-read-a-win-for-open-review" class="nav-link active" data-scroll-target="#diffusion-beats-autoregressive-in-data-constrained-settings---paper-read-a-win-for-open-review">‘Diffusion Beats Autoregressive in Data-Constrained Settings’ - Paper read + a win for open review</a></li>
+  <li><a href="#tinkering-with-tinker" id="toc-tinkering-with-tinker" class="nav-link active" data-scroll-target="#tinkering-with-tinker">Tinkering with Tinker</a></li>
   </ul>
 </nav>
     </div>
@@ -166,12 +167,17 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">‘Diffusion Beats Autoregressive in Data-Constrained Settings’ - Paper read + a win for open review</h1>
+<h1 class="title">Tinkering with Tinker</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Video</div>
   </div>
   </div>
 
+<div>
+  <div class="description">
+    My first impressions and initial few tests exploring Tinker, training an LLM to respond to all questions with ‘foo’ and then moving on to an RL example using a custom synthetic task and watching reward + accuracy go up and up :)
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -180,7 +186,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 7, 2025</p>
+      <p class="date">December 17, 2025</p>
     </div>
   </div>
   
@@ -192,13 +198,12 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="diffusion-beats-autoregressive-in-data-constrained-settings---paper-read-a-win-for-open-review" class="level3">
-<h3 class="anchored" data-anchor-id="diffusion-beats-autoregressive-in-data-constrained-settings---paper-read-a-win-for-open-review">‘Diffusion Beats Autoregressive in Data-Constrained Settings’ - Paper read + a win for open review</h3>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/jgLOsT4EwAQ" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p>In this video we take a look at the paper ‘Diffusion Beats Autoregressive in Data-Constrained Settings’ (http://arxiv.org/abs/2507.15857) and a great discussion on Twitter that helped push the results + related hypotheses further, to the benefit of all.</p>
-<p>After I shared it, some of the authors shared a parallel work that addressed some issues in the original but found the same overall lesson: when data constrained, dLLMs learn better than AR (but only after a lot of compute): https://jinjieni.notion.site/Diffusion-Language-Models-are-Super-Data-Learners-239d8f03a866800ab196e49928c019ac - very much worth checking out as a postscript to the video.</p>
-<p>Tweets referenced:</p>
-<p>https://x.com/giffmana/status/1947729993607348255 https://x.com/giffmana/status/1949001902970339471 https://x.com/mihirp98/status/1953196510725980173 https://x.com/giffmana/status/1953206125639123188</p>
+<section id="tinkering-with-tinker" class="level3">
+<h3 class="anchored" data-anchor-id="tinkering-with-tinker">Tinkering with Tinker</h3>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/yId2PE5Qmqo" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>My first impressions and initial few tests exploring Tinker, training an LLM to respond to all questions with ‘foo’ and then moving on to an RL example using a custom synthetic task and watching reward + accuracy go up and up :)</p>
+<p><a href="https://share.solve.it.com/d/e52b8889b9d3571c1a67eda01aa540f4">Dialog</a>, <a href="https://gist.github.com/johnowhitaker/1d344202d525496e9664bab7c6196d05">Notebook version</a></p>
+<p>Really impressed by this so far, expect more Tinker tinkering in the new year :)</p>
 
 
 </section>
