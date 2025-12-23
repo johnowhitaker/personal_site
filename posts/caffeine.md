@@ -8,6 +8,8 @@ description: "A method for quantifying caffeine content at home with low-cost pe
 
 Caffeine. Call it a drug, call it a vitamin. Many of us consume it daily - but how much? I've been a ~daily tea drinker a lot of my life (with periods of tapering off occasionally just to prove I'm not that big an addict) but strong coffee or yerba usually feels too strong for me. It's bugged me for a while that there aren't good options for figuring out how much you're getting. When I steep my tea for seconds rather than minutes, what does that do to the dose? Are the green tea variants that claim 'low caffeine' really much less than regular black tea? How 'decaf' is decaf coffee? What about those kombuchas and boba teas and such people buy that don't have any labelling for caffeine levels at all? Until this project, the cheapest option for testing at home was a $3k tester that cost >$10 per test that was featured in a James Hoffman video [citation needed]. It's based on differential pulse voltammetry, and looked pretty tricky to replicate at home. I'd looked into spectroscopic analysis, but you need pretty fancy setups to isolate out the caffeine signal from all the other stuff you might have dissolved in a beverage.
 
+{{< video https://www.youtube.com/embed/WIyM2x7HtlY >}}
+
 Then 3 weeks ago I was reading up on thin layer chromatography (TLC) for something else and wondered: would caffeine show up? Turns out the answer is yes! The TLC plages I got have a coating that flouresces under 250nm UV light (and I have a germicidal UV light for mutagenesis, post on that soon) but caffeine strongly absorbs that wavelength, and should show up as a dark smudge. I had some pure caffeine on hand too (for growing crystals, and to help mutagenesis, post soon too maybe) so I could make up some known concentrations for reference. The idea worked 'in my head' - I could see the blots in my minds eye. But of course, the real world would be messy, the concentrations would be way too low, it would never work the way I hoped right? Wrong! It totally worked!
 
 ## The Method
@@ -41,12 +43,18 @@ The lowest two concentrations are hard to distinguish (indeed, I'm not sure if I
 
 I'm going to try one or both of these soon - and will update this post when the results come in...
 
+Update 1: shaking with EA then running that didn't seem to give a useful signal
+
 ## Stuff that mattered / didn't work
 
 - Acetone did move the caffeine, and with it I could actually see the spots under daylight while the plate was still wet with acetone. But it was smeary and hard to see - EA was much better.
 - Spotting samples on the plates one at a time, then running them a few days later, gave smeary messes. Run them soon after the spots dry. Once you've run the plate, you can keep it and compare it to others - so e.g. as long as I stick with the same volume of liquid and the same solvent I should be able to run future samples without needing to re-do the calibration ones
 - Running the plates in landscape mode lets you fit more samples on there, but makes it harder to get clean data out
 - Illumination changes can be calibrated out, but ideally you want even lighting from the UVC and a steady, focused pic from a decent camera. Make sure it isn't over-exposed and that the spots are clearly visible.
+
+## Re-Running on an energy drink with a known concentration
+
+I did a run with "Melting Forest" MUSHROOM ENERGY, a curious beverage I spotted in our local New Seasons. Gratifyingly, the estimate (144.1mg +- 19.4mg) matches up perfectly with the stated dose on the can (150mg). Here's the [code](https://gist.github.com/johnowhitaker/c3bb0bca0c4c8f37324641c90e617e2c). The video at the top walks through it.
 
 ## Future plans + conclusions
 
