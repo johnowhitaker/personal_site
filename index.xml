@@ -10,7 +10,38 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.9.16</generator>
-<lastBuildDate>Mon, 22 Dec 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 31 Dec 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Isolating Flouresent Pseudomonas Bacteria from Houseplant Roots</title>
+  <link>https://johnowhitaker.dev/posts/pseudomonas.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p><img src="https://johnowhitaker.dev/posts/images/pseud_agar_art.png" class="img-fluid"></p>
+<p>I took a swab of the roots of one of our windowsill plants and streaked it out on some agar media to see what grew. After a day or two of growth, I shone a UV flashlight on the plate and saw that some colonies had a lovely blue glow! Likely candidate: Pseudomonas fluorescens, a common soil bacterium that secretes a blue-fluorescing siderophore called pyoverdine to scavenge iron from the environment.</p>
+<p><img src="https://johnowhitaker.dev/posts/images/pseud1.png" class="img-fluid"></p>
+<p>I tried to isolate the glowing bacteria by re-streaking to a fresh plate, although the first few tries brought along some other non-glowing bacteria as well:</p>
+<p><img src="https://johnowhitaker.dev/posts/images/pseud2.png" class="img-fluid"></p>
+<p>To confirm that this was what was happening, and get some more evidence for this being Pseudomonas, I did something called a gram stain where you smear some of thre bacgteria on a slide, stain it with a series of dyes, and then look at it under a microscope. This is what the result looks like:</p>
+<p><img src="https://johnowhitaker.dev/posts/images/pseud3.png" class="img-fluid"></p>
+<p>Pseudomonas are gram-negative rods, which are the smaller pink shapes in the image above. The larger black/purple shapes are gram-positive cocci, likely another harmless soil dweller. Another smear from the non-glowy part of the plate was ~all these larger dark blobs. It’s interesting that the larger bacteria get carried further when streaking, so most of the isolated colonies are just those, making it hard to pick out just the pseudomonas. Eventually I managed it though, and could start to have some fun.</p>
+<p><img src="https://johnowhitaker.dev/posts/images/pseud4.png" class="img-fluid"></p>
+<p>The glow comes from a chemical called pyoverdine. There are actually a bunch of variants made by different related species, I’d have to sequence the genome and do some analysis to figure out exactly which one I have. They all serve the same function - binding iron and making it available to the bacteria. This makes these beneficial to plants, since the pyoverdin is just secreted into the environment and can help the plant get iron too. There’s probably some mutualism going on here, with the plant providing nutrients to the bacteria in exchange for iron scavenging.</p>
+<p>I put some rusty iron in vinegar + a little citric acid, to see if I could see the quenching happen. Here’s two vials, each with the same amount of pyoverdine (filtered to remove the bacteria themselves), with the left getting a few drops of water added and the right getting some of the iron solution:</p>
+<p><img src="https://johnowhitaker.dev/posts/images/pseud5.png" class="img-fluid"></p>
+<p>The effect is hard to capture in a photo, but the drops of iron result in an instant dark cloud effect, as the pyoverdine binds the iron and stops fluorescing. In daylight the resulting solution is yellow-green, and I think I saw some precipitate briefly form as well.</p>
+<p>At some point I’ll make a video explaining this too, since glowy Rhizobacteria is a great hook to teach people about beneficial microbes and siderophores :) nSee you in the new year,</p>
+<p>J</p>
+
+
+
+ ]]></description>
+  <category>bio</category>
+  <guid>https://johnowhitaker.dev/posts/pseudomonas.html</guid>
+  <pubDate>Wed, 31 Dec 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Measuring Caffeine Content with TLC at home</title>
   <link>https://johnowhitaker.dev/posts/caffeine.html</link>
@@ -72,6 +103,7 @@
 <p>In the plate pictured in this post:</p>
 <p>Top row: standards (last two possibly switched?) Bottom row: Hojicha teabag, black teabag, yerba mate teabag brewed extra weak, Bai Mudan white tea (leaves), decaf espresso, regular espresso. TODO: measure espresso volume of my home cup.</p>
 <p>PPPS: I pulled another shot of espresso for my cousin, turns out the cup I’ve been using is more like 90ml, which gives a dose of 121mg per cup not the 67 quoted in this post! (But the one I made may have been 70ml, and the extra smears might change things, so this measurement has extra high uncertainty)</p>
+<p>PPPS: Featured on Hackaday! https://hackaday.com/2025/12/31/measuring-caffeine-content-at-home/</p>
 
 
 </section>
@@ -2350,29 +2382,6 @@ font-style: inherit;">print</span>(incomplete_cubes)</span></code></pre></div></
   <category>mini-hw-projects</category>
   <guid>https://johnowhitaker.dev/mini-hw-projects/dropper.html</guid>
   <pubDate>Sun, 20 Jul 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>SVG generation as a microcosm of generative AI research trends</title>
-  <link>https://johnowhitaker.dev/misc/svg.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="svg-generation-as-a-microcosm-of-generative-ai-research-trends" class="level3">
-<h3 class="anchored" data-anchor-id="svg-generation-as-a-microcosm-of-generative-ai-research-trends">SVG generation as a microcosm of generative AI research trends</h3>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/vnD4PlGvOg4" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p>I noticed that my open tabs told a fun story - one that’s been repeated for various niches in generative AI, and that shows the current trend. Hopefully fun and maybe gives you ideas to apply to some other forgotten niche :)</p>
-<p>References: - DIffVG: https://github.com/BachiLi/diffvg - Iconshop: https://icon-shop.github.io/ - OmniSVG: https://omnisvg.github.io/ - Recraft-SVG: https://replicate.com/recraft-ai/recraft-v3-svg - Rendering-Aware Reinforcement Learning for Vector Graphics Generation: https://arxiv.org/abs/2505.20793</p>
-
-
-</section>
-
- ]]></description>
-  <category>Video</category>
-  <guid>https://johnowhitaker.dev/misc/svg.html</guid>
-  <pubDate>Fri, 11 Jul 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://johnowhitaker.dev/misc/thumbnails/svg.png" medium="image" type="image/png" height="123" width="144"/>
 </item>
 </channel>
 </rss>

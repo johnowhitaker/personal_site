@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/pseudomonas.html",
       "/posts/caffeine.html",
       "/misc/tinker.html",
       "/posts/blygreen_p1.html",
@@ -219,6 +220,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/posts/pseudomonas.html",
       "/posts/caffeine.html",
       "/misc/tinker.html",
       "/posts/blygreen_p1.html",
