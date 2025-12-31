@@ -74,3 +74,5 @@ Top row: standards (last two possibly switched?)
 Bottom row: Hojicha teabag, black teabag, yerba mate teabag brewed extra weak, Bai Mudan white tea (leaves), decaf espresso, regular espresso. TODO: measure espresso volume of my home cup.
 
 PPPS: I pulled another shot of espresso for my cousin, turns out the cup I've been using is more like 90ml, which gives a dose of 121mg per cup not the 67 quoted in this post! (But the one I made may have been 70ml, and the extra smears might change things, so this measurement has extra high uncertainty)
+
+PPPS: Featured on Hackaday! https://hackaday.com/2025/12/31/measuring-caffeine-content-at-home/
