@@ -55,3 +55,5 @@ Corridor Crew @CorridorCrew
 IanHubert @IanHubert2
 
 mitxela @mitxela
+
+https://www.youtube.com/@ScienceIRL for joyful science vids (e.g. https://www.youtube.com/watch?v=ZiTBaVSiibw)
