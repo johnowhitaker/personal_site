@@ -2,9 +2,11 @@
 title: "Blog Recommendations"
 ---
 
-I hope to better document other blogs I've found interesting + useful, as well as building out my other recs (see [books](/books), [YouTube recs](/yt)). For now here are some faves in a few categories (TODO), and an unordered list of others I've noted down over time:
+I hope to better document other blogs I've found interesting + useful, as well as building out my other recs (see [books](/books), [YouTube recs](/yt)). For now here is an unordered list of others I've noted down over time.
 
 ## Others / To Be Categorized
+
+https://blog.booleanbiotech.com/oral-microbiome-biogaia
 
 https://jackhogan.net/blog/starting-a-blog
 
