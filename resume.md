@@ -17,7 +17,7 @@ I also have an unusual grab-bag of extra skills or interest areas, which come in
 ## EXPERIENCE
 
 #### R&D at Answer.AI
-**2024 - PRESENT**
+**Jan 2024 - PRESENT**
 
 - A new and exciting project to figure out what this AI stuff is actually useful for, with a fantastic team of researchers.
 

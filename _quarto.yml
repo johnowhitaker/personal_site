@@ -24,6 +24,7 @@ website:
           - icon: rss
             text: RSS Feed
             href: "https://johnowhitaker.dev/index.xml"
+          - now.md
       
   
   twitter-card:
