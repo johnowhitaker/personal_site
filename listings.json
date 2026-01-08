@@ -1,7 +1,8 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/all.html",
     "items": [
+      "/mini-projects/how_much_grams.html",
       "/posts/pseudomonas.html",
       "/posts/caffeine.html",
       "/misc/tinker.html",
@@ -218,8 +219,9 @@
     ]
   },
   {
-    "listing": "/all.html",
+    "listing": "/index.html",
     "items": [
+      "/mini-projects/how_much_grams.html",
       "/posts/pseudomonas.html",
       "/posts/caffeine.html",
       "/misc/tinker.html",

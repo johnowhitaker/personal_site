@@ -10,7 +10,49 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.9.16</generator>
-<lastBuildDate>Wed, 31 Dec 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 08 Jan 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>How Much Grams? Having VLM’s Guess Weight of Objects (DRAFT)</title>
+  <link>https://johnowhitaker.dev/mini-projects/how_much_grams.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I made a tiny little eval based on asking models to esitmate the weight of various objects in grams, inspired by <a href="https://www.youtube.com/shorts/NqtuquniGgM">this guy on tiktok</a> who video calls ChatGPT and makes fun of it for being bad at this.</p>
+<p>TODO main image</p>
+<section id="inspiration" class="level2">
+<h2 class="anchored" data-anchor-id="inspiration">Inspiration</h2>
+<p>I want to quantify an automated pipetting system using a precision scale, which required reading off the weight based on a photo of the scale. It seemed like the kind of simple thing that might work with a local VLM on my mac, and I wanted an excuse to play with LFM 2.5 1.6B that was released that day. So I snapped a few pics of my scale showing different weights, in different lighting and angles, and tried moondream v3 preview, zai-org/glm-4.6v-flash, and LFM 2.5 1.6B (<a href="https://gist.github.com/johnowhitaker/ce8ab1fb34c8373b5e12db0eca9e27dc">code</a>). I was a little suprised how bad they are! LFM was fast enough that I fiddled with the prompt a couple of times, and felt that if I kept the lighting constant and didn’t need fancy things like sign, it might <em>mostly</em> be OK with the occasional 8&lt;=&gt;0 mixup. Then I tried gemini-flash-3, which was near-perfect and cost $0.0005 per image. So the only sensible answer is to use that! It’s really tough to compete with a cheap, fast, API model like this with local models. Anyway, jagged frontier and all that. I figured I might as well make an eval inspired by this, and the obvious extension is to see if the models can guess the weight of the objects without seeing the scale reading too.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-projects/images/scale_gemini.png" class="img-fluid figure-img"></p>
+<figcaption>Gemini Flash 3 getting the scale readings mostly correct</figcaption>
+</figure>
+</div>
+</section>
+<section id="collecting-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="collecting-the-data">Collecting the data</h2>
+<p>This is the kind of thing that competent coding models really shine at. I made a data collection ‘app’ with this prompt to GPT-5.2-Codex (in Codex CLI):</p>
+<p>**“I’d like to build a dataset for an AI eval. The way I’d like to gather the data is to run a Flask app on this Mac which we will create in this currently empty directory. It should, when I visit mac.local/whatever the port is for my phone, I should get a page that asks for camera permission and then it prompts me to take a picture of an object, take a picture of the object on the scale and then take a picture of the scale reading. So three photos for every object that’s going to be in the dataset. These three should all be saved with a consistent ID for that object or that data point followed by _object _scale _scale reading. The app should be kind of nice to use and give me options for retaking a photo right after I’ve taken it or moving on to the next photo, canceling an observation at any point. You know just basically a nice simple data gathering UI so that I can quite rapidly build up a fun little dataset to demonstrate this. Let me know if you have any questions otherwise feel free to start the implementation!“** (voice dictated)</p>
+<p>It nailed it first try. The resulting <a href="https://github.com/johnowhitaker/how_much_grams">app</a> let me quickly snap some pics of 20 objects, with 3 pics each (object, object on scale, scale reading).</p>
+</section>
+<section id="testing-some-models" class="level2">
+<h2 class="anchored" data-anchor-id="testing-some-models">Testing Some Models</h2>
+<p>TODO share</p>
+</section>
+<section id="thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="thoughts">Thoughts</h2>
+<p>VLMs with suprising gaps, SpecID text-only performance note, future idea of fine-tuning (with more data), how amazing codex/claude-code are for this kind of obvious-if-it-works mini-app, make your own evals, …?</p>
+
+
+</section>
+
+ ]]></description>
+  <category>mini-projects</category>
+  <guid>https://johnowhitaker.dev/mini-projects/how_much_grams.html</guid>
+  <pubDate>Thu, 08 Jan 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Isolating Flouresent Pseudomonas Bacteria from Houseplant Roots</title>
   <link>https://johnowhitaker.dev/posts/pseudomonas.html</link>
@@ -2350,39 +2392,6 @@ font-style: inherit;">print</span>(incomplete_cubes)</span></code></pre></div></
   <guid>https://johnowhitaker.dev/posts/vc_wins.html</guid>
   <pubDate>Thu, 24 Jul 2025 00:00:00 GMT</pubDate>
   <media:content url="https://johnowhitaker.dev/posts/images/frag_plot.png" medium="image" type="image/png" height="102" width="144"/>
-</item>
-<item>
-  <title>1Hz Dropper</title>
-  <link>https://johnowhitaker.dev/mini-hw-projects/dropper.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>Inspired by the <a href="https://hackaday.io/contest/203248-one-hertz-challenge">Hackaday One Hertz challenge</a>, I used a solenoid scavenged from an old printer to drop dye into water once a second, making for a pretty (if short-lived) time-keeping device. Video of it in action <a href="https://x.com/johnowhitaker/status/1947072110817644573">here</a>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/drop1.png" class="img-fluid figure-img"></p>
-<figcaption>The setup</figcaption>
-</figure>
-</div>
-<p>The top of the syringe plunger makes a loose seal, and is popped out briefly by a pulse of the solenoid. This let’s a bit of air in, which allows a small drop to form at the bottom of the syringe (with needle removed the hole is perfectly sized for this). The tap and small pressure bump as the plunger top returns to it’s resting position knocks the drop off, giving a perfect* 1Hz drip.</p>
-<p>I ‘filmed’ a full syringe worth of beautiful footage - about a minute of fresh ink dropping into clear water, with it all set up in a stand. The alignment was perfect, single drops each time. I went to ‘stop’ the recording and, womp womp, it hadn’t started. I promptly spilled some dye, knocked things over and messed it all up attempting several re-takes before deciding I’m content with the current shorter clip. Each failing tick spewing mess on my bench felt like a metaphor for time passing that I did not enjoy :D</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/drop3.png" class="img-fluid figure-img"></p>
-<figcaption>a few drops in</figcaption>
-</figure>
-</div>
-<p>Parts used are a Raspberry Pi Pico RP2040 microcontroller in the “Kitronik Simply Robotics Motor Driver Board for Raspberry Pi Pico” board. The code is attached, pulsing the solenoid (connected to the MOTOR_0 output of the board) for a set time each second. Code dumped on the <a href="https://hackaday.io/project/203568-1hz-dropper">hackaday io project</a> (but it’s basically just blinky, one-shotted by o3, plus stolen library code).</p>
-<p>Not my finest work in any respect but it was a fun diversion from Sunday tidying.</p>
-
-
-
- ]]></description>
-  <category>mini-hw-projects</category>
-  <guid>https://johnowhitaker.dev/mini-hw-projects/dropper.html</guid>
-  <pubDate>Sun, 20 Jul 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
