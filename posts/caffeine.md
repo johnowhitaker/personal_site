@@ -76,3 +76,5 @@ Bottom row: Hojicha teabag, black teabag, yerba mate teabag brewed extra weak, B
 PPPS: I pulled another shot of espresso for my cousin, turns out the cup I've been using is more like 90ml, which gives a dose of 121mg per cup not the 67 quoted in this post! (But the one I made may have been 70ml, and the extra smears might change things, so this measurement has extra high uncertainty)
 
 PPPS: Featured on Hackaday! https://hackaday.com/2025/12/31/measuring-caffeine-content-at-home/
+
+PPPPS: I brew my tea weak! If I let an identical Hojicha teabag steep for 5 minutes rather than my usual quick pour and serve, the caffeine content more than doubles. Still, that in my insulated mug over the course of a morning is probably 1/10th the dose e.g. my grandparents-in-law get drinking their pot of drip coffee over the course of the day.
