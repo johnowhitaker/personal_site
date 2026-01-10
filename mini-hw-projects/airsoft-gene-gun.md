@@ -1,5 +1,5 @@
 ---
-title: AGGG (Airsoft Gun Gene Gun) Part 1: The Idea
+title: AGGG (Airsoft Gun Gene Gun) Part 1 - The Idea
 date: 2026-01-09
 categories: 
     - mini-hw-projects
