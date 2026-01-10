@@ -10,7 +10,59 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.9.16</generator>
-<lastBuildDate>Thu, 08 Jan 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 09 Jan 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>AGGG (Airsoft Gun Gene Gun) Part 1 - The Idea</title>
+  <link>https://johnowhitaker.dev/mini-hw-projects/airsoft-gene-gun.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I have a wacky idea for a biolistics-style transformation method that wouldn’t need a gene gun (sneak peek at the end of this post). Explaining it to a friend, he asked why not make a gene gun and sent me some links to DIY attempts. On reflection, I realized that they were building bad versions of something that already exists. A gene gun takes ~800PSI air, adds a valve to release it quickly, directing it with a barrel to accelerate the carriers. An airsoft gun takes 800PSI air, has a trigger mechanism for releasing it in pulses… This post is me printing an adapter for the end and testing it out - looks promising! Hopefully I can test this with DNA soon if I find a way to get some.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/aggg_penetration.png" class="img-fluid figure-img"></p>
+<figcaption>Testing penetration</figcaption>
+</figure>
+</div>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>There are various ways of getting DNA into organisms. For some bacteria, you can use heat shock - this is what I’ve done for my engineering of <em>E. coli</em>. For many cells, ‘electroporation’ is an option - basically, zap them and the DNA will get in by magic (but only into a small fraction of cells). (I think a piezo sparker from a BBQ lighter might do the trick TBH - future project right there). For plants, scientists sometimes use a bacterium called <em>Agrobacterium tumefaciens</em> that naturally infects plants and inserts its DNA into the plant genome. (Evolved genetic engineering! How cool!!). But it doesn’t work on everything, and also some places are touchy about you using a plant pathogen to do stuff, even if it’s found everywhere and also the lab versions have all the nasty bits removed. Anyway, so there are downsides to all of these methods.</p>
+<p>An older technique that still gets used a lot, because it has a different set of pros and cons, is biolistics - shooting tiny particles coated in DNA into cells. This is done with a ‘gene gun’ that uses high-pressure gas to accelerate the particles to high speed, so they can penetrate cell walls and membranes. The particles are usually made of gold or tungsten, because they’re dense and inert. The DNA is stuck to these particles using calcium chloride and spermidine (salmon sperm). Machines cost tens of thousands of dollars, and are high-pressure and scary. They do a lot of damage to the tissue, and need fiddling to get the right settings. So people don’t use them much. Also you’re literally shooting gold, and everything involved is expensive. The disks (just pieces of kapton AFAICT) are expensive even.</p>
+</section>
+<section id="the-idea" class="level2">
+<h2 class="anchored" data-anchor-id="the-idea">The Idea</h2>
+<p>Anyway, as I said in the intro, why not leverage an airsoft gun to DIY one? So I handed papa Bezos $37 dollars for the ‘Elite ForceCombat Zone Enforcer Clear’ - a nice simple pistol (no blowback, so &gt;100 shots per 12g CO2 cartridge). I 3D printed a little adapter that press-fits onto the front, with a way to press on a second part and twist to lock it on. Cad model <a href="https://cad.onshape.com/documents/71fca31e747655d5c863a1f8/w/a8cc152e6f29fbbab59bf04a/e/b01a553a9982db79811f8915?renderMode=0&amp;uiState=69619e0f49143b0f26dfabf7">here</a>.</p>
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/aggg_adapter.png" class="img-fluid"></p>
+<p>I don’t want to spend $$$ on facy metal powder and salmon sperm, so I’d like to experiment with different carriers. One idea I had is to use diatomaceous earth (DE) - a bunch of spiky silica shells about the right size, since I found a tub of it in the basement. Having a quick look around, seems like others have tried a few random things like clay with some success. I do have some spare plasmid but no good way to quantify how much DNA sticks to it, so I might wait til later for that, or try some runs first in case it all magically works first time (unlikely).</p>
+</section>
+<section id="testing" class="level2">
+<h2 class="anchored" data-anchor-id="testing">Testing</h2>
+<p>Anyway, to visualize the spread I added a pinch of potassium permangate to some cling film, chucked it up (I’m smug everything fit perfectly first time) and fired it at some innocent MS media I had sitting nearby from some tissue culture work (TODO, blog posts about that). The result is a perfect ‘real life data viz’ example:</p>
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/aggg_spread.png" class="img-fluid"></p>
+<p>The idea is that in the center it might be too much and blast apart the cells, and at the edges too little, but in the sweet spot you might get transformations. And then the idea is you’ll select the transformed tissue and grow it out (e.g.&nbsp;with antibiotic that your plasmid confers resistance to, or with a visual marker like GFP).</p>
+<p>I also tried adding some DE to dye (since it’s hard to see white on white) and fired it into a paper towel. It all looks promising to me - although I have no reference for what a ‘good’ gene gun shot looks like haha. It took 10 minutes to model and print the adapter though, so I have plenty of variables to play with. Distance to target, adding a diverging nozzle, different carriers, films (I used a 5uL drop of dye+DE on clingfilm for the test), etc etc. It’s promising that the liquid atomized nicely - others seem to use the solid particle carriers and dry them off. Dry would be good in some ways (‘bullets’ such as tubes with the pre-dried carriers are said to last months once prepped) but if e.g.&nbsp;I could add a few uL plasmid to some carrier and blast that right away it would save a lot of work.</p>
+<p>Anyway, until I get plasmid and try this out in plant tissue, I should probably slow down on this. Anyone with an addgene account who feels like <a href="https://www.addgene.org/64401/">buying me a plasmid</a> LMK ;) I’m also hoping to chat to someone I know who is far more knowledgeable about all this and actually has a gene gun, but that’ll be in a few weeks time.</p>
+</section>
+<section id="ps-the-other-idea" class="level2">
+<h2 class="anchored" data-anchor-id="ps-the-other-idea">PS: The Other Idea</h2>
+<p>For the curious, my other idea is plant micro-accupuncture. I got some 50-micron tungsten wire, and figured out how to sharpen it in a flame (inspired by <a href="https://www.youtube.com/watch?v=vpTX32KdVBQ">this video</a> on DIY gecko tape) - I figure I’ll make a bundle of these sharp micro-needles, lay down a layer of DNA over the plant tissue, and go to town. No idea if it’ll work, but if it does it’ll be a cool way to do localised transformations without all the damage of a gene gun.</p>
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/sharpened_tungsten.png" class="img-fluid"></p>
+<p>Amazing how sharp you can get it, this is at 200X magnification. Reference is carrot cells (I’m working carrot callus culture as a nice model system for plant transformation).</p>
+<p>Anyway, very much early days but I thought rather write these ideas down and get them out there, and then when I get results (could take a while) I can at least refer to part 1 and save myself some typing :)</p>
+<p>There’s a joy to doing something like this. I know there are smart people who’ve done tons of research, but I also think the incentices in academia etc aren’t set up to tinker. You have a fancy gene gun, why work on a cheap one? Gold works, why swap? After all, you want to do your transform and write your paper and get your PHD. But for me, if we can lower the barrier to entry all the way, way more people can try stuff and maybe find new things. So, I have looked stuff up here and there, but I’m trying to also keep my outsider status as long as possible so I don’t get too stuck in “the way it’s always been done”. You,dear reader, will get to see if this approach works. There’s no losing though! Worst case, well, I got an airsoft gun, and may have already scattered some BBs around the basement with a big grin on my face :)</p>
+<p>PS: This is an amusing area to try to use AI with - they’re all completely uninterested in assisting with ‘building a projectile weapon’ and will be vague to the point of uselessness on many related questions. More fun thinking for me :)</p>
+
+
+</section>
+
+ ]]></description>
+  <category>mini-hw-projects</category>
+  <category>bio</category>
+  <guid>https://johnowhitaker.dev/mini-hw-projects/airsoft-gene-gun.html</guid>
+  <pubDate>Fri, 09 Jan 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>How Much Grams? Having VLM’s Guess Weight of Objects (DRAFT)</title>
   <link>https://johnowhitaker.dev/mini-projects/how_much_grams.html</link>
@@ -2351,47 +2403,6 @@ font-style: inherit;">print</span>(incomplete_cubes)</span></code></pre></div></
   <category>misc</category>
   <guid>https://johnowhitaker.dev/posts/dwebench.html</guid>
   <pubDate>Sun, 03 Aug 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Mapping Smells, Gamifying Family Trips, Playing ARC-AGI-3 like an LLM… (Vibe Coding Wins)</title>
-  <link>https://johnowhitaker.dev/posts/vc_wins.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>It’s still nice to <strong>know</strong> your code. To carefully review anything your AI helpers do. To dig in and learn, and build familiarity with a chosen stack… but with all of that said, the set of ‘pieces of software I want to exist’ is a lot larger larger than the ‘pieces of software I want to carefully code’ one! I love that we can now whip up custom software on demand just by speaking our requirements in plan language (and then maybe giving a little guidance along the way). In this post I want to feature a few recent results that I particularly enjoyed making/using, a celebration of the kind of things vibe coding is currently a perfect match for. In a future post I will probably wax equally lyrical about how terrible it is if you <em>only</em> do this though, so stay tuned for that ;)</p>
-<section id="portland-pursuit" class="level3">
-<h3 class="anchored" data-anchor-id="portland-pursuit">Portland Pursuit</h3>
-<p>My family visited us in the US for the first time in May/June this year. To help them quest-max on their visits, I made <a href="https://johnowhitaker.github.io/portland_pursuit/">Portland Pursuit</a> - with lots of achievements for them to tick off while they were here. The app (<a href="https://github.com/johnowhitaker/portland_pursuit">code</a>) is written in html/javascript, hosted on GitHub pages, and set up as a Progressive Web App (PWA) which let my family ‘install’ it to their phone home screens - important for non-techy parents. For years this has been my goto approach for making app-like things without having to go through the mobile app store nonsense, and I’m not sure why it’s not more popular!</p>
-<p><img src="https://johnowhitaker.dev/posts/images/portland_pursuit.png" class="img-fluid"></p>
-<p>The app was a huge success - they all got most of the available points, and it definitely encouraged a few extra exploratory walks towards the end of the trip as they vied for first place :) Writing it was fun and easy, and it was a nice test-bed for a few different tools I was testing at the time to see how well they did modifying it when I wanted to add new tasks and so on. Perfect vibe-coding story: simple app, human ideas, minimal time wasted fighting config or hosting settings, a few happy customers. 10/10 :)</p>
-</section>
-<section id="fragrance-explorer" class="level3">
-<h3 class="anchored" data-anchor-id="fragrance-explorer">Fragrance Explorer</h3>
-<p>This past weekend I stumbled upon Gwern’s <a href="https://gwern.net/blog/2025/perfume">blog post on avant-garde perfumes</a>. And then while out on a walk I stumbled upon <a href="https://fumerie.com/">Fumerie</a>, a Parfumerie close to where I live. The folks behind the counter were incredibly friendly, chatting for ages about their art and showing me some wild smells. (Maybe too many - my wife kept her distance from me for the rest of the day). One thing that came through in our discussion was how personal fragrance is to them, with everyone reacting to specific smells differently. Even mentioning that I’d read about a specific fragrance had them tut-tutting - online marketing descriptions != the experience, it seems!</p>
-<p><img src="https://johnowhitaker.dev/posts/images/frag_search.png" class="img-fluid"></p>
-<p>Still, I did find the online descriptions amusing, and I wanted to get a better sense of the ‘map of smells’ availalbe, so when I got home I scraped <a href="https://gist.github.com/johnowhitaker/6fef140a3a47aa1ea049a8562270b0bf">hundreds of fragrance descriptions</a> and had Replit’s Agent whip up an embedding explorer. You can search with natural language, but the real fun is making custom scatter plots with silly axes:</p>
-<p><img src="https://johnowhitaker.dev/posts/images/frag_plot.png" class="img-fluid"></p>
-<p>I showed this to the smell people who agreed that this is <strong>exactly</strong> why they have a job - the text embedding based rankings/scatter plots were based on the marketing points and fragrance notes and were not at all capturing the true essence of the smells. I agree - but still find this fun :) I did the scraping and embedding carefully in a notebook-like environment, then realized I shouldn’t spend &gt;1hr on this, so threw the embeddings and data at replit to make a streamlit frontent. It’s janky and glitchy and annoying but it was instantly shareable and took very little effort - vibe coding win, but I think I could do a lot better without spending much more time. If I cared! Which I don’t! Vibe coding win :)</p>
-</section>
-<section id="arc-agi-3-play-like-an-llm" class="level3">
-<h3 class="anchored" data-anchor-id="arc-agi-3-play-like-an-llm">ARC-AGI-3 (Play like an LLM)</h3>
-<p><img src="https://johnowhitaker.dev/posts/images/arcagi.png" class="img-fluid"></p>
-<p>I like that the ARC people are coming up with interesting evals - great work! I dislike how much gets read into them, and some of the silly discourse they engender. One aspect is that the way you present the data DOES MATTER! Humans play the games looking at a little pixel grid. AI’s get a list of lists of numbers. “But general intelligence should be able to figure it out…” - OK, then try <a href="https://play-arc-agi-3.replit.app/">my version which has you play the game looking at the raw string data</a>. Yeah - no success from any humans so far, maybe we aren’t general intelligence after all… Code is simple, quick flask app on replit coded by o3. For vibe-coding something that uses an API like this, you need API docs, and theirs are a weird custom thing with lots of JS that none of the coding AI’s can read! (I told them, they’re shifting to something better soon). But in the theme of laziness I was able to get manus to browse and click and extract all the docs with a little help, and then I could paste that markdown into o3 for the implementation. Easy task I can specify well with API docs at hand? Perfect vibe coding starting material, works as intended. Vibe coding win :)</p>
-</section>
-<section id="commentary-and-conclusions" class="level3">
-<h3 class="anchored" data-anchor-id="commentary-and-conclusions">Commentary and Conclusions</h3>
-<p>Anthropic said people have made something like ~500 million artifacts with Claude. Lovable just raised $200M. For all that software people like to hate on vibe coding, it’s delightful to me that so many people are getting to create ephemeral, quirky pieces of software to fill some need that they have. In all the examples above, the end result is mediocre at best. There’s no auth, I have ~no users, none of these are the Next Big Thing… BUT they all made me happy, quickly, for free! And I think I’m not the only one. Snarkily asking why there aren’t more giant breakout apps coming in a wave thanks to vibe coding tools is missing the point: there are now hundreds of millions of new pieces of software, each making ~1 person a little happier. And I think that’s great :)</p>
-
-
-</section>
-
- ]]></description>
-  <category>misc</category>
-  <guid>https://johnowhitaker.dev/posts/vc_wins.html</guid>
-  <pubDate>Thu, 24 Jul 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://johnowhitaker.dev/posts/images/frag_plot.png" medium="image" type="image/png" height="102" width="144"/>
 </item>
 </channel>
 </rss>
