@@ -51,3 +51,5 @@ There's a joy to doing something like this. I know there are smart people who've
 PS: This is an amusing area to try to use AI with - they're all completely uninterested in assisting with 'building a projectile weapon' and will be vague to the point of uselessness on many related questions. More fun thinking for me :)
 
 PPS: Relevant XKCD: https://xkcd.com/1217/
+
+PPPS: I made a bundle of sharpened wires attached to an electric toothbrush, and it seemed to ~successfully tatoo MB into onion skin, which is promising. When they get all bent up you can re-sharpen in the flame. Penetration depth not excellent, stiffer thicker wire might have been a good idea.
