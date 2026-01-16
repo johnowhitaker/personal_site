@@ -80,3 +80,5 @@ I went to sterilize and throw out the plate with that wasn't showing color, afte
 ![](images/bly_blue.png)
 
 Cool that this sequence of DNA from an anemone (Actina equina) coding for a blue protein works in this random bacteria, albeit badly :D
+
+Update 2: cured out BL21, transformed my BLY_GREEN plasmid into it, still ~no color. Not going to worry about this more, on to new things.
