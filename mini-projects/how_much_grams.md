@@ -1,5 +1,5 @@
 ---
-title: How Much Grams? Having VLM's Guess Weight of Objects (DRAFT)
+title: How Much Grams? Having VLM's Guess Weight of Objects
 date: 2026-01-08
 categories: 
     - mini-projects
