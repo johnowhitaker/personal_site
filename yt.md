@@ -57,3 +57,5 @@ IanHubert @IanHubert2
 mitxela @mitxela
 
 https://www.youtube.com/@ScienceIRL for joyful science vids (e.g. https://www.youtube.com/watch?v=ZiTBaVSiibw)
+
+[https://youtube.com/@neptunium?si=CvS5-VakDt1vQ1n0](https://youtube.com/@neptunium?si=CvS5-VakDt1vQ1n0) GC-MS in home lab, not always while sober, fantastic 
