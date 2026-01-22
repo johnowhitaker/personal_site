@@ -1162,6 +1162,13 @@
     "text": "Future Plans\nIt’s one thing to poke at a genome and predict a structure, it’s another entirely to verify it. I’m hoping to work with a local university to run GC-MS on this to answer a few remaining questions and nail down the final structure exactly. Will require dusting off and improving my organic chemistry and learning a lot more! Stay tuned for that in some future blog post hopefully :)\nAlso, it’s probably obvious but worth stating explicityl: I AM OUT OF MY DEPTH HERE AND EVERYTHING IN THIS POST SHOULD BE TAKEN WITH A GRAIN OF SALT, ESPECIALLY WHILE IT IS MARKED ‘DRAFT’ :)\nFor the curious, raw data is on Google Drive, I’m open to questions @johnowhitaker."
   },
   {
+    "objectID": "posts/putida.html#ps-molecule-viewer-test",
+    "href": "posts/putida.html#ps-molecule-viewer-test",
+    "title": "Sequencing Pseudomonas putida + Bioinformatics & a Novel Pyoverdine Variant (DRAFT)",
+    "section": "PS: Molecule viewer test",
+    "text": "PS: Molecule viewer test\nHere’s the molecule, copied from the output of this code:\n\n\n    &lt;canvas id=\"undefined\" width=\"1000\" height=\"750\" style=\"width: 400px; height: 300px; padding: 0px; position: absolute; top: 0px; left: 0px; z-index: 0;\"&gt;&lt;/canvas&gt;&lt;canvas id=\"undefined\" width=\"1000\" height=\"750\" style=\"width: 400px; height: 300px; padding: 0px; position: absolute; top: 0px; left: 0px; z-index: 0;\"&gt;&lt;/canvas&gt;&lt;/div&gt;"
+  },
+  {
     "objectID": "posts/DAS.html",
     "href": "posts/DAS.html",
     "title": "Direct Ascent Synthesis: Revealing Hidden Generative Capabilities in Discriminative Models",
