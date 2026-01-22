@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.16">
+<meta name="generator" content="quarto-1.9.17">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,6 +10,9 @@
 
 <title>Swoggle Part 1- RL Environments and Literate Programming with NBDev – johnowhitaker.dev</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -38,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-82d683e9f830cba069e3fb8cbfbea53b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-dcd9e8c573452b099f942d625f6f4e16.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-7808d31791051cc8da4c7717a821f40e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
@@ -205,7 +208,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="what-is-nbdev">What is NBDev?</h2>
 <p>Like many, I started my programming journey editing scripts in Notepad. Then I discovered the joy of IDEs with syntax highlighting, and life got better. I tried many editors over the years, benefiting from better debugging, code completion, stylish themes… But essentially, they all offer the same workflow: write code in an editor, run it and see what happens, make some changes, repeat. Then came Jupyter notebooks. Inline figures and explanations. Interactivity! Suddenly you don’t need to re-run everything just to try something new. You can work in stages, seeing the output of each stage before coding the next step. For some tasks, this is a major improvement. I found myself using them more and more, especially as I drifted into Data Science.</p>
 <p>But what about when you want to deploy code? Until recently, my approach was to experiment in Jupyter, and then copy and paste code into a separate file or files which would become my library or application. This caused some friction - which is where <a href="http://nbdev.fast.ai/">NBDev</a> comes in.</p>
-<p>~~~~~ <strong>“Create delightful python projects using Jupyter Notebooks</strong>” - <em>NBDev website</em> ~~~~~</p>
+<p>~<sub></sub> <strong>“Create delightful python projects using Jupyter Notebooks</strong>” - <em>NBDev website</em> <sub></sub>~</p>
 <p>With NBDev, everything happens in your notebooks. By adding special comments like <code>#export</code> to the start of a cell, you tell NBDev how to treat the code. This means you can write a function that will be exported, write some examples to illustrate how it works, plot the results and surround it with nice explanations in markdown. The exported code gets paces in a neat, well-ordered .py file that becomes your final product. The Notebook(s) becomes documentation, and the extra examples you added to show functionality work as tests (although you can also add more formal unit testing). An extra line of code uploads your library for others to install with pip. And if you’re following their guide, you get a documentation site and continuous integration that updates whenever you push your changes to GitHub.</p>
 <p>The upshot of all this is that you can effortlessly create good, clean code and documentation without having to switch between notebooks, editors and separate documentation. And the process you followed, the journey that lead to the final design choices, is no longer hidden. You can show how things developed, and include experiments that justify a particular choice. This is ‘literate programming’, and it feels like a major shift in the way I think about software development. I could wax lyrical about this for ages, but you should just go and read about it in <a href="https://www.fast.ai/2019/12/02/nbdev/">the launch post here</a>.</p>
 </section>

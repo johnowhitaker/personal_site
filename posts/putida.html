@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-04-20">
+<meta name="dcterms.date" content="2026-01-22">
+<meta name="description" content="I sequenced the genome of the pyoverdine-producing Pseudomonas from a previous post, and had some fun digging into the genes to figure out what molecule exactly it makes">
 
-<title>SpecID - A Hard Eval for Multimodal LLMs – johnowhitaker.dev</title>
+<title>Sequencing Pseudomonas putida + Bioinformatics &amp; a Novel Pyoverdine Variant (DRAFT) – johnowhitaker.dev</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -75,13 +76,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta name="twitter:title" content="SpecID - A Hard Eval for Multimodal LLMs – johnowhitaker.dev">
-<meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://johnowhitaker.dev/mini-projects/images/specid_results.png">
+<meta name="twitter:title" content="Sequencing Pseudomonas putida + Bioinformatics &amp; a Novel Pyoverdine Variant (DRAFT) – johnowhitaker.dev">
+<meta name="twitter:description" content="I sequenced the genome of the pyoverdine-producing Pseudomonas from a previous post, and had some fun digging into the genes to figure out what molecule exactly it makes">
+<meta name="twitter:image" content="https://johnowhitaker.dev/posts/images/pseud_contig.png">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image-height" content="571">
-<meta name="twitter:image-width" content="1069">
+<meta name="twitter:image-height" content="835">
+<meta name="twitter:image-width" content="836">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -159,20 +160,33 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sequencing-with-plasmidsaurus" id="toc-sequencing-with-plasmidsaurus" class="nav-link active" data-scroll-target="#sequencing-with-plasmidsaurus">Sequencing with Plasmidsaurus</a></li>
+  <li><a href="#pyoverdine-investigation" id="toc-pyoverdine-investigation" class="nav-link" data-scroll-target="#pyoverdine-investigation">Pyoverdine Investigation</a></li>
+  <li><a href="#future-plans" id="toc-future-plans" class="nav-link" data-scroll-target="#future-plans">Future Plans</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">SpecID - A Hard Eval for Multimodal LLMs</h1>
+<h1 class="title">Sequencing Pseudomonas putida + Bioinformatics &amp; a Novel Pyoverdine Variant (DRAFT)</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">mini-projects</div>
+    <div class="quarto-category">bio</div>
   </div>
   </div>
 
+<div>
+  <div class="description">
+    I sequenced the genome of the pyoverdine-producing Pseudomonas from a previous post, and had some fun digging into the genes to figure out what molecule exactly it makes
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -181,7 +195,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 20, 2025</p>
+      <p class="date">January 22, 2026</p>
     </div>
   </div>
   
@@ -193,22 +207,206 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>We were talking recently around “What is something you could do through a chat interface that current LLMs can’t?”. One example I give personally is identifying Zimbabwean spider species - a lot of which are ~undocumented* so knowledge on what the living specimens look like is concentrated in a few heads, plus a smattering of posts on Facebook and iNaturalist. Anyway, I thought I should put my money where my mouth is and make an actual eval for this, to see how badly SOTA multi-modal LLMs do. Here are the results:</p>
-<p><img src="images/specid_results.png" class="img-fluid"></p>
-<p>*Update 2: gemini-3-pro-preview gets 64%, probably beats me when not using my own observations! Edit: we tied when looking at a friend’s observations. I may be dethroned!</p>
-<p>*Update: gemini-2.5-pro-exp-03-25 gets 57%, the new top score! And Flash 2.5 gets 53% when forcing function calls (previously a bug)</p>
-<p>The way I constructed this eval was to pull 100 photos with confirmed “research grade” identifications from my iNaturalist catalog. Each sample gets up to four ‘distractors’ - species names for closely-related organisms in the same ~family/group as the target. Multiple-choice is significantly easier than dredging up the name ‘cold’ (especially since many latin names have clues that match visual aspects of the species). And the quiz is harder for me that it could have been, since I included all species (bugs, birds, plants) not just spiders! Turns out I’m way worse at the latin names outside my comfort zone :D Still - at least at present I have a lead on the best models - just not as much of a one as I expected! It’s stunning that 4o can get more than half of these right.</p>
-<p><img src="images/specid_sa.png" class="img-fluid"></p>
-<p>For the human baseline, I set up an interface that had me guess myself. It took less than 12 minutes total - here’s the prompt that produced the code: “his is a dataset I made, with an image and up to five candidate species. I want to get a human baseline for this dataset. Can you give me code that, in a Google Colab notebook, shows the picture and five buttons (some will need less, can use”NA” if there are less than 5 options) and has me click which one I think is the right one, before storing my guess and showing the next one? Use ipywidgets, include a way for me to see progress (how many done + left) and score (current correct %).” And <a href="https://github.com/johnowhitaker/specid_eval/blob/main/SpecID_Human_Baseline.ipynb">here’s the result</a>. Try it youself if you dare :)</p>
-<p>The spider above by the way? It fell from a tree onto me, and I eventualy figured out what it was (first record for Zimbabwe) thanks to this passage from the 1923 <strong>Araignées du sud de l’Afrique</strong> :“Céphalothorax noir, avec les yeux latéraux antérieurs et postérieurs situés sur des saillies orangées. Chélicères, pièces buccales, sternum, pattes-mâchoires, pattes brun-noir. Abdomen gris-noirâtre foncé.”. There have been a handful of records with nice pics shared since, and it featured on a guide, but this is the kind of obscure digging needed sometimes to ID these things.</p>
-<p>Anyway. Make your own evals! Occasionally suprising, easy, fun! Show me! That is all :)</p>
+<p>In my <a href="https://johnowhitaker.dev/posts/pseudomonas.html">previous post</a> I showed a bacteria isolated from the water around the roots of a Jade plant on our windowsill, which secreted something that fluoresced a lovely blue under UV light. My best guess was that it was some species of Pseudomonas, and the blue was from pyoverdine. But how can we know for sure? Well, I put it off because money, but since I like working with this bacteria and want to do more with it, I figured I’d bite the bullet and pay the ~$120 to get my answers :) It turns out that the closest match is P. putida, and that the pyoverdine variant that this makes is probably different to anything documented in the literature. Exciting stuff!</p>
+<section id="sequencing-with-plasmidsaurus" class="level2">
+<h2 class="anchored" data-anchor-id="sequencing-with-plasmidsaurus">Sequencing with Plasmidsaurus</h2>
+<p>I went with Plasmidsaurus’ ‘Standard Bacterial Genome Sequencing with Extraction’ <a href="https://plasmidsaurus.com/genome">service</a>. I sent the sample (~15mg cells suspended in Zymo DNA Shield) off on Tuesday morning and by Wednesday evening the results were ready.</p>
+<p>Species ID (Mash)</p>
 <ul>
-<li><a href="https://huggingface.co/datasets/johnowhitaker/specid_eval_jw">Dataset on HuggingFace</a> - let me know if you want me to try a model on a private ~equivalent dataset.</li>
-<li><a href="https://github.com/johnowhitaker/specid_eval">Code + preliminary results with a script to run it yourself</a></li>
+<li>Best match: Pseudomonas putida NBRC 14164</li>
+<li>Identity: 95.6% (1946/5000 shared hashes)</li>
 </ul>
-<p>*Although I did write a field guide to the more common ones!</p>
+<p>Genome Quality (CheckM)</p>
+<ul>
+<li>Completeness: 99.88% — excellent!</li>
+<li>Contamination: 2.15% — very low</li>
+<li>Lineage marker: Pseudomonas</li>
+</ul>
+<p>Assembly Stats</p>
+<ul>
+<li>Genome size: 6.54 Mb (typical for Pseudomonas)</li>
+<li>Total reads: 66,830 (398 Mb total)</li>
+<li>Estimated coverage: ~58x</li>
+<li>Longest read: 88.4 kb</li>
+<li>Read N50: 9.7 kb</li>
+</ul>
+<p><img src="images/pseud_contig.png" class="img-fluid"></p>
+<p>They give you <a href="https://drive.google.com/drive/folders/1p8dQGtGOjfowySz2ltuYEjhGZroxdjUh?usp=sharing">lots of data</a>, including annotating the genome for you with <a href="https://doi.org/10.1099/mgen.0.000685">bakta</a>. Great stuff! We can see right away that our guess was right - this is a Pseudomonas species (P. putida is the closest match) and are ready to dig in further to see what we can learn.</p>
+</section>
+<section id="pyoverdine-investigation" class="level2">
+<h2 class="anchored" data-anchor-id="pyoverdine-investigation">Pyoverdine Investigation</h2>
+<p>Pyoverdines vary but all come with three key parts: a dihydroxyquinoline core, a peptide chain, and a side chain. The peptide chain especially varies strain-to-strain - see <a href="https://en.wikipedia.org/wiki/Pyoverdine#Structure">here</a> for some examples.</p>
+<p>Step one was looking for the pyoverdine Biosynthetic Gene Cluster (BGC). A <a href="https://chatgpt.com/share/697294ce-6a40-8010-bb23-a7047045b8cb">Deep Research</a> run gave some promising genes to start the hunt with. Some hits let us narrow in on a key region between 4.71 and 4.76M bp, with a number of promising-looking genes. A tool called antiSMASH likewise identified a region (4,696,705–4,796,912), labeled as ‘NRP-metallophore’ - this is our BGC alright :)</p>
+<p><img src="images/antiSMASH.png" class="img-fluid"></p>
+<p>We also got a predicted structure in SMILES format, and with some wrangling get a final predicted structure (and a pretty picture):</p>
+<p><img src="images/pyoverdine_precursor_pred.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>AN AI SUMARY OF
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠</p>
+<section id="from-genome-to-siderophore-characterizing-a-novel-pyoverdine-from-pseudomonas-putida" class="level3">
+<h3 class="anchored" data-anchor-id="from-genome-to-siderophore-characterizing-a-novel-pyoverdine-from-pseudomonas-putida">From Genome to Siderophore: Characterizing a Novel Pyoverdine from <em>Pseudomonas putida</em></h3>
+</section>
+<section id="the-starting-point" class="level3">
+<h3 class="anchored" data-anchor-id="the-starting-point">The Starting Point</h3>
+<p>We began with a high-quality assembled genome from a <em>Pseudomonas putida</em> strain isolated from a houseplant root system (sequenced by Plasmidsaurus). The assembly was excellent: <strong>99.88% complete</strong>, only 2.15% contamination, and a 6.54 Mb genome at ~58× coverage. Species identity was confirmed via Mash (95.6% to <em>P. putida</em> NBRC 14164).</p>
+</section>
+<section id="finding-the-pyoverdine-biosynthetic-gene-cluster" class="level3">
+<h3 class="anchored" data-anchor-id="finding-the-pyoverdine-biosynthetic-gene-cluster">Finding the Pyoverdine Biosynthetic Gene Cluster</h3>
+<p>We searched the Bakta annotations for pyoverdine-related genes (<strong>pvd</strong> genes, NRPS, siderophore terms) and identified a cluster spanning <strong>~4.7–4.8 Mb</strong> containing:</p>
+<ul>
+<li><strong>pvdT</strong> — pyoverdine exporter</li>
+<li><strong>Two large NRPS genes</strong> (~14.7 kb and ~6.4 kb) — the peptide assembly machinery</li>
+<li><strong>PvdA-like monooxygenase</strong> — hydroxylates ornithine</li>
+<li><strong>Formylglycine-generating enzyme</strong> (likely <strong>pvdF</strong>) — formyltransferase</li>
+<li><strong>argD</strong> — makes diaminobutyrate (Dab), essential for the chromophore</li>
+<li><strong>TonB-dependent receptor</strong> — likely the ferripyoverdine receptor (fpvA)</li>
+</ul>
+<p>Notably, <strong>pvdA</strong> was located separately at ~3.99 Mb — this split arrangement is common in pyoverdine BGCs.</p>
+</section>
+<section id="antismash-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="antismash-analysis">antiSMASH Analysis</h3>
+<p>Running the genome through antiSMASH confirmed Region 10 as an <strong>NRP-metallophore</strong> cluster (siderophore NRPS). The top KnownClusterBlast hit was <strong>Pf-5 pyoverdine</strong> from <em>Pseudomonas protegens</em>, but with only ~49% NRPS identity — indicating a related but distinct peptide.</p>
+</section>
+<section id="predicting-the-peptide-sequence" class="level3">
+<h3 class="anchored" data-anchor-id="predicting-the-peptide-sequence">Predicting the Peptide Sequence</h3>
+<p>antiSMASH provided <strong>A-domain substrate predictions</strong> for each NRPS module:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Module</th>
+<th>Substrate</th>
+<th>Configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Glu</td>
+<td>L</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Tyr</td>
+<td>D (E-domain present)</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Dab</td>
+<td>L</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Asp</td>
+<td>L</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Ala</td>
+<td>L</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Asp</td>
+<td>L</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>OH-Orn</td>
+<td>D (E-domain present)</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><strong>?</strong></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>OH-Orn</td>
+<td>L</td>
+</tr>
+</tbody>
+</table>
+<p>The mystery at position 8 was annotated as <strong>“NH₂”</strong> by the Minowa predictor — initially puzzling.</p>
+</section>
+<section id="resolving-the-unknown-residue" class="level3">
+<h3 class="anchored" data-anchor-id="resolving-the-unknown-residue">Resolving the Unknown Residue</h3>
+<p>We explored two hypotheses:</p>
+<ol type="1">
+<li><strong>Lysine</strong> — has a terminal -NH₂ on its side chain</li>
+<li><strong>Glycine</strong> — essentially just an α-amino group with no real side chain</li>
+</ol>
+<p>After deeper analysis (including literature review of other <em>P. putida</em> pyoverdines), <strong>glycine emerged as the more likely candidate</strong>: - The “NH₂” prediction could mean “minimal/no side chain” - Glycine is common in mid-chain positions of <em>P. putida</em> pyoverdines (KT2440, GB-1 both contain Gly) - Prediction tools are known to have difficulty with Gly vs Ala</p>
+</section>
+<section id="determining-the-side-chain-pvdn-vs-ptaa" class="level3">
+<h3 class="anchored" data-anchor-id="determining-the-side-chain-pvdn-vs-ptaa">Determining the Side Chain: pvdN vs ptaA</h3>
+<p>Pyoverdine side chains come in two main types: - <strong>Succinamide</strong> — produced by strains with <strong>pvdN</strong> - <strong>α-Ketoglutarate</strong> — produced by strains with <strong>ptaA</strong></p>
+<p>We BLASTed known pvdN (<em>P. aeruginosa</em> PAO1, NP_251095.1) and ptaA sequences against the genome:</p>
+<ul>
+<li><strong>pvdN: 83% identity match</strong> → gene LDMLEE_03614 at ~3.99 Mb (near pvdA)</li>
+<li><strong>ptaA: No significant match</strong></li>
+</ul>
+<p><strong>Conclusion: Succinamide side chain</strong></p>
+</section>
+<section id="the-final-predicted-structure" class="level3">
+<h3 class="anchored" data-anchor-id="the-final-predicted-structure">The Final Predicted Structure</h3>
+<pre><code>CHROMOPHORE PRECURSORS          VARIABLE PEPTIDE
+        ↓                              ↓
+┌───────────────────┐  ┌─────────────────────────────────────┐
+ L-Glu → D-Tyr → L-Dab → L-Asp → L-Ala → L-Asp → D-OHOrn → Gly → L-OHOrn
+                  ↓                                    ↓            ↓
+           cyclizes to form                      Fe³⁺ binding  Fe³⁺ binding
+        dihydroxyquinoline                       (hydroxamate) (hydroxamate)
+           chromophore</code></pre>
+<p><strong>Key features:</strong> - <strong>9-residue peptide</strong> (longer than typical <em>P. putida</em> pyoverdines) - <strong>Two hydroxyornithine residues</strong> — provides two hydroxamate groups for Fe³⁺ chelation - <strong>Succinamide side chain</strong> on the chromophore - <strong>Novel sequence</strong> — no match in SIDERITE database (best similarity only 0.35)</p>
+</section>
+<section id="smiles-with-stereochemistry" class="level3">
+<h3 class="anchored" data-anchor-id="smiles-with-stereochemistry">SMILES (with stereochemistry)</h3>
+<pre><code>NN[C@@H](CCC(=O)O)C(=O)N[C@H](Cc1ccc(O)cc1)C(=O)N[C@@H](CCN)C(=O)N[C@@H](CC(=O)O)C(=O)N[C@@H](C)C(=O)N[C@@H](CC(=O)O)C(=O)N[C@H](CCCNO)C(=O)NCC(=O)N[C@@H](CCCNO)C(=O)O</code></pre>
+</section>
+<section id="what-still-needs-confirmation" class="level3">
+<h3 class="anchored" data-anchor-id="what-still-needs-confirmation">What Still Needs Confirmation</h3>
+<p>This is a <strong>bioinformatic prediction</strong>. To definitively confirm the structure:</p>
+<ol type="1">
+<li><strong>LC-MS/MS</strong> — will reveal the exact mass and fragment pattern, confirming each residue (especially Gly at position 8)</li>
+<li><strong>The hydroxamates</strong> — could be N-formylated (if pvdF is active), which would add +28 Da per residue</li>
+<li><strong>Cyclization</strong> — the C-terminal OHOrn likely cyclizes with the chromophore, which MS/MS should reveal</li>
+</ol>
+</section>
+<section id="why-this-matters" class="level3">
+<h3 class="anchored" data-anchor-id="why-this-matters">Why This Matters</h3>
+<p>This appears to be a <strong>genuinely novel pyoverdine variant</strong> — it doesn’t match any characterized <em>P. putida</em> pyoverdines in the literature or databases. Discovering the diversity of siderophores in environmental isolates helps us understand:</p>
+<ul>
+<li>Microbial competition for iron in the rhizosphere</li>
+<li>The evolution of NRPS systems</li>
+<li>Potential for novel iron chelators with biotechnology applications</li>
+</ul>
+</section>
+<section id="end-ai-slop" class="level2">
+<h2 class="anchored" data-anchor-id="end-ai-slop">END AI SLOP</h2>
+</section>
+</div>
+</div>
+</div>
+<p>Here’s <a href="https://gist.github.com/johnowhitaker/8659d6f38c799e9d4d8e417e1641e6e0">a notebook</a> running over the final steps, with some light annotation.</p>
+</section>
+<section id="future-plans" class="level2">
+<h2 class="anchored" data-anchor-id="future-plans">Future Plans</h2>
+<p>It’s one thing to poke at a genome and predict a structure, it’s another entirely to verify it. I’m hoping to work with a local university to run GC-MS on this to answer a few remaining questions and nail down the final structure exactly. Will require dusting off and improving my organic chemistry and learning a lot more! Stay tuned for that in some future blog post hopefully :)</p>
+<p>Also, it’s probably obvious but worth stating explicityl: I AM OUT OF MY DEPTH HERE AND EVERYTHING IN THIS POST SHOULD BE TAKEN WITH A GRAIN OF SALT, ESPECIALLY WHILE IT IS MARKED ‘DRAFT’ :)</p>
+<p>For the curious, raw data <a href="https://drive.google.com/drive/folders/1p8dQGtGOjfowySz2ltuYEjhGZroxdjUh?usp=sharing">is on Google Drive</a>, I’m open to questions <span class="citation" data-cites="johnowhitaker">@johnowhitaker</span>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

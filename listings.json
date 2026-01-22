@@ -2,6 +2,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/posts/putida.html",
       "/posts/cnc_pipette.html",
       "/mini-hw-projects/airsoft-gene-gun.html",
       "/mini-projects/how_much_grams.html",
@@ -223,6 +224,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/putida.html",
       "/posts/cnc_pipette.html",
       "/mini-hw-projects/airsoft-gene-gun.html",
       "/mini-projects/how_much_grams.html",

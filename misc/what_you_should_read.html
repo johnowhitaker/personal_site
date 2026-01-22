@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.16">
+<meta name="generator" content="quarto-1.9.17">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,6 +10,9 @@
 
 <title>What You Should Read (AI Edition) – johnowhitaker.dev</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -38,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-82d683e9f830cba069e3fb8cbfbea53b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-dcd9e8c573452b099f942d625f6f4e16.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-7808d31791051cc8da4c7717a821f40e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
@@ -218,7 +221,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p>EfficientNet (https://arxiv.org/abs/1905.11946) took this further and was a fan favourite for a while in terms of performance and efficiency</p></li>
 <li><p>When transformer models started to get popular (see the LLM section), the VIT paper (https://arxiv.org/abs/2010.11929) fed patches of an image into a transformer and got extremely good results, kicking off a war between the convolutionists and the transformacons that continues to this day.</p></li>
 <li><p>ConvNeXt (https://arxiv.org/abs/2201.03545) said ‘hey let’s take some good ideas from ViTs and elsewhere and see if we can make a better convnet for the 2020s.’</p></li>
-<li><p>MLP-Mixer (a personal fave, less pivotal) said ’who needs attention or convolutions? Just make sure there’s some way to mix across channels (like the MLPs in a ViT) and some way to mix across space (like the attention in a ViT or the conv kernels in a convnet). I love that it works - hooray scaling and the bitter lesson :)</p></li>
+<li><p>MLP-Mixer (a personal fave, less pivotal) said ‘who needs attention or convolutions? Just make sure there’s some way to mix across channels (like the MLPs in a ViT) and some way to mix across space (like the attention in a ViT or the conv kernels in a convnet). I love that it works - hooray scaling and the bitter lesson :)</p></li>
 </ul>
 <p>ViTs are probably the go-to these days, although there are attempts to fix some of their flaws (fixed size, need lots of compute especially for high-res images, less priors baked in so well-suited to data-rich regimes) - but most of the modifications proposed sort of make sense and also don’t make <em>that</em> big of a difference compared to scaling. If you want more on them maybe read “Scaling Vision Transformers” (https://arxiv.org/abs/2106.04560) and something like the Hierarchical ViT paper (https://arxiv.org/abs/2205.14949).</p>
 <p>While people were duking it out for the classification crown, there were a few other things happening - A medical segmentation paper proposed the UNet architecture that turned out to be pretty good for anything that needs an image-shaped output (like segmentation) - https://arxiv.org/abs/1505.04597</p>
