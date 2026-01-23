@@ -170,7 +170,7 @@ It's one thing to poke at a genome and predict a structure, it's another entirel
 
 Also, it's probably obvious but worth stating explicityl: I AM OUT OF MY DEPTH HERE AND EVERYTHING IN THIS POST SHOULD BE TAKEN WITH A GRAIN OF SALT, ESPECIALLY WHILE IT IS MARKED 'DRAFT' :)
 
-For the curious, raw data [is on Google Drive](https://drive.google.com/drive/folders/1p8dQGtGOjfowySz2ltuYEjhGZroxdjUh?usp=sharing), I'm open to questions @johnowhitaker.
+For the curious, raw data [is on Google Drive](https://drive.google.com/drive/folders/1p8dQGtGOjfowySz2ltuYEjhGZroxdjUh?usp=sharing), I'm open to questions @johnowhitaker. [This solveit dialog](https://share.solve.it.com/d/7584c91e2c239ff2c01ecd5fb270a3c7) has the key code in a nice rendered form.
 
 ## PS: Molecule viewer test
 
