@@ -47,7 +47,7 @@ Step one was looking for the pyoverdine Biosynthetic Gene Cluster (BGC). A [Deep
 
 ![](images/antiSMASH.png)
 
-By looking at the A-domain predictions for this region, we can start on a predicted peptide sequence: Chromophore─Glu─D-Tyr─Dab─Asp─Ala─Asp─D-OHOrn─X─OHOrn (where Glu-D-Tyr-Dab forms the conserved pyoverdine chromophore after cyclization). That X is an unknown, which we'll have to work on later - my best guess is Gly.
+By looking at the A-domain predictions for this region, we can start on a predicted peptide sequence: Glu-D-Tyr-Dab─Asp─Ala─Asp─D-OHOrn─X─OHOrn (where Glu-D-Tyr-Dab forms the conserved pyoverdine chromophore after cyclization). That X is an unknown, which we'll have to work on later - my best guess is Gly.
 
 The next step is to figure out which side chain is present. (Some strains make some of both). The side-chain type is determined by which gene is present:
 
