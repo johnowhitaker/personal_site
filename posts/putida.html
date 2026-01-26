@@ -254,7 +254,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Pyoverdines vary but all come with three key parts: a dihydroxyquinoline core, a peptide chain, and a side chain. The peptide chain especially varies strain-to-strain - see <a href="https://en.wikipedia.org/wiki/Pyoverdine#Structure">here</a> for some examples.</p>
 <p>Step one was looking for the pyoverdine Biosynthetic Gene Cluster (BGC). A <a href="https://chatgpt.com/share/697294ce-6a40-8010-bb23-a7047045b8cb">Deep Research</a> run gave some promising genes to start the hunt with. Some hits let us narrow in on a key region between 4.71 and 4.76M bp, with a number of promising-looking genes. A tool called antiSMASH likewise identified a region (4,696,705–4,796,912), labeled as ‘NRP-metallophore’ - this is our BGC alright :)</p>
 <p><img src="images/antiSMASH.png" class="img-fluid"></p>
-<p>By looking at the A-domain predictions for this region, we can start on a predicted peptide sequence: Chromophore─Glu─D-Tyr─Dab─Asp─Ala─Asp─D-OHOrn─X─OHOrn (where Glu-D-Tyr-Dab forms the conserved pyoverdine chromophore after cyclization). That X is an unknown, which we’ll have to work on later - my best guess is Gly.</p>
+<p>By looking at the A-domain predictions for this region, we can start on a predicted peptide sequence: Glu-D-Tyr-Dab─Asp─Ala─Asp─D-OHOrn─X─OHOrn (where Glu-D-Tyr-Dab forms the conserved pyoverdine chromophore after cyclization). That X is an unknown, which we’ll have to work on later - my best guess is Gly.</p>
 <p>The next step is to figure out which side chain is present. (Some strains make some of both). The side-chain type is determined by which gene is present:</p>
 <ul>
 <li>pvdN (PLP-dependent aminotransferase) → succinamide side chain</li>
