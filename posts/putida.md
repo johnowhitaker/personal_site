@@ -1,5 +1,5 @@
 ---
-title: "Sequencing Pseudomonas putida + Bioinformatics & a Novel Pyoverdine Variant (DRAFT)"
+title: "Sequencing Pseudomonas putida + Bioinformatics & a Novel Pyoverdine Variant"
 date: 2026-01-22
 categories:
     - bio
@@ -11,6 +11,9 @@ In my [previous post](https://johnowhitaker.dev/posts/pseudomonas.html) I showed
 ## Sequencing with Plasmidsaurus
 
 I went with Plasmidsaurus' 'Standard Bacterial Genome Sequencing with Extraction' [service](https://plasmidsaurus.com/genome). I sent the sample (~15mg cells suspended in Zymo DNA Shield) off on Tuesday morning and by Wednesday evening the results were ready. 
+
+::: {.callout-note collapse="true"}
+### Results summary
 
 Species ID (Mash)
 
@@ -30,6 +33,7 @@ Assembly Stats
 - Estimated coverage: ~58x
 - Longest read: 88.4 kb
 - Read N50: 9.7 kb
+:::
 
 ![](images/pseud_contig.png)
 
@@ -43,12 +47,21 @@ Step one was looking for the pyoverdine Biosynthetic Gene Cluster (BGC). A [Deep
 
 ![](images/antiSMASH.png)
 
-We also got a predicted structure in SMILES format, and with some wrangling get a final predicted structure (and a pretty picture):
+By looking at the A-domain predictions for this region, we can start on a predicted peptide sequence: Chromophore─Glu─D-Tyr─Dab─Asp─Ala─Asp─D-OHOrn─X─OHOrn (where Glu-D-Tyr-Dab forms the conserved pyoverdine chromophore after cyclization). That X is an unknown, which we'll have to work on later - my best guess is Gly.
+
+The next step is to figure out which side chain is present. (Some strains make some of both). The side-chain type is determined by which gene is present:
+
+- pvdN (PLP-dependent aminotransferase) → succinamide side chain
+- ptaA ([periplasmic transaminase](https://pmc.ncbi.nlm.nih.gov/articles/PMC5682972/)) → α-ketoglutarate side chain
+
+We BLAST the genome against known reference sequences, finding an 83% match to PvdN (NP_251095.1) but only a 23% match for PtaA (AAY94407.1) -> strain produces succinamide side chain.
+
+This info gives us enough info to reasonably guess at the structure of the pyoverdine precursor (ferribactin):
 
 ![](images/pyoverdine_precursor_pred.png)
 
 ::: {.callout-note collapse="true"}
-## AN AI SUMARY OF 
+## EXTRA INFO (AI) 
 
 🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
 
@@ -69,7 +82,7 @@ We searched the Bakta annotations for pyoverdine-related genes (**pvd** genes, N
 - **argD** — makes diaminobutyrate (Dab), essential for the chromophore
 - **TonB-dependent receptor** — likely the ferripyoverdine receptor (fpvA)
 
-Notably, **pvdA** was located separately at ~3.99 Mb — this split arrangement is common in pyoverdine BGCs.
+Notably, **pvdA** was located separately at ~3.99 Mb — this split arrangement is common in pyoverdine BGCs. (Note from Johno: There's a PvdA-like hydroxylase in the main cluster too, so this might not be a case of a split arrangement after all? TBD if one or both are used, and how they're regulated.)
 
 ### antiSMASH Analysis
 
@@ -91,8 +104,6 @@ antiSMASH provided **A-domain substrate predictions** for each NRPS module:
 | 8 | **?** | — |
 | 9 | OH-Orn | L |
 
-The mystery at position 8 was annotated as **"NH₂"** by the Minowa predictor — initially puzzling.
-
 ### Resolving the Unknown Residue
 
 We explored two hypotheses:
@@ -104,6 +115,8 @@ After deeper analysis (including literature review of other *P. putida* pyoverdi
 - The "NH₂" prediction could mean "minimal/no side chain"
 - Glycine is common in mid-chain positions of *P. putida* pyoverdines (KT2440, GB-1 both contain Gly)
 - Prediction tools are known to have difficulty with Gly vs Ala
+
+(Note fro Johno: Opus was sure an unrelated minowa NH2 mention was related to this and predicted lysine as a result, I tried to determine the unknown residue but had no luck, Gly is a pretty good guess AFAICT but will need analysis to confirm).
 
 ### Determining the Side Chain: pvdN vs ptaA
 
@@ -143,6 +156,8 @@ CHROMOPHORE PRECURSORS          VARIABLE PEPTIDE
 NN[C@@H](CCC(=O)O)C(=O)N[C@H](Cc1ccc(O)cc1)C(=O)N[C@@H](CCN)C(=O)N[C@@H](CC(=O)O)C(=O)N[C@@H](C)C(=O)N[C@@H](CC(=O)O)C(=O)N[C@H](CCCNO)C(=O)NCC(=O)N[C@@H](CCCNO)C(=O)O
 ```
 
+(Note from Johno: Should probably be a single N at the start there)
+
 ### What Still Needs Confirmation
 
 This is a **bioinformatic prediction**. To definitively confirm the structure:
@@ -162,11 +177,11 @@ This appears to be a **genuinely novel pyoverdine variant** — it doesn't match
 ## END AI SLOP
 :::
 
-Here's [a notebook](https://gist.github.com/johnowhitaker/8659d6f38c799e9d4d8e417e1641e6e0) running over the final steps, with some light annotation.
+Here's [a notebook](https://gist.github.com/johnowhitaker/8659d6f38c799e9d4d8e417e1641e6e0) running over the steps, with some light annotation. (I've since been fiddling a bit more, LMK if you're wanting to dive into this deeply)
 
 ## Future Plans
 
-It's one thing to poke at a genome and predict a structure, it's another entirely to verify it. I'm hoping to work with a local university to run GC-MS on this to answer a few remaining questions and nail down the final structure exactly. Will require dusting off and improving my organic chemistry and learning a lot more! Stay tuned for that in some future blog post hopefully :)
+It's one thing to poke at a genome and predict a structure, it's another entirely to verify it. I'm hoping to work with a local university to run LC-MS on this to answer a few remaining questions and nail down the final structure exactly. Will require dusting off and improving my organic chemistry and learning a lot more! Stay tuned for that in some future blog post hopefully :)
 
 Also, it's probably obvious but worth stating explicityl: I AM OUT OF MY DEPTH HERE AND EVERYTHING IN THIS POST SHOULD BE TAKEN WITH A GRAIN OF SALT, ESPECIALLY WHILE IT IS MARKED 'DRAFT' :)
 
@@ -174,7 +189,7 @@ For the curious, raw data [is on Google Drive](https://drive.google.com/drive/fo
 
 ## PS: Molecule viewer test
 
-Here's the molecule, copied from the output of [this code](https://gist.github.com/johnowhitaker/81ed1c6eb4496556cca9792107c85832):
+Here's the predicted ferrobactin precursor molecule, copied from the output of [this code](https://gist.github.com/johnowhitaker/81ed1c6eb4496556cca9792107c85832):
 
 <div class="space-y-3"><div id="3dmolviewer_1769122862701931" style="position: relative; width: 400px; height: 300px;">
         
