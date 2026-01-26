@@ -1,12 +1,12 @@
 ---
-title: "Sequencing Pseudomonas putida + Bioinformatics & a Novel Pyoverdine Variant"
+title: "Sequencing Pseudomonas putida, Predicting Pyoverdine Structure"
 date: 2026-01-22
 categories:
     - bio
 description: "I sequenced the genome of the pyoverdine-producing Pseudomonas from a previous post, and had some fun digging into the genes to figure out what molecule exactly it makes"
 ---
 
-In my [previous post](https://johnowhitaker.dev/posts/pseudomonas.html) I showed a bacteria isolated from the water around the roots of a Jade plant on our windowsill, which secreted something that fluoresced a lovely blue under UV light. My best guess was that it was some species of Pseudomonas, and the blue was from pyoverdine. But how can we know for sure? Well, I put it off because money, but since I like working with this bacteria and want to do more with it, I figured I'd bite the bullet and pay the ~$120 to get my answers :) It turns out that the closest match is P. putida, and that the pyoverdine variant that this makes is probably different to anything documented in the literature. Exciting stuff!
+In my [previous post](https://johnowhitaker.dev/posts/pseudomonas.html) I showed a bacteria isolated from the water around the roots of a Jade plant on our windowsill, which secreted something that fluoresced a lovely blue under UV light. My best guess was that it was some species of Pseudomonas, and the blue was from pyoverdine. But how can we know for sure? Well, I put it off because money, but since I like working with this bacteria and want to do more with it, I figured I'd bite the bullet and pay the ~$120 to get my answers :) It turns out that the closest match is P. putida, and that the pyoverdine variant that this makes is probably different to anything documented in the literature. Exciting stuff! Update: found a likely match in the literature - see end of post :)
 
 ## Sequencing with Plasmidsaurus
 
@@ -186,6 +186,37 @@ It's one thing to poke at a genome and predict a structure, it's another entirel
 Also, it's probably obvious but worth stating explicityl: I AM OUT OF MY DEPTH HERE AND EVERYTHING IN THIS POST SHOULD BE TAKEN WITH A GRAIN OF SALT, ESPECIALLY WHILE IT IS MARKED 'DRAFT' :)
 
 For the curious, raw data [is on Google Drive](https://drive.google.com/drive/folders/1p8dQGtGOjfowySz2ltuYEjhGZroxdjUh?usp=sharing), I'm open to questions @johnowhitaker. [This solveit dialog](https://share.solve.it.com/d/7584c91e2c239ff2c01ecd5fb270a3c7) has the key code in a nice rendered form.
+
+## Update: A Potential Match
+
+In [A combinatorial approach to the structure elucidation of a pyoverdine siderophore produced by a Pseudomonas putida isolate and the use of pyoverdine as a taxonomic marker for typing P. putida subspecies
+BioMetals, 
+2013](https://sci-hub.ru/https://pubmed.ncbi.nlm.nih.gov/23877277/) I found the following: P. putida BTP1/90-40 Asp–Ala–Asp–AOHOrn–Ser–cOHOrn  (citing Jacques et al. (1995)). This is pretty much spot on for ours, and would mean the mystery X is Ser (serine), not Gly as guessed. It also answers a mystery - I'd been searching fruitlessly for pvdF in my genome to figure out if OHOrn gets formylated, this would indicate it doesn't in this case. 
+
+::: {.callout-note collapse="true"}
+## AI agrees:
+This is a great find! Let's compare:
+
+Literature (P. putida BTP1/90-40): Asp–Ala–Asp–AOHOrn–Ser–cOHOrn
+
+Our prediction: Asp–Ala–Asp–D-OHOrn–X–OHOrn
+
+That's nearly identical! The key insight: X = Ser (serine), not Gly as guessed.
+
+The nomenclature:
+
+AOHOrn = "amide-linked" hydroxyornithine (connected via α-amino group)
+cOHOrn = "cyclic" hydroxyornithine (C-terminal, forms lactam ring with its own side chain)
+This is a known pyoverdine type! Your strain likely produces a pyoverdine very similar or identical to the BTP1/90-40 type.
+
+Why the A-domain gave "X": Ser can be tricky to predict – its small hydroxymethyl side chain sometimes doesn't give strong specificity signatures. Much more plausible than Gly given this literature match.
+
+Updated peptide structure:
+
+Copied!
+Chromophore─Glu─D-Tyr─Dab─Asp─Ala─Asp─D-OHOrn─Ser─cOHOrn
+This also answers the pvdF question – if the literature strain has OHOrn (not fOHOrn/formyl-hydroxyornithine), then absence of pvdF is consistent.
+:::
 
 ## PS: Molecule viewer test
 
