@@ -12,7 +12,7 @@
 <generator>quarto-1.9.17</generator>
 <lastBuildDate>Thu, 22 Jan 2026 00:00:00 GMT</lastBuildDate>
 <item>
-  <title>Sequencing Pseudomonas putida + Bioinformatics &amp; a Novel Pyoverdine Variant (DRAFT)</title>
+  <title>Sequencing Pseudomonas putida + Bioinformatics &amp; a Novel Pyoverdine Variant</title>
   <link>https://johnowhitaker.dev/posts/putida.html</link>
   <description><![CDATA[ 
 
@@ -23,6 +23,18 @@
 <section id="sequencing-with-plasmidsaurus" class="level2">
 <h2 class="anchored" data-anchor-id="sequencing-with-plasmidsaurus">Sequencing with Plasmidsaurus</h2>
 <p>I went with Plasmidsaurus’ ‘Standard Bacterial Genome Sequencing with Extraction’ <a href="https://plasmidsaurus.com/genome">service</a>. I sent the sample (~15mg cells suspended in Zymo DNA Shield) off on Tuesday morning and by Wednesday evening the results were ready.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Results summary
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>Species ID (Mash)</p>
 <ul>
 <li>Best match: Pseudomonas putida NBRC 14164</li>
@@ -42,6 +54,9 @@
 <li>Longest read: 88.4 kb</li>
 <li>Read N50: 9.7 kb</li>
 </ul>
+</div>
+</div>
+</div>
 <p><img src="https://johnowhitaker.dev/posts/images/pseud_contig.png" class="img-fluid"></p>
 <p>They give you <a href="https://drive.google.com/drive/folders/1p8dQGtGOjfowySz2ltuYEjhGZroxdjUh?usp=sharing">lots of data</a>, including annotating the genome for you with <a href="https://doi.org/10.1099/mgen.0.000685">bakta</a>. Great stuff! We can see right away that our guess was right - this is a Pseudomonas species (P. putida is the closest match) and are ready to dig in further to see what we can learn.</p>
 </section>
@@ -50,19 +65,26 @@
 <p>Pyoverdines vary but all come with three key parts: a dihydroxyquinoline core, a peptide chain, and a side chain. The peptide chain especially varies strain-to-strain - see <a href="https://en.wikipedia.org/wiki/Pyoverdine#Structure">here</a> for some examples.</p>
 <p>Step one was looking for the pyoverdine Biosynthetic Gene Cluster (BGC). A <a href="https://chatgpt.com/share/697294ce-6a40-8010-bb23-a7047045b8cb">Deep Research</a> run gave some promising genes to start the hunt with. Some hits let us narrow in on a key region between 4.71 and 4.76M bp, with a number of promising-looking genes. A tool called antiSMASH likewise identified a region (4,696,705–4,796,912), labeled as ‘NRP-metallophore’ - this is our BGC alright :)</p>
 <p><img src="https://johnowhitaker.dev/posts/images/antiSMASH.png" class="img-fluid"></p>
-<p>We also got a predicted structure in SMILES format, and with some wrangling get a final predicted structure (and a pretty picture):</p>
+<p>By looking at the A-domain predictions for this region, we can start on a predicted peptide sequence: Chromophore─Glu─D-Tyr─Dab─Asp─Ala─Asp─D-OHOrn─X─OHOrn (where Glu-D-Tyr-Dab forms the conserved pyoverdine chromophore after cyclization). That X is an unknown, which we’ll have to work on later - my best guess is Gly.</p>
+<p>The next step is to figure out which side chain is present. (Some strains make some of both). The side-chain type is determined by which gene is present:</p>
+<ul>
+<li>pvdN (PLP-dependent aminotransferase) → succinamide side chain</li>
+<li>ptaA (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5682972/">periplasmic transaminase</a>) → α-ketoglutarate side chain</li>
+</ul>
+<p>We BLAST the genome against known reference sequences, finding an 83% match to PvdN (NP_251095.1) but only a 23% match for PtaA (AAY94407.1) -&gt; strain produces succinamide side chain.</p>
+<p>This info gives us enough info to reasonably guess at the structure of the pyoverdine precursor (ferribactin):</p>
 <p><img src="https://johnowhitaker.dev/posts/images/pyoverdine_precursor_pred.png" class="img-fluid"></p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>AN AI SUMARY OF
+<span class="screen-reader-only">Note</span>EXTRA INFO (AI)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠</p>
 <section id="from-genome-to-siderophore-characterizing-a-novel-pyoverdine-from-pseudomonas-putida" class="level3">
@@ -83,7 +105,7 @@
 <li><strong>argD</strong> — makes diaminobutyrate (Dab), essential for the chromophore</li>
 <li><strong>TonB-dependent receptor</strong> — likely the ferripyoverdine receptor (fpvA)</li>
 </ul>
-<p>Notably, <strong>pvdA</strong> was located separately at ~3.99 Mb — this split arrangement is common in pyoverdine BGCs.</p>
+<p>Notably, <strong>pvdA</strong> was located separately at ~3.99 Mb — this split arrangement is common in pyoverdine BGCs. (Note from Johno: There’s a PvdA-like hydroxylase in the main cluster too, so this might not be a case of a split arrangement after all? TBD if one or both are used, and how they’re regulated.)</p>
 </section>
 <section id="antismash-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="antismash-analysis">antiSMASH Analysis</h3>
@@ -148,7 +170,6 @@
 </tr>
 </tbody>
 </table>
-<p>The mystery at position 8 was annotated as <strong>“NH₂”</strong> by the Minowa predictor — initially puzzling.</p>
 </section>
 <section id="resolving-the-unknown-residue" class="level3">
 <h3 class="anchored" data-anchor-id="resolving-the-unknown-residue">Resolving the Unknown Residue</h3>
@@ -158,6 +179,7 @@
 <li><strong>Glycine</strong> — essentially just an α-amino group with no real side chain</li>
 </ol>
 <p>After deeper analysis (including literature review of other <em>P. putida</em> pyoverdines), <strong>glycine emerged as the more likely candidate</strong>: - The “NH₂” prediction could mean “minimal/no side chain” - Glycine is common in mid-chain positions of <em>P. putida</em> pyoverdines (KT2440, GB-1 both contain Gly) - Prediction tools are known to have difficulty with Gly vs Ala</p>
+<p>(Note fro Johno: Opus was sure an unrelated minowa NH2 mention was related to this and predicted lysine as a result, I tried to determine the unknown residue but had no luck, Gly is a pretty good guess AFAICT but will need analysis to confirm).</p>
 </section>
 <section id="determining-the-side-chain-pvdn-vs-ptaa" class="level3">
 <h3 class="anchored" data-anchor-id="determining-the-side-chain-pvdn-vs-ptaa">Determining the Side Chain: pvdN vs ptaA</h3>
@@ -184,6 +206,7 @@
 <section id="smiles-with-stereochemistry" class="level3">
 <h3 class="anchored" data-anchor-id="smiles-with-stereochemistry">SMILES (with stereochemistry)</h3>
 <pre><code>NN[C@@H](CCC(=O)O)C(=O)N[C@H](Cc1ccc(O)cc1)C(=O)N[C@@H](CCN)C(=O)N[C@@H](CC(=O)O)C(=O)N[C@@H](C)C(=O)N[C@@H](CC(=O)O)C(=O)N[C@H](CCCNO)C(=O)NCC(=O)N[C@@H](CCCNO)C(=O)O</code></pre>
+<p>(Note from Johno: Should probably be a single N at the start there)</p>
 </section>
 <section id="what-still-needs-confirmation" class="level3">
 <h3 class="anchored" data-anchor-id="what-still-needs-confirmation">What Still Needs Confirmation</h3>
@@ -209,17 +232,17 @@
 </div>
 </div>
 </div>
-<p>Here’s <a href="https://gist.github.com/johnowhitaker/8659d6f38c799e9d4d8e417e1641e6e0">a notebook</a> running over the final steps, with some light annotation.</p>
+<p>Here’s <a href="https://gist.github.com/johnowhitaker/8659d6f38c799e9d4d8e417e1641e6e0">a notebook</a> running over the steps, with some light annotation. (I’ve since been fiddling a bit more, LMK if you’re wanting to dive into this deeply)</p>
 </section>
 <section id="future-plans" class="level2">
 <h2 class="anchored" data-anchor-id="future-plans">Future Plans</h2>
-<p>It’s one thing to poke at a genome and predict a structure, it’s another entirely to verify it. I’m hoping to work with a local university to run GC-MS on this to answer a few remaining questions and nail down the final structure exactly. Will require dusting off and improving my organic chemistry and learning a lot more! Stay tuned for that in some future blog post hopefully :)</p>
+<p>It’s one thing to poke at a genome and predict a structure, it’s another entirely to verify it. I’m hoping to work with a local university to run LC-MS on this to answer a few remaining questions and nail down the final structure exactly. Will require dusting off and improving my organic chemistry and learning a lot more! Stay tuned for that in some future blog post hopefully :)</p>
 <p>Also, it’s probably obvious but worth stating explicityl: I AM OUT OF MY DEPTH HERE AND EVERYTHING IN THIS POST SHOULD BE TAKEN WITH A GRAIN OF SALT, ESPECIALLY WHILE IT IS MARKED ‘DRAFT’ :)</p>
 <p>For the curious, raw data <a href="https://drive.google.com/drive/folders/1p8dQGtGOjfowySz2ltuYEjhGZroxdjUh?usp=sharing">is on Google Drive</a>, I’m open to questions <span class="citation" data-cites="johnowhitaker">@johnowhitaker</span>. <a href="https://share.solve.it.com/d/7584c91e2c239ff2c01ecd5fb270a3c7">This solveit dialog</a> has the key code in a nice rendered form.</p>
 </section>
 <section id="ps-molecule-viewer-test" class="level2">
 <h2 class="anchored" data-anchor-id="ps-molecule-viewer-test">PS: Molecule viewer test</h2>
-<p>Here’s the molecule, copied from the output of <a href="https://gist.github.com/johnowhitaker/81ed1c6eb4496556cca9792107c85832">this code</a>:</p>
+<p>Here’s the predicted ferrobactin precursor molecule, copied from the output of <a href="https://gist.github.com/johnowhitaker/81ed1c6eb4496556cca9792107c85832">this code</a>:</p>
 <div class="space-y-3">
 <div id="3dmolviewer_1769122862701931" style="position: relative; width: 400px; height: 300px;">
 <pre><code>    &lt;canvas id="undefined" width="1000" height="750" style="width: 400px; height: 300px; padding: 0px; position: absolute; top: 0px; left: 0px; z-index: 0;"&gt;&lt;/canvas&gt;&lt;canvas id="undefined" width="1000" height="750" style="width: 400px; height: 300px; padding: 0px; position: absolute; top: 0px; left: 0px; z-index: 0;"&gt;&lt;/canvas&gt;&lt;/div&gt;</code></pre>
