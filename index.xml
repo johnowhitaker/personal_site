@@ -29,7 +29,7 @@
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Results summary
+<span class="screen-reader-only">Note</span>Returned stats:
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -65,173 +65,15 @@
 <p>Pyoverdines vary but all come with three key parts: a dihydroxyquinoline core, a peptide chain, and a side chain. The peptide chain especially varies strain-to-strain - see <a href="https://en.wikipedia.org/wiki/Pyoverdine#Structure">here</a> for some examples.</p>
 <p>Step one was looking for the pyoverdine Biosynthetic Gene Cluster (BGC). A <a href="https://chatgpt.com/share/697294ce-6a40-8010-bb23-a7047045b8cb">Deep Research</a> run gave some promising genes to start the hunt with. Some hits let us narrow in on a key region between 4.71 and 4.76M bp, with a number of promising-looking genes. A tool called antiSMASH likewise identified a region (4,696,705–4,796,912), labeled as ‘NRP-metallophore’ - this is our BGC alright :)</p>
 <p><img src="https://johnowhitaker.dev/posts/images/antiSMASH.png" class="img-fluid"></p>
-<p>By looking at the A-domain predictions for this region, we can start on a predicted peptide sequence: Glu-D-Tyr-Dab─Asp─Ala─Asp─D-OHOrn─X─OHOrn (where Glu-D-Tyr-Dab forms the conserved pyoverdine chromophore after cyclization). That X is an unknown, which we’ll have to work on later - my best guess is Gly.</p>
+<p>By looking at the A-domain predictions for this region, we can start on a predicted peptide sequence: Glu-D-Tyr-Dab─Asp─Ala─Asp─D-OHOrn─X─OHOrn (where Glu-D-Tyr-Dab forms the conserved pyoverdine chromophore after cyclization). That X is an unknown, which we’ll have to work on later - my best guess was Gly, although a later lit search makes me think Ser (see later update section).</p>
 <p>The next step is to figure out which side chain is present. (Some strains make some of both). The side-chain type is determined by which gene is present:</p>
 <ul>
 <li>pvdN (PLP-dependent aminotransferase) → succinamide side chain</li>
 <li>ptaA (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5682972/">periplasmic transaminase</a>) → α-ketoglutarate side chain</li>
 </ul>
-<p>We BLAST the genome against known reference sequences, finding an 83% match to PvdN (NP_251095.1) but only a 23% match for PtaA (AAY94407.1) -&gt; strain produces succinamide side chain.</p>
+<p>We BLAST the genome against known reference sequences, finding an 83% match to PvdN (NP_251095.1) but only a 23% match for PtaA (AAY94407.1) -&gt; fair guess that this strain produces succinamide side chain.</p>
 <p>This info gives us enough info to reasonably guess at the structure of the pyoverdine precursor (ferribactin):</p>
 <p><img src="https://johnowhitaker.dev/posts/images/pyoverdine_precursor_pred.png" class="img-fluid"></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>EXTRA INFO (AI)
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠</p>
-<section id="from-genome-to-siderophore-characterizing-a-novel-pyoverdine-from-pseudomonas-putida" class="level3">
-<h3 class="anchored" data-anchor-id="from-genome-to-siderophore-characterizing-a-novel-pyoverdine-from-pseudomonas-putida">From Genome to Siderophore: Characterizing a Novel Pyoverdine from <em>Pseudomonas putida</em></h3>
-</section>
-<section id="the-starting-point" class="level3">
-<h3 class="anchored" data-anchor-id="the-starting-point">The Starting Point</h3>
-<p>We began with a high-quality assembled genome from a <em>Pseudomonas putida</em> strain isolated from a houseplant root system (sequenced by Plasmidsaurus). The assembly was excellent: <strong>99.88% complete</strong>, only 2.15% contamination, and a 6.54 Mb genome at ~58× coverage. Species identity was confirmed via Mash (95.6% to <em>P. putida</em> NBRC 14164).</p>
-</section>
-<section id="finding-the-pyoverdine-biosynthetic-gene-cluster" class="level3">
-<h3 class="anchored" data-anchor-id="finding-the-pyoverdine-biosynthetic-gene-cluster">Finding the Pyoverdine Biosynthetic Gene Cluster</h3>
-<p>We searched the Bakta annotations for pyoverdine-related genes (<strong>pvd</strong> genes, NRPS, siderophore terms) and identified a cluster spanning <strong>~4.7–4.8 Mb</strong> containing:</p>
-<ul>
-<li><strong>pvdT</strong> — pyoverdine exporter</li>
-<li><strong>Two large NRPS genes</strong> (~14.7 kb and ~6.4 kb) — the peptide assembly machinery</li>
-<li><strong>PvdA-like monooxygenase</strong> — hydroxylates ornithine</li>
-<li><strong>Formylglycine-generating enzyme</strong> (likely <strong>pvdF</strong>) — formyltransferase</li>
-<li><strong>argD</strong> — makes diaminobutyrate (Dab), essential for the chromophore</li>
-<li><strong>TonB-dependent receptor</strong> — likely the ferripyoverdine receptor (fpvA)</li>
-</ul>
-<p>Notably, <strong>pvdA</strong> was located separately at ~3.99 Mb — this split arrangement is common in pyoverdine BGCs. (Note from Johno: There’s a PvdA-like hydroxylase in the main cluster too, so this might not be a case of a split arrangement after all? TBD if one or both are used, and how they’re regulated.)</p>
-</section>
-<section id="antismash-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="antismash-analysis">antiSMASH Analysis</h3>
-<p>Running the genome through antiSMASH confirmed Region 10 as an <strong>NRP-metallophore</strong> cluster (siderophore NRPS). The top KnownClusterBlast hit was <strong>Pf-5 pyoverdine</strong> from <em>Pseudomonas protegens</em>, but with only ~49% NRPS identity — indicating a related but distinct peptide.</p>
-</section>
-<section id="predicting-the-peptide-sequence" class="level3">
-<h3 class="anchored" data-anchor-id="predicting-the-peptide-sequence">Predicting the Peptide Sequence</h3>
-<p>antiSMASH provided <strong>A-domain substrate predictions</strong> for each NRPS module:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Module</th>
-<th>Substrate</th>
-<th>Configuration</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>Glu</td>
-<td>L</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>Tyr</td>
-<td>D (E-domain present)</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>Dab</td>
-<td>L</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>Asp</td>
-<td>L</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>Ala</td>
-<td>L</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>Asp</td>
-<td>L</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>OH-Orn</td>
-<td>D (E-domain present)</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td><strong>?</strong></td>
-<td>—</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>OH-Orn</td>
-<td>L</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="resolving-the-unknown-residue" class="level3">
-<h3 class="anchored" data-anchor-id="resolving-the-unknown-residue">Resolving the Unknown Residue</h3>
-<p>We explored two hypotheses:</p>
-<ol type="1">
-<li><strong>Lysine</strong> — has a terminal -NH₂ on its side chain</li>
-<li><strong>Glycine</strong> — essentially just an α-amino group with no real side chain</li>
-</ol>
-<p>After deeper analysis (including literature review of other <em>P. putida</em> pyoverdines), <strong>glycine emerged as the more likely candidate</strong>: - The “NH₂” prediction could mean “minimal/no side chain” - Glycine is common in mid-chain positions of <em>P. putida</em> pyoverdines (KT2440, GB-1 both contain Gly) - Prediction tools are known to have difficulty with Gly vs Ala</p>
-<p>(Note fro Johno: Opus was sure an unrelated minowa NH2 mention was related to this and predicted lysine as a result, I tried to determine the unknown residue but had no luck, Gly is a pretty good guess AFAICT but will need analysis to confirm).</p>
-</section>
-<section id="determining-the-side-chain-pvdn-vs-ptaa" class="level3">
-<h3 class="anchored" data-anchor-id="determining-the-side-chain-pvdn-vs-ptaa">Determining the Side Chain: pvdN vs ptaA</h3>
-<p>Pyoverdine side chains come in two main types: - <strong>Succinamide</strong> — produced by strains with <strong>pvdN</strong> - <strong>α-Ketoglutarate</strong> — produced by strains with <strong>ptaA</strong></p>
-<p>We BLASTed known pvdN (<em>P. aeruginosa</em> PAO1, NP_251095.1) and ptaA sequences against the genome:</p>
-<ul>
-<li><strong>pvdN: 83% identity match</strong> → gene LDMLEE_03614 at ~3.99 Mb (near pvdA)</li>
-<li><strong>ptaA: No significant match</strong></li>
-</ul>
-<p><strong>Conclusion: Succinamide side chain</strong></p>
-</section>
-<section id="the-final-predicted-structure" class="level3">
-<h3 class="anchored" data-anchor-id="the-final-predicted-structure">The Final Predicted Structure</h3>
-<pre><code>CHROMOPHORE PRECURSORS          VARIABLE PEPTIDE
-        ↓                              ↓
-┌───────────────────┐  ┌─────────────────────────────────────┐
- L-Glu → D-Tyr → L-Dab → L-Asp → L-Ala → L-Asp → D-OHOrn → Gly → L-OHOrn
-                  ↓                                    ↓            ↓
-           cyclizes to form                      Fe³⁺ binding  Fe³⁺ binding
-        dihydroxyquinoline                       (hydroxamate) (hydroxamate)
-           chromophore</code></pre>
-<p><strong>Key features:</strong> - <strong>9-residue peptide</strong> (longer than typical <em>P. putida</em> pyoverdines) - <strong>Two hydroxyornithine residues</strong> — provides two hydroxamate groups for Fe³⁺ chelation - <strong>Succinamide side chain</strong> on the chromophore - <strong>Novel sequence</strong> — no match in SIDERITE database (best similarity only 0.35)</p>
-</section>
-<section id="smiles-with-stereochemistry" class="level3">
-<h3 class="anchored" data-anchor-id="smiles-with-stereochemistry">SMILES (with stereochemistry)</h3>
-<pre><code>NN[C@@H](CCC(=O)O)C(=O)N[C@H](Cc1ccc(O)cc1)C(=O)N[C@@H](CCN)C(=O)N[C@@H](CC(=O)O)C(=O)N[C@@H](C)C(=O)N[C@@H](CC(=O)O)C(=O)N[C@H](CCCNO)C(=O)NCC(=O)N[C@@H](CCCNO)C(=O)O</code></pre>
-<p>(Note from Johno: Should probably be a single N at the start there)</p>
-</section>
-<section id="what-still-needs-confirmation" class="level3">
-<h3 class="anchored" data-anchor-id="what-still-needs-confirmation">What Still Needs Confirmation</h3>
-<p>This is a <strong>bioinformatic prediction</strong>. To definitively confirm the structure:</p>
-<ol type="1">
-<li><strong>LC-MS/MS</strong> — will reveal the exact mass and fragment pattern, confirming each residue (especially Gly at position 8)</li>
-<li><strong>The hydroxamates</strong> — could be N-formylated (if pvdF is active), which would add +28 Da per residue</li>
-<li><strong>Cyclization</strong> — the C-terminal OHOrn likely cyclizes with the chromophore, which MS/MS should reveal</li>
-</ol>
-</section>
-<section id="why-this-matters" class="level3">
-<h3 class="anchored" data-anchor-id="why-this-matters">Why This Matters</h3>
-<p>This appears to be a <strong>genuinely novel pyoverdine variant</strong> — it doesn’t match any characterized <em>P. putida</em> pyoverdines in the literature or databases. Discovering the diversity of siderophores in environmental isolates helps us understand:</p>
-<ul>
-<li>Microbial competition for iron in the rhizosphere</li>
-<li>The evolution of NRPS systems</li>
-<li>Potential for novel iron chelators with biotechnology applications</li>
-</ul>
-</section>
-<section id="end-ai-slop" class="level2">
-<h2 class="anchored" data-anchor-id="end-ai-slop">END AI SLOP</h2>
-</section>
-</div>
-</div>
-</div>
 <p>Here’s <a href="https://gist.github.com/johnowhitaker/8659d6f38c799e9d4d8e417e1641e6e0">a notebook</a> running over the steps, with some light annotation. (I’ve since been fiddling a bit more, LMK if you’re wanting to dive into this deeply)</p>
 </section>
 <section id="future-plans" class="level2">
@@ -244,26 +86,21 @@
 <h2 class="anchored" data-anchor-id="update-a-potential-match">Update: A Potential Match</h2>
 <p>In <a href="https://sci-hub.ru/https://pubmed.ncbi.nlm.nih.gov/23877277/">A combinatorial approach to the structure elucidation of a pyoverdine siderophore produced by a Pseudomonas putida isolate and the use of pyoverdine as a taxonomic marker for typing P. putida subspecies BioMetals, 2013</a> I found the following: P. putida BTP1/90-40 Asp–Ala–Asp–AOHOrn–Ser–cOHOrn (citing Jacques et al.&nbsp;(1995)). This is pretty much spot on for ours, and would mean the mystery X is Ser (serine), not Gly as guessed. It also answers a mystery - I’d been searching fruitlessly for pvdF in my genome to figure out if OHOrn gets formylated, this would indicate it doesn’t in this case.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>AI agrees:
+<span class="screen-reader-only">Note</span>Nomenclature
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>This is a great find! Let’s compare:</p>
-<p>Literature (P. putida BTP1/90-40): Asp–Ala–Asp–AOHOrn–Ser–cOHOrn</p>
-<p>Our prediction: Asp–Ala–Asp–D-OHOrn–X–OHOrn</p>
-<p>That’s nearly identical! The key insight: X = Ser (serine), not Gly as guessed.</p>
-<p>The nomenclature:</p>
-<p>AOHOrn = “amide-linked” hydroxyornithine (connected via α-amino group) cOHOrn = “cyclic” hydroxyornithine (C-terminal, forms lactam ring with its own side chain) This is a known pyoverdine type! Your strain likely produces a pyoverdine very similar or identical to the BTP1/90-40 type.</p>
-<p>Why the A-domain gave “X”: Ser can be tricky to predict – its small hydroxymethyl side chain sometimes doesn’t give strong specificity signatures. Much more plausible than Gly given this literature match.</p>
-<p>Updated peptide structure:</p>
-<p>Copied! Chromophore─Glu─D-Tyr─Dab─Asp─Ala─Asp─D-OHOrn─Ser─cOHOrn This also answers the pvdF question – if the literature strain has OHOrn (not fOHOrn/formyl-hydroxyornithine), then absence of pvdF is consistent.</p>
+<p>AOHOrn = “amide-linked” hydroxyornithine (connected via α-amino group)</p>
+<p>cOHOrn = “cyclic” hydroxyornithine (C-terminal, forms lactam ring with its own side chain)</p>
+<p>BTP1/90-40 is the strain from the paper</p>
+<p>fOHOrn/formyl-hydroxyornithine is the formylated form (hehe) of hydroxyornithine, pvdF is the “hydroxyornithine transformylase enzyme” that does this in some Pseudomonas.</p>
 </div>
 </div>
 </div>
