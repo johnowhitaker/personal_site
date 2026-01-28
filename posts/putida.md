@@ -13,7 +13,7 @@ In my [previous post](https://johnowhitaker.dev/posts/pseudomonas.html) I showed
 I went with Plasmidsaurus' 'Standard Bacterial Genome Sequencing with Extraction' [service](https://plasmidsaurus.com/genome). I sent the sample (~15mg cells suspended in Zymo DNA Shield) off on Tuesday morning and by Wednesday evening the results were ready. 
 
 ::: {.callout-note collapse="true"}
-### Results summary
+### Returned stats:
 
 Species ID (Mash)
 
@@ -47,135 +47,18 @@ Step one was looking for the pyoverdine Biosynthetic Gene Cluster (BGC). A [Deep
 
 ![](images/antiSMASH.png)
 
-By looking at the A-domain predictions for this region, we can start on a predicted peptide sequence: Glu-D-Tyr-Dab─Asp─Ala─Asp─D-OHOrn─X─OHOrn (where Glu-D-Tyr-Dab forms the conserved pyoverdine chromophore after cyclization). That X is an unknown, which we'll have to work on later - my best guess is Gly.
+By looking at the A-domain predictions for this region, we can start on a predicted peptide sequence: Glu-D-Tyr-Dab─Asp─Ala─Asp─D-OHOrn─X─OHOrn (where Glu-D-Tyr-Dab forms the conserved pyoverdine chromophore after cyclization). That X is an unknown, which we'll have to work on later - my best guess was Gly, although a later lit search makes me think Ser (see later update section).
 
 The next step is to figure out which side chain is present. (Some strains make some of both). The side-chain type is determined by which gene is present:
 
 - pvdN (PLP-dependent aminotransferase) → succinamide side chain
 - ptaA ([periplasmic transaminase](https://pmc.ncbi.nlm.nih.gov/articles/PMC5682972/)) → α-ketoglutarate side chain
 
-We BLAST the genome against known reference sequences, finding an 83% match to PvdN (NP_251095.1) but only a 23% match for PtaA (AAY94407.1) -> strain produces succinamide side chain.
+We BLAST the genome against known reference sequences, finding an 83% match to PvdN (NP_251095.1) but only a 23% match for PtaA (AAY94407.1) -> fair guess that this strain produces succinamide side chain.
 
 This info gives us enough info to reasonably guess at the structure of the pyoverdine precursor (ferribactin):
 
 ![](images/pyoverdine_precursor_pred.png)
-
-::: {.callout-note collapse="true"}
-## EXTRA INFO (AI) 
-
-🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
-
-### From Genome to Siderophore: Characterizing a Novel Pyoverdine from *Pseudomonas putida*
-
-### The Starting Point
-
-We began with a high-quality assembled genome from a *Pseudomonas putida* strain isolated from a houseplant root system (sequenced by Plasmidsaurus). The assembly was excellent: **99.88% complete**, only 2.15% contamination, and a 6.54 Mb genome at ~58× coverage. Species identity was confirmed via Mash (95.6% to *P. putida* NBRC 14164).
-
-### Finding the Pyoverdine Biosynthetic Gene Cluster
-
-We searched the Bakta annotations for pyoverdine-related genes (**pvd** genes, NRPS, siderophore terms) and identified a cluster spanning **~4.7–4.8 Mb** containing:
-
-- **pvdT** — pyoverdine exporter
-- **Two large NRPS genes** (~14.7 kb and ~6.4 kb) — the peptide assembly machinery
-- **PvdA-like monooxygenase** — hydroxylates ornithine
-- **Formylglycine-generating enzyme** (likely **pvdF**) — formyltransferase
-- **argD** — makes diaminobutyrate (Dab), essential for the chromophore
-- **TonB-dependent receptor** — likely the ferripyoverdine receptor (fpvA)
-
-Notably, **pvdA** was located separately at ~3.99 Mb — this split arrangement is common in pyoverdine BGCs. (Note from Johno: There's a PvdA-like hydroxylase in the main cluster too, so this might not be a case of a split arrangement after all? TBD if one or both are used, and how they're regulated.)
-
-### antiSMASH Analysis
-
-Running the genome through antiSMASH confirmed Region 10 as an **NRP-metallophore** cluster (siderophore NRPS). The top KnownClusterBlast hit was **Pf-5 pyoverdine** from *Pseudomonas protegens*, but with only ~49% NRPS identity — indicating a related but distinct peptide.
-
-### Predicting the Peptide Sequence
-
-antiSMASH provided **A-domain substrate predictions** for each NRPS module:
-
-| Module | Substrate | Configuration |
-|--------|-----------|---------------|
-| 1 | Glu | L |
-| 2 | Tyr | D (E-domain present) |
-| 3 | Dab | L |
-| 4 | Asp | L |
-| 5 | Ala | L |
-| 6 | Asp | L |
-| 7 | OH-Orn | D (E-domain present) |
-| 8 | **?** | — |
-| 9 | OH-Orn | L |
-
-### Resolving the Unknown Residue
-
-We explored two hypotheses:
-
-1. **Lysine** — has a terminal -NH₂ on its side chain
-2. **Glycine** — essentially just an α-amino group with no real side chain
-
-After deeper analysis (including literature review of other *P. putida* pyoverdines), **glycine emerged as the more likely candidate**:
-- The "NH₂" prediction could mean "minimal/no side chain"
-- Glycine is common in mid-chain positions of *P. putida* pyoverdines (KT2440, GB-1 both contain Gly)
-- Prediction tools are known to have difficulty with Gly vs Ala
-
-(Note fro Johno: Opus was sure an unrelated minowa NH2 mention was related to this and predicted lysine as a result, I tried to determine the unknown residue but had no luck, Gly is a pretty good guess AFAICT but will need analysis to confirm).
-
-### Determining the Side Chain: pvdN vs ptaA
-
-Pyoverdine side chains come in two main types:
-- **Succinamide** — produced by strains with **pvdN**
-- **α-Ketoglutarate** — produced by strains with **ptaA**
-
-We BLASTed known pvdN (*P. aeruginosa* PAO1, NP_251095.1) and ptaA sequences against the genome:
-
-- **pvdN: 83% identity match** → gene LDMLEE_03614 at ~3.99 Mb (near pvdA)
-- **ptaA: No significant match**
-
-**Conclusion: Succinamide side chain**
-
-### The Final Predicted Structure
-
-```
-CHROMOPHORE PRECURSORS          VARIABLE PEPTIDE
-        ↓                              ↓
-┌───────────────────┐  ┌─────────────────────────────────────┐
- L-Glu → D-Tyr → L-Dab → L-Asp → L-Ala → L-Asp → D-OHOrn → Gly → L-OHOrn
-                  ↓                                    ↓            ↓
-           cyclizes to form                      Fe³⁺ binding  Fe³⁺ binding
-        dihydroxyquinoline                       (hydroxamate) (hydroxamate)
-           chromophore
-```
-
-**Key features:**
-- **9-residue peptide** (longer than typical *P. putida* pyoverdines)
-- **Two hydroxyornithine residues** — provides two hydroxamate groups for Fe³⁺ chelation
-- **Succinamide side chain** on the chromophore
-- **Novel sequence** — no match in SIDERITE database (best similarity only 0.35)
-
-### SMILES (with stereochemistry)
-
-```
-NN[C@@H](CCC(=O)O)C(=O)N[C@H](Cc1ccc(O)cc1)C(=O)N[C@@H](CCN)C(=O)N[C@@H](CC(=O)O)C(=O)N[C@@H](C)C(=O)N[C@@H](CC(=O)O)C(=O)N[C@H](CCCNO)C(=O)NCC(=O)N[C@@H](CCCNO)C(=O)O
-```
-
-(Note from Johno: Should probably be a single N at the start there)
-
-### What Still Needs Confirmation
-
-This is a **bioinformatic prediction**. To definitively confirm the structure:
-
-1. **LC-MS/MS** — will reveal the exact mass and fragment pattern, confirming each residue (especially Gly at position 8)
-2. **The hydroxamates** — could be N-formylated (if pvdF is active), which would add +28 Da per residue
-3. **Cyclization** — the C-terminal OHOrn likely cyclizes with the chromophore, which MS/MS should reveal
-
-### Why This Matters
-
-This appears to be a **genuinely novel pyoverdine variant** — it doesn't match any characterized *P. putida* pyoverdines in the literature or databases. Discovering the diversity of siderophores in environmental isolates helps us understand:
-
-- Microbial competition for iron in the rhizosphere
-- The evolution of NRPS systems
-- Potential for novel iron chelators with biotechnology applications
-
-## END AI SLOP
-:::
 
 Here's [a notebook](https://gist.github.com/johnowhitaker/8659d6f38c799e9d4d8e417e1641e6e0) running over the steps, with some light annotation. (I've since been fiddling a bit more, LMK if you're wanting to dive into this deeply)
 
@@ -194,28 +77,15 @@ BioMetals,
 2013](https://sci-hub.ru/https://pubmed.ncbi.nlm.nih.gov/23877277/) I found the following: P. putida BTP1/90-40 Asp–Ala–Asp–AOHOrn–Ser–cOHOrn  (citing Jacques et al. (1995)). This is pretty much spot on for ours, and would mean the mystery X is Ser (serine), not Gly as guessed. It also answers a mystery - I'd been searching fruitlessly for pvdF in my genome to figure out if OHOrn gets formylated, this would indicate it doesn't in this case. 
 
 ::: {.callout-note collapse="true"}
-## AI agrees:
-This is a great find! Let's compare:
-
-Literature (P. putida BTP1/90-40): Asp–Ala–Asp–AOHOrn–Ser–cOHOrn
-
-Our prediction: Asp–Ala–Asp–D-OHOrn–X–OHOrn
-
-That's nearly identical! The key insight: X = Ser (serine), not Gly as guessed.
-
-The nomenclature:
+## Nomenclature
 
 AOHOrn = "amide-linked" hydroxyornithine (connected via α-amino group)
+
 cOHOrn = "cyclic" hydroxyornithine (C-terminal, forms lactam ring with its own side chain)
-This is a known pyoverdine type! Your strain likely produces a pyoverdine very similar or identical to the BTP1/90-40 type.
 
-Why the A-domain gave "X": Ser can be tricky to predict – its small hydroxymethyl side chain sometimes doesn't give strong specificity signatures. Much more plausible than Gly given this literature match.
+BTP1/90-40 is the strain from the paper
 
-Updated peptide structure:
-
-Copied!
-Chromophore─Glu─D-Tyr─Dab─Asp─Ala─Asp─D-OHOrn─Ser─cOHOrn
-This also answers the pvdF question – if the literature strain has OHOrn (not fOHOrn/formyl-hydroxyornithine), then absence of pvdF is consistent.
+fOHOrn/formyl-hydroxyornithine is the formylated form (hehe) of hydroxyornithine, pvdF is the "hydroxyornithine transformylase enzyme" that does this in some Pseudomonas.
 :::
 
 ## PS: Molecule viewer test
