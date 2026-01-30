@@ -20,6 +20,8 @@
 
 
 <p>In my <a href="https://johnowhitaker.dev/posts/pseudomonas.html">previous post</a> I showed a bacteria isolated from the water around the roots of a Jade plant on our windowsill, which secreted something that fluoresced a lovely blue under UV light. My best guess was that it was some species of Pseudomonas, and the blue was from pyoverdine. But how can we know for sure? Well, I put it off because money, but since I like working with this bacteria and want to do more with it, I figured I’d bite the bullet and pay the ~$120 to get my answers :) It turns out that the closest match is P. putida, and that the pyoverdine variant that this makes is probably different to anything documented in the literature. Exciting stuff! Update: found a likely match in the literature - see end of post :)</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/KoZu49WAaY0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>I’ve also recorded a video (30/01) above for those who prefer that format.</p>
 <section id="sequencing-with-plasmidsaurus" class="level2">
 <h2 class="anchored" data-anchor-id="sequencing-with-plasmidsaurus">Sequencing with Plasmidsaurus</h2>
 <p>I went with Plasmidsaurus’ ‘Standard Bacterial Genome Sequencing with Extraction’ <a href="https://plasmidsaurus.com/genome">service</a>. I sent the sample (~15mg cells suspended in Zymo DNA Shield) off on Tuesday morning and by Wednesday evening the results were ready.</p>
