@@ -24,6 +24,8 @@ The [CAD](https://cad.onshape.com/documents/42cf135ce4b1a1a34746c4ee/w/bec91f2a6
 
 I've since done some agar art with my pet blue fluorescent Pseudomonas sp. that is growing out nicely - will upload pics once I make a few more artworks.
 
+Update: I made a short with it in action: [https://www.youtube.com/shorts/He5VJz9E1lQ](https://www.youtube.com/shorts/He5VJz9E1lQ)
+
 ## Biolistics - ASGG tests
 
 I haven't managed to find a way to get genes from addgene. A friend has kindly stepped in to help, and I might also cold-email some local profs in case any want to collaborate. But that means than for now, I don't really have a way to test the gene gun idea and won't for a few more weeks at least. Still, I did muck about a bit, starting with: carriers and DNA adhesion.
