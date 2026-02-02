@@ -9,7 +9,7 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.9.17</generator>
+<generator>quarto-1.9.18</generator>
 <lastBuildDate>Thu, 22 Jan 2026 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Sequencing Pseudomonas putida, Predicting Pyoverdine Structure</title>
@@ -185,6 +185,7 @@ viewer_1769122862701931.render();
 <p>The <a href="https://cad.onshape.com/documents/42cf135ce4b1a1a34746c4ee/w/bec91f2a6df1f3690807754b/e/2f528fdceb0af6a3583d11d3?renderMode=0&amp;uiState=696e7b486f2ab6c24a30a134">CAD</a> and <a href="https://github.com/johnowhitaker/pipette">code</a> are still WIP, contact me if you’re interested in this or wait until the next weekend I feel like tidying it up + making a more thorough video documenting the project. My favourite result so far comes from the first test, before I dialed in liquid dispensing:</p>
 <p><img src="https://johnowhitaker.dev/posts/images/cnc_p_heart.png" class="img-fluid"> <img src="https://johnowhitaker.dev/posts/images/cnc_p_heart_result.png" class="img-fluid"></p>
 <p>I’ve since done some agar art with my pet blue fluorescent Pseudomonas sp. that is growing out nicely - will upload pics once I make a few more artworks.</p>
+<p>Update: I made a short with it in action: <a href="https://www.youtube.com/shorts/He5VJz9E1lQ">https://www.youtube.com/shorts/He5VJz9E1lQ</a></p>
 </section>
 <section id="biolistics---asgg-tests" class="level2">
 <h2 class="anchored" data-anchor-id="biolistics---asgg-tests">Biolistics - ASGG tests</h2>
