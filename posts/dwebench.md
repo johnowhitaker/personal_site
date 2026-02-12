@@ -3,6 +3,7 @@ title: "Duckweed Growth Experiments, or, 'LLMs as General Optimizers in Science'
 date: 2025-08-03
 categories: 
   - "misc"
+  - "bio"
 description: "Optimizing for duckweed growth using o3, as a fun little experiment in human<=>AI collaboration for science, with some related musings."
 ---
 

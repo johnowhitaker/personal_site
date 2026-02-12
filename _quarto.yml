@@ -25,6 +25,8 @@ website:
             text: RSS Feed
             href: "https://johnowhitaker.dev/index.xml"
           - now.md
+          - href: "https://ln.johnowhitaker.com"
+            text: Lab Notes
       
   
   twitter-card:
