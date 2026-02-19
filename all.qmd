@@ -16,4 +16,4 @@ listing:
   page-size: 50
   fields: [image, date, title, categories, description]
 ---
-A feed of *all the things* :)
+A feed of *all the things* :) (Well, apart from tiny [lab notes](https://ln.johnowhitaker.com/) which get their own feed.)
