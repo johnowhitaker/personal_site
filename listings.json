@@ -2,6 +2,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/mini-hw-projects/tachometer.html",
       "/posts/lab_notes_feed.html",
       "/posts/putida.html",
       "/posts/cnc_pipette.html",
@@ -225,6 +226,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/mini-hw-projects/tachometer.html",
       "/posts/lab_notes_feed.html",
       "/posts/putida.html",
       "/posts/cnc_pipette.html",

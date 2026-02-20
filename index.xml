@@ -10,7 +10,47 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.9.22</generator>
-<lastBuildDate>Thu, 12 Feb 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 19 Feb 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Quick and dirty strobe tachometer</title>
+  <link>https://johnowhitaker.dev/mini-hw-projects/tachometer.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I wanted to know how fast my dremel ‘centrifuge’ spins, so I hooked up a transistor + LED to an ESP8266 module I had lying around, and had codex spin up something that gives me a webUI to vary the pulse rate of the LED. With a bit of fiddling you can figure out how fast something is spinning. Pics:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/tach_3.jpg" class="img-fluid figure-img"></p>
+<figcaption>The worst-looking circuit I’ve soldered in a while</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/tach_1.jpg" class="img-fluid figure-img"></p>
+<figcaption>The Web UI that I can use to control the pulse rate from my phone</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/tach_2.jpg" class="img-fluid figure-img"></p>
+<figcaption>I drew a dot on the spinny bit - symmetry can mean wrong estimates of speed</figcaption>
+</figure>
+</div>
+<p>Doesn’t seem worth sharing the code, ideas if you want to re-create this:</p>
+<ul>
+<li>A transistor lets you push more current through an LED compared to wiring one directly to a pin of the ESP8266. I used a BC547 that I had on hand. The base of the transistor is connected to a GPIO pin of the ESP8266 through a resistor (e.g., 1kΩ), the emitter is connected to ground, and the collector is connected to the negative leg of the LED. The positive leg of the LED is connected to a power source (e.g., 3.3V or 5V) through a current-limiting resistor (e.g., 220Ω).</li>
+<li>Ask for codex to close the loop - I didn’t want to be copying code back and forth to the Arduino IDE for this, I’m sick and I know just what I want. So I installed the arduino cli, and it was more than happy to use that plus misc scripts and such that it wrote for itself to find the board, connect, verify that it could read the serial output, etc etc. I basically just had to give it my WIFI creds and some gentle steering towards the behaviour I wanted.</li>
+</ul>
+
+
+
+ ]]></description>
+  <category>mini-hw-projects</category>
+  <guid>https://johnowhitaker.dev/mini-hw-projects/tachometer.html</guid>
+  <pubDate>Thu, 19 Feb 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Lab Notes Feed</title>
   <link>https://johnowhitaker.dev/posts/lab_notes_feed.html</link>
@@ -1454,25 +1494,6 @@ font-style: inherit;">4</span>]</span></code></pre></div></div>
   <category>solveit</category>
   <guid>https://johnowhitaker.dev/posts/solveit.html</guid>
   <pubDate>Fri, 12 Sep 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Jet-Nemotron, Gated DeltaNet, and the slow triumph of hybrid models</title>
-  <link>https://johnowhitaker.dev/posts/jet-nemotron.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/vNzuV5GboEw" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p>Jet Nemotron paper: https://www.arxiv.org/abs/2508.15884 Gated Delta Networks: https://arxiv.org/abs/2412.06464 The review of hybrid linear attention variants we didn’t really chat about: https://arxiv.org/abs/2507.06457 Qwen 3 Next: https://qwen.ai/blog?id=4074cca80393150c248e508aa62983f9cb7d27cd&amp;from=research.latest-advancements-list</p>
-<p>A few days after the video came the official Qwen 3 Next announcement, scaling Gated Delta-Net hybrid models up a bunch (and achiving high sparsity in their MoE too) - hooray for more efficient models! Hope it’s interesting.</p>
-
-
-
- ]]></description>
-  <category>Video</category>
-  <guid>https://johnowhitaker.dev/posts/jet-nemotron.html</guid>
-  <pubDate>Tue, 09 Sep 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
