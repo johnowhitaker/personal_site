@@ -29,5 +29,8 @@ I'm somewhat confident that many could replicate this project, and it won't matt
 
 In some ways this is the 'LLMs are lossy compilers' take that has been around for ages, but the point of this essay is me coming to terms with this now that the scope of tasks for which they are ~reliable is growing. There are lots of apps I've built for myself that would be a pain to release, since I'd need payments to cover inference costs, bla bla bla. It is somewhat freeing to think that maybe sharing a screenshot of the core idea is enough!
 
-Of course, we're still far from this working for all software. But it's interesting to think how far you could push this, especially with OS building blocks. "Combine ThreeJS with [this payment lib] and [that data API] to visualize cycle traffic in your city". That's a lot easier and more fun to type in and run than those old magazine code listings :) The future is going to be interesting!
+Of course, we're still far from this working for all software. But it's interesting to think how far you could push this, especially with OS building blocks. "Combine ThreeJS with [this mapping lib] and [that data API] to visualize cycle traffic in your city". That's a lot easier and more fun to type in and run than those old magazine code listings :) The future is going to be interesting!
 
+PS: It's worth thinking through how your medium of choice works for sharing these 'idea seeds'. I've got some fun plans in solveit for this - a jupyter notebook packaging up demo code + suggested prompts seems like a nice format for this. Still trying to convince myself this is needed vs a simple .md file or screenshot, but we'll see :)
+
+PPS: What's the coolest piece of software you've seen that can be distributed in this way? (i.e. as a one-shot prompt). I'd love to see cool examples.
