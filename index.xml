@@ -10,7 +10,42 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.9.23</generator>
-<lastBuildDate>Thu, 19 Feb 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 23 Feb 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>The Idea Is The Software</title>
+  <link>https://johnowhitaker.dev/essays/distributables.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Here’s a device that only does X. Here’s a binary you can run that does X. Here’s code that you can compile and run that does X. Here’s an X SAAS. Here’s a prompt that creates code that does X. “Did you know computers can do X?”. [Half-baked musings on software incoming].</p>
+<p>There’s always been a gap between ‘works on my machine’ and software that other people can easily use. So, if I coded up something that worked for me, it was a bit of a burden to polish that into something that others can use. You need to solve for different operating systems, you can’t have a hard-coded “~/johnos_projects” path, there are requirements… Plus there is some education you feel obligated to do, for potential users who might not know what <code>pip</code> is or something.</p>
+<p>With LLMs getting good, new ideas around this are beginning to float about. What if we just shared, like, a really good prompt? Everyone could have their agent build their own bespoke version. Karpathy found a nice example of this being used as an extensibility mechanism for a project recently, where the repo includes prompts to tell LLMs how to add functionality:</p>
+<blockquote class="blockquote">
+<p>I also love their approach to configurability - it’s not done via config files it’s done via skills! For example, /add-telegram instructs your AI agent how to modify the actual code to integrate Telegram. I haven’t come across this yet and it slightly blew my mind earlier today as a new, AI-enabled approach to preventing config mess and if-then-else monsters. Basically - the implied new meta is to write the most maximally forkable repo and then have skills that fork it into any desired more exotic configuration.</p>
+</blockquote>
+<p>This weekend it really hit home to me how far this goes for some things: at the end of the day, all I need to share is that something is <strong>possible</strong> - the implementation is left as an exercise for the reader, but that is no longer a gatekeeping, elitist move! The specific example was my <a href="https://johnowhitaker.dev/mini-hw-projects/tachometer.html">quick and dirty strobe tachometer</a>. It’s a microcontroller, that lets you pulse an LED at different rates. When the flash speed matches the rotation speed of something, it looks like it’s standing still. Nothing fancy. Historically, if I wanted others to re-create this, I’d need to share:</p>
+<ul>
+<li>An exact parts list</li>
+<li>A wiring diagram</li>
+<li>The code</li>
+<li>Installation instructions (how to install the Arduino IDE, how to connect your device)</li>
+<li>Tips for connecting to the board (serial ports on Windows are a nightmare, for example)</li>
+</ul>
+<p>And odds are, a reader who wanted to re-create it won’t have the exact parts on hand. For e.g.&nbsp;the board I used is an ancient NodeMCU ESP8266 dev board from the hackerspace junk bin - but there is no reason to use that specifically.</p>
+<p>Contrast to today. The thing I share is the <strong>idea</strong>: flash a light with a microcontroller to estimate speed. You can use a transistor to push more current through the LED if you want it bright. Ask your agent to use the arduino-cli to handle the programming etc.</p>
+<p>I’m somewhat confident that many could replicate this project, and it won’t matter if they use an STM32 or a Raspberry Pi Pico or an ESP32. It won’t matter if they have the same display as me (I can’t even remember the model number, and did not tell codex - it figured it out anyway!). If they have different transistors on hand, I’m confident the model can tell them how to wire them up. In other words, the “source code” for this project is simply the notion that one can do such a thing - and all the tedious embedded engineering work is just an implementation detail that can be handled by an LLM.</p>
+<p>In some ways this is the ‘LLMs are lossy compilers’ take that has been around for ages, but the point of this essay is me coming to terms with this now that the scope of tasks for which they are ~reliable is growing. There are lots of apps I’ve built for myself that would be a pain to release, since I’d need payments to cover inference costs, bla bla bla. It is somewhat freeing to think that maybe sharing a screenshot of the core idea is enough!</p>
+<p>Of course, we’re still far from this working for all software. But it’s interesting to think how far you could push this, especially with OS building blocks. “Combine ThreeJS with [this payment lib] and [that data API] to visualize cycle traffic in your city”. That’s a lot easier and more fun to type in and run than those old magazine code listings :) The future is going to be interesting!</p>
+
+
+
+ ]]></description>
+  <category>essays</category>
+  <guid>https://johnowhitaker.dev/essays/distributables.html</guid>
+  <pubDate>Mon, 23 Feb 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Quick and dirty strobe tachometer</title>
   <link>https://johnowhitaker.dev/mini-hw-projects/tachometer.html</link>
@@ -1258,242 +1293,6 @@ font-style: inherit;">'Product'</span>].unique())</span></code></pre></div></div
   <category>essays</category>
   <guid>https://johnowhitaker.dev/essays/iabied.html</guid>
   <pubDate>Wed, 17 Sep 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>What Is Solveit?</title>
-  <link>https://johnowhitaker.dev/posts/solveit.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>At the end of last year, we ran a small course titled “How To Solve It With Code”. We closed signups after a day, and 1000 keen beans joined us for a 10-week deep dive into our general approach to solveing problems. It was taught via the vehicle of the ‘Advent of Code’ programming challenges and run in a new, purpose-built tool called solveit. As the course progressed, we had lots of fun going far beyond the original scope, exploring web development (with FastHTML), AI, business (with Eric Reis as a special guest), writing and more. And the solveit tool became an extremely useful test-bed for ideas around AI-assisted coding, learning and exploration. In the year since, we’ve continued to refine and expand both the process and the tools built in service of said process, and are ramping up for another cohort to share these developments with a wider audience. So, I figure it’s high time I attempt to write down my own version of what ‘the solveit method’ is… :)</p>
-<section id="inspiration-from-polya" class="level2">
-<h2 class="anchored" data-anchor-id="inspiration-from-polya">Inspiration from Polya</h2>
-<p>George Polya was a Hungarian mathematician who wrote the influential book “How to Solve It” in 1945. In it, he shares his philosophies on education (focus on acive learning,heuristic thinking and careful questioning to guide stodents towards discovering answers for themselves) and outlines a four-step problem-solving framework:</p>
-<ol type="1">
-<li>Understand the Problem: identify what you’re being asked to do; restate the problem</li>
-<li>Devise a Plan: draw on similar problems; break down into manageable parts; consider working backward; simplify the problem</li>
-<li>Carry Out the Plan: verify each step</li>
-<li>Look Back and Reflect: consider alternatives; extract lessons learned</li>
-</ol>
-<p>He was focused on mathematics, but as Jeremy and I tried to codify our approach to solveing problems with code, we realized that these ideas translate far beyond maths!</p>
-</section>
-<section id="application-to-coding-iterative-exploratory-coding-in-notebook-like-environments." class="level2">
-<h2 class="anchored" data-anchor-id="application-to-coding-iterative-exploratory-coding-in-notebook-like-environments.">Application to Coding: iterative, exploratory coding in notebook-like environments.</h2>
-<p>Let’s consider a quick example. For 2024’s Advent of Code, Day 1’s solution involves comparing two lists, sorted by value (there’s a whole backstory involving elves, which you can <a href="https://adventofcode.com/2024/day/1">read if you like</a>). Let’s imagine we’ve considered the problem, and are now focused on a small sub-task: extracting the first (sorted) list. We start with the sample data provided:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1">x <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'3 &nbsp; 4</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">4 &nbsp; 3</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">2 &nbsp; 5</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">1 &nbsp; 3</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">3 &nbsp; 9</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">3 &nbsp; 3'</span></span></code></pre></div></div>
-<p>Our plan might be:</p>
-<ul>
-<li>Split into a list of lines</li>
-<li>Grab the first number from each line</li>
-<li>Sort</li>
-</ul>
-<p>You could likely write this function in one go. Indeed, if you typed <code># Get a sorted list of the first number from each line</code> your AI auto-complete could likely do the rest. But we’re trying to build a discipline that will serve us on harder tasks that neither humans nor AI can one-shot. So, after thinking through the plan, we begin working on individual steps. We aim to write no more than a few lines of code at a time, with each piece giving some useful output that you can use to <strong>verify</strong> that you’re on the right track:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">lines <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> x.splitlines()</span>
-<span id="cb2-2">lines</span>
-<span id="cb2-3"><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;&gt;&gt;</span> [<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'3 &nbsp; 4'</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'4 &nbsp; 3'</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'2 &nbsp; 5'</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'1 &nbsp; 3'</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'3 &nbsp; 9'</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'3 &nbsp; 3'</span>]</span></code></pre></div></div>
-<p>Now we build up a list comprehension to get the first elements. We might start with <code>[o for o in lines]</code> and then add bits one at a time, inspecting the output, building up to:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">l1 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> [<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">int</span>(o.split()[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>]) <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> o <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> lines]</span>
-<span id="cb3-2">l1</span>
-<span id="cb3-3"><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;&gt;&gt;</span> [<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span>]</span></code></pre></div></div>
-<p>Now sorting:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">sorted</span>(l1)</span>
-<span id="cb4-2"><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;&gt;&gt;</span> [<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">4</span>]</span></code></pre></div></div>
-<p>Now that we’ve run all the pieces individually, and checked that the outputs are what we’d expect, we can stack them together into a function:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">def</span> get_list(x):</span>
-<span id="cb5-2">&nbsp; &nbsp; lines <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> x.splitlines()</span>
-<span id="cb5-3">&nbsp; &nbsp; l1 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> [<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">int</span>(o.split()[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>]) <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> o <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> lines]</span>
-<span id="cb5-4">&nbsp; &nbsp; <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">return</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">sorted</span>(l1)</span>
-<span id="cb5-5">get_list(x)</span>
-<span id="cb5-6"><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;&gt;&gt;</span> [<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">4</span>]</span></code></pre></div></div>
-<p>At this point, you’d reflect on the solution, think back to the larger plan, perhaps ask yourself (or ask AI - more on that later) if there are better ways you could do it. You may be thinking that this is far too much work for <code>sorted(int(line.split()[0]) for line in x.splitlines())</code> - as your skill increases you can tailor the level of granularity, but the idea remains the same: working on small pieces of code, checking the outputs, only combining them into larger functions once you’ve tried them individually, and constantly reflecting back on the larger goal.</p>
-</section>
-<section id="the-power-of-fast-feedback-loops" class="level2">
-<h2 class="anchored" data-anchor-id="the-power-of-fast-feedback-loops">The Power of Fast Feedback Loops</h2>
-<p>The superpower that this kind of live, iterative coding gives you is near-instant feedback loops. You’re not building your giant app, waiting for the code to upload, clicking through to a website and then checking a debug console for errors - you’re inspecting the output of a chunk of code and seeing if it matches what you expected. It’s still possible to make mistakes and miss edge cases, but it is a LOT easier to catch most mistakes early when you code in this way.</p>
-<p>This idea of setting things up so that you get feedback as soon as possible pops up again and again. Our cofounder Eric Ries talks about this in his book ‘The Lean Startup’, where getting feedback from customers is valuable for quick iteration on product or business ideas. Kaggle pros talk about the importance of fast evals - if you can test an idea in 5 minutes, you can try a lot more ideas than you could if each experiment requires 12 hours of model training.</p>
-<p>This is one reason many people like ‘Test Driven Development’ - where carefully written tests check for expected behaviour. The answer.ai style of notebook-driven development just uses a mix of “proper” tests (e.g.&nbsp;asserts thoughout the notebooks that check things formally) and the human-based sanity checks based on inspecting outputs as we go.</p>
-</section>
-<section id="ai-shared-context-is-key" class="level2">
-<h2 class="anchored" data-anchor-id="ai-shared-context-is-key">AI: Shared Context is Key</h2>
-<p>So far so good - sounds like we’re describing the style of exploratory/literate programming taught in the fast.ai course, and used with tools like NBDev. Aren’t we in a new era though? Where is the AI?!</p>
-<p>Well, it turns out that by building code in this way, with planning, notes and tests mixed in with the source code, you’re also building the perfect context for an AI to help with the code too. Solveit can see everything you can see. This means great contextual auto-complete, and solid answers to any questions you have.</p>
-<p>You can also feed it additional context by referencing specific variables, or having it use its built-in search and URL-reading tools. And any python function becomes a tool that you can ask solveit to use, making it easy to give it everything it needs to fetch more context or take “agentic” actions to give better responses.</p>
-<p>TODO: note on shell-sage?</p>
-</section>
-<section id="ai-dialog-engineering-keeps-context-useful" class="level2">
-<h2 class="anchored" data-anchor-id="ai-dialog-engineering-keeps-context-useful">AI: Dialog Engineering Keeps Context Useful</h2>
-<p>One issue with current chat-based models is that once they go off the rails, it’s hard to get back on track. The model is now modelling a language sequence that involves the AI making mistakes - and more mistakes are likely to follow! Because solveit dialogs are fluid and editable, it’s much easier to go back and edit/remove dead ends or unrelated explorations. You can even edit past AI responses, to steer it into the kinds of behaviour you’d prefer. Combine this with the ability to easily hide messages from the AI or to pin messages to keep them in context even as the dialog grows beyond the context window and starts to be truncated, and you have a recipe for continued AI helpfullness as time goes on.</p>
-<p>Of course, this is all useful for humans too! The discipline of keeping things tidy, using (collapsible) headings to organise sections, writing notes on what you’re doing or aiming for, and even past questions+answers with the AI all make it a pleasure to pick back up old work.</p>
-</section>
-<section id="ai-collaboration-not-replacement" class="level2">
-<h2 class="anchored" data-anchor-id="ai-collaboration-not-replacement">AI: Collaboration not Replacement</h2>
-<p>One thing is still (intentionally) hard in solveit though, and that is getting the AI to actually write all your code in a hands-off way. We’ve made various choices to gently push towards the human remaining in control:</p>
-<ul>
-<li>Defaults to code inputs</li>
-<li>AI outputs code in fenced blocks, but these are not added to your code or run until you choose to do so. There are shortcuts to add them, but this extra sterp encourages you to read + refactor before mindlessly running</li>
-<li>In ‘Learning’ mode especially, the AI will gently guide you to writing small steps rather than providing a big chunk of code, unless you really specifically ask it to do so.</li>
-<li>In ‘Learning’ mode, the AI ‘ghost text’ auto-complete suggestions don’t show unlesss you trigger them with a keyboard shortcut.</li>
-</ul>
-<p>Even the choice to have the editor be fairly small and down at the bottom emphasizes that this is a REPL/dialog, optimised for building small, understandable pieces.</p>
-</section>
-<section id="learning-trajectory-getting-more-powerful" class="level2">
-<h2 class="anchored" data-anchor-id="learning-trajectory-getting-more-powerful">Learning Trajectory (Getting More Powerful)</h2>
-<p>This brings us to another foundational piece of the solveit approach: a learning ,mindset. It’s great that we can ask AI to fill in the gaps of our knowledge, or to save some time with fiddly pieces like matplotlib plots or library-specific boilerplate. But when the AI suggests something you don’t know, it is important not to skip it and move on - otherwise that new piece will never be something you learn!</p>
-<p>We try to build the discipline to stop and explore anytime something like this comes up. Fortunately, it’s really easy to do this - you can add new messages trying out whatever new thing the AI has shown you, asking how it works, getting demo code, and poking it until you’re satisfied. And then the eveidence of that side-quest can be collapsed below a heading (for later ref) or deleted, leaving you back in the main flow but with a new piece of knowledge in your brain.</p>
-<p><img src="https://johnowhitaker.dev/posts/images/vc_vs_solveit.png" class="img-fluid"></p>
-<p>Earlier this year, I sketched out some doodles trying to think through whether we should be teaching this way. What if AI keeps getting better and better, to the point where there’s little point for the average person actually learning to master any of these skills? If you assume your coding skills stay static, and imagine the AI continuing to get better, you may feel kinda bleak. The thing is, skill doesn’t have to be static! And as both you and the AI you’re carefully using get better, you will learn faster and be able to accomplish more and more.</p>
-</section>
-<section id="mastery-requires-deliberate-practice-wip" class="level2">
-<h2 class="anchored" data-anchor-id="mastery-requires-deliberate-practice-wip">Mastery Requires Deliberate Practice (WIP)</h2>
-<p>This is all hard work! It’s like exercise, or practicing a musical instrument. And like any pursuit of mastery, I don’t know that it’s for everyone. But it is satisfying…</p>
-</section>
-<section id="long-term-software-creation-vibe-coded-demos-wip" class="level2">
-<h2 class="anchored" data-anchor-id="long-term-software-creation-vibe-coded-demos-wip">Long-Term Software Creation != Vibe-Coded Demos (WIP)</h2>
-<p>I’ve done lots of small projects. Big projects, new to me, different options. AAI’s unusual approach: carefully construct a substrate that allows you to fit ~anything into your head, improving it over time. Accept no slop!</p>
-</section>
-<section id="so-you-hate-vibe-coding" class="level2">
-<h2 class="anchored" data-anchor-id="so-you-hate-vibe-coding">So you hate vibe-coding?</h2>
-<p>No :) I love it, <strong>for <a href="https://johnowhitaker.dev/posts/vc_wins.html">some things</a></strong>. There is much more software that I want written than I have time to write. There are some things I don’t much care to learn about, but still need to code for. There are many, many new options for non-coders now, thanks to the ability to conjure up bespoke software from vague descriptions. We’re just not fans of it when it comes to software that matters, and don’t think it replaces the learning value of truly working at programming as a craft.</p>
-</section>
-<section id="ok-where-can-i-use-solveit" class="level2">
-<h2 class="anchored" data-anchor-id="ok-where-can-i-use-solveit">OK, where can I use solveit</h2>
-<p>We’re running another course soon, which will be $400. I appreciate this is spendy. That will let us test some scaling and features, and work with another cohort to build the solveit skill. Once that’s done, we’re hoping to open it up on a usage-based billing system. I can’t wait for it to be available to everyone! Please be patient - I think it’ll be worth the wait :)</p>
-</section>
-<section id="conclusions" class="level2">
-<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
-<p>There we go - some musings on the solveit approach. There’s a ton more to the app - web magic with FastHTML, meta-programming by giving the AI tools to modify the dialog and itself, lots of tricks we’ve developed for getting the most out of AI… but the important thing is the mindset, and it’s one which you can almost equally practice in any jupyter notebook.</p>
-<p>I still have <a href="https://johnowhitaker.dev/essays/future-ai.html">wide error bars</a> on the future of AI and coding, but no matter how that goes, I’m glad I get to work on getting better at something I enjoy for now :)</p>
-<p>I hope you’ve enjoyed this rambly post! I’d love to hear your thoughts! Stay tuned for info on the new course shortly (I’ll link here when we announce it). Cheers - J</p>
-<p>PS: If you want to see what a post like this looks like after being turned into a launch post, <a href="https://www.answer.ai/posts/2025-10-01-solveit-full.html">here it is on answer.ai.</a> . Featuring fun corrections like the ones below (caught by AI review) and tweaks to focus more on the exciting news that we’re finally launching the course :)</p>
-<p>Glaring errors / typos • “solveing” → “solving” (appears at least twice). • “Eric Reis” → should be Eric Ries. • “acive” → “active.” • “stodents” → “students.” • “thoughout” → “throughout.” • “sterp” → “step.” • “helpfullness” → “helpfulness.” • “unlesss” → “unless.” • “eveidence” → “evidence.” • Minor date formatting: “October 20’th” should be “October 20th.”</p>
-
-
-</section>
-
- ]]></description>
-  <category>solveit</category>
-  <guid>https://johnowhitaker.dev/posts/solveit.html</guid>
-  <pubDate>Fri, 12 Sep 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
