@@ -26,6 +26,8 @@ I've since done some agar art with my pet blue fluorescent Pseudomonas sp. that 
 
 Update: I made a short with it in action: [https://www.youtube.com/shorts/He5VJz9E1lQ](https://www.youtube.com/shorts/He5VJz9E1lQ)
 
+Update 2: [Here's an animation made with fluorescent dye](https://x.com/johnowhitaker/status/2027922837844201987?s=20)
+
 ## Biolistics - ASGG tests
 
 I haven't managed to find a way to get genes from addgene. A friend has kindly stepped in to help, and I might also cold-email some local profs in case any want to collaborate. But that means than for now, I don't really have a way to test the gene gun idea and won't for a few more weeks at least. Still, I did muck about a bit, starting with: carriers and DNA adhesion.
