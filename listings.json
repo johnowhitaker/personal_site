@@ -2,6 +2,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/posts/dnaq.html",
       "/mini-hw-projects/spectrometer.html",
       "/essays/distributables.html",
       "/mini-hw-projects/tachometer.html",
@@ -228,6 +229,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/dnaq.html",
       "/mini-hw-projects/spectrometer.html",
       "/essays/distributables.html",
       "/mini-hw-projects/tachometer.html",
