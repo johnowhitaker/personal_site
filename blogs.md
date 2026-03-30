@@ -6,6 +6,8 @@ I hope to better document other blogs I've found interesting + useful, as well a
 
 ## Others / To Be Categorized
 
+https://maurycyz.com/ (also has https://maurycyz.com/real_pages/ linking more good pages)
+
 https://blog.booleanbiotech.com/oral-microbiome-biogaia
 
 https://jackhogan.net/blog/starting-a-blog
