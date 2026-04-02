@@ -1,7 +1,8 @@
 [
   {
-    "listing": "/all.html",
+    "listing": "/index.html",
     "items": [
+      "/mini-hw-projects/asgg2.html",
       "/posts/dnaq.html",
       "/mini-hw-projects/spectrometer.html",
       "/essays/distributables.html",
@@ -227,8 +228,9 @@
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/all.html",
     "items": [
+      "/mini-hw-projects/asgg2.html",
       "/posts/dnaq.html",
       "/mini-hw-projects/spectrometer.html",
       "/essays/distributables.html",

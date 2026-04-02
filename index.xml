@@ -9,8 +9,83 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.10.0</generator>
-<lastBuildDate>Thu, 19 Mar 2026 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.10.1</generator>
+<lastBuildDate>Thu, 02 Apr 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>AGGG (Airsoft Gun Gene Gun) Part 2 - Hints of Success?</title>
+  <link>https://johnowhitaker.dev/mini-hw-projects/asgg2.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>In a <a href="https://johnowhitaker.dev/mini-hw-projects/airsoft-gene-gun.html">previous post</a>, I pointed out that a gene gun (fancy, $XXXXX) and a cheap airsoft gun share a lot in common. Now that I <a href="https://johnowhitaker.dev/posts/dnaq.html">have DNA</a>, it was time to pew pew - and it looks like maybe we got some transformations! I’ll explain what I’ve tried, what I found, what I’m thinking, and what I hope to try next.</p>
+<section id="the-method" class="level2">
+<h2 class="anchored" data-anchor-id="the-method">The Method</h2>
+<p>I take a small amount (10uL) of a slurry of diatomaceous earth (DE), add some (10uL, 50mM) calcium chloride and some (~1ug, in ~2uL) plasmid DNA and place it on a piece of parafilm stretched over a 3D-printed tube. I dry it in a filtered stream of air, then the tube adapts to the end of my cheap airsoft pistol, and I fire it at a leaf from a few cm distance.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/asgg_bullet_prep.jpg" class="img-fluid figure-img"></p>
+<figcaption>‘Bullet’ prep with slurries of graphite powder and DE waiting to dry</figcaption>
+</figure>
+</div>
+<p>The DNA I have codes for the ‘RUBY’ reporter, which expresses a red pigment. I extracted the DNA from bacteria carrying this plasmid which I got from <a href="https://atinygreencell.com/products/pcambia2300-rubygreen">Sebastian’s Biotech Bazaar</a>. I used <a href="https://bioland-sci.com/products/plasmid-miniprep-ii-kit-50-preps?pr_prod_strat=e5_desc&amp;pr_rec_id=821821b3f&amp;pr_rec_pid=8042713055421&amp;pr_ref_pid=8042712826045&amp;pr_seq=uniform">this miniprep kit</a> to purify out the plasmid DNA.</p>
+</section>
+<section id="findings" class="level2">
+<h2 class="anchored" data-anchor-id="findings">Findings</h2>
+<p>I shot some tobacco leaves, some duckweed, a slice of carrot and some onion… In the leaves, around the spots shot with DNA (but not the controls) there are some, well, reddish bits that show up after a few days! And after lots of squinting at them I’ve convinced myself that at least some of these are cells expressing RUBY :)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/maybe_ruby.png" class="img-fluid figure-img"></p>
+<figcaption>Possible RUBY expression - reddish cells/spots</figcaption>
+</figure>
+</div>
+<p>My gallery is filled with blurry attempts to capture this, and none make it as obvious as I’d like. For example, there are also plenty of cases where, around an impact point where a clump of DE has hit, there’ll be some orange-ish crud welling up. Around most impacts (and all that I saw in the no-DNA controls) this stuff is pale white. Could this be RUBY too, expressed in some damaged cell(s) and being included in whatever is happening around the hole? Plus there are random red things just around the place - bits of fiber, random flakes - here’s a gallery of things I was more sceptical of:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/maybe_not_ruby.png" class="img-fluid figure-img"></p>
+<figcaption>Other things that might random fluff, browning, or other junk</figcaption>
+</figure>
+</div>
+<p>The almost magenta dots in the carrot are apparently pretty much what <a href="(https://academic.oup.com/hr/article/10/4/uhad024/7036638)">RUBY looks like in carrot</a>, that was a YOLO shot with some leftover stuff, I’ll do some follow-on ones with carrot callus that I have growing and hopefully get a clearer signal. But in general it was much harder looking for red/orange reporter in orange carrot tissue!</p>
+<p>I didn’t see anything in the onion I shot. Nor did I see anything in onion that I tried my micro-needle idea on. But then, RUBY doesn’t work everywhere - for example <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12787607/">this paper documents it being a poor marker in coconut</a> (also a good ref for optimization strat once I can easily bombard and measure.)</p>
+<p>For comparison: I’ve also been trying transformation with agrobacterium, which gives a much more macro result - here are some duckweed fronds expressing RUBY to various degrees:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/dwe_tfm.jpg" class="img-fluid figure-img"></p>
+<figcaption>RUBY expression at various levels in duckweed transformed with agrobacterium</figcaption>
+</figure>
+</div>
+</section>
+<section id="thoughts-what-didnt-work-what-next" class="level2">
+<h2 class="anchored" data-anchor-id="thoughts-what-didnt-work-what-next">Thoughts, What didn’t work, What Next</h2>
+<p>What didn’t work:</p>
+<ul>
+<li>Using graphite as the carrier (I wanted something more visible than the DE, so I sanded some graphite rod to get powder, but I didn’t ever see transformation using it)</li>
+<li>Using my tungsten micro-needles seemed to kill leaf cells, and when I tried them more gently on onion I didn’t see any transformation</li>
+<li>Bombarding duckweed was tricky (it tended to fly away in the blast) and I didn’t see any transformation of its tiny cells.</li>
+</ul>
+<p>I <em>think</em> the red spots are enough to indicate that we’ve gone from 0 to 1. From here, we can optimise - playing with</p>
+<ul>
+<li>DNA, carrier and buffer amounts</li>
+<li>Nozzle diameter and geometry (I already switched to a converging-diverging nozzle which seems to give a much nicer shot). <a href="https://www.nature.com/articles/s41467-025-60761-x">Ref for flow guiding barrel design (just found)</a></li>
+<li>Shot distance</li>
+<li>etc.</li>
+</ul>
+<p>But I’m not happy with RUBY as a readout - too hard to see and measure. I’d love to use a flourescent reporter, but after months of trying I wasn’t able to get my hands on some. I have a construct with a fluorescent reporter ready to go for another project, which I’ll be ordering soon, for about $500… Once I get that I’m hoping we’ll be able to easily quantify how well a given shot does, and start optimizing everything. I wish individuals could order plasmids from addgene! Anyway.</p>
+<p>Once you have some transformed cells, you can try to grow them out in tissue culture, optionally with something like herbicide resistance to select for the trasnformed ones. I’m hoping we can find a visual-selection-only flow since I don’t want to me making herbicide resistant plants or having other people work with them.</p>
+<p>My dream is to work out a path for people who haven’t done this before, and don’t have the tools to do assembly and cloning, to still order a construct with their own protein/design, and get it into a plant, all as easily as possible. Wish me luck :)</p>
+
+
+</section>
+
+ ]]></description>
+  <category>mini-hw-projects</category>
+  <category>bio</category>
+  <guid>https://johnowhitaker.dev/mini-hw-projects/asgg2.html</guid>
+  <pubDate>Thu, 02 Apr 2026 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/mini-hw-projects/images/ruby_closeup.png" medium="image" type="image/png" height="139" width="144"/>
+</item>
 <item>
   <title>DNA quantification with a visible light spectrometer</title>
   <link>https://johnowhitaker.dev/posts/dnaq.html</link>
@@ -1175,41 +1250,6 @@ font-style: inherit;">'Product'</span>].unique())</span></code></pre></div></div
   <guid>https://johnowhitaker.dev/misc/kernel_crystals.html</guid>
   <pubDate>Tue, 28 Oct 2025 00:00:00 GMT</pubDate>
   <media:content url="https://johnowhitaker.dev/misc/thumbnails/kc.png" medium="image" type="image/png" height="85" width="144"/>
-</item>
-<item>
-  <title>Johno’s Lab - First Week of A New YouTube Channel</title>
-  <link>https://johnowhitaker.dev/posts/johnoslab.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>I’m taking a little time off, to get energized before our next course and because I was generally feeling a little tired out. It’s really important for me to have time to let my brain spin freely! I’ve done some good reading and resting and so on, but I do like to have a few bits of routine + structure even in a gap, and one experiment I thought I’d try this time is attempting to regularly post some short videos on old projects. Let me explain:</p>
-<ul>
-<li>I’m enjoying the low threshold of posting stuff here on my blog! But a lot of the bits and bobs I’ve been doing for fun (e.g.&nbsp;crystal timelapses) are well-suited to video.</li>
-<li>I’ve been dreaming for ages of making long, high-quality videos on some of these ideas, but that’s a ton of time investment!</li>
-<li>The hope is that a short video is enough to give ‘closure’ to some of the projects I’ve been stringing out, or to share unstructured updates, while still leaving open the possibility of a more casual, long-form video if there’s more I want to cram in.</li>
-</ul>
-<p><img src="https://johnowhitaker.dev/posts/images/shorts_thumbs.png" class="img-fluid"></p>
-<p>As far as the format goes, I’m enjoying this so far! As a representative sample, I’ve “closed out” my duckweed experiments, with a catchy <a href="https://www.youtube.com/shorts/qcPMMdFlzqc">short</a> showing the motion I wanted to talk about, and a longer <a href="https://www.youtube.com/watch?v=4tjFAJ01_nM">background video</a> chatting about the backstory, why I was growing it, and how I think the motion arises (including a simulation of the phenomenon). I no longer have tubs of duckweed taking up one surface in my basement just waiting for me to finally get around to filming something. And I finally have a place to share the timelapse I took, the fun discovery of the motion, and the cool AI-for-science mini experiment that started it all off.</p>
-<p><img src="https://johnowhitaker.dev/posts/images/shorts_stats.png" class="img-fluid"></p>
-<p>The shorts medium is one I’m very unfamiliar with, and so that aspect has been interesting too. It seems like when I post a video, it gets a spike of views in the first ~hour and then dies off, with only a few continuing to get a trickle of views after that initial burst. Still, 10k views is a lot! I hadn’t thought through how many shorts people watch. The longer background videos are getting tens of views, more in line with what I expected for a new channel not marketing or anything.</p>
-<p><img src="https://johnowhitaker.dev/posts/images/shorts_views.png" class="img-fluid"></p>
-<p>One hope in posting these was that I’d inspire a bit of curiosity in people - maybe they’d take an experiment further than I did, or see the short and come explore the longer videos for more. Alas, I suspect that most shorts viewers are much closer to mindlessly scrolling, and I’m a little worried I’m just feeding that beast.</p>
-<p>Indeed, setting up a fresh YT account (and a tiktok account, since I posted a few vids there too to test it out - with a few k views as a result) gave me a somewhat shocking view of what a shorts feed looks like. Selecting “STEM” in tiktok steered it towards some at least midly informative content, and my personal YT (tuned by decades of watching science+tech nerdery) was a little better, but it’s clear all of these things are optimizing for catchy + addictive first.</p>
-<p>I’m still undecided if this is enough to put me off the medium completely - but I might shift purposefully away from anything too algo-friendly and stick to minimal editing of whatever I find interesting - moving lab notes rather than carefully scripted short videos. Also, a friend said I was ‘building a funnel’ and that made me stop for now, yuk.</p>
-<p>Anyway, this excuse to go over a few old projects and start on a few new ones has reminded me of many good things. The ease with which we can whip up 3D printed bits, cobble together cheap hobby parts, and have AI help code up something neat is delightful! (a misc subset of recent prints below)</p>
-<p><img src="https://johnowhitaker.dev/posts/images/3d_prints.png" class="img-fluid"></p>
-<p>I also enjoyed taking a break from working, and leaning on AI a little more for the small bits of coding I did do - mostly simulation stuff that I could very easily + carefully describe, while letting the AI handle the boring scaffolding. As an example, I’m very plese with the shader inspired by the rheoscopic fluid stuff, and the bad apple side-quest <a href="https://www.reddit.com/poststats/1o88ujh">reddit post</a> I posted on reddit makes me happy - I’ve contributed to a long and silly tradition of people rendering that clip in weird ways, I’ve made something pleasing to look at + play with, and I could have creative charge without having to fix silly webgl errors.</p>
-<p>Now that I’ve cleared a bit of my backlog, I’m going to dial back on the daily posting and switch to using this as I intended, as a more when-needed type place to dump clips. Subscribe if you’re interested :) And stay tuned for more posts here too - this isn’t going anywhere any time soon. :peace:</p>
-<p>PS: I should link the channel! https://www.youtube.com/<span class="citation" data-cites="JohnosLab">@JohnosLab</span></p>
-
-
-
- ]]></description>
-  <category>misc</category>
-  <guid>https://johnowhitaker.dev/posts/johnoslab.html</guid>
-  <pubDate>Fri, 17 Oct 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
