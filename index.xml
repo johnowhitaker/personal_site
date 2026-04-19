@@ -9,8 +9,71 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.10.1</generator>
-<lastBuildDate>Thu, 02 Apr 2026 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.10.3</generator>
+<lastBuildDate>Sun, 19 Apr 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Misc Updatates</title>
+  <link>https://johnowhitaker.dev/posts/misc_upd_apr2026.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I’ll start this post with various small updates of things I’ve been up to, then switch to reflection on why I’m taking an extended sabbatical, and how it’s going so far.</p>
+<section id="small-things" class="level2">
+<h2 class="anchored" data-anchor-id="small-things">Small Things</h2>
+<p>Here’s a few recent experiments and such:</p>
+<p><img src="https://johnowhitaker.dev/posts/images/tulipmap.png" class="img-fluid"></p>
+<p>I made an <a href="https://johnowhitaker.github.io/tulipmap/">interactive site</a> to explore tulip varieties (<a href="https://github.com/johnowhitaker/tulipmap">code</a>, <a href="https://x.com/johnowhitaker/status/2042761964225757486?s=20">video demo</a>). The UMAP clusters of the CLIP embeddings map nicely to color and locale, made it very easy to get a general vibe for the genus - I’ll definitely be copying this for other taxa!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/posts/images/uv_fun.png" class="img-fluid figure-img"></p>
+<figcaption>Some organisms under UV light</figcaption>
+</figure>
+</div>
+<p>My wife and I camped out by the Oregon coast and I took some photos of things under my UV flashlight. More pics on my <a href="https://www.inaturalist.org/observations?user_id=jonathan_whitaker&amp;verifiable=any">iNaturalist</a> once I take em off my SD card.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/posts/images/tob_tlc.jpg" class="img-fluid figure-img"></p>
+<figcaption>Initial spot far right, nic. smudge and solvent front middle-left</figcaption>
+</figure>
+</div>
+<p>I extracted nicotine from tobacco and learned how to <a href="https://ln.johnowhitaker.com/entry/29">stain TLC plates with KMnO4</a>, accidental science art :)</p>
+<p><img src="https://johnowhitaker.dev/posts/images/drink_crystals.png" class="img-fluid"></p>
+<p>I tried an energy drink, crystalized some on a slide, <a href="https://ln.johnowhitaker.com/entry/30">used TLC to confirm that it does indeed have a ton of caffeine</a>, and logged my vitals over the day.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/posts/images/rainbow_ecoli.jpg" class="img-fluid figure-img"></p>
+<figcaption>Rainbow e. coli</figcaption>
+</figure>
+</div>
+<p>I noticed that some bacteria have <a href="https://ln.johnowhitaker.com/entry/28">a lovely rainbow effect in the right lighting</a></p>
+<p><img src="https://johnowhitaker.dev/posts/images/decaf_tlc.jpg" class="img-fluid"></p>
+<p>Tried <a href="https://ln.johnowhitaker.com/entry/31">taking some caffeine out of coffee with activated charcoal</a>, to some success! Image shows four references (1000, 500, 250 and 100 mg/L caffiene) and then some artificially strong coffee (left spot, rightmost plate) vs some that went through the charcoal decaf process (far right), with significantly less caffeine!</p>
+<p>Others:</p>
+<ul>
+<li>Made a <a href="https://x.com/johnowhitaker/status/2044633992411205707?s=20">bad but fun theremin</a></li>
+<li>Filmed some <a href="https://x.com/johnowhitaker/status/2042741123370901743?s=20">fun glowy fluid dynamics</a></li>
+<li>Isolated a nice orange yeast https://ln.johnowhitaker.com/entry/27</li>
+<li>Grew out third and final (?) attempt at green e. coli, https://ln.johnowhitaker.com/entry/32, cloning strain, ran out of amp so transformation into gave BL21 questionable results, satellite colonies, no strong color yet</li>
+<li>Working on an explanation re: the green bacteria (<a href="https://x.com/johnowhitaker/status/2045501838519415032?s=20">WIP renders of the main proteins doing their thing</a>) - video coming soon</li>
+<li>Agrobacterium transformation attempts on tomatoes, duckweed ongoing (another successful ish duckweed one worked for a couple of fronds, another attempt waiting for results)</li>
+<li>Tending to various plants, since it’s the start of spring here! Growing out some purple tomatoes, some berries, etc.</li>
+</ul>
+</section>
+<section id="sabbatical" class="level2">
+<h2 class="anchored" data-anchor-id="sabbatical">Sabbatical!!!!</h2>
+<p>Now the somewhat larger life update: I’m taking at least 6 months completely off work @ answer.ai. It feels like a particularly pivotal time in AI, and I want to reflect on what I should be working on going forward. Plus, I’d had an extended bout of sickness and was feeling a little burnt out and unproductive, so this will hopefully blow off the cobwebs.</p>
+<p>TODO: actual reflections and things go here :)</p>
+
+
+</section>
+
+ ]]></description>
+  <category>misc</category>
+  <guid>https://johnowhitaker.dev/posts/misc_upd_apr2026.html</guid>
+  <pubDate>Sun, 19 Apr 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>AGGG (Airsoft Gun Gene Gun) Part 2 - Hints of Success?</title>
   <link>https://johnowhitaker.dev/mini-hw-projects/asgg2.html</link>
@@ -1229,27 +1292,6 @@ font-style: inherit;">'Product'</span>].unique())</span></code></pre></div></div
   <category>bio</category>
   <guid>https://johnowhitaker.dev/posts/plasmidsaurus.html</guid>
   <pubDate>Thu, 06 Nov 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Kernel Crystals</title>
-  <link>https://johnowhitaker.dev/misc/kernel_crystals.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>Illustrating an idea I’ve been playing with - a kind of multi-scale convolutional cellular automata, that pushes how far one can go with random init.</p>
-<p>Explanatory video: https://www.youtube.com/watch?v=Dt6Gm8AUj-o</p>
-<p>NB: Code was an early morning rush job, index.html was a codex coded translation of my ramblings. For demo purposes only - one day perhaps I’ll have time to do some more didactic code for this and related fun</p>
-<p>Demo: https://johnowhitaker.github.io/kernel_crystals/ Code: https://github.com/johnowhitaker/kernel_crystals</p>
-
-
-
- ]]></description>
-  <category>Video</category>
-  <guid>https://johnowhitaker.dev/misc/kernel_crystals.html</guid>
-  <pubDate>Tue, 28 Oct 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://johnowhitaker.dev/misc/thumbnails/kc.png" medium="image" type="image/png" height="85" width="144"/>
 </item>
 </channel>
 </rss>
