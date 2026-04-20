@@ -50,4 +50,21 @@ Others:
 
 Now the somewhat larger life update: I'm taking at least 6 months completely off work @ answer.ai. It feels like a particularly pivotal time in AI, and I want to reflect on what I should be working on going forward. Plus, I'd had an extended bout of sickness and was feeling a little burnt out and unproductive, so this will hopefully blow off the cobwebs. 
 
-TODO: actual reflections and things go here :)
+So far, I've been really enjoying the wide open time (space) feeling. Not that work at answer was unpleasant - far from it - but 'work' is intertwined in my head with being productive, making progress; there are always outstanding TODOs. Having an empty agenda is a delightful contrast. As with all similar times in my life, my subconscious is frothing with a host if ideas that have been biding their time, possibilities that couldn't quite justify themselves over the business. I've been trying to linger in this feeling, taking it easy, spending lots of down time walking and thinking and reading rather than rushing into the first ideas that pop up.
+
+A less enjoyable note has been how quickly financial concerns popped up. We've got some runway of course, but now that my income has dropped to 0 I have to re-think a lab budget that was previously pegged at 'a day's income per month' and figure out a balance between 'not making the most of this time by trying to be too thrifty' and 'burning runway by spending too much'. I might have to factor in some notion of profitability into what I choose to do, something I've been fortunate at avoiding for most of my life. Such is the reality of living in a lovely but expensive place like Portland :) It's not all downside though - I've already applied to one "micro-grant", and making at least some work legible to such funding structures might impose at least a modicum of structure to an otherwise completely un-structured play time that could turn out helpful... But not yet, the focus for now is rest and recharge and fun.
+
+As for directions I'm thinking of exploring, there are tugs in various directions:
+
+- Everyone is running into AI applications, 'agents', etc. This strongly makes me want to run the other way - I much prefer exporing weird and 'uncool' spaces not the trendy *thing*.
+- But AI is going to be hugely impactful, and I might still be able to steer it in ways I'd like it to go
+- And I miss AI research. We've been very application-focused at answer, so I haven't gotten to stretch my old deep learning + model training muscles in ages - there may be fun non-mainstream AI research work that could be fun, especially with coding agents there to skip some of the more painful parts of idea testing.
+- (Maybe even some mechanistic interpretability work? More niche, still space for fun new ideas, relatively impactful?)
+- On the other hand, I always love being in a field where I have a different set of skills to everyone else, so maybe I should get *further* from the AI core and instead help people without AI/coding/tech skills. 
+- And DIY Bio is fun and intellectually stimulating, also humbling+frustrating in its ability to not go quite as planned. I might see if I can get a chance to work with some bio people in a lab nearby if I can weasel my way in
+- Making hardware used to be the thing I thought I'd end up doing. Now that I live in a country with McMaster Carr, Amazon Prime etc that might be a lot easier! Cons: does require some capital (as does bio) compared to messing with software, pros: holding real things in your hands and touching the world with your code is always cool.
+
+
+I might have been a little more burnt out than I like to admit, closely watching the ever-advancing frontier of AI and trying to keep up + work on things that at times felt temporary given impending advances... Rather than committing to any of the above soon, the short-term plan is to dabble with everything, slowly - spinning plates, looking for things that are fun rather than projecting out to impact or income. This usually works out well :)
+
+Anyway, it's an exciting experiment. I feel really good about maximizing flexibility at this time, and look forward to seeing how it evolves. If you have ideas or want to chat, well, my calendar is as open as it'll ever be, feel free to reach out! And if you want to watch how this goes, keep an eye on this blog and on [X](https://x.com/johnowhitaker), I'll try to keep logs of how this is going and what I'm up to. Until next time, J.
