@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/misc/chasing_green.html",
       "/posts/misc_upd_apr2026.html",
       "/mini-hw-projects/asgg2.html",
       "/posts/dnaq.html",
@@ -231,6 +232,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/misc/chasing_green.html",
       "/posts/misc_upd_apr2026.html",
       "/mini-hw-projects/asgg2.html",
       "/posts/dnaq.html",
