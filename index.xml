@@ -10,7 +10,88 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.10.3</generator>
-<lastBuildDate>Wed, 22 Apr 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 05 May 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Taking Control of a DVD Drive (WIP post)</title>
+  <link>https://johnowhitaker.dev/posts/dvd_hack.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Over the past week, I’ve managed to take control of an external DVD drive, reverse-engineering its firmware and re-programming it to do various fun things. In this post, I’ll document the journey to date worming our way in and beginning to modify the firmware. This will hopefully be followed by a part 2 using our new-found powers to teach the hardware some tricks.</p>
+<p>TODO intro pic</p>
+<p>Why would anyone do this? My inspiration was the <a href="https://scanlime.org/tag/coastermelt/">coastermelt</a> project by Micah Elizabeth Scott (aka scanlime) 12 years ago, which attempted something similar and phrased the justification in a very compelling way: a DVD drive is a robot! One with multiple motors that can be driven with high precision, multiple lasers and focusing machinery, capable of etching sub-micrometer patterns onto plastic disks… It’s just that we typically only use them to read or write one very specific kind of pattern. If we could only control this amazing hardware, perhaps we could do a lot more!</p>
+<p>There have been a few projects that reuse parts from CD/DVD drives to do cool things (<a href="https://kototoibashi.github.io/dvd-pickup-microscope-poc/">example</a>), leveraging them in some amazing microscopy applications. But all of these tend to throw out the existing control circuitry and rebuild their own from scratch. This makes sense (it’s a lot easier), but it does mean that anyone wanting to duplicate the project must also build some extra hardware. Plus, it always felt weird to me - somewhere in here, there is already the right code and circuitry to make these things dance - it’s just that it was never made to be usable for anything besides its original purpose. Anyway, that’s what this project is all about - hacking it to use for our own purposes. Let’s walk through how we get there.</p>
+<section id="first-contact" class="level2">
+<h2 class="anchored" data-anchor-id="first-contact">First Contact:</h2>
+<p>Inside the enclosure is a slimline SATA DVD drive module (model DS-8ABSH, which you can also buy <a href="https://www.amazon.com/Lite-DS-8ABSH-01-Internal-Burner-Writer/dp/B01N1XHE66">standalone on Amazon</a> for ~$30). It is connected to a USB-to-SATA adapter that has also been crammed into the enclosure, with a USB cable that you can then plug into your laptop. It shows up as a disk drive, and speaks SCSI - a standard way computers communicate with storage media of various kinds. It’s not uncommon for manufacturers to use extra, secret, undocumented SCSI commands as a sort of hidden communication channel for things like firmware updates - and so initial work included messing about seeing if there were any that produced interesting responses (and ejecting the drive or causing weird noises a lot in the process).</p>
+<p>TODO Pic: EXTRAINQ in action</p>
+<p>At some point we dug up an old firmware update program, designed for DOS and Windows. Poking around in the binary, along with our scans, revealed a few special SCSI commands - including one which gave some Lite-On specific metadata, and one that let us dump a 1MiB firmware window. The firmware was encrypted, but the EXTRAINQ info gave the pieces needed to derive the AES key and IV and decrypt it, giving us our first look at (some of) the code running in the device:</p>
+<p>TODO Pic: Binvis of the firmware before vs after decryption, annotated.</p>
+<p>The first chunk of that was 8051 assembly code, which I could load into Ghidra to decompile and feed to Codex to start exploring. We quickly spotted some promising-looking bits - now the question was, could we modify this and start running our own code instead?</p>
+</section>
+<section id="updaters-in-the-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="updaters-in-the-matrix">Updaters in The Matrix</h2>
+<p>We needed to know the full sequence of steps involved in a firmware update, and after some guesswork based on static analysis of the DOS updater got us nowhere, we decided to run the program in a little simulated world where we could inspect exactly what it was sending during the process.</p>
+<p>Pretty soon, we had the process mapped out well enough to replay an update with the firmware we’d dumped. But when we tried to make modifications, nothing happened. The process would run fine, we could even read the modified firmware back out - but nothing we did seemed to change much. In desperation, we even thought that the USB-SATA bridge might be filtering some key command, and I opened up an old MacBook from a friend to wire in the drive directly - no luck.</p>
+<p>TODO pic sata setup</p>
+<p>Alas, it wasn’t a missing ‘commit’ command after all: it turns out that there’s a firmware integrity step that happens before the drive allows new firmware to be written, and we were failing it. I even had a pretty good guess as to which set of bytes was the key checksum/stamp of approval, but it wasn’t anything simple that we could guess at. Here’s one place where having a tireless AI agent came in clutch. Codex searched relentlessly, finding a handful of updaters for different variants of this drive and others in the same family. Then it patched and re-patched our wine shim, adding more and more functionality as needed to convince these update utilities that they were programming drives, extracting out 5 or 6 ‘sibling’ firmware images (each with their own encoding nuances and tricks required) so that at the end we had a set of similar binary files we could compare.</p>
+<p>Sure enough, those 14 bytes seemed like some sort of key/checksum, but no theory we could come up with revealed what, and despite a ton of work, we couldn’t find anything in any of the updater programs to help us out, nor could we see any code that checked it in the visible 8051 firmware. Still, at least these sibling images would come in handy as references later. For now, we faced a block - if we can’t modify the code, the project is sunk!</p>
+</section>
+<section id="papers-please-bypassing-firmware-integrity-checks" class="level2">
+<h2 class="anchored" data-anchor-id="papers-please-bypassing-firmware-integrity-checks">Papers Please: Bypassing Firmware Integrity Checks</h2>
+<p>We discovered that the official updater sends a separate profile-tail payload, which is essentially an 8051 helper overlay. By changing three bytes in this helper, we turn off a conditional and force the success path - sidestepping the firmware validity check entirely! So, now we can write whatever firmware we like…</p>
+</section>
+<section id="code-caves-and-trampolines" class="level2">
+<h2 class="anchored" data-anchor-id="code-caves-and-trampolines">Code Caves and Trampolines</h2>
+<p>The next step requires us to tread carefully. We’re planning to modify firmware that we don’t understand - a wrong step could leave the drive unresponsive and ‘bricked’. The standard approach here uses two delightfully named concepts. A code cave is a region that we can safely mutate - for example, we have a little 221-byte chunk of FFs at <code>0x6ee3</code> that can be safely over-written. We can write a piece of code there, and then patch some function somewhere to jump there (hence ‘trampoline’), execute our code, and then bounce back to where it was.</p>
+<p>For example, a cautious first step added a delay function in the code cave and then triggered it during the update process while timing the different stages, giving a measurable timing difference. Next was reading out a single bit by conditionally setting an error state. Finally, we made something actually useful - patching the currentboot identity handler (<code>0x4fc9</code>) and using our code to modify the identity string. Now, we could issue a SCSI request and get back a customized response, which let us dump out data such as memory snapshots much faster than the one-bit-per-firmware-update early attempts.</p>
+<p>Later on, this same idea was used to test all kinds of different hypotheses - we can do <em>anything</em> - as long as it fits in 221 bytes :)</p>
+</section>
+<section id="hardware-twiddling-and-cdds-nutz" class="level2">
+<h2 class="anchored" data-anchor-id="hardware-twiddling-and-cdds-nutz">Hardware Twiddling and CDDs Nutz</h2>
+<p>We can see some 8051 code, but there’s also this big chunk that is encoded in some weird way. We tried a <em>ton</em> of different guesses, with no real luck. One thing stood out in the format/layout: a suspicious resemblance to some DVD encodings. The theory is that it uses some internal silicon decoder as part of the process.</p>
+<p>TODO pic of servo switch</p>
+<p>It took a while, but eventually we were able to map out the code path responsible for ‘decoding’ this into code/data at runtime, and build a helper to let us use the on-chip decoding path to slowly read out the materialized CDD contents one chunk at a time. Each run required power cycling the drive - fortunately, I’d long ago hooked up some circuitry to let Codex trigger a physical disconnect of the drive at will rather than relying on my meat fingers to do the boring labor. Unfortunately, those reads don’t see the full picture, only slices of the working window containing a few snippets of code.</p>
+<p>TODO pic of resistor for drive faking</p>
+<p>Still - the hardware cold reboot was useful for various parts of this. I later added another line that let me fake the switch that detects whether the sled is inserted, so that we could fake eject/insert operations with code as well. These hardware mods are useful for reverse engineering, but hopefully won’t be needed by anyone attempting to follow in my footsteps.</p>
+</section>
+<section id="the-state-of-things" class="level2">
+<h2 class="anchored" data-anchor-id="the-state-of-things">The State Of Things</h2>
+<p>TODO we still can’t fully decode CDDs. Can move sled around with standard SEEK(), and have hacks to spin drive, toggle laser and other party tricks but no proper full low-level control yet for things like focus / positioning.</p>
+<p>TODO write better narrative arc, were we doomed, recovery, more details of various bits.</p>
+</section>
+<section id="conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
+<p>I was impressed by https://scanlime.org/tag/coastermelt/ (aside, how is it ~10k views!!) a tour de force of RE, introduced me to many ideas including the very idea of interactive disassembly, bit banging serial communications via a button/LED pins,</p>
+<p>TODO linux direct sg_read Proper reboot required Ownership oracle if that pans out Currentboot vs live Small Computer System Interface (SCSI), pronounced “scuzzy,” It’s using the traces of GP26 to look at power draw and such to detect hardware motion, v clever! TODO pic</p>
+</section>
+<section id="ai-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="ai-thoughts">AI Thoughts</h2>
+<ul>
+<li>This was a verifiable task (or many)</li>
+</ul>
+</section>
+<section id="inevitable-pits-of-despair-complexity-ceilings" class="level2">
+<h2 class="anchored" data-anchor-id="inevitable-pits-of-despair-complexity-ceilings">Inevitable Pits of Despair (Complexity Ceilings)</h2>
+<p>As with any AI project pushing up against the ceiling of what models are capable of, there came a time when progress began to slow and I found myself going in circles a little. It can be easy to get stuck here - “one more prompt will surely fix it” is a the natural feeling, one that I think causes lots of burnout and pain when people (myself included) miss the signs. I’ll be honest - this time around I noticed, but kept going past that point without snapping out of it - which is why I have 2.5 drives out of four in working order!</p>
+<p>When faced with this blocks, there are a few tricks you can try: Wait for better models Package up the core question and ‘ask the council’ - GPT 5.5 Pro, Opus 4.7, even Grok - you can ‘live in the future’ a little by leaning on the top tier models in aggregate. Sometimes this is just enough to break through some barrier Actually do some work. A nice option if you do have the skills for it :) Find a way around, approaching things from a different angle or working on some other aspect for a while.</p>
+<p>In my case, a combination of fresh ideas from Pro, fresh motivation from me, and the addition of some DVDs to open up new code paths to explore broke the deadlock and got things moving again.</p>
+</section>
+<section id="other" class="level2">
+<h2 class="anchored" data-anchor-id="other">Other</h2>
+<p>Benchmark task, prev models got nowhere, now on the cusp, still limited, still wants to make it look like progress even when things are stalling a little, no doubt we’re close to autonomous for most of this.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>misc</category>
+  <guid>https://johnowhitaker.dev/posts/dvd_hack.html</guid>
+  <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/posts/thumbnails/TODO.jpeg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Chasing Green - My Adventures in Genetic Engineering of Bacteria</title>
   <link>https://johnowhitaker.dev/misc/chasing_green.html</link>
@@ -1092,42 +1173,6 @@ viewer_1769122862701931.render();
   <category>bio</category>
   <guid>https://johnowhitaker.dev/posts/watch_b_grow.html</guid>
   <pubDate>Sat, 29 Nov 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Tab Clearning (Nov 2025)</title>
-  <link>https://johnowhitaker.dev/misc/tab_clear_nov20_2025.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>Clearing some recent tabs. I’m not sure how useful these posts are to anyone else, but they help me finally read + close things I’ve been meaning to get to.</p>
-<p><img src="https://johnowhitaker.dev/misc/thumbnails/bacterial_cellulose.png" class="img-fluid"></p>
-<ul>
-<li>I’m getting into bio for the pretty colors :D Found this cool paper (https://www.cell.com/trends/biotechnology/fulltext/S0167-7799(25)00407-X) still need to read it properly but fun to see a recent example of things covered in the bioprocess engineering book I’m busy with.</li>
-<li><a href="https://arxiv.org/abs/2511.07384">TEACHING PRETRAINED LANGUAGE MODELS TO THINK DEEPER WITH RETROFITTED RECURRENCE</a> - recurrent models seem to be having a moment, and I’m always a fan of starting from existing models to try stuff out.</li>
-<li>LeJEPA paper</li>
-</ul>
-<p><img src="https://johnowhitaker.dev/misc/thumbnails/wlife.png" class="img-fluid"></p>
-<ul>
-<li><p><a href="https://writings.stephenwolfram.com/2025/11/whats-special-about-life-bulk-orchestration-and-the-rulial-ensemble-in-biology-and-beyond/">What’s Special about Life?</a> a nice Wolfram piece - the man makes good computation ‘model organisms’ for getting his point across!</p></li>
-<li><p><a href="https://en.wikipedia.org/wiki/Eye_testing_using_speckle">Eye testing using laser speckle</a> TIL I am near sighted.</p></li>
-<li><p><a href="https://archiveofourown.org/works/74161771">What Begets the End</a> (fiction/short story) lots of good ai-safety-adjacent writing recently</p></li>
-<li><p><a href="https://www.suntory.com/sic/research/s_bluerose/story/">Blue roses</a> (they are not blue)</p></li>
-<li><p>You should google ‘acoustic droplet ejection’ (ADE) / acoustic liquid handling — wild tech, e.g.&nbsp;the echo device can dispense liquids in 10nl droplets to mix different reagents together in tons of different wells for automated experiments at tiny scale. It sends an ultrasound pulse to sense the resevoir bottom, the meniscus and some liquid properties, then a strong pulse that ejects a droplet up and into an overturned well above. Crazy stuff.</p></li>
-<li><p><a href="https://android-dreams.ai/">Android dreams</a> - an attempt at an AGI2027 style post for robotics. I find it hard to get much from these stories - robotics seems to be improving, the predicted developments often make sense, but guessing how things go in terms of quantities, dates, and further out scenarios is tricky.</p></li>
-<li><p><a href="https://www.greaterwrong.com/posts/apHWSGDiydv3ivmg6/varieties-of-doom">Varieties of doom</a> sumary: ‘doom’ comes in many debatable flavours. (Seems like I have an AI safety skew in these links, which I don’t think reflects my browsing habit, only my ‘tabs I don’t actually read then close’ habit!)</p></li>
-<li><p><a href="https://algaeresearchsupply.com/">Algae research supply</a> sell various cool things including a kit where you feed brine shrimp flourescent microplastics haha</p></li>
-<li><p><a href="https://pyrofarms.com/">Pyrofarm</a> sell bioluminescent algae, extremely cool</p></li>
-<li><p>I’ve been looking around at bio-related offerings, https://www.bio-world.com/, https://www.carolina.com/gene-expression-advanced-topics/glow-in-the-dark-transformation-kit/FAM_211086.pr?srsltid=AfmBOoqRoXZ9qhJH6bVUdAYbZov44Z08g6H6nLD0SktbJE5kCNdo7Wdg, https://amino.bio/products/engineer-it-kit, seem like cool kits are available and affordable. Also vectorbuilder.com, https://www.twistbioscience.com/products/genes, https://www.genscript.com/, seem like options for custom plasmids and addgene looks cool.</p></li>
-</ul>
-
-
-
- ]]></description>
-  <category>misc</category>
-  <guid>https://johnowhitaker.dev/misc/tab_clear_nov20_2025.html</guid>
-  <pubDate>Thu, 20 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
