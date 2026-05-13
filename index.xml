@@ -10,7 +10,33 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.10.3</generator>
-<lastBuildDate>Tue, 05 May 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 13 May 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Teaching Neural Cellular Automata To Play Games</title>
+  <link>https://johnowhitaker.dev/misc/nca_games.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Some tiny experiments in pushing on what NCA can do, showing my own tiny experiments but also pointing at some resources and hopefully inspiring you to try some new ideas yourself :)</p>
+<p>Explanatory video: https://www.youtube.com/watch?v=0w_cVJoD2uk</p>
+<p>Markdown file with hopefully enough info for your coding agent of choice to get your own experiments going: https://gist.github.com/johnowhitaker/bf664eb56dfe50b05d5ef319a0364dae</p>
+<p>Key references:</p>
+<ul>
+<li>https://wandb.ai/johnowhitaker/nca/reports/Fun-With-Neural-Cellular-Automata–VmlldzoyMDQ5Mjg0</li>
+<li>https://arxiv.org/abs/2111.13545</li>
+<li>https://distill.pub/2020/growing-ca/</li>
+</ul>
+
+
+
+ ]]></description>
+  <category>Video</category>
+  <guid>https://johnowhitaker.dev/misc/nca_games.html</guid>
+  <pubDate>Wed, 13 May 2026 00:00:00 GMT</pubDate>
+  <media:content url="https://johnowhitaker.dev/misc/thumbnails/nca_game.png" medium="image" type="image/png" height="102" width="144"/>
+</item>
 <item>
   <title>RE of a DVD Drive</title>
   <link>https://johnowhitaker.dev/posts/dvd_hack.html</link>
@@ -1093,88 +1119,6 @@ viewer_1769122862701931.render();
   <category>bio</category>
   <guid>https://johnowhitaker.dev/posts/bacterial_transformation.html</guid>
   <pubDate>Sun, 30 Nov 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Watching Bacteria Grow</title>
-  <link>https://johnowhitaker.dev/posts/watch_b_grow.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>I’m getting back into microbiology, despite my <a href="https://johnowhitaker.dev/mini-hw-projects/2024-03-30-bio.html">misgivings from last time I dipped a toe into the field</a>. I’ll be attempting to insert a plasmid of my own design into bacteria - more on that coming soon! In the meantime, I’ve been practicing my sterile technique and messing about. In this post, while I wait for some cultures to grow for my first transformation attempt, I’ll introduce some of the stuff I’ve been playin with and show how I made a simple machine that logs optical density (OD) over time to plot bacterial growth curves.</p>
-<section id="agar-plates-and-yummy-broth" class="level2">
-<h2 class="anchored" data-anchor-id="agar-plates-and-yummy-broth">Agar Plates and Yummy Broth</h2>
-<p>It can be fun to just make some agar plates and see what grows. I’ve been trying out just DIY-ing the broth. Recipe:</p>
-<ul>
-<li>250ml distilled water</li>
-<li>1/2 tsp marmite</li>
-<li>1/4 tsp ‘better than bouillon’</li>
-<li>Add 4g agar agar if wanting solid media</li>
-</ul>
-<p>Dissolve the marmite and bouillon in hot water, then add to a glass bottle, add agar if using, and shake. Put the lid on loose, and boil for a while (shake if agar isn’t dissolving well). I left it simmering for a while on the stove then popped it into the insulated pot. Goal is to sterilize it all thoroughly.</p>
-<p>You then wait for it to cool to ~55C before pouring into petri dishes. I also tried using little sauce tubs from the store - so far I haven’t had any contamination with them, I’m carefully opening the bag with gloves that have been sterilized with alcohol, working near a flame on a clean, sterile surface, and pouring then capping without much chance for stuff to float in.</p>
-<p><img src="https://johnowhitaker.dev/posts/images/bio_lab_plates.png" class="img-fluid"></p>
-<p>The first batch I made I used tap water, which here in Portland has some treatment that sticks around. Less grew on those than on the second batch where I used distilled water.</p>
-<p>I did a test comparing some supplements a friend had that she <em>hoped</em> were sterile (they were not) with some probiotics I had that had one species alive and present (as the selling point) vs a control plate or two with nothing added. I also swabbed some of the flocs that I still have sitting around (they have algae growing there too now!) and got a much more diverse plate as a result, including a few pink colonies I’ve streaked out :) Probably a yeast like <a href="https://en.wikipedia.org/wiki/Rhodotorula">Rhodotorula</a> or something else…</p>
-<p><img src="https://johnowhitaker.dev/posts/images/pink_colonies.png" class="img-fluid"></p>
-<p>Under a scope they look like yeast (too big for bacteria) and stain with methylene blue. I might send them off for sequencing later.</p>
-</section>
-<section id="diy-optical-density-logger" class="level2">
-<h2 class="anchored" data-anchor-id="diy-optical-density-logger">DIY Optical Density Logger</h2>
-<p><img src="https://johnowhitaker.dev/posts/images/od_logger.png" class="img-fluid"></p>
-<p>The idea with this machine is to log how much light gets through a tube with some broth and bacteria in it. As the bacteria grow, they block more light, so the amount of light that gets through decreases. By measuring this over time, we can plot a growth curve. This comes in useful later when, for example, you’re wanting to know when your bacteria are in the right phase of growth for transformation. On one side of the tube I have a white LED with a 220 ohm resistor. On the other, there’s a TEPT4400 phototransistor with a 10k ohm pull-down resistor. The phototransistor’s output is connected to an analog input on the raspberry pi pico which reads the voltage and sends it over serial. I store a reading (averaged across a bunch of samples) every 10 seconds. I hooked it up to my raspberry pi 5 so I could set it logging and leave it for many hours. The tube slots in and a cap goes down over it, with the gaps taped up, to keep ambient light from interfearing too much. Here’s what the curve looks like when I pop in some E. coli (strain MM294) into some marmite broth:</p>
-<p><img src="https://johnowhitaker.dev/posts/images/bac_growth.png" class="img-fluid"></p>
-<p>(Using <code>df['OD'] = -np.log10(df['volts'] / df['volts'].iloc[0])</code>). Since they’re in a small sealed vial, it doesn’t take long for things to slow. Also, I probably need to tweak Rsense and the setup in general to get cleaner, less noisy readings and better range. Still, cool huh!</p>
-</section>
-<section id="the-bigger-plan" class="level2">
-<h2 class="anchored" data-anchor-id="the-bigger-plan">The bigger plan</h2>
-<p>I’ve been reading textbooks and having fun learning about palsmid design. <a href="https://github.com/johnowhitaker/BLY">Here</a> is my current attempt at designing something fun - the resulting plasmids should show up in a week or so! As for the ‘larger plan’, I’m mostly just messing about and seeing where my interests take me. Here’s a rough attempt to map out the trajectory I’m picturing for now (I expect plenty more side quests will spawn along the way):</p>
-<p>Base progression</p>
-<ul>
-<li>Make some plates (DONE)</li>
-<li>Culture some things, practice streaking, colony picking, sterile technique (DONE)</li>
-<li>Grow e. coli from carolina kit (DONE)</li>
-<li>Transform with glowy plasmid, from kit (WIP)</li>
-<li>Attempt a transform with <a href="https://github.com/johnowhitaker/BLY">my own plasmid</a></li>
-<li>Agar art with my own transformed bug</li>
-<li>Make new agar stabs of mine and sebs strains</li>
-<li>Do a mini-prep</li>
-<li>Run some gels (with a friend’s kit)</li>
-<li>Follow interests from there</li>
-<li>Teach - e.g.&nbsp;agar art kits, videos</li>
-<li>Attempt a more complex genetic engineering project.</li>
-<li>At some point: monitor turbidity in liquid culture for growth curves (This post!)</li>
-<li>At some point, make a centrifuge + heat block type thing</li>
-</ul>
-<p>Pink side quest</p>
-<ul>
-<li>Swab flocs (DONE)</li>
-<li>Pick and streak pink colonies (DONE)</li>
-<li>Scrape a bunch up and extract pigment with acetone</li>
-<li>Run chromatography (inc. on TLC plates - new kit/skill)</li>
-<li>Agar art with them</li>
-<li>Try some liquid culture maybe?</li>
-<li>Test exposure to UV and how that affects pigment production.</li>
-<li>Write up - would be a cool exploration! Especially if can be consistent extracting + photographing</li>
-</ul>
-<p>Read:</p>
-<ul>
-<li>Popsci (how life works (lame), song of the cell (better))</li>
-<li>Bioprocess engineering (summaries only for later chapters),</li>
-<li>Molecular biology of the cell (skim, research deeper for interesting bits). Ditto ‘Essential Cell Biology’, although I am enjoying giving some chapters more serious study.</li>
-<li>Watch: Thought emporium, everymanbio, some lab technique videos.</li>
-</ul>
-<p>https://kevinhunter.opened.ca/ has great agar art info. TIL it <a href="https://www.smithsonianmag.com/science-nature/painting-with-penicillin-alexander-flemings-germ-art-1761496/">started with flemming</a></p>
-
-
-</section>
-
- ]]></description>
-  <category>mini-hw-projects</category>
-  <category>bio</category>
-  <guid>https://johnowhitaker.dev/posts/watch_b_grow.html</guid>
-  <pubDate>Sat, 29 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

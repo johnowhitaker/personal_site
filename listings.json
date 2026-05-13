@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/misc/nca_games.html",
       "/posts/dvd_hack.html",
       "/misc/chasing_green.html",
       "/posts/misc_upd_apr2026.html",
@@ -233,6 +234,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/misc/nca_games.html",
       "/posts/dvd_hack.html",
       "/misc/chasing_green.html",
       "/posts/misc_upd_apr2026.html",
