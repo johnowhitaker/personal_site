@@ -1,6 +1,6 @@
 ---
 title: "Teaching Neural Cellular Automata To Play Games"
-date: 2025-10-28
+date: 2026-05-13
 image: thumbnails/nca_game.png
 description: "Playing Pong, Solving Mazes and Guessing At Pictionary using NCAs"
 categories:
