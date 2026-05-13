@@ -18,3 +18,5 @@ Key references:
 - https://wandb.ai/johnowhitaker/nca/reports/Fun-With-Neural-Cellular-Automata--VmlldzoyMDQ5Mjg0
 - https://arxiv.org/abs/2111.13545
 - https://distill.pub/2020/growing-ca/
+
+Also, I did some content for fast.ai on NCAs hidden deep in [this video](https://youtu.be/PdNHkTLU2oQ?si=K0w67-4-yIgkD5KO&t=4479) - worth a look if you want more polished content from me on this stuff :)
