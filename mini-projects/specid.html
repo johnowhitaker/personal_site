@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.3">
+<meta name="generator" content="quarto-1.10.5">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -40,10 +40,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-fedc0afa5eed45b88079642ee2c6e752.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-cc03a45504bcebdf2e36fbb04c837120.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e42cdf836f9b904b02dd19a7390dd244.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-764dd65e74ff0e9782df7d2aac61274d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -198,6 +198,7 @@ ul.task-list li input[type="checkbox"] {
 
 <p>We were talking recently around “What is something you could do through a chat interface that current LLMs can’t?”. One example I give personally is identifying Zimbabwean spider species - a lot of which are ~undocumented* so knowledge on what the living specimens look like is concentrated in a few heads, plus a smattering of posts on Facebook and iNaturalist. Anyway, I thought I should put my money where my mouth is and make an actual eval for this, to see how badly SOTA multi-modal LLMs do. Here are the results:</p>
 <p><img src="images/specid_results.png" class="img-fluid"></p>
+<p>*Update 3: gemini-3.5-flash gets 67%, and 65% on a test set made with observations that aren’t mine (to my 63%), I’m counting this is ‘beating top human score’, just over 1 year after this eval was created.</p>
 <p>*Update 2: gemini-3-pro-preview gets 64%, probably beats me when not using my own observations! Edit: we tied when looking at a friend’s observations. I may be dethroned!</p>
 <p>*Update: gemini-2.5-pro-exp-03-25 gets 57%, the new top score! And Flash 2.5 gets 53% when forcing function calls (previously a bug)</p>
 <p>The way I constructed this eval was to pull 100 photos with confirmed “research grade” identifications from my iNaturalist catalog. Each sample gets up to four ‘distractors’ - species names for closely-related organisms in the same ~family/group as the target. Multiple-choice is significantly easier than dredging up the name ‘cold’ (especially since many latin names have clues that match visual aspects of the species). And the quiz is harder for me that it could have been, since I included all species (bugs, birds, plants) not just spiders! Turns out I’m way worse at the latin names outside my comfort zone :D Still - at least at present I have a lead on the best models - just not as much of a one as I expected! It’s stunning that 4o can get more than half of these right.</p>
