@@ -9,6 +9,8 @@ We were talking recently around "What is something you could do through a chat i
 
 ![](images/specid_results.png)
 
+*Update 3: gemini-3.5-flash gets 67%, and 65% on a test set made with observations that aren't mine (to my 63%), I'm counting this is 'beating top human score', just over 1 year after this eval was created.
+
 *Update 2: gemini-3-pro-preview gets 64%, probably beats me when not using my own observations! Edit: we tied when looking at a friend's observations. I may be dethroned!
 
 *Update:  gemini-2.5-pro-exp-03-25 gets 57%, the new top score! And Flash 2.5 gets 53% when forcing function calls (previously a bug)
