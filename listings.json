@@ -1,8 +1,9 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/all.html",
     "items": [
       "/posts/prot_extract.html",
+      "/posts/generative_mutate.html",
       "/misc/nca_games.html",
       "/posts/dvd_hack.html",
       "/misc/chasing_green.html",
@@ -233,9 +234,10 @@
     ]
   },
   {
-    "listing": "/all.html",
+    "listing": "/index.html",
     "items": [
       "/posts/prot_extract.html",
+      "/posts/generative_mutate.html",
       "/misc/nca_games.html",
       "/posts/dvd_hack.html",
       "/misc/chasing_green.html",

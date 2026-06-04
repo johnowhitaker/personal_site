@@ -9,7 +9,7 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.10.7</generator>
+<generator>quarto-1.10.8</generator>
 <lastBuildDate>Tue, 02 Jun 2026 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Hunting for Miracles in the ESM Protein Atlas</title>
@@ -49,6 +49,43 @@
   <guid>https://johnowhitaker.dev/posts/prot_extract.html</guid>
   <pubDate>Tue, 02 Jun 2026 00:00:00 GMT</pubDate>
   <media:content url="https://johnowhitaker.dev/posts/images/prot_extract-Cover.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Messing about with ESMC</title>
+  <link>https://johnowhitaker.dev/posts/generative_mutate.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Rambly video poking at some of the new models released by Biohub, seeing if leveraging their protein LLM can give us better ways to mutate candidate sequences for downstream tasks. I AM A NOOB - do not take anything in this video as gospel :) Corrections welcomed, comments and thoughts appreciated!</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/csLSuLVAzHo" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p><a href="https://colab.research.google.com/drive/1mvqlTVIScs6mMVhw0ZlyXxnan6RuWjxg?usp=sharing">Notebook link</a></p>
+<p>ESM gives a masked language model that operates on amino acid sequences, with each AA being a token. The main idea from the video is to take advantage of this when making a mutation of a sequence, by replacing random AAs with ones the model things are plausible/likely, ranther than completely randomly replacing them.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/posts/images/gen_mut1.png" class="img-fluid figure-img"></p>
+<figcaption>Visualizing some mutation examples</figcaption>
+</figure>
+</div>
+<p>I had AI help cobble together a quick and dirty test, comparing random mutations with this approach on a made-up task around a cohesin target + dockerin binder. The score function is a little fudged, although even ‘real’ prot engineering tasks do tend to blend in model prediction confidence as part of their score functions. Anyway, at least in this mini demo, the new mutation strategy produces higher-scoring candidates than random:</p>
+<p><img src="https://johnowhitaker.dev/posts/images/gen_mut2.png" class="img-fluid"></p>
+<p>After this initial dabble, I did check out the newly-released actual binder design flow that the biohub people shared, and it is a lot fancier and more involved. Still - at one point they do initialize the mutable AA positions with <code>0.01 * torch.randn(...)</code> and I thought, hey, maybe I could instead use the logits from the model, inspired by the dabbles above. This at first appeared to work really well - the total loss (all I looked at initially) was way lower! But this is just because the loss includes a term comparing the model prior with the learned dist, and by initializing based on the model prior we obviously do well on that! And, it turns out, worse on everything else that actually matters:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/posts/images/gen_mut3.png" class="img-fluid figure-img"></p>
+<figcaption>Testing my init strategy on an antibody design task based on the biohub work.</figcaption>
+</figure>
+</div>
+<p>Still, nice to see how the pros actually do this stuff. And it does feel like there might well be plenty of space for speed improvements, I may have to spend more of my modal credits trying to improve this more generally with all my old training/optimization tricks :)</p>
+
+
+
+ ]]></description>
+  <category>bio</category>
+  <category>video</category>
+  <guid>https://johnowhitaker.dev/posts/generative_mutate.html</guid>
+  <pubDate>Fri, 29 May 2026 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Teaching Neural Cellular Automata To Play Games</title>
@@ -1067,33 +1104,6 @@ viewer_1769122862701931.render();
   <category>bio</category>
   <guid>https://johnowhitaker.dev/posts/blygreen_p1.html</guid>
   <pubDate>Sun, 14 Dec 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>AOC2025</title>
-  <link>https://johnowhitaker.dev/misc/AOC2025.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>Day 1: <a href="https://www.youtube.com/watch?v=-YRCgjcuAJ4">Here</a> is day 1. (<a href="https://share.solve.it.com/d/b004443523475274df5d756806394089">dialog</a>). I knew there was a nice floor-y way to do part two but between gabbling trying to verbalize my thought process and the inherent de-buff that being on video gives, I resorted to checking a range instead and immediately felt a little silly. Ah well - so it goes :)</p>
-<p>Day 2: I recorded my solve attempt again (<a href="https://www.youtube.com/watch?v=a7HU3vxeCWI">here</a>, long and boring). I got bogged down in an optimization for part a that seemed like a good idea (and WAS a good idea on the sample data) but that knocked me off the rails a bit haha, code got worse and worse! I’d normally go on a walk, maybe if this happens again I’ll pause the recording rather than trying to keep typing. Still, ended up with basically the same solutions as everyone else here, albeit with a small trick for part 1.</p>
-<p>Day 3: Much smoother, My <a href="https://share.solve.it.com/d/d59602c624d2ee1bcf68f4ee25915a18">dialog</a> and <a href="https://www.youtube.com/watch?v=Jd6QB5Xk8-Y">video</a>. Tea and slowing down for the win!</p>
-<p>Day 4: My <a href="https://share.solve.it.com/d/9100d5e09acee8e3a0da36ef7ed8010f">dialog</a>, <a href="https://www.youtube.com/watch?v=Gn0Wcbd9GhQ">video</a> (both short today)</p>
-<p>Day 5: Getting into territory where diagramming helps, thinking hard helps, and thinking about memory + speed starts to come up :slight_smile: My <a href="https://youtu.be/1ACIYLIgop4">video</a>. A little cheeky that ||the sample has ids sorted while the main input doesn’t! Good reason to look at your data :slight_smile: ||</p>
-<p>Day 6, 7 and 8 got <a href="https://www.youtube.com/watch?v=FS34ADS5ZZQ">batched together</a> since I didn’t want to code on the weekend and had other business on Monday.</p>
-<p>Day 9: Part 1 was easy, part 2 I fell for the temptation of trying to make the ‘grid’ for the full-size input - which turns out to be way too big to fit in memory! Solveit had an excellent suggestion to map coords to a much smaller space (since there are only ~500 so most rows + cols can be removed without changing the result) - as long as you then map back to OG coords for area this works and is reasonably fast. <a href="https://share.solve.it.com/d/c3642ada1b225996bb29f262d24719be">solution</a>. Viz’ing the grid in this compressed space shows the genius of the problem setters.</p>
-<p><img src="https://johnowhitaker.dev/misc/thumbnails/grid.png" class="img-fluid"></p>
-<p>Day 10. <a href="https://share.solve.it.com/d/3e001554b9c683a68d611f525560ba84">Dialog</a>. Part 2 I caved and just used the milp library. I liked my idea for part 1 to use a graph with a node per possible light state and then get the shortest path :)</p>
-<p>Day 11. <a href="https://share.solve.it.com/d/8d7f092a3ad5095f582b8d8732b5a26f">Dialog</a>. More graph stuff. Was pleased to figure out I should look at the substeps for part 2, which then revealed a simplification we could make.</p>
-<p>And Day 12! [Dialog]. A fun one to end on, and a good reminder to look at your data :D Here’s a <a href="https://www.youtube.com/watch?v=UanxRJL3rMU">video</a> covering days 10, 11 and 12. Thanks to Eric for setting all of these!</p>
-
-
-
- ]]></description>
-  <category>misc</category>
-  <guid>https://johnowhitaker.dev/misc/AOC2025.html</guid>
-  <pubDate>Mon, 01 Dec 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
