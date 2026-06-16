@@ -10,7 +10,42 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.10.11</generator>
-<lastBuildDate>Tue, 02 Jun 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 16 Jun 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Inkwash &amp; Personal Software</title>
+  <link>https://johnowhitaker.dev/posts/inkwash.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I made <a href="https://johnowhitaker.github.io/inkwash/">Inkwash</a> over the weekend. It is a watercolor-like sketching experience, where you draw with ‘ink’ then move it around with a brush, complete with fluid dynamics, water drying, ink color bleeding, etc. Check out <a href="https://x.com/johnowhitaker/status/2065118226879811737?s=20">a video of an early version in action</a>, the <a href="https://johnowhitaker.github.io/inkwash/about">interactive explanation of how it works</a> or just check out the <a href="https://github.com/johnowhitaker/inkwash">Github repo</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://github.com/johnowhitaker/inkwash/blob/main/images/inkwash_tests.png?raw=true" class="img-fluid figure-img"></p>
+<figcaption>A few test sketches from the first few days of tinkering</figcaption>
+</figure>
+</div>
+<p>It is tailored specifically to my exact sketching style, which in real life involves a G2 pen and a water brush, plus occasional watercolors. For the first time, I have a digital approximation of that which lets me capture what I see in the same way. It is, for me, a perfect, joyful piece of software.</p>
+<p>And the way I made it is extraordinary - or would be, if the magical hadn’t become mundane: I asked the computer for it. With a handful of <a href="https://github.com/johnowhitaker/inkwash/blob/main/prompts.md">prompts</a>, Claude Fable 5 built the app up and refined it with me. And, when asked, it spat out a delightful interactive <a href="https://johnowhitaker.github.io/inkwash/about">explanation</a> of the mechanics. This is the kind of thing that used to require weeks of loving dedication &amp; skill to make. Now, the majority of my ‘development’ time was playing with the app and thinking about what else would be neat to include.</p>
+<p>The weekend before, I had a similar experience making a music looping <a href="https://github.com/johnowhitaker/magenta-realtime/tree/main/examples/looper">app</a> with GPT 5.5. in codex, albeit with a bit more involvement on my part:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/posts/images/looper.png" class="img-fluid figure-img"></p>
+<figcaption>An AI-powered music looping app</figcaption>
+</figure>
+</div>
+<p>I don’t quite know what to write about these things. Fable, specifically, feels like another jump in terms of understanding intent and being able to do the hard work to make things happen with software. And (barring government interference) things are only going to get better from here.</p>
+<p>I don’t feel the need to drop everything and monetise/market these apps. If I’m sharing them at all, it’s to say ‘hey look, something fun to play with’. I am writing this post because I guess I should link these cool things I made from my site? But mostly they’re for me - bits of software that I wanted, and now have. I still see lots of cynical takes along the lines of ‘if AI is good then why aren’t there loads of new hit apps in the app store / new SAAS companies killing it’. Honestly, for me, the feeling is that software might end up looking a lot more personal. I have my fun art app now - I expect you to make yours, if you want it! It doesn’t have to be perfect, the code doesn’t have to look just right. The models will keep getting better, the scope of what we can make will keep growing, and (I hope) there is going to be so much fun stuff made in the future. Hooray? ¯_(ツ)_/¯</p>
+
+
+
+ ]]></description>
+  <category>blogs</category>
+  <category>essays</category>
+  <guid>https://johnowhitaker.dev/posts/inkwash.html</guid>
+  <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Hunting for Miracles in the ESM Protein Atlas</title>
   <link>https://johnowhitaker.dev/posts/prot_extract.html</link>
@@ -1034,76 +1069,6 @@ viewer_1769122862701931.render();
   <guid>https://johnowhitaker.dev/misc/tinker.html</guid>
   <pubDate>Wed, 17 Dec 2025 00:00:00 GMT</pubDate>
   <media:content url="https://johnowhitaker.dev/misc/thumbnails/tinker.png" medium="image" type="image/png" height="87" width="144"/>
-</item>
-<item>
-  <title>Watching Bacteria NOT BE GREEN</title>
-  <link>https://johnowhitaker.dev/posts/blygreen_p1.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>I’ve been getting back into DIYBio, and the next step I wanted to try was making a custom plasmid. Casting about for ideas, I thought it would be neat to try for something that looks visibly green under natural light. You see, I’d bought a few <a href="https://atinygreencell.com/products/rainbow-chromoprotein-expression-plasmid-set">Rainbow chromoprotein sets</a> from Sebastian (<span class="citation" data-cites="atinygreencell">@atinygreencell</span>) to support his epic work, and while they are delightful, the green is basically yellow:</p>
-<p><img src="https://johnowhitaker.dev/posts/images/rainbow2.jpg" class="img-fluid"></p>
-<p>At least, until you look under UV or blue light - it’s a flourescent protein, so it glows bright green then (so do a few others):</p>
-<p><img src="https://johnowhitaker.dev/posts/images/rainbow_uv.jpg" class="img-fluid"></p>
-<p>After a deep dive into how Touracos get their green (TIL: copper) I decided to try a wacky idea.</p>
-<section id="take-1-fusion" class="level2">
-<h2 class="anchored" data-anchor-id="take-1-fusion">Take 1: Fusion</h2>
-<p>Inspired by this <a href="https://thethoughtemporium.ca/products/electric-blue-1?srsltid=AfmBOooZZSCoBpI6RyCKpJSG7oRdLvRdTOQMlUCsEKbNAkohtPZlEHYI">electric blue plasmid</a> designed by Justin from the Thought Emporium, I figured I’d link together a yellow protein and a blue protein to get green. That’s how it works with paint, right? I dug around, found some candidate proteins, designed a construct, and had even started the order process for what I thought would be a very cool new protein:</p>
-<p><img src="https://johnowhitaker.dev/posts/images/bly_alphafold.png" class="img-fluid"></p>
-<p>I learned a ton about how the whole process works. It seems a lot of plasmid design involves copying strings of ATGACCGCGCTGACC… around, which I didn’t want to do, so I set about constructing it out of known pieces in a solveit notebook (an interactive coding environment). You can see the code <a href="https://github.com/johnowhitaker/BLY/blob/main/attempt_1_flawed/BLY_Designing_The_Plasmid.ipynb">here</a>. Some bits I learned:</p>
-<ul>
-<li>Keeping track of start and stop codons</li>
-<li>Linking two proteins with a flexible linker</li>
-<li>Back-translating from an amino acid sequence to DNA that should express it</li>
-<li>The various other pieces of plasmid design - promoters, origins of replication, antibiotic resistance markers, terminators, Ribosome Binding Sites (RBS), etc.</li>
-<li>Cloning restriction sites, including checking for accidental ones in the parts I wanted to use and making substitutions to remove them</li>
-</ul>
-<p>I’m pleased with the <a href="https://github.com/johnowhitaker/BLY/tree/main/attempt_1_flawed">result</a>, but as I waited for the DNA synthesis to start, a final LLM-assisted check caught a fatal flaw: aeBlue is a tetramer! That is, four monomers come together to make the final protein. Having yellow monomers hanging on could tangle up the process, leaving me with a non-functional mess. Oh no! Thankfully I managed to contact the kind folks at GenScript who were synthesizing the DNA for me, and they were able to cancel the order before it was made, and I frantically changed plan last minute and sent new DNA to them instead.</p>
-</section>
-<section id="sebs-work" class="level2">
-<h2 class="anchored" data-anchor-id="sebs-work">Seb’s work</h2>
-<p>More recently, chattingh to Sebastian, I mentioned this project and, lo and behold, he actually did just this way back in 2022!</p>
-<p><img src="https://johnowhitaker.dev/posts/images/sebs_green.jpeg" class="img-fluid"></p>
-<p>He thought it hadn’t worked, but eventually after putting it in a more productive strain and growing it out for a while, he got some visible green color. And he used aeBlue as his blue piece - so maybe mine would have worked after all! Alas. Still, having the chance to chat to someone experienced who had already tried this gave me some vital info for the rest of the project.</p>
-</section>
-<section id="my-revised-plasmid" class="level2">
-<h2 class="anchored" data-anchor-id="my-revised-plasmid">My revised plasmid</h2>
-<p>I somewhat frantically fell back on a plan B when I was rushing to get a new sequence to GenScript. The new plan: make the yellow and the blue separately, each with their own RBS and terminator, on the same plasmid. This way, they can fold up independently, hopefully avoiding the tetramer problem. And if the balance is off, this has the benefit that I can switch to a different promoter or RBS for one or the other to try to tune the expression levels. Here’s the new design (and the <a href="https://github.com/johnowhitaker/BLY/blob/main/BLYv2_green.ipynb">notebook</a> that I designed it in):</p>
-<p><img src="https://github.com/johnowhitaker/BLY/blob/main/bly_green_pUC57-Kan%20Map.png?raw=true" class="img-fluid"></p>
-<p>I switched to a weaker promoter than Seb’s designs, worrying about burdening the cells. This was probably a mistake given that it took him ages to see any expression - but then I didn’t know about his work then. I also gave up on worrying about cloning sites, and tried to keep it minimal. I did change the amino acid sequence of the fwYellow protein though, to add an easter egg I’ll reveal later ;)</p>
-</section>
-<section id="getting-it-in-cells" class="level2">
-<h2 class="anchored" data-anchor-id="getting-it-in-cells">Getting it in cells</h2>
-<p>I got the new plasmid in the mail, and an hour after it arrived the DNA was in some cells sitting replicating on a plate. The protocol I followed was essentially the same as that in my last post on <a href="https://johnowhitaker.dev/posts/bacterial_transformation.html">glowing bacteria</a> - with a few shortcuts and refiniements. I did have to whip up some sterile water to dilute the DNA - fortunately I have some syringe filters that did the job nicely. And now I have extra on hand in case I need it again in a hurry. The more you do, the more you learn and the moretricks you aquire! I’m feeling a lot more competent as I practice all the pieces of this puzzle.</p>
-<p><img src="https://johnowhitaker.dev/posts/images/pBLY_no_color.jpg" class="img-fluid"></p>
-<p>Alas, my transformed colonies grew out with ~no visible sign of color (well, with some imagination I think they’re sliiiightly darker than normal). I presume they took in the plasmid, since they’re living quite happily on kanamycin plates, but I guess the expression levels are too low to see anything. The strain I used is an old one, MM294, which isn’t optimized for protein expression. Seb had to switch to a BL21 derivative to get his to show up. So, I hold out hope.</p>
-</section>
-<section id="next-steps" class="level2">
-<h2 class="anchored" data-anchor-id="next-steps">Next steps</h2>
-<p>I’m currrently ‘curing out’ some of Seb’s bacteria - streaking and re-streaking on plain plates in the hopes they ditch the current plasmid, leaving me plain BL21 ready to transform with my own plasmid. I actually tried a transformation a little impatiently this weekend, and was left with a lawn of cells - there were plenty that still had his kanamycin resistance, so I’ll need to be more patient curing it out :)</p>
-<p><img src="https://johnowhitaker.dev/posts/images/colonies_w_pink.png" class="img-fluid"></p>
-<p>You can see in the pic above some pink colonies lurking among the white ones, after I streaked out the first ‘white looking’ dot. I tested some candidate colonies on plain vs kan plates and saw no growth for one of them, but I guess I got unlucky when I then picked the cells for the transformation step. Lesson learned: wait for individual colonies to grow out, and test carefully :) Once I get a successful transformation into these BL21 cells, I’ll grow some on plates and some in liquid culture and see if we can see any green at all. Either way, it’s already been a great learning experience.</p>
-<p>I’ll also say, it’s wild that an amateur can, with the help of some friends and AI, whip up a custom plasmid design, get it synthesized, and have it expressed in bacteria in a matter of weeks for a few hundred dollars. What a world! But also, a little scary. Mostly exciting though - I see the majority of uses for tech like this being positive, creative projects and hope more and more people get the joy of working with the living world. See you in part 2, hopefully ft some green!</p>
-<p>PS: even if the proteins misfold or I fail from here, I’ll let you in on my secret. The amino acids at the end of the fwYellow sequence: VIKAVDLETYRGSGREEN. So, <em>technically</em>, I made GREEN! Uncountable copies in my plain-looking colonies, spelling out a small victory even in the midst of a setback. (A project for the future is running some PCR+gels to verify this small victory if we don’t get a more obvious one!)</p>
-<p>Until next time,</p>
-<p>J</p>
-</section>
-<section id="update" class="level1">
-<h1>Update!</h1>
-<p>I went to sterilize and throw out the plate with that wasn’t showing color, after it had been sitting at room temp for a few weeks. Lo and behold, rings of color - looks like at least aeBlue is expressing!!!</p>
-<p><img src="https://johnowhitaker.dev/posts/images/bly_blue.png" class="img-fluid"></p>
-<p>Cool that this sequence of DNA from an anemone (Actina equina) coding for a blue protein works in this random bacteria, albeit badly :D</p>
-<p>Update 2: cured out BL21, transformed my BLY_GREEN plasmid into it, still ~no color. Not going to worry about this more, on to new things.</p>
-
-
-</section>
-
- ]]></description>
-  <category>bio</category>
-  <guid>https://johnowhitaker.dev/posts/blygreen_p1.html</guid>
-  <pubDate>Sun, 14 Dec 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
