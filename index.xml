@@ -142,6 +142,7 @@
 <p>Also, I did some content for fast.ai on NCAs hidden deep in <a href="https://youtu.be/PdNHkTLU2oQ?si=K0w67-4-yIgkD5KO&amp;t=4479">this video</a> - worth a look if you want more polished content from me on this stuff :)</p>
 <p>A few days after that first video I also trained denoising NCAs, which were able to repair flower images somewhat plausibly! Very fun to play with. Video:</p>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/sjAFcJBetuw" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>PPS: Fable with a minimal prompt and the md file did a fantastic little project + writeup along similar lines to the first video, including some good explorations of info propagation speed factors and other clever little bits. Check out its writeup <a href="https://johnowhitaker.github.io/fabNCA/">here</a> (code <a href="https://github.com/johnowhitaker/fabNCA">here</a>). Hopefully we can do useful stuff with this model in the future if it ever comes back with more sensible safeguards :)</p>
 
 
 
