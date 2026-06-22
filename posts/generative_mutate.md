@@ -3,7 +3,7 @@ title: "Messing about with ESMC"
 date: 2026-05-29
 categories:
     - bio
-    - video
+    - Video
 description: "Exploring a protein language model, and using it to generate plausible mutations of a sequence"
 ---
 

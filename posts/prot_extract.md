@@ -4,7 +4,7 @@ date: 2026-06-02
 categories:
     - misc
     - bio
-    - video
+    - Video
 description: "Idenitfying some miraculin-like proteins, extracting them and tasting them (null result)"
 image: "images/prot_extract-Cover.jpg"
 ---
