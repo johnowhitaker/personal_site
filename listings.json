@@ -2,6 +2,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/mini-hw-projects/microfluidics_1.html",
       "/posts/inkwash.html",
       "/posts/prot_extract.html",
       "/posts/generative_mutate.html",
@@ -237,6 +238,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/mini-hw-projects/microfluidics_1.html",
       "/posts/inkwash.html",
       "/posts/prot_extract.html",
       "/posts/generative_mutate.html",
