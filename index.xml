@@ -9,7 +9,7 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.10.13</generator>
+<generator>quarto-1.10.15</generator>
 <lastBuildDate>Fri, 26 Jun 2026 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Fluidics with an FDM Printer (WIP)</title>
