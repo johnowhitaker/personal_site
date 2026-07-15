@@ -2,6 +2,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/posts/glowing_poop.html",
       "/mini-hw-projects/microfluidics_1.html",
       "/posts/inkwash.html",
       "/posts/prot_extract.html",
@@ -238,6 +239,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/glowing_poop.html",
       "/mini-hw-projects/microfluidics_1.html",
       "/posts/inkwash.html",
       "/posts/prot_extract.html",
