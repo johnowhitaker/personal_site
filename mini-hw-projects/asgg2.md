@@ -9,6 +9,8 @@ categories:
 
 In a [previous post](https://johnowhitaker.dev/mini-hw-projects/airsoft-gene-gun.html), I pointed out that a gene gun (fancy, $XXXXX) and a cheap airsoft gun share a lot in common. Now that I [have DNA](https://johnowhitaker.dev/posts/dnaq.html), it was time to pew pew - and it looks like maybe we got some transformations! I'll explain what I've tried, what I found, what I'm thinking, and what I hope to try next.
 
+Update (July 2026): More shots with both a RUBY reporter and a fluorescent eyGFPuv reporter show +ve transformation in carrot. [Pics here](https://ln.johnowhitaker.com/entry/51). I'm hoping to optimize the protocol and share a final post only once it's working well.
+
 ## The Method
 
 I take a small amount (10uL) of a slurry of diatomaceous earth (DE), add some (10uL, 50mM) calcium chloride and some (~1ug, in ~2uL) plasmid DNA and place it on a piece of parafilm stretched over a 3D-printed tube. I dry it in a filtered stream of air, then the tube adapts to the end of my cheap airsoft pistol, and I fire it at a leaf from a few cm distance.
