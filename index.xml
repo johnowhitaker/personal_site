@@ -312,11 +312,13 @@
 
 
 
-<section id="days-of-code---intro-and-recap-of-the-first-few-weeks" class="level3">
-<h3 class="anchored" data-anchor-id="days-of-code---intro-and-recap-of-the-first-few-weeks">Days of Code - Intro and Recap of the first few weeks</h3>
+<section id="video" class="level3">
+<h3 class="anchored" data-anchor-id="video">Video</h3>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/HwyRaDBEk2k" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p>TODO: Fill in more details and references here!</p>
-<p>Attempting (and mostly failing) to engineer a green bacteria strain.</p>
+</section>
+<section id="additional-notes" class="level3">
+<h3 class="anchored" data-anchor-id="additional-notes">Additional Notes</h3>
+<p>I left this section as a TODO for a few months. At the time, I felt a bit let down that the project had ~ended without a clear win of an obvious visible green e.c. strain I could use for agar art. With the benefit of a few months break to give some perspective (I’m writing this now in July 2026) the project looks a lot nicer! I got to work through the stages of a genetic engineering workflow, re-writing little bits of the code of life! The end result isn’t perfect because, shocker, biology is complex… but still :) I’m very glad I got the chance to try this, and who knows, maybe at some point I’ll give it another crack.</p>
 <p>References:</p>
 <ul>
 <li>My blog (has a few posts with more info on this under ‘bio’): https://johnowhitaker.dev/all.html</li>
@@ -324,6 +326,7 @@
 <li>Various plasmid designs: https://github.com/johnowhitaker/BLY</li>
 <li>Extra paper on BBSs: “Structural and Functional Characterization of a Biliverdin-Binding Near-Infrared Fluorescent Protein From the Serpin Superfamily”</li>
 </ul>
+<p>Errata: I’d written “ALA supplementation” down and said Alanine multiple times in the video - brain fart! Not a heme precursor. That would be Aminolevulinate.</p>
 
 
 </section>
