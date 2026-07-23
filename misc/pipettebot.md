@@ -11,7 +11,7 @@ Hello, teardown attendees :) You likely got here clicking the 'How Does This Wor
 
 ## The Hardware
 
-TODO pic
+![](https://johnowhitaker.dev/posts/images/cnc_pipette.png)
 
 The 'motion platform' is an Ender 3 V3 SE 3D printer that has served me well over the past few years. A Raspberry Pi hosts the site and sends G-CODE to the printer. The micropipette sits in a 3D printed holder with a Dynamixel XL430 servo and control board in charge of pushing the plunger. You can swap in a lower-volume micropipette for more precise work. The servo is one I happened to have on hand from a past robotics project, a little pricier than necessary for this application I suspect. Paper is held to the bed by magnets.
 
