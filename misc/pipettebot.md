@@ -13,7 +13,7 @@ Hello, teardown attendees :) You likely got here clicking the 'How Does This Wor
 
 ![](https://johnowhitaker.dev/posts/images/cnc_pipette.png)
 
-The 'motion platform' is an Ender 3 V3 SE 3D printer that has served me well over the past few years. A Raspberry Pi hosts the site and sends G-CODE to the printer. The micropipette sits in a 3D printed holder with a Dynamixel XL430 servo and control board in charge of pushing the plunger. You can swap in a lower-volume micropipette for more precise work. The servo is one I happened to have on hand from a past robotics project, a little pricier than necessary for this application I suspect. Paper is held to the bed by magnets.
+The 'motion platform' is an Ender 3 V3 SE 3D printer that has served me well over the past few years. A Raspberry Pi hosts the site and sends G-CODE to the printer. The micropipette sits in a 3D printed holder with a Dynamixel XL430 servo and control board in charge of pushing the plunger. You can swap in a lower-volume micropipette for more precise work. The servo is one I happened to have on hand from a past robotics project, a little pricier than necessary for this application I suspect. Paper is held to the bed by magnets. [original conception](https://johnowhitaker.dev/posts/cnc_pipette.html)
 
 ## The Code
 
@@ -27,3 +27,18 @@ If I'm not there, odds are the printer is in semi-auto mode. Put a piece of pape
 
 ## Other Things We Might Have Spoken About
 
+The recent [microfluidics tests](https://johnowhitaker.dev/mini-hw-projects/microfluidics_1.html)
+
+![](thumbnails/purple_tomato.png)
+
+The purple tomato seeds are from a bioengineered tomato from norfolk healthy produce, are not for sale but can be shared with your local community (a lovely approach): https://www.norfolkhealthyproduce.com/pages/faqs
+
+The duckweed has been transformed using agrobacterium carrying this RUBY plasmid: https://atinygreencell.com/products/pcambia2300-rubygreen
+
+The DIY gene gun [works](https://ln.johnowhitaker.com/entry/51) but is waiting for full tests, [here](https://johnowhitaker.dev/mini-hw-projects/asgg2.html) is an early WIP post from a few months ago.
+
+The DVD hacking adventure has a writeup [here](https://johnowhitaker.dev/posts/dvd_hack.html)
+
+The e. coli engineering project has a writeup + video [here](https://johnowhitaker.dev/misc/chasing_green.html)
+
+Anything else is probably linked somewhere on https://johnowhitaker.dev/ or https://x.com/johnowhitaker. My gmail is also johnowhitaker if you want to get in touch that way.
