@@ -23,7 +23,7 @@
 <section id="the-hardware" class="level2">
 <h2 class="anchored" data-anchor-id="the-hardware">The Hardware</h2>
 <p><img src="https://johnowhitaker.dev/posts/images/cnc_pipette.png" class="img-fluid"></p>
-<p>The ‘motion platform’ is an Ender 3 V3 SE 3D printer that has served me well over the past few years. A Raspberry Pi hosts the site and sends G-CODE to the printer. The micropipette sits in a 3D printed holder with a Dynamixel XL430 servo and control board in charge of pushing the plunger. You can swap in a lower-volume micropipette for more precise work. The servo is one I happened to have on hand from a past robotics project, a little pricier than necessary for this application I suspect. Paper is held to the bed by magnets.</p>
+<p>The ‘motion platform’ is an Ender 3 V3 SE 3D printer that has served me well over the past few years. A Raspberry Pi hosts the site and sends G-CODE to the printer. The micropipette sits in a 3D printed holder with a Dynamixel XL430 servo and control board in charge of pushing the plunger. You can swap in a lower-volume micropipette for more precise work. The servo is one I happened to have on hand from a past robotics project, a little pricier than necessary for this application I suspect. Paper is held to the bed by magnets. <a href="https://johnowhitaker.dev/posts/cnc_pipette.html">original conception</a></p>
 </section>
 <section id="the-code" class="level2">
 <h2 class="anchored" data-anchor-id="the-code">The Code</h2>
@@ -36,6 +36,14 @@
 </section>
 <section id="other-things-we-might-have-spoken-about" class="level2">
 <h2 class="anchored" data-anchor-id="other-things-we-might-have-spoken-about">Other Things We Might Have Spoken About</h2>
+<p>The recent <a href="https://johnowhitaker.dev/mini-hw-projects/microfluidics_1.html">microfluidics tests</a></p>
+<p><img src="https://johnowhitaker.dev/misc/thumbnails/purple_tomato.png" class="img-fluid"></p>
+<p>The purple tomato seeds are from a bioengineered tomato from norfolk healthy produce, are not for sale but can be shared with your local community (a lovely approach): https://www.norfolkhealthyproduce.com/pages/faqs</p>
+<p>The duckweed has been transformed using agrobacterium carrying this RUBY plasmid: https://atinygreencell.com/products/pcambia2300-rubygreen</p>
+<p>The DIY gene gun <a href="https://ln.johnowhitaker.com/entry/51">works</a> but is waiting for full tests, <a href="https://johnowhitaker.dev/mini-hw-projects/asgg2.html">here</a> is an early WIP post from a few months ago.</p>
+<p>The DVD hacking adventure has a writeup <a href="https://johnowhitaker.dev/posts/dvd_hack.html">here</a></p>
+<p>The e. coli engineering project has a writeup + video <a href="https://johnowhitaker.dev/misc/chasing_green.html">here</a></p>
+<p>Anything else is probably linked somewhere on https://johnowhitaker.dev/ or https://x.com/johnowhitaker. My gmail is also johnowhitaker if you want to get in touch that way.</p>
 
 
 </section>
