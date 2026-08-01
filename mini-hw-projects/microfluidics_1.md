@@ -40,3 +40,7 @@ Anyway, this post is marked as WIP since I want to come back and tidy up + docum
 
 
 [1] For now, the code is dumped in [this gist](https://gist.github.com/johnowhitaker/b0bc4bd3a51d6d047851c5db4c4525b1) with an example command - I'll tidy up and share once I get this reliably doing something useful.
+
+## JULY update:
+
+Tween 80 is the opposite of Span 80 (the surfactant I tried to order) - I assumed they were synonyms! 5% Span 80 in mineral oil and suddenly I could easily do water-in-oil droplet generation :) I have also successfully tested laying down plastic on PCBs rather than glass slides and bonding on the cover slip - this opens up the possibility of easy holes + electrodes, I'll be ordering some boards to try these ideas shortly. Droplet pics here: https://ln.johnowhitaker.com/entry/61
