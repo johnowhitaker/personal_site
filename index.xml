@@ -9,7 +9,7 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.10.17</generator>
+<generator>quarto-1.11.1</generator>
 <lastBuildDate>Thu, 23 Jul 2026 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Pipette Bot Goes To Teardown</title>
@@ -114,8 +114,12 @@
 </ul>
 <p>Anyway, this post is marked as WIP since I want to come back and tidy up + document all this a lot better, but hopefully between the initial quick video and this post the core idea is findable and out there. LMK if you have ideas to try or questions about how I do this.</p>
 <p>[1] For now, the code is dumped in <a href="https://gist.github.com/johnowhitaker/b0bc4bd3a51d6d047851c5db4c4525b1">this gist</a> with an example command - I’ll tidy up and share once I get this reliably doing something useful.</p>
+<section id="july-update" class="level2">
+<h2 class="anchored" data-anchor-id="july-update">JULY update:</h2>
+<p>Tween 80 is the opposite of Span 80 (the surfactant I tried to order) - I assumed they were synonyms! 5% Span 80 in mineral oil and suddenly I could easily do water-in-oil droplet generation :) I have also successfully tested laying down plastic on PCBs rather than glass slides and bonding on the cover slip - this opens up the possibility of easy holes + electrodes, I’ll be ordering some boards to try these ideas shortly. Droplet pics here: https://ln.johnowhitaker.com/entry/61</p>
 
 
+</section>
 
  ]]></description>
   <category>mini-hw-projects</category>
