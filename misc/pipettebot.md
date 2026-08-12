@@ -9,6 +9,8 @@ description: "Letting strangers draw pixel art with the pipette bot."
 
 Hello, teardown attendees :) You likely got here clicking the 'How Does This Work?' link from the pipette bot demo. This page has a little more about the bot, and a little more about the other things we may have spoken about. After the event it will hopefully have a gallery of some of the art created this weekend!
 
+![The bot with some demo artworks](thumbnails/pipettebot.png)
+
 ## The Hardware
 
 ![](https://johnowhitaker.dev/posts/images/cnc_pipette.png)
