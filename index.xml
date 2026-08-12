@@ -20,6 +20,12 @@
 
 
 <p>Hello, teardown attendees :) You likely got here clicking the ‘How Does This Work?’ link from the pipette bot demo. This page has a little more about the bot, and a little more about the other things we may have spoken about. After the event it will hopefully have a gallery of some of the art created this weekend!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/misc/thumbnails/pipettebot.png" class="img-fluid figure-img"></p>
+<figcaption>The bot with some demo artworks</figcaption>
+</figure>
+</div>
 <section id="the-hardware" class="level2">
 <h2 class="anchored" data-anchor-id="the-hardware">The Hardware</h2>
 <p><img src="https://johnowhitaker.dev/posts/images/cnc_pipette.png" class="img-fluid"></p>
