@@ -2,8 +2,8 @@
 title: "Now"
 ---
 
-I'm taking a sabbatical, for at least 6 months!
+I'm most of the way through a sabbatical, and have decided not to return to answer.ai afterwards. So, I am a free agent! 
 
-Projects: Bio stuff is fun. There's plenty of sequencing and plasmid design I'd like to do but the cost adds up fast so that's mostly on the backburner. I'm getting into tissue culture a little (got some plans) but experiments take weeks-months so don't expect too much on that front for a while. Current interest: new biolistics methods for plant transformation. And generally investigating ways the maker/engineer mindset can speed past some stuff that's 'always been done this way' in bio.
+Projects: Some ongoing bio in the slow lane. Lots of smaller projects going. But focus for the next few weeks is planning what comes next.
 
-Living: Our 3d year in Portland, Oregon. Enjoying spring.
+Living: Starting our 4th year in Portland, Oregon. Household expected to grow by one in 2027 :)
