@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.1">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Inventory – johnowhitaker.dev</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2655f62c70931241c821c3cd25ec806f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-3a0730cdd9a625ae55dc35d4063f4b4c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+<meta name="twitter:title" content="Inventory – johnowhitaker.dev">
+<meta name="twitter:description" content="">
+<meta name="twitter:creator" content="@johnowhitaker">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./all.html"> 
+<span class="menu-text">Everything Feed</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-more" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">More</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-more">    
+        <li>
+    <a class="dropdown-item" href="./tsbabn.html">
+ <span class="dropdown-text">TSBABN</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./resume.html">
+ <span class="dropdown-text">Resume: Jonathan Whitaker</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./books.html">
+ <span class="dropdown-text">Book Recommendations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./blogs.html">
+ <span class="dropdown-text">Blog Recommendations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./yt.html">
+ <span class="dropdown-text">YouTube Channel Recommendations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./appearances.html">
+ <span class="dropdown-text">Appearances</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./things.html">
+ <span class="dropdown-text">Thing Recommendations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://johnowhitaker.dev/index.xml"><i class="bi bi-rss" role="img">
+</i> 
+ <span class="dropdown-text">RSS Feed</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./now.html">
+ <span class="dropdown-text">Now</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://ln.johnowhitaker.com">
+ <span class="dropdown-text">Lab Notes</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#tools" id="toc-tools" class="nav-link active" data-scroll-target="#tools">Tools</a></li>
+  <li><a href="#consumables" id="toc-consumables" class="nav-link" data-scroll-target="#consumables">Consumables</a></li>
+  <li><a href="#reagents" id="toc-reagents" class="nav-link" data-scroll-target="#reagents">Reagents</a></li>
+  <li><a href="#genesstrains" id="toc-genesstrains" class="nav-link" data-scroll-target="#genesstrains">Genes/Strains</a></li>
+  <li><a href="#older-inventory-to-start-from" id="toc-older-inventory-to-start-from" class="nav-link" data-scroll-target="#older-inventory-to-start-from">(Older inventory to start from)</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Inventory</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>–WIP–</p>
+<p>As I build up lab capacity, there are things one has to buy in bulk which can be easily shared. I’ve already dumped a load of extras on one friend, and after the first PDX diybio meetup I’ve decided I should write up what I have (and what gaps remain) so that others can plan around it! If you have projects that could benefit from some of this, do let me know - together we can do more :) I’m throwing things in as I think of them, organization etc subject to change.</p>
+<section id="tools" class="level2">
+<h2 class="anchored" data-anchor-id="tools">Tools</h2>
+<ul>
+<li>3D Printer (Ender 3 V3 SE, cheap and outdated but works great) - happy to rattle off PLA prints as needed</li>
+<li>Microscope (XXX)</li>
+<li>Micropipettes (2-10ul, 10-100, 20-200)</li>
+<li>Hotplate</li>
+<li>Janky DIY stirplate</li>
+<li>Rotary tool that doubles as a 1.5ml centrifuge</li>
+<li>Blowtorch, Camping Stove</li>
+<li>Still Air Box (happy to lend out)</li>
+<li>Assorted hand tools</li>
+<li>Jig Saw, Drill, Impact Driver</li>
+<li>Thermal Camera</li>
+<li>Soldering iron (+ a portable one)</li>
+<li>Inflatable SUP (borrowable)</li>
+</ul>
+</section>
+<section id="consumables" class="level2">
+<h2 class="anchored" data-anchor-id="consumables">Consumables</h2>
+</section>
+<section id="reagents" class="level2">
+<h2 class="anchored" data-anchor-id="reagents">Reagents</h2>
+</section>
+<section id="genesstrains" class="level2">
+<h2 class="anchored" data-anchor-id="genesstrains">Genes/Strains</h2>
+</section>
+<section id="older-inventory-to-start-from" class="level2">
+<h2 class="anchored" data-anchor-id="older-inventory-to-start-from">(Older inventory to start from)</h2>
+<p>Electronics &amp; Soldering Station Soldering Gear:</p>
+<p>Soldering Iron Station (blue handle) Pinecil Mini Soldering Iron Solder wire spool Heat shrink tubing Solder fume extractor (fan unit) “Helping hands” tool with alligator clips Components &amp; Microcontrollers:</p>
+<p>Raspberry Pi / Picos / ESP chips (mentioned in audio/labels) Component storage drawers (Labeled: RGB LEDs, UV LEDs, IR LEDs, Displays, Capacitors, DC Motors, Servos, Potentiometers, Switches, LDR) Breadboards and jumper wires Breakout boards/ribbon cables Resistor kit Test Equipment:</p>
+<p>Digital Multimeter (Red/Black, appears to be manual range) Thermal Camera (handheld) Power:</p>
+<p>Anker Solix Portable Power Station Corsair RM1000x PC Power Supply (adapted for bench use) Variable DC Power Supply adapter board (breakout for the PSU) Various USB cables and wall adapters (12V w/ barrel jack, 5V) Tools &amp; Hardware Power Tools:</p>
+<p>Ryobi One+ Jigsaw Ryobi One+ Drill/Driver Ryobi One+ Impact Driver Ryobi Handheld Vacuum (18V) Ryobi Battery Charger Dremel Rotary Tool (on flex shaft hanger/stand) - mini Ryobi one, underpowered Hot Glue Gun (red) Heat Gun / Blow Torch (small handheld butane torch) Blowtorch with food-safe brazing supplies Hair dryer Hot plate (set temp, nice for desoldering but also chemistry) Hand Tools:</p>
+<p>Screwdrivers (various, including green handle Snap-on/similar and precision sets) Wire flush cutters (blue handle) Wire strippers Locking pliers (Vise-Grips) Adjustable wrench Hammer Hacksaw Japanese Pull Saw Clamps (Ratchet clamps, spring clamps, not many) Calipers (Vernier plastic ones only) Pen knives / X-Acto knives Scalpel Small tweezers (fine tip) Chemistry &amp; “Wet Lab” Chemicals &amp; Reagents:</p>
+<p>Agar Agar Powder Agarose (for gel electrophoresis) Sodium Alginate Calcium Chloride Calcium Carbonate Sodium Citrate Sodium Hydroxide (drain cleaner) Vegetable Glycerin Distilled Water (gallon jugs) Citric Acid Vitamin C Epsom salts KDP Hydrogen Peroxide Ammonium Nitrate (small amount, dry + some dissolved w/ CaCO₃ ppt.) Potassium permanganate powder Ethyl Acetate Pure caffeine Activated Charcoal Stains &amp; Kits:</p>
+<p>Zymo DNA Shield Methylene blue Gram stain kit - Crystal Violet, Iodine, Safranin SeeGreen DNA stain Gel buffer solution Luminol kit Cyanotype kit Cooking Science / Modernist Pantry:</p>
+<p>Access to basic pantry staples Food coloring pack Solvents &amp; Cleaners:</p>
+<p>70% Isopropyl Alcohol in a spray bottle, also 90% Acetone (Klean Strip) Lacquer Thinner Turpentine / Mineral Spirits Everclear (ethanol) WD-40 Dawn Dish Soap Clorox Bleach Spray Wet Ones (wipes) Labware:</p>
+<p>Digital Scale (SF-400D) DIY Stir Plate Microscope (White, compound binocular) Microscope slides and cover slips Petri dishes (90mm and 60mm) Beakers (glass and plastic, 100ml-1L, various sizes) Graduated cylinders/plastic cups Pipettes (disposable), Syringes (3ml w/ needles), and a P200 pipette with tips (5-200µL) Syringe filters Falcon tubes (15ml and 50ml) 1.5ml Eppendorf tubes (lots!) 3D printed tube holders 4oz glass jars (8) and 4oz PP tubs with attached lids (for tissue culture) TLC plates pH Test Paper Bibulous paper from gram kit Optics &amp; Light Lasers &amp; Lights: “Normal” Flashlight (Large black handheld) UV Flashlight Green Laser Pointer Diffraction Gratings (slide format) Safety: Laser Safety Goggles (Orange/Red lenses) Adhesives, Paints &amp; Finishing Adhesives: Elmer’s Carpenter’s Wood Glue Mod Podge Super Glue (various tubes) Kwik Seal (Kitchen/Bath adhesive caulk) Hot glue sticks Paints: Krylon Fusion Spray Paint (Blue Hyacinth seen) Rust-Oleum Automotive Primer 3D Printing &amp; Fabrication Printer:</p>
+<p>FDM 3D Printer (Ender 3 v3 SE) Raspberry Pi connected to printer Supplies:</p>
+<p>PLA Filament (green, white, black) Miscellaneous / Safety VersaShield Nitrile Gloves N95 Face Mask Safety Glasses (clear) Air Purifier (White cylindrical unit on floor) Pegboard organization system Sorting bins/organizers Bio Strains &amp; Plasmids E. coli cultures (BL21 and MM294 strains, various colorful plasmids) Agrobacterium with RUBY plasmid pDawn and pDusk plasmids (light-inducible) Media &amp; Antibiotics LB broth mix Marmite for making ‘marmite broth’ plates/media RIff/Spec agar mix Kanamycin (supply from Seb + fish medicine “fiskKan”) Ampicillin (enough for a few more plates) Usually some agar plates ready-made Plant Tissue Culture Plants in jars starter kit (various growth hormones, MS media) Agrobacterium injection mix (50ml) 4oz PP tubs with attached lids (for tissue culture) Molecular Biology Mini-prep kit (Bioland, silica columns) Agarose + SeeGreen DNA stain + gel buffer (in Chemistry) 9V batteries for gel PS or a fixed 32V PSU Equipment &amp; Consumables A still air box (thanks Dave) A little camping stove (for flaming loops + sterile bubble) A grow pad - used as incubator sometimes 3D printer hotbed - also doubles as incubator A 3D printed microcentrifuge for 1.5ml tubes (uses rotary tool) Crushed ice / hot water bath when needed Remnants of a Carolina Bio transformation kit Supplies Cling wrap Aluminium foil Little PP sauce tubs Ziploc sandwich bags (fit two petri dishes) Activated Charcoal Misc Diatomaceous earth Label maker Piezo microphone, some misc music gear Blood pressure monitor Macro camera with great zoom (Raynox DCR250 on a Lumix FZ80 camera) Kapton tape, Duct tape, Gaffer tape, insulation tape, plumbers tape Random wood screws etc A 6W UVC lamp (for mutagenesis, sterilization, spectroscopy) A piezo lighter spark thingee Compressor for car tires Some old grow lights, hydroponic pH UP and DOWN, and plant-related bits Work gloves Laser + UV safety goggles</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/johnowhitaker\.dev");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

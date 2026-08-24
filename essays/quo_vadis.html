@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.1">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-08-24">
+<meta name="description" content="What should I work on next? Assorted musings">
+
+<title>Quo Vadis? – johnowhitaker.dev</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2655f62c70931241c821c3cd25ec806f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-3a0730cdd9a625ae55dc35d4063f4b4c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+<meta name="twitter:title" content="Quo Vadis? – johnowhitaker.dev">
+<meta name="twitter:description" content="What should I work on next? Assorted musings">
+<meta name="twitter:image" content="https://johnowhitaker.dev/essays/eci_plot.png">
+<meta name="twitter:creator" content="@johnowhitaker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="1312">
+<meta name="twitter:image-width" content="2186">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../all.html"> 
+<span class="menu-text">Everything Feed</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-more" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">More</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-more">    
+        <li>
+    <a class="dropdown-item" href="../tsbabn.html">
+ <span class="dropdown-text">TSBABN</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../resume.html">
+ <span class="dropdown-text">Resume: Jonathan Whitaker</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../books.html">
+ <span class="dropdown-text">Book Recommendations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../blogs.html">
+ <span class="dropdown-text">Blog Recommendations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../yt.html">
+ <span class="dropdown-text">YouTube Channel Recommendations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../appearances.html">
+ <span class="dropdown-text">Appearances</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../things.html">
+ <span class="dropdown-text">Thing Recommendations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://johnowhitaker.dev/index.xml"><i class="bi bi-rss" role="img">
+</i> 
+ <span class="dropdown-text">RSS Feed</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../now.html">
+ <span class="dropdown-text">Now</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://ln.johnowhitaker.com">
+ <span class="dropdown-text">Lab Notes</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-now" id="toc-why-now" class="nav-link active" data-scroll-target="#why-now">Why Now?</a></li>
+  <li><a href="#factors-to-consider" id="toc-factors-to-consider" class="nav-link" data-scroll-target="#factors-to-consider">Factors To Consider</a></li>
+  <li><a href="#back-to-the-mines-ai-research" id="toc-back-to-the-mines-ai-research" class="nav-link" data-scroll-target="#back-to-the-mines-ai-research">1) Back To The Mines (AI Research)</a></li>
+  <li><a href="#frontier" id="toc-frontier" class="nav-link" data-scroll-target="#frontier">2) Frontier?</a></li>
+  <li><a href="#bio" id="toc-bio" class="nav-link" data-scroll-target="#bio">3) Bio?</a></li>
+  <li><a href="#poke-the-world-with-science-course" id="toc-poke-the-world-with-science-course" class="nav-link" data-scroll-target="#poke-the-world-with-science-course">4) ‘Poke The World With Science’ course</a></li>
+  <li><a href="#shorter-term-projects" id="toc-shorter-term-projects" class="nav-link" data-scroll-target="#shorter-term-projects">Shorter-Term Projects</a></li>
+  <li><a href="#why-not-answer.ai" id="toc-why-not-answer.ai" class="nav-link" data-scroll-target="#why-not-answer.ai">Why Not Answer.AI</a></li>
+  <li><a href="#you-tell-me" id="toc-you-tell-me" class="nav-link" data-scroll-target="#you-tell-me">You Tell Me!</a></li>
+  <li><a href="#what-is-aai-up-to" id="toc-what-is-aai-up-to" class="nav-link" data-scroll-target="#what-is-aai-up-to">What Is AAI Up To?</a></li>
+  <li><a href="#do-i-want-to-go-back-there" id="toc-do-i-want-to-go-back-there" class="nav-link" data-scroll-target="#do-i-want-to-go-back-there">Do I want to go back there?</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Quo Vadis?</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">essays</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    What should I work on next? Assorted musings
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 24, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>I took the summer off as a sabbatical from answer.ai, to travel with my wife, tinker with some side-projects, and spend some thinking through what I want to do in what feels like a particularly pivotal time. I’ve decided not to return to answer, but am still unsure about how to choose between my remaining options. This essay is for me, to consider them all in one place, and for everyone else who has been asking me what I’m going to do now :)</p>
+<p>(DRAFT, WIP, IGNORE FOR NOW)</p>
+<section id="why-now" class="level2">
+<h2 class="anchored" data-anchor-id="why-now">Why Now?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="eci_plot.png" class="img-fluid figure-img"></p>
+<figcaption>Measures like the Epoch Capabilities Index track the continued improvement of models (source: https://epoch.ai/eci)</figcaption>
+</figure>
+</div>
+<ul>
+<li>AI is getting v. good</li>
+<li>Software skills may have a limited remaining shelf life</li>
+<li>I want to step back and see if I’m in the best spot to contribute vs doing work that will happen anyway</li>
+</ul>
+</section>
+<section id="factors-to-consider" class="level2">
+<h2 class="anchored" data-anchor-id="factors-to-consider">Factors To Consider</h2>
+<ul>
+<li>Do I enjoy it (e.g.&nbsp;I like teaching)</li>
+<li>Does it have lasting value (e.g.&nbsp;teaching some specific tech &lt;&lt; teaching some general principle)</li>
+<li>Does it have +ve impact (I want to do good)</li>
+<li>Are other people doing it? (I prefer less populous areas of the map)</li>
+<li>Does it pay? (I’ve historically skewed unprofitable-but-fun, now worry about financial footing given how many of the skills I have might tank in value as they get automated)</li>
+</ul>
+</section>
+<section id="back-to-the-mines-ai-research" class="level2">
+<h2 class="anchored" data-anchor-id="back-to-the-mines-ai-research">1) Back To The Mines (AI Research)</h2>
+<p>Lots of effort and capital is flowing into AI research right now. Many things feel ‘overdetermined’ - that is, they’re going to happen pretty much regardless of what I or any other individual chooses to work on. That said, even if you think AI research is on track to be fully automated in the next few years, you can’t look at the <strong>current</strong> state of things and not see that there is still LOTS of work to do:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="jack_bugfinding.png" class="img-fluid figure-img"></p>
+<figcaption>There is plenty of room for careful work still - most things are still piles of hacks with lots of space for improvement!</figcaption>
+</figure>
+</div>
+<p>I’m a little rusty on model training, but I have &gt; a decade of experience at this point, and am sure I could find ways to contribute. There are organizations working to build AI that benefits people, doing hard + interesting technical work, that pay decently. I’m not sure the day-to-day of begging codex to fix distributed training code would be my <em>favourite</em> thing to do, especially if I don’t have a compelling reason to want the result NOW (vs a little later, without me having to lift a finger). Still, I’m chatting to a few people who may convince me that their org is doing cool enough stuff that I’m compelled to chip in and help it along :)</p>
+</section>
+<section id="frontier" class="level2">
+<h2 class="anchored" data-anchor-id="frontier">2) Frontier?</h2>
+<ul>
+<li>Probably not, unless alignment or application like bio.</li>
+</ul>
+</section>
+<section id="bio" class="level2">
+<h2 class="anchored" data-anchor-id="bio">3) Bio?</h2>
+<ul>
+<li>Slow and expensive</li>
+<li>Possibility (e.g.&nbsp;ML 2014) to bring it to many more people</li>
+<li>…and build on models getting better, cheaper synthesis etc in the future</li>
+<li>got some ideas…</li>
+<li>but not quite yet. Can’t afford to pursue myself, but can keep on side jic (or beg for funding as a startup)</li>
+</ul>
+</section>
+<section id="poke-the-world-with-science-course" class="level2">
+<h2 class="anchored" data-anchor-id="poke-the-world-with-science-course">4) ‘Poke The World With Science’ course</h2>
+<ul>
+<li>Didn’t want to do a course</li>
+<li>But came up with an idea I would be OK charging for, that I love</li>
+<li>Participants get a kit of science stuff each [time period] and some lessons on a few things, then self-directed exploration using those principles to take stuff further and build up a tech tree for themselves over time</li>
+<li>more on this soon possibly</li>
+</ul>
+</section>
+<section id="shorter-term-projects" class="level2">
+<h2 class="anchored" data-anchor-id="shorter-term-projects">Shorter-Term Projects</h2>
+<ul>
+<li>Hardware Hacking Evals</li>
+<li>Portland DIYBio scene</li>
+<li>Electronics Kickstarter</li>
+</ul>
+</section>
+<section id="why-not-answer.ai" class="level2">
+<h2 class="anchored" data-anchor-id="why-not-answer.ai">Why Not Answer.AI</h2>
+<ul>
+<li>TODO copy fro rough notes below</li>
+</ul>
+</section>
+<section id="you-tell-me" class="level2">
+<h2 class="anchored" data-anchor-id="you-tell-me">You Tell Me!</h2>
+</section>
+<section id="what-is-aai-up-to" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-aai-up-to">What Is AAI Up To?</h2>
+<p>Jeremy has been trying to convince people to use his better way of developing software (nbdev, literate programming etc) for years. People are resistant to change, but AI agents can be instructed to code however we want! So, at the moment aai is focused on building out their own parallel ecosystem / meta-harness / ?? to help the models work with them ‘the answerai way’, including: - Custom replacements for the normal harness tools, with python &amp; some custom sandboxing, including lots of extra tricks for efficient editing etc - A custom markdown/html subset, and integrations of this with llms.txt etc (also used a lot for legal doc work with Virgil) - Custom tools for working with solveit dialogs (jupyter notebook style interactive code artifacts) - A custom skills system based on python modules - Custom terminal ipython-like tools - Customizations for existing harnesses using an ‘llm dojo’ to have the models train ‘katas’ via injected fake chat histories, so that they learn how to use all the cool answerai tools</p>
+<p>Their thesis is that by building the model better tools and teaching it to use better software development practices, they’ll be able to do more. Sounds sensible! Hacking around on these tools with some friends, while occasionally using them to make something useful for the lawers, isn’t a bad way to spend ones time :)</p>
+</section>
+<section id="do-i-want-to-go-back-there" class="level2">
+<h2 class="anchored" data-anchor-id="do-i-want-to-go-back-there">Do I want to go back there?</h2>
+<p>For me (and I stress that this is personal perception) I feel that:</p>
+<ul>
+<li>A lot of the gains from harness-fiddling could be equally realized by waiting a model generation</li>
+<li>Given the pace of change, spending so long on the substrate+tooling to later build might not have much of advanatge over, just, starting to build with the tools as they are and adapting with them as they evolve and improve</li>
+<li>My personal threshold for how much I want to care about converting from a custom mdhtml format to MSWord’s templated XML is… very low :shrug:</li>
+<li>It turns out I don’t like maintaining and building on a vast + growing library of interconnected pieces. Cool to see, but keeping on top of rapid changes, fitting things into the larger whole, constant refactors and redesigns stressed me out rather than being fun. AAI has 540 repos and growing (Jeremy does &gt;1k commits across &gt;100 repos per month, not sure how!). There would probably be ways I could find my own niche working on more exploratory stuff that didn’t require such tight integration though.</li>
+</ul>
+<p>I’m glad solveit is now available (if not marketed yet) - but sad it took so long. It feels like the ideal tool for careful work with the AI of 2024, a great learning tool for people learning code with the AI of 2025, and a quirky niche tool for exploratory ‘old-school’ coding in 2026, aka ‘the year agents actually got good’. Of course, it has more and more agentic features added in - but after living in Codex for a few months I’m more convinced than ever that the future of coding is likely not carefully typing + inspecting a few lines of code at a time.</p>
+<p>A new iteration of the solveit course could be exciting, although I have no clue what/how I’d like to teach and think I might be resistant to pushing e.g.&nbsp;answerai’s current stack on newbies.</p>
+<ul>
+<li>https://openai.com/index/ten-advances-in-mathematics/ and similar every day</li>
+<li>Fun to spectate vs react</li>
+<li>Coding is ~solved for a lot of my tinkering, it is a glorious time to be a gentleman scientist</li>
+<li>I am worried about pay and going to be a dad</li>
+<li>I am uninspired by writing software</li>
+<li>I am excited to see new applications of ~free software</li>
+<li>Bio is interesting but lacks goals + is expensive and slow</li>
+<li>Electronics is delightfully easy now but AI is looming at the door (where software was a few years ago - needing supervision, good for automating some boilerplate/hard bits, decent only in well-covered parts of the training data, amusingly spiky on things like routing that require spatial understanding, going to go with well-known parts the way early models loved react)</li>
+<li></li>
+</ul>
+<p>I simultaneously feel 1) there is still so much work to do improving the giant pile of hacks that is the current state of AI software, and 2) coding is ~on track to be ‘solved’, such that hard work now feels almost redundant compared to just waiting a bit. I’m glad people like Jack are burning the tokens to do stuff now of course, ditto all the security research being done under glasswing et al.&nbsp;But back in the day writing code felt like making something that would otherwise not exist, whereas now at best it feels like instantiating an idea slightly earlier than it would otherwise happen?? Or something??</p>
+<p>Something physical would be cool. One of the few reasons I’d consider moving. Making manufacturing accessible to all @ sendcutsend or building air-to-methane with terraform or solving some genuinely useful robotics problem…</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/johnowhitaker\.dev");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

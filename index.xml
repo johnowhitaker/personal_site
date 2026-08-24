@@ -10,7 +10,132 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.11.1</generator>
-<lastBuildDate>Thu, 23 Jul 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 24 Aug 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Quo Vadis?</title>
+  <link>https://johnowhitaker.dev/essays/quo_vadis.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I took the summer off as a sabbatical from answer.ai, to travel with my wife, tinker with some side-projects, and spend some thinking through what I want to do in what feels like a particularly pivotal time. I’ve decided not to return to answer, but am still unsure about how to choose between my remaining options. This essay is for me, to consider them all in one place, and for everyone else who has been asking me what I’m going to do now :)</p>
+<p>(DRAFT, WIP, IGNORE FOR NOW)</p>
+<section id="why-now" class="level2">
+<h2 class="anchored" data-anchor-id="why-now">Why Now?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/essays/eci_plot.png" class="img-fluid figure-img"></p>
+<figcaption>Measures like the Epoch Capabilities Index track the continued improvement of models (source: https://epoch.ai/eci)</figcaption>
+</figure>
+</div>
+<ul>
+<li>AI is getting v. good</li>
+<li>Software skills may have a limited remaining shelf life</li>
+<li>I want to step back and see if I’m in the best spot to contribute vs doing work that will happen anyway</li>
+</ul>
+</section>
+<section id="factors-to-consider" class="level2">
+<h2 class="anchored" data-anchor-id="factors-to-consider">Factors To Consider</h2>
+<ul>
+<li>Do I enjoy it (e.g.&nbsp;I like teaching)</li>
+<li>Does it have lasting value (e.g.&nbsp;teaching some specific tech &lt;&lt; teaching some general principle)</li>
+<li>Does it have +ve impact (I want to do good)</li>
+<li>Are other people doing it? (I prefer less populous areas of the map)</li>
+<li>Does it pay? (I’ve historically skewed unprofitable-but-fun, now worry about financial footing given how many of the skills I have might tank in value as they get automated)</li>
+</ul>
+</section>
+<section id="back-to-the-mines-ai-research" class="level2">
+<h2 class="anchored" data-anchor-id="back-to-the-mines-ai-research">1) Back To The Mines (AI Research)</h2>
+<p>Lots of effort and capital is flowing into AI research right now. Many things feel ‘overdetermined’ - that is, they’re going to happen pretty much regardless of what I or any other individual chooses to work on. That said, even if you think AI research is on track to be fully automated in the next few years, you can’t look at the <strong>current</strong> state of things and not see that there is still LOTS of work to do:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/essays/jack_bugfinding.png" class="img-fluid figure-img"></p>
+<figcaption>There is plenty of room for careful work still - most things are still piles of hacks with lots of space for improvement!</figcaption>
+</figure>
+</div>
+<p>I’m a little rusty on model training, but I have &gt; a decade of experience at this point, and am sure I could find ways to contribute. There are organizations working to build AI that benefits people, doing hard + interesting technical work, that pay decently. I’m not sure the day-to-day of begging codex to fix distributed training code would be my <em>favourite</em> thing to do, especially if I don’t have a compelling reason to want the result NOW (vs a little later, without me having to lift a finger). Still, I’m chatting to a few people who may convince me that their org is doing cool enough stuff that I’m compelled to chip in and help it along :)</p>
+</section>
+<section id="frontier" class="level2">
+<h2 class="anchored" data-anchor-id="frontier">2) Frontier?</h2>
+<ul>
+<li>Probably not, unless alignment or application like bio.</li>
+</ul>
+</section>
+<section id="bio" class="level2">
+<h2 class="anchored" data-anchor-id="bio">3) Bio?</h2>
+<ul>
+<li>Slow and expensive</li>
+<li>Possibility (e.g.&nbsp;ML 2014) to bring it to many more people</li>
+<li>…and build on models getting better, cheaper synthesis etc in the future</li>
+<li>got some ideas…</li>
+<li>but not quite yet. Can’t afford to pursue myself, but can keep on side jic (or beg for funding as a startup)</li>
+</ul>
+</section>
+<section id="poke-the-world-with-science-course" class="level2">
+<h2 class="anchored" data-anchor-id="poke-the-world-with-science-course">4) ‘Poke The World With Science’ course</h2>
+<ul>
+<li>Didn’t want to do a course</li>
+<li>But came up with an idea I would be OK charging for, that I love</li>
+<li>Participants get a kit of science stuff each [time period] and some lessons on a few things, then self-directed exploration using those principles to take stuff further and build up a tech tree for themselves over time</li>
+<li>more on this soon possibly</li>
+</ul>
+</section>
+<section id="shorter-term-projects" class="level2">
+<h2 class="anchored" data-anchor-id="shorter-term-projects">Shorter-Term Projects</h2>
+<ul>
+<li>Hardware Hacking Evals</li>
+<li>Portland DIYBio scene</li>
+<li>Electronics Kickstarter</li>
+</ul>
+</section>
+<section id="why-not-answer.ai" class="level2">
+<h2 class="anchored" data-anchor-id="why-not-answer.ai">Why Not Answer.AI</h2>
+<ul>
+<li>TODO copy fro rough notes below</li>
+</ul>
+</section>
+<section id="you-tell-me" class="level2">
+<h2 class="anchored" data-anchor-id="you-tell-me">You Tell Me!</h2>
+</section>
+<section id="what-is-aai-up-to" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-aai-up-to">What Is AAI Up To?</h2>
+<p>Jeremy has been trying to convince people to use his better way of developing software (nbdev, literate programming etc) for years. People are resistant to change, but AI agents can be instructed to code however we want! So, at the moment aai is focused on building out their own parallel ecosystem / meta-harness / ?? to help the models work with them ‘the answerai way’, including: - Custom replacements for the normal harness tools, with python &amp; some custom sandboxing, including lots of extra tricks for efficient editing etc - A custom markdown/html subset, and integrations of this with llms.txt etc (also used a lot for legal doc work with Virgil) - Custom tools for working with solveit dialogs (jupyter notebook style interactive code artifacts) - A custom skills system based on python modules - Custom terminal ipython-like tools - Customizations for existing harnesses using an ‘llm dojo’ to have the models train ‘katas’ via injected fake chat histories, so that they learn how to use all the cool answerai tools</p>
+<p>Their thesis is that by building the model better tools and teaching it to use better software development practices, they’ll be able to do more. Sounds sensible! Hacking around on these tools with some friends, while occasionally using them to make something useful for the lawers, isn’t a bad way to spend ones time :)</p>
+</section>
+<section id="do-i-want-to-go-back-there" class="level2">
+<h2 class="anchored" data-anchor-id="do-i-want-to-go-back-there">Do I want to go back there?</h2>
+<p>For me (and I stress that this is personal perception) I feel that:</p>
+<ul>
+<li>A lot of the gains from harness-fiddling could be equally realized by waiting a model generation</li>
+<li>Given the pace of change, spending so long on the substrate+tooling to later build might not have much of advanatge over, just, starting to build with the tools as they are and adapting with them as they evolve and improve</li>
+<li>My personal threshold for how much I want to care about converting from a custom mdhtml format to MSWord’s templated XML is… very low :shrug:</li>
+<li>It turns out I don’t like maintaining and building on a vast + growing library of interconnected pieces. Cool to see, but keeping on top of rapid changes, fitting things into the larger whole, constant refactors and redesigns stressed me out rather than being fun. AAI has 540 repos and growing (Jeremy does &gt;1k commits across &gt;100 repos per month, not sure how!). There would probably be ways I could find my own niche working on more exploratory stuff that didn’t require such tight integration though.</li>
+</ul>
+<p>I’m glad solveit is now available (if not marketed yet) - but sad it took so long. It feels like the ideal tool for careful work with the AI of 2024, a great learning tool for people learning code with the AI of 2025, and a quirky niche tool for exploratory ‘old-school’ coding in 2026, aka ‘the year agents actually got good’. Of course, it has more and more agentic features added in - but after living in Codex for a few months I’m more convinced than ever that the future of coding is likely not carefully typing + inspecting a few lines of code at a time.</p>
+<p>A new iteration of the solveit course could be exciting, although I have no clue what/how I’d like to teach and think I might be resistant to pushing e.g.&nbsp;answerai’s current stack on newbies.</p>
+<ul>
+<li>https://openai.com/index/ten-advances-in-mathematics/ and similar every day</li>
+<li>Fun to spectate vs react</li>
+<li>Coding is ~solved for a lot of my tinkering, it is a glorious time to be a gentleman scientist</li>
+<li>I am worried about pay and going to be a dad</li>
+<li>I am uninspired by writing software</li>
+<li>I am excited to see new applications of ~free software</li>
+<li>Bio is interesting but lacks goals + is expensive and slow</li>
+<li>Electronics is delightfully easy now but AI is looming at the door (where software was a few years ago - needing supervision, good for automating some boilerplate/hard bits, decent only in well-covered parts of the training data, amusingly spiky on things like routing that require spatial understanding, going to go with well-known parts the way early models loved react)</li>
+<li></li>
+</ul>
+<p>I simultaneously feel 1) there is still so much work to do improving the giant pile of hacks that is the current state of AI software, and 2) coding is ~on track to be ‘solved’, such that hard work now feels almost redundant compared to just waiting a bit. I’m glad people like Jack are burning the tokens to do stuff now of course, ditto all the security research being done under glasswing et al.&nbsp;But back in the day writing code felt like making something that would otherwise not exist, whereas now at best it feels like instantiating an idea slightly earlier than it would otherwise happen?? Or something??</p>
+<p>Something physical would be cool. One of the few reasons I’d consider moving. Making manufacturing accessible to all @ sendcutsend or building air-to-methane with terraform or solving some genuinely useful robotics problem…</p>
+
+
+</section>
+
+ ]]></description>
+  <category>essays</category>
+  <guid>https://johnowhitaker.dev/essays/quo_vadis.html</guid>
+  <pubDate>Mon, 24 Aug 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Pipette Bot Goes To Teardown</title>
   <link>https://johnowhitaker.dev/misc/pipettebot.html</link>
@@ -1018,57 +1143,6 @@ viewer_1769122862701931.render();
   <category>bio</category>
   <guid>https://johnowhitaker.dev/mini-hw-projects/airsoft-gene-gun.html</guid>
   <pubDate>Fri, 09 Jan 2026 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>How Much Grams? Having VLM’s Guess Weight of Objects</title>
-  <link>https://johnowhitaker.dev/mini-projects/how_much_grams.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>I made a tiny little eval based on asking models to esitmate the weight of various objects in grams, inspired by <a href="https://www.youtube.com/shorts/NqtuquniGgM">this guy on tiktok</a> who video calls ChatGPT and makes fun of it for being bad at this.</p>
-<p><img src="https://johnowhitaker.dev/mini-projects/images/hmg_results.png" class="img-fluid"></p>
-<section id="inspiration" class="level2">
-<h2 class="anchored" data-anchor-id="inspiration">Inspiration</h2>
-<p>I want to quantify an automated pipetting system using a precision scale, which required reading off the weight based on a photo of the scale. It seemed like the kind of simple thing that might work with a local VLM on my mac, and I wanted an excuse to play with LFM 2.5 1.6B that was released that day. So I snapped a few pics of my scale showing different weights, in different lighting and angles, and tried moondream v3 preview, zai-org/glm-4.6v-flash, and LFM 2.5 1.6B (<a href="https://gist.github.com/johnowhitaker/ce8ab1fb34c8373b5e12db0eca9e27dc">code</a>). I was a little suprised how bad they are! LFM was fast enough that I fiddled with the prompt a couple of times, and felt that if I kept the lighting constant and didn’t need fancy things like sign, it might <em>mostly</em> be OK with the occasional 8&lt;=&gt;0 mixup. Then I tried gemini-flash-3, which was near-perfect and cost $0.0005 per image. So the only sensible answer is to use that! It’s really tough to compete with a cheap, fast, API model like this with local models. Anyway, jagged frontier and all that. I figured I might as well make an eval inspired by this, and the obvious extension is to see if the models can guess the weight of the objects without seeing the scale reading too.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-projects/images/scale_gemini.png" class="img-fluid figure-img"></p>
-<figcaption>Gemini Flash 3 getting the scale readings mostly correct</figcaption>
-</figure>
-</div>
-</section>
-<section id="collecting-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="collecting-the-data">Collecting the data</h2>
-<p>This is the kind of thing that competent coding models really shine at. I made a data collection ‘app’ with this prompt to GPT-5.2-Codex (in Codex CLI):</p>
-<p>**“I’d like to build a dataset for an AI eval. The way I’d like to gather the data is to run a Flask app on this Mac which we will create in this currently empty directory. It should, when I visit mac.local/whatever the port is for my phone, I should get a page that asks for camera permission and then it prompts me to take a picture of an object, take a picture of the object on the scale and then take a picture of the scale reading. So three photos for every object that’s going to be in the dataset. These three should all be saved with a consistent ID for that object or that data point followed by _object _scale _scale reading. The app should be kind of nice to use and give me options for retaking a photo right after I’ve taken it or moving on to the next photo, canceling an observation at any point. You know just basically a nice simple data gathering UI so that I can quite rapidly build up a fun little dataset to demonstrate this. Let me know if you have any questions otherwise feel free to start the implementation!“** (voice dictated)</p>
-<p>It nailed it first try. The resulting <a href="https://github.com/johnowhitaker/how_much_grams">app</a> let me quickly snap some pics of 20 objects, with 3 pics each (object, object on scale, scale reading).</p>
-</section>
-<section id="testing-some-models" class="level2">
-<h2 class="anchored" data-anchor-id="testing-some-models">Testing Some Models</h2>
-<p>The data collection app saves triplets of images: the object, the object on the scale, and the scale reading. I used gemini flash to read the scale readings (all nicely in frame and right-way-up, so it was easy), and then fed the object images to various VLMs to see how well they could guess the weight of the objects in grams.</p>
-<p><img src="https://johnowhitaker.dev/mini-projects/images/hmg_data.png" class="img-fluid"></p>
-<p>I used MAPE as a metric, since there’s a wide range of weights. The dataset is small, but I think it captures some real variation between the different models and how well they actually do on image tasks. Feel free to expand it from 20 imags to 200 :)</p>
-<p><a href="https://gist.github.com/johnowhitaker/27b7c4e61872bdfb0fafd94da28b0631">Code for the eval is here</a>.</p>
-</section>
-<section id="thoughts-takeaways" class="level2">
-<h2 class="anchored" data-anchor-id="thoughts-takeaways">Thoughts + Takeaways</h2>
-<ul>
-<li>VLMs have suprising gaps. Especially these small models - it can be easy to fall into a false sense of security since they appear to have so much deep general knowledge, but when you poke at vision tasks you quickly find that they have plenty of blind spots.</li>
-<li>SpecID (my multile-choice species ID eval) showed me that in these cases text-only performance can be suprisingly high! You’d think a 5-way multiple choice between obscure species names with no picture would mean ~20% accuracy, but no - more common species are more likely to have pictures taken, and larger models are smart enough to pick the more common (yet still relatively obscure) species names and do a lot better than that. Here I suspect something similar happens - rather than guessing the weight of <strong>this</strong> lemon, I think all that some of these models get from their kludged-on vision adapters is the concept of lemon-ness, maybe ‘small lemon’, and then from there they answer with their text knowledge of how much a lemon weighs on average.</li>
-<li>I have a friend with a related dataset for a similar but harder task, which might turn into a fine-tuning tutorial at some point, we’ll see</li>
-<li>Gemini 3 Flask is <strong>SO HARD TO BEAT</strong>. It almost bums me out. It’s so fast and cheap, really hard to think when you’d need local models! The big API models have their place, but cost and speed wise Flash covers a lot of the desirable part of the pareto frontier for tasks like this.</li>
-<li>AI is really got at one-shotting data collection apps now. Yes, you knew this already. Still, the fact that the fastest way to collect these 60 images was to spin up a bespoke web app is incredible :)</li>
-</ul>
-
-
-</section>
-
- ]]></description>
-  <category>mini-projects</category>
-  <guid>https://johnowhitaker.dev/mini-projects/how_much_grams.html</guid>
-  <pubDate>Thu, 08 Jan 2026 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
