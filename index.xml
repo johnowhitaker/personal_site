@@ -10,7 +10,280 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.11.1</generator>
-<lastBuildDate>Mon, 24 Aug 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 25 Aug 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Neural Physarium (DRAFT POST)</title>
+  <link>https://johnowhitaker.dev/mini-projects/physarium.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I first got excited about physarium simulations 5 years ago, when I coded a high-performance slime sim I called “DotSwarm” in WebGL. The patterns these simple agent-based simulations produce are mesmerizing. (<a href="https://www.youtube.com/watch?v=mnuwd_z9YGE">Video</a>, <a href="https://observablehq.com/@johnowhitaker/dotswarm-exploring-slime-mould-inspired-shaders">Observable Notebook</a>). The general premise is that you simulate ‘agents’ and a ‘substrate’. The agents each move along with some velocity, sensing the substrate ahead of with, say, 3 ‘sensors’ at different angles, and then choosing how much to turn based on some rule. The agents also deposit ‘pheremones’ to the substrate, typically modelled as a grid, and it is these patterns of pheremones that lead to emergent behaviour where agents being to follow eachother along highways etc, much like ants do. This leads to some lovely patterns:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-projects/images/slime_ring.png" class="img-fluid figure-img"></p>
+<figcaption>My old WebGL slime mold sim</figcaption>
+</figure>
+</div>
+<p>Anyway, after my recent <a href="https://johnowhitaker.dev/misc/nca_games.html">explorations of neural cellular automata for games</a>, I got in touch with <span class="citation" data-cites="Esychology">@Esychology</span> and we challenged eachother to try to make a <strong>trainable</strong> physarium setup work. This is more challenging than NCAs - with the agents zipping about, it is very tricky to see how gradients could flow from an objective back to the weights of the agent ‘brains’ in a way that makes training possible! Long story short, I managed to get it somewhat working - the rest of this post will be my attempt at all the little tricks that went into it, and suggestions for how this could be taken further :)</p>
+<p>WIP post, the best place to see code in action + get an understanding of the setup is the jax NB linked below, I’ll come back and finish this article tomorrow, hello early birds sorry about the mess :D</p>
+<p><a href="https://github.com/johnowhitaker/physarium">Code</a> <a href="https://github.com/johnowhitaker/physarium/blob/main/physarium_jax_colab.ipynb">Jax nb</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-projects/images/slime_splat.png" class="img-fluid figure-img"></p>
+<figcaption>Bilinear splatting in action</figcaption>
+</figure>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">class</span> State(NamedTuple):</span>
+<span id="cb1-2">    field: jax.Array       <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># [H,W,communication]</span></span>
+<span id="cb1-3">    canvas: jax.Array      <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># [H,W,RGB]</span></span>
+<span id="cb1-4">    pos: jax.Array         <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># [agents,xy]</span></span>
+<span id="cb1-5">    heading: jax.Array     <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># [agents,xy]</span></span>
+<span id="cb1-6">    hidden: jax.Array      <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># [agents,memory]</span></span>
+<span id="cb1-7">    pigment: jax.Array     <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># [agents,RGB]</span></span></code></pre></div></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> perceive(state):</span>
+<span id="cb2-2">    density <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> density_field(state.pos, CFG[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grid"</span>], CFG[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grid"</span>])</span>
+<span id="cb2-3">    expected <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> CFG[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"agents"</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> CFG[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grid"</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span>
+<span id="cb2-4">    density <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> jnp.log1p(density <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> (expected <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1e-6</span>))</span>
+<span id="cb2-5">    world <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> jnp.concatenate([state.field, state.canvas, density], axis<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb2-6">    sample_pos <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> state.pos[:, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span>, :] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> OFFSETS[<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span>, :, :]</span>
+<span id="cb2-7">    local_patch <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> bilinear_sample(world, sample_pos.reshape(<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>))</span>
+<span id="cb2-8">    local_patch <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> local_patch.reshape(CFG[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"agents"</span>], CFG[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"patch"</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb2-9">    cue_center <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> bilinear_sample(CUES, state.pos)</span>
+<span id="cb2-10">    global_inputs <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> jnp.concatenate([state.heading, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> state.pigment <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, cue_center], axis<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb2-11">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> local_patch, global_inputs</span>
+<span id="cb2-12"></span>
+<span id="cb2-13"></span>
+<span id="cb2-14"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> brain(params, local_patch, global_inputs, hidden):</span>
+<span id="cb2-15">    spatial <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> jnp.tanh(jnp.einsum(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"nkc,ks-&gt;ncs"</span>, local_patch, params[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"spatial"</span>]))</span>
+<span id="cb2-16">    encoded <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> jnp.concatenate([spatial.reshape(CFG[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"agents"</span>], <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>), global_inputs], axis<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb2-17">    encoded <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> jax.nn.silu(linear(params[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"encoder1"</span>], encoded))</span>
+<span id="cb2-18">    encoded <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> jnp.tanh(linear(params[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"encoder2"</span>], encoded))</span>
+<span id="cb2-19">    hidden <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> gru(params[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"gru"</span>], encoded, hidden)</span>
+<span id="cb2-20">    trunk <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> layer_norm(hidden, params[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ln_scale"</span>], params[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ln_bias"</span>])</span>
+<span id="cb2-21">    trunk <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> jax.nn.silu(linear(params[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"trunk1"</span>], trunk))</span>
+<span id="cb2-22">    trunk <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> jax.nn.silu(linear(params[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"trunk2"</span>], trunk))</span>
+<span id="cb2-23">    out <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> linear(params[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"head"</span>], trunk)</span>
+<span id="cb2-24">    turn <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> CFG[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"max_turn"</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> jnp.tanh(out[:, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>])</span>
+<span id="cb2-25">    speed <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> CFG[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"base_step"</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> jnp.exp(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.35</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> jnp.tanh(out[:, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]))</span>
+<span id="cb2-26">    emission <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> jnp.tanh(out[:, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> CFG[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"comm"</span>]])</span>
+<span id="cb2-27">    gate <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> jax.nn.sigmoid(out[:, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> CFG[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"comm"</span>]])</span>
+<span id="cb2-28">    proposal <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> jax.nn.sigmoid(out[:, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> CFG[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"comm"</span>]:])</span>
+<span id="cb2-29">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> turn, speed, emission, gate, proposal, hidden</span></code></pre></div></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-projects/images/slime_growth.png" class="img-fluid figure-img"></p>
+<figcaption>Growing a mushroom</figcaption>
+</figure>
+</div>
+
+
+
+ ]]></description>
+  <category>blogs</category>
+  <guid>https://johnowhitaker.dev/mini-projects/physarium.html</guid>
+  <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Quo Vadis?</title>
   <link>https://johnowhitaker.dev/essays/quo_vadis.html</link>
@@ -1080,60 +1353,6 @@ viewer_1769122862701931.render();
   <category>bio</category>
   <guid>https://johnowhitaker.dev/posts/cnc_pipette.html</guid>
   <pubDate>Mon, 19 Jan 2026 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>AGGG (Airsoft Gun Gene Gun) Part 1 - The Idea</title>
-  <link>https://johnowhitaker.dev/mini-hw-projects/airsoft-gene-gun.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>I have a wacky idea for a biolistics-style transformation method that wouldn’t need a gene gun (sneak peek at the end of this post). Explaining it to a friend, he asked why not make a gene gun and sent me some links to DIY attempts. On reflection, I realized that they were building bad versions of something that already exists. A gene gun takes ~800PSI air, adds a valve to release it quickly, directing it with a barrel to accelerate the carriers. An airsoft gun takes 800PSI air, has a trigger mechanism for releasing it in pulses… This post is me printing an adapter for the end and testing it out - looks promising! Hopefully I can test this with DNA soon if I find a way to get some.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/aggg_penetration.png" class="img-fluid figure-img"></p>
-<figcaption>Testing penetration</figcaption>
-</figure>
-</div>
-<section id="background" class="level2">
-<h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>There are various ways of getting DNA into organisms. For some bacteria, you can use heat shock - this is what I’ve done for my engineering of <em>E. coli</em>. For many cells, ‘electroporation’ is an option - basically, zap them and the DNA will get in by magic (but only into a small fraction of cells). (I think a piezo sparker from a BBQ lighter might do the trick TBH - future project right there). For plants, scientists sometimes use a bacterium called <em>Agrobacterium tumefaciens</em> that naturally infects plants and inserts its DNA into the plant genome. (Evolved genetic engineering! How cool!!). But it doesn’t work on everything, and also some places are touchy about you using a plant pathogen to do stuff, even if it’s found everywhere and also the lab versions have all the nasty bits removed. Anyway, so there are downsides to all of these methods.</p>
-<p>An older technique that still gets used a lot, because it has a different set of pros and cons, is biolistics - shooting tiny particles coated in DNA into cells. This is done with a ‘gene gun’ that uses high-pressure gas to accelerate the particles to high speed, so they can penetrate cell walls and membranes. The particles are usually made of gold or tungsten, because they’re dense and inert. The DNA is stuck to these particles using calcium chloride and spermidine (salmon sperm). Machines cost tens of thousands of dollars, and are high-pressure and scary. They do a lot of damage to the tissue, and need fiddling to get the right settings. So people don’t use them much. Also you’re literally shooting gold, and everything involved is expensive. The disks (just pieces of kapton AFAICT) are expensive even.</p>
-</section>
-<section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The Idea</h2>
-<p>Anyway, as I said in the intro, why not leverage an airsoft gun to DIY one? So I handed papa Bezos $37 dollars for the ‘Elite ForceCombat Zone Enforcer Clear’ - a nice simple pistol (no blowback, so &gt;100 shots per 12g CO2 cartridge). I 3D printed a little adapter that press-fits onto the front, with a way to press on a second part and twist to lock it on. Cad model <a href="https://cad.onshape.com/documents/71fca31e747655d5c863a1f8/w/a8cc152e6f29fbbab59bf04a/e/b01a553a9982db79811f8915?renderMode=0&amp;uiState=69619e0f49143b0f26dfabf7">here</a>.</p>
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/aggg_adapter.png" class="img-fluid"></p>
-<p>I don’t want to spend $$$ on facy metal powder and salmon sperm, so I’d like to experiment with different carriers. One idea I had is to use diatomaceous earth (DE) - a bunch of spiky silica shells about the right size, since I found a tub of it in the basement. Having a quick look around, seems like others have tried a few random things like clay with some success. I do have some spare plasmid but no good way to quantify how much that DNA sticks to a given carrier, so I might wait til later for that, or try some runs first in case it all magically works first time (unlikely).</p>
-</section>
-<section id="testing" class="level2">
-<h2 class="anchored" data-anchor-id="testing">Testing</h2>
-<p>Anyway, to visualize the spread I added a pinch of potassium permangate to some cling film, chucked it up (I’m smug everything fit perfectly first time) and fired it at some innocent MS media I had sitting nearby from some tissue culture work (TODO, blog posts about that). The result is a perfect ‘real life data viz’ example:</p>
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/aggg_spread.png" class="img-fluid"></p>
-<p>The idea is that in the center it might be too much and blast apart the cells, and at the edges too little, but in the sweet spot you might get transformations. And then the idea is you’ll select the transformed tissue and grow it out (e.g.&nbsp;with antibiotic that your plasmid confers resistance to, or with a visual marker like GFP).</p>
-<p>I also tried adding some DE to Methylene blue dye (since it’s hard to see white on white) and fired it into a paper towel. It all looks promising to me - although I have no reference for what a ‘good’ gene gun shot looks like haha. It took 10 minutes to model and print the adapter though, so I have plenty of variables to play with. Distance to target, adding a diverging nozzle, different carriers, films (I used a 5uL drop of dye+DE on clingfilm for the test), etc etc. It’s promising that the liquid atomized nicely - others seem to use the solid particle carriers and dry them off. Dry would be good in some ways (‘bullets’ such as tubes with the pre-dried carriers are said to last months once prepped) but if e.g.&nbsp;I could add a few uL plasmid to some carrier and blast that right away it would save a lot of work.</p>
-<p>Anyway, until I get plasmid and try this out in plant tissue, I should probably slow down on this. Anyone with an addgene account who feels like <a href="https://www.addgene.org/64401/">buying me a plasmid</a> LMK ;) I’m also hoping to chat to someone I know who is far more knowledgeable about all this and actually has a gene gun, but that’ll be in a few weeks time.</p>
-</section>
-<section id="ps-the-other-idea" class="level2">
-<h2 class="anchored" data-anchor-id="ps-the-other-idea">PS: The Other Idea</h2>
-<p>For the curious, my other idea is plant micro-accupuncture. I got some 50-micron tungsten wire, and figured out how to sharpen it in a flame (inspired by <a href="https://www.youtube.com/watch?v=vpTX32KdVBQ">this video</a> on DIY gecko tape) - I figure I’ll make a bundle of these sharp micro-needles, lay down a layer of DNA over the plant tissue, and go to town. No idea if it’ll work, but if it does it’ll be a cool way to do localised transformations without all the damage of a gene gun.</p>
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/sharpened_tungsten.png" class="img-fluid"></p>
-<p>Amazing how sharp you can get it, this is at 200X magnification. Reference is carrot cells (I’m working carrot callus culture as a nice model system for plant transformation).</p>
-<p>Anyway, very much early days but I thought rather write these ideas down and get them out there, and then when I get results (could take a while) I can at least refer to part 1 and save myself some typing :)</p>
-<p>There’s a joy to doing something like this. I know there are smart people who’ve done tons of research, but I also think the incentices in academia etc aren’t set up to tinker. You have a fancy gene gun, why work on a cheap one? Gold works, why swap? After all, you want to do your transform and write your paper and get your PHD. But for me, if we can lower the barrier to entry all the way, way more people can try stuff and maybe find new things. So, I have looked stuff up here and there, but I’m trying to also keep my outsider status as long as possible so I don’t get too stuck in “the way it’s always been done”. You,dear reader, will get to see if this approach works. There’s no losing though! Worst case, well, I got an airsoft gun, and may have already scattered some BBs around the basement with a big grin on my face :)</p>
-<p>PS: This is an amusing area to try to use AI with - they’re all completely uninterested in assisting with ‘building a projectile weapon’ and will be vague to the point of uselessness on many related questions. More fun thinking for me :)</p>
-<p>PPS: Relevant XKCD: https://xkcd.com/1217/</p>
-<p>PPPS: I made a bundle of sharpened wires attached to an electric toothbrush, and it seemed to ~successfully tatoo MB into onion skin, which is promising. When they get all bent up you can re-sharpen in the flame. Penetration depth not excellent, stiffer thicker wire might have been a good idea.</p>
-
-
-</section>
-
- ]]></description>
-  <category>mini-hw-projects</category>
-  <category>bio</category>
-  <guid>https://johnowhitaker.dev/mini-hw-projects/airsoft-gene-gun.html</guid>
-  <pubDate>Fri, 09 Jan 2026 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

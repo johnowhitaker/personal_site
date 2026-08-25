@@ -2,6 +2,7 @@
   {
     "listing": "/all.html",
     "items": [
+      "/mini-projects/physarium.html",
       "/essays/quo_vadis.html",
       "/misc/pipettebot.html",
       "/posts/glowing_poop.html",
@@ -241,6 +242,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/mini-projects/physarium.html",
       "/essays/quo_vadis.html",
       "/misc/pipettebot.html",
       "/posts/glowing_poop.html",
