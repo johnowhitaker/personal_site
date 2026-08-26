@@ -12,13 +12,20 @@
 <generator>quarto-1.11.1</generator>
 <lastBuildDate>Tue, 25 Aug 2026 00:00:00 GMT</lastBuildDate>
 <item>
-  <title>Neural Physarium (DRAFT POST)</title>
+  <title>Neural Physarium</title>
   <link>https://johnowhitaker.dev/mini-projects/physarium.html</link>
   <description><![CDATA[ 
 
 
 
 
+<p>I trained a multi-agent slime mold sim style thingee to collaboratively paint emojis. This post has a few more details, but you’ll want the <a href="https://x.com/johnowhitaker/status/2084041106367615235">Twitter/X thread</a> for the progression and the fancy videos too.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-projects/images/chromatic_mycelium_96_states_compact.gif" class="img-fluid figure-img"></p>
+<figcaption>Growing a mushroom, 96px</figcaption>
+</figure>
+</div>
 <p>I first got excited about physarium simulations 5 years ago, when I coded a high-performance slime sim I called “DotSwarm” in WebGL. The patterns these simple agent-based simulations produce are mesmerizing. (<a href="https://www.youtube.com/watch?v=mnuwd_z9YGE">Video</a>, <a href="https://observablehq.com/@johnowhitaker/dotswarm-exploring-slime-mould-inspired-shaders">Observable Notebook</a>). The general premise is that you simulate ‘agents’ and a ‘substrate’. The agents each move along with some velocity, sensing the substrate ahead of with, say, 3 ‘sensors’ at different angles, and then choosing how much to turn based on some rule. The agents also deposit ‘pheremones’ to the substrate, typically modelled as a grid, and it is these patterns of pheremones that lead to emergent behaviour where agents being to follow eachother along highways etc, much like ants do. This leads to some lovely patterns:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -27,14 +34,30 @@
 </figure>
 </div>
 <p>Anyway, after my recent <a href="https://johnowhitaker.dev/misc/nca_games.html">explorations of neural cellular automata for games</a>, I got in touch with <span class="citation" data-cites="Esychology">@Esychology</span> and we challenged eachother to try to make a <strong>trainable</strong> physarium setup work. This is more challenging than NCAs - with the agents zipping about, it is very tricky to see how gradients could flow from an objective back to the weights of the agent ‘brains’ in a way that makes training possible! Long story short, I managed to get it somewhat working - the rest of this post will be my attempt at all the little tricks that went into it, and suggestions for how this could be taken further :)</p>
-<p>WIP post, the best place to see code in action + get an understanding of the setup is the jax NB linked below, I’ll come back and finish this article tomorrow, hello early birds sorry about the mess :D</p>
-<p><a href="https://github.com/johnowhitaker/physarium">Code</a> <a href="https://github.com/johnowhitaker/physarium/blob/main/physarium_jax_colab.ipynb">Jax nb</a></p>
+<p>You can also look at this <a href="https://github.com/johnowhitaker/physarium/blob/main/physarium_jax_colab.ipynb">jax notebook</a> that implements it end-to-end (AI generated for a demo I gave on this to some people at an org that likes Jax), or check out the rest of the vibed code in the <a href="https://github.com/johnowhitaker/physarium">repo</a>.</p>
+<section id="let-the-gradients-flow-bilinear-splatting-and-sampling" class="level2">
+<h2 class="anchored" data-anchor-id="let-the-gradients-flow-bilinear-splatting-and-sampling">Let The Gradients Flow: Bilinear Splatting and Sampling</h2>
+<p>When you have a particle with some x,y position, say, 7.2, 8.5, one way you could ‘draw’ it or have it deposit ‘pheremones’ to the fixed grid of the substrate is to round off and use the nearest pixel. BUT this throws away some signal - how are you supposed to get a gradient that would nudge the particle a little to the left? Instead, it’s generally a good idea to distribute the signal around the nearest pixels based on distance:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://johnowhitaker.dev/mini-projects/images/slime_splat.png" class="img-fluid figure-img"></p>
 <figcaption>Bilinear splatting in action</figcaption>
 </figure>
 </div>
+<p>The same goes for sampling. Each particle reads some info from its neighborhood - by doing so with this bilinear sampling approach, we can get signals like “it would be better if that signal was stronger to the left” (hand waving here obviously).</p>
+</section>
+<section id="perception-communication-state" class="level2">
+<h2 class="anchored" data-anchor-id="perception-communication-state">Perception, Communication, State</h2>
+<p>We have a bunch of agents (say, 4096) and a shared grid (say, 96px square). Each agent has a position, velocity, a color it can deposit, and some internal state. They ‘perceive’ their neighborhood, then choose how to modify their directions and the pheremones + colors they are depositing.</p>
+<p>Importantly, the agents can’t see eachother directly (this makes life a lot easier - training boids or something where each particle reacts to other nearby particles requires a LOT of tricks to make things performant). Instead, they can interact indirectly, by reading pheremones from the grid. I also ‘splat’ a density signal to the grid, which they can read to see how many other agents are/were nearby.</p>
+<p>For perception, traditional slime sims use only two or three ‘antennae’ - to give mine a better chance of learning, I expanded to a 5x5 pixel grid that they can see. You can have this aliogned to the agent’s direction of movement, or “world aligned” (I tested both) - I kept it world aligned for ease of computation.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-projects/images/slime_arch.png" class="img-fluid figure-img"></p>
+<figcaption>A rough diagram of the overall architecture</figcaption>
+</figure>
+</div>
+<p>I also gave them a few gradients, one radial, one vertical and one horizontal. This feels a little cheaty, but not implausibly so. Otherwise we could end up with rotationally invariant setups that would really struggle to produce a target image. The jax code gives a nice concise look at the key bits:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
@@ -270,14 +293,35 @@ font-style: inherit;">"comm"</span>]:])</span>
 background-color: null;
 font-weight: bold;
 font-style: inherit;">return</span> turn, speed, emission, gate, proposal, hidden</span></code></pre></div></div>
+</section>
+<section id="learning-something-interesting" class="level2">
+<h2 class="anchored" data-anchor-id="learning-something-interesting">Learning Something Interesting</h2>
+<p>I tried re-creating some image textures using a texture loss as in the fantastic uNCA work (todo link). This works as long as the texture you want is blobs :D After poking at it for a while I was almost ready to call it on neural physarium, but then the day before my call with Ehsan to show (lack of) progress on our silly quest, I gave it one more go with codex, brain dumpimg all my ideas and challenging it to get some shapes growing. Success!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-projects/images/shapes.png" class="img-fluid figure-img"></p>
+<figcaption>Shapes made by particles in motion</figcaption>
+</figure>
+</div>
+<p>Then, with further pushing, we were able to get persistent painting working too:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://johnowhitaker.dev/mini-projects/images/slime_growth.png" class="img-fluid figure-img"></p>
 <figcaption>Growing a mushroom</figcaption>
 </figure>
 </div>
+<p>The agents deposit pigment, which gradually fades and diffuses, so they must learn to keep it topped up, too. It is even somewhat robust to peterbations too, since we train with some degradation. CHeck out <a href="https://x.com/johnowhitaker/status/2084144556682117146?s=20">this tweet</a> to see a video of me playing with an interactive toy I made to show this.</p>
+<p>I use the pooled training as developed in the original NCA distil.pub article. The mushroom emoji is the best of the lot - thanks to the constant motion, finer details or more complex shapes can be a bit of a mess. Most of my exporiments looked more like this:</p>
+<p><img src="https://johnowhitaker.dev/mini-projects/images/slime_emojis.png" class="img-fluid"></p>
+<p>Still, better than nothing!</p>
+</section>
+<section id="an-evolving-way-of-doing-research" class="level2">
+<h2 class="anchored" data-anchor-id="an-evolving-way-of-doing-research">An Evolving Way Of Doing Research</h2>
+<p>I didn’t really write code for this project. Sure, I seeded it with some older code of mine, and described things in pretty fine detail as we went along. But Codex did the hard work - and this meant things got done that I would never have patience for. Lots of tweaking of the loss function to eke out extra gains. Easy ablations of things like rotating the perception vs keeping it world aligned. HTML research logs with lots of nice animations, interactive demos, and loss curves. Parallel training runs to test things using model for compute. I felt more like a thesis supervisor with an amazingly productive student, rather than a researcher in the trenches. And, as A.M. quipped when I said I’d made them a jax port: frameworks don’t really matter these days! Wild times.</p>
+<p>Anyway, I’ll try to make a video on these too, but for now I hope this blog post at least serves as a minimal sort of write-up/reference to point at. This is a fun and unexpored area, I hope this inspires you to give it a poke too. Good luck, LMK if you train anything cool - J</p>
 
 
+</section>
 
  ]]></description>
   <category>blogs</category>
