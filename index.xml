@@ -10,7 +10,47 @@
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.11.1</generator>
-<lastBuildDate>Tue, 25 Aug 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 27 Aug 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Timrrr - A Small Buzzer To Train Time Sense</title>
+  <link>https://johnowhitaker.dev/mini-hw-projects/timrr.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>This is a physical manifestation of a trick I came up with in college, for times when I find myself getting lost in flow a little too much. It buzzes every 5 minutes. Not annoying enough (for me) to be a problem, just enough of a notification to snap me out of it if I’m scrolling X or something, reminding me that time is passing.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/timrr-400.gif" class="img-fluid figure-img"></p>
+<figcaption>Prototype goes buzz and moves a little on the desk</figcaption>
+</figure>
+</div>
+<p>It runs on a coin cell, and uses a very efficient little haptic motor for the short buzz. I estimate the battery life at months if not &gt;1y! (I’ll update this post when the test one stops buzzing every few seconds). This was a fun little test of how easy it can be to get something made with ‘vibe PCB design’ and overseas PCBA. 5 boards, assembled (apart from battery clip and motor, which I ordered separately) were $15 with a JLCPCB coupon, and design was nice and quick with codex doing most of the menial stuff (I had to take over for the layout and some final check). We did miss one mistake, two pins need to be bridged for programming to work haha.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/timrrr_hw.png" class="img-fluid figure-img"></p>
+<figcaption>The hardware</figcaption>
+</figure>
+</div>
+<p>I can get this far lower profile! I’m considering a version that will work as a pendant or in a coin pocket, maybe running a small kickstarter to fund a production batch. But even this clunky version is pretty dinky - I have one in a 3D printed case that lives in my pocket whenever I remember, and sits on my desk while I work.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/timrrr_case.png" class="img-fluid figure-img"></p>
+<figcaption>The verson I carry, in a 3D printed case</figcaption>
+</figure>
+</div>
+<p>I’ll be honest, it’s a little easy to misplace something like this and forget that it exists, since it doesn’t offer any flashy gamifications or whatever to keep you as a user. But when I remember to have one on me, it saves me from losing time to YouTube, X etc multiple times a day, while never noticeably intruding on the bits of life that actually matter.</p>
+<p>Source code etc: https://github.com/johnowhitaker/timrrr</p>
+<p>(Writeup dated Aug 27 but I haven’t done anything besides use it since I assembled the test units on 04/08)</p>
+
+
+
+ ]]></description>
+  <category>mini-hw-projects</category>
+  <guid>https://johnowhitaker.dev/mini-hw-projects/timrr.html</guid>
+  <pubDate>Thu, 27 Aug 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Neural Physarium</title>
   <link>https://johnowhitaker.dev/mini-projects/physarium.html</link>
@@ -1313,90 +1353,6 @@ viewer_1769122862701931.render();
   <category>bio</category>
   <guid>https://johnowhitaker.dev/posts/putida.html</guid>
   <pubDate>Thu, 22 Jan 2026 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>CNC Pipette, Misc Project Updates</title>
-  <link>https://johnowhitaker.dev/posts/cnc_pipette.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>I had a productive weekend, and should write it all up! Many projects are simmering away with long waits before they resolve, so I’m dumping them all in this post :)</p>
-<section id="cnc-pipette" class="level2">
-<h2 class="anchored" data-anchor-id="cnc-pipette">CNC Pipette</h2>
-<p>I’ve enjoyed hearing <a href="https://x.com/jrkelly">Jason Kelly</a>’s take on why bio should abandon the lab bench and let automated labs (like the ones his company Ginkgo makes) do the work of moving liquids and things around, freeing up the smart minds to actually think about cool experiments rather than spending all their time on menial lab tasks. Sounds good, although I simultaneously think far more people should do a little lab stuff to open their minds to the realities of the real world, and worry how much might get missed if you only see what you set out to measure!</p>
-<p>Anyway, with all that discussion fresh in my mind, one of the things I did this weekend was whip up an attachment for my 3D printer that holds my pipette and can suck up and dispense small amounts of liquid. End goal: agar art with colorful microbes, of course :D A Dynamixel servo that I had on hand pushes the plunger thingee on the pipette, with both it and the printer controlled by a raspberry pi or laptop (the latter after I ran the wrong G-Code and spilled colorful water on the former!).</p>
-<p><img src="https://johnowhitaker.dev/posts/images/cnc_pipette.png" class="img-fluid"></p>
-<p>The <a href="https://cad.onshape.com/documents/42cf135ce4b1a1a34746c4ee/w/bec91f2a6df1f3690807754b/e/2f528fdceb0af6a3583d11d3?renderMode=0&amp;uiState=696e7b486f2ab6c24a30a134">CAD</a> and <a href="https://github.com/johnowhitaker/pipette">code</a> are still WIP, contact me if you’re interested in this or wait until the next weekend I feel like tidying it up + making a more thorough video documenting the project. My favourite result so far comes from the first test, before I dialed in liquid dispensing:</p>
-<p><img src="https://johnowhitaker.dev/posts/images/cnc_p_heart.png" class="img-fluid"> <img src="https://johnowhitaker.dev/posts/images/cnc_p_heart_result.png" class="img-fluid"></p>
-<p>I’ve since done some agar art with my pet blue fluorescent Pseudomonas sp. that is growing out nicely - will upload pics once I make a few more artworks.</p>
-<p>Update: I made a short with it in action: <a href="https://www.youtube.com/shorts/He5VJz9E1lQ">https://www.youtube.com/shorts/He5VJz9E1lQ</a></p>
-<p>Update 2: <a href="https://x.com/johnowhitaker/status/2027922837844201987?s=20">Here’s an animation made with fluorescent dye</a></p>
-</section>
-<section id="biolistics---asgg-tests" class="level2">
-<h2 class="anchored" data-anchor-id="biolistics---asgg-tests">Biolistics - ASGG tests</h2>
-<p>I haven’t managed to find a way to get genes from addgene. A friend has kindly stepped in to help, and I might also cold-email some local profs in case any want to collaborate. But that means than for now, I don’t really have a way to test the gene gun idea and won’t for a few more weeks at least. Still, I did muck about a bit, starting with: carriers and DNA adhesion.</p>
-<p>In regular gene guns, DNA is precipitated onto gold nanoparticles, which are then washed in ethanol and then mixed with something called PVP, which let’s them then stick to plastic tubes or disks. The result is an even spread of DNA-coated gold balls. I’m planning to try a few things differently. One carrier I’m looking at is diatomaceous earth - sharpish fragments about the right size, high surface area. I’ve been putting little droplets of DE slurry on film (cling film or parafilm) and firing them without even waiting for the droplet to dry.</p>
-<p>One test was thus, can we stick DNA to DE? Both are ~slightly negatively charged, so I tried one test with DE slurry + plasmid soln (my ~failed BLY_GREEN) w/ methylene blue to stain the DNA + water, and a second with the same but 50mM CaCL2 solution instead of water. The CaCl2 contributes +ve calcium ions which might (the theory goes) form a bridge. Indeed, it seemed like the DE that settled out in the CaCl2 version was bluer than the whiteish version with just water. (A better test would be to use a better DNA stain to check the water bit to see how much DNA is left). In another test, DE mixed with DNA + MB both with and without CaCl2 was added to lots more water and then spun down in a diy centrifuge - the pellet in both was blue, but the water-only pellet rapidly disperse on handling while the CaCl2 version was stable - my suspicion is that it causes clumping (pro gene gun prep involves sonicating to break up clumps). If that’s the case, then skipping the CaCl2 might be better - the DNA is still likely to coat the carrier if e.g.&nbsp;we let a drop evaporate and it is left with tons of surface area of silica DE vs a relatively small area of hydrophobic cling-film. More testing to do :)</p>
-<p><img src="https://johnowhitaker.dev/posts/images/blue_de.png" class="img-fluid"></p>
-<p>I also explored penetration. My first attempt just had a wide attachment after the barrel, with film stretched across it. You had to get close to get much penetration, which also seemed to cause damage to the agar at least (using it as a transparent stand-in for plant matter). Testing it on onion it mostly penetrated only the 1st layer of cells. So, I modelled up a converging-diverging nozzle, with the film placed in the throat, and got much nicer results - less damage from air, more even penetration of the (presumably faster-moving) particles. In onion it sent some particles 5-10 cells deep on the first try :)</p>
-<p><img src="https://johnowhitaker.dev/posts/images/pen_test_mb.png" class="img-fluid"></p>
-</section>
-<section id="biolistics---w-wire-tatoo-approach" class="level2">
-<h2 class="anchored" data-anchor-id="biolistics---w-wire-tatoo-approach">Biolistics - W wire tatoo approach</h2>
-<p>I did more tests with my mini tatoo gun concept, using a bundle of flame-sharpened tungsten wires (50-micron) to poke at an onion with some MB as a dye just to see what happens. The dye wipes away except where the wires (attached to an electric toothbrush) stabby-stabby stabbed the tissue.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/posts/images/wneedlebundle.png" class="img-fluid figure-img"></p>
-<figcaption>A bundle of tungsten wires, partially flame-sharpened</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/posts/images/wneedle_results.png" class="img-fluid figure-img"></p>
-<figcaption>Most of the effect is in the top layer of cells</figcaption>
-</figure>
-</div>
-<p>The wire is perhaps too flexible, and rapidly gets bent without penetrating much beyond the first layer - perhaps I should have started from thicker wire. Still, with some fiddling it seemed to eventually yield a setup that got some poki-ness happening. We’ll see how it goes when I can try it with some actual DNA.</p>
-</section>
-<section id="tissue-culture" class="level2">
-<h2 class="anchored" data-anchor-id="tissue-culture">Tissue Culture</h2>
-<p>As for what we’ll actually transform, and how we’ll grow out plants from a few transformed cells, I’ve been exploring tissue culture a little. Most of my experiments so far ended in contamination - some from an early media test just heating the media up to 96C rather than microwaving or autoclaving (which left one or two live spores or something per tub, nothing if you’re doing a petri dish of bacteria for a few days, a dead pain if you’re wanting to grow a piece of plant matter for months) but most from the explants themselves; it turns out you need really aggressive sterilization with bleach etc to kill everything but the plant tissue (and in the process you usually do kill a fair bit of the plant tissue too). Might try some other options soon.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/posts/images/tc_update.png" class="img-fluid figure-img"></p>
-<figcaption>Sterilizing TC media in an Instapot</figcaption>
-</figure>
-</div>
-<p>Anyway, now that I’ve switched to media sterilized in an Instapot and started being more aggressive with the explant sterilization, I feel like I’m slowly taming the beast. It’s all super slow though - aaaah my poor software brain is spoiled from same-second results :D</p>
-</section>
-<section id="glowing-gelatinous-blobs" class="level2">
-<h2 class="anchored" data-anchor-id="glowing-gelatinous-blobs">Glowing Gelatinous Blobs</h2>
-<p>I grow some of the <a href="https://johnowhitaker.dev/posts/pseudomonas.html">Pseudomonad I isolated</a> in ~500ml of ‘marmite broth’ in a flask, with parafilm cover and occasional stirring. Then I added 1g CaCl2 to it, and dripped it into some water with sodium alginate - something the molacular gastronomy folks call ‘reverse spherification’. The result is gooey blobs, which (thanks to all the pyoverdine the bacteria made) glow bright blue under UV light. I pictured cool fluorescent spheres I could sprinkle around the base of our plants, to provide them with a bacterial iron boost (but mostly for aesthetics). What I got was more of a congealed mess, but it was fun nonetheless.</p>
-<p><img src="https://johnowhitaker.dev/posts/images/glowgoo.png" class="img-fluid"></p>
-<p>Handling the containers (post boiling + alcohol steriliation) stained my hands a lovely fluorescent yellow-green, some cool modification of the blue-fluorescing molecule(s) this makes. Neat! Invisible under regular light, and now mostly gone after a day of occasional washes and a shower.</p>
-</section>
-<section id="misc-updates" class="level2">
-<h2 class="anchored" data-anchor-id="misc-updates">Misc Updates</h2>
-<ul>
-<li><p>Ran some Thai Tea concentrate (low C) and Puerh (very high C for tea) through caffeine TLC process</p></li>
-<li><p>Tried friction welding 3D prints with a dremel, cool technique!</p></li>
-</ul>
-<p><img src="https://johnowhitaker.dev/posts/images/friction_weld.png" class="img-fluid"></p>
-<ul>
-<li>Made a batch of beer from a kit - turned out extremely well, fermentation was stalled in my cold basement until I warmed it to 22C. Friends all agreed it was tasty, but none of us really like beer so I threw out most of it - sorry! Now the brew tank is destined for more exotic projects :D</li>
-</ul>
-<p>OK that’s about enough typing for now, apoligies for a lower-effort post but I figure better to document some stuff now rather than try to remember it all in months time when I start getting more final results on things.</p>
-
-
-</section>
-
- ]]></description>
-  <category>mini-hw-projects</category>
-  <category>bio</category>
-  <guid>https://johnowhitaker.dev/posts/cnc_pipette.html</guid>
-  <pubDate>Mon, 19 Jan 2026 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
