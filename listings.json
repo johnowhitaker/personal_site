@@ -1,7 +1,8 @@
 [
   {
-    "listing": "/all.html",
+    "listing": "/index.html",
     "items": [
+      "/mini-hw-projects/timrr.html",
       "/mini-projects/physarium.html",
       "/essays/quo_vadis.html",
       "/misc/pipettebot.html",
@@ -240,8 +241,9 @@
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/all.html",
     "items": [
+      "/mini-hw-projects/timrr.html",
       "/mini-projects/physarium.html",
       "/essays/quo_vadis.html",
       "/misc/pipettebot.html",
