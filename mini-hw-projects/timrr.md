@@ -1,4 +1,5 @@
-title: Timrrr: A Small Buzzer To Train Time Sense
+---
+title: Timrrr - A Small Buzzer To Train Time Sense
 date: 2026-08-27
 categories: 
     - mini-hw-projects
