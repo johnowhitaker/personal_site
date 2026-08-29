@@ -11,6 +11,8 @@ In a [previous post](https://johnowhitaker.dev/mini-hw-projects/airsoft-gene-gun
 
 Update (July 2026): More shots with both a RUBY reporter and a fluorescent eyGFPuv reporter show +ve transformation in carrot. [Pics here](https://ln.johnowhitaker.com/entry/51). I'm hoping to optimize the protocol and share a final post only once it's working well.
 
+Update (August 2026): Here is a [video](https://www.youtube.com/watch?v=gRIMH3cx0iw) I recorded on this :)
+
 ## The Method
 
 I take a small amount (10uL) of a slurry of diatomaceous earth (DE), add some (10uL, 50mM) calcium chloride and some (~1ug, in ~2uL) plasmid DNA and place it on a piece of parafilm stretched over a 3D-printed tube. I dry it in a filtered stream of air, then the tube adapts to the end of my cheap airsoft pistol, and I fire it at a leaf from a few cm distance.
