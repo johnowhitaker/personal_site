@@ -1813,46 +1813,95 @@
     "text": "Places I’ve shown up in other people’s content.\n\nSolveIt: The Thinking Developer’s Environment w/Jeremy Howard & Johno Whitaker - showing solveit to Hamel’s course on evals\nAgents at Work 9: AI Agents from First Principles w/ Johno Whitaker from Answer.AI - fun conversation on everything from nbdev to coding AI to the future!\nLLM and GenAI Accessibility with Johno Whitaker (Vanishing Gradients Podcast) - why ’m excited about LLMs (hint: they make it easier for people to do cool stuff!)\nExploring the Hacker Mindset (AKA How to Learn FAST) | Radek Osmulski Podcast #3 - casual chat on all osrts of topics with my good friend Radek\nFastAI part 2 which I helped teach. E.G. Lesson 9A 2022 - Stable Diffusion deep dive\nAnswer.AI Dev chats. Spectator on #1 and #2, more to come\nVarious posts on answer.ai"
   },
   {
-    "objectID": "inventory.html",
-    "href": "inventory.html",
-    "title": "Inventory",
-    "section": "",
-    "text": "–WIP–\nAs I build up lab capacity, there are things one has to buy in bulk which can be easily shared. I’ve already dumped a load of extras on one friend, and after the first PDX diybio meetup I’ve decided I should write up what I have (and what gaps remain) so that others can plan around it! If you have projects that could benefit from some of this, do let me know - together we can do more :) I’m throwing things in as I think of them, organization etc subject to change."
+    "objectID": "inventory.html#title-inventory",
+    "href": "inventory.html#title-inventory",
+    "title": "johnowhitaker.dev",
+    "section": "title: “Inventory”",
+    "text": "title: “Inventory”\n\nIt’s useful to have a list to feed to AI agents asking about procedures. Plus, as I build up lab capacity, there are things one has to buy in bulk which can be easily shared. I’ve already dumped a load of extras on one friend, and after the first PDX diybio meetup I’ve decided I should write up what I have (and what gaps remain) so that others can plan around it! If you have projects that could benefit from some of this, do let me know - together we can do more :) I’m throwing things in as I think of them, organization etc subject to change."
   },
   {
-    "objectID": "inventory.html#tools",
-    "href": "inventory.html#tools",
-    "title": "Inventory",
-    "section": "Tools",
-    "text": "Tools\n\n3D Printer (Ender 3 V3 SE, cheap and outdated but works great) - happy to rattle off PLA prints as needed\nMicroscope (XXX)\nMicropipettes (2-10ul, 10-100, 20-200)\nHotplate\nJanky DIY stirplate\nRotary tool that doubles as a 1.5ml centrifuge\nBlowtorch, Camping Stove\nStill Air Box (happy to lend out)\nAssorted hand tools\nJig Saw, Drill, Impact Driver\nThermal Camera\nSoldering iron (+ a portable one)\nInflatable SUP (borrowable)"
+    "objectID": "inventory.html#biology",
+    "href": "inventory.html#biology",
+    "title": "johnowhitaker.dev",
+    "section": "Biology",
+    "text": "Biology\n\nStrains & Plasmids\n\nE. coli BL21 and MM294 strains, various colorful plasmids\nAgrobacterium with RUBY plasmid\npDawn and pDusk plasmids (light-inducible)\nRemnants of a Carolina Bio transformation kit\n\n\n\nMedia, Antibiotics & Reagents\n\nLB broth mix\nMarmite for making “marmite broth” plates/media\nRif/Spec agar mix\nKanamycin (supply from Seb + fish medicine “fiskKan”)\nAmpicillin (enough for a few more plates)\nUsually some agar plates ready-made\nZymo DNA Shield\nAgar agar powder\nAgarose\nSeeGreen DNA stain\nGel buffer solution\nMini-prep kit (Bioland, silica columns)\nTween 80 (Polysorbate 80)\nSpan 80\nActivated charcoal\nDiatomaceous earth\n\n\n\nPlant Tissue Culture\n\nPlants in jars starter kit: MS media + various growth hormones\nAgrobacterium injection mix (~50 ml)\n4 oz PP tubs with attached lids\nFalcoponics stuff: moisture-wicking mat, food trays\nOld grow lights\nHydroponic pH UP (potassium carbonate)\nHydroponic pH DOWN (phosphoric acid)\n\n\n\nStains & Microbiology\n\nMethylene blue\nGram stain kit:\n\nCrystal violet\nIodine\nSafranin\nBibulous paper\n\n\n\n\nBio Equipment\n\nCompound binocular microscope\nMicroscope slides and cover slips\nMicropipettes:\n\n1–10 µL\n10–100 µL\n20–200 µL\n\nLots of pipette tips\nStill air box (happy to lend out)\nGrow pad, sometimes used as incubator\n3D printer heated bed, sometimes used as incubator\nRotary-tool-powered 1.5 ml microcentrifuge\nCamping stove for flaming loops / sterile bubble\nCrushed ice / hot water bath as needed\n\n\n\nBio Consumables & Labware\n\nPetri dishes: 90 mm and 60 mm\nBeakers: glass and plastic, ~100 ml–1 L\nGraduated cylinders / plastic measuring cups\nDisposable pipettes\n3 ml syringes with needles\nSyringe filters\n1.5 ml microcentrifuge tubes\n15 ml and 50 ml Falcon tubes\nSmall glass vials\n4 oz glass jars (~8)\nLittle PP sauce tubs\n3D-printed tube holders\nCling wrap\nAluminium foil\nZiploc sandwich bags sized for two Petri dishes"
   },
   {
-    "objectID": "inventory.html#consumables",
-    "href": "inventory.html#consumables",
-    "title": "Inventory",
-    "section": "Consumables",
-    "text": "Consumables"
+    "objectID": "inventory.html#chemistry",
+    "href": "inventory.html#chemistry",
+    "title": "johnowhitaker.dev",
+    "section": "Chemistry",
+    "text": "Chemistry\n\nGeneral Chemicals\n\nSodium alginate\nCalcium chloride\nCalcium carbonate\nSodium citrate\nSodium hydroxide / lye\nVegetable glycerin\nDistilled water\nCitric acid\nVitamin C / ascorbic acid\nEpsom salts\nKDP\nHydrogen peroxide\nAmmonium nitrate:\n\nSmall amount dry\nSome dissolved with CaCO₃ precipitate\n\nPotassium permanganate powder\nPure caffeine\nWhite vinegar\n\n\n\nSolvents & Cleaners\n\nEthyl acetate\nIsopropyl alcohol:\n\n70% spray bottle\n90%\n\nEverclear / ethanol\nAcetone\nLacquer thinner\nTurpentine / mineral spirits\nClorox bleach spray\nDawn dish soap\nWet Ones wipes\n\n\n\nPowders, Ceramics & High-Temperature Materials\n\nCopper powder (~350 mesh)\nAluminium oxide (~500 mesh)\nSmall alumina crucibles\n\n\n\nChemistry / Imaging Kits\n\nLuminol kit\nCyanotype kit\nTLC plates\npH test paper"
   },
   {
-    "objectID": "inventory.html#reagents",
-    "href": "inventory.html#reagents",
-    "title": "Inventory",
-    "section": "Reagents",
-    "text": "Reagents"
+    "objectID": "inventory.html#lab-equipment",
+    "href": "inventory.html#lab-equipment",
+    "title": "johnowhitaker.dev",
+    "section": "Lab Equipment",
+    "text": "Lab Equipment\n\nDigital scale (SF-400D)\nHotplate\nJanky DIY stir plate\nLabel maker"
   },
   {
-    "objectID": "inventory.html#genesstrains",
-    "href": "inventory.html#genesstrains",
-    "title": "Inventory",
-    "section": "Genes/Strains",
-    "text": "Genes/Strains"
+    "objectID": "inventory.html#optics-imaging-light",
+    "href": "inventory.html#optics-imaging-light",
+    "title": "johnowhitaker.dev",
+    "section": "Optics, Imaging & Light",
+    "text": "Optics, Imaging & Light\n\nCameras\n\nThermal camera\nUV “makeup camera”\nMacro camera:\n\nLumix FZ80\nRaynox DCR-250 macro lens\n\n\n\n\nLight Sources & Optics\n\nLarge handheld flashlight\nUV flashlight\n6 W UVC lamp for mutagenesis, sterilization, spectroscopy\nGreen laser pointer\nDiffraction gratings (slide format)\n\n\n\nEye Protection\n\nLaser safety goggles\nUV safety goggles"
   },
   {
-    "objectID": "inventory.html#older-inventory-to-start-from",
-    "href": "inventory.html#older-inventory-to-start-from",
-    "title": "Inventory",
-    "section": "(Older inventory to start from)",
-    "text": "(Older inventory to start from)\nElectronics & Soldering Station Soldering Gear:\nSoldering Iron Station (blue handle) Pinecil Mini Soldering Iron Solder wire spool Heat shrink tubing Solder fume extractor (fan unit) “Helping hands” tool with alligator clips Components & Microcontrollers:\nRaspberry Pi / Picos / ESP chips (mentioned in audio/labels) Component storage drawers (Labeled: RGB LEDs, UV LEDs, IR LEDs, Displays, Capacitors, DC Motors, Servos, Potentiometers, Switches, LDR) Breadboards and jumper wires Breakout boards/ribbon cables Resistor kit Test Equipment:\nDigital Multimeter (Red/Black, appears to be manual range) Thermal Camera (handheld) Power:\nAnker Solix Portable Power Station Corsair RM1000x PC Power Supply (adapted for bench use) Variable DC Power Supply adapter board (breakout for the PSU) Various USB cables and wall adapters (12V w/ barrel jack, 5V) Tools & Hardware Power Tools:\nRyobi One+ Jigsaw Ryobi One+ Drill/Driver Ryobi One+ Impact Driver Ryobi Handheld Vacuum (18V) Ryobi Battery Charger Dremel Rotary Tool (on flex shaft hanger/stand) - mini Ryobi one, underpowered Hot Glue Gun (red) Heat Gun / Blow Torch (small handheld butane torch) Blowtorch with food-safe brazing supplies Hair dryer Hot plate (set temp, nice for desoldering but also chemistry) Hand Tools:\nScrewdrivers (various, including green handle Snap-on/similar and precision sets) Wire flush cutters (blue handle) Wire strippers Locking pliers (Vise-Grips) Adjustable wrench Hammer Hacksaw Japanese Pull Saw Clamps (Ratchet clamps, spring clamps, not many) Calipers (Vernier plastic ones only) Pen knives / X-Acto knives Scalpel Small tweezers (fine tip) Chemistry & “Wet Lab” Chemicals & Reagents:\nAgar Agar Powder Agarose (for gel electrophoresis) Sodium Alginate Calcium Chloride Calcium Carbonate Sodium Citrate Sodium Hydroxide (drain cleaner) Vegetable Glycerin Distilled Water (gallon jugs) Citric Acid Vitamin C Epsom salts KDP Hydrogen Peroxide Ammonium Nitrate (small amount, dry + some dissolved w/ CaCO₃ ppt.) Potassium permanganate powder Ethyl Acetate Pure caffeine Activated Charcoal Stains & Kits:\nZymo DNA Shield Methylene blue Gram stain kit - Crystal Violet, Iodine, Safranin SeeGreen DNA stain Gel buffer solution Luminol kit Cyanotype kit Cooking Science / Modernist Pantry:\nAccess to basic pantry staples Food coloring pack Solvents & Cleaners:\n70% Isopropyl Alcohol in a spray bottle, also 90% Acetone (Klean Strip) Lacquer Thinner Turpentine / Mineral Spirits Everclear (ethanol) WD-40 Dawn Dish Soap Clorox Bleach Spray Wet Ones (wipes) Labware:\nDigital Scale (SF-400D) DIY Stir Plate Microscope (White, compound binocular) Microscope slides and cover slips Petri dishes (90mm and 60mm) Beakers (glass and plastic, 100ml-1L, various sizes) Graduated cylinders/plastic cups Pipettes (disposable), Syringes (3ml w/ needles), and a P200 pipette with tips (5-200µL) Syringe filters Falcon tubes (15ml and 50ml) 1.5ml Eppendorf tubes (lots!) 3D printed tube holders 4oz glass jars (8) and 4oz PP tubs with attached lids (for tissue culture) TLC plates pH Test Paper Bibulous paper from gram kit Optics & Light Lasers & Lights: “Normal” Flashlight (Large black handheld) UV Flashlight Green Laser Pointer Diffraction Gratings (slide format) Safety: Laser Safety Goggles (Orange/Red lenses) Adhesives, Paints & Finishing Adhesives: Elmer’s Carpenter’s Wood Glue Mod Podge Super Glue (various tubes) Kwik Seal (Kitchen/Bath adhesive caulk) Hot glue sticks Paints: Krylon Fusion Spray Paint (Blue Hyacinth seen) Rust-Oleum Automotive Primer 3D Printing & Fabrication Printer:\nFDM 3D Printer (Ender 3 v3 SE) Raspberry Pi connected to printer Supplies:\nPLA Filament (green, white, black) Miscellaneous / Safety VersaShield Nitrile Gloves N95 Face Mask Safety Glasses (clear) Air Purifier (White cylindrical unit on floor) Pegboard organization system Sorting bins/organizers Bio Strains & Plasmids E. coli cultures (BL21 and MM294 strains, various colorful plasmids) Agrobacterium with RUBY plasmid pDawn and pDusk plasmids (light-inducible) Media & Antibiotics LB broth mix Marmite for making ‘marmite broth’ plates/media RIff/Spec agar mix Kanamycin (supply from Seb + fish medicine “fiskKan”) Ampicillin (enough for a few more plates) Usually some agar plates ready-made Plant Tissue Culture Plants in jars starter kit (various growth hormones, MS media) Agrobacterium injection mix (50ml) 4oz PP tubs with attached lids (for tissue culture) Molecular Biology Mini-prep kit (Bioland, silica columns) Agarose + SeeGreen DNA stain + gel buffer (in Chemistry) 9V batteries for gel PS or a fixed 32V PSU Equipment & Consumables A still air box (thanks Dave) A little camping stove (for flaming loops + sterile bubble) A grow pad - used as incubator sometimes 3D printer hotbed - also doubles as incubator A 3D printed microcentrifuge for 1.5ml tubes (uses rotary tool) Crushed ice / hot water bath when needed Remnants of a Carolina Bio transformation kit Supplies Cling wrap Aluminium foil Little PP sauce tubs Ziploc sandwich bags (fit two petri dishes) Activated Charcoal Misc Diatomaceous earth Label maker Piezo microphone, some misc music gear Blood pressure monitor Macro camera with great zoom (Raynox DCR250 on a Lumix FZ80 camera) Kapton tape, Duct tape, Gaffer tape, insulation tape, plumbers tape Random wood screws etc A 6W UVC lamp (for mutagenesis, sterilization, spectroscopy) A piezo lighter spark thingee Compressor for car tires Some old grow lights, hydroponic pH UP and DOWN, and plant-related bits Work gloves Laser + UV safety goggles"
+    "objectID": "inventory.html#electronics",
+    "href": "inventory.html#electronics",
+    "title": "johnowhitaker.dev",
+    "section": "Electronics",
+    "text": "Electronics\n\nComputing & Controllers\n\nRaspberry Pis\nRaspberry Pi Picos\nESP chips\nESPCams\nS3 Stick\nA few BeagleBone Black SBCs\nRAMPS boards\nStepper motors\nPC with RTX 3090\nOld Linux laptop\n\n\n\nComponents & Prototyping\n\nGeneral electronics component assortment, including Freenove starter kit:\n\nResistors\nTransistors\nLEDs\nOther common components\n\nComponent drawers labelled:\n\nRGB LEDs\nUV LEDs\nIR LEDs\nDisplays\nCapacitors\nDC motors\nServos\nPotentiometers\nSwitches\nLDRs\n\nBreadboards\nJumper wires\nBreakout boards\nRibbon cables\nVarious USB cables\nWall adapters:\n\n12 V barrel-jack supplies\n5 V supplies\n\nPiezo lighter spark unit\nPiezo microphone\n\n\n\nPower\n\nAnker Solix portable power station\nCorsair RM1000x PC power supply, adapted for bench use\nVariable DC power-supply breakout board for the PSU\nFixed 32 V PSU\n9 V batteries for gel electrophoresis PSU\nA few battery banks\n\n\n\nTest & Soldering Equipment\n\nHandheld multimeter\nHandheld cheap oscilloscope\nSoldering iron\nPinecil Mini portable soldering iron\nSolder wire spool\nSolder fume extractor\nHelping-hands tool with alligator clips\nHeat-shrink tubing"
+  },
+  {
+    "objectID": "inventory.html#fabrication-workshop",
+    "href": "inventory.html#fabrication-workshop",
+    "title": "johnowhitaker.dev",
+    "section": "Fabrication & Workshop",
+    "text": "Fabrication & Workshop\n\n3D Printing\n\nEnder 3 V3 SE FDM printer\nRaspberry Pi connected to printer\nPLA filament:\n\nGreen\nWhite\nBlack\n\nPolycaprolactone mouldable plastic\n\n\n\nPower Tools\n\nRyobi One+ jigsaw\nRyobi One+ drill/driver\nRyobi One+ impact driver\nRyobi handheld vacuum (18 V)\nRyobi battery charger\nRotary tool\nHot glue gun\nHairdryer\nSmall handheld butane torch\nLarge propane torch\n\n\n\nHand Tools\n\nAssorted hand tools\niFixit kit\nScrewdrivers\nWire flush cutters\nWire strippers\nLocking pliers / Vise-Grips\nAdjustable wrench\nHammer\nHacksaw\nJapanese pull saw\nRatchet clamps\nSpring clamps\nPlastic Vernier calipers\nPen knives\nX-Acto knives\nScalpel\nFine-tip tweezers\nChopsticks\n\n\n\nFasteners, Tapes & Adhesives\n\nRandom wood screws and other fasteners\nKapton tape\nDuct tape\nGaffer tape\nElectrical / insulation tape\nPlumber’s tape\nElmer’s Carpenter’s Wood Glue\nMod Podge\nSuper glue\nKwik Seal adhesive caulk\nHot glue sticks\n2-part clear resin\nUV resin glue\nWD-40\n\n\n\nPaints & Finishing\n\nKrylon Fusion spray paint\nRust-Oleum automotive primer"
+  },
+  {
+    "objectID": "inventory.html#safety-ppe",
+    "href": "inventory.html#safety-ppe",
+    "title": "johnowhitaker.dev",
+    "section": "Safety & PPE",
+    "text": "Safety & PPE\n\nVersaShield nitrile gloves\nN95 masks\nClear safety glasses\nWork gloves\nAir purifier"
+  },
+  {
+    "objectID": "inventory.html#organization-storage",
+    "href": "inventory.html#organization-storage",
+    "title": "johnowhitaker.dev",
+    "section": "Organization & Storage",
+    "text": "Organization & Storage\n\nPegboard organization system\nSorting bins / organizers\nComponent storage drawers"
+  },
+  {
+    "objectID": "inventory.html#kitchen-food-science",
+    "href": "inventory.html#kitchen-food-science",
+    "title": "johnowhitaker.dev",
+    "section": "Kitchen / Food Science",
+    "text": "Kitchen / Food Science\n\nAccess to basic pantry staples\nFood coloring\nAgar, alginate, calcium salts, glycerin, citric acid, etc. as listed above"
+  },
+  {
+    "objectID": "inventory.html#audio-music",
+    "href": "inventory.html#audio-music",
+    "title": "johnowhitaker.dev",
+    "section": "Audio & Music",
+    "text": "Audio & Music\n\nSmall MIDI keyboard\nROLI Seaboard Rise 2\nElectric Guitar, ukulele, 3/4 acoustic guitar\nAudio interface\nMiscellaneous music gear, lots of DIY instruments, tin whistle, mellodica, kazoos out the wazoo, contact mic,"
+  },
+  {
+    "objectID": "inventory.html#computers-peripherals",
+    "href": "inventory.html#computers-peripherals",
+    "title": "johnowhitaker.dev",
+    "section": "Computers & Peripherals",
+    "text": "Computers & Peripherals\n\nComputer monitor\nHuion drawing tablet\nMice\nKeyboards\nOculus Quest 3"
+  },
+  {
+    "objectID": "inventory.html#other-equipment",
+    "href": "inventory.html#other-equipment",
+    "title": "johnowhitaker.dev",
+    "section": "Other Equipment",
+    "text": "Other Equipment\n\nInflatable SUP (borrowable)\nBlood pressure monitor\nCompressor for car tires"
   },
   {
     "objectID": "wandb_reports/2023-02-13-openclip.html",
@@ -2483,6 +2532,13 @@
     "title": "Sequencing Pseudomonas putida, Predicting Pyoverdine Structure",
     "section": "Update: A Potential Match",
     "text": "Update: A Potential Match\nIn A combinatorial approach to the structure elucidation of a pyoverdine siderophore produced by a Pseudomonas putida isolate and the use of pyoverdine as a taxonomic marker for typing P. putida subspecies BioMetals, 2013 I found the following: P. putida BTP1/90-40 Asp–Ala–Asp–AOHOrn–Ser–cOHOrn (citing Jacques et al. (1995)). This is pretty much spot on for ours, and would mean the mystery X is Ser (serine), not Gly as guessed. It also answers a mystery - I’d been searching fruitlessly for pvdF in my genome to figure out if OHOrn gets formylated, this would indicate it doesn’t in this case.\n\n\n\n\n\n\nNoteNomenclature\n\n\n\n\n\nAOHOrn = “amide-linked” hydroxyornithine (connected via α-amino group)\ncOHOrn = “cyclic” hydroxyornithine (C-terminal, forms lactam ring with its own side chain)\nBTP1/90-40 is the strain from the paper\nfOHOrn/formyl-hydroxyornithine is the formylated form (hehe) of hydroxyornithine, pvdF is the “hydroxyornithine transformylase enzyme” that does this in some Pseudomonas."
+  },
+  {
+    "objectID": "posts/putida.html#update-2-aug-2026",
+    "href": "posts/putida.html#update-2-aug-2026",
+    "title": "Sequencing Pseudomonas putida, Predicting Pyoverdine Structure",
+    "section": "Update 2 (Aug 2026)",
+    "text": "Update 2 (Aug 2026)\nI was testing the Horizyn model and doing some related research work, which turned up a few extra notes on this project. AI summary: “we confirmed PvdA/PvdH and found no convincing PvdF, supporting non-formylated OHOrn. More excitingly, LDMLEE_04306 is a strong PvdYII hydroxyornithine acetylase homolog, supporting the BTP1-like N5-acetyl-N5-hydroxyornithine (AOHOrn) assignment. My earlier PvdN reference was incorrect, so the chromophore side chain remains unresolved—possibly unmodified glutamate rather than succinamide.”. IOW side chain is likely glutamate, rest of the structure is looking good. I haven’t looked through all the agent’s work on this but cool application of the new model."
   },
   {
     "objectID": "posts/putida.html#ps-molecule-viewer-test",

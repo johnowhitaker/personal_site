@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Inventory – johnowhitaker.dev</title>
+<title>inventory – johnowhitaker.dev</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -76,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="styles.css">
-<meta name="twitter:title" content="Inventory – johnowhitaker.dev">
+<meta name="twitter:title" content="johnowhitaker.dev">
 <meta name="twitter:description" content="">
 <meta name="twitter:creator" content="@johnowhitaker">
 <meta name="twitter:card" content="summary">
@@ -166,81 +166,481 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#tools" id="toc-tools" class="nav-link active" data-scroll-target="#tools">Tools</a></li>
-  <li><a href="#consumables" id="toc-consumables" class="nav-link" data-scroll-target="#consumables">Consumables</a></li>
-  <li><a href="#reagents" id="toc-reagents" class="nav-link" data-scroll-target="#reagents">Reagents</a></li>
-  <li><a href="#genesstrains" id="toc-genesstrains" class="nav-link" data-scroll-target="#genesstrains">Genes/Strains</a></li>
-  <li><a href="#older-inventory-to-start-from" id="toc-older-inventory-to-start-from" class="nav-link" data-scroll-target="#older-inventory-to-start-from">(Older inventory to start from)</a></li>
+  <li><a href="#title-inventory" id="toc-title-inventory" class="nav-link active" data-scroll-target="#title-inventory">title: “Inventory”</a></li>
+  <li><a href="#biology" id="toc-biology" class="nav-link" data-scroll-target="#biology">Biology</a>
+  <ul class="collapse">
+  <li><a href="#strains-plasmids" id="toc-strains-plasmids" class="nav-link" data-scroll-target="#strains-plasmids">Strains &amp; Plasmids</a></li>
+  <li><a href="#media-antibiotics-reagents" id="toc-media-antibiotics-reagents" class="nav-link" data-scroll-target="#media-antibiotics-reagents">Media, Antibiotics &amp; Reagents</a></li>
+  <li><a href="#plant-tissue-culture" id="toc-plant-tissue-culture" class="nav-link" data-scroll-target="#plant-tissue-culture">Plant Tissue Culture</a></li>
+  <li><a href="#stains-microbiology" id="toc-stains-microbiology" class="nav-link" data-scroll-target="#stains-microbiology">Stains &amp; Microbiology</a></li>
+  <li><a href="#bio-equipment" id="toc-bio-equipment" class="nav-link" data-scroll-target="#bio-equipment">Bio Equipment</a></li>
+  <li><a href="#bio-consumables-labware" id="toc-bio-consumables-labware" class="nav-link" data-scroll-target="#bio-consumables-labware">Bio Consumables &amp; Labware</a></li>
+  </ul></li>
+  <li><a href="#chemistry" id="toc-chemistry" class="nav-link" data-scroll-target="#chemistry">Chemistry</a>
+  <ul class="collapse">
+  <li><a href="#general-chemicals" id="toc-general-chemicals" class="nav-link" data-scroll-target="#general-chemicals">General Chemicals</a></li>
+  <li><a href="#solvents-cleaners" id="toc-solvents-cleaners" class="nav-link" data-scroll-target="#solvents-cleaners">Solvents &amp; Cleaners</a></li>
+  <li><a href="#powders-ceramics-high-temperature-materials" id="toc-powders-ceramics-high-temperature-materials" class="nav-link" data-scroll-target="#powders-ceramics-high-temperature-materials">Powders, Ceramics &amp; High-Temperature Materials</a></li>
+  <li><a href="#chemistry-imaging-kits" id="toc-chemistry-imaging-kits" class="nav-link" data-scroll-target="#chemistry-imaging-kits">Chemistry / Imaging Kits</a></li>
+  </ul></li>
+  <li><a href="#lab-equipment" id="toc-lab-equipment" class="nav-link" data-scroll-target="#lab-equipment">Lab Equipment</a></li>
+  <li><a href="#optics-imaging-light" id="toc-optics-imaging-light" class="nav-link" data-scroll-target="#optics-imaging-light">Optics, Imaging &amp; Light</a>
+  <ul class="collapse">
+  <li><a href="#cameras" id="toc-cameras" class="nav-link" data-scroll-target="#cameras">Cameras</a></li>
+  <li><a href="#light-sources-optics" id="toc-light-sources-optics" class="nav-link" data-scroll-target="#light-sources-optics">Light Sources &amp; Optics</a></li>
+  <li><a href="#eye-protection" id="toc-eye-protection" class="nav-link" data-scroll-target="#eye-protection">Eye Protection</a></li>
+  </ul></li>
+  <li><a href="#electronics" id="toc-electronics" class="nav-link" data-scroll-target="#electronics">Electronics</a>
+  <ul class="collapse">
+  <li><a href="#computing-controllers" id="toc-computing-controllers" class="nav-link" data-scroll-target="#computing-controllers">Computing &amp; Controllers</a></li>
+  <li><a href="#components-prototyping" id="toc-components-prototyping" class="nav-link" data-scroll-target="#components-prototyping">Components &amp; Prototyping</a></li>
+  <li><a href="#power" id="toc-power" class="nav-link" data-scroll-target="#power">Power</a></li>
+  <li><a href="#test-soldering-equipment" id="toc-test-soldering-equipment" class="nav-link" data-scroll-target="#test-soldering-equipment">Test &amp; Soldering Equipment</a></li>
+  </ul></li>
+  <li><a href="#fabrication-workshop" id="toc-fabrication-workshop" class="nav-link" data-scroll-target="#fabrication-workshop">Fabrication &amp; Workshop</a>
+  <ul class="collapse">
+  <li><a href="#d-printing" id="toc-d-printing" class="nav-link" data-scroll-target="#d-printing">3D Printing</a></li>
+  <li><a href="#power-tools" id="toc-power-tools" class="nav-link" data-scroll-target="#power-tools">Power Tools</a></li>
+  <li><a href="#hand-tools" id="toc-hand-tools" class="nav-link" data-scroll-target="#hand-tools">Hand Tools</a></li>
+  <li><a href="#fasteners-tapes-adhesives" id="toc-fasteners-tapes-adhesives" class="nav-link" data-scroll-target="#fasteners-tapes-adhesives">Fasteners, Tapes &amp; Adhesives</a></li>
+  <li><a href="#paints-finishing" id="toc-paints-finishing" class="nav-link" data-scroll-target="#paints-finishing">Paints &amp; Finishing</a></li>
+  </ul></li>
+  <li><a href="#safety-ppe" id="toc-safety-ppe" class="nav-link" data-scroll-target="#safety-ppe">Safety &amp; PPE</a></li>
+  <li><a href="#organization-storage" id="toc-organization-storage" class="nav-link" data-scroll-target="#organization-storage">Organization &amp; Storage</a></li>
+  <li><a href="#kitchen-food-science" id="toc-kitchen-food-science" class="nav-link" data-scroll-target="#kitchen-food-science">Kitchen / Food Science</a></li>
+  <li><a href="#audio-music" id="toc-audio-music" class="nav-link" data-scroll-target="#audio-music">Audio &amp; Music</a></li>
+  <li><a href="#computers-peripherals" id="toc-computers-peripherals" class="nav-link" data-scroll-target="#computers-peripherals">Computers &amp; Peripherals</a></li>
+  <li><a href="#other-equipment" id="toc-other-equipment" class="nav-link" data-scroll-target="#other-equipment">Other Equipment</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Inventory</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>–WIP–</p>
-<p>As I build up lab capacity, there are things one has to buy in bulk which can be easily shared. I’ve already dumped a load of extras on one friend, and after the first PDX diybio meetup I’ve decided I should write up what I have (and what gaps remain) so that others can plan around it! If you have projects that could benefit from some of this, do let me know - together we can do more :) I’m throwing things in as I think of them, organization etc subject to change.</p>
-<section id="tools" class="level2">
-<h2 class="anchored" data-anchor-id="tools">Tools</h2>
+<hr>
+<section id="title-inventory" class="level2">
+<h2 class="anchored" data-anchor-id="title-inventory">title: “Inventory”</h2>
+<hr>
+<p>It’s useful to have a list to feed to AI agents asking about procedures. Plus, as I build up lab capacity, there are things one has to buy in bulk which can be easily shared. I’ve already dumped a load of extras on one friend, and after the first PDX diybio meetup I’ve decided I should write up what I have (and what gaps remain) so that others can plan around it! If you have projects that could benefit from some of this, do let me know - together we can do more :) I’m throwing things in as I think of them, organization etc subject to change.</p>
+</section>
+<section id="biology" class="level2">
+<h2 class="anchored" data-anchor-id="biology">Biology</h2>
+<section id="strains-plasmids" class="level3">
+<h3 class="anchored" data-anchor-id="strains-plasmids">Strains &amp; Plasmids</h3>
 <ul>
-<li>3D Printer (Ender 3 V3 SE, cheap and outdated but works great) - happy to rattle off PLA prints as needed</li>
-<li>Microscope (XXX)</li>
-<li>Micropipettes (2-10ul, 10-100, 20-200)</li>
-<li>Hotplate</li>
-<li>Janky DIY stirplate</li>
-<li>Rotary tool that doubles as a 1.5ml centrifuge</li>
-<li>Blowtorch, Camping Stove</li>
-<li>Still Air Box (happy to lend out)</li>
-<li>Assorted hand tools</li>
-<li>Jig Saw, Drill, Impact Driver</li>
-<li>Thermal Camera</li>
-<li>Soldering iron (+ a portable one)</li>
-<li>Inflatable SUP (borrowable)</li>
+<li>E. coli BL21 and MM294 strains, various colorful plasmids</li>
+<li>Agrobacterium with RUBY plasmid</li>
+<li>pDawn and pDusk plasmids (light-inducible)</li>
+<li>Remnants of a Carolina Bio transformation kit</li>
 </ul>
 </section>
-<section id="consumables" class="level2">
-<h2 class="anchored" data-anchor-id="consumables">Consumables</h2>
+<section id="media-antibiotics-reagents" class="level3">
+<h3 class="anchored" data-anchor-id="media-antibiotics-reagents">Media, Antibiotics &amp; Reagents</h3>
+<ul>
+<li>LB broth mix</li>
+<li>Marmite for making “marmite broth” plates/media</li>
+<li>Rif/Spec agar mix</li>
+<li>Kanamycin (supply from Seb + fish medicine “fiskKan”)</li>
+<li>Ampicillin (enough for a few more plates)</li>
+<li>Usually some agar plates ready-made</li>
+<li>Zymo DNA Shield</li>
+<li>Agar agar powder</li>
+<li>Agarose</li>
+<li>SeeGreen DNA stain</li>
+<li>Gel buffer solution</li>
+<li>Mini-prep kit (Bioland, silica columns)</li>
+<li>Tween 80 (Polysorbate 80)</li>
+<li>Span 80</li>
+<li>Activated charcoal</li>
+<li>Diatomaceous earth</li>
+</ul>
 </section>
-<section id="reagents" class="level2">
-<h2 class="anchored" data-anchor-id="reagents">Reagents</h2>
+<section id="plant-tissue-culture" class="level3">
+<h3 class="anchored" data-anchor-id="plant-tissue-culture">Plant Tissue Culture</h3>
+<ul>
+<li>Plants in jars starter kit: MS media + various growth hormones</li>
+<li>Agrobacterium injection mix (~50 ml)</li>
+<li>4 oz PP tubs with attached lids</li>
+<li>Falcoponics stuff: moisture-wicking mat, food trays</li>
+<li>Old grow lights</li>
+<li>Hydroponic pH UP (potassium carbonate)</li>
+<li>Hydroponic pH DOWN (phosphoric acid)</li>
+</ul>
 </section>
-<section id="genesstrains" class="level2">
-<h2 class="anchored" data-anchor-id="genesstrains">Genes/Strains</h2>
+<section id="stains-microbiology" class="level3">
+<h3 class="anchored" data-anchor-id="stains-microbiology">Stains &amp; Microbiology</h3>
+<ul>
+<li><p>Methylene blue</p></li>
+<li><p>Gram stain kit:</p>
+<ul>
+<li>Crystal violet</li>
+<li>Iodine</li>
+<li>Safranin</li>
+<li>Bibulous paper</li>
+</ul></li>
+</ul>
 </section>
-<section id="older-inventory-to-start-from" class="level2">
-<h2 class="anchored" data-anchor-id="older-inventory-to-start-from">(Older inventory to start from)</h2>
-<p>Electronics &amp; Soldering Station Soldering Gear:</p>
-<p>Soldering Iron Station (blue handle) Pinecil Mini Soldering Iron Solder wire spool Heat shrink tubing Solder fume extractor (fan unit) “Helping hands” tool with alligator clips Components &amp; Microcontrollers:</p>
-<p>Raspberry Pi / Picos / ESP chips (mentioned in audio/labels) Component storage drawers (Labeled: RGB LEDs, UV LEDs, IR LEDs, Displays, Capacitors, DC Motors, Servos, Potentiometers, Switches, LDR) Breadboards and jumper wires Breakout boards/ribbon cables Resistor kit Test Equipment:</p>
-<p>Digital Multimeter (Red/Black, appears to be manual range) Thermal Camera (handheld) Power:</p>
-<p>Anker Solix Portable Power Station Corsair RM1000x PC Power Supply (adapted for bench use) Variable DC Power Supply adapter board (breakout for the PSU) Various USB cables and wall adapters (12V w/ barrel jack, 5V) Tools &amp; Hardware Power Tools:</p>
-<p>Ryobi One+ Jigsaw Ryobi One+ Drill/Driver Ryobi One+ Impact Driver Ryobi Handheld Vacuum (18V) Ryobi Battery Charger Dremel Rotary Tool (on flex shaft hanger/stand) - mini Ryobi one, underpowered Hot Glue Gun (red) Heat Gun / Blow Torch (small handheld butane torch) Blowtorch with food-safe brazing supplies Hair dryer Hot plate (set temp, nice for desoldering but also chemistry) Hand Tools:</p>
-<p>Screwdrivers (various, including green handle Snap-on/similar and precision sets) Wire flush cutters (blue handle) Wire strippers Locking pliers (Vise-Grips) Adjustable wrench Hammer Hacksaw Japanese Pull Saw Clamps (Ratchet clamps, spring clamps, not many) Calipers (Vernier plastic ones only) Pen knives / X-Acto knives Scalpel Small tweezers (fine tip) Chemistry &amp; “Wet Lab” Chemicals &amp; Reagents:</p>
-<p>Agar Agar Powder Agarose (for gel electrophoresis) Sodium Alginate Calcium Chloride Calcium Carbonate Sodium Citrate Sodium Hydroxide (drain cleaner) Vegetable Glycerin Distilled Water (gallon jugs) Citric Acid Vitamin C Epsom salts KDP Hydrogen Peroxide Ammonium Nitrate (small amount, dry + some dissolved w/ CaCO₃ ppt.) Potassium permanganate powder Ethyl Acetate Pure caffeine Activated Charcoal Stains &amp; Kits:</p>
-<p>Zymo DNA Shield Methylene blue Gram stain kit - Crystal Violet, Iodine, Safranin SeeGreen DNA stain Gel buffer solution Luminol kit Cyanotype kit Cooking Science / Modernist Pantry:</p>
-<p>Access to basic pantry staples Food coloring pack Solvents &amp; Cleaners:</p>
-<p>70% Isopropyl Alcohol in a spray bottle, also 90% Acetone (Klean Strip) Lacquer Thinner Turpentine / Mineral Spirits Everclear (ethanol) WD-40 Dawn Dish Soap Clorox Bleach Spray Wet Ones (wipes) Labware:</p>
-<p>Digital Scale (SF-400D) DIY Stir Plate Microscope (White, compound binocular) Microscope slides and cover slips Petri dishes (90mm and 60mm) Beakers (glass and plastic, 100ml-1L, various sizes) Graduated cylinders/plastic cups Pipettes (disposable), Syringes (3ml w/ needles), and a P200 pipette with tips (5-200µL) Syringe filters Falcon tubes (15ml and 50ml) 1.5ml Eppendorf tubes (lots!) 3D printed tube holders 4oz glass jars (8) and 4oz PP tubs with attached lids (for tissue culture) TLC plates pH Test Paper Bibulous paper from gram kit Optics &amp; Light Lasers &amp; Lights: “Normal” Flashlight (Large black handheld) UV Flashlight Green Laser Pointer Diffraction Gratings (slide format) Safety: Laser Safety Goggles (Orange/Red lenses) Adhesives, Paints &amp; Finishing Adhesives: Elmer’s Carpenter’s Wood Glue Mod Podge Super Glue (various tubes) Kwik Seal (Kitchen/Bath adhesive caulk) Hot glue sticks Paints: Krylon Fusion Spray Paint (Blue Hyacinth seen) Rust-Oleum Automotive Primer 3D Printing &amp; Fabrication Printer:</p>
-<p>FDM 3D Printer (Ender 3 v3 SE) Raspberry Pi connected to printer Supplies:</p>
-<p>PLA Filament (green, white, black) Miscellaneous / Safety VersaShield Nitrile Gloves N95 Face Mask Safety Glasses (clear) Air Purifier (White cylindrical unit on floor) Pegboard organization system Sorting bins/organizers Bio Strains &amp; Plasmids E. coli cultures (BL21 and MM294 strains, various colorful plasmids) Agrobacterium with RUBY plasmid pDawn and pDusk plasmids (light-inducible) Media &amp; Antibiotics LB broth mix Marmite for making ‘marmite broth’ plates/media RIff/Spec agar mix Kanamycin (supply from Seb + fish medicine “fiskKan”) Ampicillin (enough for a few more plates) Usually some agar plates ready-made Plant Tissue Culture Plants in jars starter kit (various growth hormones, MS media) Agrobacterium injection mix (50ml) 4oz PP tubs with attached lids (for tissue culture) Molecular Biology Mini-prep kit (Bioland, silica columns) Agarose + SeeGreen DNA stain + gel buffer (in Chemistry) 9V batteries for gel PS or a fixed 32V PSU Equipment &amp; Consumables A still air box (thanks Dave) A little camping stove (for flaming loops + sterile bubble) A grow pad - used as incubator sometimes 3D printer hotbed - also doubles as incubator A 3D printed microcentrifuge for 1.5ml tubes (uses rotary tool) Crushed ice / hot water bath when needed Remnants of a Carolina Bio transformation kit Supplies Cling wrap Aluminium foil Little PP sauce tubs Ziploc sandwich bags (fit two petri dishes) Activated Charcoal Misc Diatomaceous earth Label maker Piezo microphone, some misc music gear Blood pressure monitor Macro camera with great zoom (Raynox DCR250 on a Lumix FZ80 camera) Kapton tape, Duct tape, Gaffer tape, insulation tape, plumbers tape Random wood screws etc A 6W UVC lamp (for mutagenesis, sterilization, spectroscopy) A piezo lighter spark thingee Compressor for car tires Some old grow lights, hydroponic pH UP and DOWN, and plant-related bits Work gloves Laser + UV safety goggles</p>
+<section id="bio-equipment" class="level3">
+<h3 class="anchored" data-anchor-id="bio-equipment">Bio Equipment</h3>
+<ul>
+<li><p>Compound binocular microscope</p></li>
+<li><p>Microscope slides and cover slips</p></li>
+<li><p>Micropipettes:</p>
+<ul>
+<li>1–10 µL</li>
+<li>10–100 µL</li>
+<li>20–200 µL</li>
+</ul></li>
+<li><p>Lots of pipette tips</p></li>
+<li><p>Still air box (happy to lend out)</p></li>
+<li><p>Grow pad, sometimes used as incubator</p></li>
+<li><p>3D printer heated bed, sometimes used as incubator</p></li>
+<li><p>Rotary-tool-powered 1.5 ml microcentrifuge</p></li>
+<li><p>Camping stove for flaming loops / sterile bubble</p></li>
+<li><p>Crushed ice / hot water bath as needed</p></li>
+</ul>
+</section>
+<section id="bio-consumables-labware" class="level3">
+<h3 class="anchored" data-anchor-id="bio-consumables-labware">Bio Consumables &amp; Labware</h3>
+<ul>
+<li>Petri dishes: 90 mm and 60 mm</li>
+<li>Beakers: glass and plastic, ~100 ml–1 L</li>
+<li>Graduated cylinders / plastic measuring cups</li>
+<li>Disposable pipettes</li>
+<li>3 ml syringes with needles</li>
+<li>Syringe filters</li>
+<li>1.5 ml microcentrifuge tubes</li>
+<li>15 ml and 50 ml Falcon tubes</li>
+<li>Small glass vials</li>
+<li>4 oz glass jars (~8)</li>
+<li>Little PP sauce tubs</li>
+<li>3D-printed tube holders</li>
+<li>Cling wrap</li>
+<li>Aluminium foil</li>
+<li>Ziploc sandwich bags sized for two Petri dishes</li>
+</ul>
+</section>
+</section>
+<section id="chemistry" class="level2">
+<h2 class="anchored" data-anchor-id="chemistry">Chemistry</h2>
+<section id="general-chemicals" class="level3">
+<h3 class="anchored" data-anchor-id="general-chemicals">General Chemicals</h3>
+<ul>
+<li><p>Sodium alginate</p></li>
+<li><p>Calcium chloride</p></li>
+<li><p>Calcium carbonate</p></li>
+<li><p>Sodium citrate</p></li>
+<li><p>Sodium hydroxide / lye</p></li>
+<li><p>Vegetable glycerin</p></li>
+<li><p>Distilled water</p></li>
+<li><p>Citric acid</p></li>
+<li><p>Vitamin C / ascorbic acid</p></li>
+<li><p>Epsom salts</p></li>
+<li><p>KDP</p></li>
+<li><p>Hydrogen peroxide</p></li>
+<li><p>Ammonium nitrate:</p>
+<ul>
+<li>Small amount dry</li>
+<li>Some dissolved with CaCO₃ precipitate</li>
+</ul></li>
+<li><p>Potassium permanganate powder</p></li>
+<li><p>Pure caffeine</p></li>
+<li><p>White vinegar</p></li>
+</ul>
+</section>
+<section id="solvents-cleaners" class="level3">
+<h3 class="anchored" data-anchor-id="solvents-cleaners">Solvents &amp; Cleaners</h3>
+<ul>
+<li><p>Ethyl acetate</p></li>
+<li><p>Isopropyl alcohol:</p>
+<ul>
+<li>70% spray bottle</li>
+<li>90%</li>
+</ul></li>
+<li><p>Everclear / ethanol</p></li>
+<li><p>Acetone</p></li>
+<li><p>Lacquer thinner</p></li>
+<li><p>Turpentine / mineral spirits</p></li>
+<li><p>Clorox bleach spray</p></li>
+<li><p>Dawn dish soap</p></li>
+<li><p>Wet Ones wipes</p></li>
+</ul>
+</section>
+<section id="powders-ceramics-high-temperature-materials" class="level3">
+<h3 class="anchored" data-anchor-id="powders-ceramics-high-temperature-materials">Powders, Ceramics &amp; High-Temperature Materials</h3>
+<ul>
+<li>Copper powder (~350 mesh)</li>
+<li>Aluminium oxide (~500 mesh)</li>
+<li>Small alumina crucibles</li>
+</ul>
+</section>
+<section id="chemistry-imaging-kits" class="level3">
+<h3 class="anchored" data-anchor-id="chemistry-imaging-kits">Chemistry / Imaging Kits</h3>
+<ul>
+<li>Luminol kit</li>
+<li>Cyanotype kit</li>
+<li>TLC plates</li>
+<li>pH test paper</li>
+</ul>
+</section>
+</section>
+<section id="lab-equipment" class="level2">
+<h2 class="anchored" data-anchor-id="lab-equipment">Lab Equipment</h2>
+<ul>
+<li>Digital scale (SF-400D)</li>
+<li>Hotplate</li>
+<li>Janky DIY stir plate</li>
+<li>Label maker</li>
+</ul>
+</section>
+<section id="optics-imaging-light" class="level2">
+<h2 class="anchored" data-anchor-id="optics-imaging-light">Optics, Imaging &amp; Light</h2>
+<section id="cameras" class="level3">
+<h3 class="anchored" data-anchor-id="cameras">Cameras</h3>
+<ul>
+<li><p>Thermal camera</p></li>
+<li><p>UV “makeup camera”</p></li>
+<li><p>Macro camera:</p>
+<ul>
+<li>Lumix FZ80</li>
+<li>Raynox DCR-250 macro lens</li>
+</ul></li>
+</ul>
+</section>
+<section id="light-sources-optics" class="level3">
+<h3 class="anchored" data-anchor-id="light-sources-optics">Light Sources &amp; Optics</h3>
+<ul>
+<li>Large handheld flashlight</li>
+<li>UV flashlight</li>
+<li>6 W UVC lamp for mutagenesis, sterilization, spectroscopy</li>
+<li>Green laser pointer</li>
+<li>Diffraction gratings (slide format)</li>
+</ul>
+</section>
+<section id="eye-protection" class="level3">
+<h3 class="anchored" data-anchor-id="eye-protection">Eye Protection</h3>
+<ul>
+<li>Laser safety goggles</li>
+<li>UV safety goggles</li>
+</ul>
+</section>
+</section>
+<section id="electronics" class="level2">
+<h2 class="anchored" data-anchor-id="electronics">Electronics</h2>
+<section id="computing-controllers" class="level3">
+<h3 class="anchored" data-anchor-id="computing-controllers">Computing &amp; Controllers</h3>
+<ul>
+<li>Raspberry Pis</li>
+<li>Raspberry Pi Picos</li>
+<li>ESP chips</li>
+<li>ESPCams</li>
+<li>S3 Stick</li>
+<li>A few BeagleBone Black SBCs</li>
+<li>RAMPS boards</li>
+<li>Stepper motors</li>
+<li>PC with RTX 3090</li>
+<li>Old Linux laptop</li>
+</ul>
+</section>
+<section id="components-prototyping" class="level3">
+<h3 class="anchored" data-anchor-id="components-prototyping">Components &amp; Prototyping</h3>
+<ul>
+<li><p>General electronics component assortment, including Freenove starter kit:</p>
+<ul>
+<li>Resistors</li>
+<li>Transistors</li>
+<li>LEDs</li>
+<li>Other common components</li>
+</ul></li>
+<li><p>Component drawers labelled:</p>
+<ul>
+<li>RGB LEDs</li>
+<li>UV LEDs</li>
+<li>IR LEDs</li>
+<li>Displays</li>
+<li>Capacitors</li>
+<li>DC motors</li>
+<li>Servos</li>
+<li>Potentiometers</li>
+<li>Switches</li>
+<li>LDRs</li>
+</ul></li>
+<li><p>Breadboards</p></li>
+<li><p>Jumper wires</p></li>
+<li><p>Breakout boards</p></li>
+<li><p>Ribbon cables</p></li>
+<li><p>Various USB cables</p></li>
+<li><p>Wall adapters:</p>
+<ul>
+<li>12 V barrel-jack supplies</li>
+<li>5 V supplies</li>
+</ul></li>
+<li><p>Piezo lighter spark unit</p></li>
+<li><p>Piezo microphone</p></li>
+</ul>
+</section>
+<section id="power" class="level3">
+<h3 class="anchored" data-anchor-id="power">Power</h3>
+<ul>
+<li>Anker Solix portable power station</li>
+<li>Corsair RM1000x PC power supply, adapted for bench use</li>
+<li>Variable DC power-supply breakout board for the PSU</li>
+<li>Fixed 32 V PSU</li>
+<li>9 V batteries for gel electrophoresis PSU</li>
+<li>A few battery banks</li>
+</ul>
+</section>
+<section id="test-soldering-equipment" class="level3">
+<h3 class="anchored" data-anchor-id="test-soldering-equipment">Test &amp; Soldering Equipment</h3>
+<ul>
+<li>Handheld multimeter</li>
+<li>Handheld cheap oscilloscope</li>
+<li>Soldering iron</li>
+<li>Pinecil Mini portable soldering iron</li>
+<li>Solder wire spool</li>
+<li>Solder fume extractor</li>
+<li>Helping-hands tool with alligator clips</li>
+<li>Heat-shrink tubing</li>
+</ul>
+</section>
+</section>
+<section id="fabrication-workshop" class="level2">
+<h2 class="anchored" data-anchor-id="fabrication-workshop">Fabrication &amp; Workshop</h2>
+<section id="d-printing" class="level3">
+<h3 class="anchored" data-anchor-id="d-printing">3D Printing</h3>
+<ul>
+<li><p>Ender 3 V3 SE FDM printer</p></li>
+<li><p>Raspberry Pi connected to printer</p></li>
+<li><p>PLA filament:</p>
+<ul>
+<li>Green</li>
+<li>White</li>
+<li>Black</li>
+</ul></li>
+<li><p>Polycaprolactone mouldable plastic</p></li>
+</ul>
+</section>
+<section id="power-tools" class="level3">
+<h3 class="anchored" data-anchor-id="power-tools">Power Tools</h3>
+<ul>
+<li>Ryobi One+ jigsaw</li>
+<li>Ryobi One+ drill/driver</li>
+<li>Ryobi One+ impact driver</li>
+<li>Ryobi handheld vacuum (18 V)</li>
+<li>Ryobi battery charger</li>
+<li>Rotary tool</li>
+<li>Hot glue gun</li>
+<li>Hairdryer</li>
+<li>Small handheld butane torch</li>
+<li>Large propane torch</li>
+</ul>
+</section>
+<section id="hand-tools" class="level3">
+<h3 class="anchored" data-anchor-id="hand-tools">Hand Tools</h3>
+<ul>
+<li>Assorted hand tools</li>
+<li>iFixit kit</li>
+<li>Screwdrivers</li>
+<li>Wire flush cutters</li>
+<li>Wire strippers</li>
+<li>Locking pliers / Vise-Grips</li>
+<li>Adjustable wrench</li>
+<li>Hammer</li>
+<li>Hacksaw</li>
+<li>Japanese pull saw</li>
+<li>Ratchet clamps</li>
+<li>Spring clamps</li>
+<li>Plastic Vernier calipers</li>
+<li>Pen knives</li>
+<li>X-Acto knives</li>
+<li>Scalpel</li>
+<li>Fine-tip tweezers</li>
+<li>Chopsticks</li>
+</ul>
+</section>
+<section id="fasteners-tapes-adhesives" class="level3">
+<h3 class="anchored" data-anchor-id="fasteners-tapes-adhesives">Fasteners, Tapes &amp; Adhesives</h3>
+<ul>
+<li>Random wood screws and other fasteners</li>
+<li>Kapton tape</li>
+<li>Duct tape</li>
+<li>Gaffer tape</li>
+<li>Electrical / insulation tape</li>
+<li>Plumber’s tape</li>
+<li>Elmer’s Carpenter’s Wood Glue</li>
+<li>Mod Podge</li>
+<li>Super glue</li>
+<li>Kwik Seal adhesive caulk</li>
+<li>Hot glue sticks</li>
+<li>2-part clear resin</li>
+<li>UV resin glue</li>
+<li>WD-40</li>
+</ul>
+</section>
+<section id="paints-finishing" class="level3">
+<h3 class="anchored" data-anchor-id="paints-finishing">Paints &amp; Finishing</h3>
+<ul>
+<li>Krylon Fusion spray paint</li>
+<li>Rust-Oleum automotive primer</li>
+</ul>
+</section>
+</section>
+<section id="safety-ppe" class="level2">
+<h2 class="anchored" data-anchor-id="safety-ppe">Safety &amp; PPE</h2>
+<ul>
+<li>VersaShield nitrile gloves</li>
+<li>N95 masks</li>
+<li>Clear safety glasses</li>
+<li>Work gloves</li>
+<li>Air purifier</li>
+</ul>
+</section>
+<section id="organization-storage" class="level2">
+<h2 class="anchored" data-anchor-id="organization-storage">Organization &amp; Storage</h2>
+<ul>
+<li>Pegboard organization system</li>
+<li>Sorting bins / organizers</li>
+<li>Component storage drawers</li>
+</ul>
+</section>
+<section id="kitchen-food-science" class="level2">
+<h2 class="anchored" data-anchor-id="kitchen-food-science">Kitchen / Food Science</h2>
+<ul>
+<li>Access to basic pantry staples</li>
+<li>Food coloring</li>
+<li>Agar, alginate, calcium salts, glycerin, citric acid, etc. as listed above</li>
+</ul>
+</section>
+<section id="audio-music" class="level2">
+<h2 class="anchored" data-anchor-id="audio-music">Audio &amp; Music</h2>
+<ul>
+<li>Small MIDI keyboard</li>
+<li>ROLI Seaboard Rise 2</li>
+<li>Electric Guitar, ukulele, 3/4 acoustic guitar</li>
+<li>Audio interface</li>
+<li>Miscellaneous music gear, lots of DIY instruments, tin whistle, mellodica, kazoos out the wazoo, contact mic,</li>
+</ul>
+</section>
+<section id="computers-peripherals" class="level2">
+<h2 class="anchored" data-anchor-id="computers-peripherals">Computers &amp; Peripherals</h2>
+<ul>
+<li>Computer monitor</li>
+<li>Huion drawing tablet</li>
+<li>Mice</li>
+<li>Keyboards</li>
+<li>Oculus Quest 3</li>
+</ul>
+</section>
+<section id="other-equipment" class="level2">
+<h2 class="anchored" data-anchor-id="other-equipment">Other Equipment</h2>
+<ul>
+<li>Inflatable SUP (borrowable)</li>
+<li>Blood pressure monitor</li>
+<li>Compressor for car tires</li>
+</ul>
 
 
 </section>
