@@ -1,233 +1,351 @@
 ---
-title: "Inventory"
+
+## title: "Inventory"
+
 ---
 
---WIP--
+It's useful to have a list to feed to AI agents asking about procedures. Plus, as I build up lab capacity, there are things one has to buy in bulk which can be easily shared. I've already dumped a load of extras on one friend, and after the first PDX diybio meetup I've decided I should write up what I have (and what gaps remain) so that others can plan around it! If you have projects that could benefit from some of this, do let me know - together we can do more :) I'm throwing things in as I think of them, organization etc subject to change.
 
-As I build up lab capacity, there are things one has to buy in bulk which can be easily shared. I've already dumped a load of extras on one friend, and after the first PDX diybio meetup I've decided I should write up what I have (and what gaps remain) so that others can plan around it! If you have projects that could benefit from some of this, do let me know - together we can do more :) I'm throwing things in as I think of them, organization etc subject to change.
+## Biology
 
-## Tools
+### Strains & Plasmids
 
-- 3D Printer (Ender 3 V3 SE, cheap and outdated but works great) - happy to rattle off PLA prints as needed
-- Microscope (XXX)
-- Micropipettes (2-10ul, 10-100, 20-200)
-- Hotplate
-- Janky DIY stirplate
-- Rotary tool that doubles as a 1.5ml centrifuge
-- Blowtorch, Camping Stove
-- Still Air Box (happy to lend out)
-- Assorted hand tools
-- Jig Saw, Drill, Impact Driver
-- Thermal Camera
-- Soldering iron (+ a portable one)
-- Inflatable SUP (borrowable)
+* E. coli BL21 and MM294 strains, various colorful plasmids
+* Agrobacterium with RUBY plasmid
+* pDawn and pDusk plasmids (light-inducible)
+* Remnants of a Carolina Bio transformation kit
 
+### Media, Antibiotics & Reagents
 
-## Consumables
+* LB broth mix
+* Marmite for making "marmite broth" plates/media
+* Rif/Spec agar mix
+* Kanamycin (supply from Seb + fish medicine "fiskKan")
+* Ampicillin (enough for a few more plates)
+* Usually some agar plates ready-made
+* Zymo DNA Shield
+* Agar agar powder
+* Agarose
+* SeeGreen DNA stain
+* Gel buffer solution
+* Mini-prep kit (Bioland, silica columns)
+* Tween 80 (Polysorbate 80)
+* Span 80
+* Activated charcoal
+* Diatomaceous earth
 
-## Reagents
+### Plant Tissue Culture
 
-## Genes/Strains
+* Plants in jars starter kit: MS media + various growth hormones
+* Agrobacterium injection mix (~50 ml)
+* 4 oz PP tubs with attached lids
+* Falcoponics stuff: moisture-wicking mat, food trays
+* Old grow lights
+* Hydroponic pH UP (potassium carbonate)
+* Hydroponic pH DOWN (phosphoric acid)
 
-## (Older inventory to start from)
+### Stains & Microbiology
 
-Electronics & Soldering Station
-Soldering Gear:
+* Methylene blue
+* Gram stain kit:
 
-Soldering Iron Station (blue handle)
-Pinecil Mini Soldering Iron
-Solder wire spool
-Heat shrink tubing
-Solder fume extractor (fan unit)
-"Helping hands" tool with alligator clips
-Components & Microcontrollers:
+  * Crystal violet
+  * Iodine
+  * Safranin
+  * Bibulous paper
 
-Raspberry Pi / Picos / ESP chips (mentioned in audio/labels)
-Component storage drawers (Labeled: RGB LEDs, UV LEDs, IR LEDs, Displays, Capacitors, DC Motors, Servos, Potentiometers, Switches, LDR)
-Breadboards and jumper wires
-Breakout boards/ribbon cables
-Resistor kit
-Test Equipment:
+### Bio Equipment
 
-Digital Multimeter (Red/Black, appears to be manual range)
-Thermal Camera (handheld)
-Power:
+* Compound binocular microscope
+* Microscope slides and cover slips
+* Micropipettes:
 
-Anker Solix Portable Power Station
-Corsair RM1000x PC Power Supply (adapted for bench use)
-Variable DC Power Supply adapter board (breakout for the PSU)
-Various USB cables and wall adapters (12V w/ barrel jack, 5V)
-Tools & Hardware
-Power Tools:
+  * 1–10 µL
+  * 10–100 µL
+  * 20–200 µL
+* Lots of pipette tips
+* Still air box (happy to lend out)
+* Grow pad, sometimes used as incubator
+* 3D printer heated bed, sometimes used as incubator
+* Rotary-tool-powered 1.5 ml microcentrifuge
+* Camping stove for flaming loops / sterile bubble
+* Crushed ice / hot water bath as needed
 
-Ryobi One+ Jigsaw
-Ryobi One+ Drill/Driver
-Ryobi One+ Impact Driver
-Ryobi Handheld Vacuum (18V)
-Ryobi Battery Charger
-Dremel Rotary Tool (on flex shaft hanger/stand) - mini Ryobi one, underpowered
-Hot Glue Gun (red)
-Heat Gun / Blow Torch (small handheld butane torch)
-Blowtorch with food-safe brazing supplies
-Hair dryer
-Hot plate (set temp, nice for desoldering but also chemistry)
-Hand Tools:
+### Bio Consumables & Labware
 
-Screwdrivers (various, including green handle Snap-on/similar and precision sets)
-Wire flush cutters (blue handle)
-Wire strippers
-Locking pliers (Vise-Grips)
-Adjustable wrench
-Hammer
-Hacksaw
-Japanese Pull Saw
-Clamps (Ratchet clamps, spring clamps, not many)
-Calipers (Vernier plastic ones only)
-Pen knives / X-Acto knives
-Scalpel
-Small tweezers (fine tip)
-Chemistry & "Wet Lab"
-Chemicals & Reagents:
+* Petri dishes: 90 mm and 60 mm
+* Beakers: glass and plastic, ~100 ml–1 L
+* Graduated cylinders / plastic measuring cups
+* Disposable pipettes
+* 3 ml syringes with needles
+* Syringe filters
+* 1.5 ml microcentrifuge tubes
+* 15 ml and 50 ml Falcon tubes
+* Small glass vials
+* 4 oz glass jars (~8)
+* Little PP sauce tubs
+* 3D-printed tube holders
+* Cling wrap
+* Aluminium foil
+* Ziploc sandwich bags sized for two Petri dishes
 
-Agar Agar Powder
-Agarose (for gel electrophoresis)
-Sodium Alginate
-Calcium Chloride
-Calcium Carbonate
-Sodium Citrate
-Sodium Hydroxide (drain cleaner)
-Vegetable Glycerin
-Distilled Water (gallon jugs)
-Citric Acid
-Vitamin C
-Epsom salts
-KDP
-Hydrogen Peroxide
-Ammonium Nitrate (small amount, dry + some dissolved w/ CaCO₃ ppt.)
-Potassium permanganate powder
-Ethyl Acetate
-Pure caffeine
-Activated Charcoal
-Stains & Kits:
+## Chemistry
 
-Zymo DNA Shield
-Methylene blue
-Gram stain kit - Crystal Violet, Iodine, Safranin
-SeeGreen DNA stain
-Gel buffer solution
-Luminol kit
-Cyanotype kit
-Cooking Science / Modernist Pantry:
+### General Chemicals
 
-Access to basic pantry staples
-Food coloring pack
-Solvents & Cleaners:
+* Sodium alginate
+* Calcium chloride
+* Calcium carbonate
+* Sodium citrate
+* Sodium hydroxide / lye
+* Vegetable glycerin
+* Distilled water
+* Citric acid
+* Vitamin C / ascorbic acid
+* Epsom salts
+* KDP
+* Hydrogen peroxide
+* Ammonium nitrate:
 
-70% Isopropyl Alcohol in a spray bottle, also 90%
-Acetone (Klean Strip)
-Lacquer Thinner
-Turpentine / Mineral Spirits
-Everclear (ethanol)
-WD-40
-Dawn Dish Soap
-Clorox Bleach Spray
-Wet Ones (wipes)
-Labware:
+  * Small amount dry
+  * Some dissolved with CaCO₃ precipitate
+* Potassium permanganate powder
+* Pure caffeine
+* White vinegar
 
-Digital Scale (SF-400D)
-DIY Stir Plate
-Microscope (White, compound binocular)
-Microscope slides and cover slips
-Petri dishes (90mm and 60mm)
-Beakers (glass and plastic, 100ml-1L, various sizes)
-Graduated cylinders/plastic cups
-Pipettes (disposable), Syringes (3ml w/ needles), and a P200 pipette with tips (5-200µL)
-Syringe filters
-Falcon tubes (15ml and 50ml)
-1.5ml Eppendorf tubes (lots!)
-3D printed tube holders
-4oz glass jars (8) and 4oz PP tubs with attached lids (for tissue culture)
-TLC plates
-pH Test Paper
-Bibulous paper from gram kit
-Optics & Light
-Lasers & Lights:
-"Normal" Flashlight (Large black handheld)
-UV Flashlight
-Green Laser Pointer
-Diffraction Gratings (slide format)
-Safety:
-Laser Safety Goggles (Orange/Red lenses)
-Adhesives, Paints & Finishing
-Adhesives:
-Elmer’s Carpenter’s Wood Glue
-Mod Podge
-Super Glue (various tubes)
-Kwik Seal (Kitchen/Bath adhesive caulk)
-Hot glue sticks
-Paints:
-Krylon Fusion Spray Paint (Blue Hyacinth seen)
-Rust-Oleum Automotive Primer
-3D Printing & Fabrication
-Printer:
+### Solvents & Cleaners
 
-FDM 3D Printer (Ender 3 v3 SE)
-Raspberry Pi connected to printer
-Supplies:
+* Ethyl acetate
+* Isopropyl alcohol:
 
-PLA Filament (green, white, black)
-Miscellaneous / Safety
-VersaShield Nitrile Gloves
-N95 Face Mask
-Safety Glasses (clear)
-Air Purifier (White cylindrical unit on floor)
-Pegboard organization system
-Sorting bins/organizers
-Bio
-Strains & Plasmids
-E. coli cultures (BL21 and MM294 strains, various colorful plasmids)
-Agrobacterium with RUBY plasmid
-pDawn and pDusk plasmids (light-inducible)
-Media & Antibiotics
-LB broth mix
-Marmite for making 'marmite broth' plates/media
-RIff/Spec agar mix
-Kanamycin (supply from Seb + fish medicine "fiskKan")
-Ampicillin (enough for a few more plates)
-Usually some agar plates ready-made
-Plant Tissue Culture
-Plants in jars starter kit (various growth hormones, MS media)
-Agrobacterium injection mix (50ml)
-4oz PP tubs with attached lids (for tissue culture)
-Molecular Biology
-Mini-prep kit (Bioland, silica columns)
-Agarose + SeeGreen DNA stain + gel buffer (in Chemistry)
-9V batteries for gel PS or a fixed 32V PSU
-Equipment & Consumables
-A still air box (thanks Dave)
-A little camping stove (for flaming loops + sterile bubble)
-A grow pad - used as incubator sometimes
-3D printer hotbed - also doubles as incubator
-A 3D printed microcentrifuge for 1.5ml tubes (uses rotary tool)
-Crushed ice / hot water bath when needed
-Remnants of a Carolina Bio transformation kit
-Supplies
-Cling wrap
-Aluminium foil
-Little PP sauce tubs
-Ziploc sandwich bags (fit two petri dishes)
-Activated Charcoal
-Misc
-Diatomaceous earth
-Label maker
-Piezo microphone, some misc music gear
-Blood pressure monitor
-Macro camera with great zoom (Raynox DCR250 on a Lumix FZ80 camera)
-Kapton tape, Duct tape, Gaffer tape, insulation tape, plumbers tape
-Random wood screws etc
-A 6W UVC lamp (for mutagenesis, sterilization, spectroscopy)
-A piezo lighter spark thingee
-Compressor for car tires
-Some old grow lights, hydroponic pH UP and DOWN, and plant-related bits
-Work gloves
-Laser + UV safety goggles
+  * 70% spray bottle
+  * 90%
+* Everclear / ethanol
+* Acetone
+* Lacquer thinner
+* Turpentine / mineral spirits
+* Clorox bleach spray
+* Dawn dish soap
+* Wet Ones wipes
+
+### Powders, Ceramics & High-Temperature Materials
+
+* Copper powder (~350 mesh)
+* Aluminium oxide (~500 mesh)
+* Small alumina crucibles
+
+### Chemistry / Imaging Kits
+
+* Luminol kit
+* Cyanotype kit
+* TLC plates
+* pH test paper
+
+## Lab Equipment
+
+* Digital scale (SF-400D)
+* Hotplate
+* Janky DIY stir plate
+* Label maker
+
+## Optics, Imaging & Light
+
+### Cameras
+
+* Thermal camera
+* UV "makeup camera"
+* Macro camera:
+
+  * Lumix FZ80
+  * Raynox DCR-250 macro lens
+
+### Light Sources & Optics
+
+* Large handheld flashlight
+* UV flashlight
+* 6 W UVC lamp for mutagenesis, sterilization, spectroscopy
+* Green laser pointer
+* Diffraction gratings (slide format)
+
+### Eye Protection
+
+* Laser safety goggles
+* UV safety goggles
+
+## Electronics
+
+### Computing & Controllers
+
+* Raspberry Pis
+* Raspberry Pi Picos
+* ESP chips
+* ESPCams
+* S3 Stick
+* A few BeagleBone Black SBCs
+* RAMPS boards
+* Stepper motors
+* PC with RTX 3090
+* Old Linux laptop
+
+### Components & Prototyping
+
+* General electronics component assortment, including Freenove starter kit:
+
+  * Resistors
+  * Transistors
+  * LEDs
+  * Other common components
+* Component drawers labelled:
+
+  * RGB LEDs
+  * UV LEDs
+  * IR LEDs
+  * Displays
+  * Capacitors
+  * DC motors
+  * Servos
+  * Potentiometers
+  * Switches
+  * LDRs
+* Breadboards
+* Jumper wires
+* Breakout boards
+* Ribbon cables
+* Various USB cables
+* Wall adapters:
+
+  * 12 V barrel-jack supplies
+  * 5 V supplies
+* Piezo lighter spark unit
+* Piezo microphone
+
+### Power
+
+* Anker Solix portable power station
+* Corsair RM1000x PC power supply, adapted for bench use
+* Variable DC power-supply breakout board for the PSU
+* Fixed 32 V PSU
+* 9 V batteries for gel electrophoresis PSU
+* A few battery banks
+
+### Test & Soldering Equipment
+
+* Handheld multimeter
+* Handheld cheap oscilloscope
+* Soldering iron
+* Pinecil Mini portable soldering iron
+* Solder wire spool
+* Solder fume extractor
+* Helping-hands tool with alligator clips
+* Heat-shrink tubing
+
+## Fabrication & Workshop
+
+### 3D Printing
+
+* Ender 3 V3 SE FDM printer
+* Raspberry Pi connected to printer
+* PLA filament:
+
+  * Green
+  * White
+  * Black
+* Polycaprolactone mouldable plastic
+
+### Power Tools
+
+* Ryobi One+ jigsaw
+* Ryobi One+ drill/driver
+* Ryobi One+ impact driver
+* Ryobi handheld vacuum (18 V)
+* Ryobi battery charger
+* Rotary tool
+* Hot glue gun
+* Hairdryer
+* Small handheld butane torch
+* Large propane torch
+
+### Hand Tools
+
+* Assorted hand tools
+* iFixit kit
+* Screwdrivers
+* Wire flush cutters
+* Wire strippers
+* Locking pliers / Vise-Grips
+* Adjustable wrench
+* Hammer
+* Hacksaw
+* Japanese pull saw
+* Ratchet clamps
+* Spring clamps
+* Plastic Vernier calipers
+* Pen knives
+* X-Acto knives
+* Scalpel
+* Fine-tip tweezers
+* Chopsticks
+
+### Fasteners, Tapes & Adhesives
+
+* Random wood screws and other fasteners
+* Kapton tape
+* Duct tape
+* Gaffer tape
+* Electrical / insulation tape
+* Plumber's tape
+* Elmer's Carpenter's Wood Glue
+* Mod Podge
+* Super glue
+* Kwik Seal adhesive caulk
+* Hot glue sticks
+* 2-part clear resin
+* UV resin glue
+* WD-40
+
+### Paints & Finishing
+
+* Krylon Fusion spray paint
+* Rust-Oleum automotive primer
+
+## Safety & PPE
+
+* VersaShield nitrile gloves
+* N95 masks
+* Clear safety glasses
+* Work gloves
+* Air purifier
+
+## Organization & Storage
+
+* Pegboard organization system
+* Sorting bins / organizers
+* Component storage drawers
+
+## Kitchen / Food Science
+
+* Access to basic pantry staples
+* Food coloring
+* Agar, alginate, calcium salts, glycerin, citric acid, etc. as listed above
+
+## Audio & Music
+
+* Small MIDI keyboard
+* ROLI Seaboard Rise 2
+* Electric Guitar, ukulele, 3/4 acoustic guitar
+* Audio interface
+* Miscellaneous music gear, lots of DIY instruments, tin whistle, mellodica, kazoos out the wazoo, contact mic, 
+
+## Computers & Peripherals
+
+* Computer monitor
+* Huion drawing tablet
+* Mice
+* Keyboards
+* Oculus Quest 3
+
+## Other Equipment
+
+* Inflatable SUP (borrowable)
+* Blood pressure monitor
+* Compressor for car tires

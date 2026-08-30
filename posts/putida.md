@@ -92,6 +92,10 @@ BTP1/90-40 is the strain from the paper
 fOHOrn/formyl-hydroxyornithine is the formylated form (hehe) of hydroxyornithine, pvdF is the "hydroxyornithine transformylase enzyme" that does this in some Pseudomonas.
 :::
 
+## Update 2 (Aug 2026)
+
+I was testing the Horizyn model and doing some related research work, which turned up a few extra notes on this project. AI summary: "we confirmed PvdA/PvdH and found no convincing PvdF, supporting non-formylated OHOrn. More excitingly, LDMLEE_04306 is a strong PvdYII hydroxyornithine acetylase homolog, supporting the BTP1-like N5-acetyl-N5-hydroxyornithine (AOHOrn) assignment. My earlier PvdN reference was incorrect, so the chromophore side chain remains unresolved—possibly unmodified glutamate rather than succinamide.". IOW side chain is likely glutamate, rest of the structure is looking good. I haven't looked through all the agent's work on this but cool application of the new model.
+
 ## PS: Molecule viewer test
 
 Here's the predicted ferrobactin precursor molecule, copied from the output of [this code](https://gist.github.com/johnowhitaker/81ed1c6eb4496556cca9792107c85832):
