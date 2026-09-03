@@ -58,7 +58,12 @@
 </figure>
 </div>
 <p>Besides tweaking the mobile phase and extraction, I also experimented with different ways to get the compounds to show up nicely - since they aren’t flourescent, staining or charring were our bet bets. There is Dragendorff’s reagent, which stains alkaloids specifically, but I don’t have it. For the charring, I added some hydroponic pH DOWN (phosphoric acid plus a bunch of buffer salts and such) to ethanol. The salts crashed out. I’d dip the TLC plate in the phosphoric acid+ethanol then place it on a hotplate set to 180C and wait for spots to go brown.</p>
-<p>![A small subset of my attempts at imaging the results]</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/posts/images/solanum_tlc_3.png" class="img-fluid figure-img"></p>
+<figcaption>A small subset of my attempts at imaging the results</figcaption>
+</figure>
+</div>
 <p>This was one of the more frustrating parts - I’d be able to see faint smudges by eye, but filming them on the pure white background of the plate was extremely challenging! I ended up relying on image manipulation to make the spotches stand out. Worse, the KMnO4 stain fades fast and changes in real time! Still, eventually, with charring or staining or both, I was able to get a few variants with obvious blobs in B and C and fainter smudges in A - possible candidates.</p>
 </section>
 <section id="lessons-learned" class="level2">
@@ -77,7 +82,7 @@
 <h2 class="anchored" data-anchor-id="mixed-results">Mixed results</h2>
 <p>The first image in this post was the one from the day that I thought had the best chance of being what I wanted: some blobs in B and C that weren’t in A. But they were streaky and indistinct.</p>
 <p><img src="https://johnowhitaker.dev/posts/images/solanum_uv_fl.png" class="img-fluid"></p>
-<p>As I wrote this up, I figured I’d give this one more go: more concentrated spots, a fresh batch of phosphoric acid+eth with more acid, EA+eth+vinegar as the mobile phase. This got much better brown spots, further up. And, prompted by codex, I tried something with this and yesterday’s ones that I hadn’t before: UV <strong>after</strong> the acid+heat stage - and got some glow where there wasn’t before! So maybe those higher spots in some of the runs were the compounds after all?</p>
+<p>As I wrote this up, I figured I’d give this one more go: more concentrated spots, a fresh batch of phosphoric acid+eth with more acid, EA+eth+vinegar as the mobile phase. This got much better brown spots, further up. And, prompted by codex, I tried something with this and yesterday’s ones that I hadn’t before: UV <strong>after</strong> the acid+heat stage - and got some glow where there wasn’t before! So maybe those higher spots in some of the runs were the compounds after all? Except from the lit I expect them to have low Rf?</p>
 <p>Anyway, I end this post as I ended the video: inconclusively. If we wanted to do this properly, we’d get some proper stain, and some ammonia, and some green potatoes as another reference, and run everything a little more carefully… but I’m about ready to be done with these berries for now - after all, this ‘quick test’ has already taken more than a day!</p>
 <p>I hope you found the journey interesting :) LMK what mistakes I’ve made, I bet there are plenty.</p>
 <p>until next time,</p>
