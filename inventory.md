@@ -70,6 +70,7 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 * Rotary-tool-powered 1.5 ml microcentrifuge
 * Camping stove for flaming loops / sterile bubble
 * Crushed ice / hot water bath as needed
+* Instapot as autoclave for when things need to be extra sterile
 
 ### Bio Consumables & Labware
 
