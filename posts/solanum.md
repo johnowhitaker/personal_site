@@ -69,3 +69,5 @@ I hope you found the journey interesting :) LMK what mistakes I've made, I bet t
 until next time,
 
 Johno
+
+PS: Title may be misleading, apparently this (taxonomically complex and messy) group might have more solasonine and solamargine vs solanine, so "hunting for steroidal glycoalkaloids in nightshades" might be better given ambiguity about exact species/accession and target molecules haha.
