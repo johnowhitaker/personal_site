@@ -4,7 +4,7 @@ date: 2026-07-06
 categories:
     - misc
     - bio
-    - video
+    - Videos
 description: "What the title says. Persistant glow, quenched by humidity, in unknown poop sample from the desert."
 ---
 
