@@ -1,11 +1,12 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/all.html",
     "items": [
       "/posts/solanum.html",
       "/mini-hw-projects/timrr.html",
       "/mini-projects/physarium.html",
       "/essays/quo_vadis.html",
+      "/posts/sept2026.html",
       "/misc/pipettebot.html",
       "/posts/glowing_poop.html",
       "/mini-hw-projects/microfluidics_1.html",
@@ -242,12 +243,13 @@
     ]
   },
   {
-    "listing": "/all.html",
+    "listing": "/index.html",
     "items": [
       "/posts/solanum.html",
       "/mini-hw-projects/timrr.html",
       "/mini-projects/physarium.html",
       "/essays/quo_vadis.html",
+      "/posts/sept2026.html",
       "/misc/pipettebot.html",
       "/posts/glowing_poop.html",
       "/mini-hw-projects/microfluidics_1.html",

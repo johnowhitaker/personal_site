@@ -571,6 +571,50 @@ font-style: inherit;">return</span> turn, speed, emission, gate, proposal, hidde
   <pubDate>Mon, 24 Aug 2026 00:00:00 GMT</pubDate>
 </item>
 <item>
+  <title>This Week’s Mini-Projects</title>
+  <link>https://johnowhitaker.dev/posts/sept2026.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>It’s been a week full of little projects in between meetings with some very interesting people. Rather than write them up individually, I’m going to keep this to a few pics w/ light commentary. Reach out if you want more info :)</p>
+<p><img src="https://johnowhitaker.dev/posts/images/s_cover.png" class="img-fluid"></p>
+<p>A neighbor unloaded some arcade buttons, and I set up a single controller in an old GPU box to try them out as controls for (nostalgia max) CONTRA. Fun to use! I actually CAD’d up some sheet metal cases to make a pair of arcade control boxes with SendCutSend, but chickened out on spending $100+ on this project just yet. That’s “employed” kinda spending territory, for now my box version works great :)</p>
+<p><img src="https://johnowhitaker.dev/posts/images/s_arcade.png" class="img-fluid"></p>
+<p>I found <a href="https://www.youtube.com/watch?v=WcBs_K19Q5g">this video</a> recording the sounds made as water flows from a tube out of a small opening. Some amazing noises! To figure out what was going on, I had codex crop out the tube, plot the height over time, and make a spectrogram. You can see different harmonics of the (lengthening) air culumn above the water ring out, always odd harmonics, triggered when one of the flow frequencies intersects and resonates with a harmonic of the column. Fascinating physics.</p>
+<p><img src="https://johnowhitaker.dev/posts/images/s_water_height.png" class="img-fluid"> <a href="https://x.com/johnowhitaker/status/2095216481026121968">X post</a></p>
+<p>I set some clear sunstones going in a kiln, with aluminium oxide doped with a little copper powder surrounding them. The goal is to drive the copper ions into the feldspar, and have them precipitate out to give some nice red coloration. We only did 48 hours at a conservative 1100C this time, so the effects are mostly surface-level, but I love the blue color some stones got when passing light through (red when not looking through). Will try a longer hotter run soon.</p>
+<p><img src="https://johnowhitaker.dev/posts/images/s_sunstone.png" class="img-fluid"></p>
+<p>With extra Al2O3 on hand, I ordered some chromium oxide to finally try making rubies! I borrowed my neighbor’s welder, set the current to ~70A, shaped some carbon rods to fit the electrode holders, and blasted some 0.5wt% Cr doped Al oxide with an arc. Result: lots of messy polychrystalline ruby, that glows a beautiful red under UV light.</p>
+<p><img src="https://johnowhitaker.dev/posts/images/s_ruby.png" class="img-fluid"></p>
+<p>Then a fun project on the AI &lt;=&gt; bio side yesterday, which I’ll probably polish and write up properly at some point: I trained an adapter to map text embeddings from Qwen Embed 4B into the same embedding space as used by the Horizyn 1 Protein/Reaction embedding model. This means you can query for matching reactions and proteins based on natural language descriptions of reactions, very fun!</p>
+<p><img src="https://johnowhitaker.dev/posts/images/s_cin.png" class="img-fluid"></p>
+<p>You can also check how well different descriptions match a protein - for example, here’s a lipase that also hydrolyses medium-length esters, vs an acetyltransferase, with a set of three vibe descriptions:</p>
+<p><img src="https://johnowhitaker.dev/posts/images/s_comp.png" class="img-fluid"></p>
+<p>Then I got nerd sniped into lots of ALIFE stuff! Met a cool alife researcher, who then added me to a few discords and convinced me to present my neural physarium stuff to some other alife nerds. We had a great chat, cool to see other people messing about with this stuff. It also finally motivated me to try fluoddity, a fantastic “physarium++’ sim with tons of cool behaviour.</p>
+<p><img src="https://johnowhitaker.dev/posts/images/s_fluoddity.png" class="img-fluid"></p>
+<p>Speaking of self-organising systems, I grew a biofilm with some fantastic irridescence! One of the bluest blues I’ve seen when the light was the right angle. Other rainbow colors too.</p>
+<p><img src="https://johnowhitaker.dev/posts/images/s_biofilm.png" class="img-fluid"></p>
+<p>I had astra show off its 3D chops by making a better version of our earring exchange that goes with our tiny tiny library. Worked first time, I sent a prompt and woke up to a physical object! What a world we live in…</p>
+<p><img src="https://johnowhitaker.dev/posts/images/s_library.png" class="img-fluid"></p>
+<p>Oh, and the DVD drive hacking project was stalled on deciding the firmware, but is now unblocked thanks to about 15 minutes with astra, amazing RE model! No pics yet but full hw control seems possible!</p>
+<p>Anyway, those are some highlights of the week. I also spent lots of time messing about looking at plant alkaloids but that got its [own post.]. Lots of other little software + alife tests too, but most quick vibe projects that I don’t feel need publicity unless I expand on them more.</p>
+<p>PS: A few extras a little older than a week:</p>
+<p><a href="https://x.com/johnowhitaker/status/2093726642875294122?s=20">The gene gun works!</a> - video link <a href="https://www.youtube.com/watch?v=gRIMH3cx0iw">here</a></p>
+<p>I did an hour long talk on ‘Open Character Training’ paper (giving models personality) with Alexis - stream replay <a href="https://x.com/alexisgallagher/status/2093417582187729106?s=20">here</a></p>
+<p>OK - this post helps reduce the “things I need to write up pile”, although next week promises to fill it again. Until next post - cheers. -Johno</p>
+
+
+
+ ]]></description>
+  <category>misc</category>
+  <category>mini-hw-projects</category>
+  <category>mini-projects</category>
+  <guid>https://johnowhitaker.dev/posts/sept2026.html</guid>
+  <pubDate>Mon, 24 Aug 2026 00:00:00 GMT</pubDate>
+</item>
+<item>
   <title>Pipette Bot Goes To Teardown</title>
   <link>https://johnowhitaker.dev/misc/pipettebot.html</link>
   <description><![CDATA[ 
@@ -1259,30 +1303,6 @@ font-style: inherit;">return</span> turn, speed, emission, gate, proposal, hidde
   <category>mini-hw-projects</category>
   <guid>https://johnowhitaker.dev/mini-hw-projects/tachometer.html</guid>
   <pubDate>Thu, 19 Feb 2026 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Lab Notes Feed</title>
-  <link>https://johnowhitaker.dev/posts/lab_notes_feed.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>My bio practice is turning out to involve lots of longer-term projects, and while individual chunks/experiments can be interesting, I usually want to wait for things to accumulate before they get a full post/video. I thought youtube shorts might work as a venue for smaller in-progress updates but 1) video is still high friction and 2) they get shown to thousands of people, usually as a first impression. So, I made my own feed where I can post pics of my physical lab notebook along with other reference pics and notes: <a href="https://ln.johnowhitaker.com/">https://ln.johnowhitaker.com/</a>. I’ll still try to keep things coming through to this blog, but hopefully this will avoid me polluting the everything feed here with too much everything :) What I might do is have a ‘lab notes digest’ that summarizes any interesting bits from there once every few months.</p>
-<p>Why post all these? Adam Savage said “The difference between screwing around and science is writing it down.” I’ve been taking notes, but I was chatting recently with Sebastian Coechiba and he encouraged me to make sure everything I capture is public, otherwise others can’t benefit from it. So, Seb, here you go - my public lab notebook :)</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/posts/images/gel_colors.png" class="img-fluid figure-img"></p>
-<figcaption>One of the first little experiments written up there, so that this post gets an image preview.</figcaption>
-</figure>
-</div>
-
-
-
- ]]></description>
-  <category>bio</category>
-  <guid>https://johnowhitaker.dev/posts/lab_notes_feed.html</guid>
-  <pubDate>Thu, 12 Feb 2026 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
