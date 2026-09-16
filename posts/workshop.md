@@ -6,6 +6,8 @@ categories:
 description: "I ran a hands-on workshop last weekend where enthusiastic fellow bio nerds could try their hands at a bacterial transformation. Notes on what worked, improvements for next time, and the joys of starting to build community here."
 ---
 
+![Glowing bacteria engineered during the workshop](images/workshop_glow.png)
+
 I met a few fellow diybio nerds at Teardown PDX, and we decided to start a signal chat and monthly meetup. 2nd Tuesday of each month we hang out at the Lucky Labrador and talk bio. It's a small but enthusiastic crew. Our latest meetup was microscope-based, with one member bringing in some aquarium dwellers for us to inspect:
 
 ![](images/workshop_scope.png)
