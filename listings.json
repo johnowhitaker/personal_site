@@ -1,7 +1,8 @@
 [
   {
-    "listing": "/all.html",
+    "listing": "/index.html",
     "items": [
+      "/posts/workshop.html",
       "/posts/sept2026.html",
       "/posts/solanum.html",
       "/mini-hw-projects/timrr.html",
@@ -243,8 +244,9 @@
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/all.html",
     "items": [
+      "/posts/workshop.html",
       "/posts/sept2026.html",
       "/posts/solanum.html",
       "/mini-hw-projects/timrr.html",

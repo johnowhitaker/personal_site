@@ -9,8 +9,58 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.11.3</generator>
-<lastBuildDate>Sun, 06 Sep 2026 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.11.4</generator>
+<lastBuildDate>Tue, 15 Sep 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>DIY BIO PDX - Our First Workshop Worked!</title>
+  <link>https://johnowhitaker.dev/posts/workshop.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I met a few fellow diybio nerds at Teardown PDX, and we decided to start a signal chat and monthly meetup. 2nd Tuesday of each month we hang out at the Lucky Labrador and talk bio. It’s a small but enthusiastic crew. Our latest meetup was microscope-based, with one member bringing in some aquarium dwellers for us to inspect:</p>
+<p><img src="https://johnowhitaker.dev/posts/images/workshop_scope.png" class="img-fluid"></p>
+<p>The group were all keen for some practical hands-on experience, so I arranged to run a workshop inserting genes into bacteria, build around the same glow-in-the-dark kit <a href="https://johnowhitaker.dev/posts/bacterial_transformation.html">I got started with</a>. I made up the agar plates beforehand, grew out some e. coli as our subject, and then set up a table full of kit in the (delightfully accomodating) CTRL-H hackerspace ready for the day:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/posts/images/workshop_prep.png" class="img-fluid figure-img"></p>
+<figcaption>Ready to go, apart from the DNA which I forgot - my wife had to deliver it!</figcaption>
+</figure>
+</div>
+<p>The workshop went well I think! I find even doing things like this myself requires pretty intense focus, rehearsing steps in the protocol mentally and trying not to miss anything. Multiply that across six participants asking interesting questions and it’s a lot of focus! It looks like whatever we did worked, with pics of glowy colonies starting to trickle in from participants, and whatever the outcome we also had a great time hanging out, practicing techniques for pipetting and streaking etc, and (separately from the bio!) tasting some great food that John brought :)</p>
+<p><img src="https://johnowhitaker.dev/posts/images/workshop_talk.png" class="img-fluid"></p>
+<p>I’ll update with result pics once they all come in, but for now notes on safety and some thoughts on what I’d try to improve for next time. This workshop was run on a table in a hackerspace, with no laminar flow hoods in site. Some natural questions: is it sterile? is it safe? No and Yes :) It’s not sterile, so while I wiped down surfaces with alcohol and had participants gloved and trying to practice some sterile technique, I expect a little bit of contamination. As a point of comparison, we left one LB plate open for a bit as we worked, and you can see the result here:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/posts/images/workshop_contam.png" class="img-fluid figure-img"></p>
+<figcaption>An empty LB agar palte left open for an hour of the workshop shows a number of contaminants growing, both bacteria and fungi</figcaption>
+</figure>
+</div>
+<p>Still, e.c. grows quick enough to show results even if a mold spore or something sneaks into anyone’s plate, and the ampicillin should help keep other bacterial contamination down a little. Now, is this a safe thing to run? Here’s points on our favour</p>
+<ul>
+<li>The strain of e.c. used (MM294) is a safe, ‘defanged’ lab strain, unlikely to cause trouble (or even survive) if it did get spread somewhere. There’s a reason they let schoolchildren experiment with this stuff</li>
+<li>We all did our best to work carefully, with anything that contacted the bacteria going in a special bag that I took home to deal with. People kept sanitizing hands and surfaces with 70% alcohol, and nobody (as far as I saw) tried to eat anything - the joys of teaching motivated grown-ups :)</li>
+<li>The genes we’re adding are costly: making glow is metabolically taxing. So, although in general you’d definitely want to be careful to avoid leaking bacteria with added antibiotic genes, the plasmid here is definitely a huge fitness penalty and would be selected out quickly without the antibiotic selection mechanism.</li>
+<li>BUT we’re still going to be careful. All plates of transformed e.c. were sealed with parafilm then in ziplocs for participants to take home and incubate, with instructions to carefully crack open and bleach the dishes then seal them up once ‘done’ with the experiment.</li>
+</ul>
+<p>Now, things to improve:</p>
+<ul>
+<li>I had summarized protocols printed out, but turning them into a checklist and talking through it more at the start would be good</li>
+<li>It would be easier if we’d stayed more in sync - I could have been smarter with designating ‘checkpoints’ where tubes/bacteria are on ice and we could get everyone at the same stage before starting the next step. As it was, we moved through but frequently had someone finishing up step N while others tried N+1 or N+2.</li>
+<li>It would be great to document so that those who missed it could watch a replay, but I had no spare bandwidth for filming. I might rope someone in as a dedicated cameraperson next time :)</li>
+</ul>
+<p>All in all, great fun to work on some bio together! We’re already plotting what a ‘next level’ group project would be :) If you’re someone who’s into this, have a think about ways you could rope others in! BSL1 and safe still leaves plenty of room for fun, and I hope this example inspires a few more events to share this super-niche world with more people.</p>
+<p>Until next time,</p>
+<p>J</p>
+
+
+
+ ]]></description>
+  <category>bio</category>
+  <guid>https://johnowhitaker.dev/posts/workshop.html</guid>
+  <pubDate>Tue, 15 Sep 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>This Week’s Mini-Projects</title>
   <link>https://johnowhitaker.dev/posts/sept2026.html</link>
@@ -1263,46 +1313,6 @@ font-style: inherit;">return</span> turn, speed, emission, gate, proposal, hidde
   <category>essays</category>
   <guid>https://johnowhitaker.dev/essays/distributables.html</guid>
   <pubDate>Mon, 23 Feb 2026 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Quick and dirty strobe tachometer</title>
-  <link>https://johnowhitaker.dev/mini-hw-projects/tachometer.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>I wanted to know how fast my dremel ‘centrifuge’ spins, so I hooked up a transistor + LED to an ESP8266 module I had lying around, and had codex spin up something that gives me a webUI to vary the pulse rate of the LED. With a bit of fiddling you can figure out how fast something is spinning. Pics:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/tach_3.jpg" class="img-fluid figure-img"></p>
-<figcaption>The worst-looking circuit I’ve soldered in a while</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/tach_1.jpg" class="img-fluid figure-img"></p>
-<figcaption>The Web UI that I can use to control the pulse rate from my phone</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/tach_2.jpg" class="img-fluid figure-img"></p>
-<figcaption>I drew a dot on the spinny bit - symmetry can mean wrong estimates of speed</figcaption>
-</figure>
-</div>
-<p>Doesn’t seem worth sharing the code, ideas if you want to re-create this:</p>
-<ul>
-<li>A transistor lets you push more current through an LED compared to wiring one directly to a pin of the ESP8266. I used a BC547 that I had on hand. The base of the transistor is connected to a GPIO pin of the ESP8266 through a resistor (e.g., 1kΩ), the emitter is connected to ground, and the collector is connected to the negative leg of the LED. The positive leg of the LED is connected to a power source (e.g., 3.3V or 5V) through a current-limiting resistor (e.g., 220Ω).</li>
-<li>Ask for codex to close the loop - I didn’t want to be copying code back and forth to the Arduino IDE for this, I’m sick and I know just what I want. So I installed the arduino cli, and it was more than happy to use that plus misc scripts and such that it wrote for itself to find the board, connect, verify that it could read the serial output, etc etc. I basically just had to give it my WIFI creds and some gentle steering towards the behaviour I wanted.</li>
-</ul>
-
-
-
- ]]></description>
-  <category>mini-hw-projects</category>
-  <guid>https://johnowhitaker.dev/mini-hw-projects/tachometer.html</guid>
-  <pubDate>Thu, 19 Feb 2026 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
