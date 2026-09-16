@@ -6,6 +6,13 @@ categories:
 description: "What should I work on next? Assorted musings"
 ---
 
+September 15 Update: I've had a lovely, social few weeks since sharing that I'm looking around for what to do next. Huge thank you to all who reached out, I loved getting to chat to people in all the different areas mentioned below! I'm going to keep the rest of this post as-is, but here are a few conclusions that are starting to crystalize in my mind:
+
+- There is plenty of work that I could do in AI. I'm not so excited about joining the race on capabilities (although I admire people chasing that), but there are good people working for open science on LLMs, open alignment research, and other great goals.
+- I am more excited about other directions where I could be accelerated with AI but would be forced to learn more new stuff.
+
+Anyway, some hopeful avenues, I'll try ton post both here and on my now page if things work out and I have updates to share! -end of sept update-
+
 I took the summer off as a sabbatical from answer.ai, to travel with my wife, tinker with some side-projects, and spend some thinking through what I want to do in what feels like a particularly pivotal time. I've decided not to return to answer, but am still unsure about how to choose between my remaining options. This essay is for me, to consider them all in one place, and for everyone else who has been asking me what I'm going to do now :)
 
 I drafted this with a bunch of bullets, and may leave them rather than expanding. You can ask your AI to complete it if you prefer fancy writing.
@@ -41,7 +48,7 @@ I'm a little rusty on model training, but I have > a decade of experience at thi
 
 - Probably not, unless alignment or application like bio.
 
-## 3) Bio?
+## 3) DIY Bio?
 
 - Slow and expensive
 - Possibility (e.g. ML 2014) to bring it to many more people
