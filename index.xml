@@ -9,7 +9,7 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.11.4</generator>
+<generator>quarto-1.11.5</generator>
 <lastBuildDate>Tue, 15 Sep 2026 00:00:00 GMT</lastBuildDate>
 <item>
   <title>DIY BIO PDX - Our First Workshop Worked!</title>
@@ -229,6 +229,7 @@
 <p>I’ll be honest, it’s a little easy to misplace something like this and forget that it exists, since it doesn’t offer any flashy gamifications or whatever to keep you as a user. But when I remember to have one on me, it saves me from losing time to YouTube, X etc multiple times a day, while never noticeably intruding on the bits of life that actually matter.</p>
 <p>Source code etc: https://github.com/johnowhitaker/timrrr</p>
 <p>(Writeup dated Aug 27 but I haven’t done anything besides use it since I assembled the test units on 04/08)</p>
+<p>Update, September 23: Battery life looks like about 3 months from the sped-up-buzz test. Unfortunately, I keep just forgetting the device exists. It was fun paying more attention to time early in testing, but any time you put it down there is little incentive to pick it up again. Calling this done for now rather than pursuing a v2, unless I get really really bored :)</p>
 
 
 
