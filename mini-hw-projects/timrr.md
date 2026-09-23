@@ -23,3 +23,5 @@ I'll be honest, it's a little easy to misplace something like this and forget th
 Source code etc: https://github.com/johnowhitaker/timrrr
 
 (Writeup dated Aug 27 but I haven't done anything besides use it since I assembled the test units on 04/08)
+
+Update, September 23: Battery life looks like about 3 months from the sped-up-buzz test. Unfortunately, I keep just forgetting the device exists. It was fun paying more attention to time early in testing, but any time you put it down there is little incentive to pick it up again. Calling this done for now rather than pursuing a v2, unless I get really really bored :)
