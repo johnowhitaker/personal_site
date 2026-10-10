@@ -16,8 +16,13 @@ I also have an unusual grab-bag of extra skills or interest areas, which come in
 
 ## EXPERIENCE
 
+#### R&D at Dayhoff Labs
+**Oct 2026 - present**
+
+- Using AI to understand a little more about life.
+
 #### R&D at Answer.AI
-**Jan 2024 - PRESENT**
+**Jan 2024 - 2026**
 
 - A new and exciting project to figure out what this AI stuff is actually useful for, with a fantastic team of researchers.
 
