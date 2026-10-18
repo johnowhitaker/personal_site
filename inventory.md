@@ -6,6 +6,8 @@
 
 It's useful to have a list to feed to AI agents asking about procedures. Plus, as I build up lab capacity, there are things one has to buy in bulk which can be easily shared. I've already dumped a load of extras on one friend, and after the first PDX diybio meetup I've decided I should write up what I have (and what gaps remain) so that others can plan around it! If you have projects that could benefit from some of this, do let me know - together we can do more :) I'm throwing things in as I think of them, organization etc subject to change.
 
+Last updated: 17 October 2026. Recent Amazon orders have been checked against this list. Pack sizes are purchase sizes, not current remaining quantities; items still awaiting delivery are listed separately below.
+
 ## Biology
 
 ### Strains & Plasmids
@@ -30,7 +32,7 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 * Gel buffer solution
 * Mini-prep kit (Bioland, silica columns)
 * Tween 80 (Polysorbate 80)
-* Span 80
+* Span 80 (sorbitan oleate; 125 ml bottle)
 * Activated charcoal
 * Diatomaceous earth
 
@@ -39,7 +41,9 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 * Plants in jars starter kit: MS media + various growth hormones
 * Agrobacterium injection mix (~50 ml)
 * 4 oz PP tubs with attached lids
-* Falcoponics stuff: moisture-wicking mat, food trays
+* Falcoponics stuff: moisture-wicking/capillary mats (2-pack, 47.2 × 39.4 inches) and polycarbonate food trays (6-pack, 1/6 size, 4 inches deep)
+* Hydroponic growing sponges (1 inch; 100-pack)
+* AeroGarden liquid plant food (4-3-6; 3 fl oz)
 * Old grow lights
 * Hydroponic pH UP (potassium carbonate)
 * Hydroponic pH DOWN (phosphoric acid)
@@ -57,6 +61,7 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 ### Bio Equipment
 
 * Compound binocular microscope
+* Jiusion 4K WiFi/USB digital handheld microscope with metal stand
 * Microscope slides and cover slips
 * Micropipettes:
 
@@ -78,9 +83,13 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 * Beakers: glass and plastic, ~100 ml–1 L
 * Graduated cylinders / plastic measuring cups
 * Disposable pipettes
+* Micro pestles (12-pack)
+* LDPE wash/squeeze bottles (6 × 500 ml)
+* Black 96-well microplates with lids (sterile, flat bottom, 250 µL wells; 10-pack)
 * 3 ml syringes with needles
 * Syringe filters
 * 1.5 ml microcentrifuge tubes
+* 0.2 ml capped microcentrifuge tubes (EO sterilized; 1,000-pack)
 * 15 ml and 50 ml Falcon tubes
 * Small glass vials
 * 4 oz glass jars (~8)
@@ -98,6 +107,9 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 * Calcium chloride
 * Calcium carbonate
 * Sodium citrate
+* Sodium chloride, high-purity crystals (500 g)
+* D-ribose powder (Nutricost; 250 g)
+* Hydrochloric acid solution (2 M / 7.3%; 500 ml)
 * Sodium hydroxide / lye
 * Vegetable glycerin
 * Distilled water
@@ -117,6 +129,7 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 ### Solvents & Cleaners
 
 * Ethyl acetate
+* Hexane (USA Lab; 99.5%, lab grade)
 * Isopropyl alcohol:
 
   * 70% spray bottle
@@ -131,9 +144,10 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 
 ### Powders, Ceramics & High-Temperature Materials
 
-* Copper powder (~350 mesh)
-* Aluminium oxide (~500 mesh)
-* Small alumina crucibles
+* Copper powder (320 mesh; 1 lb pack)
+* Aluminium oxide (500 grit; 2 lb pack)
+* Chromium(III) oxide powder (Cr₂O₃; 99%; 50 g)
+* Alumina crucibles, including small crucibles, a 100 ml / 90 × 30 mm crucible, and a lidded crucible
 
 ### Chemistry / Imaging Kits
 
@@ -147,14 +161,18 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 * Digital scale (SF-400D)
 * Hotplate
 * Janky DIY stir plate
+* INTLLAB touch-activated vortex mixer
 * Label maker
+* T02 mini thermal sticker printer
 
 ## Optics, Imaging & Light
 
 ### Cameras
 
 * Thermal camera
-* UV "makeup camera"
+* UV "makeup camera" (MsCalido Uvlook)
+* AOC 4K USB webcam (Sony sensor, autofocus; supports 1080p at 60 fps)
+* 1080p USB webcam with microphone and privacy cover
 * Macro camera:
 
   * Lumix FZ80
@@ -163,9 +181,11 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 ### Light Sources & Optics
 
 * Large handheld flashlight
+* Rechargeable flashlights (TrixHub; 2-pack)
 * UV flashlight
 * 6 W UVC lamp for mutagenesis, sterilization, spectroscopy
 * Green laser pointer
+* LASER TREE 4 W / 450 nm laser engraver module with adjustable focus
 * Diffraction gratings (slide format)
 
 ### Eye Protection
@@ -181,8 +201,9 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 * Raspberry Pi Picos
 * ESP chips
 * ESPCams
-* S3 Stick
+* M5Stack M5StickS3 ESP32-S3 development kit
 * A few BeagleBone Black SBCs
+* 16 GB microSD cards with SD adapters (KEXIN; two 2-packs)
 * RAMPS boards
 * Stepper motors
 * PC with RTX 3090
@@ -211,6 +232,10 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 * Breadboards
 * Jumper wires
 * Breakout boards
+* PC817 single-channel optocoupler isolation modules (6-pack)
+* Adjustable 3–5 V laser diode driver board (listed for 660 / 532 / 808 nm diodes)
+* 5.5 × 2.1 mm female panel-mount DC barrel jacks (8-pack)
+* WAGO 221-2401 inline lever wire connectors (20-pack with case)
 * Ribbon cables
 * Various USB cables
 * Wall adapters:
@@ -226,6 +251,7 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 * Corsair RM1000x PC power supply, adapted for bench use
 * Variable DC power-supply breakout board for the PSU
 * Fixed 32 V PSU
+* LM2596 adjustable DC–DC buck converter modules (5-pack)
 * 9 V batteries for gel electrophoresis PSU
 * A few battery banks
 
@@ -237,8 +263,26 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 * Pinecil Mini portable soldering iron
 * Solder wire spool
 * Solder fume extractor
-* Helping-hands tool with alligator clips
+* Helping-hands tools / adjustable soldering and PCB holders with alligator clips
+* CH341A USB EEPROM / flash programmer and SOIC8 / SOP8 test clips
 * Heat-shrink tubing
+
+### Smart Devices
+
+* TP-Link Archer A54 AC1200 WiFi router
+* TP-Link Tapo P125M Matter smart plugs (3-pack)
+* Kasa KP115 smart plug with energy monitoring
+* BroadLink RM4 Mini WiFi IR blaster
+* SwitchBot Bluetooth button pusher
+* WYZE Cam v4
+* VSTARCAM 3 MP WiFi pet camera with laser
+* Birdkiss solar-powered bird feeder camera
+* Divoom Pixoo-64 WiFi 64 × 64 LED display
+* FRAMEO 10.1-inch WiFi photo frame (1280 × 800; 32 GB)
+* PAPIFEED WiFi automatic pet feeder (3 L)
+* Petbank WiFi aquarium feeder with temperature monitoring
+* RAINPOINT WiFi plant watering / drip irrigation kit
+* ASAKUKI WiFi humidifier / essential oil diffuser (700 ml)
 
 ## Fabrication & Workshop
 
@@ -248,10 +292,11 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 * Raspberry Pi connected to printer
 * PLA filament:
 
-  * Green
+  * Neon green (ELEGOO, 1.75 mm; 1 kg spool)
   * White
-  * Black
+  * Black (ELEGOO, 1.75 mm; 1 kg spool)
 * Polycaprolactone mouldable plastic
+* P1P/P1S-compatible ceramic heaters (24 V, 70 W) and thermistors (320 °C; 2-piece kit)
 
 ### Power Tools
 
@@ -281,6 +326,8 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 * Ratchet clamps
 * Spring clamps
 * Plastic Vernier calipers
+* Tape measure (10 m / 33 ft; metric and inch scales)
+* Long-nib permanent marker pens (10-pack)
 * Pen knives
 * X-Acto knives
 * Scalpel
@@ -290,6 +337,8 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 ### Fasteners, Tapes & Adhesives
 
 * Random wood screws and other fasteners
+* Iron spring-gate carabiner clips (3 inch)
+* Assorted-gauge 304 stainless steel wire (6-piece set)
 * Kapton tape
 * Duct tape
 * Gaffer tape
@@ -297,12 +346,16 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 * Plumber's tape
 * Elmer's Carpenter's Wood Glue
 * Mod Podge
-* Super glue
+* Super glue (including 24 × 1 g single-use tubes)
 * Kwik Seal adhesive caulk
 * Hot glue sticks
 * 2-part clear resin
 * UV resin glue
 * WD-40
+
+### Sheet Materials
+
+* Orange acrylic sheets (4 sheets, each 12 × 12 inches and 1/8 inch thick)
 
 ### Paints & Finishing
 
@@ -312,16 +365,19 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 ## Safety & PPE
 
 * VersaShield nitrile gloves
+* Inspire cobalt-blue nitrile gloves (large; 100-pack)
 * N95 masks
 * Clear safety glasses
 * Work gloves
 * Air purifier
+* Enclosure fume-extraction fan kit with exhaust duct, flange, and mesh cover
 
 ## Organization & Storage
 
 * Pegboard organization system
 * Sorting bins / organizers
 * Component storage drawers
+* Brown packing paper sheets (14.5 × 11 inches; 1,500-pack)
 
 ## Kitchen / Food Science
 
@@ -335,14 +391,16 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 * ROLI Seaboard Rise 2
 * Electric Guitar, ukulele, 3/4 acoustic guitar
 * Audio interface
+* JBL Go 4 Bluetooth speaker
 * Miscellaneous music gear, lots of DIY instruments, tin whistle, mellodica, kazoos out the wazoo, contact mic, 
 
 ## Computers & Peripherals
 
 * Computer monitor
 * Huion drawing tablet
-* Mice
-* Keyboards
+* Mice, including Razer Basilisk V3
+* Keyboards, including Keychron C3 Pro (87-key TKL, QMK/VIA, brown switches)
+* 8BitDo USB Wireless Adapter 2
 * Oculus Quest 3
 
 ## Other Equipment
@@ -350,3 +408,17 @@ It's useful to have a list to feed to AI agents asking about procedures. Plus, a
 * Inflatable SUP (borrowable)
 * Blood pressure monitor
 * Compressor for car tires
+* HotSnapZ reusable pocket hand warmers
+
+## Reference Books
+
+* Atkins' Molecules
+
+## Ordered / Awaiting Delivery
+
+Status checked 17 October 2026; these are not yet counted as available above.
+
+* Tris base (ultrapure; 500 g) — expected 23 October 2026
+* IPTG (1 g) — expected by 27 October 2026
+* Principles of Instrumental Analysis — expected 27 October–5 November 2026
+* Bioanalytical Chemistry — expected 29 October–3 November 2026
