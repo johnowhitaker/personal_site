@@ -1,6 +1,6 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/all.html",
     "items": [
       "/posts/hwrebench.html",
       "/posts/workshop.html",
@@ -245,7 +245,7 @@
     ]
   },
   {
-    "listing": "/all.html",
+    "listing": "/index.html",
     "items": [
       "/posts/hwrebench.html",
       "/posts/workshop.html",
