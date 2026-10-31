@@ -9,8 +9,57 @@
 <link>https://johnowhitaker.dev/</link>
 <atom:link href="https://johnowhitaker.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.11.6</generator>
-<lastBuildDate>Fri, 02 Oct 2026 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.11.9</generator>
+<lastBuildDate>Sat, 17 Oct 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Poppy PCR - Analyzing the DNA of a California Poppy Mutant</title>
+  <link>https://johnowhitaker.dev/posts/poppy_pcr.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/dcegcc3daj8" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>In early June I noticed some white flowers in amidst the prolific and gorgeous orange California poppies in the flower beds along one of our regular walk routes. Intrigued, I took some samples and preserved some tissue from each in Zymo DNA shield, thinking I’d later look into options to sequence them or otherwise probe for the mutation that caused the loss of pigment. A bit of research turned up some existing literature on this - these white variants aren’t uncommon in horticulture, and scientists had already nailed down a 76 base-pair deletion in the DNA that they found is usually present in the white ones. This month I finally got access to a thermocycler, and decided to use PCR to see if my samples had the same change present.</p>
+<p>PCR is a technique for amplifying select DNA. You order some ‘primers’ - short snippets of DNA that mark the start and end of the sequence you wish to amplify. Then, with a clever mix of enzymes and tempterature control, you make many, MANY copies of any DNA that matches those templates. Finally, you typically put some of the resulting mix into a well in an agarose gel and apply an electric field, spreading out the DNA (if present) into bands sorted by length (since larger strands travel more slowly through the thick gel). I did one practice run that failed to show bands in most lanes, then a more careful repeat that delivered the goods:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/posts/images/poppy_pcr.png" class="img-fluid figure-img"></p>
+<figcaption>The gel from my second, sucessful, run</figcaption>
+</figure>
+</div>
+<p>Here’s the protocol I followed, using reagents from the <a href="https://www.minipcr.com/product/fungal-dna-barcoding/">MiniPCR fungal barcoding kit</a>:</p>
+<ul>
+<li>A small piece of tissue (&lt;2mm in size) was taken out of the zymo, washed with distilled water, and then placed into 50ul of the ‘DPX’ extraction mix.</li>
+<li>2ul of that extract was added to 12.5ul 2X master mix and 8.5uL water in a PCR tube, with 2uL primer mix.</li>
+<li>(primers: diluted to 100nmol/mL then 10ul F and 10ul R + 180uL water)</li>
+<li>2ul of that mix was added to a second tube, with the same extras (master mix, water, primers) - this dilution is sometimes helpful if there are too many PCR inhibitors in the full-strength sample. PCR can work with tiiiiny amounts of DNA, so erring towards extreme dilution is not a bad idea!</li>
+<li>These 25ul volumes were then run through the following temperature profile: 94C 30s, 52C 40s, 72C 60S x 40, 72C 5min, 4C</li>
+</ul>
+<p>Finally, 5ul of each PCR product was added to 1ul of 6X loading dye and run in a 2% agarose gel with SeeGreen stain (made from <a href="https://www.minipcr.com/product-category/reagents/gel-electrophoresis-reagents/all-in-one-agarose-tabs/">these</a> nifty all-in-one tabs) with my DIY electrophoresis rig.</p>
+<p>Comparing the lengths travelled by the two bands and the DNA ladder, we can see that the orange looks to be around 500 b.p. and the white one looks about right for 425-ish:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://johnowhitaker.dev/posts/images/poppy_comp.png" class="img-fluid figure-img"></p>
+<figcaption>Comparing DNA ladder (left, 1200, 700, 500, 300 bottom-to-top) with the two flower PCR products, white (center) and orange (right)</figcaption>
+</figure>
+</div>
+<p>I also used some moth barcoding primers to amplify a bit of DNA from a moth sample I wanted to ID in this run, so the temp profile was a bit of a compromise between the two protocols suggested in the literature. It worked great :)</p>
+<p>Here are the primers used:</p>
+<p>Poppies:</p>
+<p>PSY-Gap-F TCAAGCAACGACGGAGAGTA PSY-Gap-R CCTTGCCTGCGAATATGTCT</p>
+<p>Moth:</p>
+<p>LepF1 ATTCAACCAATCATAAAGATATTGG LepR1 TAAACTTCTGGATGTCCAAAAAATCA</p>
+<p>Soooo nice to have this capability. I have since aquired my own Bento Lab Pro so I have a thermocycler to call my own - and I’m hoping to run some workshops for the Portland DIYBio community soon.</p>
+
+
+
+ ]]></description>
+  <category>Video</category>
+  <category>bio</category>
+  <guid>https://johnowhitaker.dev/posts/poppy_pcr.html</guid>
+  <pubDate>Sat, 17 Oct 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>HWREBench</title>
   <link>https://johnowhitaker.dev/posts/hwrebench.html</link>
@@ -950,7 +999,7 @@ font-style: inherit;">return</span> turn, speed, emission, gate, proposal, hidde
   <category>Video</category>
   <guid>https://johnowhitaker.dev/posts/prot_extract.html</guid>
   <pubDate>Tue, 02 Jun 2026 00:00:00 GMT</pubDate>
-  <media:content url="https://johnowhitaker.dev/posts/images/prot_extract-Cover.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://johnowhitaker.dev/posts/images/prot_extract-Cover.jpg" medium="image" type="image/jpeg" height="83" width="144"/>
 </item>
 <item>
   <title>Messing about with ESMC</title>
@@ -1134,7 +1183,7 @@ font-style: inherit;">return</span> turn, speed, emission, gate, proposal, hidde
   <category>bio</category>
   <guid>https://johnowhitaker.dev/misc/chasing_green.html</guid>
   <pubDate>Wed, 22 Apr 2026 00:00:00 GMT</pubDate>
-  <media:content url="https://johnowhitaker.dev/misc/thumbnails/th.jpeg" medium="image" type="image/jpeg"/>
+  <media:content url="https://johnowhitaker.dev/misc/thumbnails/th.jpeg" medium="image" type="image/jpeg" height="96" width="144"/>
 </item>
 <item>
   <title>Misc Updatates</title>
@@ -1325,49 +1374,6 @@ font-style: inherit;">return</span> turn, speed, emission, gate, proposal, hidde
   <category>mini-hw-projects</category>
   <guid>https://johnowhitaker.dev/posts/dnaq.html</guid>
   <pubDate>Thu, 19 Mar 2026 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Spectral Shifts with Pyoverdine pH</title>
-  <link>https://johnowhitaker.dev/mini-hw-projects/spectrometer.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>Since my <a href="https://johnowhitaker.dev/posts/putida.html">previous post</a> I’ve continued tinkering with the flourescent pyoverdine produced by pseudomonas putida. I made some really pure stuff with solid phase extraction using activated charcoal (no luck getting access to LC-MS sadly) and also just extracted a bunch for further experiments. In todays post: what happens when you shift pH. Spoiler, fun color changes :) The first test:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/pyoverdine_fl.png" class="img-fluid figure-img"></p>
-<figcaption>Image lightly edited in an attempt to capture + emphasize what it looks like IRL</figcaption>
-</figure>
-</div>
-<p>I’d noticed some older colonies shift to green, and green/yellow rather than blue when some stained my hands a while ago. So I started adding things to it to see what would happen. Citric acid and Vitamin C both shifted it to whitish, almost pink (at least in comparison to the normal color). Some strongly basic NaOH shifted it to green. To get a better picture of this, I made a spectrometer using a diffraction grating and a raspbery pi camera in a box. I calibrated it with a few laser pointers - by looking at the pixel values in one area of the image, we get a rough view of the spectrum (my slit is a fairly wide cut in some cardboard, nothing fancy here).</p>
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/spec_calib.png" class="img-fluid"></p>
-<p>Putting some pyoverdine extract in ethanol in three vials, and adding some citric acid to one and NaOH to another, we get the following spectra:</p>
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/spec_p.png" class="img-fluid"></p>
-<p>To me, this indicates that there might be two different flourescent compounds in the extract! More to investigate, I bought a tube to try my own LC to see if I can separate them.</p>
-<p>A few more pics:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/spec_cad.png" class="img-fluid figure-img"></p>
-<figcaption>While cardboard and gaffer tape would work fine, I did print a nice enclosure and some holders to make this spectrometer useful for future work</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://johnowhitaker.dev/mini-hw-projects/images/pyoverdine_plates.png" class="img-fluid figure-img"></p>
-<figcaption>One plate had e. coli growing before Pseudomonas putida took over</figcaption>
-</figure>
-</div>
-<p>PS: <a href="https://gist.github.com/johnowhitaker/d9e8d41fa5c215dfd16b7c94f651ef3f">Code for the plots etc</a></p>
-
-
-
- ]]></description>
-  <category>mini-hw-projects</category>
-  <category>bio</category>
-  <guid>https://johnowhitaker.dev/mini-hw-projects/spectrometer.html</guid>
-  <pubDate>Fri, 27 Feb 2026 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
